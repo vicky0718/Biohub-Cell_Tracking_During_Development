@@ -9,12 +9,40 @@ of zebrafish embryos. Started 2026-08-13.
 ├── notes/
 │   ├── 01-competition-brief.md   the terrain: data, submission format, scoring, baseline
 │   └── 02-metric-findings.md     what actually scores points — measured, not assumed
+├── harness/
+│   ├── scorer.py                 adapter onto the OFFICIAL scorer (never reimplemented)
+│   ├── harness.py                fold-based scoring, caching, and the promote/reject gate
+│   └── submission.py             build submission.csv + catch what the scorer fixes silently
 ├── probes/
 │   ├── metric_probe.py           free FPs, the node budget, wrong-vs-missing links
 │   ├── metric_probe2.py          gap bridging, division timing
 │   └── test_recon_logic.py       offline dry-run of the recon notebook's linking code
+├── tests/
+│   └── test_harness.py           15 tests, runnable without competition data
 └── notebooks/
     └── 01_recon.ipynb            run this on Kaggle first — answers the open questions
+```
+
+## The harness
+
+Nothing gets promoted on a pooled number alone. `gate(baseline, arm)` requires the
+change to improve the pooled score **and** regress no fold — a pooled gain paid for by
+a fold regression is the shape of overfitting, and it is rejected:
+
+```python
+from harness import Harness, gate
+
+h = Harness(data_dir=TRAIN)                    # official splits auto-loaded
+base = h.evaluate(predict_v1, arm="baseline")  # results cached per (arm, dataset)
+arm  = h.evaluate(predict_v2, arm="lower_threshold")
+print(gate(base, arm))                         # PROMOTE / REJECT, with per-fold deltas
+```
+
+Scores come from the official `tracking_cellmot` scorer, never a reimplementation, so a
+local number is the leaderboard's number. Run the tests with:
+
+```bash
+CELLMOT_REPO=/path/to/kaggle-cell-tracking-competition python tests/test_harness.py
 ```
 
 ## Where things stand
