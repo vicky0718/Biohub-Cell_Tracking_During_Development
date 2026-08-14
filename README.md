@@ -18,11 +18,15 @@ of zebrafish embryos. Started 2026-08-13.
 │   ├── metric_probe.py           free FPs, the node budget, wrong-vs-missing links
 │   ├── metric_probe2.py          gap bridging, division timing
 │   └── test_recon_logic.py       offline dry-run of the recon notebook's linking code
+├── pipeline/
+│   └── classical.py              detect -> link -> submit, no training required
 ├── tests/
-│   └── test_harness.py           15 tests, runnable without competition data
+│   ├── test_harness.py           15 tests, runnable without competition data
+│   └── test_pipeline.py          detector checked against synthetic 3D microscopy
 └── notebooks/
-    ├── 01_recon.ipynb            run this on Kaggle first — answers the open questions
-    └── _build_01_recon.py        regenerates the notebook (keeps its JSON valid)
+    ├── 01_recon.ipynb            run this on Kaggle FIRST — answers the open questions
+    ├── 02_classical_baseline.ipynb  first submission + the threshold sweep
+    └── _build_*.py               regenerate the notebooks (keeps their JSON valid)
 ```
 
 ## The harness
@@ -64,11 +68,19 @@ until late.
 
 ## Next step
 
-Run `notebooks/01_recon.ipynb` on Kaggle (CPU is enough — it never loads an image) and
-commit `recon_summary.json` back here. It answers the questions the strategy hangs on:
-annotation density, the node budget, inter-frame motion, cell spacing, division counts,
-and the linking-only ceiling that splits the score into "detection problem" vs
-"linking problem".
+1. **`notebooks/01_recon.ipynb`** — CPU only, loads no images. Answers what the strategy
+   hangs on: annotation density, the node budget, inter-frame motion, cell spacing,
+   division counts, whether the sparse annotation is biased, and the linking-only ceiling
+   that splits the score into "detection problem" vs "linking problem". Commit
+   `recon_summary.json` back here.
+2. **`notebooks/02_classical_baseline.ipynb`** — plants a real number on the leaderboard
+   and runs experiment #1, the detection-threshold sweep. Its `Config` defaults are
+   placeholders from the domain notes; recon supplies the real values.
+
+Experiment #1 is a **prediction, not a result**: the metric findings say the official
+baseline's `--det-threshold 0.99` is tuned on the axis that barely matters, so the score
+should improve as the threshold falls until the node budget bites. The sweep is how we
+find out, and the gate decides whether it ships.
 
 ## Running the probes locally
 
