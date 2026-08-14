@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# scratch: local clone of the official scorer, prediction caches, submissions
+kaggle-cell-tracking-competition/
+cache/
+predictions/
+*.geff
+submission*.csv
