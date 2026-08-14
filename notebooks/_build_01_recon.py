@@ -52,19 +52,20 @@ Everything lands in `recon_summary.json`.
 
 code(r"""
 # --- dependencies -------------------------------------------------------------
-# Kaggle ships a pip CONSTRAINTS file that pins numpy<2; tracksdata wants numpy>2,
-# which is the ResolutionImpossible you get from a plain `pip install tracksdata`.
-# Clearing PIP_CONSTRAINT for the install is what lets it resolve.
+# Deliberately minimal. `geff` reads the ground-truth graphs and `zarr` reads image
+# metadata; both are light and install cleanly.
+#
+# We do NOT install tracksdata here. It requires numpy>2, and installing it rewrites
+# numpy's files underneath the already-running kernel — which produced
+# "cannot import name '_center' from numpy._core.umath" and then took scipy.spatial
+# down with it. Nothing in this notebook needs it (see section 7).
 import os, subprocess, sys
 from pathlib import Path
 
-print("pip constraint file:", os.environ.get("PIP_CONSTRAINT", "(none)"))
-
-def pip_install(args, clear_constraint=True):
+def pip_install(args):
     env = dict(os.environ)
-    if clear_constraint:
-        env.pop("PIP_CONSTRAINT", None)
-        env.pop("PIP_CONSTRAINTS", None)
+    env.pop("PIP_CONSTRAINT", None)      # Kaggle pins numpy<2 via a constraints file
+    env.pop("PIP_CONSTRAINTS", None)
     r = subprocess.run([sys.executable, "-m", "pip", "install", "-q", *args],
                        env=env, capture_output=True, text=True)
     if r.returncode != 0:
@@ -72,13 +73,9 @@ def pip_install(args, clear_constraint=True):
         print("   ", (r.stderr or r.stdout).strip().splitlines()[-1][:300])
     return r.returncode == 0
 
-# Light and always needed: reading zarr metadata and .geff graphs.
-print("\ninstalling geff + zarr ...")
+print("installing geff + zarr ...")
 pip_install(["geff", "zarr"])
-
-# Only section 7 needs tracksdata (the official scorer imports it).
-print("installing tracksdata (optional — section 7 only) ...")
-pip_install(["tracksdata"])
+print("done")
 """)
 
 code(r"""
@@ -93,7 +90,7 @@ def probe(mod):
     except Exception as e:
         return False, f"{type(e).__name__}: {e}"
 
-status = {m: probe(m) for m in ("numpy", "scipy", "zarr", "geff", "polars", "tracksdata")}
+status = {m: probe(m) for m in ("numpy", "scipy", "zarr", "geff")}
 for m, (ok, info) in status.items():
     print(f"  {'OK  ' if ok else 'MISS'} {m:<12} {info}")
 
@@ -107,23 +104,7 @@ if missing:
         "installed, so the second pass works."
     )
 
-HAVE_TRACKSDATA = status["tracksdata"][0]
-if not HAVE_TRACKSDATA:
-    print("\n! tracksdata unavailable -> section 7 (the linking ceiling) will be skipped.")
-    print("  Everything else runs; the ceiling is the one number that needs the official scorer.")
-""")
-
-code(r"""
-# --- official scorer (section 7 only) -----------------------------------------
-CELLMOT = Path("/kaggle/working/kaggle-cell-tracking-competition")
-if HAVE_TRACKSDATA and not (CELLMOT / "src" / "tracking_cellmot").is_dir():
-    subprocess.run(["git", "clone", "--depth", "1", "--quiet",
-                    "https://github.com/royerlab/kaggle-cell-tracking-competition.git",
-                    str(CELLMOT)], check=False)
-HAVE_SCORER = HAVE_TRACKSDATA and (CELLMOT / "src" / "tracking_cellmot").is_dir()
-if HAVE_SCORER:
-    sys.path.insert(0, str(CELLMOT / "src"))
-print("official scorer available:", HAVE_SCORER)
+print("\nAll required packages present — no tracksdata needed.")
 """)
 
 code(r"""
@@ -602,121 +583,145 @@ print("\nThe division term is worth at most 0.1 of the score, and a mistimed div
       "more edge Jaccard than it earns (notes/02-metric-findings.md §5). Chase it last.")
 """)
 
-md("""## 7. The linking-only ceiling
+md(r"""
+## 7. The linking-only ceiling
 
-Feed the **GT nodes back in as perfect detections** and link them. Scored with the official
-scorer, so it is directly comparable to a leaderboard number.
+Feed the **GT nodes back in as perfect detections** and link them. This splits the score:
 
 - Near 1.0 → tracking is easy and **detection is the whole contest**.
 - Low → linking is genuinely hard and deserves the modelling effort.
 
-Optimistic in one way (no unannotated distractors) and pessimistic in another (these are
-dumb linkers). Read it as a decomposition, not a target.
+**Why this needs no tracksdata.** When the predicted nodes *are* the ground-truth nodes,
+the scorer's bipartite distance matching is identity — every pair sits at distance 0, the
+unique optimum. Under that condition the official edge rules collapse to set arithmetic on
+edge index pairs:
 
-Needs `tracksdata`; skipped automatically if it would not install.
+- `TP` = predicted edges that are also GT edges
+- `FP` = predicted edges (excluding TPs) whose source has GT out-edges **or** whose target
+  has GT in-edges — the scorer's `pred_valid` rule
+- `FN` = GT edges not predicted
+
+plus the scorer's silent filters: edges must span exactly `t → t+1`, and out-degree is
+capped at 2. This is a *specialisation* of the official metric, not a reimplementation of
+it, and it was checked against the real scorer on 8 cases — sparse, dense, and
+radius-starved — reproducing its TP/FP/FN exactly every time (`probes/verify_ceiling.py`).
+
+Optimistic in one way (no unannotated distractors) and pessimistic in another (these are
+deliberately dumb linkers). Read it as a decomposition, not a target.
 """)
 
 code(r"""
-if not HAVE_SCORER:
-    print("SKIPPED — tracksdata / official scorer unavailable.")
-    print("Everything above still stands; only this ceiling number is missing.")
-    CEILING = {}
-else:
-    import polars as pl
-    import tracksdata as td
-    from scipy.optimize import linear_sum_assignment
-    from scipy.spatial.distance import cdist
-    from tracking_cellmot.metrics import evaluate, per_sample_metrics, node_recall, summarise
-    try:
-        from scipy.sparse import csr_matrix
-        from scipy.sparse.csgraph import min_weight_full_bipartite_matching as _sparse_lsa
-    except ImportError:
-        _sparse_lsa = None
+from collections import Counter as _Counter
+from scipy.optimize import linear_sum_assignment
+from scipy.spatial.distance import cdist
 
-    DENSE_CAP = 4_000_000     # n_src * n_tgt above which we go sparse
-    LINK_RADIUS_UM = 25.0     # generous; section 3 says what is actually needed
+DENSE_CAP = 4_000_000       # n_src * n_tgt above which the assignment goes sparse
+LINK_RADIUS_UM = 25.0       # generous; section 3 says what is actually needed
+try:
+    from scipy.sparse import csr_matrix
+    from scipy.sparse.csgraph import min_weight_full_bipartite_matching as _sparse_lsa
+except ImportError:
+    _sparse_lsa = None
 
-    def build_graph(coords):
-        g = td.graph.InMemoryGraph()
-        for k in ("z", "y", "x"):
-            g.add_node_attr_key(k, pl.Float64, -999999.0)
-        ids = g.bulk_add_nodes([{"t": int(t), "z": float(z), "y": float(y), "x": float(x)}
-                                for t, z, y, x in coords])
-        return g, ids
 
-    def _link_frame(A, B, radius_um, mode):
-        nA, nB = len(A), len(B)
-        if nA == 0 or nB == 0:
-            return []
-        if mode == "greedy":
-            d, j = cKDTree(B).query(A, k=1, distance_upper_bound=radius_um)
-            return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
-        if nA * nB <= DENSE_CAP:
-            D = cdist(A, B)
-            ri, ci = linear_sum_assignment(D)
-            return [(int(i), int(j)) for i, j in zip(ri, ci) if D[i, j] <= radius_um]
-        sp = cKDTree(A).sparse_distance_matrix(cKDTree(B), radius_um, output_type="coo_matrix")
-        if sp.nnz == 0:
-            return []
-        sp.data = sp.data + 1e-9
-        if _sparse_lsa is not None:
-            try:
-                ri, ci = _sparse_lsa(csr_matrix(sp))
-                return [(int(i), int(j)) for i, j in zip(ri, ci)]
-            except Exception:
-                pass
+def _link_frame(A, B, radius_um, mode):
+    nA, nB = len(A), len(B)
+    if nA == 0 or nB == 0:
+        return []
+    if mode == "greedy":
         d, j = cKDTree(B).query(A, k=1, distance_upper_bound=radius_um)
         return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
+    if nA * nB <= DENSE_CAP:
+        D = cdist(A, B)                       # no n*m*3 broadcast intermediate
+        ri, ci = linear_sum_assignment(D)
+        return [(int(i), int(j)) for i, j in zip(ri, ci) if D[i, j] <= radius_um]
+    sp = cKDTree(A).sparse_distance_matrix(cKDTree(B), radius_um, output_type="coo_matrix")
+    if sp.nnz == 0:
+        return []
+    sp.data = sp.data + 1e-9
+    if _sparse_lsa is not None:
+        try:
+            ri, ci = _sparse_lsa(csr_matrix(sp))
+            return [(int(i), int(j)) for i, j in zip(ri, ci)]
+        except Exception:
+            pass
+    d, j = cKDTree(B).query(A, k=1, distance_upper_bound=radius_um)
+    return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
 
-    def link_all(coords, scale, mode, radius_um=LINK_RADIUS_UM):
-        by_t = {}
-        for i in np.argsort(coords[:, 0], kind="stable"):
-            by_t.setdefault(int(coords[i, 0]), []).append(int(i))
-        phys = coords[:, 1:] * np.asarray(scale)[None, :]
-        edges = []
-        for t in sorted(by_t):
-            a, b = by_t.get(t), by_t.get(t + 1)
-            if not a or not b:
-                continue
-            for i, j in _link_frame(phys[a], phys[b], radius_um, mode):
-                edges.append((a[i], b[j]))
-        return edges
 
-    def load_td_geff(path):
-        r = td.graph.IndexedRXGraph.from_geff(str(path))
-        return r[0] if isinstance(r, tuple) else r
+def link_gt_nodes(g, scale, mode, radius_um=LINK_RADIUS_UM):
+    frames = g.by_frame()
+    C = g.coords(scale)
+    edges = []
+    for t in sorted(frames):
+        a, b = frames.get(t), frames.get(t + 1)
+        if a is None or b is None or len(a) == 0 or len(b) == 0:
+            continue
+        for i, j in _link_frame(C[a], C[b], radius_um, mode):
+            edges.append((int(a[i]), int(b[j])))
+    return edges
 
+
+def edge_counts(g, pred_edges):
+    # Exact edge TP/FP/FN under identity node matching -- verified against the
+    # official scorer, see the markdown above.
+    gt_set = set(zip(g.src.tolist(), g.dst.tolist()))
+    pred = {(i, j) for i, j in pred_edges if g.t[j] - g.t[i] == 1}   # scorer drops others
+    over = [s for s, c in _Counter(i for i, _ in pred).items() if c > 2]
+    if over:
+        print(f"    note: {len(over)} nodes had out-degree > 2; the scorer would truncate them")
+    out_deg, in_deg = g.out_deg, g.in_deg
+    tp = len(pred & gt_set)
+    valid = sum(1 for i, j in pred if out_deg[i] > 0 or in_deg[j] > 0)
+    return tp, valid - tp, len(gt_set) - tp
+""")
+
+code(r"""
+def _s7():
     import time
     for name in train_names:
         g, _, _ = GTS[name]
         pf = g.n_nodes / max(1, len(np.unique(g.t)))
         print(f"{name:<30} {g.n_nodes:>9,} nodes, ~{pf:,.0f}/frame"
-              + ("   (dense)" if pf ** 2 <= DENSE_CAP else "   (SPARSE)"))
+              + ("   (dense path)" if pf ** 2 <= DENSE_CAP else "   (SPARSE path)"))
+    print()
 
-    CEILING = {}
+    out = {}
     for mode in ("hungarian", "greedy"):
-        rows = []
+        TP = FP = FN = 0
+        adj_num = adj_den = 0.0
         for name in train_names:
             g, shape, scale = GTS[name]
-            coords = np.column_stack([g.t, g.z, g.y, g.x])
             t0 = time.time()
-            pred, ids = build_graph(coords)
-            e = link_all(coords, scale, mode)
-            if e:
-                pred.bulk_add_edges([{"source_id": ids[i], "target_id": ids[j]} for i, j in e])
-            gt_td = load_td_geff(TRAIN / f"{name}.geff")
-            er = evaluate(pred, gt_td, scale=scale, max_distance=MATCH_UM)
-            rec = node_recall(pred, gt_td)
-            rows.append(per_sample_metrics(er, estimated_nodes(TRAIN / f"{name}.geff"), rec))
-            print(f"[{mode:>9}] {name:<28} TP/FP/FN={er.edge_tp:,}/{er.edge_fp:,}/{er.edge_fn:,} "
-                  f"J={er.edge_tp/max(1,er.edge_tp+er.edge_fp+er.edge_fn):.4f} "
+            e = link_gt_nodes(g, scale, mode)
+            tp, fp, fn = edge_counts(g, e)
+            TP += tp; FP += fp; FN += fn
+            j = tp / max(1, tp + fp + fn)
+            # per-sample adjusted Jaccard, weight-averaged by sample size (as summarise does)
+            n_est = estimated_nodes(TRAIN / f"{name}.geff")
+            if n_est == n_est and n_est > 0:
+                ratio = (g.n_nodes - n_est) / n_est
+                w = tp + fp + fn
+                adj_num += w * max(0.0, j * (1 - 0.1 * ratio))
+                adj_den += w
+            print(f"[{mode:>9}] {name:<28} TP/FP/FN={tp:,}/{fp:,}/{fn:,} J={j:.4f} "
                   f"({len(e):,} links, {time.time()-t0:.1f}s)", flush=True)
-        s = summarise(rows)
-        CEILING[mode] = s
+        micro = TP / max(1, TP + FP + FN)
+        adj = adj_num / adj_den if adj_den else float("nan")
+        out[mode] = {"edge_tp": TP, "edge_fp": FP, "edge_fn": FN,
+                     "edge_jaccard": micro, "adj_edge_jaccard": adj}
         print(f"\n=== {mode.upper()} on perfect detections ===")
-        for k in ("edge_jaccard", "adj_edge_jaccard", "division_jaccard", "score"):
-            print(f"  {k:<18} = {s[k]:.4f}")
+        print(f"  edge_jaccard     = {micro:.4f}   (TP={TP:,} FP={FP:,} FN={FN:,})")
+        print("  adj_edge_jaccard = " + (f"{adj:.4f}" if adj == adj
+                                         else "n/a (no node budget in metadata)"))
         print()
+    gap = out["hungarian"]["edge_jaccard"] - out["greedy"]["edge_jaccard"]
+    print(f"optimal assignment beats greedy nearest-neighbour by {gap:+.4f} edge Jaccard.")
+    print("A large gap says global linking is worth real effort (this is why Ultrack solves "
+          "an ILP). A small one says detection is where the score lives.")
+    return out
+
+CEILING = section(_s7) or {}
 """)
 
 md("## 8. Summary")
@@ -739,7 +744,6 @@ summary = {
     "division_rate": DIV_RATE,
     "divisions_total": tot_div, "gt_edges_total": tot_edges,
     "linking_ceiling": {m: _clean(s) for m, s in CEILING.items()},
-    "have_tracksdata": HAVE_TRACKSDATA,
 }
 Path("/kaggle/working/recon_summary.json").write_text(json.dumps(summary, indent=2, default=str))
 print(json.dumps({k: v for k, v in summary.items()
