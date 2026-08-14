@@ -531,6 +531,12 @@ Optimistic in one direction (no unannotated distractors) and pessimistic in anot
 
 code(r"""
 from scipy.optimize import linear_sum_assignment
+from scipy.spatial.distance import cdist
+from scipy.sparse import csr_matrix
+try:                     # name/availability varies across scipy versions
+    from scipy.sparse.csgraph import min_weight_full_bipartite_matching as _sparse_lsa
+except ImportError:
+    _sparse_lsa = None
 from tracking_cellmot.metrics import evaluate, per_sample_metrics, node_recall, summarise
 
 
@@ -544,49 +550,104 @@ def build_graph(coords):
     return g, ids
 
 
-def link_nearest(coords, scale, max_um=None, mode="hungarian"):
-    '''Link consecutive frames. mode='hungarian' = optimal 1-1; 'greedy' = mutual NN.'''
-    order = np.argsort(coords[:, 0], kind="stable")
+# A whole frame can hold thousands of annotated cells, so a dense (n_src x n_tgt)
+# cost matrix is not safe to assume. cdist allocates only n*m (no n*m*3 broadcast
+# intermediate), and above DENSE_CAP we drop to a sparse matching instead.
+DENSE_CAP = 4_000_000       # n_src * n_tgt entries ~= 32 MB as float64
+LINK_RADIUS_UM = 25.0       # generous vs expected per-frame motion; see section 3
+
+
+def _link_frame(A, B, radius_um, mode):
+    '''Return [(i, j)] index pairs between frame arrays A (t) and B (t+1), in microns.'''
+    nA, nB = len(A), len(B)
+
+    if mode == "greedy":
+        # Each source takes its nearest target inside the radius. Targets may be
+        # claimed more than once — those merges are collapsed by the scorer, which
+        # is exactly why greedy underperforms a true assignment.
+        d, j = cKDTree(B).query(A, k=1, distance_upper_bound=radius_um)
+        return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
+
+    if nA * nB <= DENSE_CAP:
+        D = cdist(A, B)                        # no n*m*3 intermediate
+        ri, ci = linear_sum_assignment(D)
+        return [(int(i), int(jj)) for i, jj in zip(ri, ci) if D[i, jj] <= radius_um]
+
+    # Too big to densify: restrict to candidate pairs inside the radius and solve
+    # the sparse assignment. Falls back to greedy if no full matching exists.
+    sp = cKDTree(A).sparse_distance_matrix(cKDTree(B), radius_um, output_type="coo_matrix")
+    if sp.nnz == 0:
+        return []
+    sp.data = sp.data + 1e-9                   # keep true zeros from vanishing as sparsity
+    if _sparse_lsa is not None:
+        try:
+            # returns (row_ind, col_ind) of the matched pairs, not a per-row array
+            ri, ci = _sparse_lsa(csr_matrix(sp))
+            return [(int(i), int(j)) for i, j in zip(ri, ci)]
+        except Exception as exc:
+            print(f"      (sparse matching infeasible at {nA}x{nB}: {type(exc).__name__}; "
+                  f"falling back to greedy for this frame)", flush=True)
+    d, j = cKDTree(B).query(A, k=1, distance_upper_bound=radius_um)
+    return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
+
+
+def link_nearest(coords, scale, radius_um=LINK_RADIUS_UM, mode="hungarian"):
+    '''Link consecutive frames of a (N,4) t,z,y,x array. Coordinates are converted
+    to microns first, so radius_um is physical.
+
+    mode='hungarian' — optimal one-to-one assignment (what a good linker approximates)
+    mode='greedy'    — nearest neighbour per source, collisions allowed
+    '''
     idx_by_t = {}
-    for i in order:
-        idx_by_t.setdefault(int(coords[i, 0]), []).append(i)
+    for i in np.argsort(coords[:, 0], kind="stable"):
+        idx_by_t.setdefault(int(coords[i, 0]), []).append(int(i))
     phys = coords[:, 1:] * np.asarray(scale)[None, :]
+
     edges = []
     for t in sorted(idx_by_t):
         a, b = idx_by_t.get(t), idx_by_t.get(t + 1)
         if not a or not b:
             continue
-        A, B = phys[a], phys[b]
-        D = np.linalg.norm(A[:, None, :] - B[None, :, :], axis=2)
-        if mode == "hungarian":
-            ri, ci = linear_sum_assignment(D)
-            pairs = zip(ri, ci)
-        else:
-            pairs = [(i, int(np.argmin(D[i]))) for i in range(len(a))]
-        for i, j in pairs:
-            if max_um is None or D[i, j] <= max_um:
-                edges.append((a[i], b[j]))
+        for i, j in _link_frame(phys[a], phys[b], radius_um, mode):
+            edges.append((a[i], b[j]))
     return edges
 
+
+import time
+
+# Cache the per-dataset coordinate arrays once — reloading a geff per mode is pure waste.
+_cache = {}
+for name in train_names:
+    _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
+    na = load_geff(TRAIN / f"{name}.geff").node_attrs().select(K.T, "z", "y", "x")
+    _cache[name] = (
+        np.stack([na[K.T].to_numpy(), na["z"].to_numpy(),
+                  na["y"].to_numpy(), na["x"].to_numpy()], axis=1).astype(float),
+        scale,
+        estimated_nodes(TRAIN / f"{name}.geff"),
+    )
+    per_frame = len(_cache[name][0]) / max(1, len(np.unique(_cache[name][0][:, 0])))
+    print(f"{name:<26} {len(_cache[name][0]):>8,} annotated nodes, "
+          f"~{per_frame:,.0f} per frame"
+          + ("   (dense path)" if per_frame ** 2 <= DENSE_CAP else "   (SPARSE path)"))
 
 results = {}
 for mode in ("hungarian", "greedy"):
     rows = []
     for name in train_names:
-        _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-        gt = load_geff(TRAIN / f"{name}.geff")
-        na = gt.node_attrs().select(K.T, "z", "y", "x")
-        coords = np.stack([na[K.T].to_numpy(), na["z"].to_numpy(),
-                           na["y"].to_numpy(), na["x"].to_numpy()], axis=1).astype(float)
+        coords, scale, n_total = _cache[name]
+        t0 = time.time()
         pred, ids = build_graph(coords)
-        e = link_nearest(coords, scale, max_um=None, mode=mode)
+        e = link_nearest(coords, scale, mode=mode)
         if e:
             pred.bulk_add_edges([{"source_id": ids[i], "target_id": ids[j]} for i, j in e])
-        er = evaluate(pred, load_geff(TRAIN / f"{name}.geff"), scale=scale, max_distance=MATCH_UM)
-        rec = node_recall(pred, load_geff(TRAIN / f"{name}.geff"))
-        rows.append(per_sample_metrics(er, estimated_nodes(TRAIN / f"{name}.geff"), rec))
+        gt = load_geff(TRAIN / f"{name}.geff")
+        er = evaluate(pred, gt, scale=scale, max_distance=MATCH_UM)
+        rec = node_recall(pred, gt)
+        rows.append(per_sample_metrics(er, n_total, rec))
         print(f"[{mode:>9}] {name:<26} TP/FP/FN={er.edge_tp}/{er.edge_fp}/{er.edge_fn} "
-              f"J={er.edge_tp/max(1,er.edge_tp+er.edge_fp+er.edge_fn):.4f}")
+              f"J={er.edge_tp/max(1,er.edge_tp+er.edge_fp+er.edge_fn):.4f} "
+              f"({len(e):,} links, {time.time()-t0:.1f}s)", flush=True)
     s = summarise(rows)
     results[mode] = s
     print(f"\n=== {mode.upper()} on perfect detections ===")
