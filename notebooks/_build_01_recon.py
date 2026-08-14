@@ -426,9 +426,10 @@ Two things the outside literature could not tell us, both decisive:
 
 code(r"""
 # Decompose displacement into Z and XY components, in microns.
-all_dz, all_dxy = [], []
+all_dz, all_dxy, z_scales = [], [], set()
 for name in train_names:
     _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
+    z_scales.add(round(float(scale[0]), 6))
     gt = load_geff(TRAIN / f"{name}.geff")
     na = gt.node_attrs().select(K.NODE_ID, K.T, "z", "y", "x")
     ea = gt.edge_attrs().select(K.EDGE_SOURCE, K.EDGE_TARGET)
@@ -450,8 +451,14 @@ if all_dz:
           f"p99={np.percentile(dz,99):.3f}")
     print(f"per-edge |dXY| median={np.median(dxy):.3f}um  p90={np.percentile(dxy,90):.3f}  "
           f"p99={np.percentile(dxy,99):.3f}")
-    print(f"\n|dZ| in VOXELS: median={np.median(dz)/1.625:.2f}  "
-          f"p99={np.percentile(dz,99)/1.625:.2f}  (Z voxel = 1.625um)")
+    # Use the datasets' actual Z scale rather than assuming the documented 1.625.
+    if len(z_scales) == 1:
+        zs = next(iter(z_scales))
+        print(f"\n|dZ| in VOXELS: median={np.median(dz)/zs:.2f}  "
+              f"p99={np.percentile(dz,99)/zs:.2f}  (Z voxel = {zs}um)")
+    else:
+        print(f"\n!! Z scale is NOT uniform across datasets: {sorted(z_scales)} — "
+              "pooled voxel counts would be meaningless, so per-dataset conversion is needed.")
     print("If median |dZ| is well under one voxel, Z motion is being quantised by the grid "
           "and Z centroids are the precision bottleneck, exactly as the anisotropy predicts.")
 
