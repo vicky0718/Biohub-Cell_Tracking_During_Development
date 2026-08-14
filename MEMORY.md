@@ -84,12 +84,11 @@ edges — ignore them.
 Depth bias IS real but different in shape — annotations occupy a per-dataset Z *slab* with
 whole deciles at exactly zero, not a gradient.
 
-**Caveat carried forward:** these are toy-graph probes. Directions are structural (they
-follow from code paths in `metrics.py`); magnitudes need real data. `notebooks/01_recon.ipynb`
-is written and dry-run offline but **not yet run on Kaggle** — it measures annotation
-density, the node budget, inter-frame displacement, cell spacing, division counts, and the
-linking-only ceiling (perfect detections + NN linking) that splits the score into detection
-vs linking. Nothing gets tuned until those numbers are on record.
+**Status:** the metric findings (§1-5 above) remain toy-graph probes — directions are
+structural, from code paths in `metrics.py`. The recon numbers ARE real data. Still true with
+zero measurement: no submission, no leaderboard score, and we do not know what a good score
+is in this contest. `notebooks/02_classical_baseline.ipynb` (detect → link → submit, plus the
+detection-threshold sweep) is written and unit-tested but not yet run.
 
 Method carried over from ROGII (see `chat/memory/rogii-validation-harness.md` in the
 `vicky0718/rogii` repo): honest fixed harness, preregistered gates, gains promoted only when
