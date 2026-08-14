@@ -8,7 +8,8 @@ of zebrafish embryos. Started 2026-08-13.
 ├── MEMORY.md                     state of play, condensed — read this first
 ├── notes/
 │   ├── 01-competition-brief.md   the terrain: data, submission format, scoring, baseline
-│   └── 02-metric-findings.md     what actually scores points — measured, not assumed
+│   ├── 02-metric-findings.md     what actually scores points — measured, not assumed
+│   └── 03-domain-intel.md        where the data comes from; Ultrack's ILP; linking radius
 ├── harness/
 │   ├── scorer.py                 adapter onto the OFFICIAL scorer (never reimplemented)
 │   ├── harness.py                fold-based scoring, caching, and the promote/reject gate
@@ -20,7 +21,8 @@ of zebrafish embryos. Started 2026-08-13.
 ├── tests/
 │   └── test_harness.py           15 tests, runnable without competition data
 └── notebooks/
-    └── 01_recon.ipynb            run this on Kaggle first — answers the open questions
+    ├── 01_recon.ipynb            run this on Kaggle first — answers the open questions
+    └── _build_01_recon.py        regenerates the notebook (keeps its JSON valid)
 ```
 
 ## The harness

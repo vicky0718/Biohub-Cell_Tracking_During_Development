@@ -47,6 +47,22 @@ hypothesis; chase divisions last. Global assignment beats greedy NN by a lot on 
 dense data (J 0.726 vs 0.512), consistent with the baseline shipping an ILP option and with
 Ultrack's design.
 
+**Domain intel (2026-08-14, literature + source research; full write-up `notes/03-domain-intel.md`).**
+Kaggle itself is unreachable from our environment (SPA + API 401) so none of it comes from the
+competition's own pages. Key items: (a) **the sparse GT comes from a second fluorescence
+channel we are not given** — Ultrack's dual-channel trick; the baseline's data path is literally
+`./data/dense_channel`. Labels are "random" genetically but daughters inherit them, so expect
+**clonal clumping and division enrichment**, plus possible **depth bias** (a cell must be visible
+in the sparse channel too) — all three now tested in recon §5b. (b) Anisotropy is **exactly 4:1**,
+so XY/4 gives an isotropic 1.625 µm grid (what the baseline does). (c) **Z accuracy is worth ~4× XY**:
+a 2-slice Z error is 3.25 µm, 46% of the 7 µm match budget. (d) Ultrack's ILP read from source —
+one-parent + flow-conservation + mutually-exclusive-nested-hypotheses constraints, edge weight
+`φ(w)=w^4`; the lab's own zebrafish `max_distance` is **5 µm**, not 7. **Set the linking radius from
+motion, not from the metric** — 7 µm is 4–17× expected per-frame displacement; the binding
+constraint is nucleus spacing (~6–10 µm). (e) **Frame interval is unknown and is the most
+consequential gap** — recon §5c infers it from GT displacement and cross-checks against division rate.
+(f) $60k prize pool. No dataset paper exists.
+
 **Caveat carried forward:** these are toy-graph probes. Directions are structural (they
 follow from code paths in `metrics.py`); magnitudes need real data. `notebooks/01_recon.ipynb`
 is written and dry-run offline but **not yet run on Kaggle** — it measures annotation
