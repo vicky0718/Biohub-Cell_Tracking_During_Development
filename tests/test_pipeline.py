@@ -19,7 +19,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from pipeline.classical import (  # noqa: E402
-    Config, _footprint, detect_frame, link_all, predict_dataset, refine_centroids,
+    Config, _footprint, detect_frame, estimated_total_nodes, link_all, predict_dataset,
+    refine_centroids,
 )
 
 SCALE = (1.625, 0.40625, 0.40625)
@@ -142,6 +143,34 @@ def main() -> int:
     check("edge count is in the right ballpark",
           0.7 * expected <= graph.num_edges() <= 1.3 * expected,
           f"{graph.num_edges()} edges vs ~{expected} expected")
+
+    print("\n[the per-dataset node budget caps detections]")
+    # recon §9: the budget varies 20.8x across datasets, so the cap has to come from
+    # the dataset itself. With no budget anywhere, the pipeline must still run.
+    cfg_free = Config(det_threshold=0.02, min_separation_um=5.0, downsample=(1, 1, 1),
+                      budget_fill=None)
+    n_free = predict_dataset(ds, cfg_free, verbose=False).num_nodes()
+    # est_total = 3 per frame over T frames -> cap of 3 detections per frame
+    cfg_budget = Config(det_threshold=0.02, min_separation_um=5.0, downsample=(1, 1, 1),
+                        budget_fill=1.0)
+    n_budget = predict_dataset(ds, cfg_budget, verbose=False,
+                               est_total_nodes=3.0 * T).num_nodes()
+    check("budget cap binds", n_budget == 3 * T, f"{n_budget} nodes, expected {3 * T}")
+    check("budget cap is tighter than uncapped", n_budget < n_free,
+          f"{n_budget} capped vs {n_free} uncapped")
+    n_half = predict_dataset(ds, Config(det_threshold=0.02, min_separation_um=5.0,
+                                        downsample=(1, 1, 1), budget_fill=0.5),
+                             verbose=False, est_total_nodes=8.0 * T).num_nodes()
+    check("budget_fill scales the cap", n_half == 4 * T,
+          f"{n_half} nodes at fill=0.5 of 8/frame, expected {4 * T}")
+    check("a missing budget does not cap or crash",
+          predict_dataset(ds, cfg_budget, verbose=False).num_nodes() == n_free,
+          "no .geff and no zarr attr -> uncapped")
+    check("estimated_total_nodes returns None when absent",
+          estimated_total_nodes(ds) is None, "synthetic zarr carries no budget")
+    check("estimated_total_nodes reads the zarr attrs",
+          estimated_total_nodes(ds, {"extra": {"estimated_number_of_nodes": 1234}}) == 1234.0,
+          "nested lookup")
 
     print("\n[downsampling maps coordinates back to original space]")
     cfg_ds = Config(det_threshold=0.3, min_separation_um=5.0, downsample=(1, 2, 2))
