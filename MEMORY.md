@@ -63,6 +63,27 @@ constraint is nucleus spacing (~6–10 µm). (e) **Frame interval is unknown and
 consequential gap** — recon §5c infers it from GT displacement and cross-checks against division rate.
 (f) $60k prize pool. No dataset paper exists.
 
+**RECON RAN 2026-08-14 (full write-up `notes/04-recon-results.md`).** 199 train / 4 test
+datasets, all T=100, (Z,Y,X)=(64,256,256), two embryos by prefix (`44b6_` 71, `6bba_` 128).
+No dataset_splits.json ships. 133,318 annotated nodes / 128,883 edges / 151 divisions.
+**FLAG: all 4 test dataset names also appear in train, and we hold their GT** — check
+sample_submission.csv and the data description before drawing any conclusion; if the visible
+test set is the scored one, tell the organisers rather than exploit it.
+**Headline: detection is essentially the whole contest.** Linking ceiling on perfect
+detections = Hungarian 0.9915 / greedy 0.9847 — optimal assignment beats nearest-neighbour by
+just +0.0068, and NN is the true successor **99.80%** of the time. At most ~0.015 edge Jaccard
+exists in the entire linking problem. Annotated fraction median **0.0356** (1 cell in 28).
+Displacement p50 1.82 µm, p99 8.38 µm, only 2.1% exceed the 7 µm cutoff → **linking radius
+8-10 µm**. Median |dZ| is **exactly 0** (sub-voxel), so introduced Z error is pure noise.
+adj_edge_jaccard 1.0825 confirms the uncapped under-prediction bonus on real data — but it
+does NOT justify under-detecting: annotated cells are a random subset so edge recall goes as
+f², and maximising f²(1+0.1(1−f)) gives f=1. **Detect everything.** Divisions 1.17 per 1000
+edges — ignore them.
+**Two predictions FALSIFIED:** clonal clumping not found (annotated cells are ~uniform or
+*dispersed*, only 5 of ~120 datasets clumped), and divisions are rare rather than enriched.
+Depth bias IS real but different in shape — annotations occupy a per-dataset Z *slab* with
+whole deciles at exactly zero, not a gradient.
+
 **Caveat carried forward:** these are toy-graph probes. Directions are structural (they
 follow from code paths in `metrics.py`); magnitudes need real data. `notebooks/01_recon.ipynb`
 is written and dry-run offline but **not yet run on Kaggle** — it measures annotation
