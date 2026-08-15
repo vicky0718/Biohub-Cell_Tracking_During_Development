@@ -37,6 +37,7 @@ sources = ["".join(c["source"]) for c in NB["cells"] if c["cell_type"] == "code"
 # Pull the two function definitions verbatim out of the notebook and exec them here,
 # so this test exercises the shipped code rather than a copy.
 ceiling_src = next(s for s in sources if "def link_nearest" in s)
+<<<<<<< HEAD
 # Everything before the driver section is the reusable function block.
 fn_src = ceiling_src.split("import time")[0]
 assert "def link_nearest" in fn_src and "def _link_frame" in fn_src, \
@@ -50,6 +51,16 @@ exec(fn_src, ns)
 build_graph, link_nearest = ns["build_graph"], ns["link_nearest"]
 print(f"extracted build_graph + link_nearest from the notebook "
       f"(sparse matcher available: {ns.get('_sparse_lsa') is not None})\n")
+=======
+fn_src = ceiling_src.split("results = {}")[0]
+fn_src = fn_src.replace(
+    "from tracking_cellmot.metrics import evaluate, per_sample_metrics, node_recall, summarise", ""
+)
+ns = {"np": np, "pl": pl, "td": td, "linear_sum_assignment": linear_sum_assignment}
+exec(fn_src, ns)
+build_graph, link_nearest = ns["build_graph"], ns["link_nearest"]
+print("extracted build_graph + link_nearest from the notebook\n")
+>>>>>>> 910b533ef98b4bffb5e96f3c42f5228827f76339
 
 # --- synthetic "ground truth": 40 cells drifting over 8 frames ----------------
 rng = np.random.default_rng(0)
@@ -85,7 +96,11 @@ print(f"synthetic GT: {gt.num_nodes()} nodes, {gt.num_edges()} edges")
 
 for mode in ("hungarian", "greedy"):
     pred, ids = build_graph(coords)
+<<<<<<< HEAD
     e = link_nearest(coords, SCALE, mode=mode)
+=======
+    e = link_nearest(coords, SCALE, max_um=None, mode=mode)
+>>>>>>> 910b533ef98b4bffb5e96f3c42f5228827f76339
     pred.bulk_add_edges([{"source_id": ids[i], "target_id": ids[j]} for i, j in e])
 
     gt2 = make_gt()
@@ -118,6 +133,7 @@ for t in range(T - 1):
             ok += 1
 print(f"\nNN-is-true-link: {ok}/{tot} = {ok/tot:.2%}   rank histogram: {dict(rank_hist)}")
 print("\nOK - notebook logic runs end to end against the official scorer.")
+<<<<<<< HEAD
 
 # --- force the SPARSE path -----------------------------------------------------
 # The dense branch is what a small frame takes; on real data a frame may hold
@@ -144,3 +160,5 @@ try:
           f"  link counts agree within 2%  (identical sets: {agree})")
 finally:
     ns["DENSE_CAP"] = saved_cap
+=======
+>>>>>>> 910b533ef98b4bffb5e96f3c42f5228827f76339

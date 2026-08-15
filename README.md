@@ -8,16 +8,21 @@ of zebrafish embryos. Started 2026-08-13.
 ├── MEMORY.md                     state of play, condensed — read this first
 ├── notes/
 │   ├── 01-competition-brief.md   the terrain: data, submission format, scoring, baseline
+<<<<<<< HEAD
 │   ├── 02-metric-findings.md     what actually scores points — measured, not assumed
 │   └── 03-domain-intel.md        where the data comes from; Ultrack's ILP; linking radius
 ├── harness/
 │   ├── scorer.py                 adapter onto the OFFICIAL scorer (never reimplemented)
 │   ├── harness.py                fold-based scoring, caching, and the promote/reject gate
 │   └── submission.py             build submission.csv + catch what the scorer fixes silently
+=======
+│   └── 02-metric-findings.md     what actually scores points — measured, not assumed
+>>>>>>> 910b533ef98b4bffb5e96f3c42f5228827f76339
 ├── probes/
 │   ├── metric_probe.py           free FPs, the node budget, wrong-vs-missing links
 │   ├── metric_probe2.py          gap bridging, division timing
 │   └── test_recon_logic.py       offline dry-run of the recon notebook's linking code
+<<<<<<< HEAD
 ├── tests/
 │   └── test_harness.py           15 tests, runnable without competition data
 └── notebooks/
@@ -45,6 +50,10 @@ local number is the leaderboard's number. Run the tests with:
 
 ```bash
 CELLMOT_REPO=/path/to/kaggle-cell-tracking-competition python tests/test_harness.py
+=======
+└── notebooks/
+    └── 01_recon.ipynb            run this on Kaggle first — answers the open questions
+>>>>>>> 910b533ef98b4bffb5e96f3c42f5228827f76339
 ```
 
 ## Where things stand

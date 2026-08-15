@@ -12,8 +12,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import numpy as np
 import polars as pl
-import tracksdata as td
+
+from .tracks import Tracks
 
 # Column order from the official scripts/geffs_to_csv.py; `id` is prepended.
 COLUMNS: tuple[str, ...] = (
@@ -21,38 +23,43 @@ COLUMNS: tuple[str, ...] = (
 )
 
 
-def graph_to_rows(graph: td.graph.BaseGraph, name: str) -> pl.DataFrame:
-    """Flatten one graph into node rows then edge rows, matching the official schema.
+def graph_to_rows(graph, name: str) -> pl.DataFrame:
+    """Flatten one prediction into node rows then edge rows, matching the official schema.
+
+    `graph` is `Tracks`, or a `tracksdata` graph (converted). Node ids are the array
+    indices, so the edge rows stay consistent with the node rows by construction.
 
     Coordinates are rounded to int, which is the submission space — so this
     round-trips exactly through csv_to_geffs.
     """
-    nodes = graph.node_attrs().select(
-        pl.lit(name).alias("dataset"),
-        pl.lit("node").alias("row_type"),
-        pl.col("node_id").cast(pl.Int64),
-        pl.col("t").cast(pl.Int64),
-        pl.col("z").cast(pl.Float64).round(0).cast(pl.Int64),
-        pl.col("y").cast(pl.Float64).round(0).cast(pl.Int64),
-        pl.col("x").cast(pl.Float64).round(0).cast(pl.Int64),
-        pl.lit(-1, dtype=pl.Int64).alias("source_id"),
-        pl.lit(-1, dtype=pl.Int64).alias("target_id"),
-    )
-    edges = graph.edge_attrs().select(
-        pl.lit(name).alias("dataset"),
-        pl.lit("edge").alias("row_type"),
-        pl.lit(-1, dtype=pl.Int64).alias("node_id"),
-        pl.lit(-1, dtype=pl.Int64).alias("t"),
-        pl.lit(-1, dtype=pl.Int64).alias("z"),
-        pl.lit(-1, dtype=pl.Int64).alias("y"),
-        pl.lit(-1, dtype=pl.Int64).alias("x"),
-        pl.col("source_id").cast(pl.Int64),
-        pl.col("target_id").cast(pl.Int64),
-    )
-    return pl.concat([nodes, edges])
+    tr = graph if isinstance(graph, Tracks) else Tracks.from_tracksdata(graph)
+    n, m = tr.n_nodes, tr.n_edges
+    nodes = pl.DataFrame({
+        "dataset": [name] * n,
+        "row_type": ["node"] * n,
+        "node_id": np.arange(n, dtype=np.int64),
+        "t": tr.t.astype(np.int64),
+        "z": np.rint(tr.zyx[:, 0]).astype(np.int64),
+        "y": np.rint(tr.zyx[:, 1]).astype(np.int64),
+        "x": np.rint(tr.zyx[:, 2]).astype(np.int64),
+        "source_id": np.full(n, -1, dtype=np.int64),
+        "target_id": np.full(n, -1, dtype=np.int64),
+    })
+    edges = pl.DataFrame({
+        "dataset": [name] * m,
+        "row_type": ["edge"] * m,
+        "node_id": np.full(m, -1, dtype=np.int64),
+        "t": np.full(m, -1, dtype=np.int64),
+        "z": np.full(m, -1, dtype=np.int64),
+        "y": np.full(m, -1, dtype=np.int64),
+        "x": np.full(m, -1, dtype=np.int64),
+        "source_id": tr.edges[:, 0].astype(np.int64),
+        "target_id": tr.edges[:, 1].astype(np.int64),
+    })
+    return pl.concat([nodes.select(COLUMNS), edges.select(COLUMNS)])
 
 
-def build_submission(graphs: dict[str, td.graph.BaseGraph], csv_path: Path | str) -> Path:
+def build_submission(graphs: dict, csv_path: Path | str) -> Path:
     """Write one submission CSV from {dataset_name: graph}."""
     csv_path = Path(csv_path)
     csv_path.parent.mkdir(parents=True, exist_ok=True)
