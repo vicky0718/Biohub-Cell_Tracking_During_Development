@@ -137,34 +137,34 @@ def main() -> int:
     cfg = Config(det_threshold=0.3, min_separation_um=5.0, link_radius_um=8.0,
                  downsample=(1, 1, 1))
     graph = predict_dataset(ds, cfg, verbose=False)
-    check("pipeline produces nodes", graph.num_nodes() > 0, f"{graph.num_nodes()} nodes")
-    check("pipeline produces edges", graph.num_edges() > 0, f"{graph.num_edges()} edges")
+    check("pipeline produces nodes", graph.n_nodes > 0, f"{graph.n_nodes} nodes")
+    check("pipeline produces edges", graph.n_edges > 0, f"{graph.n_edges} edges")
     expected = len(centres) * (T - 1)
     check("edge count is in the right ballpark",
-          0.7 * expected <= graph.num_edges() <= 1.3 * expected,
-          f"{graph.num_edges()} edges vs ~{expected} expected")
+          0.7 * expected <= graph.n_edges <= 1.3 * expected,
+          f"{graph.n_edges} edges vs ~{expected} expected")
 
     print("\n[the per-dataset node budget caps detections]")
     # recon §9: the budget varies 20.8x across datasets, so the cap has to come from
     # the dataset itself. With no budget anywhere, the pipeline must still run.
     cfg_free = Config(det_threshold=0.02, min_separation_um=5.0, downsample=(1, 1, 1),
                       budget_fill=None)
-    n_free = predict_dataset(ds, cfg_free, verbose=False).num_nodes()
+    n_free = predict_dataset(ds, cfg_free, verbose=False).n_nodes
     # est_total = 3 per frame over T frames -> cap of 3 detections per frame
     cfg_budget = Config(det_threshold=0.02, min_separation_um=5.0, downsample=(1, 1, 1),
                         budget_fill=1.0)
     n_budget = predict_dataset(ds, cfg_budget, verbose=False,
-                               est_total_nodes=3.0 * T).num_nodes()
+                               est_total_nodes=3.0 * T).n_nodes
     check("budget cap binds", n_budget == 3 * T, f"{n_budget} nodes, expected {3 * T}")
     check("budget cap is tighter than uncapped", n_budget < n_free,
           f"{n_budget} capped vs {n_free} uncapped")
     n_half = predict_dataset(ds, Config(det_threshold=0.02, min_separation_um=5.0,
                                         downsample=(1, 1, 1), budget_fill=0.5),
-                             verbose=False, est_total_nodes=8.0 * T).num_nodes()
+                             verbose=False, est_total_nodes=8.0 * T).n_nodes
     check("budget_fill scales the cap", n_half == 4 * T,
           f"{n_half} nodes at fill=0.5 of 8/frame, expected {4 * T}")
     check("a missing budget does not cap or crash",
-          predict_dataset(ds, cfg_budget, verbose=False).num_nodes() == n_free,
+          predict_dataset(ds, cfg_budget, verbose=False).n_nodes == n_free,
           "no .geff and no zarr attr -> uncapped")
     check("estimated_total_nodes returns None when absent",
           estimated_total_nodes(ds) is None, "synthetic zarr carries no budget")
@@ -175,38 +175,49 @@ def main() -> int:
     print("\n[downsampling maps coordinates back to original space]")
     cfg_ds = Config(det_threshold=0.3, min_separation_um=5.0, downsample=(1, 2, 2))
     g2 = predict_dataset(ds, cfg_ds, verbose=False)
-    na = g2.node_attrs()
     check("downsampled coords land in the original range",
-          float(na["y"].max()) > shape[1] / 2,
-          f"max y = {float(na['y'].max()):.1f} (volume is {shape[1]} voxels)")
+          float(g2.zyx[:, 1].max()) > shape[1] / 2,
+          f"max y = {float(g2.zyx[:, 1].max()):.1f} (volume is {shape[1]} voxels)")
 
-    print("\n[scored with the official scorer]")
+    print("\n[scored end to end — purescore must equal the official scorer]")
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from harness import purescore
+    from pipeline.classical import build_graph
+
+    # ground truth: the true positions, linked by identity
+    gt_coords, gt_edges = [], []
+    for t in range(T):
+        for p in truth[t]:
+            gt_coords.append([t, *p])
+    n = len(centres)
+    for t in range(T - 1):
+        gt_edges += [(t * n + i, (t + 1) * n + i) for i in range(n)]
+    gt = build_graph(np.array(gt_coords), gt_edges)
+
+    pc = purescore.count_edges(graph.t, graph.zyx, graph.edges,
+                               gt.t, gt.zyx, gt.edges, scale=SCALE)
+    row = purescore.per_sample(pc, float(gt.n_nodes), gt.n_nodes)
+    print(f"    purescore TP/FP/FN = {pc.tp}/{pc.fp}/{pc.fn}   "
+          f"edge_J={row['edge_jaccard']:.4f}  adj={row['adj_edge_jaccard']:.4f}")
+    check("scores well on clean synthetic data", row["edge_jaccard"] > 0.8,
+          f"edge_jaccard={row['edge_jaccard']:.4f}")
+
     try:
-        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-        from harness.scorer import evaluate, per_sample_metrics, node_recall
-        from pipeline.classical import build_graph
-
-        # ground truth: the true positions, linked by identity
-        gt_coords, gt_edges = [], []
-        for t in range(T):
-            for i, p in enumerate(truth[t]):
-                gt_coords.append([t, *p])
-        n = len(centres)
-        for t in range(T - 1):
-            for i in range(n):
-                gt_edges.append((t * n + i, (t + 1) * n + i))
-        gt = build_graph(np.array(gt_coords), gt_edges)
-
-        er = evaluate(graph, gt, scale=SCALE, max_distance=7.0)
-        rec = node_recall(graph, gt)
-        row = per_sample_metrics(er, float(gt.num_nodes()), rec)
-        print(f"    TP/FP/FN = {er.edge_tp}/{er.edge_fp}/{er.edge_fn}   "
-              f"edge_J={row['edge_jaccard']:.4f}  adj={row['adj_edge_jaccard']:.4f}  "
-              f"node_recall={rec:.3f}")
-        check("scores well on clean synthetic data", row["edge_jaccard"] > 0.8,
-              f"edge_jaccard={row['edge_jaccard']:.4f}")
+        from harness.scorer import evaluate, node_recall, per_sample_metrics
+        td_pred, td_gt = graph.to_tracksdata(), gt.to_tracksdata()
+        er = evaluate(td_pred, td_gt, scale=SCALE, max_distance=7.0)
+        off = per_sample_metrics(er, float(gt.n_nodes), node_recall(td_pred, td_gt))
+        # The claim purescore rests on. If this ever fails, every number this project
+        # reports from Kaggle is wrong — so it is a hard failure, not a warning.
+        check("purescore TP/FP/FN == official",
+              (pc.tp, pc.fp, pc.fn) == (er.edge_tp, er.edge_fp, er.edge_fn),
+              f"pure {(pc.tp, pc.fp, pc.fn)} vs official "
+              f"{(er.edge_tp, er.edge_fp, er.edge_fn)}")
+        check("purescore adj_edge_jaccard == official",
+              abs(row["adj_edge_jaccard"] - off["adj_edge_jaccard"]) < 1e-9,
+              f"pure {row['adj_edge_jaccard']:.10f} vs official {off['adj_edge_jaccard']:.10f}")
     except ImportError as e:
-        print(f"    (skipped — official scorer unavailable: {e})")
+        print(f"    (cross-check skipped — tracksdata unavailable here: {e})")
 
     shutil.rmtree(tmp, ignore_errors=True)
     print("\n" + "=" * 60)

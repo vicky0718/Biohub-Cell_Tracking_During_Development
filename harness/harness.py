@@ -31,24 +31,28 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Iterable
 
-import tracksdata as td
+from . import purescore
+from .purescore import DEFAULT_SCALE, summarise
+from .tracks import Tracks, read_estimated_nodes, read_geff, read_scale
 
-from .scorer import (
-    DEFAULT_SCALE,
-    evaluate,
-    node_recall,
-    per_sample_metrics,
-    read_estimated_nodes,
-    read_scale,
-    summarise,
-)
-
-PredictFn = Callable[[str, Path], "td.graph.BaseGraph"]
+PredictFn = Callable[[str, Path], Tracks]
 
 
-def load_geff(path: Path | str) -> td.graph.BaseGraph:
-    result = td.graph.IndexedRXGraph.from_geff(str(path))
-    return result[0] if isinstance(result, tuple) else result
+def load_geff(path: Path | str) -> Tracks:
+    """Ground truth as `Tracks`. Numpy-only — see `harness/tracks.py`."""
+    return read_geff(path)
+
+
+def _official():
+    """The organisers' scorer, or None if `tracksdata` is not installed here.
+
+    It is not installable on Kaggle, which is the whole reason `purescore` exists.
+    """
+    try:
+        from . import scorer
+        return scorer
+    except Exception:
+        return None
 
 
 @dataclass
@@ -125,11 +129,13 @@ class Harness:
         max_distance: float = 7.0,
         cache_dir: Path | str | None = None,
         n_total_override: dict[str, float] | None = None,
+        use_official: bool = False,
     ) -> None:
         self.data_dir = Path(data_dir)
         self.max_distance = max_distance
         self.cache_dir = Path(cache_dir) if cache_dir else None
         self.n_total_override = n_total_override or {}
+        self.use_official = use_official
         self.splits = splits if splits is not None else self._load_splits()
         self._fold_of = self._build_fold_map()
         self._warned_missing_budget = False
@@ -185,14 +191,44 @@ class Harness:
             self._warned_missing_budget = True
         return n
 
-    def score_graph(self, name: str, graph: td.graph.BaseGraph) -> dict:
-        """Score one predicted graph against this dataset's ground truth."""
+    def score_graph(self, name: str, pred) -> dict:
+        """Score one prediction against this dataset's ground truth.
+
+        `pred` is `Tracks`, or a `tracksdata` graph (converted). Scoring goes through
+        `purescore` — verified to reproduce the official numbers exactly by
+        `probes/verify_purescore.py` — unless `use_official=True` was set, in which
+        case the organisers' own code runs and `tracksdata` must be installed.
+
+        `purescore`'s division term is only exact for fork-free predictions, so a
+        prediction that forks is routed to the official scorer, and the run fails
+        loudly rather than quietly reporting a number that is not the metric.
+        """
+        if not isinstance(pred, Tracks):
+            pred = Tracks.from_tracksdata(pred)
         gt = load_geff(self.data_dir / f"{name}.geff")
         scale = read_scale(self.data_dir / f"{name}.zarr")
-        er = evaluate(graph, gt, scale=scale, max_distance=self.max_distance)
-        rec = (node_recall(graph, gt)
-               if graph.num_nodes() > 0 and graph.num_edges() > 0 else 0.0)
-        return per_sample_metrics(er, self._n_total(name), rec)
+
+        needs_official = self.use_official or pred.has_forks()
+        if needs_official:
+            off = _official()
+            if off is None:
+                raise RuntimeError(
+                    f"{name}: this prediction has {pred.n_divisions} forking node(s), and "
+                    "purescore's division term is only exact without forks. The official "
+                    "scorer is needed here but tracksdata is not importable. Either set "
+                    "allow_divisions=False, or run where tracksdata is installed."
+                )
+            er = off.evaluate(pred.to_tracksdata(), gt.to_tracksdata(),
+                              scale=scale, max_distance=self.max_distance)
+            rec = er.num_pred_nodes and off.node_recall(pred.to_tracksdata(),
+                                                        gt.to_tracksdata())
+            return off.per_sample_metrics(er, self._n_total(name), rec or 0.0)
+
+        counts = purescore.count_edges(pred.t, pred.zyx, pred.edges,
+                                       gt.t, gt.zyx, gt.edges,
+                                       scale=scale, max_distance=self.max_distance)
+        return purescore.per_sample(counts, self._n_total(name), gt.n_nodes,
+                                    n_gt_divisions=gt.n_divisions)
 
     def evaluate(
         self,

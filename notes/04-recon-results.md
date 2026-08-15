@@ -34,6 +34,12 @@ competition's data description / discussion. If reading 2 holds, report it to th
 organisers rather than quietly exploiting it — and note it says nothing about how a hidden
 private set would score. Either way, this does not change the modelling work below.
 
+> **Section 0 of `02_classical_baseline.ipynb` now does this check on the Kaggle mount** —
+> it lists the folders, reads `sample_submission.csv`, and prints the overlap. It also
+> answers the other open question the notebook needs: whether `test/` ships `.geff`
+> metadata, which is where the per-dataset node budget of §9 comes from. If it does not,
+> the budget cap has nothing to key off on the datasets we are scored on.
+
 ## 1. Inventory
 
 - **199 train datasets, 4 test.** Every one is `T=100`, `(Z,Y,X) = (64, 256, 256)`.

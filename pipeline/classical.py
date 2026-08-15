@@ -16,12 +16,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
-import polars as pl
-import tracksdata as td
 from scipy.ndimage import maximum_filter
 from scipy.optimize import linear_sum_assignment
 from scipy.spatial import cKDTree
 from scipy.spatial.distance import cdist
+
+from harness.tracks import Tracks
 
 try:
     from scipy.sparse import csr_matrix
@@ -190,16 +190,16 @@ def link_frame(A: np.ndarray, B: np.ndarray, cfg: Config) -> list[tuple[int, int
     return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
 
 
-def build_graph(coords_tzyx: np.ndarray, edges: list[tuple[int, int]]) -> td.graph.InMemoryGraph:
-    """(N,4) t,z,y,x array + index pairs -> a tracksdata graph in voxel space."""
-    g = td.graph.InMemoryGraph()
-    for k in ("z", "y", "x"):
-        g.add_node_attr_key(k, pl.Float64, -999999.0)
-    ids = g.bulk_add_nodes([{"t": int(t), "z": float(z), "y": float(y), "x": float(x)}
-                            for t, z, y, x in coords_tzyx])
-    if edges:
-        g.bulk_add_edges([{"source_id": ids[i], "target_id": ids[j]} for i, j in edges])
-    return g
+def build_graph(coords_tzyx: np.ndarray, edges: list[tuple[int, int]]) -> Tracks:
+    """(N,4) t,z,y,x array + index pairs -> `Tracks` in voxel space.
+
+    Plain arrays rather than a tracksdata graph: tracksdata cannot be installed on
+    Kaggle, and Kaggle is where this runs. `Tracks.to_tracksdata()` converts when the
+    official code is wanted. See `harness/tracks.py`.
+    """
+    coords_tzyx = np.asarray(coords_tzyx, float).reshape(-1, 4)
+    return Tracks(coords_tzyx[:, 0], coords_tzyx[:, 1:],
+                  np.asarray(edges, int).reshape(-1, 2) if edges else np.zeros((0, 2), int))
 
 
 def link_all(coords_tzyx: np.ndarray, scale: tuple[float, float, float],
@@ -276,7 +276,7 @@ def predict_dataset(
     cfg: Config,
     verbose: bool = True,
     est_total_nodes: float | None = None,
-) -> td.graph.InMemoryGraph:
+) -> Tracks:
     """Detect + link one dataset, returning a graph in ORIGINAL voxel coordinates.
 
     Frames are streamed one at a time, so peak memory is one volume rather than the
@@ -359,7 +359,7 @@ def make_predictor(cfg: Config, verbose: bool = False,
     ``budgets`` maps dataset name -> ``estimated_number_of_nodes``, for the case where
     the budget has to come from somewhere other than the dataset's own files.
     """
-    def _fn(name: str, data_dir: Path) -> td.graph.InMemoryGraph:
+    def _fn(name: str, data_dir: Path) -> Tracks:
         return predict_dataset(Path(data_dir) / name, cfg, verbose=verbose,
                                est_total_nodes=(budgets or {}).get(name))
     return _fn

@@ -84,11 +84,45 @@ edges — ignore them.
 Depth bias IS real but different in shape — annotations occupy a per-dataset Z *slab* with
 whole deciles at exactly zero, not a gradient.
 
+**Recon follow-up (2026-08-15), from the inventory in `recon_summary.json`.**
+(a) **The GT is tracks, not scattered points** — 4,586 annotated tracks over 199 datasets,
+median 21/dataset, median length 35 of 100 frames, ~6.6 annotated cells/frame (`44b6_`
+median 4 tracks, `6bba_` 30). Detection errors lose contiguous runs of edges, so per-dataset
+scores have fatter tails than the f² model implies.
+(b) **⭐ The test set is two datasets, and one is a node-budget trap.** `metrics.summarise`
+weight-averages per-dataset `adj_edge_jaccard` by `TP+FP+FN`, so the two `6bba_` test
+datasets carry **~95%** of the score (55.6% + 39.7%) and the two `44b6_` ones (2 tracks,
+~50 edges each) 4.7%. Those two `6bba_` datasets have node budgets **11× apart** — 64 vs
+698 cells/frame — so one fixed detection density gives ratio 10.0 and multiplier **exactly
+0.0** on 39.7% of the weight. Across all 199 the budget spans 20.8×. `Config.budget_fill`
+now caps detections per frame at each dataset's own `estimated_number_of_nodes / T`. This
+does not contradict "detect everything": that was recall; this is precision, cheap to ~50%
+and fatal below ~10%.
+(c) **Hedging a second child is dead.** Extra edges pay only when `m/k > J/(1+J)` — 49.6%
+at the ceiling — and the 2nd-nearest neighbour is the true successor **0.19%** of the time.
+Closes the untested hedging hypothesis in **Strategy** above. Division FPs are scoped to
+matched nodes, but the extra edges are not.
+
+**`harness/purescore.py` (2026-08-15) — the Kaggle blocker is gone.** `tracksdata` needs
+numpy>2, Kaggle pins numpy<2, and installing it rewrites numpy under the live kernel (two
+recon runs died that way), so we could not score anything on Kaggle. The edge metric is now
+reimplemented on numpy/scipy alone, transcribed from the source; `probes/verify_purescore.py`
+shows it reproduces the official TP/FP/FN **exactly** on 7 structured cases (duplicates,
+merges, out-degree overflow, skip/backward edges, unmatchable frames) plus 40 randomized
+fuzz cases — 0 mismatches, with adj_edge_jaccard and summarise agreeing to 1e-9. Exact only
+for **fork-free** predictions (then `division_jaccard` is 0 by construction); `Harness`
+routes forking predictions to the official scorer and raises if it is unavailable.
+Interchange is now `harness.tracks.Tracks` (plain arrays) rather than tracksdata graphs, so
+`harness/`, `pipeline/` and the submission writer all import without it. Verified by
+executing every cell of `02_classical_baseline.ipynb` with tracksdata blocked — it produces
+a validated submission.csv.
+
 **Status:** the metric findings (§1-5 above) remain toy-graph probes — directions are
 structural, from code paths in `metrics.py`. The recon numbers ARE real data. Still true with
 zero measurement: no submission, no leaderboard score, and we do not know what a good score
-is in this contest. `notebooks/02_classical_baseline.ipynb` (detect → link → submit, plus the
-detection-threshold sweep) is written and unit-tested but not yet run.
+is in this contest. `notebooks/02_classical_baseline.ipynb` (test-folder probe → smoke test →
+threshold sweep → budget-cap ablation → submission) is written and executed end to end
+against synthetic data under Kaggle's constraints, but **not yet run on the real data**.
 
 Method carried over from ROGII (see `chat/memory/rogii-validation-harness.md` in the
 `vicky0718/rogii` repo): honest fixed harness, preregistered gates, gains promoted only when
