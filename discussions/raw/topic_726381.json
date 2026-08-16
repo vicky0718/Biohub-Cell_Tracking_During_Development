@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 23282498,
+    "authorThumbnailName": "23282498-kg.jpg?t=2026-07-07-12-29-16",
+    "authorUserDisplayName": "FasterYouChase FasterIRun",
+    "authorUserName": "icoguser",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3498193,
+      "postDate": "2026-07-15T08:22:12.443Z",
+      "rawMarkdown": "## Potential Ground Truth Annotation Gaps in Boundary Cells\n\nHi everyone,\n\nWhile analyzing the training data, I came across what appears to be inconsistent GT annotations for cells that travel along the **image boundary (y=0 edge)**.\n\n### What I Found\n\nIn sample `44b6_12dfb391`, there is a cell tracked as **two separate GT lineages**:\n- Track A: `t=21` to `t=24` (4 nodes), ending at `x=139, y=0, z=80`\n- Track B: `t=29` to `t=37` (9 nodes), starting at `x=143, y=0, z=80`\n\nThe spatial distance between the end of Track A and the start of Track B is only **4.0 \u00b5m**, with identical `y=0` and `z=80` coordinates. The 4-frame gap (`t=25` to `t=28`) appears to be due to the cell **partially leaving the field of view** at the y=0 boundary.\n\nWhen I visualized the raw image at `t=25\u201328`, the cell is still **partially visible at the edge** \u2014 my model correctly tracked it continuously (`t=19` to `t=33`), but is penalized because the GT treats it as two separate tracks.\n\n### Why This Matters\n\nThe competition metric computes **Edge Jaccard** based on GT edges. If a cell is annotated as two tracks due to a boundary visibility gap, any model that correctly tracks it continuously will incur **false positive edges** for the gap frames and **false negative edges** for the missing GT connections \u2014 even though the biological interpretation is correct.\n\n### Questions for Organizers\n\n1. Is this a known annotation artifact for boundary-traveling cells?\n2. Are there other samples with similar gaps?\n3. Could the metric be adjusted to account for short re-entry events near image boundaries?\n\nHappy to share the specific node IDs and visualization code if helpful.\n\nThanks!",
+      "content": "<h2>Potential Ground Truth Annotation Gaps in Boundary Cells</h2>\n<p>Hi everyone,</p>\n<p>While analyzing the training data, I came across what appears to be inconsistent GT annotations for cells that travel along the <strong>image boundary (y=0 edge)</strong>.</p>\n<h3>What I Found</h3>\n<p>In sample <code>44b6_12dfb391</code>, there is a cell tracked as <strong>two separate GT lineages</strong>:</p>\n<ul>\n<li>Track A: <code>t=21</code> to <code>t=24</code> (4 nodes), ending at <code>x=139, y=0, z=80</code></li>\n<li>Track B: <code>t=29</code> to <code>t=37</code> (9 nodes), starting at <code>x=143, y=0, z=80</code></li>\n</ul>\n<p>The spatial distance between the end of Track A and the start of Track B is only <strong>4.0 \u00b5m</strong>, with identical <code>y=0</code> and <code>z=80</code> coordinates. The 4-frame gap (<code>t=25</code> to <code>t=28</code>) appears to be due to the cell <strong>partially leaving the field of view</strong> at the y=0 boundary.</p>\n<p>When I visualized the raw image at <code>t=25\u201328</code>, the cell is still <strong>partially visible at the edge</strong> \u2014 my model correctly tracked it continuously (<code>t=19</code> to <code>t=33</code>), but is penalized because the GT treats it as two separate tracks.</p>\n<h3>Why This Matters</h3>\n<p>The competition metric computes <strong>Edge Jaccard</strong> based on GT edges. If a cell is annotated as two tracks due to a boundary visibility gap, any model that correctly tracks it continuously will incur <strong>false positive edges</strong> for the gap frames and <strong>false negative edges</strong> for the missing GT connections \u2014 even though the biological interpretation is correct.</p>\n<h3>Questions for Organizers</h3>\n<ol>\n<li>Is this a known annotation artifact for boundary-traveling cells?</li>\n<li>Are there other samples with similar gaps?</li>\n<li>Could the metric be adjusted to account for short re-entry events near image boundaries?</li>\n</ol>\n<p>Happy to share the specific node IDs and visualization code if helpful.</p>\n<p>Thanks!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "FasterYouChase FasterIRun",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+        "url": "/icoguser",
+        "tier": "CONTRIBUTOR",
+        "id": 23282498,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 5,
+        "canUpvote": true,
+        "totalUpvotes": 5
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 293,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "FasterYouChase FasterIRun",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+          "url": "/icoguser",
+          "userName": "icoguser",
+          "tier": "CONTRIBUTOR",
+          "id": 23282498,
+          "profileUrl": "/icoguser",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 23282498,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3498193,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 726381,
+    "name": "Potential Ground Truth Annotation Gaps in Boundary Cells",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-15T08:22:12.441689200Z",
+    "totalVotes": 5,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/726381",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

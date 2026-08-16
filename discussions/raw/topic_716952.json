@@ -1,0 +1,413 @@
+{
+  "forumTopic": {
+    "authorId": 5927283,
+    "authorThumbnailName": "5927283-kg.jpg?t=2023-10-25-03-24-26",
+    "authorUserDisplayName": "ISAKA Tsuyoshi",
+    "authorUserName": "isakatsuyoshi",
+    "comments": [
+      {
+        "id": 3485267,
+        "postDate": "2026-07-01T09:10:37.060Z",
+        "rawMarkdown": "Thanks for your feedback!\n\nIt looks like the correlation between CV and LB isn't actually very good. The 3D-UNet method is very time-consuming to train, while my own heuristic strategy is quite fast. I'm waiting for biohub's confirmation before considering my next submission plan.",
+        "content": "<p>Thanks for your feedback!</p>\n<p>It looks like the correlation between CV and LB isn't actually very good. The 3D-UNet method is very time-consuming to train, while my own heuristic strategy is quite fast. I'm waiting for biohub's confirmation before considering my next submission plan.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Timmy Juicehouse",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+          "url": "/sweetyheehee",
+          "tier": "EXPERT",
+          "id": 18538441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 709,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "isakatsuyoshi",
+              "pranavkandibanda"
+            ],
+            "userCount": 2
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Timmy Juicehouse",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+            "url": "/sweetyheehee",
+            "userName": "sweetyheehee",
+            "tier": "EXPERT",
+            "id": 18538441,
+            "profileUrl": "/sweetyheehee",
+            "performanceTier": "EXPERT",
+            "userId": 18538441,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3485411,
+        "postDate": "2026-07-01T12:29:36.690Z",
+        "rawMarkdown": "Its too early but yeah, rule-based DoG is surprisingly good compared to DL approaches right now.",
+        "content": "<p>Its too early but yeah, rule-based DoG is surprisingly good compared to DL approaches right now.</p>",
+        "replies": [
+          {
+            "id": 3485594,
+            "postDate": "2026-07-01T16:18:30.327Z",
+            "rawMarkdown": "I think a lot of stuffs can play around with those rules. Might need to reformulate the problem statement. I believe a certain learning signal can make deep learning model powerful. ",
+            "content": "<p>I think a lot of stuffs can play around with those rules. Might need to reformulate the problem statement. I believe a certain learning signal can make deep learning model powerful. </p>",
+            "parent": {},
+            "author": {
+              "displayName": "Tom",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+              "url": "/tom99763",
+              "tier": "MASTER",
+              "id": 4310004,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 3,
+              "canUpvote": true,
+              "totalUpvotes": 3
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 99,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "KAGGLE",
+                "featuredUserNames": [
+                  "sangrampatil5150"
+                ],
+                "userCount": 1
+              }
+            ],
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Tom",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+                "url": "/tom99763",
+                "userName": "tom99763",
+                "tier": "MASTER",
+                "id": 4310004,
+                "profileUrl": "/tom99763",
+                "performanceTier": "MASTER",
+                "userId": 4310004,
+                "progressionOptOut": false
+              },
+              "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Adarsh",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14670471-kg.jpeg?t=2026-06-25-19-42-14",
+          "url": "/madarshbb",
+          "tier": "MASTER",
+          "id": 14670471,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 172,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "isakatsuyoshi"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Athar Sayed",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2051490-kg.png?t=2025-04-18-10-44-38",
+            "url": "/sayedathar11",
+            "userName": "sayedathar11",
+            "tier": "MASTER",
+            "id": 2051490,
+            "profileUrl": "/sayedathar11",
+            "performanceTier": "MASTER",
+            "userId": 2051490,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3487075,
+        "postDate": "2026-07-03T10:53:01.280Z",
+        "rawMarkdown": "**Let me add to my results:**\n\n| **baseline** | CV(all train dataset using official metric) | lb|\n| ---- | ---- | ---- |\n| my heuristic 1 (~2-hour inferece)| 0.7448   | 0.834 |\n| my heuristic 2(~3-hour inferece)| 0.8213   | 0.846 |",
+        "content": "<p><strong>Let me add to my results:</strong></p>\n<table>\n<thead>\n<tr>\n<th><strong>baseline</strong></th>\n<th>CV(all train dataset using official metric)</th>\n<th>lb</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>my heuristic 1 (~2-hour inferece)</td>\n<td>0.7448</td>\n<td>0.834</td>\n</tr>\n<tr>\n<td>my heuristic 2(~3-hour inferece)</td>\n<td>0.8213</td>\n<td>0.846</td>\n</tr>\n</tbody>\n</table>",
+        "parent": {},
+        "author": {
+          "displayName": "Timmy Juicehouse",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+          "url": "/sweetyheehee",
+          "tier": "EXPERT",
+          "id": 18538441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 709,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "michaelzameshaev",
+              "isakatsuyoshi"
+            ],
+            "userCount": 2
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Timmy Juicehouse",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+            "url": "/sweetyheehee",
+            "userName": "sweetyheehee",
+            "tier": "EXPERT",
+            "id": 18538441,
+            "profileUrl": "/sweetyheehee",
+            "performanceTier": "EXPERT",
+            "userId": 18538441,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3485302,
+        "postDate": "2026-07-01T09:44:45.717Z",
+        "rawMarkdown": "Hi, may I know your division jacard CV?",
+        "content": "<p>Hi, may I know your division jacard CV?</p>",
+        "replies": [
+          {
+            "id": 3485317,
+            "postDate": "2026-07-01T09:57:32.680Z",
+            "rawMarkdown": "Thanks! My division Jaccard CV is basically 0, because my best submissions don't predict divisions at all.",
+            "content": "<p>Thanks! My division Jaccard CV is basically 0, because my best submissions don't predict divisions at all.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "ISAKA Tsuyoshi",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5927283-kg.jpg?t=2023-10-25-03-24-26",
+              "url": "/isakatsuyoshi",
+              "tier": "MASTER",
+              "id": 5927283,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 2,
+              "canUpvote": true,
+              "totalUpvotes": 2
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 1624,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "ISAKA Tsuyoshi",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5927283-kg.jpg?t=2023-10-25-03-24-26",
+                "url": "/isakatsuyoshi",
+                "userName": "isakatsuyoshi",
+                "tier": "MASTER",
+                "id": 5927283,
+                "profileUrl": "/isakatsuyoshi",
+                "performanceTier": "MASTER",
+                "userId": 5927283,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Tom",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+          "url": "/tom99763",
+          "tier": "MASTER",
+          "id": 4310004,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 99,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "isakatsuyoshi"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Tom",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+            "url": "/tom99763",
+            "userName": "tom99763",
+            "tier": "MASTER",
+            "id": 4310004,
+            "profileUrl": "/tom99763",
+            "performanceTier": "MASTER",
+            "userId": 4310004,
+            "progressionOptOut": false
+          },
+          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+        }
+      },
+      {
+        "id": 3486700,
+        "postDate": "2026-07-02T20:43:37.407Z",
+        "rawMarkdown": "doesnt seem to be very calibrated, but structural priors are usually very good, the idea is to have these structural priors in the model and have the model learn off of them and get more. ",
+        "content": "<p>doesnt seem to be very calibrated, but structural priors are usually very good, the idea is to have these structural priors in the model and have the model learn off of them and get more. </p>",
+        "parent": {},
+        "author": {
+          "displayName": "BeanTard",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/beantard",
+          "tier": "CONTRIBUTOR",
+          "id": 28500833,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "isakatsuyoshi"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "BeanTard",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/beantard",
+            "userName": "beantard",
+            "tier": "CONTRIBUTOR",
+            "id": 28500833,
+            "profileUrl": "/beantard",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 28500833,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3485252,
+      "postDate": "2026-07-01T08:50:08.240Z",
+      "rawMarkdown": "I ran a few experiments locally, submitted several, and tracked CV vs LB. Bottom line: **without any modeling (learning), a pure rule-based pipeline reached the gold zone (7th/344teams, LB 0.826 at time of writing)**. Sharing a short table and the notebook.\n\nhttps://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline\n\n**Validation strategy (short)**\n- The metric is essentially **edge Jaccard** (7 \u00b5m point matching \u2192 edge agreement). A naive baseline showed **CV \u2248 LB**, so I fixed that as the target.\n- Train has **only 2 embryos** (`44b6`/`6bba`); learned models are hard to validate for generalization, so I went **rule-based** first (DoG-blob detection + Hungarian linking).\n- **Submit only on a new CV best**, adding a (CV, LB) point to a scatter each time to monitor the proxy.\n\n**Results (all rule-based, no learning)**\n\n| # | Method | CV(edge) | LB(public) | Notebook |\n|---|--------|:--------:|:----------:|----------|\n| 1 | DoG-blob detection + Hungarian linking | 0.682 | 0.663 | [v1](https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331719029) |\n| 2 | Tuned DoG scales + 8 \u00b5m linking | 0.791 | 0.786 | [v2](https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331729770) |\n| 3 | + gap closing | 0.807 | 0.784 | [v3](https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331733252) |\n| 4 | + division edges | 0.810 | 0.778 | [v4](https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331746701) |\n| 5 | **multi-scale DoG** | 0.824 | **0.826** | [v5](https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331751321) |\n\n**Detection was the biggest lever.** Just taking DoG at multiple scales and using the scale-space max jumped **LB from 0.786 \u2192 0.826 (+0.040)**. In contrast, **division edges hurt** (0.784 \u2192 0.778) and gap closing was roughly neutral.\n\n**CV-LB plot** (attached): detection improvements track **CV \u2248 LB (~1:1)**. Graph-level add-ons (like divisions) can raise CV yet lower LB \u2014 **redrawing the scatter each submission is how you catch that**.\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F5927283%2F34dc10e74c0ce84bb947c72ba8cbb719%2Fcv_lb_correlation.png?generation=1782895694211724&alt=media)\n\n**Takeaway**: with careful validation, a **rule-based** pipeline can reach the gold zone here \u2014 no deep model required. I also tried a learned 3D U-Net, but with only 2 embryos it didn't generalize, so I set it aside. Notebook is public \u2014 feedback welcome!\n",
+      "content": "<p>I ran a few experiments locally, submitted several, and tracked CV vs LB. Bottom line: <strong>without any modeling (learning), a pure rule-based pipeline reached the gold zone (7th/344teams, LB 0.826 at time of writing)</strong>. Sharing a short table and the notebook.</p>\n<p><a href=\"https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline\" target=\"_blank\">https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline</a></p>\n<p><strong>Validation strategy (short)</strong></p>\n<ul>\n<li>The metric is essentially <strong>edge Jaccard</strong> (7 \u00b5m point matching \u2192 edge agreement). A naive baseline showed <strong>CV \u2248 LB</strong>, so I fixed that as the target.</li>\n<li>Train has <strong>only 2 embryos</strong> (<code>44b6</code>/<code>6bba</code>); learned models are hard to validate for generalization, so I went <strong>rule-based</strong> first (DoG-blob detection + Hungarian linking).</li>\n<li><strong>Submit only on a new CV best</strong>, adding a (CV, LB) point to a scatter each time to monitor the proxy.</li>\n</ul>\n<p><strong>Results (all rule-based, no learning)</strong></p>\n<table>\n<thead>\n<tr>\n<th>#</th>\n<th>Method</th>\n<th>CV(edge)</th>\n<th>LB(public)</th>\n<th>Notebook</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1</td>\n<td>DoG-blob detection + Hungarian linking</td>\n<td>0.682</td>\n<td>0.663</td>\n<td><a href=\"https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331719029\" target=\"_blank\">v1</a></td>\n</tr>\n<tr>\n<td>2</td>\n<td>Tuned DoG scales + 8 \u00b5m linking</td>\n<td>0.791</td>\n<td>0.786</td>\n<td><a href=\"https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331729770\" target=\"_blank\">v2</a></td>\n</tr>\n<tr>\n<td>3</td>\n<td>+ gap closing</td>\n<td>0.807</td>\n<td>0.784</td>\n<td><a href=\"https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331733252\" target=\"_blank\">v3</a></td>\n</tr>\n<tr>\n<td>4</td>\n<td>+ division edges</td>\n<td>0.810</td>\n<td>0.778</td>\n<td><a href=\"https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331746701\" target=\"_blank\">v4</a></td>\n</tr>\n<tr>\n<td>5</td>\n<td><strong>multi-scale DoG</strong></td>\n<td>0.824</td>\n<td><strong>0.826</strong></td>\n<td><a href=\"https://www.kaggle.com/code/isakatsuyoshi/biohub-rule-based-baseline?scriptVersionId=331751321\" target=\"_blank\">v5</a></td>\n</tr>\n</tbody>\n</table>\n<p><strong>Detection was the biggest lever.</strong> Just taking DoG at multiple scales and using the scale-space max jumped <strong>LB from 0.786 \u2192 0.826 (+0.040)</strong>. In contrast, <strong>division edges hurt</strong> (0.784 \u2192 0.778) and gap closing was roughly neutral.</p>\n<p><strong>CV-LB plot</strong> (attached): detection improvements track <strong>CV \u2248 LB (~1:1)</strong>. Graph-level add-ons (like divisions) can raise CV yet lower LB \u2014 <strong>redrawing the scatter each submission is how you catch that</strong>.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F5927283%2F34dc10e74c0ce84bb947c72ba8cbb719%2Fcv_lb_correlation.png?generation=1782895694211724&amp;alt=media\" alt=\"\"></p>\n<p><strong>Takeaway</strong>: with careful validation, a <strong>rule-based</strong> pipeline can reach the gold zone here \u2014 no deep model required. I also tried a learned 3D U-Net, but with only 2 embryos it didn't generalize, so I set it aside. Notebook is public \u2014 feedback welcome!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "ISAKA Tsuyoshi",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5927283-kg.jpg?t=2023-10-25-03-24-26",
+        "url": "/isakatsuyoshi",
+        "tier": "MASTER",
+        "id": 5927283,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 45,
+        "canUpvote": true,
+        "totalUpvotes": 45
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1624,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "KAGGLE",
+          "featuredUserNames": [
+            "yunusgmsoy"
+          ],
+          "userCount": 1
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "ISAKA Tsuyoshi",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5927283-kg.jpg?t=2023-10-25-03-24-26",
+          "url": "/isakatsuyoshi",
+          "userName": "isakatsuyoshi",
+          "tier": "MASTER",
+          "id": 5927283,
+          "profileUrl": "/isakatsuyoshi",
+          "performanceTier": "MASTER",
+          "userId": 5927283,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3485252,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 716952,
+    "name": "Rule-based is surprisingly strong? (currently 7th/344teams / gold zone, no learning)",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-01T08:50:08.239056100Z",
+    "totalVotes": 45,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/716952",
+    "totalMessages": 7,
+    "authorPerformanceTier": "MASTER",
+    "authorProgressionOptOut": false
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "forumTopic": {
+    "authorId": 30343794,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Shetall",
+    "authorUserName": "shveetal",
+    "comments": [
+      {
+        "id": 3488991,
+        "postDate": "2026-07-05T11:18:56.227Z",
+        "rawMarkdown": "# Welcome to your first hackathon\n**Shetall!** Ek practical advice deta hu - kyunki start me *bina results ke jaldi koi team me leta nahi hai,* toh sabse best tareeka hai ki tum AI (jaise ChatGPT/Claude) ko apni team ki tarah use karo, jaisa tum pehle se kar rhe honge shayad.\n\nAgar tum solo shuru kar rhe ho, toh ye **best starting tips** kaafi kaam aayenge:\n\n1. **Public Notebook ko Baseline banao:** Jo sabse acchi public notebook (code) ho, pehle usko as a baseline accept karo aur poora samajho ki usme kya ho rha hai.\n2. **Features Compare karo:** Baaki top public notebooks ke features aur approach ko aapas me compare karo.\n3. **One Change at a Time:** Ek time par ek hi improvement ya feature daal kar submit karo. Isse tumhe bilkul saaf pata rahega ki kaun sa change kaam kar raha hai aur kaun sa nahi.\n4. **Apna Code Mix karo:** In sabhi alag-alag features aur tweaks ko milakar apna ek best solution tayyar karo.\n\nMaine 6 hackathons kiye hain aur hamesha solo hi khela hai. AI se tum code debug karwa sakte ho, ideas discuss kar sakte ho aur bina kisi par depend hue apna baseline result la sakte ho. Try karke dekho, team ki zaroorat hi nahi padegi. Good luck!",
+        "content": "<h1>Welcome to your first hackathon</h1>\n<p><strong>Shetall!</strong> Ek practical advice deta hu - kyunki start me <em>bina results ke jaldi koi team me leta nahi hai,</em> toh sabse best tareeka hai ki tum AI (jaise ChatGPT/Claude) ko apni team ki tarah use karo, jaisa tum pehle se kar rhe honge shayad.</p>\n<p>Agar tum solo shuru kar rhe ho, toh ye <strong>best starting tips</strong> kaafi kaam aayenge:</p>\n<ol>\n<li><strong>Public Notebook ko Baseline banao:</strong> Jo sabse acchi public notebook (code) ho, pehle usko as a baseline accept karo aur poora samajho ki usme kya ho rha hai.</li>\n<li><strong>Features Compare karo:</strong> Baaki top public notebooks ke features aur approach ko aapas me compare karo.</li>\n<li><strong>One Change at a Time:</strong> Ek time par ek hi improvement ya feature daal kar submit karo. Isse tumhe bilkul saaf pata rahega ki kaun sa change kaam kar raha hai aur kaun sa nahi.</li>\n<li><strong>Apna Code Mix karo:</strong> In sabhi alag-alag features aur tweaks ko milakar apna ek best solution tayyar karo.</li>\n</ol>\n<p>Maine 6 hackathons kiye hain aur hamesha solo hi khela hai. AI se tum code debug karwa sakte ho, ideas discuss kar sakte ho aur bina kisi par depend hue apna baseline result la sakte ho. Try karke dekho, team ki zaroorat hi nahi padegi. Good luck!</p>",
+        "replies": [
+          {
+            "id": 3491061,
+            "postDate": "2026-07-06T15:26:02.583Z",
+            "rawMarkdown": "Dhanyawad! Thanks for the suggestions, try karti hu :) ",
+            "content": "<p>Dhanyawad! Thanks for the suggestions, try karti hu :) </p>",
+            "replies": [
+              {
+                "id": 3495173,
+                "postDate": "2026-07-11T15:07:24.620Z",
+                "rawMarkdown": "I'm open to joining you, I have a keen interest towards this competition",
+                "content": "<p>I'm open to joining you, I have a keen interest towards this competition</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Dev Raj Verma",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28116208-kg.JPG?t=2025-10-05-03-55-59",
+                  "url": "/devraj121",
+                  "tier": "CONTRIBUTOR",
+                  "id": 28116208,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Dev Raj Verma",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28116208-kg.JPG?t=2025-10-05-03-55-59",
+                    "url": "/devraj121",
+                    "userName": "devraj121",
+                    "tier": "CONTRIBUTOR",
+                    "id": 28116208,
+                    "profileUrl": "/devraj121",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 28116208,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Shetall",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/shveetal",
+              "tier": "CONTRIBUTOR",
+              "id": 30343794,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Shetall",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/shveetal",
+                "userName": "shveetal",
+                "tier": "CONTRIBUTOR",
+                "id": 30343794,
+                "profileUrl": "/shveetal",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 30343794,
+                "progressionOptOut": false
+              },
+              "intro": "Hello, I am looking for a team, I am a L&D expert with 20 years of experience and can help facilitate the session."
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "FasterYouChase FasterIRun",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+          "url": "/icoguser",
+          "tier": "CONTRIBUTOR",
+          "id": 23282498,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 295,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "FUNNY",
+            "featuredUserNames": [
+              "sangrampatil5150"
+            ],
+            "userCount": 1
+          },
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "shveetal"
+            ],
+            "userCount": 1
+          },
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "shashikalarajesh11"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "FasterYouChase FasterIRun",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+            "url": "/icoguser",
+            "userName": "icoguser",
+            "tier": "CONTRIBUTOR",
+            "id": 23282498,
+            "profileUrl": "/icoguser",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23282498,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3488982,
+        "postDate": "2026-07-05T11:11:05.960Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3486435,
+      "postDate": "2026-07-02T14:28:15.903Z",
+      "rawMarkdown": "Hello, this is my first hackathon and I am looking to be absorbed by any team, thanks.",
+      "content": "<p>Hello, this is my first hackathon and I am looking to be absorbed by any team, thanks.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Shetall",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/shveetal",
+        "tier": "CONTRIBUTOR",
+        "id": 30343794,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -1,
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "YAY",
+          "featuredUserNames": [
+            "icoguser"
+          ],
+          "userCount": 1
+        }
+      ],
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "Shetall",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/shveetal",
+          "userName": "shveetal",
+          "tier": "CONTRIBUTOR",
+          "id": 30343794,
+          "profileUrl": "/shveetal",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 30343794,
+          "progressionOptOut": false
+        },
+        "intro": "Hello, I am looking for a team, I am a L&D expert with 20 years of experience and can help facilitate the session."
+      }
+    },
+    "firstMessageId": 3486435,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 717817,
+    "name": "Looking to be absorbed by a team!",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-02T14:28:15.904676900Z",
+    "totalVotes": -1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/717817",
+    "totalMessages": 4,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

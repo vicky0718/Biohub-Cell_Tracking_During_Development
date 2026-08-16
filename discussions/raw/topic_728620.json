@@ -1,0 +1,85 @@
+{
+  "forumTopic": {
+    "authorId": 165505,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Wayne B Hayes",
+    "authorUserName": "waynebhayes",
+    "comments": [
+      {
+        "id": 3502329,
+        "postDate": "2026-07-24T03:53:01.393Z",
+        "rawMarkdown": "Hi @waynebhayes\n\nzarr is just a standard, there are several implementations in multiple programming languages, https://zarr.dev/implementations/",
+        "content": "<p>Hi <a href=\"https://www.kaggle.com/waynebhayes\" target=\"_blank\">@waynebhayes</a></p>\n<p>zarr is just a standard, there are several implementations in multiple programming languages, <a href=\"https://zarr.dev/implementations/\" target=\"_blank\">https://zarr.dev/implementations/</a></p>",
+        "parent": {},
+        "author": {
+          "displayName": "Jord\u00e3o Bragantini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/jookuma",
+          "tier": "CONTRIBUTOR",
+          "id": 1417736,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3502297,
+      "postDate": "2026-07-24T00:35:47.033Z",
+      "rawMarkdown": "Hello. I would love to participate in the competition, and have worked in cell tracking previously... but have never used Python and have no interest in doing so. Wouldn't it be more realistic to just provide us with the raw images/videos (TIFF files for example) rather than some pre-processed Zarr files... it looks to me like they're pre-processed segmentations... that may already have errors? If you want us to have a \"real-world\" application, then providing the raw data seems more realistic. Even if it's hundreds of GB...",
+      "content": "<p>Hello. I would love to participate in the competition, and have worked in cell tracking previously\u2026 but have never used Python and have no interest in doing so. Wouldn't it be more realistic to just provide us with the raw images/videos (TIFF files for example) rather than some pre-processed Zarr files\u2026 it looks to me like they're pre-processed segmentations\u2026 that may already have errors? If you want us to have a \"real-world\" application, then providing the raw data seems more realistic. Even if it's hundreds of GB\u2026</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Wayne B Hayes",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/waynebhayes",
+        "tier": "CONTRIBUTOR",
+        "id": 165505,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Wayne B Hayes",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/waynebhayes",
+          "userName": "waynebhayes",
+          "tier": "CONTRIBUTOR",
+          "id": 165505,
+          "profileUrl": "/waynebhayes",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 165505,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3502297,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 728620,
+    "name": "What if we want the raw data, and/or want to use a language other than Python?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-24T00:35:47.032822800Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/728620",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

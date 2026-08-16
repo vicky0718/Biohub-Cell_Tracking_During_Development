@@ -77,6 +77,12 @@ detection counts up has to re-check the ratio.
 
 ## 4. Techniques worth stealing, in order of expected value
 
+> **⚠️ Superseded in part by `notes/08` §2 (2026-08-16).** The rule-based author's
+> published ladder measures **gap closing as roughly neutral** (CV +0.016, LB −0.002) and
+> **division edges as harmful** (LB 0.784 → 0.778). Item 1 below is downgraded from "the
+> highest-value repair available" to "implemented, off, low expected value". Item 6 on
+> divisions is downgraded further. The ranking that survives is: **detector first**.
+
 1. **Gap closing by inserting a synthetic node.** Both learned notebooks do it, with
    separate one-frame and two-frame passes (`gap_close_max_added_frac ≈ 0.045`,
    `gap2_max_links_frac ≈ 0.0026–0.0045`). This is the direct answer to our

@@ -1,0 +1,60 @@
+{
+  "forumTopic": {
+    "authorId": 1715297,
+    "authorThumbnailName": "1715297-fb.jpg",
+    "authorUserDisplayName": "LeeWhieldon",
+    "authorUserName": "leewhieldon",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3496295,
+      "postDate": "2026-07-13T15:26:49.620Z",
+      "rawMarkdown": "Our submission notebook completes successfully in ~5.6h against the visible test clips, but the actual scored rerun came back as Notebook Timeout with no public score. The debugging docs say to check the Code Requirements page (12h GPU), and that the hidden dataset \"can be larger/smaller/different than the public dataset\", which would explain a timeout if the real hidden set is bigger or denser than the 4 visible clips.\n\nWanted to confirm directly rather than guess: is the rerun genuinely held to the same 12h GPU limit as the Code Requirements page states, or is there a separate, shorter limit specific to the scoring rerun (I've seen other competitions mention something like 9h for that step specifically)? Trying to budget compute time correctly rather than keep guessing blind. \n\nThanks!",
+      "content": "<p>Our submission notebook completes successfully in ~5.6h against the visible test clips, but the actual scored rerun came back as Notebook Timeout with no public score. The debugging docs say to check the Code Requirements page (12h GPU), and that the hidden dataset \"can be larger/smaller/different than the public dataset\", which would explain a timeout if the real hidden set is bigger or denser than the 4 visible clips.</p>\n<p>Wanted to confirm directly rather than guess: is the rerun genuinely held to the same 12h GPU limit as the Code Requirements page states, or is there a separate, shorter limit specific to the scoring rerun (I've seen other competitions mention something like 9h for that step specifically)? Trying to budget compute time correctly rather than keep guessing blind. </p>\n<p>Thanks!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "LeeWhieldon",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
+        "url": "/leewhieldon",
+        "tier": "CONTRIBUTOR",
+        "id": 1715297,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -1,
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1595,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "LeeWhieldon",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
+          "url": "/leewhieldon",
+          "userName": "leewhieldon",
+          "tier": "CONTRIBUTOR",
+          "id": 1715297,
+          "profileUrl": "/leewhieldon",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 1715297,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3496295,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 724914,
+    "name": "What's the actual runtime limit for the private grading rerun?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-13T15:26:49.618372800Z",
+    "totalVotes": -1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/724914",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

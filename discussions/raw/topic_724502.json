@@ -1,0 +1,82 @@
+{
+  "forumTopic": {
+    "authorId": 32688482,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Giridharan R",
+    "authorUserName": "girigd26",
+    "comments": [
+      {
+        "id": 3496287,
+        "postDate": "2026-07-13T14:54:03.473Z",
+        "rawMarkdown": "That's permitted, but you should be able to reproduce it in case you win, see https://www.kaggle.com/WinningModelDocumentationGuidelines\n",
+        "content": "<p>That's permitted, but you should be able to reproduce it in case you win, see <a href=\"https://www.kaggle.com/WinningModelDocumentationGuidelines\" target=\"_blank\">https://www.kaggle.com/WinningModelDocumentationGuidelines</a></p>",
+        "parent": {},
+        "author": {
+          "displayName": "Jord\u00e3o Bragantini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/jookuma",
+          "tier": "CONTRIBUTOR",
+          "id": 1417736,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3495138,
+      "postDate": "2026-07-11T14:24:42.703Z",
+      "rawMarkdown": "I would like to clarify the notebook submission requirements.\n\nI trained a model entirely by myself using only the official BioHub Cell Tracking During Development competition training data. I would like to use this trained model for inference in my submission notebook instead of retraining it every time.\n\nIs it permitted to:\n\nUpload the trained model as a private Kaggle Dataset (or other supported notebook input), and\nLoad that model in the submission notebook for inference?\n\nThe model was trained exclusively on the competition's official training data, and no external data or pretrained weights were used.\n\nWould this be considered a valid notebook submission under the competition rules?\n\nThank you!",
+      "content": "<p>I would like to clarify the notebook submission requirements.</p>\n<p>I trained a model entirely by myself using only the official BioHub Cell Tracking During Development competition training data. I would like to use this trained model for inference in my submission notebook instead of retraining it every time.</p>\n<p>Is it permitted to:</p>\n<p>Upload the trained model as a private Kaggle Dataset (or other supported notebook input), and\nLoad that model in the submission notebook for inference?</p>\n<p>The model was trained exclusively on the competition's official training data, and no external data or pretrained weights were used.</p>\n<p>Would this be considered a valid notebook submission under the competition rules?</p>\n<p>Thank you!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Giridharan R",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/girigd26",
+        "tier": "CONTRIBUTOR",
+        "id": 32688482,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Giridharan R",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/girigd26",
+          "userName": "girigd26",
+          "tier": "CONTRIBUTOR",
+          "id": 32688482,
+          "profileUrl": "/girigd26",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 32688482,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3495138,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 724502,
+    "name": "Clarification on Using a Self-Trained Model in Notebook Submission",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-11T14:24:42.701801400Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/724502",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

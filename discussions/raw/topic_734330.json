@@ -1,0 +1,193 @@
+{
+  "forumTopic": {
+    "authorId": 12120192,
+    "authorThumbnailName": "12120192-kg.png?t=2026-04-27-13-06-01",
+    "authorUserDisplayName": "marumarukun",
+    "authorUserName": "marumarukun",
+    "comments": [
+      {
+        "id": 3512606,
+        "postDate": "2026-08-13T21:58:20.713Z",
+        "rawMarkdown": "Hi! Yes you are free to use the data and all resources in Zebrahub for this competition! There is no overlap with the test set. ",
+        "content": "<p>Hi! Yes you are free to use the data and all resources in Zebrahub for this competition! There is no overlap with the test set. </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Thibaut Goldsborough",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/thibautgoldsborough",
+          "tier": "CONTRIBUTOR",
+          "id": 33476309,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "mkotyushev",
+              "sersasj",
+              "yukiarl",
+              "qiweiyin",
+              "marumarukun",
+              "yunusgmsoy",
+              "bharath111l"
+            ],
+            "userCount": 7
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Thibaut Goldsborough",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/thibautgoldsborough",
+            "userName": "thibautgoldsborough",
+            "tier": "CONTRIBUTOR",
+            "id": 33476309,
+            "profileUrl": "/thibautgoldsborough",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 33476309,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3512686,
+        "postDate": "2026-08-14T05:42:51.883Z",
+        "rawMarkdown": "ZebraHub data allowed as external training data? @marumarukun ",
+        "content": "<p>ZebraHub data allowed as external training data? <a href=\"https://www.kaggle.com/marumarukun\" target=\"_blank\">@marumarukun</a> </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Navneet",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15692441-kg.jpg?t=2025-05-18-07-58-06",
+          "url": "/navneetbende",
+          "tier": "CONTRIBUTOR",
+          "id": 15692441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -1,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "YAY",
+            "featuredUserNames": [
+              "marumarukun",
+              "yunusgmsoy"
+            ],
+            "userCount": 2
+          }
+        ]
+      },
+      {
+        "id": 3512267,
+        "postDate": "2026-08-13T02:12:42.163Z",
+        "rawMarkdown": "Following this thread. Clarification on external Zebrahub datasets (*_tracks.csv) would be very helpful!",
+        "content": "<p>Following this thread. Clarification on external Zebrahub datasets (*_tracks.csv) would be very helpful!</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Maria Aqdas",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27715053-kg.png?t=2026-06-24-02-14-48",
+          "url": "/mariaaqdas",
+          "tier": "CONTRIBUTOR",
+          "id": 27715053,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "vladikmegakid",
+              "yunusgmsoy",
+              "mariaaqdas"
+            ],
+            "userCount": 3
+          }
+        ]
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3511361,
+      "postDate": "2026-08-11T00:18:51.970Z",
+      "rawMarkdown": "Hi @thibautgoldsborough ,\n\nCould you please clarify whether the publicly available Zebrahub imaging and tracking data can be used as external training data for this competition?\n\nZebrahub imaging data:\nhttps://zebrahub.sf.czbiohub.org/imaging\n\nSpecifically, I'd like to confirm whether both the imaging data and the tracking annotations (*_tracks.csv) are allowed.\n\nThanks!",
+      "content": "<p>Hi <a href=\"https://www.kaggle.com/thibautgoldsborough\" target=\"_blank\">@thibautgoldsborough</a> ,</p>\n<p>Could you please clarify whether the publicly available Zebrahub imaging and tracking data can be used as external training data for this competition?</p>\n<p>Zebrahub imaging data:\n<a href=\"https://zebrahub.sf.czbiohub.org/imaging\" target=\"_blank\">https://zebrahub.sf.czbiohub.org/imaging</a></p>\n<p>Specifically, I'd like to confirm whether both the imaging data and the tracking annotations (*_tracks.csv) are allowed.</p>\n<p>Thanks!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "marumarukun",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/12120192-kg.png?t=2026-04-27-13-06-01",
+        "url": "/marumarukun",
+        "tier": "EXPERT",
+        "id": 12120192,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 10,
+        "canUpvote": true,
+        "totalUpvotes": 10
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "KAGGLE",
+          "featuredUserNames": [
+            "yunusgmsoy",
+            "mariaaqdas"
+          ],
+          "userCount": 2
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "marumarukun",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/12120192-kg.png?t=2026-04-27-13-06-01",
+          "url": "/marumarukun",
+          "userName": "marumarukun",
+          "tier": "EXPERT",
+          "id": 12120192,
+          "profileUrl": "/marumarukun",
+          "performanceTier": "EXPERT",
+          "userId": 12120192,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3511361,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 734330,
+    "name": "Is public Zebrahub data allowed as external training data?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-11T00:18:51.970829200Z",
+    "totalVotes": 10,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/734330",
+    "totalMessages": 3,
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

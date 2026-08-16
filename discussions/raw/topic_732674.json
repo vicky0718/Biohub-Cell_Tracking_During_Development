@@ -1,0 +1,162 @@
+{
+  "forumTopic": {
+    "authorId": 28137716,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Krish Rakholiya",
+    "authorUserName": "krishrakholiya32",
+    "comments": [
+      {
+        "id": 3508427,
+        "postDate": "2026-08-04T14:32:50.230Z",
+        "rawMarkdown": "Update / correction: thanks to @bharat for pushing on this. I ran a few more diagnostics and the \"any deviation from sample_submission.csv\" framing in my original post is wrong. Here's what actually happened.\n\nI built a submission that discovers the test dataset names dynamically at runtime (globbing /kaggle/input/**/test/*.zarr, no hardcoded names) and writes one node per dataset at t=0 with no edges at all. That's structurally very different from sample_submission.csv, yet it succeeded (score 0.000). I then extended it to a single track per dataset spanning t=0 through t=5 (6 nodes, 5 edges), same constant coordinate as before \u2014 that also succeeded.\n\nBut an earlier test with the same coordinate and topology extended to t=0 through t=9 (10 nodes, 9 edges) failed with Scoring Error. So the real trigger looks tied to the timepoint range, not \"any change whatsoever\" \u2014 the boundary is somewhere between t=5 (works) and t=9 (fails). My guess is submissions with t values beyond a dataset's actual frame count get rejected outright rather than just scored low, which would make sense if scoring validates node timepoints against the real video length per dataset.\n\nOne thing that doesn't fully fit yet: a submission that was byte-identical to sample_submission.csv except one coordinate changed by 1 (same small t range as the original) also failed. So there may be a second, separate validity check (e.g. coordinates needing to correspond to real detected structure) independent of the timepoint-range issue. Still narrowing this down \u2014 will update if I learn more. Appreciate the pointer to the getting-started kernel, it's what got me looking at this properly.",
+        "content": "<p>Update / correction: thanks to <a href=\"https://www.kaggle.com/bharat\" target=\"_blank\">@bharat</a> for pushing on this. I ran a few more diagnostics and the \"any deviation from sample_submission.csv\" framing in my original post is wrong. Here's what actually happened.</p>\n<p>I built a submission that discovers the test dataset names dynamically at runtime (globbing /kaggle/input/*<em>/test/</em>.zarr, no hardcoded names) and writes one node per dataset at t=0 with no edges at all. That's structurally very different from sample_submission.csv, yet it succeeded (score 0.000). I then extended it to a single track per dataset spanning t=0 through t=5 (6 nodes, 5 edges), same constant coordinate as before \u2014 that also succeeded.</p>\n<p>But an earlier test with the same coordinate and topology extended to t=0 through t=9 (10 nodes, 9 edges) failed with Scoring Error. So the real trigger looks tied to the timepoint range, not \"any change whatsoever\" \u2014 the boundary is somewhere between t=5 (works) and t=9 (fails). My guess is submissions with t values beyond a dataset's actual frame count get rejected outright rather than just scored low, which would make sense if scoring validates node timepoints against the real video length per dataset.</p>\n<p>One thing that doesn't fully fit yet: a submission that was byte-identical to sample_submission.csv except one coordinate changed by 1 (same small t range as the original) also failed. So there may be a second, separate validity check (e.g. coordinates needing to correspond to real detected structure) independent of the timepoint-range issue. Still narrowing this down \u2014 will update if I learn more. Appreciate the pointer to the getting-started kernel, it's what got me looking at this properly.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Krish Rakholiya",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/krishrakholiya32",
+          "tier": "CONTRIBUTOR",
+          "id": 28137716,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2368,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Krish Rakholiya",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/krishrakholiya32",
+            "userName": "krishrakholiya32",
+            "tier": "CONTRIBUTOR",
+            "id": 28137716,
+            "profileUrl": "/krishrakholiya32",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 28137716,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3508295,
+        "postDate": "2026-08-04T07:09:14.087Z",
+        "rawMarkdown": "pre built csv won't work, the test folder is replaced by private samples during submission. The submission file is expected to have nodes, edges from all the given datasets in the private test folder. And the submission file should also have the id column.\nYou can check the getting started kernel https://www.kaggle.com/code/inversion/cell-tracking-getting-started-w-nearest-neighbor",
+        "content": "<p>pre built csv won't work, the test folder is replaced by private samples during submission. The submission file is expected to have nodes, edges from all the given datasets in the private test folder. And the submission file should also have the id column.\nYou can check the getting started kernel <a href=\"https://www.kaggle.com/code/inversion/cell-tracking-getting-started-w-nearest-neighbor\" target=\"_blank\">https://www.kaggle.com/code/inversion/cell-tracking-getting-started-w-nearest-neighbor</a></p>",
+        "parent": {},
+        "author": {
+          "displayName": "Bharat",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2411334-kg.jpg",
+          "url": "/bharat0",
+          "tier": "CONTRIBUTOR",
+          "id": 2411334,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1449,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Bharat",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2411334-kg.jpg",
+            "url": "/bharat0",
+            "userName": "bharat0",
+            "tier": "CONTRIBUTOR",
+            "id": 2411334,
+            "profileUrl": "/bharat0",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 2411334,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3509086,
+        "postDate": "2026-08-06T00:02:46.113Z",
+        "rawMarkdown": "Good work~",
+        "content": "<p>Good work~</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Surya Bhattiprol",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/suryabhattiprol01",
+          "tier": "CONTRIBUTOR",
+          "id": 35987845,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": true
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3508294,
+      "postDate": "2026-08-04T07:03:27.820Z",
+      "rawMarkdown": "I've been getting \"Submission Scoring Error\" on every real submission except the completely unmodified sample_submission.csv. To isolate the cause, I ran a series of diagnostic submissions \u2014 each one a throwaway notebook that just copies a pre-built CSV to submission.csv, so only the file content varies between tests. Results:\n\n1) sample_submission.csv, unmodified \u2014 20 rows, 1 track/dataset, 1 node/timepoint, constant coordinate (32,128,128) \u2014 SUCCESS, score 0.000\n2) Synthetic, ~200 tracks/dataset, ~3% division rate \u2014 ~20,000 rows, many simultaneous tracks with branching, varied coordinates \u2014 Scoring Error\n3) Synthetic, ~200 tracks/dataset, 0 divisions \u2014 ~18,800 rows, many simultaneous tracks, linear only, varied coordinates \u2014 Scoring Error\n4) Synthetic, 15 tracks/dataset \u2014 592 rows, many simultaneous tracks, varied coordinates \u2014 Scoring Error\n5) Synthetic, single track/dataset, 90 nodes \u2014 ~360 rows, identical topology to #1 but scaled up, varied coordinates \u2014 Scoring Error\n6) Synthetic, single track/dataset, 10 nodes, using the SAME constant coordinate as #1 \u2014 76 rows, identical topology to #1, identical constant coordinate \u2014 Scoring Error\n7) sample_submission.csv with ONE coordinate changed by 1 on a single node \u2014 20 rows, identical to #1 except that one value \u2014 Scoring Error\n\nTest #7 is the key result: it is byte-identical to the only successful submission except for a single digit in a single cell, and it still fails. This rules out row count, track topology, branching, and coordinate values/ranges as the cause \u2014 the only submission that has ever scored successfully is the literal, unmodified sample_submission.csv. Every submission format check I could think of (dtypes, monotonic ids, valid node/edge references, in-bounds coordinates, no orphan edges, matching dataset names, correct row_type conventions) came back clean on my real pipeline output as well.\n\nThis looks like it could be a bug in the scoring pipeline (e.g. comparing against a reference file rather than genuinely validating/scoring arbitrary submissions) rather than an issue with submission formatting on our end. Has anyone else run into this, or is there something about the submission format I'm missing? Happy to share the exact diagnostic CSVs if that's useful for reproducing it.\n",
+      "content": "<p>I've been getting \"Submission Scoring Error\" on every real submission except the completely unmodified sample_submission.csv. To isolate the cause, I ran a series of diagnostic submissions \u2014 each one a throwaway notebook that just copies a pre-built CSV to submission.csv, so only the file content varies between tests. Results:</p>\n<p>1) sample_submission.csv, unmodified \u2014 20 rows, 1 track/dataset, 1 node/timepoint, constant coordinate (32,128,128) \u2014 SUCCESS, score 0.000\n2) Synthetic, ~200 tracks/dataset, ~3% division rate \u2014 ~20,000 rows, many simultaneous tracks with branching, varied coordinates \u2014 Scoring Error\n3) Synthetic, ~200 tracks/dataset, 0 divisions \u2014 ~18,800 rows, many simultaneous tracks, linear only, varied coordinates \u2014 Scoring Error\n4) Synthetic, 15 tracks/dataset \u2014 592 rows, many simultaneous tracks, varied coordinates \u2014 Scoring Error\n5) Synthetic, single track/dataset, 90 nodes \u2014 ~360 rows, identical topology to #1 but scaled up, varied coordinates \u2014 Scoring Error\n6) Synthetic, single track/dataset, 10 nodes, using the SAME constant coordinate as #1 \u2014 76 rows, identical topology to #1, identical constant coordinate \u2014 Scoring Error\n7) sample_submission.csv with ONE coordinate changed by 1 on a single node \u2014 20 rows, identical to #1 except that one value \u2014 Scoring Error</p>\n<p>Test #7 is the key result: it is byte-identical to the only successful submission except for a single digit in a single cell, and it still fails. This rules out row count, track topology, branching, and coordinate values/ranges as the cause \u2014 the only submission that has ever scored successfully is the literal, unmodified sample_submission.csv. Every submission format check I could think of (dtypes, monotonic ids, valid node/edge references, in-bounds coordinates, no orphan edges, matching dataset names, correct row_type conventions) came back clean on my real pipeline output as well.</p>\n<p>This looks like it could be a bug in the scoring pipeline (e.g. comparing against a reference file rather than genuinely validating/scoring arbitrary submissions) rather than an issue with submission formatting on our end. Has anyone else run into this, or is there something about the submission format I'm missing? Happy to share the exact diagnostic CSVs if that's useful for reproducing it.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Krish Rakholiya",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/krishrakholiya32",
+        "tier": "CONTRIBUTOR",
+        "id": 28137716,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2368,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Krish Rakholiya",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/krishrakholiya32",
+          "userName": "krishrakholiya32",
+          "tier": "CONTRIBUTOR",
+          "id": 28137716,
+          "profileUrl": "/krishrakholiya32",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 28137716,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3508294,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 732674,
+    "name": "Every submission except the unmodified sample_submission.csv gets \"Submission Scoring Error\" (7/7 reproducible)",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-04T07:03:27.819966Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/732674",
+    "totalMessages": 3,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

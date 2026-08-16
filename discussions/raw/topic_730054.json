@@ -1,0 +1,161 @@
+{
+  "forumTopic": {
+    "authorId": 14670471,
+    "authorThumbnailName": "14670471-kg.jpeg?t=2026-06-25-19-42-14",
+    "authorUserDisplayName": "Adarsh",
+    "authorUserName": "madarshbb",
+    "comments": [
+      {
+        "id": 3504510,
+        "postDate": "2026-07-28T08:40:25.233Z",
+        "rawMarkdown": "Create token and use kaggle-cli provided by official.",
+        "content": "<p>Create token and use kaggle-cli provided by official.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "KevinYongxin",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/24236431-kg.jpg?t=2025-08-04-03-33-42",
+          "url": "/yongxinkwan",
+          "tier": "EXPERT",
+          "id": 24236431,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 442,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "madarshbb"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "KevinYongxin",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/24236431-kg.jpg?t=2025-08-04-03-33-42",
+            "url": "/yongxinkwan",
+            "userName": "yongxinkwan",
+            "tier": "EXPERT",
+            "id": 24236431,
+            "profileUrl": "/yongxinkwan",
+            "performanceTier": "EXPERT",
+            "userId": 24236431,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3504503,
+        "postDate": "2026-07-28T08:30:22.900Z",
+        "rawMarkdown": "kaggle cli",
+        "content": "<p>kaggle cli</p>",
+        "parent": {},
+        "author": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 15,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "madarshbb"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "mikelou1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/mikelou1",
+            "userName": "mikelou1",
+            "tier": "EXPERT",
+            "id": 32181963,
+            "profileUrl": "/mikelou1",
+            "performanceTier": "EXPERT",
+            "userId": 32181963,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3504344,
+      "postDate": "2026-07-27T20:03:37.730Z",
+      "rawMarkdown": "Does anyone know how to do this? When asking claude code, it relies on manually going on kaggle. What's the best way to do this?",
+      "content": "<p>Does anyone know how to do this? When asking claude code, it relies on manually going on kaggle. What's the best way to do this?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Adarsh",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14670471-kg.jpeg?t=2026-06-25-19-42-14",
+        "url": "/madarshbb",
+        "tier": "MASTER",
+        "id": 14670471,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 172,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "Athar Sayed",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2051490-kg.png?t=2025-04-18-10-44-38",
+          "url": "/sayedathar11",
+          "userName": "sayedathar11",
+          "tier": "MASTER",
+          "id": 2051490,
+          "profileUrl": "/sayedathar11",
+          "performanceTier": "MASTER",
+          "userId": 2051490,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3504344,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 730054,
+    "name": "How to Save n Run All with AI tools",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-27T20:03:37.728494800Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/730054",
+    "totalMessages": 2,
+    "authorPerformanceTier": "MASTER",
+    "authorProgressionOptOut": false
+  }
+}

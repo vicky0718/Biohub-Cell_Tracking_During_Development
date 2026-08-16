@@ -1,0 +1,181 @@
+{
+  "forumTopic": {
+    "authorId": 4701839,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Simon R\u00fcba",
+    "authorUserName": "simonrba",
+    "comments": [
+      {
+        "id": 3501386,
+        "postDate": "2026-07-21T22:44:18.303Z",
+        "rawMarkdown": "@tahaalshatiri @simonrba, the re-scoring is running, and it should be done tomorrow if everything works out ",
+        "content": "<p><a href=\"https://www.kaggle.com/tahaalshatiri\" target=\"_blank\">@tahaalshatiri</a> <a href=\"https://www.kaggle.com/simonrba\" target=\"_blank\">@simonrba</a>, the re-scoring is running, and it should be done tomorrow if everything works out </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Jord\u00e3o Bragantini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/jookuma",
+          "tier": "CONTRIBUTOR",
+          "id": 1417736,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "totalVotes": 6,
+          "canUpvote": true,
+          "totalUpvotes": 6
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "daimarusui3",
+              "simonrba",
+              "galinilin",
+              "josephadamski91"
+            ],
+            "userCount": 4
+          },
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "sdeogade",
+              "galinilin",
+              "josephadamski91"
+            ],
+            "userCount": 3
+          },
+          {
+            "emoji": "YAY",
+            "featuredUserNames": [
+              "galinilin",
+              "thedyingkai",
+              "josephadamski91"
+            ],
+            "userCount": 3
+          }
+        ]
+      },
+      {
+        "id": 3501493,
+        "postDate": "2026-07-22T05:29:35.447Z",
+        "rawMarkdown": "Thank you for the re-scoring timeline update @simonrba ",
+        "content": "<p>Thank you for the re-scoring timeline update <a href=\"https://www.kaggle.com/simonrba\" target=\"_blank\">@simonrba</a> </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Navneet",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15692441-kg.jpg?t=2025-05-18-07-58-06",
+          "url": "/navneetbende",
+          "tier": "CONTRIBUTOR",
+          "id": 15692441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
+        "id": 3501261,
+        "postDate": "2026-07-21T17:48:28.203Z",
+        "rawMarkdown": "I've just joined and been waiting for 3 days for the rescore, as it's hard to do expirements with a misleading leaderboard and public notebooks",
+        "content": "<p>I've just joined and been waiting for 3 days for the rescore, as it's hard to do expirements with a misleading leaderboard and public notebooks</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Taha_Alshatiri",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18473244-kg.png?t=2026-07-04-06-40-32",
+          "url": "/tahaalshatiri",
+          "tier": "MASTER",
+          "id": 18473244,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -3,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 291,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Taha_Alshatiri",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18473244-kg.png?t=2026-07-04-06-40-32",
+            "url": "/tahaalshatiri",
+            "userName": "tahaalshatiri",
+            "tier": "MASTER",
+            "id": 18473244,
+            "profileUrl": "/tahaalshatiri",
+            "performanceTier": "MASTER",
+            "userId": 18473244,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3501148,
+      "postDate": "2026-07-21T13:35:12.123Z",
+      "rawMarkdown": "Has anyone heard an updated estimate for when the re-scoring will happen?\n\nThe original note about the division metric patch mentioned it would likely be Monday (yesterday), and I wasn't sure whether that's still the plan or has shifted.\n\nAsking mainly for planning reasons, with the leaderboard still showing pre-patch scores, it's hard to tell where a submission actually stands, which makes it tricky to judge which directions are worth pursuing.\n\nThanks to the organisers for publishing the patch on GitHub, by the way, being able to score locally against the corrected metric has been genuinely helpful in the meantime.\n\nAnyone know more?",
+      "content": "<p>Has anyone heard an updated estimate for when the re-scoring will happen?</p>\n<p>The original note about the division metric patch mentioned it would likely be Monday (yesterday), and I wasn't sure whether that's still the plan or has shifted.</p>\n<p>Asking mainly for planning reasons, with the leaderboard still showing pre-patch scores, it's hard to tell where a submission actually stands, which makes it tricky to judge which directions are worth pursuing.</p>\n<p>Thanks to the organisers for publishing the patch on GitHub, by the way, being able to score locally against the corrected metric has been genuinely helpful in the meantime.</p>\n<p>Anyone know more?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Simon R\u00fcba",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/simonrba",
+        "tier": "EXPERT",
+        "id": 4701839,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 13,
+        "canUpvote": true,
+        "totalUpvotes": 13
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1127,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Simon R\u00fcba",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/simonrba",
+          "userName": "simonrba",
+          "tier": "EXPERT",
+          "id": 4701839,
+          "profileUrl": "/simonrba",
+          "performanceTier": "EXPERT",
+          "userId": 4701839,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3501148,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 727957,
+    "name": "Any update on the re-scoring timeline?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-21T13:35:12.124644500Z",
+    "totalVotes": 13,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/727957",
+    "totalMessages": 3,
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "forumTopic": {
+    "authorId": 10919031,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Alan Thanickal",
+    "authorUserName": "alanthanickal",
+    "comments": [
+      {
+        "id": 3502053,
+        "postDate": "2026-07-23T11:50:31.030Z",
+        "rawMarkdown": "this is not caused by scoring; local scoring on all train data runs just over 1 minute. All the other time goes into constructing your prediction. Time how long your code takes over test set of 4 videos, scale it up to approximate full test set - that is how long your submission will run.",
+        "content": "<p>this is not caused by scoring; local scoring on all train data runs just over 1 minute. All the other time goes into constructing your prediction. Time how long your code takes over test set of 4 videos, scale it up to approximate full test set - that is how long your submission will run.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Youri Matiounine",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/ymatioun",
+          "tier": "GRANDMASTER",
+          "id": 1753973,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1734,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Youri Matiounine",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/ymatioun",
+            "userName": "ymatioun",
+            "tier": "GRANDMASTER",
+            "id": 1753973,
+            "profileUrl": "/ymatioun",
+            "performanceTier": "GRANDMASTER",
+            "userId": 1753973,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3498096,
+        "postDate": "2026-07-15T04:15:33.537Z",
+        "rawMarkdown": "Are you considering the time complexities of the function you are using?\nFor 60K nodes, using function having time complexity O(N^3) will also cause the time out.",
+        "content": "<p>Are you considering the time complexities of the function you are using?\nFor 60K nodes, using function having time complexity O(N^3) will also cause the time out.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "FasterYouChase FasterIRun",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+          "url": "/icoguser",
+          "tier": "CONTRIBUTOR",
+          "id": 23282498,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 296,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "FasterYouChase FasterIRun",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+            "url": "/icoguser",
+            "userName": "icoguser",
+            "tier": "CONTRIBUTOR",
+            "id": 23282498,
+            "profileUrl": "/icoguser",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23282498,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3496301,
+      "postDate": "2026-07-13T15:44:50.310Z",
+      "rawMarkdown": "Several threads mention submissions timing out during scoring. I've hit it three times and have some data that might narrow down the cause, plus a question for the hosts.\n\nSetup: classical pipeline (Otsu/watershed detection \u2192 nearest-neighbour linking \u2192 graph repair). Predictions on the 4 test videos, node counts roughly matching estimated_number_of_nodes (over_ratio ~0.85\u20130.95, i.e. slightly under-predicting, not spamming detections).\nWhat scores and what doesn't:\n\n| pipeline | nodes | edges | edges/node | scoring |\n| --- | --- | --- | --- | --- |\n| raw detect + NN link | ~62k | fragmented | \u2014 | 4\u20135 hrs  |\n| + gap-close + short-track | 61,942 | 58,786 | 0.95 | timed out  |\n| + relink + gap-close + filter | 61,670 | 58,460 | 0.95 | timed out  |\n\nThe node counts are essentially identical across all three. The thing that changes is edge structure: the raw linker leaves a fragmented graph (many short, broken tracks), while the repair stages knit those fragments into long continuous tracks.\n\nHypothesis: scoring cost is driven by connected-component structure, not node count. A graph of N nodes in many short components appears to be much cheaper to score than the same N nodes in few long components \u2014 presumably the division/lineage analysis traverses components.\n\nThings I ruled out:\n\nMalformed graph \u2014 all edges span exactly 1 frame, max out-degree = 1, zero orphan edges, zero self-loops, zero duplicate edges, node IDs per-dataset starting at 1 (matching sample_submission.csv).\nOver-detection \u2014 over_ratio < 1.0 on every video.\n\nNode count as the driver \u2014 raising the detection threshold to cut nodes 17% costs ~0.18 edge Jaccard (there are no junk detections to remove; the node count reflects real cell density). Not a viable lever.\n\nHappy to share more numbers if useful. If anyone else has a submission that scores with gap-closing/track-linking on the dense video, I'd love to know your node/edge counts for comparison.",
+      "content": "<p>Several threads mention submissions timing out during scoring. I've hit it three times and have some data that might narrow down the cause, plus a question for the hosts.</p>\n<p>Setup: classical pipeline (Otsu/watershed detection \u2192 nearest-neighbour linking \u2192 graph repair). Predictions on the 4 test videos, node counts roughly matching estimated_number_of_nodes (over_ratio ~0.85\u20130.95, i.e. slightly under-predicting, not spamming detections).\nWhat scores and what doesn't:</p>\n<table>\n<thead>\n<tr>\n<th>pipeline</th>\n<th>nodes</th>\n<th>edges</th>\n<th>edges/node</th>\n<th>scoring</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>raw detect + NN link</td>\n<td>~62k</td>\n<td>fragmented</td>\n<td>\u2014</td>\n<td>4\u20135 hrs</td>\n</tr>\n<tr>\n<td>+ gap-close + short-track</td>\n<td>61,942</td>\n<td>58,786</td>\n<td>0.95</td>\n<td>timed out</td>\n</tr>\n<tr>\n<td>+ relink + gap-close + filter</td>\n<td>61,670</td>\n<td>58,460</td>\n<td>0.95</td>\n<td>timed out</td>\n</tr>\n</tbody>\n</table>\n<p>The node counts are essentially identical across all three. The thing that changes is edge structure: the raw linker leaves a fragmented graph (many short, broken tracks), while the repair stages knit those fragments into long continuous tracks.</p>\n<p>Hypothesis: scoring cost is driven by connected-component structure, not node count. A graph of N nodes in many short components appears to be much cheaper to score than the same N nodes in few long components \u2014 presumably the division/lineage analysis traverses components.</p>\n<p>Things I ruled out:</p>\n<p>Malformed graph \u2014 all edges span exactly 1 frame, max out-degree = 1, zero orphan edges, zero self-loops, zero duplicate edges, node IDs per-dataset starting at 1 (matching sample_submission.csv).\nOver-detection \u2014 over_ratio &lt; 1.0 on every video.</p>\n<p>Node count as the driver \u2014 raising the detection threshold to cut nodes 17% costs ~0.18 edge Jaccard (there are no junk detections to remove; the node count reflects real cell density). Not a viable lever.</p>\n<p>Happy to share more numbers if useful. If anyone else has a submission that scores with gap-closing/track-linking on the dense video, I'd love to know your node/edge counts for comparison.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Alan Thanickal",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/alanthanickal",
+        "tier": "CONTRIBUTOR",
+        "id": 10919031,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1851,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Alan Thanickal",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/alanthanickal",
+          "userName": "alanthanickal",
+          "tier": "CONTRIBUTOR",
+          "id": 10919031,
+          "profileUrl": "/alanthanickal",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 10919031,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3496301,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 724917,
+    "name": "Scoring timeouts: evidence it's graph connectivity, not size",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-13T15:44:50.310528600Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/724917",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

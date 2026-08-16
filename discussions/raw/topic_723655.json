@@ -1,0 +1,873 @@
+{
+  "forumTopic": {
+    "authorId": 113660,
+    "authorThumbnailName": "113660-fb.jpg",
+    "authorUserDisplayName": "hengck23",
+    "authorUserName": "hengck23",
+    "comments": [
+      {
+        "id": 3498881,
+        "postDate": "2026-07-16T04:42:56.547Z",
+        "rawMarkdown": "i find a metric hack:  \nyou make a graph. if your just repeat your tracks (giving new id) your edge\\_jaccard is not affected. this is the cause the kaggle metric don't penalize fragmentation, duplication. hence you can create multiple almost smiliar tracks to improve TP. But there is the node num correction (aka adj\\_edge\\_jaccard) But you can over come this by duplicating/perturbing at the correct length and correct location.\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F0c8f49fc633511f2736c46579fa5b7f3%2FSelection_4383.png?generation=1784177205409163&alt=media)",
+        "content": "<p>i find a metric hack:<br>\nyou make a graph. if your just repeat your tracks (giving new id) your edge_jaccard is not affected. this is the cause the kaggle metric don't penalize fragmentation, duplication. hence you can create multiple almost smiliar tracks to improve TP. But there is the node num correction (aka adj_edge_jaccard) But you can over come this by duplicating/perturbing at the correct length and correct location.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F0c8f49fc633511f2736c46579fa5b7f3%2FSelection_4383.png?generation=1784177205409163&amp;alt=media\" alt=\"\"></p>",
+        "replies": [
+          {
+            "id": 3499146,
+            "postDate": "2026-07-16T17:04:28.493Z",
+            "rawMarkdown": "Hi, perfectly duplicated edges are filtered out before scoring the edge Jaccard, this might be why you are not seeing a change in the Jaccard score, each ground truth edge can only used for a single TP. If you duplicate the edges but modify the nodes very slightly, then you should see a drop in Jaccard. This should not allow you to hack (i.e. increase) your score.  Please contact us if you can actually game the metric. ",
+            "content": "<p>Hi, perfectly duplicated edges are filtered out before scoring the edge Jaccard, this might be why you are not seeing a change in the Jaccard score, each ground truth edge can only used for a single TP. If you duplicate the edges but modify the nodes very slightly, then you should see a drop in Jaccard. This should not allow you to hack (i.e. increase) your score.  Please contact us if you can actually game the metric. </p>",
+            "replies": [
+              {
+                "id": 3499495,
+                "postDate": "2026-07-17T13:11:05.160Z",
+                "rawMarkdown": "How to hack metric:\n\n1. Real matching nodes only need to be in the same weakly connected component\u200b\n\n2. Forks only need to exist anywhere within that component\u200b\n\n3. Unmatched false forks are generally not counted as FP\n\n4. I'm now trying the next... not sure it works:\n- 4.1.  ~~just copy high-confidence, continuous, linear non-division trajectories.~~\n- 4.2. Shifted track targeting 7\u00b5m node matching",
+                "content": "<p>How to hack metric:</p>\n<ol>\n<li><p>Real matching nodes only need to be in the same weakly connected component\u200b</p></li>\n<li><p>Forks only need to exist anywhere within that component\u200b</p></li>\n<li><p>Unmatched false forks are generally not counted as FP</p></li>\n<li><p>I'm now trying the next\u2026 not sure it works:</p></li>\n</ol>\n<ul>\n<li>4.1.  </li>\n<li>4.2. Shifted track targeting 7\u00b5m node matching</li>\n</ul>",
+                "parent": {},
+                "author": {
+                  "displayName": "Timmy Juicehouse",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "url": "/sweetyheehee",
+                  "tier": "EXPERT",
+                  "id": 18538441,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 709,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Timmy Juicehouse",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "url": "/sweetyheehee",
+                    "userName": "sweetyheehee",
+                    "tier": "EXPERT",
+                    "id": 18538441,
+                    "profileUrl": "/sweetyheehee",
+                    "performanceTier": "EXPERT",
+                    "userId": 18538441,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3499497,
+                "postDate": "2026-07-17T13:25:14.247Z",
+                "rawMarkdown": "I fully understand the original intention behind designing this metric. When I performed local validation, I found that achieving very high accuracy (e.g., 0.999) is quite easy, but balancing recall and other metrics is relatively difficult, because excluding negative samples is a very challenging task. I believe that refining the metrics is also an indispensable step in advancing this research, as your current work is already pushing the limits.",
+                "content": "<p>I fully understand the original intention behind designing this metric. When I performed local validation, I found that achieving very high accuracy (e.g., 0.999) is quite easy, but balancing recall and other metrics is relatively difficult, because excluding negative samples is a very challenging task. I believe that refining the metrics is also an indispensable step in advancing this research, as your current work is already pushing the limits.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Timmy Juicehouse",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "url": "/sweetyheehee",
+                  "tier": "EXPERT",
+                  "id": 18538441,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 709,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Timmy Juicehouse",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "url": "/sweetyheehee",
+                    "userName": "sweetyheehee",
+                    "tier": "EXPERT",
+                    "id": 18538441,
+                    "profileUrl": "/sweetyheehee",
+                    "performanceTier": "EXPERT",
+                    "userId": 18538441,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3499781,
+                "postDate": "2026-07-17T22:33:20.300Z",
+                "rawMarkdown": "Indeed the division metric can be gamed. We're working on a patch and will update the scoring asap. I will make a separate post explaining this. ",
+                "content": "<p>Indeed the division metric can be gamed. We're working on a patch and will update the scoring asap. I will make a separate post explaining this. </p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Thibaut Goldsborough",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/thibautgoldsborough",
+                  "tier": "CONTRIBUTOR",
+                  "id": 33476309,
+                  "progressionOptOut": false
+                },
+                "authorType": "HOST",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Thibaut Goldsborough",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                    "url": "/thibautgoldsborough",
+                    "userName": "thibautgoldsborough",
+                    "tier": "CONTRIBUTOR",
+                    "id": 33476309,
+                    "profileUrl": "/thibautgoldsborough",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 33476309,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Thibaut Goldsborough",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/thibautgoldsborough",
+              "tier": "CONTRIBUTOR",
+              "id": 33476309,
+              "progressionOptOut": false
+            },
+            "authorType": "HOST",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Thibaut Goldsborough",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/thibautgoldsborough",
+                "userName": "thibautgoldsborough",
+                "tier": "CONTRIBUTOR",
+                "id": 33476309,
+                "profileUrl": "/thibautgoldsborough",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 33476309,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3499815,
+            "postDate": "2026-07-18T01:17:36.170Z",
+            "rawMarkdown": "I think the node correction can both increase and decrease original edge jacard score?",
+            "content": "<p>I think the node correction can both increase and decrease original edge jacard score?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 622,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 622,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3499372,
+        "postDate": "2026-07-17T04:35:11.853Z",
+        "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&alt=media)\n\n\ncenter fig: red is t=0, green is t=1   \n\nVisualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  \n- long links are almost wrong (easy to filter such results)\n\n\nlooking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment \"center of motion = line connecting zyx0 and zyx1.\"",
+        "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&amp;alt=media\" alt=\"\"></p>\n<p>center fig: red is t=0, green is t=1   </p>\n<p>Visualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  </p>\n<ul>\n<li>long links are almost wrong (easy to filter such results)</li>\n</ul>\n<p>looking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment \"center of motion = line connecting zyx0 and zyx1.\"</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 622,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3493617,
+        "postDate": "2026-07-08T06:01:56.357Z",
+        "rawMarkdown": "I just start to develop flow approach then seeing your post. Welcome back @hengck23 ",
+        "content": "<p>I just start to develop flow approach then seeing your post. Welcome back <a href=\"https://www.kaggle.com/hengck23\" target=\"_blank\">@hengck23</a> </p>",
+        "replies": [
+          {
+            "id": 3493914,
+            "postDate": "2026-07-08T18:05:02.130Z",
+            "rawMarkdown": "i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below  \n1) 3d point is easy to generate (e.g. opensource cellpose, etc)  \n2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  \n\nif 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.\n\ncurrently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)\n\n(2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.\n\n\nhttps://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284",
+            "content": "<p>i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below<br>\n1) 3d point is easy to generate (e.g. opensource cellpose, etc)<br>\n2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  </p>\n<p>if 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.</p>\n<p>currently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)</p>\n<p>(2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.</p>\n<p><a href=\"https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284\" target=\"_blank\">https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284</a></p>",
+            "replies": [
+              {
+                "id": 3494324,
+                "postDate": "2026-07-09T17:32:44.350Z",
+                "rawMarkdown": "i change strategy a bit:\n1) use opensource to make tracks, measure local LB score\n2) ensemble opensource and own/ai heuristics,  measure local LB score\n3) when i have good LB score, these become dense pesudo labels.\n\nopensouce trackers are very good for short tracking. \ntricks:\n- cellpose etc to provide dense 3d tzyx\n- use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input\n\n",
+                "content": "<p>i change strategy a bit:\n1) use opensource to make tracks, measure local LB score\n2) ensemble opensource and own/ai heuristics,  measure local LB score\n3) when i have good LB score, these become dense pesudo labels.</p>\n<p>opensouce trackers are very good for short tracking. \ntricks:</p>\n<ul>\n<li>cellpose etc to provide dense 3d tzyx</li>\n<li>use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input</li>\n</ul>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "totalVotes": 2,
+                  "canUpvote": true,
+                  "totalUpvotes": 2
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 622,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "reactions": [
+                  {
+                    "emoji": "KAGGLE",
+                    "featuredUserNames": [
+                      "yunusgmsoy",
+                      "songhow"
+                    ],
+                    "userCount": 2
+                  }
+                ],
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 2,
+              "canUpvote": true,
+              "totalUpvotes": 2
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 622,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Tom",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+          "url": "/tom99763",
+          "tier": "MASTER",
+          "id": 4310004,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 99,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Tom",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+            "url": "/tom99763",
+            "userName": "tom99763",
+            "tier": "MASTER",
+            "id": 4310004,
+            "profileUrl": "/tom99763",
+            "performanceTier": "MASTER",
+            "userId": 4310004,
+            "progressionOptOut": false
+          },
+          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+        }
+      },
+      {
+        "id": 3494690,
+        "postDate": "2026-07-10T13:29:32.203Z",
+        "rawMarkdown": "Something struck  my mind. Since it is video and tracking, unsupervised pretraining should help. Hence we no need dense track or point\n\n\nTracking needs dense, spatially precise features. The newer V-JEPA 2.1 specifically targets dense, spatially structured and temporally consistent features \u2026.  \n\n\n\nV-JEPA 2.1 behaves like unsupervised optical flow in feature space,",
+        "content": "<p>Something struck  my mind. Since it is video and tracking, unsupervised pretraining should help. Hence we no need dense track or point</p>\n<p>Tracking needs dense, spatially precise features. The newer V-JEPA 2.1 specifically targets dense, spatially structured and temporally consistent features \u2026.  </p>\n<p>V-JEPA 2.1 behaves like unsupervised optical flow in feature space,</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 622,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3494468,
+        "postDate": "2026-07-10T03:07:03.517Z",
+        "rawMarkdown": "3d cuda optical flow: https://github.com/yongxb/OpticalFlow3d  \n3d optical flow kalman filter tracker : https://byotrack.readthedocs.io/en/latest/  \n\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Ff09cbac39ef7361221ceef47e9382955%2FSelection_4356.png?generation=1783652776657450&alt=media)\n\nhint: use synthetic image or synthetic motion is eaiser to debug your code",
+        "content": "<p>3d cuda optical flow: <a href=\"https://github.com/yongxb/OpticalFlow3d\" target=\"_blank\">https://github.com/yongxb/OpticalFlow3d</a><br>\n3d optical flow kalman filter tracker : <a href=\"https://byotrack.readthedocs.io/en/latest/\" target=\"_blank\">https://byotrack.readthedocs.io/en/latest/</a>  </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Ff09cbac39ef7361221ceef47e9382955%2FSelection_4356.png?generation=1783652776657450&amp;alt=media\" alt=\"\"></p>\n<p>hint: use synthetic image or synthetic motion is eaiser to debug your code</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 622,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3494428,
+        "postDate": "2026-07-09T23:39:28.950Z",
+        "rawMarkdown": "Open-source optical flow tracker + Kalman filter. \nThe visualisation is messy. anyone has a better suggestion?\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F96f536ce5845530631cda7458673780e%2FSelection_4347.png?generation=1783640249216751&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fd9a4b36a962237c4eb72da62851d472f%2FSelection_4348.png?generation=1783640266346613&alt=media)",
+        "content": "<p>Open-source optical flow tracker + Kalman filter. \nThe visualisation is messy. anyone has a better suggestion?</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F96f536ce5845530631cda7458673780e%2FSelection_4347.png?generation=1783640249216751&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fd9a4b36a962237c4eb72da62851d472f%2FSelection_4348.png?generation=1783640266346613&amp;alt=media\" alt=\"\"></p>",
+        "replies": [
+          {
+            "id": 3494458,
+            "postDate": "2026-07-10T02:30:20.060Z",
+            "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fbac01c8b8fc39e9f60fddbe7aacec3d3%2FSelection_4351.png?generation=1783650518238328&alt=media)\n\nresults of ultrack and byotrack. They tend to disagree when there is \"large predicted movement\". this is because the optimization cost forces it to \"always\" link to something\n\n\"link cost < termination cost + new-track cost\"",
+            "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fbac01c8b8fc39e9f60fddbe7aacec3d3%2FSelection_4351.png?generation=1783650518238328&amp;alt=media\" alt=\"\"></p>\n<p>results of ultrack and byotrack. They tend to disagree when there is \"large predicted movement\". this is because the optimization cost forces it to \"always\" link to something</p>\n<p>\"link cost &lt; termination cost + new-track cost\"</p>",
+            "replies": [
+              {
+                "id": 3494632,
+                "postDate": "2026-07-10T11:07:44.763Z",
+                "rawMarkdown": "in theory, linking can be done by CNN.\n\ni illusrate with a 1d example:  the axes are x and time t\n\n```\ninput (rendered detected cell point), treat as image:\n\n.......x..........x....... \n..................x....... \n.......x..........x....... \n.......x..........x....... \n.......x................. \n.......x................. \n.......x................. \n.......x...x............. \n.......x...x............. \n\n\nouput after unet\n\n\n.......S..........S....... \n........I.........I....... \n........I........I....... \n........I..........E....... \n........I................. \n........I................. \n........I................. \n........I...S............. \n.......E..E............. \n\n\n```",
+                "content": "<p>in theory, linking can be done by CNN.</p>\n<p>i illusrate with a 1d example:  the axes are x and time t</p>\n<pre><code>input (rendered detected cell point), treat as image:\n\n.......x..........x....... \n..................x....... \n.......x..........x....... \n.......x..........x....... \n.......x................. \n.......x................. \n.......x................. \n.......x...x............. \n.......x...x............. \n\n\nouput after unet\n\n\n.......S..........S....... \n........I.........I....... \n........I........I....... \n........I..........E....... \n........I................. \n........I................. \n........I................. \n........I...S............. \n.......E..E............. \n</code></pre>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 622,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3494640,
+                "postDate": "2026-07-10T11:24:05.523Z",
+                "rawMarkdown": "That's good reformulation. Consider do\nX, t\nY, t\nZ, t\nThree heads\n\nSeems SDF would work?",
+                "content": "<p>That's good reformulation. Consider do\nX, t\nY, t\nZ, t\nThree heads</p>\n<p>Seems SDF would work?</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Tom",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+                  "url": "/tom99763",
+                  "tier": "MASTER",
+                  "id": 4310004,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 99,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Tom",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+                    "url": "/tom99763",
+                    "userName": "tom99763",
+                    "tier": "MASTER",
+                    "id": 4310004,
+                    "profileUrl": "/tom99763",
+                    "performanceTier": "MASTER",
+                    "userId": 4310004,
+                    "progressionOptOut": false
+                  },
+                  "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+                }
+              },
+              {
+                "id": 3494762,
+                "postDate": "2026-07-10T16:44:46.160Z",
+                "rawMarkdown": "Once you get detection point, you can plot everything once in zxy and color code using t. Hence it become 3d conv ( instead of 4d conv)you can think of recolor the points from t to linkage colors ( s,l,d,e ). Temporal unet \u2014> ordinary unet ( like detecting blood vessel)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7ef2a07a8d2b8265e2ea95cf85512075%2FSelection_4368.png?generation=1783702607348734&alt=media)\n\nif you use feature from temporal unet e.g. 32, then you create 1+32 channel (one is for time, and you copy 32 values from temporal to ordinary unet) in the tracking ordinary unet",
+                "content": "<p>Once you get detection point, you can plot everything once in zxy and color code using t. Hence it become 3d conv ( instead of 4d conv)you can think of recolor the points from t to linkage colors ( s,l,d,e ). Temporal unet \u2014&gt; ordinary unet ( like detecting blood vessel)</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7ef2a07a8d2b8265e2ea95cf85512075%2FSelection_4368.png?generation=1783702607348734&amp;alt=media\" alt=\"\"></p>\n<p>if you use feature from temporal unet e.g. 32, then you create 1+32 channel (one is for time, and you copy 32 values from temporal to ordinary unet) in the tracking ordinary unet</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 622,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 622,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 622,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3494792,
+        "postDate": "2026-07-10T17:35:26.270Z",
+        "rawMarkdown": "solving the sparse annotation for cell center detection.     \n1) observation : DoG peak detection somehow work. i.e., microscopy cell are blobs.    \n2) instead of classification binary problem, we reformulate it as learnable peak detection. at each pixel location after unet logit head, loss = softmax of pixel over his neighbour.  those pixel without annotation are not computed in loss at all     \n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7a94ffe3bbada2de65d720c1fead0bd7%2FSelection_4369.png?generation=1783705181623495&alt=media)\n\nhint: ask chatgpt make a margin loss version: peak is at least T greater than neighbour ",
+        "content": "<p>solving the sparse annotation for cell center detection.<br>\n1) observation : DoG peak detection somehow work. i.e., microscopy cell are blobs.<br>\n2) instead of classification binary problem, we reformulate it as learnable peak detection. at each pixel location after unet logit head, loss = softmax of pixel over his neighbour.  those pixel without annotation are not computed in loss at all     </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7a94ffe3bbada2de65d720c1fead0bd7%2FSelection_4369.png?generation=1783705181623495&amp;alt=media\" alt=\"\"></p>\n<p>hint: ask chatgpt make a margin loss version: peak is at least T greater than neighbour </p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 622,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3493433,
+        "postDate": "2026-07-07T19:39:53.660Z",
+        "rawMarkdown": "feasibility study:\n\n```\nall_df = []\nfor f in glob_file[::2]:\n    print(f)\n \n    nodes_df, edges_df = read_geff(f) \n    print(nodes_df.head())\n    print(edges_df.head())\n\n    link_df = compute_link_displacement_stats(\n        nodes_df,\n        edges_df,\n        scale=(1, 4, 4),\n    )\n    all_df.append(link_df)\n\n\nlink_df= pd.concat(all_df).reset_index(drop=True)\nprint(link_df.shape)\nprint(link_df[[\"dz_sub\",\"dy_sub\",\"dx_sub\"]].describe())\nprint(np.percentile(np.abs(link_df[\"dz_sub\"]), [50,90,95,99]))\nprint(np.percentile(np.abs(link_df[\"dy_sub\"]), [50,90,95,99]))\nprint(np.percentile(np.abs(link_df[\"dx_sub\"]), [50,90,95,99]))\n\n\n\n(63751, 10)\n             dz_sub        dy_sub        dx_sub\ncount  63751.000000  63751.000000  63751.000000\nmean      -0.318066     -0.011200     -0.234604\nstd        1.149520      0.878445      0.989713\nmin      -37.000000    -13.000000     -9.750000  ###???\n25%       -1.000000     -0.500000     -0.750000\n50%        0.000000      0.000000      0.000000\n75%        0.000000      0.500000      0.250000\nmax       35.000000     12.500000      5.750000 ###???\n[1. 2. 2. 4.]\n[0.5  1.25 1.75 3.  ]\n[0.5  1.5  2.   3.75]\n```\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F30872efbdb6d455fabf83b8dcbe210ea%2FSelection_4333.png?generation=1783453191851967&alt=media)",
+        "content": "<p>feasibility study:</p>\n<pre><code>all_df = []\nfor f in glob_file[::2]:\n    print(f)\n\n    nodes_df, edges_df = read_geff(f) \n    print(nodes_df.head())\n    print(edges_df.head())\n\n    link_df = compute_link_displacement_stats(\n        nodes_df,\n        edges_df,\n        scale=(1, 4, 4),\n    )\n    all_df.append(link_df)\n\n\nlink_df= pd.concat(all_df).reset_index(drop=True)\nprint(link_df.shape)\nprint(link_df[[\"dz_sub\",\"dy_sub\",\"dx_sub\"]].describe())\nprint(np.percentile(np.abs(link_df[\"dz_sub\"]), [50,90,95,99]))\nprint(np.percentile(np.abs(link_df[\"dy_sub\"]), [50,90,95,99]))\nprint(np.percentile(np.abs(link_df[\"dx_sub\"]), [50,90,95,99]))\n\n\n\n(63751, 10)\n             dz_sub        dy_sub        dx_sub\ncount  63751.000000  63751.000000  63751.000000\nmean      -0.318066     -0.011200     -0.234604\nstd        1.149520      0.878445      0.989713\nmin      -37.000000    -13.000000     -9.750000  ###???\n25%       -1.000000     -0.500000     -0.750000\n50%        0.000000      0.000000      0.000000\n75%        0.000000      0.500000      0.250000\nmax       35.000000     12.500000      5.750000 ###???\n[1. 2. 2. 4.]\n[0.5  1.25 1.75 3.  ]\n[0.5  1.5  2.   3.75]\n</code></pre>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F30872efbdb6d455fabf83b8dcbe210ea%2FSelection_4333.png?generation=1783453191851967&amp;alt=media\" alt=\"\"></p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 622,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3493388,
+      "postDate": "2026-07-07T17:37:36.697Z",
+      "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fc2e84c73dc0f3992d61c0c742e0c2975%2FSelection_4328.png?generation=1783445842204878&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F2273352e7963197f144ce11501586ae2%2FSelection_4329.png?generation=1783445854887011&alt=media)\n\n\n\"Temporal Affinity Fields for 3D Cell Lineage Reconstruction\"  \n- predicting a local vector field that tells the graph optimizer how cells should connect   \n\nHint: create flow GT for supervision using optical flow and sparse annotation tracks   ",
+      "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fc2e84c73dc0f3992d61c0c742e0c2975%2FSelection_4328.png?generation=1783445842204878&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F2273352e7963197f144ce11501586ae2%2FSelection_4329.png?generation=1783445854887011&amp;alt=media\" alt=\"\"></p>\n<p>\"Temporal Affinity Fields for 3D Cell Lineage Reconstruction\"  </p>\n<ul>\n<li>predicting a local vector field that tells the graph optimizer how cells should connect   </li>\n</ul>\n<p>Hint: create flow GT for supervision using optical flow and sparse annotation tracks   </p>",
+      "parent": {},
+      "author": {
+        "displayName": "hengck23",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+        "url": "/hengck23",
+        "tier": "GRANDMASTER",
+        "id": 113660,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 22,
+        "canUpvote": true,
+        "totalUpvotes": 22
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 622,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "userName": "hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "profileUrl": "/hengck23",
+          "performanceTier": "GRANDMASTER",
+          "userId": 113660,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3493388,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 723655,
+    "name": "simple idea:\"Your Affinity Field Tells Your Fate\"",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-07T17:37:36.697254400Z",
+    "totalVotes": 22,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/723655",
+    "totalMessages": 19,
+    "authorPerformanceTier": "GRANDMASTER",
+    "authorProgressionOptOut": false
+  }
+}

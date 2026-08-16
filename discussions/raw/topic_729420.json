@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 35396839,
+    "authorThumbnailName": "35396839-kg.JPG?t=2026-07-21-18-06-20",
+    "authorUserDisplayName": "Zhu Chen 96",
+    "authorUserName": "zhuchen96",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3503371,
+      "postDate": "2026-07-25T15:59:48.953Z",
+      "rawMarkdown": "When I try to download the training data again, the download is not available, and I see the following message: \u201cWe\u2019re still compressing this competition\u2019s data for you. This can take several hours after a new version is uploaded.\u201d\n\nHas the training data been updated recently? Does this mean that the version I downloaded previously may now be out of date?",
+      "content": "<p>When I try to download the training data again, the download is not available, and I see the following message: \u201cWe\u2019re still compressing this competition\u2019s data for you. This can take several hours after a new version is uploaded.\u201d</p>\n<p>Has the training data been updated recently? Does this mean that the version I downloaded previously may now be out of date?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Zhu Chen 96",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35396839-kg.JPG?t=2026-07-21-18-06-20",
+        "url": "/zhuchen96",
+        "tier": "CONTRIBUTOR",
+        "id": 35396839,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 3,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 57,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Zhu Chen 96",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35396839-kg.JPG?t=2026-07-21-18-06-20",
+          "url": "/zhuchen96",
+          "userName": "zhuchen96",
+          "tier": "CONTRIBUTOR",
+          "id": 35396839,
+          "profileUrl": "/zhuchen96",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 35396839,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3503371,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 729420,
+    "name": "Training Data Update and Version Status",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-25T15:59:48.954735Z",
+    "totalVotes": 3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/729420",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

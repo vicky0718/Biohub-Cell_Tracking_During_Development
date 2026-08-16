@@ -172,6 +172,59 @@ def main() -> int:
           estimated_total_nodes(ds, {"extra": {"estimated_number_of_nodes": 1234}}) == 1234.0,
           "nested lookup")
 
+    print("\n[DoG detection recovers DIM nuclei that intensity thresholding misses]")
+    from pipeline.classical import _ball_footprint, detect_frame_dog
+
+    fpb = _ball_footprint(5.0, SCALE)
+    check("ball footprint is not a box", fpb.sum() < fpb.size,
+          f"{int(fpb.sum())} of {fpb.size} voxels inside the 5um sphere")
+    check("ball footprint is anisotropic", fpb.shape[0] < fpb.shape[1], str(fpb.shape))
+
+    # bright nuclei plus DIM ones at 12% amplitude sitting on a smooth bright gradient —
+    # the case an absolute intensity cut cannot separate but a band-pass can.
+    dim_shape = (24, 128, 128)
+    bright = centres[:6]
+    dim = centres[6:12]
+    v = synth_volume(bright, shape=dim_shape, seed=1)
+    v += 0.12 * synth_volume(dim, shape=dim_shape, noise=0.0, seed=2)
+    zz, yy, xx = np.meshgrid(*[np.arange(s) for s in dim_shape], indexing="ij")
+    v += (0.55 * yy / dim_shape[1]).astype(np.float32)      # smooth background ramp
+    v = v / v.max()
+
+    cfg_i = Config(det_threshold=0.15, min_separation_um=4.0, downsample=(1, 1, 1))
+    cfg_d = Config(detector="dog", min_separation_um=4.0, downsample=(1, 1, 1),
+                   dog_scales=[(1.5, 4.0), (2.5, 6.0)])
+    gi, _ = detect_frame(v, SCALE, cfg_i)
+    gd, _ = detect_frame_dog(v, SCALE, cfg_d)
+
+    def recall(got, truth, tol=7.0):
+        if not len(got):
+            return 0.0
+        d = np.linalg.norm((np.array(truth) * SCALE)[:, None, :]
+                           - (got * SCALE)[None, :, :], axis=2).min(axis=1)
+        return float((d < tol).mean())
+
+    # Compare at a MATCHED detection budget. Without that the intensity detector can
+    # "win" recall by spraying peaks over the background ramp — 153 detections for 12
+    # nuclei is not a detector, it is a shotgun. Equal budget, strongest peaks kept,
+    # is the comparison that reflects what the node budget actually charges for.
+    N = len(gd)
+    gi_eq, _ = detect_frame(v, SCALE, Config(det_threshold=0.15, min_separation_um=4.0,
+                                             downsample=(1, 1, 1), max_per_frame=N))
+    ri, rd = recall(gi_eq, dim), recall(gd, dim)
+    print(f"    at a matched budget of {N} detections — dim-nucleus recall: "
+          f"intensity {ri:.2f} vs DoG {rd:.2f}")
+    print(f"    (unmatched, intensity needs {len(gi)} detections to reach "
+          f"{recall(gi, dim):.2f})")
+    check("DoG finds more dim nuclei per detection spent", rd > ri, f"{rd:.2f} vs {ri:.2f}")
+    check("DoG still finds the bright ones", recall(gd, bright) >= 0.8,
+          f"bright recall {recall(gd, bright):.2f}")
+    check("DoG is far more economical", len(gd) < len(gi) / 3,
+          f"{len(gd)} vs {len(gi)} detections for the same volume")
+    check("single-scale DoG also detects",
+          len(detect_frame_dog(v, SCALE, Config(detector="dog", min_separation_um=4.0,
+                                                downsample=(1,1,1)))[0]) > 0, "")
+
     print("\n[graph repair: gap closing and isolated pruning]")
     from pipeline.classical import close_gaps, prune_isolated
 

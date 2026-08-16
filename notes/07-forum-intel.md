@@ -82,7 +82,15 @@ within-embryo variance is what you actually want.
 
 Test set is *roughly the size of train*, so ~200 datasets, ~100 frames each.
 
-## 4. ⭐ What scores what — rule-based is genuinely competitive
+## 4. ~~⭐ What scores what — rule-based is genuinely competitive~~
+
+> **❌ CORRECTED by `notes/08` §1 (2026-08-16), which has the actual leaderboard.** Two
+> claims below are withdrawn. (a) "7th of 344 teams" was posted 2026-07-01 at LB 0.826;
+> there are now **2,402 teams**, the **median is 0.890**, and 0.826 would rank ~1,600th.
+> (b) "LB runs above CV by ~10 %" — the rule-based author, whose pipeline is closest to
+> ours, published a scatter showing **CV ≈ LB at roughly 1:1**. Our 0.5552 means ~0.555,
+> not 0.60–0.65, which puts us in the **bottom fifth**. The gap to the pack is an
+> architecture gap, not a tuning gap.
 
 The single most encouraging thread: **"Rule-based is surprisingly strong? (currently
 7th/344 teams, gold zone, no learning)"** (45 votes). Concrete paired numbers from

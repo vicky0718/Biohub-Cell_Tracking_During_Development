@@ -1,0 +1,276 @@
+{
+  "forumTopic": {
+    "authorId": 59561,
+    "authorThumbnailName": "59561-kg.jpg",
+    "authorUserDisplayName": "inversion",
+    "authorUserName": "inversion",
+    "comments": [
+      {
+        "id": 3501876,
+        "postDate": "2026-07-23T01:16:56.140Z",
+        "rawMarkdown": "The rescore is complete. Thanks for everyone's patience!",
+        "content": "<p>The rescore is complete. Thanks for everyone's patience!</p>",
+        "replies": [
+          {
+            "id": 3501963,
+            "postDate": "2026-07-23T07:17:54.587Z",
+            "rawMarkdown": "I run the notebook successful but submit all notebook with error, is it caused by new submission rules?",
+            "content": "<p>I run the notebook successful but submit all notebook with error, is it caused by new submission rules?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "KevinYongxin",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/24236431-kg.jpg?t=2025-08-04-03-33-42",
+              "url": "/yongxinkwan",
+              "tier": "EXPERT",
+              "id": 24236431,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 444,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "KevinYongxin",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/24236431-kg.jpg?t=2025-08-04-03-33-42",
+                "url": "/yongxinkwan",
+                "userName": "yongxinkwan",
+                "tier": "EXPERT",
+                "id": 24236431,
+                "profileUrl": "/yongxinkwan",
+                "performanceTier": "EXPERT",
+                "userId": 24236431,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "inversion",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/59561-kg.jpg",
+          "url": "/inversion",
+          "tier": "STAFF",
+          "id": 59561,
+          "progressionOptOut": false
+        },
+        "authorType": "ADMIN",
+        "votes": {
+          "totalVotes": 9,
+          "canUpvote": true,
+          "totalUpvotes": 9
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2248,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "canqiang",
+              "takamitsuaraki",
+              "komilparmar",
+              "antonoof",
+              "galinilin",
+              "josephadamski91"
+            ],
+            "userCount": 6
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "inversion",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/59561-kg.jpg",
+            "url": "/inversion",
+            "userName": "inversion",
+            "tier": "STAFF",
+            "id": 59561,
+            "profileUrl": "/inversion",
+            "performanceTier": "STAFF",
+            "userId": 59561,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3501860,
+        "postDate": "2026-07-23T00:12:15.830Z",
+        "rawMarkdown": "Yes, it does appear that the Hacking score has decreased. Thank you for looking into this.\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F25515343%2Fbba2d25991f9dbe643383f851c76a6f9%2F2026-07-22_22h24_15.png?generation=1784765409829476&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F25515343%2F072d7fb14582463dccb4d660bd1b8456%2F2026-07-23_09h09_22.png?generation=1784765431009865&alt=media)",
+        "content": "<p>Yes, it does appear that the Hacking score has decreased. Thank you for looking into this.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F25515343%2Fbba2d25991f9dbe643383f851c76a6f9%2F2026-07-22_22h24_15.png?generation=1784765409829476&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F25515343%2F072d7fb14582463dccb4d660bd1b8456%2F2026-07-23_09h09_22.png?generation=1784765431009865&amp;alt=media\" alt=\"\"></p>",
+        "parent": {},
+        "author": {
+          "displayName": "Yusuke Togashi",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25515343-kg.jpg?t=2026-07-23-02-56-22",
+          "url": "/yusuketogashi",
+          "tier": "GRANDMASTER",
+          "id": 25515343,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 130,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Yusuke Togashi",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25515343-kg.jpg?t=2026-07-23-02-56-22",
+            "url": "/yusuketogashi",
+            "userName": "yusuketogashi",
+            "tier": "GRANDMASTER",
+            "id": 25515343,
+            "profileUrl": "/yusuketogashi",
+            "performanceTier": "GRANDMASTER",
+            "userId": 25515343,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3501916,
+        "postDate": "2026-07-23T03:46:29.983Z",
+        "rawMarkdown": "Yes and can we fix score on public notebook also\uff1fIt might make some new participants confused.",
+        "content": "<p>Yes and can we fix score on public notebook also\uff1fIt might make some new participants confused.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Zejun_",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26336666-kg.png?t=2026-04-09-13-38-39",
+          "url": "/zejunfool",
+          "tier": "EXPERT",
+          "id": 26336666,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 727,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "jookuma",
+              "yunusgmsoy"
+            ],
+            "userCount": 2
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Zejun_",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26336666-kg.png?t=2026-04-09-13-38-39",
+            "url": "/zejunfool",
+            "userName": "zejunfool",
+            "tier": "EXPERT",
+            "id": 26336666,
+            "profileUrl": "/zejunfool",
+            "performanceTier": "EXPERT",
+            "userId": 26336666,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3501818,
+      "postDate": "2026-07-22T21:49:20.467Z",
+      "rawMarkdown": "The metric has been patched to address an exploit. All submissions are currently being rescored. It will take some time to complete, during which time, some scores might disappear from the leaderboard. It is expected that most submissions with have at least a minor drop in score.\n\nThis post will be updated when the rescore is complete.",
+      "content": "<p>The metric has been patched to address an exploit. All submissions are currently being rescored. It will take some time to complete, during which time, some scores might disappear from the leaderboard. It is expected that most submissions with have at least a minor drop in score.</p>\n<p>This post will be updated when the rescore is complete.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "inversion",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/59561-kg.jpg",
+        "url": "/inversion",
+        "tier": "STAFF",
+        "id": 59561,
+        "progressionOptOut": false
+      },
+      "authorType": "ADMIN",
+      "votes": {
+        "totalVotes": 20,
+        "canUpvote": true,
+        "totalUpvotes": 20
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2248,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "THANK_YOU",
+          "featuredUserNames": [
+            "coderrkj",
+            "jookuma",
+            "subinium",
+            "takamitsuaraki",
+            "hashimrazi",
+            "komilparmar",
+            "yunusgmsoy",
+            "ouedraogosomkieta",
+            "rohanalexbimal",
+            "yongxinkwan"
+          ],
+          "userCount": 10
+        },
+        {
+          "emoji": "LOVE",
+          "featuredUserNames": [
+            "howonkang",
+            "denzelrobinson",
+            "yunusgmsoy",
+            "yusuketogashi"
+          ],
+          "userCount": 4
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "inversion",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/59561-kg.jpg",
+          "url": "/inversion",
+          "userName": "inversion",
+          "tier": "STAFF",
+          "id": 59561,
+          "profileUrl": "/inversion",
+          "performanceTier": "STAFF",
+          "userId": 59561,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3501818,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 728324,
+    "name": "COMPLETED: Rescore Underway",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-22T21:49:20.465081900Z",
+    "totalVotes": 20,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/728324",
+    "totalMessages": 4,
+    "authorPerformanceTier": "STAFF",
+    "authorProgressionOptOut": false
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "forumTopic": {
+    "authorId": 15974520,
+    "authorThumbnailName": "15974520-kg.png?t=2026-08-01-22-26-32",
+    "authorUserDisplayName": "Jos\u00e9 Freitas",
+    "authorUserName": "josefreitasalvesneto",
+    "comments": [
+      {
+        "id": 3510364,
+        "postDate": "2026-08-08T09:47:15.693Z",
+        "rawMarkdown": "This is a great effort, thanks for releasing it. One thing I haven't seen raised yet: our real training set turns out to come from only 2 actual embryos, and they differ a lot  annotation sparsity of roughly 1% vs 9%, and division counts of 26 vs 125 across their samples. Given that real embryo-to-embryo heterogeneity, I'm curious whether the synthetic generation process models that kind of variation (density, noise, crowding) across its volumes, or whether it's drawn from one more canonical/idealized regime.",
+        "content": "<p>This is a great effort, thanks for releasing it. One thing I haven't seen raised yet: our real training set turns out to come from only 2 actual embryos, and they differ a lot  annotation sparsity of roughly 1% vs 9%, and division counts of 26 vs 125 across their samples. Given that real embryo-to-embryo heterogeneity, I'm curious whether the synthetic generation process models that kind of variation (density, noise, crowding) across its volumes, or whether it's drawn from one more canonical/idealized regime.</p>",
+        "replies": [
+          {
+            "id": 3510754,
+            "postDate": "2026-08-09T14:02:08.883Z",
+            "rawMarkdown": "Hello, I'm happy to help! I understand your doubt, the divisions were generated inspired by real movement, we might not have total accuracy, but we can use my data to pretrain a model and then fine-tune it with the real data, that helps it converge faster!",
+            "content": "<p>Hello, I'm happy to help! I understand your doubt, the divisions were generated inspired by real movement, we might not have total accuracy, but we can use my data to pretrain a model and then fine-tune it with the real data, that helps it converge faster!</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Jos\u00e9 Freitas",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+              "url": "/josefreitasalvesneto",
+              "tier": "CONTRIBUTOR",
+              "id": 15974520,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 366,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Jos\u00e9 Freitas",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+                "url": "/josefreitasalvesneto",
+                "userName": "josefreitasalvesneto",
+                "tier": "CONTRIBUTOR",
+                "id": 15974520,
+                "profileUrl": "/josefreitasalvesneto",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 15974520,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Ace",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/22169099-kg.png?t=2026-01-27-00-40-56",
+          "url": "/shikhageekachad",
+          "tier": "EXPERT",
+          "id": 22169099,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 365,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Ace",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/22169099-kg.png?t=2026-01-27-00-40-56",
+            "url": "/shikhageekachad",
+            "userName": "shikhageekachad",
+            "tier": "EXPERT",
+            "id": 22169099,
+            "profileUrl": "/shikhageekachad",
+            "performanceTier": "EXPERT",
+            "userId": 22169099,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3509286,
+        "postDate": "2026-08-06T06:30:17.397Z",
+        "rawMarkdown": "First and foremost, thank you for your effort Jose and for sharing.\n\nI just started in this competition, so I'm not sure if I will use your data yet, but If I do, I will let you know.",
+        "content": "<p>First and foremost, thank you for your effort Jose and for sharing.</p>\n<p>I just started in this competition, so I'm not sure if I will use your data yet, but If I do, I will let you know.</p>",
+        "replies": [
+          {
+            "id": 3509458,
+            "postDate": "2026-08-06T12:03:18.437Z",
+            "rawMarkdown": "Thank you very much! I'm happy to help! If you have any questions, I'm available!",
+            "content": "<p>Thank you very much! I'm happy to help! If you have any questions, I'm available!</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Jos\u00e9 Freitas",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+              "url": "/josefreitasalvesneto",
+              "tier": "CONTRIBUTOR",
+              "id": 15974520,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 366,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Jos\u00e9 Freitas",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+                "url": "/josefreitasalvesneto",
+                "userName": "josefreitasalvesneto",
+                "tier": "CONTRIBUTOR",
+                "id": 15974520,
+                "profileUrl": "/josefreitasalvesneto",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 15974520,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Juan Neira",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14770099-kg.jpg?t=2025-12-17-06-36-27",
+          "url": "/juancneira",
+          "tier": "CONTRIBUTOR",
+          "id": 14770099,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2076,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Juan Neira",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14770099-kg.jpg?t=2025-12-17-06-36-27",
+            "url": "/juancneira",
+            "userName": "juancneira",
+            "tier": "CONTRIBUTOR",
+            "id": 14770099,
+            "profileUrl": "/juancneira",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 14770099,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3507381,
+      "postDate": "2026-08-01T21:12:10.503Z",
+      "rawMarkdown": "I got tired of trying to train a division model on ~304 events, so I built a synthetic dataset and I'm releasing it free (CC0).\n\n**The problem, concretely.** The training ground truth is sparse \u2014 roughly 2.8% of nuclei are annotated, and across all 199 videos there are about 304 division events. Divisions carry 10% of the metric (`score = adjusted_edge_jaccard + 0.1 * division_jaccard`), and most public solutions I've seen simply leave that term at zero. That is understandable: you cannot fit a division model to a few hundred scattered examples.\n\n**What I generated.** 18.5 GB where every nucleus is labelled:\n\n- **1,539 static volumes** at native 256\u00d7256 resolution, centroids with sub-voxel precision\n- **2,174 time sequences** with the complete lineage graph \u2014 nodes, edges, and mitosis events\n- **165,267 labelled divisions** across 4,056,226 nodes\n\nThat is roughly 540\u00d7 more mitosis supervision than the competition ground truth provides.\n\n**It is a physical model, not a GAN.** Dark medium, physically-sized ellipsoidal nuclei with a super-gaussian profile (the real radial profile is a flat top, not a gaussian \u2014 I measured it), light emission that scatters and accumulates where cells are dense, anisotropic PSF, then Poisson + read noise. Three details I'd flag as the ones that actually matter:\n\n1. **The pooling matches the evaluator exactly.** The official pipeline downsamples XY by 4 with a *stride* (`vol[:, ::4, ::4]`), not a block mean. A block mean averages noise away and would hand you data that is cleaner than what your detector really sees. I generate at native resolution and apply the identical stride.\n2. **Detectability is calibrated, not assumed.** A classical DoG detector recovers ~0.89 of the synthetic nuclei in a moderately dense field, ~0.76 when crowded; on the real annotated nuclei it recovers 0.91\u20130.94. So if anything the synthetic volumes are slightly *harder*, not easier. The notebook measures this live at three densities so you can judge the gap yourself.\n3. **Tissue geometry is fitted from the real detections** \u2014 the embryo surface, its curvature, its thickness \u2014 and then resampled. The geometry is learned from real data; the coordinates are generated. No real positions are copied.\n\nMotion is calibrated on the real lineage edges: 1.86 \u00b5m/frame median step, +0.30 lag-1 directional persistence, 7.24 \u00b5m sister separation.\n\n**Explorer notebook (runs end to end, all figures computed live):**\nhttps://www.kaggle.com/code/josefreitasalvesneto/synthetic-3d-microscopy-data-for-cell-tracking\n\n**Dataset + full generator source (open, nothing hidden):**\nhttps://www.kaggle.com/code/josefreitasalvesneto/biohub-synthetic-dataset\n\n**Two things I want to be upfront about**, because I'd want to know them before spending 18 GB of quota:\n\n- The division rate is **deliberately inflated** (4.07% of nodes vs ~0.26% in reality). A model starved of examples never learns mitosis. Re-weight your loss by the real rate if you need calibrated priors.\n- Distribution match is partial. Nucleus texture and contrast are the weakest axes. The value here is the **labels** \u2014 density, lineage and mitosis \u2014 much more than photorealism.\n\nHappy to answer anything about the generator. If you try it and it breaks, or it helps, I'd genuinely like to hear which \u2014 both make the next version better.",
+      "content": "<p>I got tired of trying to train a division model on ~304 events, so I built a synthetic dataset and I'm releasing it free (CC0).</p>\n<p><strong>The problem, concretely.</strong> The training ground truth is sparse \u2014 roughly 2.8% of nuclei are annotated, and across all 199 videos there are about 304 division events. Divisions carry 10% of the metric (<code>score = adjusted_edge_jaccard + 0.1 * division_jaccard</code>), and most public solutions I've seen simply leave that term at zero. That is understandable: you cannot fit a division model to a few hundred scattered examples.</p>\n<p><strong>What I generated.</strong> 18.5 GB where every nucleus is labelled:</p>\n<ul>\n<li><strong>1,539 static volumes</strong> at native 256\u00d7256 resolution, centroids with sub-voxel precision</li>\n<li><strong>2,174 time sequences</strong> with the complete lineage graph \u2014 nodes, edges, and mitosis events</li>\n<li><strong>165,267 labelled divisions</strong> across 4,056,226 nodes</li>\n</ul>\n<p>That is roughly 540\u00d7 more mitosis supervision than the competition ground truth provides.</p>\n<p><strong>It is a physical model, not a GAN.</strong> Dark medium, physically-sized ellipsoidal nuclei with a super-gaussian profile (the real radial profile is a flat top, not a gaussian \u2014 I measured it), light emission that scatters and accumulates where cells are dense, anisotropic PSF, then Poisson + read noise. Three details I'd flag as the ones that actually matter:</p>\n<ol>\n<li><strong>The pooling matches the evaluator exactly.</strong> The official pipeline downsamples XY by 4 with a <em>stride</em> (<code>vol[:, ::4, ::4]</code>), not a block mean. A block mean averages noise away and would hand you data that is cleaner than what your detector really sees. I generate at native resolution and apply the identical stride.</li>\n<li><strong>Detectability is calibrated, not assumed.</strong> A classical DoG detector recovers ~0.89 of the synthetic nuclei in a moderately dense field, ~0.76 when crowded; on the real annotated nuclei it recovers 0.91\u20130.94. So if anything the synthetic volumes are slightly <em>harder</em>, not easier. The notebook measures this live at three densities so you can judge the gap yourself.</li>\n<li><strong>Tissue geometry is fitted from the real detections</strong> \u2014 the embryo surface, its curvature, its thickness \u2014 and then resampled. The geometry is learned from real data; the coordinates are generated. No real positions are copied.</li>\n</ol>\n<p>Motion is calibrated on the real lineage edges: 1.86 \u00b5m/frame median step, +0.30 lag-1 directional persistence, 7.24 \u00b5m sister separation.</p>\n<p><strong>Explorer notebook (runs end to end, all figures computed live):</strong>\n<a href=\"https://www.kaggle.com/code/josefreitasalvesneto/synthetic-3d-microscopy-data-for-cell-tracking\" target=\"_blank\">https://www.kaggle.com/code/josefreitasalvesneto/synthetic-3d-microscopy-data-for-cell-tracking</a></p>\n<p><strong>Dataset + full generator source (open, nothing hidden):</strong>\n<a href=\"https://www.kaggle.com/code/josefreitasalvesneto/biohub-synthetic-dataset\" target=\"_blank\">https://www.kaggle.com/code/josefreitasalvesneto/biohub-synthetic-dataset</a></p>\n<p><strong>Two things I want to be upfront about</strong>, because I'd want to know them before spending 18 GB of quota:</p>\n<ul>\n<li>The division rate is <strong>deliberately inflated</strong> (4.07% of nodes vs ~0.26% in reality). A model starved of examples never learns mitosis. Re-weight your loss by the real rate if you need calibrated priors.</li>\n<li>Distribution match is partial. Nucleus texture and contrast are the weakest axes. The value here is the <strong>labels</strong> \u2014 density, lineage and mitosis \u2014 much more than photorealism.</li>\n</ul>\n<p>Happy to answer anything about the generator. If you try it and it breaks, or it helps, I'd genuinely like to hear which \u2014 both make the next version better.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Jos\u00e9 Freitas",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+        "url": "/josefreitasalvesneto",
+        "tier": "CONTRIBUTOR",
+        "id": 15974520,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 35,
+        "canUpvote": true,
+        "totalUpvotes": 35
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 366,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "YAY",
+          "featuredUserNames": [
+            "playwithme",
+            "tanetisanjay",
+            "juancneira"
+          ],
+          "userCount": 3
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Jos\u00e9 Freitas",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+          "url": "/josefreitasalvesneto",
+          "userName": "josefreitasalvesneto",
+          "tier": "CONTRIBUTOR",
+          "id": 15974520,
+          "profileUrl": "/josefreitasalvesneto",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 15974520,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3507381,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 732103,
+    "name": "[Free Dataset] 18.5 GB of fully-labelled synthetic 3D microscopy \u2014 165k labelled divisions",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-01T21:12:10.502460400Z",
+    "totalVotes": 35,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/732103",
+    "totalMessages": 4,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

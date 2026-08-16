@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 34422127,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Harshul Gupta",
+    "authorUserName": "harshulgupta77",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3493892,
+      "postDate": "2026-07-08T16:57:53.943Z",
+      "rawMarkdown": "Hi everyone,I am currently working on optimizing a production baseline for this challenge. My current iteration uses a scale-space Laplacian of Gaussian (LoG) response for 3D peak detection on downsampled spatial volumes (::2 factor on Y and X), followed by a multi-frame Linear Assignment Problem (LAP) solver with constant velocity projection vectors. While this approach cracked the local validation plateau and scored 0.590, I am noticing some clear failure modes where the tracking accuracy drops significantly. I would love to get your insights or advice on how to tackle these specific bottlenecks:\n1. Handling High-Density Track Swapping. In areas where cell clusters become highly dense, linear cost matching solely based on physical Euclidean distance (even with velocity anchoring) causes the solver to swap tracks during cell crossovers.Question: Has anyone successfully integrated morphological features (like local intensity gradients or volume ratios) directly into the LAP cost matrix to regularize distance constraints?\n2. Fine-Tuning Mitosis & Daughter Cell Linkage Right now, my division detection triggers when an unassigned \"orphan\" node appears near a historical track boundary. However, during rapid cell divisions, capturing the sudden split and assigning correct parent-daughter relationships degrades our TRA score. Question: What are your best practices for optimizing the temporal window size or building a dedicated matrix for splitting events rather than handling it as a post-processing heuristic?\n3. Alternative Vectorized Graph Solvers Network X is clean but introduces bottlenecks when resolving global constraints (like enforcing in_degree <= 1 globally across hundreds of frames).Question: Are there specific graph solver libraries (e.g., Google OR-Tools, scipy.optimize.milp) or minimum-cost max-flow frameworks that you\u2019ve found to be faster and memory-stable within Kaggle's 12-hour constraint?\n\nWould love to hear your thoughts, structural tips, or any open-source benchmarks you've found helpful for 3D cell tracking!\n\nThanks in advance, and good luck to everyone competing!",
+      "content": "<p>Hi everyone,I am currently working on optimizing a production baseline for this challenge. My current iteration uses a scale-space Laplacian of Gaussian (LoG) response for 3D peak detection on downsampled spatial volumes (::2 factor on Y and X), followed by a multi-frame Linear Assignment Problem (LAP) solver with constant velocity projection vectors. While this approach cracked the local validation plateau and scored 0.590, I am noticing some clear failure modes where the tracking accuracy drops significantly. I would love to get your insights or advice on how to tackle these specific bottlenecks:</p>\n<ol>\n<li>Handling High-Density Track Swapping. In areas where cell clusters become highly dense, linear cost matching solely based on physical Euclidean distance (even with velocity anchoring) causes the solver to swap tracks during cell crossovers.Question: Has anyone successfully integrated morphological features (like local intensity gradients or volume ratios) directly into the LAP cost matrix to regularize distance constraints?</li>\n<li>Fine-Tuning Mitosis &amp; Daughter Cell Linkage Right now, my division detection triggers when an unassigned \"orphan\" node appears near a historical track boundary. However, during rapid cell divisions, capturing the sudden split and assigning correct parent-daughter relationships degrades our TRA score. Question: What are your best practices for optimizing the temporal window size or building a dedicated matrix for splitting events rather than handling it as a post-processing heuristic?</li>\n<li>Alternative Vectorized Graph Solvers Network X is clean but introduces bottlenecks when resolving global constraints (like enforcing in_degree &lt;= 1 globally across hundreds of frames).Question: Are there specific graph solver libraries (e.g., Google OR-Tools, scipy.optimize.milp) or minimum-cost max-flow frameworks that you\u2019ve found to be faster and memory-stable within Kaggle's 12-hour constraint?</li>\n</ol>\n<p>Would love to hear your thoughts, structural tips, or any open-source benchmarks you've found helpful for 3D cell tracking!</p>\n<p>Thanks in advance, and good luck to everyone competing!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Harshul Gupta",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/harshulgupta77",
+        "tier": "CONTRIBUTOR",
+        "id": 34422127,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 4,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1961,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Harshul Gupta",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/harshulgupta77",
+          "userName": "harshulgupta77",
+          "tier": "CONTRIBUTOR",
+          "id": 34422127,
+          "profileUrl": "/harshulgupta77",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 34422127,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3493892,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 723898,
+    "name": "Seeking Advice on Scaling Algorithm v1.0.3 LAP Tracking Baseline (Current Local CV: ~0.590) \u2013 Beyond Frame-to-Frame Euclidean Assignment",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-08T16:57:53.942132900Z",
+    "totalVotes": 4,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/723898",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

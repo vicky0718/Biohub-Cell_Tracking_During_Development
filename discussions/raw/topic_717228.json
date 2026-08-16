@@ -1,0 +1,264 @@
+{
+  "forumTopic": {
+    "authorId": 35255430,
+    "authorThumbnailName": "35255430-kg.jpeg?t=2026-07-01-23-21-20",
+    "authorUserDisplayName": "Rahul Parmeshwar",
+    "authorUserName": "rahulparmeshwar",
+    "comments": [
+      {
+        "id": 3485667,
+        "postDate": "2026-07-01T17:37:42.173Z",
+        "rawMarkdown": "Hi @rahulparmeshwar. Here's the snippet from the overview page:\n>When a notebook is submitted for rerun, a new hidden test set is swapped in. The size of the hidden test set is approximately the same size as the training dataset.\n\nThe training set has 199 image volumes (T=100, Z=64, Y=256, X=256), so the hidden test set will be roughly that same size. I haven't submitted, but ~200 second per volume should fit in 12h",
+        "content": "<p>Hi <a href=\"https://www.kaggle.com/rahulparmeshwar\" target=\"_blank\">@rahulparmeshwar</a>. Here's the snippet from the overview page:</p>\n<blockquote>\n  <p>When a notebook is submitted for rerun, a new hidden test set is swapped in. The size of the hidden test set is approximately the same size as the training dataset.</p>\n</blockquote>\n<p>The training set has 199 image volumes (T=100, Z=64, Y=256, X=256), so the hidden test set will be roughly that same size. I haven't submitted, but ~200 second per volume should fit in 12h</p>",
+        "replies": [
+          {
+            "id": 3485916,
+            "postDate": "2026-07-01T23:17:47.330Z",
+            "rawMarkdown": "Understood! Thanks Sergio!",
+            "content": "<p>Understood! Thanks Sergio!</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Rahul Parmeshwar",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+              "url": "/rahulparmeshwar",
+              "tier": "CONTRIBUTOR",
+              "id": 35255430,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 75,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Rahul Parmeshwar",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+                "url": "/rahulparmeshwar",
+                "userName": "rahulparmeshwar",
+                "tier": "CONTRIBUTOR",
+                "id": 35255430,
+                "profileUrl": "/rahulparmeshwar",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 35255430,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Sergio Alvarez",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+          "url": "/sersasj",
+          "tier": "MASTER",
+          "id": 2221915,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 62,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Sergio Alvarez",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+            "url": "/sersasj",
+            "userName": "sersasj",
+            "tier": "MASTER",
+            "id": 2221915,
+            "profileUrl": "/sersasj",
+            "performanceTier": "MASTER",
+            "userId": 2221915,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3487760,
+        "postDate": "2026-07-04T08:24:37.790Z",
+        "rawMarkdown": "facing this issue, were you able to find a solution",
+        "content": "<p>facing this issue, were you able to find a solution</p>",
+        "replies": [
+          {
+            "id": 3487867,
+            "postDate": "2026-07-04T10:38:54.043Z",
+            "rawMarkdown": "Yeah, but it wasn\u2019t on my end, it just takes 5 hours for me to run the full validation on scoring, so you\u2019ll just have to wait because there\u2019s 199 validation images",
+            "content": "<p>Yeah, but it wasn\u2019t on my end, it just takes 5 hours for me to run the full validation on scoring, so you\u2019ll just have to wait because there\u2019s 199 validation images</p>",
+            "replies": [
+              {
+                "id": 3487967,
+                "postDate": "2026-07-04T12:36:33.480Z",
+                "rawMarkdown": "Thanks. Mine is just timing out error after 14hours.",
+                "content": "<p>Thanks. Mine is just timing out error after 14hours.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Arunava Nag",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1835974-kg.jpg?t=2024-08-27-23-46-03",
+                  "url": "/arunavanag",
+                  "tier": "CONTRIBUTOR",
+                  "id": 1835974,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 419,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Arunava Nag",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1835974-kg.jpg?t=2024-08-27-23-46-03",
+                    "url": "/arunavanag",
+                    "userName": "arunavanag",
+                    "tier": "CONTRIBUTOR",
+                    "id": 1835974,
+                    "profileUrl": "/arunavanag",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 1835974,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Rahul Parmeshwar",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+              "url": "/rahulparmeshwar",
+              "tier": "CONTRIBUTOR",
+              "id": 35255430,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 75,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Rahul Parmeshwar",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+                "url": "/rahulparmeshwar",
+                "userName": "rahulparmeshwar",
+                "tier": "CONTRIBUTOR",
+                "id": 35255430,
+                "profileUrl": "/rahulparmeshwar",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 35255430,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Arunava Nag",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1835974-kg.jpg?t=2024-08-27-23-46-03",
+          "url": "/arunavanag",
+          "tier": "CONTRIBUTOR",
+          "id": 1835974,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 419,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Arunava Nag",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1835974-kg.jpg?t=2024-08-27-23-46-03",
+            "url": "/arunavanag",
+            "userName": "arunavanag",
+            "tier": "CONTRIBUTOR",
+            "id": 1835974,
+            "profileUrl": "/arunavanag",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 1835974,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3485640,
+      "postDate": "2026-07-01T17:09:11.807Z",
+      "rawMarkdown": "Hi, my last two submissions failed because scoring timed out, the submissions.csv was produced but after that the scoring element of kaggle timed out after 12 hours. Anyone else experienced this?\n\n",
+      "content": "<p>Hi, my last two submissions failed because scoring timed out, the submissions.csv was produced but after that the scoring element of kaggle timed out after 12 hours. Anyone else experienced this?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Rahul Parmeshwar",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+        "url": "/rahulparmeshwar",
+        "tier": "CONTRIBUTOR",
+        "id": 35255430,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 3,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 75,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Rahul Parmeshwar",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+          "url": "/rahulparmeshwar",
+          "userName": "rahulparmeshwar",
+          "tier": "CONTRIBUTOR",
+          "id": 35255430,
+          "profileUrl": "/rahulparmeshwar",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 35255430,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3485640,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 717228,
+    "name": "Has anyone experienced extremely long scoring times?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-01T17:09:11.807075500Z",
+    "totalVotes": 3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/717228",
+    "totalMessages": 5,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

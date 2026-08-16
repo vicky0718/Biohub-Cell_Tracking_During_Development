@@ -1,0 +1,113 @@
+{
+  "forumTopic": {
+    "authorId": 5789740,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Sanath S Srivatsa",
+    "authorUserName": "sanathssrivatsa",
+    "comments": [
+      {
+        "id": 3505044,
+        "postDate": "2026-07-29T10:38:36.387Z",
+        "rawMarkdown": "yes. there is ~200 videos for actual submission, so around 7 hours is accurate.",
+        "content": "<p>yes. there is ~200 videos for actual submission, so around 7 hours is accurate.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 15,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "sanathssrivatsa",
+              "jordicorbilla",
+              "yunusgmsoy",
+              "rr606d",
+              "semihbal"
+            ],
+            "userCount": 5
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "mikelou1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/mikelou1",
+            "userName": "mikelou1",
+            "tier": "EXPERT",
+            "id": 32181963,
+            "profileUrl": "/mikelou1",
+            "performanceTier": "EXPERT",
+            "userId": 32181963,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3504517,
+      "postDate": "2026-07-28T08:52:53.463Z",
+      "rawMarkdown": "I was able to complete a notebook execution for the **4 test data**.\n\nNotebook successful completed its end to end execution against test data in **637s** using **GPU T4 x2**.\n\n**But the actual submission(i.e scoring) took 7hrs*.*\n\nIs this expected..?\n",
+      "content": "<p>I was able to complete a notebook execution for the <strong>4 test data</strong>.</p>\n<p>Notebook successful completed its end to end execution against test data in <strong>637s</strong> using <strong>GPU T4 x2</strong>.</p>\n<p>*<em>But the actual submission(i.e scoring) took 7hrs</em>.*</p>\n<p>Is this expected..?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Sanath S Srivatsa",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/sanathssrivatsa",
+        "tier": "CONTRIBUTOR",
+        "id": 5789740,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1492,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Sanath S Srivatsa",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/sanathssrivatsa",
+          "userName": "sanathssrivatsa",
+          "tier": "CONTRIBUTOR",
+          "id": 5789740,
+          "profileUrl": "/sanathssrivatsa",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 5789740,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3504517,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 730149,
+    "name": "Submission Time",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-28T08:52:53.464316300Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/730149",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

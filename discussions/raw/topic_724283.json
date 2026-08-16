@@ -1,0 +1,744 @@
+{
+  "forumTopic": {
+    "authorId": 113660,
+    "authorThumbnailName": "113660-fb.jpg",
+    "authorUserDisplayName": "hengck23",
+    "authorUserName": "hengck23",
+    "comments": [
+      {
+        "id": 3494946,
+        "postDate": "2026-07-11T05:05:58.217Z",
+        "rawMarkdown": "this too falls under sparse annotations i think\n\n> Annotations are sparse \u2014 not every cell in every frame is labeled.\n\nand we can't reconstruct the entire embryo either",
+        "content": "<p>this too falls under sparse annotations i think</p>\n<blockquote>\n  <p>Annotations are sparse \u2014 not every cell in every frame is labeled.</p>\n</blockquote>\n<p>and we can't reconstruct the entire embryo either</p>",
+        "replies": [
+          {
+            "id": 3494947,
+            "postDate": "2026-07-11T05:15:06.200Z",
+            "rawMarkdown": "Each volume is a crop. Maybe can reconstruct like jigsaw puzzle ",
+            "content": "<p>Each volume is a crop. Maybe can reconstruct like jigsaw puzzle </p>",
+            "replies": [
+              {
+                "id": 3494977,
+                "postDate": "2026-07-11T07:27:12.527Z",
+                "rawMarkdown": "if the spatial crops are independently sampled time windows, we can only approximate the full embryo (stitching all samples together) reconstruction (not the lineage reconstruction, as that's the competition, only the FOVs matter)\n\nWhat we have\n\nEvery training video provides:\n\n  - An embryo prefix: 44b6 or 6bba\n  - Exactly 100 frames\n  - Volume shape 64 \u00d7 256 \u00d7 256\n  - Frame spacing of 1 second\n  - Voxel scale (1.625, 0.40625, 0.40625) \u00b5m\n  - Raw fluorescence appearance\n  - Sparse within-video tracks\n  - An estimated total number of cell nodes\n\n\nWhat is missing\n\nThe metadata does not provide:\n\n  - Absolute acquisition time or developmental stage\n  - Clip start time within the original recording\n  - Global spatial/crop origin\n  - Orientation or registration transform\n  - Persistent cell IDs between clips\n  - Whether two clips overlap or are consecutive\n  - Any guarantee that all clips tile one continuous acquisition\n  - Dense lineages or anatomical landmarks\n\n\nedit: FOVs is the competition format - lack of computation for full embryo is the likely reason for it. but since i think each cell depends on every other cells in the embryo is the idea behind reconstructing the full embryo for a full picture view of everything.\n\nalthough, there are many ways to stitch it together - but it will only be an approximation since we lack the full data needed.",
+                "content": "<p>if the spatial crops are independently sampled time windows, we can only approximate the full embryo (stitching all samples together) reconstruction (not the lineage reconstruction, as that's the competition, only the FOVs matter)</p>\n<p>What we have</p>\n<p>Every training video provides:</p>\n<ul>\n<li>An embryo prefix: 44b6 or 6bba</li>\n<li>Exactly 100 frames</li>\n<li>Volume shape 64 \u00d7 256 \u00d7 256</li>\n<li>Frame spacing of 1 second</li>\n<li>Voxel scale (1.625, 0.40625, 0.40625) \u00b5m</li>\n<li>Raw fluorescence appearance</li>\n<li>Sparse within-video tracks</li>\n<li>An estimated total number of cell nodes</li>\n</ul>\n<p>What is missing</p>\n<p>The metadata does not provide:</p>\n<ul>\n<li>Absolute acquisition time or developmental stage</li>\n<li>Clip start time within the original recording</li>\n<li>Global spatial/crop origin</li>\n<li>Orientation or registration transform</li>\n<li>Persistent cell IDs between clips</li>\n<li>Whether two clips overlap or are consecutive</li>\n<li>Any guarantee that all clips tile one continuous acquisition</li>\n<li>Dense lineages or anatomical landmarks</li>\n</ul>\n<p>edit: FOVs is the competition format - lack of computation for full embryo is the likely reason for it. but since i think each cell depends on every other cells in the embryo is the idea behind reconstructing the full embryo for a full picture view of everything.</p>\n<p>although, there are many ways to stitch it together - but it will only be an approximation since we lack the full data needed.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "g john rao",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                  "url": "/jaejohn",
+                  "tier": "MASTER",
+                  "id": 14464632,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 2,
+                  "canUpvote": true,
+                  "totalUpvotes": 2
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 293,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "g john rao",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                    "url": "/jaejohn",
+                    "userName": "jaejohn",
+                    "tier": "MASTER",
+                    "id": 14464632,
+                    "profileUrl": "/jaejohn",
+                    "performanceTier": "MASTER",
+                    "userId": 14464632,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3494986,
+                "postDate": "2026-07-11T08:03:34.213Z",
+                "rawMarkdown": "It's somewhat similar to the temporal/sequencing issue in CMI3. Of course, this heuristic strategy can also compensate for the missing frames.",
+                "content": "<p>It's somewhat similar to the temporal/sequencing issue in CMI3. Of course, this heuristic strategy can also compensate for the missing frames.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Timmy Juicehouse",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "url": "/sweetyheehee",
+                  "tier": "EXPERT",
+                  "id": 18538441,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 709,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Timmy Juicehouse",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "url": "/sweetyheehee",
+                    "userName": "sweetyheehee",
+                    "tier": "EXPERT",
+                    "id": 18538441,
+                    "profileUrl": "/sweetyheehee",
+                    "performanceTier": "EXPERT",
+                    "userId": 18538441,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3495053,
+                "postDate": "2026-07-11T10:48:14.990Z",
+                "rawMarkdown": "okay, digging deeper, it is a systematic fault surely\n\nScanning every consecutive frame pair in all 199 training videos by comparing their stored compressed chunks byte-for-byte.\n\n```\n   Group                  Videos    Videos affected    Duplicate pairs    Pair rate\n  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n   44b6                       71                  0                  0           0%\n  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n   6bba                      128                114                947        7.47%\n  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n   Entire training set       199                114                947        4.81%\n```\n\n  - 57.3% of all training videos contain at least one frozen transition.\n  - 89.1% of 6bba videos are affected.\n  - Approximately one in every 13 adjacent pairs in 6bba is frozen.\n  - No exact duplicates occur in 44b6.\n\n\nEvidence that this is systematic\n\nSeveral different 6bba samples have exactly the same freeze schedule. For example:\n\n  6bba_05b6850b\n  6bba_07477033\n  6bba_5b28472a\n\nall freeze after the same frame indices:\n\n4, 12, 27, 42, 52, 57, 59, 62, 66, 76\n\n\nLikewise, these three share another identical schedule:\n\n  6bba_1f58c2f6\n  6bba_20852818\n  6bba_80d12824\n\n",
+                "content": "<p>okay, digging deeper, it is a systematic fault surely</p>\n<p>Scanning every consecutive frame pair in all 199 training videos by comparing their stored compressed chunks byte-for-byte.</p>\n<pre><code>   Group                  Videos    Videos affected    Duplicate pairs    Pair rate\n  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501  \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n   44b6                       71                  0                  0           0%\n  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n   6bba                      128                114                947        7.47%\n  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n   Entire training set       199                114                947        4.81%\n</code></pre>\n<ul>\n<li>57.3% of all training videos contain at least one frozen transition.</li>\n<li>89.1% of 6bba videos are affected.</li>\n<li>Approximately one in every 13 adjacent pairs in 6bba is frozen.</li>\n<li>No exact duplicates occur in 44b6.</li>\n</ul>\n<p>Evidence that this is systematic</p>\n<p>Several different 6bba samples have exactly the same freeze schedule. For example:</p>\n<p>6bba_05b6850b\n  6bba_07477033\n  6bba_5b28472a</p>\n<p>all freeze after the same frame indices:</p>\n<p>4, 12, 27, 42, 52, 57, 59, 62, 66, 76</p>\n<p>Likewise, these three share another identical schedule:</p>\n<p>6bba_1f58c2f6\n  6bba_20852818\n  6bba_80d12824</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "g john rao",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                  "url": "/jaejohn",
+                  "tier": "MASTER",
+                  "id": 14464632,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 5,
+                  "canUpvote": true,
+                  "totalUpvotes": 5
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 293,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "g john rao",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                    "url": "/jaejohn",
+                    "userName": "jaejohn",
+                    "tier": "MASTER",
+                    "id": 14464632,
+                    "profileUrl": "/jaejohn",
+                    "performanceTier": "MASTER",
+                    "userId": 14464632,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3495059,
+                "postDate": "2026-07-11T11:02:00.433Z",
+                "rawMarkdown": "You analyzed it very thoroughly. I only started suspecting something during cross-validation\u2014their adj_edge_jaccard values are around 0.5 and 0.7.",
+                "content": "<p>You analyzed it very thoroughly. I only started suspecting something during cross-validation\u2014their adj_edge_jaccard values are around 0.5 and 0.7.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Timmy Juicehouse",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "url": "/sweetyheehee",
+                  "tier": "EXPERT",
+                  "id": 18538441,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 709,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Timmy Juicehouse",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "url": "/sweetyheehee",
+                    "userName": "sweetyheehee",
+                    "tier": "EXPERT",
+                    "id": 18538441,
+                    "profileUrl": "/sweetyheehee",
+                    "performanceTier": "EXPERT",
+                    "userId": 18538441,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3495060,
+                "postDate": "2026-07-11T11:04:20.747Z",
+                "rawMarkdown": "This is a huge problem if test data is not the same as we learned and memorised the freezing unintentionally. It also means rule-based heuristics need to be changed to avoid overfitting etc.\n\n\u201call freeze after the same frame indices:\u201d this means they are cropped from the same master big volume\u2026 which i will be interested \"to jigsaw it\" back\n\n---\n\ndo we need to probe the hidden test frame for frozen frame?",
+                "content": "<p>This is a huge problem if test data is not the same as we learned and memorised the freezing unintentionally. It also means rule-based heuristics need to be changed to avoid overfitting etc.</p>\n<p>\u201call freeze after the same frame indices:\u201d this means they are cropped from the same master big volume\u2026 which i will be interested \"to jigsaw it\" back</p>\n<hr>\n<p>do we need to probe the hidden test frame for frozen frame?</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 622,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3495115,
+                "postDate": "2026-07-11T13:31:34.027Z",
+                "rawMarkdown": "a simple conditional tracking would work too",
+                "content": "<p>a simple conditional tracking would work too</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "g john rao",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                  "url": "/jaejohn",
+                  "tier": "MASTER",
+                  "id": 14464632,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 293,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "g john rao",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                    "url": "/jaejohn",
+                    "userName": "jaejohn",
+                    "tier": "MASTER",
+                    "id": 14464632,
+                    "profileUrl": "/jaejohn",
+                    "performanceTier": "MASTER",
+                    "userId": 14464632,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3495185,
+                "postDate": "2026-07-11T15:55:51.073Z",
+                "rawMarkdown": "Videos sharing the schedule\tFrames duplicated after index\u2026\n6bba_05b6850b \u00b7 07477033 \u00b7 5b28472a\t4, 12, 27, 42, 52, 57, 59, 62, 66, 76\n6bba_1f58c2f6 \u00b7 20852818 \u00b7 80d12824\t1, 14, 19, 43, 44, 45, 49, 57, 61, 66, 73\n\nSee html",
+                "content": "<p>Videos sharing the schedule    Frames duplicated after index\u2026\n6bba_05b6850b \u00b7 07477033 \u00b7 5b28472a    4, 12, 27, 42, 52, 57, 59, 62, 66, 76\n6bba_1f58c2f6 \u00b7 20852818 \u00b7 80d12824    1, 14, 19, 43, 44, 45, 49, 57, 61, 66, 73</p>\n<p>See html</p>",
+                "attachments": [
+                  {
+                    "fileType": ".html",
+                    "id": 46506,
+                    "name": "dataset_frozen_frames_audit.html",
+                    "totalBytes": 11997,
+                    "url": "https://storage.googleapis.com/kaggle-forum-message-attachments/3495185/46506/dataset_frozen_frames_audit.html"
+                  }
+                ],
+                "parent": {},
+                "author": {
+                  "displayName": "Tom",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+                  "url": "/tom99763",
+                  "tier": "MASTER",
+                  "id": 4310004,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 99,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Tom",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+                    "url": "/tom99763",
+                    "userName": "tom99763",
+                    "tier": "MASTER",
+                    "id": 4310004,
+                    "profileUrl": "/tom99763",
+                    "performanceTier": "MASTER",
+                    "userId": 4310004,
+                    "progressionOptOut": false
+                  },
+                  "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+                }
+              },
+              {
+                "id": 3502950,
+                "postDate": "2026-07-25T06:30:11.603Z",
+                "rawMarkdown": "conditional copy wouldn't work because the GT differs as well \n\ndetails here: https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/729082",
+                "content": "<p>conditional copy wouldn't work because the GT differs as well </p>\n<p>details here: <a href=\"https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/729082\" target=\"_blank\">https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/729082</a></p>",
+                "parent": {},
+                "author": {
+                  "displayName": "g john rao",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                  "url": "/jaejohn",
+                  "tier": "MASTER",
+                  "id": 14464632,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 293,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "g john rao",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+                    "url": "/jaejohn",
+                    "userName": "jaejohn",
+                    "tier": "MASTER",
+                    "id": 14464632,
+                    "profileUrl": "/jaejohn",
+                    "performanceTier": "MASTER",
+                    "userId": 14464632,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3510365,
+                "postDate": "2026-08-08T09:50:56.223Z",
+                "rawMarkdown": "and what about the embryos types,  In training data there are two distinct types of Embryo, what if there is 3rd or fourth type, how well do I interpolate within embryos I've already seen,\" not \"how well do I generalize to an embryo I haven't.",
+                "content": "<p>and what about the embryos types,  In training data there are two distinct types of Embryo, what if there is 3rd or fourth type, how well do I interpolate within embryos I've already seen,\" not \"how well do I generalize to an embryo I haven't.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Ace",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/22169099-kg.png?t=2026-01-27-00-40-56",
+                  "url": "/shikhageekachad",
+                  "tier": "EXPERT",
+                  "id": 22169099,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 368,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Ace",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/22169099-kg.png?t=2026-01-27-00-40-56",
+                    "url": "/shikhageekachad",
+                    "userName": "shikhageekachad",
+                    "tier": "EXPERT",
+                    "id": 22169099,
+                    "profileUrl": "/shikhageekachad",
+                    "performanceTier": "EXPERT",
+                    "userId": 22169099,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 2,
+              "canUpvote": true,
+              "totalUpvotes": 2
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 622,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "g john rao",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+          "url": "/jaejohn",
+          "tier": "MASTER",
+          "id": 14464632,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 293,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "g john rao",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+            "url": "/jaejohn",
+            "userName": "jaejohn",
+            "tier": "MASTER",
+            "id": 14464632,
+            "profileUrl": "/jaejohn",
+            "performanceTier": "MASTER",
+            "userId": 14464632,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3494983,
+        "postDate": "2026-07-11T07:50:56.430Z",
+        "rawMarkdown": "I personally believe this is a fault in the imaging system causing repeated frames or dropped frames. Zebrafish embryo development is a continuous dynamic process. From the cleavage stage to the gastrulation stage, cells are constantly undergoing division, migration, and tissue deformation. Even in slower developmental phases, there are still sub-pixel-level cell displacements and fluctuations in signal intensity/grayscale. It is impossible for the entire 3D volume to show completely zero change, let alone produce perfectly repeated frames where subtraction yields exactly 0.",
+        "content": "<p>I personally believe this is a fault in the imaging system causing repeated frames or dropped frames. Zebrafish embryo development is a continuous dynamic process. From the cleavage stage to the gastrulation stage, cells are constantly undergoing division, migration, and tissue deformation. Even in slower developmental phases, there are still sub-pixel-level cell displacements and fluctuations in signal intensity/grayscale. It is impossible for the entire 3D volume to show completely zero change, let alone produce perfectly repeated frames where subtraction yields exactly 0.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Timmy Juicehouse",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+          "url": "/sweetyheehee",
+          "tier": "EXPERT",
+          "id": 18538441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 709,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Timmy Juicehouse",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+            "url": "/sweetyheehee",
+            "userName": "sweetyheehee",
+            "tier": "EXPERT",
+            "id": 18538441,
+            "profileUrl": "/sweetyheehee",
+            "performanceTier": "EXPERT",
+            "userId": 18538441,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3499734,
+        "postDate": "2026-07-17T20:01:23.637Z",
+        "rawMarkdown": "submission stuck gang report in",
+        "content": "<p>submission stuck gang report in</p>",
+        "parent": {},
+        "author": {
+          "displayName": "victor",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31905279-kg.jpg?t=2026-01-22-01-57-45",
+          "url": "/vicmcorrea",
+          "tier": "CONTRIBUTOR",
+          "id": 31905279,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 102,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "victor",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31905279-kg.jpg?t=2026-01-22-01-57-45",
+            "url": "/vicmcorrea",
+            "userName": "vicmcorrea",
+            "tier": "CONTRIBUTOR",
+            "id": 31905279,
+            "profileUrl": "/vicmcorrea",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 31905279,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3499282,
+        "postDate": "2026-07-16T21:36:23.747Z",
+        "rawMarkdown": "can coorberate this",
+        "content": "<p>can coorberate this</p>",
+        "parent": {},
+        "author": {
+          "displayName": "emtcole",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/emtcole",
+          "tier": "CONTRIBUTOR",
+          "id": 15897162,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 836,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "emtcole",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/emtcole",
+            "userName": "emtcole",
+            "tier": "CONTRIBUTOR",
+            "id": 15897162,
+            "profileUrl": "/emtcole",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 15897162,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3494847,
+        "postDate": "2026-07-10T19:57:17.873Z",
+        "rawMarkdown": "I wonder if this could come from a sudden movement of the entire setup?\n\nAlso, technically we should just let it be if the Ground Truth says so but a preprocessing of the signal/ground truth would be a nice addition.",
+        "content": "<p>I wonder if this could come from a sudden movement of the entire setup?</p>\n<p>Also, technically we should just let it be if the Ground Truth says so but a preprocessing of the signal/ground truth would be a nice addition.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Angantyr",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2259646-gp.jpg",
+          "url": "/angantyr",
+          "tier": "CONTRIBUTOR",
+          "id": 2259646,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1610,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Angantyr",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2259646-gp.jpg",
+            "url": "/angantyr",
+            "userName": "angantyr",
+            "tier": "CONTRIBUTOR",
+            "id": 2259646,
+            "profileUrl": "/angantyr",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 2259646,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3494709,
+        "postDate": "2026-07-10T14:11:17Z",
+        "rawMarkdown": "Some cells are natural long jumpers",
+        "content": "<p>Some cells are natural long jumpers</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Tom",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+          "url": "/tom99763",
+          "tier": "MASTER",
+          "id": 4310004,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 99,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "hengck23"
+            ],
+            "userCount": 1
+          },
+          {
+            "emoji": "SURPRISE",
+            "featuredUserNames": [
+              "xaxipirulazo",
+              "thinkphil"
+            ],
+            "userCount": 2
+          },
+          {
+            "emoji": "FUNNY",
+            "featuredUserNames": [
+              "saqibm128",
+              "ouedraogosomkieta"
+            ],
+            "userCount": 2
+          }
+        ],
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Tom",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+            "url": "/tom99763",
+            "userName": "tom99763",
+            "tier": "MASTER",
+            "id": 4310004,
+            "profileUrl": "/tom99763",
+            "performanceTier": "MASTER",
+            "userId": 4310004,
+            "progressionOptOut": false
+          },
+          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3494667,
+      "postDate": "2026-07-10T12:47:17.917Z",
+      "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F421105476d0308ddaf76f6be42659a9e%2FSelection_4367.png?generation=1783687617945117&alt=media)\n\nAt first, i thought not all ground truths are correct. Then, on inspection, i find the following are quite common\n1) some frames are frozen. i.e subraction of vol at t and t+1 gives exactly zero\n2) there are suddent jumps in time (global movement of whole volume)  \n\ni.e. the time step are not constant, maybe due to limitations of acquisition equipment",
+      "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F421105476d0308ddaf76f6be42659a9e%2FSelection_4367.png?generation=1783687617945117&amp;alt=media\" alt=\"\"></p>\n<p>At first, i thought not all ground truths are correct. Then, on inspection, i find the following are quite common\n1) some frames are frozen. i.e subraction of vol at t and t+1 gives exactly zero\n2) there are suddent jumps in time (global movement of whole volume)  </p>\n<p>i.e. the time step are not constant, maybe due to limitations of acquisition equipment</p>",
+      "parent": {},
+      "author": {
+        "displayName": "hengck23",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+        "url": "/hengck23",
+        "tier": "GRANDMASTER",
+        "id": 113660,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 38,
+        "canUpvote": true,
+        "totalUpvotes": 38
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 622,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "userName": "hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "profileUrl": "/hengck23",
+          "performanceTier": "GRANDMASTER",
+          "userId": 113660,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3494667,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 724283,
+    "name": "beware of jumps in ground truth track",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-10T12:47:17.916832900Z",
+    "totalVotes": 38,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/724283",
+    "totalMessages": 16,
+    "authorPerformanceTier": "GRANDMASTER",
+    "authorProgressionOptOut": false
+  }
+}

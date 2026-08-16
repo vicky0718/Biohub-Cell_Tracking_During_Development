@@ -1,0 +1,60 @@
+{
+  "forumTopic": {
+    "authorId": 23358660,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Sohil Arman",
+    "authorUserName": "sohilarman",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3483980,
+      "postDate": "2026-06-29T20:24:51.310Z",
+      "rawMarkdown": "print(train_df.head())\nprint(train_df.info())\nprint(train_df.describe())",
+      "content": "<p>print(train_df.head())\nprint(train_df.info())\nprint(train_df.describe())</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Sohil Arman",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/sohilarman",
+        "tier": "CONTRIBUTOR",
+        "id": 23358660,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -20,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Sohil Arman",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/sohilarman",
+          "userName": "sohilarman",
+          "tier": "CONTRIBUTOR",
+          "id": 23358660,
+          "profileUrl": "/sohilarman",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 23358660,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3483980,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 715981,
+    "name": "train_df = pd.read_csv(f\"{DATA_PATH}/train.csv\") test_df = pd.read_csv(f\"{DATA_PATH}/test.csv\") sample_sub = pd.read_csv(f\"{DATA_PATH}/sample_submission.csv\")",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-06-29T20:24:51.310139300Z",
+    "totalVotes": -20,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/715981",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

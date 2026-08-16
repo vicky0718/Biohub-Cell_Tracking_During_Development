@@ -1,0 +1,296 @@
+{
+  "forumTopic": {
+    "authorId": 22956954,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Rajmukund mehta",
+    "authorUserName": "rajmukundmehta",
+    "comments": [
+      {
+        "id": 3507709,
+        "postDate": "2026-08-02T12:47:25.233Z",
+        "rawMarkdown": "could you share training time per epoch? For me, after introducing some tricks, it takes 2 hours currently.",
+        "content": "<p>could you share training time per epoch? For me, after introducing some tricks, it takes 2 hours currently.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Davit Khantadze",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/davitkhantadze",
+          "tier": "CONTRIBUTOR",
+          "id": 4605428,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1604,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Davit Khantadze",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/davitkhantadze",
+            "userName": "davitkhantadze",
+            "tier": "CONTRIBUTOR",
+            "id": 4605428,
+            "profileUrl": "/davitkhantadze",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 4605428,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3504505,
+        "postDate": "2026-07-28T08:31:28.733Z",
+        "rawMarkdown": "There isn't really a trick to make training quicker. I suppose you could train it in FP16/BF16 but that reduces quality. I just train it on my gpus and it takes ~4 hours for 50 epochs.",
+        "content": "<p>There isn't really a trick to make training quicker. I suppose you could train it in FP16/BF16 but that reduces quality. I just train it on my gpus and it takes ~4 hours for 50 epochs.</p>",
+        "replies": [
+          {
+            "id": 3507711,
+            "postDate": "2026-08-02T13:07:46.997Z",
+            "rawMarkdown": "wanted to check: you train baseline model 50 epochs in 4 hours? For me, after introducing mixed precision, 1 epoch takes around 2 hours. Not sure that the difference can be explained by GPU alone.",
+            "content": "<p>wanted to check: you train baseline model 50 epochs in 4 hours? For me, after introducing mixed precision, 1 epoch takes around 2 hours. Not sure that the difference can be explained by GPU alone.</p>",
+            "replies": [
+              {
+                "id": 3507716,
+                "postDate": "2026-08-02T13:38:16.137Z",
+                "rawMarkdown": "What GPU do you train it on?\n",
+                "content": "<p>What GPU do you train it on?</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "mikelou1",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/mikelou1",
+                  "tier": "EXPERT",
+                  "id": 32181963,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 15,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "mikelou1",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                    "url": "/mikelou1",
+                    "userName": "mikelou1",
+                    "tier": "EXPERT",
+                    "id": 32181963,
+                    "profileUrl": "/mikelou1",
+                    "performanceTier": "EXPERT",
+                    "userId": 32181963,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3507720,
+                "postDate": "2026-08-02T13:51:24.410Z",
+                "rawMarkdown": "T4, from kaggle. Does this tell you something? ",
+                "content": "<p>T4, from kaggle. Does this tell you something? </p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Davit Khantadze",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/davitkhantadze",
+                  "tier": "CONTRIBUTOR",
+                  "id": 4605428,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 1604,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Davit Khantadze",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                    "url": "/davitkhantadze",
+                    "userName": "davitkhantadze",
+                    "tier": "CONTRIBUTOR",
+                    "id": 4605428,
+                    "profileUrl": "/davitkhantadze",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 4605428,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3508063,
+                "postDate": "2026-08-03T16:09:45.540Z",
+                "rawMarkdown": "Yeah that explains it. T4 has very bad fp32 [its basically 25x slower]. Try fp16 or something",
+                "content": "<p>Yeah that explains it. T4 has very bad fp32 [its basically 25x slower]. Try fp16 or something</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "mikelou1",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/mikelou1",
+                  "tier": "EXPERT",
+                  "id": 32181963,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 15,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "mikelou1",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                    "url": "/mikelou1",
+                    "userName": "mikelou1",
+                    "tier": "EXPERT",
+                    "id": 32181963,
+                    "profileUrl": "/mikelou1",
+                    "performanceTier": "EXPERT",
+                    "userId": 32181963,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Davit Khantadze",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/davitkhantadze",
+              "tier": "CONTRIBUTOR",
+              "id": 4605428,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 1604,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Davit Khantadze",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/davitkhantadze",
+                "userName": "davitkhantadze",
+                "tier": "CONTRIBUTOR",
+                "id": 4605428,
+                "profileUrl": "/davitkhantadze",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 4605428,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 15,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "mikelou1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/mikelou1",
+            "userName": "mikelou1",
+            "tier": "EXPERT",
+            "id": 32181963,
+            "profileUrl": "/mikelou1",
+            "performanceTier": "EXPERT",
+            "userId": 32181963,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3504109,
+      "postDate": "2026-07-27T09:29:37.743Z",
+      "rawMarkdown": "Hello,so I am new to handling image dataset .my question is how do you guys train model on such large datasets multiple times as it takes a lot time just for 50 epoch.is there any trick or something people use that i should know.",
+      "content": "<p>Hello,so I am new to handling image dataset .my question is how do you guys train model on such large datasets multiple times as it takes a lot time just for 50 epoch.is there any trick or something people use that i should know.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Rajmukund mehta",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/rajmukundmehta",
+        "tier": "CONTRIBUTOR",
+        "id": 22956954,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2203,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Rajmukund mehta",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/rajmukundmehta",
+          "userName": "rajmukundmehta",
+          "tier": "CONTRIBUTOR",
+          "id": 22956954,
+          "profileUrl": "/rajmukundmehta",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 22956954,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3504109,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 729930,
+    "name": "How to minimize training time",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-27T09:29:37.742488700Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/729930",
+    "totalMessages": 6,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

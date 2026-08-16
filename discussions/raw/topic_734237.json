@@ -1,0 +1,258 @@
+{
+  "forumTopic": {
+    "authorId": 20852044,
+    "authorThumbnailName": "20852044-kg.jpeg?t=2026-08-02-09-10-32",
+    "authorUserDisplayName": "Moawiz",
+    "authorUserName": "moawiz",
+    "comments": [
+      {
+        "id": 3511461,
+        "postDate": "2026-08-11T08:32:00.433Z",
+        "rawMarkdown": "9-12 hours for me depending on the model",
+        "content": "<p>9-12 hours for me depending on the model</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Mendrika Ramarlina",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36054-fb.jpg",
+          "url": "/ramarlina",
+          "tier": "MASTER",
+          "id": 36054,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 44,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Mendrika Ramarlina",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36054-fb.jpg",
+            "url": "/ramarlina",
+            "userName": "ramarlina",
+            "tier": "MASTER",
+            "id": 36054,
+            "profileUrl": "/ramarlina",
+            "performanceTier": "MASTER",
+            "userId": 36054,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3511314,
+        "postDate": "2026-08-10T21:41:11.257Z",
+        "rawMarkdown": "From my experience, the submission evaluation depends on the number of test datasets and the complexity of the tracking pipeline. The sample submission has a fairly small number of entries, so scoring should be relatively quick (minutes, not hours). If your submission is still pending after 30 minutes, check if the format matches the sample_submission.csv exactly.",
+        "content": "<p>From my experience, the submission evaluation depends on the number of test datasets and the complexity of the tracking pipeline. The sample submission has a fairly small number of entries, so scoring should be relatively quick (minutes, not hours). If your submission is still pending after 30 minutes, check if the format matches the sample_submission.csv exactly.</p>",
+        "replies": [
+          {
+            "id": 3511382,
+            "postDate": "2026-08-11T03:00:08.127Z",
+            "rawMarkdown": "the Submission succeeded without any error got my first LD score at 0.892, i believe it was queued which took a long time to get executed ",
+            "content": "<p>the Submission succeeded without any error got my first LD score at 0.892, i believe it was queued which took a long time to get executed </p>",
+            "parent": {},
+            "author": {
+              "displayName": "Moawiz",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+              "url": "/moawiz",
+              "tier": "CONTRIBUTOR",
+              "id": 20852044,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 385,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Moawiz",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+                "url": "/moawiz",
+                "userName": "moawiz",
+                "tier": "CONTRIBUTOR",
+                "id": 20852044,
+                "profileUrl": "/moawiz",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 20852044,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Ragheb haddara",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/l4r3nn",
+          "tier": "CONTRIBUTOR",
+          "id": 35670825,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2376,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Ragheb haddara",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/l4r3nn",
+            "userName": "l4r3nn",
+            "tier": "CONTRIBUTOR",
+            "id": 35670825,
+            "profileUrl": "/l4r3nn",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 35670825,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3511193,
+        "postDate": "2026-08-10T16:37:26.253Z",
+        "rawMarkdown": "it takes ~50x longer than running notebook i think",
+        "content": "<p>it takes ~50x longer than running notebook i think</p>",
+        "replies": [
+          {
+            "id": 3511202,
+            "postDate": "2026-08-10T16:49:50.647Z",
+            "rawMarkdown": "That's new, probably the hidden dataset is way bigger than i expected \n",
+            "content": "<p>That's new, probably the hidden dataset is way bigger than i expected </p>",
+            "parent": {},
+            "author": {
+              "displayName": "Moawiz",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+              "url": "/moawiz",
+              "tier": "CONTRIBUTOR",
+              "id": 20852044,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 385,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Moawiz",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+                "url": "/moawiz",
+                "userName": "moawiz",
+                "tier": "CONTRIBUTOR",
+                "id": 20852044,
+                "profileUrl": "/moawiz",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 20852044,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 15,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "mikelou1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/mikelou1",
+            "userName": "mikelou1",
+            "tier": "EXPERT",
+            "id": 32181963,
+            "profileUrl": "/mikelou1",
+            "performanceTier": "EXPERT",
+            "userId": 32181963,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3511192,
+      "postDate": "2026-08-10T16:35:37.427Z",
+      "rawMarkdown": "My submission is running for over an hour now while my notebook ran with in 10 mins, this is my first ever submission and im not sure how long should it take.\nThere is no error uptill now, also i was using T4 so it isnt a gpu/cpu acceleration factor",
+      "content": "<p>My submission is running for over an hour now while my notebook ran with in 10 mins, this is my first ever submission and im not sure how long should it take.\nThere is no error uptill now, also i was using T4 so it isnt a gpu/cpu acceleration factor</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Moawiz",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+        "url": "/moawiz",
+        "tier": "CONTRIBUTOR",
+        "id": 20852044,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -1,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 385,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Moawiz",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+          "url": "/moawiz",
+          "userName": "moawiz",
+          "tier": "CONTRIBUTOR",
+          "id": 20852044,
+          "profileUrl": "/moawiz",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 20852044,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3511192,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 734237,
+    "name": "how long does the submission take?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-10T16:35:37.428153400Z",
+    "totalVotes": -1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/734237",
+    "totalMessages": 5,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

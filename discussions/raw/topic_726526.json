@@ -1,0 +1,191 @@
+{
+  "forumTopic": {
+    "authorId": 26089570,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Samson Enoch",
+    "authorUserName": "samsonenoch",
+    "comments": [
+      {
+        "id": 3498917,
+        "postDate": "2026-07-16T07:04:59.320Z",
+        "rawMarkdown": "Because this is a standard Kaggle code competition with a 12-hour rerun limit, the visible verification dataset is intentionally kept minimal to allow rapid notebook saving and verification in 15\u201330 minutes. However, according to the official Kaggle Dataset Overview, the hidden test set swapped in during final evaluation is not a fraction of the training data. It is roughly **the exact same size as the ~88 GB training dataset.** Since the training set covers 199 total Zarr image volumes, our submission pipelines must be optimized to process roughly 200 hidden test volumes within the strict 12-hour notebook execution window.",
+        "content": "<p>Because this is a standard Kaggle code competition with a 12-hour rerun limit, the visible verification dataset is intentionally kept minimal to allow rapid notebook saving and verification in 15\u201330 minutes. However, according to the official Kaggle Dataset Overview, the hidden test set swapped in during final evaluation is not a fraction of the training data. It is roughly <strong>the exact same size as the ~88 GB training dataset.</strong> Since the training set covers 199 total Zarr image volumes, our submission pipelines must be optimized to process roughly 200 hidden test volumes within the strict 12-hour notebook execution window.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "FasterYouChase FasterIRun",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+          "url": "/icoguser",
+          "tier": "CONTRIBUTOR",
+          "id": 23282498,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 295,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "xaxipirulazo",
+              "marcuseno"
+            ],
+            "userCount": 2
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "FasterYouChase FasterIRun",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+            "url": "/icoguser",
+            "userName": "icoguser",
+            "tier": "CONTRIBUTOR",
+            "id": 23282498,
+            "profileUrl": "/icoguser",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23282498,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3499038,
+        "postDate": "2026-07-16T12:16:31.433Z",
+        "rawMarkdown": "I'm curious about the secret of anyone whose submission time is shorter.\nMine sometimes takes 7 hours, sometimes 5 and a half hours.",
+        "content": "<p>I'm curious about the secret of anyone whose submission time is shorter.\nMine sometimes takes 7 hours, sometimes 5 and a half hours.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "OzanM.",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-11-18-28-39",
+          "url": "/analyticaobscura",
+          "tier": "GRANDMASTER",
+          "id": 25787455,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 341,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "OzanM.",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-11-18-28-39",
+            "url": "/analyticaobscura",
+            "userName": "analyticaobscura",
+            "tier": "GRANDMASTER",
+            "id": 25787455,
+            "profileUrl": "/analyticaobscura",
+            "performanceTier": "GRANDMASTER",
+            "userId": 25787455,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3498931,
+        "postDate": "2026-07-16T07:28:04.277Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -1
+        },
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
+        "id": 3498855,
+        "postDate": "2026-07-16T03:11:14.070Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -1
+        },
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3498513,
+      "postDate": "2026-07-15T16:47:18.297Z",
+      "rawMarkdown": "is it just me or the submission evaluation is going on for a long time, mine personally has been scoring for the past 5 hour ! ANY CLUE ON WHATS HAPPENING ????",
+      "content": "<p>is it just me or the submission evaluation is going on for a long time, mine personally has been scoring for the past 5 hour ! ANY CLUE ON WHATS HAPPENING ????</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Samson Enoch",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/samsonenoch",
+        "tier": "CONTRIBUTOR",
+        "id": 26089570,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -2,
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 912,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Samson Enoch",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/samsonenoch",
+          "userName": "samsonenoch",
+          "tier": "CONTRIBUTOR",
+          "id": 26089570,
+          "profileUrl": "/samsonenoch",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 26089570,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3498513,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 726526,
+    "name": "Submission Stuck",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-15T16:47:18.295306400Z",
+    "totalVotes": -2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/726526",
+    "totalMessages": 4,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}
