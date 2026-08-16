@@ -8,8 +8,12 @@ metadata:
 
 Started 2026-08-13. Contest: [Biohub — Cell Tracking During Development](https://www.kaggle.com/competitions/biohub-cell-tracking-during-development)
 (Royer Group / CZ Biohub, launched 2026-06-29, deadline reported 2026-09-29, ~73 teams).
-Track cells in 3D+time zebrafish embryo light-sheet videos. **CSV-upload** contest, not
-notebook-runtime. Compute = Kaggle GPU notebooks. Workspace = this repo (`vicky0718/Biohub-Cell_Tracking_During_Development`).
+Track cells in 3D+time zebrafish embryo light-sheet videos. **NOTEBOOK-submission**
+contest (`onlyAllowKernelSubmissions=True`, `usesSynchronousReruns=True`): Kaggle reruns
+our notebook against private data and it must emit `submission.csv` within **12 h**;
+5 submissions/day; public LB is 29% of the test data; 2,395 teams; $60k.
+(An earlier note here said "CSV-upload" — that was wrong, corrected 2026-08-16.)
+Compute = Kaggle notebooks (our pipeline is CPU-only). Workspace = this repo (`vicky0718/Biohub-Cell_Tracking_During_Development`).
 
 `score = adjusted_edge_jaccard + 0.1 · division_jaccard`. Nodes matched to GT by bipartite
 assignment on centroid distance ≤ **7 µm**; edges must span exactly t→t+1; out-degree
@@ -142,6 +146,43 @@ a validated submission.csv.
 5. **🚩 The leak is CONFIRMED.** `sample_submission.csv` names exactly the four datasets
    whose ground truth ships in `train/`. Anyone can score ~1.0 by echoing it.
    **Report to the organisers; do not exploit.** Treat any LB position as meaningless.
+
+**FORUM SCRAPED IN FULL 2026-08-16** — all 71 topics, all 219 comments including nested
+replies (`data/forum-scrape.json`, scraper `probes/scrape_forum.py`; full write-up
+`notes/07-forum-intel.md`). Kaggle's `api/v1` is 401 and the pages are JS shells, but the
+SPA's own `/api/i/` endpoints serve public forum content to an **anonymous session** — fetch
+any page for the XSRF-TOKEN/ka_sessionid cookies, then echo the token in `x-xsrf-token`.
+Without the cookie pair every call is a bare 400 with no body.
+
+1. **🚩 It is a notebook competition** (see header). There is **no submission notebook yet**
+   — that is now the gating deliverable. Test names must be globbed at runtime (the `test/`
+   folder is swapped at rerun) and `submission.csv` needs the `id` column.
+2. **The leak is CLOSED — there was never one.** Host: the visible test files are "dummy
+   placeholder files"; the leaderboard uses "a much bigger test set, deliberately kept
+   private", no train overlap. Already reported by another competitor. So scoring those 4
+   locally predicts nothing (kills `03` §4's "predicted leaderboard score").
+3. **⭐⭐ The hidden test is a DIFFERENT PAIR OF EMBRYOS**, roughly the size of train (~200
+   datasets). Host: "no overlap in embryo_ids between train and test". Our 5-way hash folds
+   mixed both embryos into every fold and measured the wrong shift — `Harness` now defaults
+   to **`fold_by="embryo"`** (leave-one-embryo-out, 2 folds).
+4. **⭐ Rule-based is competitive and divisions are not needed.** 7th/344 with no learning
+   and division Jaccard ≈ 0. Paired CV→LB from one competitor: 0.7448→**0.834**,
+   0.8213→**0.846**. LB runs *above* CV ("~10% more optimistic"), so our CV 0.5552 is
+   probably ~0.60–0.65 LB. Movie-to-movie spread is ±0.14 (18% CoV).
+5. **🚨 Subsampling frames scores exactly 0.0.** A competitor with 0.57 local got 0.0 because
+   frame-skipping produced t→t+5 edges, all structurally unmatchable, with no error raised.
+   `Config.max_frames` must never ship in a submission.
+6. **A division-metric exploit was patched mid-competition and everything was rescored**
+   (2026-07-22). The `cross_component_forks`/weak-component machinery in
+   `division_metrics.py` IS that patch; our clone is post-patch so purescore is verified
+   against the current metric.
+7. **GT is Ultrack pseudo-labels with real defects** — byte-identical consecutive frames
+   where GT still moves a cell 8.9 µm, unresolvable dim cells, cells with Z span >24 µm that
+   cannot fit the 7 µm match radius. A real ceiling below 1.0.
+8. **External data is allowed** (host: Zebrahub explicitly OK, no test overlap) — the
+   obvious corpus if we ever train a detector. Public baseline weights were trained on all
+   199 train videos, so validating them on train is leakage; **we are training-free, so our
+   CV is honest.**
 
 **Status:** the metric findings (§1-5 above) remain toy-graph probes. Recon and the sweep
 numbers ARE real data. Best known config: `det_threshold=0.15, min_separation_um=6.0,

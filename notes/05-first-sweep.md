@@ -15,12 +15,16 @@ is *not* readable at test time. We know the four budgets anyway, because those f
 also appear in train and recon read their GEFF metadata (§9). But a general solution
 cannot rely on that.
 
-**The leak is real.** `sample_submission.csv` names exactly
-`44b6_0113de3b, 44b6_0b24845f, 6bba_05b6850b, 6bba_05db0fb1` — the four datasets whose
-ground truth ships in `train/`. Anyone can score ~1.0 by echoing the training annotations.
+**~~The leak is real.~~ RESOLVED — there is no leak.** `sample_submission.csv` names
+exactly the four datasets whose ground truth ships in `train/`.
 
-**Action: tell the organisers. Do not exploit it.** And treat any leaderboard position
-built on it as meaningless — ours included, until we know whether a private split exists.
+> **CLOSED 2026-08-16 (`notes/07-forum-intel.md` §2).** Already reported by another
+> competitor, and answered by the host: these are **dummy placeholder files** so you can
+> check your submission notebook produces a CSV. The leaderboard uses a much bigger
+> private test set with no train overlap. No action needed.
+
+The live consequence is the opposite of what this section assumed: because those four are
+placeholders, **scoring them locally predicts nothing about the leaderboard**.
 
 ## 1. The sweep — the prediction was right, and by a lot
 

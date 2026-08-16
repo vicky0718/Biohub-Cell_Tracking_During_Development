@@ -130,12 +130,14 @@ class Harness:
         cache_dir: Path | str | None = None,
         n_total_override: dict[str, float] | None = None,
         use_official: bool = False,
+        fold_by: str = "embryo",
     ) -> None:
         self.data_dir = Path(data_dir)
         self.max_distance = max_distance
         self.cache_dir = Path(cache_dir) if cache_dir else None
         self.n_total_override = n_total_override or {}
         self.use_official = use_official
+        self.fold_by = fold_by
         self.splits = splits if splits is not None else self._load_splits()
         self._fold_of = self._build_fold_map()
         self._warned_missing_budget = False
@@ -154,7 +156,20 @@ class Harness:
         return None
 
     def _build_fold_map(self) -> dict[str, int]:
-        """name -> fold index. Falls back to deterministic folds if none ship."""
+        """name -> fold index.
+
+        Default is **leave-one-embryo-out**, because that is the shift the leaderboard
+        actually applies. The host stated on the forum (`notes/07-forum-intel.md` §3)
+        that the hidden test set is roughly the size of train with **no overlap in
+        embryo_ids**. Folds that mix both embryos therefore measure the wrong thing:
+        they ask "does this generalise to another crop of an embryo I have seen", when
+        the question is "does it generalise to an embryo I have never seen".
+
+        With two embryos that gives two folds, which is thin — the no-regression half
+        of the gate is testing exactly one held-out embryo per side — but a thin honest
+        split beats a well-powered misleading one. Pass `fold_by="hash"` for the old
+        five-way split when you specifically want within-embryo variance.
+        """
         if self.splits:
             m: dict[str, int] = {}
             for i, fold in enumerate(self.splits):
@@ -162,10 +177,21 @@ class Harness:
                     m[name] = i
             if m:
                 return m
-        # Deterministic fallback: stable hash of the name, so folds never drift
-        # between runs or machines the way `hash()` would.
-        import hashlib
+
         names = self.dataset_names()
+        if self.fold_by == "embryo":
+            prefixes = sorted({n.split("_")[0] for n in names})
+            if len(prefixes) > 1:
+                idx = {p: i for i, p in enumerate(prefixes)}
+                return {n: idx[n.split("_")[0]] for n in names}
+            warnings.warn(
+                "fold_by='embryo' but every dataset shares one prefix — falling back to "
+                "the hash split, which cannot measure cross-embryo generalisation.",
+                stacklevel=2,
+            )
+        # Stable hash of the name, so folds never drift between runs or machines the
+        # way `hash()` would.
+        import hashlib
         k = min(5, max(1, len(names)))
         return {
             n: int(hashlib.sha1(n.encode()).hexdigest(), 16) % k
