@@ -117,12 +117,39 @@ Interchange is now `harness.tracks.Tracks` (plain arrays) rather than tracksdata
 executing every cell of `02_classical_baseline.ipynb` with tracksdata blocked — it produces
 a validated submission.csv.
 
-**Status:** the metric findings (§1-5 above) remain toy-graph probes — directions are
-structural, from code paths in `metrics.py`. The recon numbers ARE real data. Still true with
-zero measurement: no submission, no leaderboard score, and we do not know what a good score
-is in this contest. `notebooks/02_classical_baseline.ipynb` (test-folder probe → smoke test →
-threshold sweep → budget-cap ablation → submission) is written and executed end to end
-against synthetic data under Kaggle's constraints, but **not yet run on the real data**.
+**FIRST REAL SCORES, 2026-08-16** (`02` on Kaggle, all 199 train datasets, full 100 frames,
+~4.6 h; write-up `notes/05-first-sweep.md`). Kaggle dataset mount:
+`/kaggle/input/datasets/vigneshnehru/biohub-cell-tracking/biohub-cell_tracking_during_development`.
+
+1. **Experiment #1 CONFIRMED, hugely.** det_threshold 0.99 (the official baseline's own
+   default) scores **0.0490**; 0.15 scores **0.5327**. PROMOTE, +0.4836 pooled, positive in
+   all five folds. The baseline's precision-protecting default costs ~0.48 of score.
+   **The threshold is now saturated**: 0.15→0.05 bought 146k nodes and +0.0014 recall, so
+   the missing 15.5% of GT nodes are not threshold-limited.
+2. **❌ My node-budget cap was FALSIFIED.** cap ON 0.5327 vs cap OFF **0.5552** — REJECT,
+   −0.0226, regressing all five folds. §9's mechanism was right but its premise was wrong:
+   this detector runs *under* budget (pooled ratio −0.111), so the cap only ever cut real
+   detections. `budget_fill` now defaults to None; the machinery stays for a future
+   detector that over-produces.
+3. **⭐⭐ The headroom is in LINKING, not detection — this reverses recon §7.** At the best
+   arm node_recall=0.845 but edge_J=0.528, where recall²×ceiling predicts **0.707**.
+   **Shortfall 0.179** (~42k wrong links vs ~38k missing; edge precision ~0.68), and that
+   is a lower bound since edge endpoints are not matched independently. Recon's "linking is
+   solved" was measured with *perfect* detections — 6.6 nodes/frame, 25 µm apart. The real
+   field is ~210 nodes/frame at ~8 µm spacing with 15% of true successors missing, so a
+   9 µm radius converts a miss into a miss *plus* a false positive.
+4. **`test/` ships images only (4 .zarr, 0 .geff)** — no node budget at test time.
+5. **🚩 The leak is CONFIRMED.** `sample_submission.csv` names exactly the four datasets
+   whose ground truth ships in `train/`. Anyone can score ~1.0 by echoing it.
+   **Report to the organisers; do not exploit.** Treat any LB position as meaningless.
+
+**Status:** the metric findings (§1-5 above) remain toy-graph probes. Recon and the sweep
+numbers ARE real data. Best known config: `det_threshold=0.15, min_separation_um=6.0,
+link_radius_um=9.0, budget_fill=None` → **0.5552** on 199 train datasets. Still no
+leaderboard score. `notebooks/03_linking.ipynb` (link_radius × min_separation grid on a
+fixed 60-dataset subset, plus a local score of the four test datasets that predicts the LB
+before spending a submission) is written and executed against synthetic data under Kaggle's
+constraints, not yet run for real.
 
 Method carried over from ROGII (see `chat/memory/rogii-validation-harness.md` in the
 `vicky0718/rogii` repo): honest fixed harness, preregistered gates, gains promoted only when

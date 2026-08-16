@@ -81,19 +81,40 @@ import numpy as np
 
 WORK = Path("/kaggle/working")
 
-# our harness + pipeline. Attach this repo as a Kaggle dataset (Add Input -> Datasets),
-# or unzip it into /kaggle/working/biohub-cell-tracking.
-CANDIDATES = [
-    WORK / "biohub-cell-tracking",
-    Path("/kaggle/input/biohub-cell-tracking"),
-    Path("/kaggle/input/biohub-cell-tracking/biohub-cell-tracking"),
-]
-REPO = next((p for p in CANDIDATES if (p / "harness").is_dir()), None)
+# Find our harness/ and pipeline/, and the competition data, by SEARCHING the mounts.
+# Kaggle nests dataset paths differently depending on how the dataset was created
+# (/kaggle/input/<slug>/, /kaggle/input/<slug>/<zip-root>/,
+#  /kaggle/input/datasets/<user>/<slug>/<zip-root>/ ...), so hardcoding one shape just
+# breaks on the next upload. Never descend into .zarr/.geff — those hold thousands of
+# chunk files and would make this crawl take minutes.
+def find_dir(is_match, roots, max_depth=5):
+    for root in roots:
+        root = Path(root)
+        if not root.is_dir():
+            continue
+        stack = [(root, 0)]
+        while stack:
+            d, depth = stack.pop(0)
+            try:
+                if is_match(d):
+                    return d
+                if depth >= max_depth:
+                    continue
+                kids = [e for e in d.iterdir()
+                        if e.is_dir() and e.suffix not in (".zarr", ".geff")]
+            except (PermissionError, OSError):
+                continue
+            stack += [(k, depth + 1) for k in kids]
+    return None
+
+
+REPO = find_dir(lambda p: (p / "harness").is_dir() and (p / "pipeline").is_dir(),
+                [WORK, "/kaggle/input"])
 if REPO is None:
     raise SystemExit(
-        "Could not find our harness/ and pipeline/ code.\n"
-        "Upload the project zip as a Kaggle Dataset and add it as an input, or unzip it "
-        "into /kaggle/working/biohub-cell-tracking."
+        "Could not find our harness/ and pipeline/ code under /kaggle/input or "
+        "/kaggle/working.\nUpload the project zip as a Kaggle Dataset and add it as an "
+        "input (Add Input -> Datasets), or unzip it into /kaggle/working/."
     )
 sys.path.insert(0, str(REPO))
 
@@ -101,10 +122,16 @@ from harness import (Harness, Tracks, build_submission, gate, purescore,
                      read_estimated_nodes, validate_submission)
 from pipeline.classical import Config, estimated_total_nodes, make_predictor, predict_dataset
 
-COMP = Path("/kaggle/input/competitions/biohub-cell-tracking-during-development")
-if not COMP.exists():
-    alt = Path("/kaggle/input/biohub-cell-tracking-during-development")
-    COMP = alt if alt.exists() else COMP
+# The competition mount is whichever directory holds train/ and test/ with .zarr in them.
+COMP = find_dir(
+    lambda p: (p / "train").is_dir() and (p / "test").is_dir()
+    and any((p / "train").glob("*.zarr")),
+    ["/kaggle/input"])
+if COMP is None:
+    raise SystemExit(
+        "Could not find the competition data (a folder with train/ and test/ full of "
+        ".zarr).\nAdd Input -> Competitions -> Biohub Cell Tracking During Development."
+    )
 TRAIN, TEST = COMP / "train", COMP / "test"
 
 CACHE = WORK / "cache"
@@ -358,7 +385,7 @@ for i, n in enumerate(test_names, 1):
           f"{graphs[n].n_edges:>8,} edges  budget ratio={ratio:+.2f} "
           f"-> x{max(0, 1 - 0.1*ratio):.3f}  ({time.time()-t0:.0f}s)", flush=True)
 
-csv = build_submission(graphs, "/kaggle/working/submission.csv")
+csv = build_submission(graphs, WORK / "submission.csv")
 problems = validate_submission(csv, expected_datasets=test_names)
 print("\nREADY TO SUBMIT" if not problems else f"\nFIX {len(problems)} PROBLEM(S) FIRST")
 """)
@@ -382,9 +409,9 @@ payload = {
     "test_names": test_names,
     "test_has_geff": test_geffs,
 }
-Path("/kaggle/working/sweep_results.json").write_text(json.dumps(payload, indent=2, default=str))
+(WORK / "sweep_results.json").write_text(json.dumps(payload, indent=2, default=str))
 print(json.dumps(payload["sweep"], indent=2))
-print("\nWrote /kaggle/working/sweep_results.json - commit it back to the repo.")
+print(f"\nWrote {WORK}/sweep_results.json - commit it back to the repo.")
 """)
 
 nb = {"cells": CELLS,
