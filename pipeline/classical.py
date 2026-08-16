@@ -81,6 +81,22 @@ class Config:
     # neighbour is the true successor 0.19% of the time. Keep this off.
     allow_divisions: bool = False
 
+    # --- graph repair (notes/06-competitor-intel.md §4) ---
+    # Bridge a missing detection by INSERTING a node at t+1, turning an unusable t->t+2
+    # bridge into two scoring edges. 0 = off, 1 = close one-frame gaps. Aimed straight at
+    # the 15.5% of GT nodes the threshold can no longer reach (notes/05 §1), and at the
+    # linking gap, since a track end next to a track start is where wrong links come from.
+    gap_close: int = 0                   # UNMEASURED — an arm, not a default
+    # Ceiling on inserted nodes as a fraction of detections. Both public learned pipelines
+    # cap this hard (~0.045) and one is explicitly testing for over-repair.
+    gap_close_max_frac: float = 0.045
+    # Multiplier on the 2-frame search radius. A cell crossing a gap has two frames to
+    # move, so the budget is 2 x link_radius_um, times this slack.
+    gap_close_slack: float = 1.0
+    # Drop detections that ended up with no edge. They cannot score but do count against
+    # the node budget. Not provably free — see prune_isolated().
+    prune_isolated_nodes: bool = False   # UNMEASURED — an arm, not a default
+
     # --- image handling ---
     # Strided spatial downsample (Z, Y, X). (1, 4, 4) makes the grid isotropic at
     # 1.625 µm, since the anisotropy is exactly 4:1 (domain intel §2).
@@ -228,6 +244,100 @@ def link_all(coords_tzyx: np.ndarray, scale: tuple[float, float, float],
     return edges
 
 
+def close_gaps(
+    coords_tzyx: np.ndarray,
+    edges: list[tuple[int, int]],
+    scale: tuple[float, float, float],
+    cfg: Config,
+) -> tuple[np.ndarray, list[tuple[int, int]]]:
+    """Bridge one missing frame by INSERTING a node, not by spanning the gap.
+
+    The scorer drops any edge that does not span exactly `t -> t+1`, so a direct
+    `t -> t+2` link scores identically to no edge at all (metric findings §3). Inserting
+    a synthetic detection at `t+1` instead converts that unusable bridge into **two
+    scoring edges**, which is why both learned notebooks in `notes/06-competitor-intel.md`
+    do this and cap it tightly.
+
+    A track end at `t` is matched to a track start at `t+2` within
+    `2 * link_radius_um * gap_close_slack`, by optimal assignment, and the new node goes
+    at the midpoint. `gap_close_max_frac` bounds how many nodes this may add, because
+    over-repair is a real failure mode — one of those notebooks is explicitly testing
+    whether its remaining loss comes from exactly that.
+
+    Returns the extended `(coords, edges)`.
+    """
+    if cfg.gap_close <= 0 or len(coords_tzyx) == 0:
+        return coords_tzyx, edges
+
+    n = len(coords_tzyx)
+    out_deg = np.bincount([s for s, _ in edges], minlength=n) if edges else np.zeros(n, int)
+    in_deg = np.bincount([d for _, d in edges], minlength=n) if edges else np.zeros(n, int)
+
+    by_t: dict[int, list[int]] = {}
+    for i in np.argsort(coords_tzyx[:, 0], kind="stable"):
+        by_t.setdefault(int(coords_tzyx[i, 0]), []).append(int(i))
+    phys = coords_tzyx[:, 1:] * np.asarray(scale)[None, :]
+
+    # ceil, not floor: int() would silently disable repair on any small dataset
+    budget = int(np.ceil(cfg.gap_close_max_frac * n))
+    radius = 2.0 * cfg.link_radius_um * cfg.gap_close_slack
+    new_coords: list[np.ndarray] = []
+    new_edges: list[tuple[int, int]] = []
+
+    for t in sorted(by_t):
+        if len(new_coords) >= budget:
+            break
+        ends = [i for i in by_t.get(t, []) if out_deg[i] == 0]
+        starts = [j for j in by_t.get(t + 2, []) if in_deg[j] == 0]
+        if not ends or not starts:
+            continue
+
+        D = cdist(phys[ends], phys[starts])
+        D[D > radius] = np.inf
+        finite = np.isfinite(D)
+        if not finite.any():
+            continue
+        big = D[finite].max() * 10 + 1.0
+        ri, ci = linear_sum_assignment(np.where(finite, D, big))
+        for i, j in zip(ri, ci):
+            if not finite[i, j] or len(new_coords) >= budget:
+                continue
+            src, dst = ends[i], starts[j]
+            mid = 0.5 * (coords_tzyx[src, 1:] + coords_tzyx[dst, 1:])
+            new_idx = n + len(new_coords)
+            new_coords.append(np.concatenate([[t + 1], mid]))
+            new_edges += [(src, new_idx), (new_idx, dst)]
+            out_deg[src] += 1
+            in_deg[dst] += 1
+
+    if not new_coords:
+        return coords_tzyx, edges
+    return np.vstack([coords_tzyx, np.array(new_coords)]), edges + new_edges
+
+
+def prune_isolated(
+    coords_tzyx: np.ndarray, edges: list[tuple[int, int]]
+) -> tuple[np.ndarray, list[tuple[int, int]]]:
+    """Drop detections with no edge at all, and reindex.
+
+    They cannot contribute an edge but they do count in `N_pred`, so they only ever cost
+    budget multiplier. NOT provably free, though: node matching is a bipartite assignment,
+    so a pruned node may currently be winning a match that would otherwise go to a linked
+    node — which can change edge TP/FP. Measure it, do not assume it.
+    """
+    n = len(coords_tzyx)
+    if n == 0:
+        return coords_tzyx, edges
+    keep = np.zeros(n, bool)
+    for s, d in edges:
+        keep[s] = keep[d] = True
+    if keep.all():
+        return coords_tzyx, edges
+    remap = np.full(n, -1, int)
+    remap[keep] = np.arange(int(keep.sum()))
+    return coords_tzyx[keep], [(int(remap[s]), int(remap[d])) for s, d in edges]
+
+
 # --------------------------------------------------------------------------
 # end to end
 # --------------------------------------------------------------------------
@@ -355,6 +465,18 @@ def predict_dataset(
     coords[:, 1:] *= np.array([dz, dy, dx], float)
 
     edges = link_all(coords, scale, cfg)
+
+    n_before = len(coords)
+    coords, edges = close_gaps(coords, edges, scale, cfg)
+    if verbose and len(coords) != n_before:
+        print(f"    gap closing inserted {len(coords) - n_before:,} nodes", flush=True)
+
+    if cfg.prune_isolated_nodes:
+        n_before = len(coords)
+        coords, edges = prune_isolated(coords, edges)
+        if verbose and len(coords) != n_before:
+            print(f"    pruned {n_before - len(coords):,} isolated nodes", flush=True)
+
     if verbose:
         print(f"    -> {len(coords):,} nodes, {len(edges):,} links", flush=True)
     return build_graph(coords, edges)

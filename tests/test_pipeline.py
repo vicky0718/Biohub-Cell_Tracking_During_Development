@@ -172,6 +172,43 @@ def main() -> int:
           estimated_total_nodes(ds, {"extra": {"estimated_number_of_nodes": 1234}}) == 1234.0,
           "nested lookup")
 
+    print("\n[graph repair: gap closing and isolated pruning]")
+    from pipeline.classical import close_gaps, prune_isolated
+
+    # a track detected at t=0 and t=2 but MISSING at t=1. A direct 0->2 edge is dropped
+    # by the scorer, so the repair has to insert a node instead.
+    gc = np.array([[0., 10., 50., 50.], [2., 10., 52., 52.]])
+    cfg_gap = Config(gap_close=1, link_radius_um=9.0)
+    c2, e2 = close_gaps(gc, [], SCALE, cfg_gap)
+    check("gap closing inserts a node", len(c2) == 3, f"{len(c2)} nodes")
+    check("inserted node sits at t+1", len(c2) == 3 and c2[2, 0] == 1.0,
+          f"t={c2[2, 0] if len(c2) > 2 else 'n/a'}")
+    check("inserted node is at the midpoint", len(c2) == 3
+          and abs(c2[2, 2] - 51.0) < 1e-9, f"y={c2[2, 2] if len(c2) > 2 else 'n/a'}")
+    check("it makes TWO consecutive edges, not one bridge",
+          len(e2) == 2 and all(abs(c2[d, 0] - c2[s, 0]) == 1 for s, d in e2),
+          f"edges={e2}")
+    check("gap closing is off by default",
+          close_gaps(gc, [], SCALE, Config())[0].shape[0] == 2, "no nodes added")
+
+    # too far apart to be the same cell across a 2-frame gap
+    far = np.array([[0., 10., 50., 50.], [2., 10., 200., 200.]])
+    check("gap closing respects the radius",
+          len(close_gaps(far, [], SCALE, cfg_gap)[0]) == 2, "no bridge over 60um")
+
+    # the cap must bind
+    many = np.array([[float(t), 10., 50. + 20 * i, 50.] for i in range(40) for t in (0, 2)])
+    c3, _ = close_gaps(many, [], SCALE, Config(gap_close=1, link_radius_um=9.0,
+                                               gap_close_max_frac=0.05))
+    check("gap_close_max_frac caps insertions",
+          len(c3) - len(many) <= int(0.05 * len(many)) ,
+          f"added {len(c3) - len(many)}, cap {int(0.05 * len(many))}")
+
+    iso = np.array([[0., 1., 1., 1.], [1., 1., 1., 1.], [0., 9., 9., 9.]])
+    c4, e4 = prune_isolated(iso, [(0, 1)])
+    check("prune drops the unlinked node", len(c4) == 2, f"{len(c4)} nodes")
+    check("prune reindexes edges correctly", e4 == [(0, 1)], f"{e4}")
+
     print("\n[downsampling maps coordinates back to original space]")
     cfg_ds = Config(det_threshold=0.3, min_separation_um=5.0, downsample=(1, 2, 2))
     g2 = predict_dataset(ds, cfg_ds, verbose=False)

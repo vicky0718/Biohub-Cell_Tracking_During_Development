@@ -37,11 +37,15 @@ Pre-registered in `notes/02-metric-findings.md`: the official baseline's
 | **0.15** | **0.5327** | 0.5282 | 0.845 | 4,200,408 |
 | 0.05 | 0.5230 | 0.5211 | 0.846 | 4,346,107 |
 
-**PROMOTE**, pooled `+0.4836`, positive in all five folds (+0.434 … +0.520).
+**PROMOTE**, pooled `+0.4836`, positive in all five folds (+0.434 … +0.520). The largest
+single result we have: **our detector's threshold belongs near 0.15, not near 1.0.**
 
-The baseline's own default scores **0.049**. Its CLI help justifies 0.99 as protecting
-precision; on this metric precision is nearly free and recall is everything, so that
-default costs about **0.48 of score**. This is the largest single result we have.
+> **Correction (2026-08-16, `notes/06-competitor-intel.md` §2).** This section originally
+> read the result as "the official baseline's default costs 0.48 of score". That was a
+> category error and is withdrawn. Our `det_threshold` cuts *quantile-normalised image
+> intensity*; the baseline's `--det-threshold` cuts the *TemporalUNet3D's predicted centre
+> probability*. Competitors run the latter at 0.96875–0.985 and score 0.9+ on the
+> leaderboard. The measured fact — where **our** threshold belongs — is unaffected.
 
 **The threshold is now saturated**, and that matters more than the winner:
 
