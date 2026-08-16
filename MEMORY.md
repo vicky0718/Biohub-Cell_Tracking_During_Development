@@ -179,10 +179,26 @@ Without the cookie pair every call is a bare 400 with no body.
 7. **GT is Ultrack pseudo-labels with real defects** — byte-identical consecutive frames
    where GT still moves a cell 8.9 µm, unresolvable dim cells, cells with Z span >24 µm that
    cannot fit the 7 µm match radius. A real ceiling below 1.0.
-8. **External data is allowed** (host: Zebrahub explicitly OK, no test overlap) — the
+8. **🚨 `pip install` does NOT work in a scored submission** — internet is off in the rerun
+   (host, to a competitor whose submission failed on it). Every notebook we have opens with
+   `pip_install(["geff","zarr"])`; that cell would fail a submission. At test time there is
+   no GT to read, so `geff` is not needed — only zarr (preinstalled), numpy, scipy. The
+   submission notebook must install nothing.
+9. **Max score is 1.1, not 1.0** (host): `adj_edge_jaccard` (≤1, higher with the
+   under-prediction bonus) + `0.1 × division_jaccard`. So LB 0.915 is **83% of maximum** and
+   our CV 0.5552 is ~50%. Verified 2026-08-16 against Kaggle's HOST-tagged messages.
+10. **External data is allowed** (host: Zebrahub explicitly OK, no test overlap) — the
    obvious corpus if we ever train a detector. Public baseline weights were trained on all
    199 train videos, so validating them on train is leakage; **we are training-free, so our
    CV is honest.**
+
+**Zebrahub is NOT reachable from this container** — the agent proxy's own relay log records
+`connect_rejected zebrahub.org:443 / public.czbiohub.org:443, gateway answered 403 to
+CONNECT (policy denial)`. Chromium is installed but Kaggle's edge resets it
+(`ERR_CONNECTION_RESET`) even through the proxy with HTTP/2 off and a normal UA, so the SPA
+cannot be rendered here either — the 71 forum *opening posts* stay unretrieved (all 219
+replies and all 25 HOST/ADMIN messages we do have). Any Zebrahub acquisition must run in a
+Kaggle notebook with internet enabled.
 
 **Status:** the metric findings (§1-5 above) remain toy-graph probes. Recon and the sweep
 numbers ARE real data. Best known config: `det_threshold=0.15, min_separation_um=6.0,

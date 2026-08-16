@@ -187,6 +187,80 @@ must not casually adopt the public checkpoints without rebuilding validation aro
 
 ---
 
+## 10. Verification pass (2026-08-16) — plus two things the first pass missed
+
+Re-checked on request. **Method:** the structured facts in §1 come from Kaggle's own
+`GetCompetition` record, re-fetched live; the host statements are messages Kaggle itself
+tags `authorType: HOST` / `ADMIN` (25 of them across the forum), quoted verbatim. A
+browser check was attempted and **failed** — see §11.
+
+Everything in §1–§9 above held. Two facts were missed the first time, and both are
+operationally important.
+
+### 🚨 `pip install` does not work during a scored submission
+
+> *"These won't work during submission, you need to have them already installed in your
+> testing artifacts."* — Jordão Bragantini (HOST), answering someone whose submission
+> failed while pip-installing.
+
+Internet is off in the scored rerun. **Every notebook we have opens with
+`pip_install(["geff", "zarr"])`, and that cell would fail a submission run.**
+
+The fix is easy and worth stating precisely: at test time there is no ground truth to
+read, so `geff` is not needed at all — only `zarr` (preinstalled on Kaggle), numpy and
+scipy. The submission notebook must install nothing. `geff` stays a research-only
+dependency for `02`/`03`, which run interactively with internet on.
+
+### The maximum score is 1.1, not 1.0
+
+> *"the best submission score is actually 1.1, not 1, so it is possible for the scores to
+> go over 1. In fact it is theoretically possible to obtain a score slightly above 1.1
+> (due to our adjusted jaccard metric)."* — Thibaut Goldsborough (HOST)
+
+`adj_edge_jaccard` maxes at 1.0 (higher with the under-prediction bonus) plus `0.1 ×
+division_jaccard`. So the ceiling is ~1.1, and every score should be read against that:
+the 0.915 leaderboard entry is **83 % of maximum**, not 91.5 %, and our 0.5552 is ~50 %.
+Recon §7 already measured `adj_edge_jaccard = 1.0825 > 1`, so this is consistent — it just
+gives the scale an anchor we did not have.
+
+### Smaller confirmations from the same pass
+
+- **Duplicate edges are filtered before scoring.** *"perfectly duplicated edges are
+  filtered out before scoring the edge Jaccard... each ground truth edge can only be used
+  for a single TP"* (HOST). That is exactly what `purescore.count_edges` implements, now
+  confirmed by the organisers rather than only read from their source.
+- **Only annotated tracks are scored, but all cells must be tracked.** *"The task is to
+  track ALL the cells in the video, not just the ones that we provide annotations for; at
+  test time you are only evaluated on the tracks that we have annotated"* (HOST).
+- **`embryo_id` is the `44b6` part; the rest is a crop id** (HOST) — confirms the prefix
+  split the harness now folds on.
+- **Imaging provenance**: multiple views per volume, fused, then linearly scaled to a
+  reference view; custom microscope based on the Janelia design in Tomer 2012 (HOST). Small
+  inter-view intensity deviations are expected — relevant to any intensity-based detector.
+- **Self-trained models are allowed**, but must be reproducible if you win.
+- The host on the official baseline: *"if this is the UNet baseline, this is expected,
+  inference is very slow, and needs to be improved!"*
+
+## 11. What could NOT be verified, and why
+
+- **A real browser cannot reach Kaggle from here.** Chromium is installed and was pointed
+  at the agent proxy; every attempt returns `ERR_CONNECTION_RESET`, with and without
+  HTTP/2 disabled and with a normal user-agent. `curl` to the same host works, so this is
+  Kaggle's edge rejecting the browser, not the proxy. The proxy's own failure log shows no
+  denial for `kaggle.com` — the CONNECT was accepted.
+- **Therefore the 71 opening posts remain unretrieved.** They need an authenticated
+  session: `BatchGetForumMessages` returns 403, `GetForumTopicById` returns metadata only
+  (no body), all four `commentSort` values return the same reply set, the discussion
+  `oembed` route 404s, and `.rss` serves the SPA shell. We have every *reply* (219/219) and
+  every host answer; what is missing is mostly the question being asked.
+- **Zebrahub is blocked by network policy — now proven, not inferred.** The proxy's own
+  relay log records explicit gateway denials:
+  `connect_rejected  zebrahub.org:443  gateway answered 403 to CONNECT (policy denial)`
+  and the same for `public.czbiohub.org:443`. Any Zebrahub acquisition must happen in a
+  Kaggle notebook with internet enabled, not here.
+
+---
+
 ## What changes because of this
 
 1. **Build a submission notebook.** Self-contained, runtime dataset discovery, `id` column,
