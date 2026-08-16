@@ -66,6 +66,12 @@ class Config:
     # NN spacing 24.99 µm at a ~1/28 annotated fraction implies true spacing
     # 25/28^(1/3) ~ 8 µm; the 7 µm match radius is the other anchor.
     min_separation_um: float = 6.0       # recon §4 (true spacing ~8 µm)
+    # Non-maximum window shape. 'box' is what 0.5552 was measured with and is kept so
+    # that number stays reproducible — but it is DEGENERATE below ~6 um: _footprint
+    # rounds to whole voxels, and on the 1.625 um isotropic grid that downsample=(1,4,4)
+    # produces, 4.5 / 3.5 / 2.5 um ALL collapse to a (3,3,3) window. The 03 grid lost
+    # four arms to that collision (notes/09 §1). Any separation sweep must use 'ball'.
+    footprint: str = "box"               # 'box' | 'ball'
     # Hard cap on detections per frame, keeping the strongest. Overrides the budget
     # cap below when set; normally leave it None and let `budget_fill` do the work.
     max_per_frame: int | None = None
@@ -224,8 +230,12 @@ def detect_frame(
     ``cap`` is the per-frame detection limit for *this dataset*, normally derived from
     its own node budget by `predict_dataset`; it overrides `cfg.max_per_frame`.
     """
-    fp = _footprint(cfg.min_separation_um, voxel_um)
-    pooled = maximum_filter(vol, size=fp, mode="nearest")
+    if cfg.footprint == "ball":
+        fp = _ball_footprint(cfg.min_separation_um, voxel_um)
+        pooled = maximum_filter(vol, footprint=fp, mode="nearest")
+    else:
+        pooled = maximum_filter(vol, size=_footprint(cfg.min_separation_um, voxel_um),
+                                mode="nearest")
     peaks = (vol == pooled) & (vol > cfg.det_threshold)
     idx = np.argwhere(peaks)
     if idx.size == 0:

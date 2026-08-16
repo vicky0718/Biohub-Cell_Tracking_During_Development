@@ -172,6 +172,19 @@ def main() -> int:
           estimated_total_nodes(ds, {"extra": {"estimated_number_of_nodes": 1234}}) == 1234.0,
           "nested lookup")
 
+    print("\n[the box footprint is degenerate below 6um — the 03 grid's lost arms]")
+    from pipeline.classical import _ball_footprint as _ball
+    vox_ds = (1.625, 0.40625 * 4, 0.40625 * 4)   # what downsample=(1,4,4) produces
+    boxes = {s_: _footprint(s_, vox_ds) for s_ in (6.0, 4.5, 3.5, 2.5)}
+    check("box footprint COLLIDES for 4.5/3.5/2.5",
+          boxes[4.5] == boxes[3.5] == boxes[2.5],
+          f"all -> {boxes[4.5]}; this silently duplicated 4 arms of the 03 grid")
+    balls = {s_: int(_ball(s_, vox_ds).sum()) for s_ in (6.0, 4.5, 3.5, 2.5)}
+    check("ball footprint separates them", len(set(balls.values())) == 4, str(balls))
+    check("ball is monotone in radius",
+          all(balls[a] > balls[b] for a, b in [(6.0, 4.5), (4.5, 3.5), (3.5, 2.5)]),
+          str(balls))
+
     print("\n[DoG detection recovers DIM nuclei that intensity thresholding misses]")
     from pipeline.classical import _ball_footprint, detect_frame_dog
 
