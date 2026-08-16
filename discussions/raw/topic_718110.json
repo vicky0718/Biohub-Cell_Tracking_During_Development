@@ -1,0 +1,233 @@
+{
+  "forumTopic": {
+    "authorId": 14670471,
+    "authorThumbnailName": "14670471-kg.jpeg?t=2026-06-25-19-42-14",
+    "authorUserDisplayName": "Adarsh",
+    "authorUserName": "madarshbb",
+    "comments": [
+      {
+        "id": 3486814,
+        "postDate": "2026-07-03T03:41:10.120Z",
+        "rawMarkdown": "Some tips:\n* plan idea by yourself, even better if you implement it by yourself and let it optimize your code :)\n* ask it to make [tutorial notebook](https://www.kaggle.com/code/tom99763/tracksdata-tutorial-evaluation-mock-tests) (Iike this one I made) for this challenge and upload to kaggle. then spending serveral days manually go through every step and data flow to understand data. \n* keep generating [html report ](https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/717109)and explaination to check how well it understand the challenge, that's also a good tool for showing your teammate your results\n* repositery organization\n* do not copy public notebook and ask it to gain lb",
+        "content": "<p>Some tips:</p>\n<ul>\n<li>plan idea by yourself, even better if you implement it by yourself and let it optimize your code :)</li>\n<li>ask it to make <a href=\"https://www.kaggle.com/code/tom99763/tracksdata-tutorial-evaluation-mock-tests\" target=\"_blank\">tutorial notebook</a> (Iike this one I made) for this challenge and upload to kaggle. then spending serveral days manually go through every step and data flow to understand data. </li>\n<li>keep generating <a href=\"https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/717109\" target=\"_blank\">html report </a>and explaination to check how well it understand the challenge, that's also a good tool for showing your teammate your results</li>\n<li>repositery organization</li>\n<li>do not copy public notebook and ask it to gain lb</li>\n</ul>",
+        "parent": {},
+        "author": {
+          "displayName": "Tom",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+          "url": "/tom99763",
+          "tier": "MASTER",
+          "id": 4310004,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 14,
+          "canUpvote": true,
+          "totalUpvotes": 14
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 99,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "alexspas",
+              "annajojo",
+              "beckpro",
+              "yunusgmsoy",
+              "justiceackermann",
+              "marcuseno",
+              "wentaozang"
+            ],
+            "userCount": 7
+          },
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "alexspas",
+              "xaxipirulazo",
+              "yunusgmsoy",
+              "jamesweatherhead",
+              "shivasai77"
+            ],
+            "userCount": 5
+          },
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "alexspas",
+              "yunusgmsoy"
+            ],
+            "userCount": 2
+          }
+        ],
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Tom",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+            "url": "/tom99763",
+            "userName": "tom99763",
+            "tier": "MASTER",
+            "id": 4310004,
+            "profileUrl": "/tom99763",
+            "performanceTier": "MASTER",
+            "userId": 4310004,
+            "progressionOptOut": false
+          },
+          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+        }
+      },
+      {
+        "id": 3494895,
+        "postDate": "2026-07-10T23:58:05.337Z",
+        "rawMarkdown": "I use LLMs to teach myself as much as possible on the details of the data and task. I like to use Claude Code with tools like Paperclip CLI  to learn as much as I can from literature in all fields of study; as biological solutions can often be found from experimental physics, mathematics, etc. \n\nPaperclip CLI tool from James Zou (Stanford): [https://paperclip.gxl.ai/](https://paperclip.gxl.ai/)",
+        "content": "<p>I use LLMs to teach myself as much as possible on the details of the data and task. I like to use Claude Code with tools like Paperclip CLI  to learn as much as I can from literature in all fields of study; as biological solutions can often be found from experimental physics, mathematics, etc. </p>\n<p>Paperclip CLI tool from James Zou (Stanford): <a href=\"https://paperclip.gxl.ai/\" target=\"_blank\">https://paperclip.gxl.ai/</a></p>",
+        "parent": {},
+        "author": {
+          "displayName": "James Weatherhead",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21325433-kg.jpg?t=2026-08-06-04-18-09",
+          "url": "/jamesweatherhead",
+          "tier": "CONTRIBUTOR",
+          "id": 21325433,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 326,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "James Weatherhead",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21325433-kg.jpg?t=2026-08-06-04-18-09",
+            "url": "/jamesweatherhead",
+            "userName": "jamesweatherhead",
+            "tier": "CONTRIBUTOR",
+            "id": 21325433,
+            "profileUrl": "/jamesweatherhead",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 21325433,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3493765,
+        "postDate": "2026-07-08T13:00:47.170Z",
+        "rawMarkdown": "In reality, I view AI tools merely as convenient instruments for bringing ideas to life. It\u2019s still too early to expect AI\u2014which is built on statistics\u2014to autonomously generate ideas. Let's at least wait until an AI can go to jail for a calculation error before we talk about that. lol",
+        "content": "<p>In reality, I view AI tools merely as convenient instruments for bringing ideas to life. It\u2019s still too early to expect AI\u2014which is built on statistics\u2014to autonomously generate ideas. Let's at least wait until an AI can go to jail for a calculation error before we talk about that. lol</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Shixiang Yan",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/16934691-kg.jpg?t=2023-10-10-06-06-36",
+          "url": "/shawnchile",
+          "tier": "CONTRIBUTOR",
+          "id": 16934691,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Shixiang Yan",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/16934691-kg.jpg?t=2023-10-10-06-06-36",
+            "url": "/shawnchile",
+            "userName": "shawnchile",
+            "tier": "CONTRIBUTOR",
+            "id": 16934691,
+            "profileUrl": "/shawnchile",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 16934691,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3486804,
+      "postDate": "2026-07-03T02:57:01.237Z",
+      "rawMarkdown": "Are people finding more success in asking the AI (Codex, Claude Code, etc...) new ideas or just using it to implement ideas which the user finds on their own?\n\nFor me, its almost always the latter because the ideas that AI comes up with are quite bad. They love reverting back to parameter sweeping in the baseline code and calling it an experiment and quite difficult to extract original ideas from them.\n\nHow were other people's experience with them?",
+      "content": "<p>Are people finding more success in asking the AI (Codex, Claude Code, etc\u2026) new ideas or just using it to implement ideas which the user finds on their own?</p>\n<p>For me, its almost always the latter because the ideas that AI comes up with are quite bad. They love reverting back to parameter sweeping in the baseline code and calling it an experiment and quite difficult to extract original ideas from them.</p>\n<p>How were other people's experience with them?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Adarsh",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14670471-kg.jpeg?t=2026-06-25-19-42-14",
+        "url": "/madarshbb",
+        "tier": "MASTER",
+        "id": 14670471,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 9,
+        "canUpvote": true,
+        "totalUpvotes": 9
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 170,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "Athar Sayed",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2051490-kg.png?t=2025-04-18-10-44-38",
+          "url": "/sayedathar11",
+          "userName": "sayedathar11",
+          "tier": "MASTER",
+          "id": 2051490,
+          "profileUrl": "/sayedathar11",
+          "performanceTier": "MASTER",
+          "userId": 2051490,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3486804,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 718110,
+    "name": "How do people use AI tools in competitions",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-03T02:57:01.235777400Z",
+    "totalVotes": 9,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/718110",
+    "totalMessages": 3,
+    "authorPerformanceTier": "MASTER",
+    "authorProgressionOptOut": false
+  }
+}

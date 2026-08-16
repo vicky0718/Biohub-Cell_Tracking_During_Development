@@ -1,0 +1,102 @@
+{
+  "forumTopic": {
+    "authorId": 28172383,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Luis Rosar",
+    "authorUserName": "luisrosar",
+    "comments": [
+      {
+        "id": 3511327,
+        "postDate": "2026-08-10T21:45:02.063Z",
+        "rawMarkdown": "Really interesting approach. The 3D tracking problem is unique because cells can move in z as well as x,y. The zarr format for the microscopy data is efficient for chunked loading. For the submission, the key is getting the node/edge structure right \u2014 each dataset has its own graph of cell positions over time.",
+        "content": "<p>Really interesting approach. The 3D tracking problem is unique because cells can move in z as well as x,y. The zarr format for the microscopy data is efficient for chunked loading. For the submission, the key is getting the node/edge structure right \u2014 each dataset has its own graph of cell positions over time.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Ragheb haddara",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/l4r3nn",
+          "tier": "CONTRIBUTOR",
+          "id": 35670825,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2376,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Ragheb haddara",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/l4r3nn",
+            "userName": "l4r3nn",
+            "tier": "CONTRIBUTOR",
+            "id": 35670825,
+            "profileUrl": "/l4r3nn",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 35670825,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3510907,
+      "postDate": "2026-08-09T20:23:41.313Z",
+      "rawMarkdown": "I\u2019m sharing a public technical case study developed in connection with the Biohub Cell Tracking During Development competition:\n\n[](https://github.com/luisrosa/from-detection-to-identity)\n\nThe repository is available publicly to all competition participants.\n\nThe project documents how I decomposed the cell-lineage inference problem into distinct questions about evidence, identity, persistence, representation, validation, and global compatibility, and how those questions affected engineering decisions and experiments.\n\nThe public artifact includes:\n\n* the problem formulation and question-to-decision ledger;\n* aggregate training and held-out validation records;\n* reproducible checkpoint-selection and continuation-promotion analysis;\n* a comparison against a zero-motion physical baseline;\n* aggregate uncertainty/calibration analysis;\n* synthetic demonstrations of unknown-versus-negative supervision;\n* public-safe analysis notebooks, utilities, tests, figures, and provenance checks;\n* explicit limitations and rejected experiments.\n\nFor example, on 7,368 unique held-out ordinary-persistence edges, the selected motion field achieved approximately 0.570 \u00b5m error per coordinate versus 1.035 \u00b5m for a zero-motion baseline, a 44.9% reduction. The repository also documents why a later continuation state was rejected despite improving some point metrics: held-out motion likelihood deteriorated enough to worsen the declared validation objective.\n\nThe repository is intentionally **not** the complete competition implementation.\n\nIt does **not** contain Competition Data, competition images or annotations, model weights, checkpoints, the production architecture, training or inference source code, operating thresholds, proposal-reconciliation logic, relation-scoring implementation, global graph-selection implementation, or the submission-generation pipeline.\n\nThe public repository reproduces analyses from committed aggregate records; it does not reconstruct those records from the private training system or Competition Data.\n\nPublic software and notebooks in the repository are released under the MIT License. The repository\u2019s disclosure and licensing files describe the boundary between public and private material in detail.\n\nTo reproduce the public artifact:\n\n```bash\ngit clone https://github.com/luisrosa/from-detection-to-identity.git\ncd from-detection-to-identity\n\npython3 -m venv .venv\nsource .venv/bin/activate\npython -m pip install --upgrade pip\npython -m pip install -r requirements.txt\n\nmake reproduce\n```\n\nExpected terminal conclusions include:\n\n```text\nPUBLIC RELEASE VALIDATION PASSED\nCLEAN COPY REPRODUCTION PASSED\n```\n\nThis post is the competition-specific public sharing notice for the repository so that the same released materials are available to all participants.\n",
+      "content": "<p>I\u2019m sharing a public technical case study developed in connection with the Biohub Cell Tracking During Development competition:</p>\n<p><a href=\"https://github.com/luisrosa/from-detection-to-identity\" target=\"_blank\"></a></p>\n<p>The repository is available publicly to all competition participants.</p>\n<p>The project documents how I decomposed the cell-lineage inference problem into distinct questions about evidence, identity, persistence, representation, validation, and global compatibility, and how those questions affected engineering decisions and experiments.</p>\n<p>The public artifact includes:</p>\n<ul>\n<li>the problem formulation and question-to-decision ledger;</li>\n<li>aggregate training and held-out validation records;</li>\n<li>reproducible checkpoint-selection and continuation-promotion analysis;</li>\n<li>a comparison against a zero-motion physical baseline;</li>\n<li>aggregate uncertainty/calibration analysis;</li>\n<li>synthetic demonstrations of unknown-versus-negative supervision;</li>\n<li>public-safe analysis notebooks, utilities, tests, figures, and provenance checks;</li>\n<li>explicit limitations and rejected experiments.</li>\n</ul>\n<p>For example, on 7,368 unique held-out ordinary-persistence edges, the selected motion field achieved approximately 0.570 \u00b5m error per coordinate versus 1.035 \u00b5m for a zero-motion baseline, a 44.9% reduction. The repository also documents why a later continuation state was rejected despite improving some point metrics: held-out motion likelihood deteriorated enough to worsen the declared validation objective.</p>\n<p>The repository is intentionally <strong>not</strong> the complete competition implementation.</p>\n<p>It does <strong>not</strong> contain Competition Data, competition images or annotations, model weights, checkpoints, the production architecture, training or inference source code, operating thresholds, proposal-reconciliation logic, relation-scoring implementation, global graph-selection implementation, or the submission-generation pipeline.</p>\n<p>The public repository reproduces analyses from committed aggregate records; it does not reconstruct those records from the private training system or Competition Data.</p>\n<p>Public software and notebooks in the repository are released under the MIT License. The repository\u2019s disclosure and licensing files describe the boundary between public and private material in detail.</p>\n<p>To reproduce the public artifact:</p>\n<pre><code>git clone https://github.com/luisrosa/from-detection-to-identity.git\ncd from-detection-to-identity\n\npython3 -m venv .venv\nsource .venv/bin/activate\npython -m pip install --upgrade pip\npython -m pip install -r requirements.txt\n\nmake reproduce\n</code></pre>\n<p>Expected terminal conclusions include:</p>\n<pre><code>PUBLIC RELEASE VALIDATION PASSED\nCLEAN COPY REPRODUCTION PASSED\n</code></pre>\n<p>This post is the competition-specific public sharing notice for the repository so that the same released materials are available to all participants.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Luis Rosar",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/luisrosar",
+        "tier": "CONTRIBUTOR",
+        "id": 28172383,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2117,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Luis Rosar",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/luisrosar",
+          "userName": "luisrosar",
+          "tier": "CONTRIBUTOR",
+          "id": 28172383,
+          "profileUrl": "/luisrosar",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 28172383,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3510907,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 734093,
+    "name": "Public case study: From Detection to Identity \u2014 3D cell tracking reasoning and aggregate evidence",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-09T20:23:41.311777100Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/734093",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

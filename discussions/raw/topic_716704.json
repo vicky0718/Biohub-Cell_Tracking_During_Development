@@ -1,0 +1,158 @@
+{
+  "forumTopic": {
+    "authorId": 29039526,
+    "authorThumbnailName": "29039526-gr.jpg",
+    "authorUserDisplayName": "Gb El Salvador",
+    "authorUserName": "gbelsalvador",
+    "comments": [
+      {
+        "id": 3484931,
+        "postDate": "2026-06-30T21:49:18.087Z",
+        "rawMarkdown": "@gbelsalvador, are you trying to install any package from pip?",
+        "content": "<p><a href=\"https://www.kaggle.com/gbelsalvador\" target=\"_blank\">@gbelsalvador</a>, are you trying to install any package from pip?</p>",
+        "replies": [
+          {
+            "id": 3485128,
+            "postDate": "2026-07-01T05:50:29.130Z",
+            "rawMarkdown": "Yes, there are certain packages I installed using pip.",
+            "content": "<p>Yes, there are certain packages I installed using pip.</p>",
+            "replies": [
+              {
+                "id": 3485623,
+                "postDate": "2026-07-01T16:51:43.620Z",
+                "rawMarkdown": "These won't work during submission, you need to have them already installed in your testing artifacts",
+                "content": "<p>These won't work during submission, you need to have them already installed in your testing artifacts</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Jord\u00e3o Bragantini",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/jookuma",
+                  "tier": "CONTRIBUTOR",
+                  "id": 1417736,
+                  "progressionOptOut": false
+                },
+                "authorType": "HOST",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "reactions": [
+                  {
+                    "emoji": "THANK_YOU",
+                    "featuredUserNames": [
+                      "girigd26",
+                      "uthmankareemtunde"
+                    ],
+                    "userCount": 2
+                  }
+                ]
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Gb El Salvador",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29039526-gr.jpg",
+              "url": "/gbelsalvador",
+              "tier": "CONTRIBUTOR",
+              "id": 29039526,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Gb El Salvador",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29039526-gr.jpg",
+                "url": "/gbelsalvador",
+                "userName": "gbelsalvador",
+                "tier": "CONTRIBUTOR",
+                "id": 29039526,
+                "profileUrl": "/gbelsalvador",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 29039526,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Jord\u00e3o Bragantini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/jookuma",
+          "tier": "CONTRIBUTOR",
+          "id": 1417736,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3484917,
+      "postDate": "2026-06-30T21:27:45.113Z",
+      "rawMarkdown": "I\u2019ve tried submitting my CSV file three times now, but I keep getting a message saying my notebook is using the internet. I\u2019ve disabled it and saved the changes, yet the notification telling me to disconnect the notebook from the internet keeps popping up\u2014I don't know what to do anymore.",
+      "content": "<p>I\u2019ve tried submitting my CSV file three times now, but I keep getting a message saying my notebook is using the internet. I\u2019ve disabled it and saved the changes, yet the notification telling me to disconnect the notebook from the internet keeps popping up\u2014I don't know what to do anymore.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Gb El Salvador",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29039526-gr.jpg",
+        "url": "/gbelsalvador",
+        "tier": "CONTRIBUTOR",
+        "id": 29039526,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -3,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Gb El Salvador",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29039526-gr.jpg",
+          "url": "/gbelsalvador",
+          "userName": "gbelsalvador",
+          "tier": "CONTRIBUTOR",
+          "id": 29039526,
+          "profileUrl": "/gbelsalvador",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 29039526,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3484917,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 716704,
+    "name": "failed submission",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-06-30T21:27:45.111872400Z",
+    "totalVotes": -3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/716704",
+    "totalMessages": 3,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

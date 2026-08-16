@@ -1,0 +1,130 @@
+{
+  "id": 136605,
+  "competitionName": "biohub-cell-tracking-during-development",
+  "title": "Biohub - Cell Tracking During Development",
+  "briefDescription": "Detect and track zebrafish cells through 3D space and time",
+  "dateEnabled": "2026-06-29T19:01:13.613Z",
+  "deadline": "2026-09-29T23:59:00Z",
+  "hasLeaderboard": true,
+  "leaderboardPercentage": 29,
+  "maxDailySubmissions": 5,
+  "numScoredSubmissions": 2,
+  "hasSolution": true,
+  "numPrizes": 7,
+  "forumId": 10656304,
+  "userRankMultiplier": 1,
+  "dateCreated": "2026-04-01T21:58:55.077484900Z",
+  "competitionHostSegmentId": 2,
+  "maxTeamSize": 5,
+  "medalsAllowed": true,
+  "teamMergerExplicitDeadline": "2026-09-22T23:59:00Z",
+  "prohibitNewEntrantsExplicitDeadline": "2026-09-22T23:59:00Z",
+  "kernelsPublishingDisabledDeadline": "2026-09-22T23:59:00Z",
+  "organizationId": 5324,
+  "hasCoverImageUrl": true,
+  "hasScripts": true,
+  "onlyAllowKernelSubmissions": true,
+  "totalTeams": 2399,
+  "totalCompetitors": 2592,
+  "totalSubmissions": 32953,
+  "rulesRequired": true,
+  "usesSynchronousReruns": true,
+  "maxCpuRuntimeMinutes": 720,
+  "maxGpuRuntimeMinutes": 720,
+  "rowIdColumnName": "id",
+  "requiredSubmissionFilename": "submission.csv",
+  "evaluationAlgorithm": {
+    "id": 7107,
+    "name": "CZI Biohub Zebrafish 133605",
+    "isMax": true,
+    "environmentRenderType": "ENVIRONMENT_RENDER_TYPE_JSON",
+    "kernelId": 124523554,
+    "latestCompetitionMetricVersionId": 72149,
+    "state": "AVAILABLE",
+    "passCompleteSubmission": true
+  },
+  "categories": [
+    {
+      "id": 14102,
+      "name": "image",
+      "fullPath": "data type > image",
+      "datasetCount": 63083,
+      "competitionCount": 696,
+      "scriptCount": 7088,
+      "slug": "image-data",
+      "displayName": "Image"
+    },
+    {
+      "id": 14105,
+      "name": "video",
+      "fullPath": "data type > video data",
+      "datasetCount": 1432,
+      "competitionCount": 22,
+      "scriptCount": 313,
+      "slug": "video-data",
+      "displayName": "Video"
+    },
+    {
+      "id": 13207,
+      "name": "computer vision",
+      "fullPath": "technique > computer vision",
+      "description": "Teaching a machine to interpret real-world images and videos. Applications include detecting objects, capturing motion, and restoring images.",
+      "datasetCount": 7342,
+      "competitionCount": 150,
+      "scriptCount": 6463,
+      "slug": "image-processing",
+      "displayName": "Computer Vision"
+    },
+    {
+      "id": 17074,
+      "name": "object detection",
+      "fullPath": "task > object-detection",
+      "description": "",
+      "datasetCount": 1574,
+      "competitionCount": 45,
+      "scriptCount": 826,
+      "slug": "object-detection",
+      "displayName": "Object Detection"
+    },
+    {
+      "id": 7100,
+      "name": "biology",
+      "fullPath": "subject > earth and nature > biology",
+      "description": "Explore datasets and kernels about gene expressions, transcriptomics, and even the works of Charles Darwin.",
+      "datasetCount": 18023,
+      "competitionCount": 46,
+      "scriptCount": 4957,
+      "slug": "biology",
+      "displayName": "Biology"
+    },
+    {
+      "name": "custom metric",
+      "description": "This competition's metric is defined under the 'Evaluation' tab",
+      "displayName": "Custom Metric"
+    }
+  ],
+  "organization": {
+    "slug": "biohub",
+    "name": "Biohub",
+    "thumbnailImageUrl": "https://storage.googleapis.com/kaggle-organizations/5324/thumbnail.png?t=2026-04-22-22-05-28",
+    "profileUrl": "/organizations/biohub"
+  },
+  "launched": true,
+  "createdByUserId": 19579895,
+  "license": {
+    "id": 1,
+    "name": "CC0: Public Domain",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "agreementRequired": false
+  },
+  "hostName": "Biohub",
+  "scoreTruncationNumDecimals": 3,
+  "rerunMaxStaggerMinutes": 5,
+  "totalJoinedUsers": 10439,
+  "requiresIdentityVerification": true,
+  "submissionSizeLimitMb": 20480,
+  "reward": {
+    "id": "USD",
+    "quantity": 60000
+  }
+}

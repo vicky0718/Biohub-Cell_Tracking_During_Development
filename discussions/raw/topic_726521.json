@@ -1,0 +1,97 @@
+{
+  "forumTopic": {
+    "authorId": 1417736,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Jord\u00e3o Bragantini",
+    "authorUserName": "jookuma",
+    "comments": [
+      {
+        "id": 3498817,
+        "postDate": "2026-07-16T01:05:05.560Z",
+        "rawMarkdown": "thankyou my good sir. how has the competition been for you and what is the insights you hope to get from the results?\ni do lots of random research on stuff for ai so if you ever want collaboration or notes hit me up. Im not the smartest guy but i try hard lol my github is issdandavis and i use my custom ai systems the SCBE frameworks and its extensions to work on things and it has done well on so far.",
+        "content": "<p>thankyou my good sir. how has the competition been for you and what is the insights you hope to get from the results?\ni do lots of random research on stuff for ai so if you ever want collaboration or notes hit me up. Im not the smartest guy but i try hard lol my github is issdandavis and i use my custom ai systems the SCBE frameworks and its extensions to work on things and it has done well on so far.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Issac \u201cIzreal\u201d Davis",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/32680666-gr.jpg",
+          "url": "/issacizrealdavis",
+          "tier": "CONTRIBUTOR",
+          "id": 32680666,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -1,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 204,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Issac \u201cIzreal\u201d Davis",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/32680666-gr.jpg",
+            "url": "/issacizrealdavis",
+            "userName": "issacizrealdavis",
+            "tier": "CONTRIBUTOR",
+            "id": 32680666,
+            "profileUrl": "/issacizrealdavis",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 32680666,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3498498,
+      "postDate": "2026-07-15T16:24:16.970Z",
+      "rawMarkdown": "This additional work might be helpful, https://arxiv.org/pdf/2607.11754\nFull disclaimer, I'm one of the authors\n\nWe haven't tried on the competition dataset yet.\nThe inference code and pre-trained model are available at https://github.com/royerlab/hoct\nThe training code isn't available yet because it's under peer review.\nThe tracking results depend on the quality of the segmentation mask.\n\nI suggest comparing CPU vs GPU inference, depending on the number of cells, the first might be faster.",
+      "content": "<p>This additional work might be helpful, <a href=\"https://arxiv.org/pdf/2607.11754\" target=\"_blank\">https://arxiv.org/pdf/2607.11754</a>\nFull disclaimer, I'm one of the authors</p>\n<p>We haven't tried on the competition dataset yet.\nThe inference code and pre-trained model are available at <a href=\"https://github.com/royerlab/hoct\" target=\"_blank\">https://github.com/royerlab/hoct</a>\nThe training code isn't available yet because it's under peer review.\nThe tracking results depend on the quality of the segmentation mask.</p>\n<p>I suggest comparing CPU vs GPU inference, depending on the number of cells, the first might be faster.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Jord\u00e3o Bragantini",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/jookuma",
+        "tier": "CONTRIBUTOR",
+        "id": 1417736,
+        "progressionOptOut": false
+      },
+      "authorType": "HOST",
+      "votes": {
+        "totalVotes": 8,
+        "canUpvote": true,
+        "totalUpvotes": 8
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "LOVE",
+          "featuredUserNames": [
+            "marcuseno",
+            "issacizrealdavis"
+          ],
+          "userCount": 2
+        }
+      ]
+    },
+    "firstMessageId": 3498498,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 726521,
+    "name": "Higher-order cell tracking",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-15T16:24:16.968400700Z",
+    "totalVotes": 8,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/726521",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

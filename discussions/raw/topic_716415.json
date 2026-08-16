@@ -1,0 +1,102 @@
+{
+  "forumTopic": {
+    "authorId": 27082480,
+    "authorThumbnailName": "27082480-kg.png?t=2026-06-30-01-58-12",
+    "authorUserDisplayName": "Sri Sai Hemanth Bollepalli",
+    "authorUserName": "sshemanth07",
+    "comments": [
+      {
+        "id": 3485642,
+        "postDate": "2026-07-01T17:09:52.353Z",
+        "rawMarkdown": "Same issue here. ",
+        "content": "<p>Same issue here. </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Rahul Parmeshwar",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+          "url": "/rahulparmeshwar",
+          "tier": "CONTRIBUTOR",
+          "id": 35255430,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 75,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Rahul Parmeshwar",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35255430-kg.jpeg?t=2026-07-01-23-21-20",
+            "url": "/rahulparmeshwar",
+            "userName": "rahulparmeshwar",
+            "tier": "CONTRIBUTOR",
+            "id": 35255430,
+            "profileUrl": "/rahulparmeshwar",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 35255430,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3484574,
+      "postDate": "2026-06-30T14:52:26.160Z",
+      "rawMarkdown": "I noticed my submission has been scoring for several hours. May i know whats the issue? anyone experiencing like me.",
+      "content": "<p>I noticed my submission has been scoring for several hours. May i know whats the issue? anyone experiencing like me.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Sri Sai Hemanth Bollepalli",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27082480-kg.png?t=2026-06-30-01-58-12",
+        "url": "/sshemanth07",
+        "tier": "CONTRIBUTOR",
+        "id": 27082480,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -5,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2104,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Sri Sai Hemanth Bollepalli",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27082480-kg.png?t=2026-06-30-01-58-12",
+          "url": "/sshemanth07",
+          "userName": "sshemanth07",
+          "tier": "CONTRIBUTOR",
+          "id": 27082480,
+          "profileUrl": "/sshemanth07",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 27082480,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3484574,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 716415,
+    "name": "Scoring issue",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-06-30T14:52:26.158593500Z",
+    "totalVotes": -5,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/716415",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

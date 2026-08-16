@@ -1,0 +1,91 @@
+{
+  "forumTopic": {
+    "authorId": 24537247,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "aaaa1597",
+    "authorUserName": "aaaa1597",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3500287,
+      "postDate": "2026-07-19T01:03:56.667Z",
+      "rawMarkdown": "Hi everyone,\n\nI am excited to join my first active Kaggle competition, **Biohub - Cell Tracking During Development**! As someone new to bioinformatics and life sciences, I wanted to document my initial setup process to help others starting out.\n\nI have written a step-by-step guide covering the entire workflow from setting up the Kaggle Notebook to making the first submission. \n\n### What's covered in the guide:\n1. Agreeing to competition rules and setting up API tokens.\n2. Creating and preparing a Kaggle Notebook.\n3. **Troubleshooting `zarr` offline installation issues** (since internet access must be turned off during submission evaluation).\n4. Running the template notebook, saving versions, and successfully submitting to the leaderboard.\n\nIf you are just getting started or facing import errors while setting up your environment, feel free to check out the post:\n\ud83d\udc49 **[BCT1: Kaggle Environment Setup and First Submission](https://dev.to/kito2718/bct1-kaggle-environment-setup-and-first-submission-4016)**\n\n*(For Japanese readers, I also published the original Japanese version on Zenn here: [18-\u2460Kaggle\u5b9f\u8df53 Biohub\u7d30\u80de\u30c8\u30e9\u30c3\u30ad\u30f3\u30b0\uff1a\u74b0\u5883\u69cb\u7bc9\u304b\u3089\u521d\u56de\u63d0\u51fa\u307e\u3067\u306e\u624b\u9806](https://zenn.dev/rg687076/articles/zenn_20260714_0630_bct_environment_submission))*\n\nI hope this helps anyone who is starting out with this competition! I would love to hear your feedback or any tips.\n\nGood luck to everyone!",
+      "content": "<p>Hi everyone,</p>\n<p>I am excited to join my first active Kaggle competition, <strong>Biohub - Cell Tracking During Development</strong>! As someone new to bioinformatics and life sciences, I wanted to document my initial setup process to help others starting out.</p>\n<p>I have written a step-by-step guide covering the entire workflow from setting up the Kaggle Notebook to making the first submission. </p>\n<h3>What's covered in the guide:</h3>\n<ol>\n<li>Agreeing to competition rules and setting up API tokens.</li>\n<li>Creating and preparing a Kaggle Notebook.</li>\n<li><strong>Troubleshooting <code>zarr</code> offline installation issues</strong> (since internet access must be turned off during submission evaluation).</li>\n<li>Running the template notebook, saving versions, and successfully submitting to the leaderboard.</li>\n</ol>\n<p>If you are just getting started or facing import errors while setting up your environment, feel free to check out the post:\n\ud83d\udc49 <strong><a href=\"https://dev.to/kito2718/bct1-kaggle-environment-setup-and-first-submission-4016\" target=\"_blank\">BCT1: Kaggle Environment Setup and First Submission</a></strong></p>\n<p><em>(For Japanese readers, I also published the original Japanese version on Zenn here: <a href=\"https://zenn.dev/rg687076/articles/zenn_20260714_0630_bct_environment_submission\" target=\"_blank\">18-\u2460Kaggle\u5b9f\u8df53 Biohub\u7d30\u80de\u30c8\u30e9\u30c3\u30ad\u30f3\u30b0\uff1a\u74b0\u5883\u69cb\u7bc9\u304b\u3089\u521d\u56de\u63d0\u51fa\u307e\u3067\u306e\u624b\u9806</a>)</em></p>\n<p>I hope this helps anyone who is starting out with this competition! I would love to hear your feedback or any tips.</p>\n<p>Good luck to everyone!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "aaaa1597",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/aaaa1597",
+        "tier": "CONTRIBUTOR",
+        "id": 24537247,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2039,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "aaaa1597",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/aaaa1597",
+          "userName": "aaaa1597",
+          "tier": "CONTRIBUTOR",
+          "id": 24537247,
+          "profileUrl": "/aaaa1597",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 24537247,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3500287,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 727462,
+    "name": "[Tutorial] Kaggle Environment Setup & First Submission Guide (with Offline Zarr Fix)",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-19T01:03:56.665428600Z",
+    "tags": [
+      {
+        "id": 7302,
+        "name": "environment",
+        "listingUrl": "/search?q=environment+tag%3A%22environment%22",
+        "tagUrl": "/tags/environment",
+        "displayName": "Environment"
+      },
+      {
+        "id": 16639,
+        "name": "python",
+        "listingUrl": "/search?q=python+tag%3A%22python%22",
+        "tagUrl": "/tags/python",
+        "displayName": "Python"
+      },
+      {
+        "id": 13102,
+        "name": "beginner",
+        "listingUrl": "/search?q=beginner+tag%3A%22beginner%22",
+        "tagUrl": "/tags/beginner",
+        "displayName": "Beginner"
+      },
+      {
+        "id": 7100,
+        "name": "biology",
+        "listingUrl": "/search?q=biology+tag%3A%22biology%22",
+        "tagUrl": "/tags/biology",
+        "displayName": "Biology"
+      }
+    ],
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/727462",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

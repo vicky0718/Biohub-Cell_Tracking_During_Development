@@ -1,0 +1,268 @@
+{
+  "forumTopic": {
+    "authorId": 32181963,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "mikelou1",
+    "authorUserName": "mikelou1",
+    "comments": [
+      {
+        "id": 3513174,
+        "postDate": "2026-08-15T13:23:10.347Z",
+        "rawMarkdown": "I can see why it may appear that way. I can't speak as to what others in the top 10 are doing, but we are not focused on 0.0001 or Division J; we are working on a universal plugin that the bio cell team can plug into their current pipeline with minimal changes. We have tested our plugin with every available unique public notebook and model, with gains ranging from 0.030, 0.040, to 0.050 instantly just attaching our plugin. We've seen gains from a single public model reach a score of 0.940 untuned. We are not focused on the 0.0001 or tuning to the hidden.",
+        "content": "<p>I can see why it may appear that way. I can't speak as to what others in the top 10 are doing, but we are not focused on 0.0001 or Division J; we are working on a universal plugin that the bio cell team can plug into their current pipeline with minimal changes. We have tested our plugin with every available unique public notebook and model, with gains ranging from 0.030, 0.040, to 0.050 instantly just attaching our plugin. We've seen gains from a single public model reach a score of 0.940 untuned. We are not focused on the 0.0001 or tuning to the hidden.</p>",
+        "replies": [
+          {
+            "id": 3513176,
+            "postDate": "2026-08-15T14:04:18.200Z",
+            "rawMarkdown": "thanks for the info! I feel like the public notebooks are really overtuned to the lb so i'm afraid to use them",
+            "content": "<p>thanks for the info! I feel like the public notebooks are really overtuned to the lb so i'm afraid to use them</p>",
+            "parent": {},
+            "author": {
+              "displayName": "mikelou1",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/mikelou1",
+              "tier": "EXPERT",
+              "id": 32181963,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 15,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "mikelou1",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/mikelou1",
+                "userName": "mikelou1",
+                "tier": "EXPERT",
+                "id": 32181963,
+                "profileUrl": "/mikelou1",
+                "performanceTier": "EXPERT",
+                "userId": 32181963,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3513238,
+            "postDate": "2026-08-15T18:12:20.333Z",
+            "rawMarkdown": "Hi @tweakai, by plugin do you mean something that optimizes/refines the tracking graph, or do you mean you take the public notebook detections and apply your own tracking method on top?\n\nGot curious about it, but no worries if you can\u2019t share more\n",
+            "content": "<p>Hi <a href=\"https://www.kaggle.com/tweakai\" target=\"_blank\">@tweakai</a>, by plugin do you mean something that optimizes/refines the tracking graph, or do you mean you take the public notebook detections and apply your own tracking method on top?</p>\n<p>Got curious about it, but no worries if you can\u2019t share more</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Sergio Alvarez",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+              "url": "/sersasj",
+              "tier": "MASTER",
+              "id": 2221915,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 63,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Sergio Alvarez",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+                "url": "/sersasj",
+                "userName": "sersasj",
+                "tier": "MASTER",
+                "id": 2221915,
+                "profileUrl": "/sersasj",
+                "performanceTier": "MASTER",
+                "userId": 2221915,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "attachments": [
+          {
+            "fileType": ".jpeg",
+            "id": 49290,
+            "name": "Screenshot_15-8-2026_91131_www.kaggle.com.jpeg",
+            "totalBytes": 21075,
+            "url": "https://storage.googleapis.com/kaggle-forum-message-attachments/3513174/49290/Screenshot_15-8-2026_91131_www.kaggle.com.jpeg"
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "TWEAK",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+          "url": "/tweakai",
+          "tier": "EXPERT",
+          "id": 28207655,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "TWEAK",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+            "url": "/tweakai",
+            "userName": "tweakai",
+            "tier": "EXPERT",
+            "id": 28207655,
+            "profileUrl": "/tweakai",
+            "performanceTier": "EXPERT",
+            "userId": 28207655,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3513158,
+        "postDate": "2026-08-15T12:49:38.453Z",
+        "rawMarkdown": "yea ig so too , because training past ep 400 has diminishing returns , so maybe yea we wait fro the private shake ",
+        "content": "<p>yea ig so too , because training past ep 400 has diminishing returns , so maybe yea we wait fro the private shake </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Bharath Varma",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/30683105-kg.jpeg?t=2026-04-16-05-40-04",
+          "url": "/bharath111l",
+          "tier": "CONTRIBUTOR",
+          "id": 30683105,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 28,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Bharath Varma",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/30683105-kg.jpeg?t=2026-04-16-05-40-04",
+            "url": "/bharath111l",
+            "userName": "bharath111l",
+            "tier": "CONTRIBUTOR",
+            "id": 30683105,
+            "profileUrl": "/bharath111l",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 30683105,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3513149,
+        "postDate": "2026-08-15T11:43:45.287Z",
+        "rawMarkdown": "I guess what we can do is:\n- Build a reliable CV, and trust it.\n- Use external datasets or synthetic data to make our model more robust on division cells prediction.",
+        "content": "<p>I guess what we can do is:</p>\n<ul>\n<li>Build a reliable CV, and trust it.</li>\n<li>Use external datasets or synthetic data to make our model more robust on division cells prediction.</li>\n</ul>",
+        "parent": {},
+        "author": {
+          "displayName": "Tang",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+          "url": "/hirotetsu",
+          "tier": "MASTER",
+          "id": 2312281,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 11,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Tang",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+            "url": "/hirotetsu",
+            "userName": "hirotetsu",
+            "tier": "MASTER",
+            "id": 2312281,
+            "profileUrl": "/hirotetsu",
+            "performanceTier": "MASTER",
+            "userId": 2312281,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3513101,
+      "postDate": "2026-08-15T08:25:14.080Z",
+      "rawMarkdown": "Hey guys! I noticed the top of the leaderboard often has difference less than 0.001 points. In areas like division jaccard where theres only a few samples, it's really easy to overfit. I think this might cause a huge shakeup as even parameter tuning could cause 0.001 changes.\n\nDo you guys have any ideas on this?",
+      "content": "<p>Hey guys! I noticed the top of the leaderboard often has difference less than 0.001 points. In areas like division jaccard where theres only a few samples, it's really easy to overfit. I think this might cause a huge shakeup as even parameter tuning could cause 0.001 changes.</p>\n<p>Do you guys have any ideas on this?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "mikelou1",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/mikelou1",
+        "tier": "EXPERT",
+        "id": 32181963,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 15,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "userName": "mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "profileUrl": "/mikelou1",
+          "performanceTier": "EXPERT",
+          "userId": 32181963,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3513101,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 735352,
+    "name": "Possible big leaderboard shakeup",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-15T08:25:14.079757100Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/735352",
+    "totalMessages": 5,
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 22956954,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Rajmukund mehta",
+    "authorUserName": "rajmukundmehta",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3510766,
+      "postDate": "2026-08-09T14:38:41.253Z",
+      "rawMarkdown": "are you guys training model on patches or whole volume of 3d images,if anybody has been training on patches what is your score?",
+      "content": "<p>are you guys training model on patches or whole volume of 3d images,if anybody has been training on patches what is your score?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Rajmukund mehta",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/rajmukundmehta",
+        "tier": "CONTRIBUTOR",
+        "id": 22956954,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2201,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Rajmukund mehta",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/rajmukundmehta",
+          "userName": "rajmukundmehta",
+          "tier": "CONTRIBUTOR",
+          "id": 22956954,
+          "profileUrl": "/rajmukundmehta",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 22956954,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3510766,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 734015,
+    "name": "training on patches or whole volume?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-09T14:38:41.253488Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/734015",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

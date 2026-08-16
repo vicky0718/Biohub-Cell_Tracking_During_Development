@@ -1,0 +1,369 @@
+{
+  "forumTopic": {
+    "authorId": 19579895,
+    "authorThumbnailName": "19579895-kg.jpg?t=2025-01-23-22-51-30",
+    "authorUserDisplayName": "Mar\u00eda Cruz",
+    "authorUserName": "macruzbar",
+    "comments": [
+      {
+        "id": 3499546,
+        "postDate": "2026-07-17T15:45:54.417Z",
+        "rawMarkdown": "Hi organizers,\n\nThis public notebook appears to exploit a weakness in how the official scoring script parses submitted submission.csv files, rather than reflecting genuine cell tracking accuracy:\n\nhttps://www.kaggle.com/code/outwrest/metric-hack-minimal-baseline-tta-2gpu\n\nThe detection/tracking pipeline itself (TemporalUNet3D + node transformer + ILP solver, TTA, multi-GPU inference) is a legitimate baseline. The problem is a post-processing cell (augment_dataset) that runs after predictions are generated and modifies only the final submitted CSV \u2014 it does not affect the notebook's own local metric check, which is a strong signal it's specifically targeting the official scorer rather than improving predictions.\n\nFor each sample, it:\n\nSplits the predicted lineage forest into connected components, sorts by size, and keeps up to MAX_COMPONENTS = 1400 of the largest trees.\n\nAdds one synthetic \"hub\" node at sentinel coordinates (t=-1000, z=y=x=-10000 \u2014 clearly outside any real acquisition volume/time range) connected to the roots of those trees.\n\nAppends a chain of 5 synthetic cell-division events (divider \u2192 child, continuation), also at sentinel coordinates (t\u2248-999..., z=y=x=-10000/-10001).\n\nNone of this corresponds to real detections \u2014 the coordinates are deliberately outside any physically valid range, so it can't be genuine matched signal under normal ground-truth matching. It looks designed to exploit something in how the scorer counts connected components / division events / normalizes its Jaccard-style metric.\n\nThis is a public, forkable notebook, so it may already be in use by other teams \u2014 I'd flag this as urgent. I forked/submitted a copy of it myself (submission ID 54786048, 2026-07-17) before fully realizing what the post-processing step did, and would like that submission disregarded/excluded from scoring.\n\nHappy to provide more details if useful.",
+        "content": "<p>Hi organizers,</p>\n<p>This public notebook appears to exploit a weakness in how the official scoring script parses submitted submission.csv files, rather than reflecting genuine cell tracking accuracy:</p>\n<p><a href=\"https://www.kaggle.com/code/outwrest/metric-hack-minimal-baseline-tta-2gpu\" target=\"_blank\">https://www.kaggle.com/code/outwrest/metric-hack-minimal-baseline-tta-2gpu</a></p>\n<p>The detection/tracking pipeline itself (TemporalUNet3D + node transformer + ILP solver, TTA, multi-GPU inference) is a legitimate baseline. The problem is a post-processing cell (augment_dataset) that runs after predictions are generated and modifies only the final submitted CSV \u2014 it does not affect the notebook's own local metric check, which is a strong signal it's specifically targeting the official scorer rather than improving predictions.</p>\n<p>For each sample, it:</p>\n<p>Splits the predicted lineage forest into connected components, sorts by size, and keeps up to MAX_COMPONENTS = 1400 of the largest trees.</p>\n<p>Adds one synthetic \"hub\" node at sentinel coordinates (t=-1000, z=y=x=-10000 \u2014 clearly outside any real acquisition volume/time range) connected to the roots of those trees.</p>\n<p>Appends a chain of 5 synthetic cell-division events (divider \u2192 child, continuation), also at sentinel coordinates (t\u2248-999\u2026, z=y=x=-10000/-10001).</p>\n<p>None of this corresponds to real detections \u2014 the coordinates are deliberately outside any physically valid range, so it can't be genuine matched signal under normal ground-truth matching. It looks designed to exploit something in how the scorer counts connected components / division events / normalizes its Jaccard-style metric.</p>\n<p>This is a public, forkable notebook, so it may already be in use by other teams \u2014 I'd flag this as urgent. I forked/submitted a copy of it myself (submission ID 54786048, 2026-07-17) before fully realizing what the post-processing step did, and would like that submission disregarded/excluded from scoring.</p>\n<p>Happy to provide more details if useful.</p>",
+        "replies": [
+          {
+            "id": 3499556,
+            "postDate": "2026-07-17T16:01:45.470Z",
+            "rawMarkdown": "Hi @ngyzly, thanks for bringing this to our attention. We are taking a look at it",
+            "content": "<p>Hi <a href=\"https://www.kaggle.com/ngyzly\" target=\"_blank\">@ngyzly</a>, thanks for bringing this to our attention. We are taking a look at it</p>",
+            "replies": [
+              {
+                "id": 3499634,
+                "postDate": "2026-07-17T17:56:41.693Z",
+                "rawMarkdown": "Hi @jookuma, can you help patch this metric hack on the division_jaccard? Under the current four certeria (https://github.com/royerlab/kaggle-cell-tracking-competition/blob/7396b7e98e61844e799152ddda7e5493084cc8f3/metrics.md?plain=1#L62-L76), a division can count as a TP by connecting the predicted tracks to a fake fork outside the image, without acutally predicting the real division's location or time.\n\nI found this trick and I am sure others did that were high on the scoreboard. The notebook shared is mine and I made it public so it can be verified & patched.",
+                "content": "<p>Hi <a href=\"https://www.kaggle.com/jookuma\" target=\"_blank\">@jookuma</a>, can you help patch this metric hack on the division_jaccard? Under the current four certeria (<a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition/blob/7396b7e98e61844e799152ddda7e5493084cc8f3/metrics.md?plain=1#L62-L76)\" target=\"_blank\">https://github.com/royerlab/kaggle-cell-tracking-competition/blob/7396b7e98e61844e799152ddda7e5493084cc8f3/metrics.md?plain=1#L62-L76)</a>, a division can count as a TP by connecting the predicted tracks to a fake fork outside the image, without acutally predicting the real division's location or time.</p>\n<p>I found this trick and I am sure others did that were high on the scoreboard. The notebook shared is mine and I made it public so it can be verified &amp; patched.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "outwrest",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5918909-kg.jpg",
+                  "url": "/outwrest",
+                  "tier": "EXPERT",
+                  "id": 5918909,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 4,
+                  "canUpvote": true,
+                  "totalUpvotes": 4
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 1386,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "reactions": [
+                  {
+                    "emoji": "YAY",
+                    "featuredUserNames": [
+                      "bielabs"
+                    ],
+                    "userCount": 1
+                  }
+                ],
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "outwrest",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5918909-kg.jpg",
+                    "url": "/outwrest",
+                    "userName": "outwrest",
+                    "tier": "EXPERT",
+                    "id": 5918909,
+                    "profileUrl": "/outwrest",
+                    "performanceTier": "EXPERT",
+                    "userId": 5918909,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Jord\u00e3o Bragantini",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/jookuma",
+              "tier": "CONTRIBUTOR",
+              "id": 1417736,
+              "progressionOptOut": false
+            },
+            "authorType": "HOST",
+            "votes": {
+              "totalVotes": 3,
+              "canUpvote": true,
+              "totalUpvotes": 3
+            },
+            "kernelVersion": 0,
+            "feedbackTrackingData": {},
+            "isThankYou": false
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Mori Lab. Cho Royou",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1075338-kg.png?t=2026-06-01-10-05-42",
+          "url": "/ngyzly",
+          "tier": "EXPERT",
+          "id": 1075338,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 5,
+          "canUpvote": true,
+          "totalUpvotes": 5
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 728,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "YAY",
+            "featuredUserNames": [
+              "bielabs"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Mori Lab. Cho Royou",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1075338-kg.png?t=2026-06-01-10-05-42",
+            "url": "/ngyzly",
+            "userName": "ngyzly",
+            "tier": "EXPERT",
+            "id": 1075338,
+            "profileUrl": "/ngyzly",
+            "performanceTier": "EXPERT",
+            "userId": 1075338,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3487011,
+        "postDate": "2026-07-03T09:26:08.437Z",
+        "rawMarkdown": "Is there any available code for the applied combined tracking metric?\n Thanks ",
+        "content": "<p>Is there any available code for the applied combined tracking metric?\n Thanks </p>",
+        "replies": [
+          {
+            "id": 3500202,
+            "postDate": "2026-07-18T20:38:00.347Z",
+            "rawMarkdown": "Yes! It\u2019s available in the [official GitHub repository](https://github.com/royerlab/kaggle-cell-tracking-competition). The metric itself is in [metrics.py](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/src/tracking_cellmot/metrics.py), and the [README](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/README.md) shows how to run [scripts/evaluate.py](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/scripts/evaluate.py) locally against the training GEFF files. [metrics.md](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md) also explains each part of the combined score.",
+            "content": "<p>Yes! It\u2019s available in the <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition\" target=\"_blank\">official GitHub repository</a>. The metric itself is in <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/src/tracking_cellmot/metrics.py\" target=\"_blank\">metrics.py</a>, and the <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/README.md\" target=\"_blank\">README</a> shows how to run <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/scripts/evaluate.py\" target=\"_blank\">scripts/evaluate.py</a> locally against the training GEFF files. <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md\" target=\"_blank\">metrics.md</a> also explains each part of the combined score.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Tom\u00e1s Travis",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/17761880-kg.png?t=2024-01-20-12-59-20",
+              "url": "/tomstravis",
+              "tier": "CONTRIBUTOR",
+              "id": 17761880,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 684,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "THANK_YOU",
+                "featuredUserNames": [
+                  "bielabs"
+                ],
+                "userCount": 1
+              }
+            ],
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Tom\u00e1s Travis",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/17761880-kg.png?t=2024-01-20-12-59-20",
+                "url": "/tomstravis",
+                "userName": "tomstravis",
+                "tier": "CONTRIBUTOR",
+                "id": 17761880,
+                "profileUrl": "/tomstravis",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 17761880,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Evdilos_Ikaria",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/74276-kg.jpg",
+          "url": "/georgem",
+          "tier": "MASTER",
+          "id": 74276,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2187,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "devraj121"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Evdilos_Ikaria",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/74276-kg.jpg",
+            "url": "/georgem",
+            "userName": "georgem",
+            "tier": "MASTER",
+            "id": 74276,
+            "profileUrl": "/georgem",
+            "performanceTier": "MASTER",
+            "userId": 74276,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3506616,
+        "postDate": "2026-07-31T16:53:46.037Z",
+        "rawMarkdown": "Pardon me,\nHow long will it take for ones file to be processed?",
+        "content": "<p>Pardon me,\nHow long will it take for ones file to be processed?</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Asogwa Samson",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26644680-kg.png?t=2026-07-10-06-59-20",
+          "url": "/asogwasamson",
+          "tier": "CONTRIBUTOR",
+          "id": 26644680,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "FUNNY",
+            "featuredUserNames": [
+              "asogwasamson"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Asogwa Samson",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26644680-kg.png?t=2026-07-10-06-59-20",
+            "url": "/asogwasamson",
+            "userName": "asogwasamson",
+            "tier": "CONTRIBUTOR",
+            "id": 26644680,
+            "profileUrl": "/asogwasamson",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 26644680,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3481139,
+      "postDate": "2026-06-25T16:44:43.593Z",
+      "rawMarkdown": "### Information for newbies\n**New to machine learning and data science?** No question is too basic or too simple. Feel free to start your own thread, or use this thread as a place to post any first-timer clarifying questions for the Kaggle community to help you with!\n\n**New to Kaggle?** Take a look at a few videos to learn a bit more about [site etiquette](https://www.youtube.com/watch?v=aIus8si_Et0), [Kaggle lingo](https://www.youtube.com/watch?v=sEJHyuWKd-s), and [how to enter a competition using Kaggle Notebooks](https://www.youtube.com/watch?&v=GJBOMWpLpTQ). Publish and share your [models on Kaggle Models](https://www.kaggle.com/docs/models#publishing-a-model)!\n\n**Looking for a team?** Express your interest in joining a team through our [Team Up](https://www.kaggle.com/discussions/product-feedback/341195) feature.\n\n**Remember**: Kaggle is for everyone. Whether you're teaming up or sharing tips in the competition forum, we expect everyone to follow our Kaggle community guidelines.\n\n### Competition's Official Discord\nIn addition to this competition forum, you can continue the discussion in our official Kaggle Discord Server here:\n# [discord.gg/kaggle](http://discord.gg/kaggle)\n \nThe Discord is a great place to ask getting started questions, chat about the nuances of this competition, and connect with potential team mates. Learn more about Discord at our [announcement here](https://www.kaggle.com/discussions/general/429933). Here are a few things to keep in mind though:\n\n**1. Discord Competition Channels are 'Public' - Don't Share Private Information**\n\nDiscord channels for specific competitions are considered 'public' spaces where you are allowed to talk about competition details. Please remember that private sharing of competition code or data outside of your team is, as always, not permitted. Code sharing must always be done publicly through the Kaggle forums/notebooks.\n\n**2. Discord Competition Channels are Not Monitored by Staff - Keep Important Information on the Kaggle Forums**\n\nKaggle Staff and Hosts running competitions will not monitor Discord or be available to answer questions in Discord. This is intended to be a more casual space to discuss competitions and help each other. Please keep important questions, insights, writeups, and other valuable conversation on the Kaggle forums. \n\nHappy modeling! ",
+      "content": "<h3>Information for newbies</h3>\n<p><strong>New to machine learning and data science?</strong> No question is too basic or too simple. Feel free to start your own thread, or use this thread as a place to post any first-timer clarifying questions for the Kaggle community to help you with!</p>\n<p><strong>New to Kaggle?</strong> Take a look at a few videos to learn a bit more about <a href=\"https://www.youtube.com/watch?v=aIus8si_Et0\" target=\"_blank\">site etiquette</a>, <a href=\"https://www.youtube.com/watch?v=sEJHyuWKd-s\" target=\"_blank\">Kaggle lingo</a>, and <a href=\"https://www.youtube.com/watch?&amp;v=GJBOMWpLpTQ\" target=\"_blank\">how to enter a competition using Kaggle Notebooks</a>. Publish and share your <a href=\"https://www.kaggle.com/docs/models#publishing-a-model\" target=\"_blank\">models on Kaggle Models</a>!</p>\n<p><strong>Looking for a team?</strong> Express your interest in joining a team through our <a href=\"https://www.kaggle.com/discussions/product-feedback/341195\" target=\"_blank\">Team Up</a> feature.</p>\n<p><strong>Remember</strong>: Kaggle is for everyone. Whether you're teaming up or sharing tips in the competition forum, we expect everyone to follow our Kaggle community guidelines.</p>\n<h3>Competition's Official Discord</h3>\n<p>In addition to this competition forum, you can continue the discussion in our official Kaggle Discord Server here:</p>\n<h1><a href=\"http://discord.gg/kaggle\" target=\"_blank\">discord.gg/kaggle</a></h1>\n<p>The Discord is a great place to ask getting started questions, chat about the nuances of this competition, and connect with potential team mates. Learn more about Discord at our <a href=\"https://www.kaggle.com/discussions/general/429933\" target=\"_blank\">announcement here</a>. Here are a few things to keep in mind though:</p>\n<p><strong>1. Discord Competition Channels are 'Public' - Don't Share Private Information</strong></p>\n<p>Discord channels for specific competitions are considered 'public' spaces where you are allowed to talk about competition details. Please remember that private sharing of competition code or data outside of your team is, as always, not permitted. Code sharing must always be done publicly through the Kaggle forums/notebooks.</p>\n<p><strong>2. Discord Competition Channels are Not Monitored by Staff - Keep Important Information on the Kaggle Forums</strong></p>\n<p>Kaggle Staff and Hosts running competitions will not monitor Discord or be available to answer questions in Discord. This is intended to be a more casual space to discuss competitions and help each other. Please keep important questions, insights, writeups, and other valuable conversation on the Kaggle forums. </p>\n<p>Happy modeling! </p>",
+      "parent": {},
+      "author": {
+        "displayName": "Mar\u00eda Cruz",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/19579895-kg.jpg?t=2025-01-23-22-51-30",
+        "url": "/macruzbar",
+        "tier": "STAFF",
+        "id": 19579895,
+        "progressionOptOut": false
+      },
+      "authorType": "ADMIN",
+      "votes": {
+        "totalVotes": 24,
+        "canUpvote": true,
+        "totalUpvotes": 24
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "THANK_YOU",
+          "featuredUserNames": [
+            "ramarlina",
+            "iglovikov",
+            "ssenyonga",
+            "mah20050",
+            "asogwasamson"
+          ],
+          "userCount": 5
+        },
+        {
+          "emoji": "LOVE",
+          "featuredUserNames": [
+            "ramarlina",
+            "iglovikov",
+            "aidanokeeffe",
+            "sushmitha047",
+            "mukhtiar21",
+            "yizreelschwartz",
+            "ouedraogosomkieta",
+            "dhananjaysharma8950",
+            "kiarabernardo",
+            "kypdenis",
+            "adoleedache",
+            "uthmankareemtunde"
+          ],
+          "userCount": 12
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Mar\u00eda Cruz",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/19579895-kg.jpg?t=2025-01-23-22-51-30",
+          "url": "/macruzbar",
+          "userName": "macruzbar",
+          "tier": "STAFF",
+          "id": 19579895,
+          "profileUrl": "/macruzbar",
+          "performanceTier": "STAFF",
+          "userId": 19579895,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3481139,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 714101,
+    "isStickied": true,
+    "name": "How to get started + Competition's Official Discord",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-06-25T16:44:43.592999100Z",
+    "totalVotes": 24,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/714101",
+    "totalMessages": 6,
+    "authorPerformanceTier": "STAFF",
+    "authorProgressionOptOut": false
+  }
+}

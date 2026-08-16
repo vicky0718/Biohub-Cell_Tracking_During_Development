@@ -1,0 +1,156 @@
+{
+  "forumTopic": {
+    "authorId": 20852044,
+    "authorThumbnailName": "20852044-kg.jpeg?t=2026-08-02-09-10-32",
+    "authorUserDisplayName": "Moawiz",
+    "authorUserName": "moawiz",
+    "comments": [
+      {
+        "id": 3511826,
+        "postDate": "2026-08-12T05:17:31.760Z",
+        "rawMarkdown": "I would first decompose the score before switching models.\n\nThe metric:\n\n**Adjusted edge Jaccard + 0.1 \u00d7 division Jaccard**\n\nAn edge is correct only if both cells are detected and then linked correctly. A useful approximation is:\n\n**Edge recall \u2248 node recall\u00b2 \u00d7 conditional linking accuracy**\n\nThis means detector misses are especially expensive. Divisions are even more demanding because the parent and both daughters must be detected before a linker or division ranker can recover the event.\n\nI would measure four things separately:\n\n1. **Detection:** node recall within the 7 \u00b5m matching radius and predicted-node count versus the provided estimated count.\n2. **Linking:** linking accuracy only where both GT endpoints were successfully detected.\n3. **Detection ceiling:** the best possible edge score using your current detections with an oracle or GT-aware linker diagnostic.\n4. **Divisions:** parent/daughter detection availability, candidate recall@K, ranking quality, and final division TP/FP/FN.\n\nThen keep the detector fixed while comparing linkers, and keep the linker fixed while comparing detectors. Otherwise, post-processing can appear to improve locally by changing the candidate set and graph simultaneously.\n\nFrom my experiments, Pilkwang's UNet/node-transformer is still a very strong backbone. \n\nIf conditional linking is already high, I would focus on detector calibration/precision and division ranking before spending much more time on a new linker.",
+        "content": "<p>I would first decompose the score before switching models.</p>\n<p>The metric:</p>\n<p><strong>Adjusted edge Jaccard + 0.1 \u00d7 division Jaccard</strong></p>\n<p>An edge is correct only if both cells are detected and then linked correctly. A useful approximation is:</p>\n<p><strong>Edge recall \u2248 node recall\u00b2 \u00d7 conditional linking accuracy</strong></p>\n<p>This means detector misses are especially expensive. Divisions are even more demanding because the parent and both daughters must be detected before a linker or division ranker can recover the event.</p>\n<p>I would measure four things separately:</p>\n<ol>\n<li><strong>Detection:</strong> node recall within the 7 \u00b5m matching radius and predicted-node count versus the provided estimated count.</li>\n<li><strong>Linking:</strong> linking accuracy only where both GT endpoints were successfully detected.</li>\n<li><strong>Detection ceiling:</strong> the best possible edge score using your current detections with an oracle or GT-aware linker diagnostic.</li>\n<li><strong>Divisions:</strong> parent/daughter detection availability, candidate recall@K, ranking quality, and final division TP/FP/FN.</li>\n</ol>\n<p>Then keep the detector fixed while comparing linkers, and keep the linker fixed while comparing detectors. Otherwise, post-processing can appear to improve locally by changing the candidate set and graph simultaneously.</p>\n<p>From my experiments, Pilkwang's UNet/node-transformer is still a very strong backbone. </p>\n<p>If conditional linking is already high, I would focus on detector calibration/precision and division ranking before spending much more time on a new linker.</p>",
+        "replies": [
+          {
+            "id": 3512044,
+            "postDate": "2026-08-12T14:54:00.887Z",
+            "rawMarkdown": "the detector is finding the real cells, but it is also producing an enormous junk candidate pool. The linker then has to choose among those candidates which ends up with wrong linking \n",
+            "content": "<p>the detector is finding the real cells, but it is also producing an enormous junk candidate pool. The linker then has to choose among those candidates which ends up with wrong linking </p>",
+            "parent": {},
+            "author": {
+              "displayName": "Moawiz",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+              "url": "/moawiz",
+              "tier": "CONTRIBUTOR",
+              "id": 20852044,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 385,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Moawiz",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+                "url": "/moawiz",
+                "userName": "moawiz",
+                "tier": "CONTRIBUTOR",
+                "id": 20852044,
+                "profileUrl": "/moawiz",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 20852044,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Mendrika Ramarlina",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36054-fb.jpg",
+          "url": "/ramarlina",
+          "tier": "MASTER",
+          "id": 36054,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 45,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "mkotyushev",
+              "qiweiyin",
+              "vivekjami",
+              "moawiz"
+            ],
+            "userCount": 4
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Mendrika Ramarlina",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36054-fb.jpg",
+            "url": "/ramarlina",
+            "userName": "ramarlina",
+            "tier": "MASTER",
+            "id": 36054,
+            "profileUrl": "/ramarlina",
+            "performanceTier": "MASTER",
+            "userId": 36054,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3511821,
+      "postDate": "2026-08-12T05:01:34.623Z",
+      "rawMarkdown": "I have tried pilkwang model family (3d Unet) so far, without further fine tuning but it seem to be stuck at a certain score.\nI have tried a lot of post processing techniques, it does push score locally but LD score drops.\nim not sure if its a Detector problem if yes what models should i use before jumping into training/fine-tuning.",
+      "content": "<p>I have tried pilkwang model family (3d Unet) so far, without further fine tuning but it seem to be stuck at a certain score.\nI have tried a lot of post processing techniques, it does push score locally but LD score drops.\nim not sure if its a Detector problem if yes what models should i use before jumping into training/fine-tuning.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Moawiz",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+        "url": "/moawiz",
+        "tier": "CONTRIBUTOR",
+        "id": 20852044,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 385,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Moawiz",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+          "url": "/moawiz",
+          "userName": "moawiz",
+          "tier": "CONTRIBUTOR",
+          "id": 20852044,
+          "profileUrl": "/moawiz",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 20852044,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3511821,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 734604,
+    "name": "What is the best model for this domain so far?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-12T05:01:34.624924500Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/734604",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

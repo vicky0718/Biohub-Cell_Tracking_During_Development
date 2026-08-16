@@ -1,0 +1,242 @@
+{
+  "forumTopic": {
+    "authorId": 4799411,
+    "authorThumbnailName": "4799411-kg.jpeg",
+    "authorUserDisplayName": "Rocker Ritesh",
+    "authorUserName": "rockerritesh",
+    "comments": [
+      {
+        "id": 3496495,
+        "postDate": "2026-07-14T02:11:53.310Z",
+        "rawMarkdown": "Hi, the best submission score is actually 1.1, not 1, so it is possible for the scores to go over 1. In fact it is theoretically possible to obtain a score slightly above 1.1 (due to our adjusted jaccard metric) but we don't expect to happen. \nOur metrics are detailed here https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md",
+        "content": "<p>Hi, the best submission score is actually 1.1, not 1, so it is possible for the scores to go over 1. In fact it is theoretically possible to obtain a score slightly above 1.1 (due to our adjusted jaccard metric) but we don't expect to happen. \nOur metrics are detailed here <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md\" target=\"_blank\">https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md</a></p>",
+        "replies": [
+          {
+            "id": 3496507,
+            "postDate": "2026-07-14T02:45:43.220Z",
+            "rawMarkdown": "Ah, that makes sense \u2014 thanks for the quick clarification! I'll keep that in mind.",
+            "content": "<p>Ah, that makes sense \u2014 thanks for the quick clarification! I'll keep that in mind.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Rocker Ritesh",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4799411-kg.jpeg",
+              "url": "/rockerritesh",
+              "tier": "CONTRIBUTOR",
+              "id": 4799411,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 505,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Rocker Ritesh",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4799411-kg.jpeg",
+                "url": "/rockerritesh",
+                "userName": "rockerritesh",
+                "tier": "CONTRIBUTOR",
+                "id": 4799411,
+                "profileUrl": "/rockerritesh",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 4799411,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Thibaut Goldsborough",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/thibautgoldsborough",
+          "tier": "CONTRIBUTOR",
+          "id": 33476309,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "totalVotes": 5,
+          "canUpvote": true,
+          "totalUpvotes": 5
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "kharrington",
+              "xaxipirulazo",
+              "jookuma",
+              "angantyr",
+              "galinilin"
+            ],
+            "userCount": 5
+          },
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "uthmankareemtunde"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Thibaut Goldsborough",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/thibautgoldsborough",
+            "userName": "thibautgoldsborough",
+            "tier": "CONTRIBUTOR",
+            "id": 33476309,
+            "profileUrl": "/thibautgoldsborough",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 33476309,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3496615,
+        "postDate": "2026-07-14T10:36:04.807Z",
+        "rawMarkdown": "Can this score really reach 0.999? That sounds insane.",
+        "content": "<p>Can this score really reach 0.999? That sounds insane.</p>",
+        "replies": [
+          {
+            "id": 3498346,
+            "postDate": "2026-07-15T11:56:50.220Z",
+            "rawMarkdown": "lb more than 1.0 is possible. (hint: get your num of nodes correct using texture regression like human head counting, i.e. concept of density)",
+            "content": "<p>lb more than 1.0 is possible. (hint: get your num of nodes correct using texture regression like human head counting, i.e. concept of density)</p>",
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 620,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "thedyingkai",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/32503423-gr.jpg",
+          "url": "/thedyingkai",
+          "tier": "CONTRIBUTOR",
+          "id": 32503423,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 155,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "thedyingkai",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/32503423-gr.jpg",
+            "url": "/thedyingkai",
+            "userName": "thedyingkai",
+            "tier": "CONTRIBUTOR",
+            "id": 32503423,
+            "profileUrl": "/thedyingkai",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 32503423,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3496488,
+      "postDate": "2026-07-14T02:02:06.767Z",
+      "rawMarkdown": "According to pattern and days passed, there is high chance of getting 0.99 on LB by end of this month.",
+      "content": "<p>According to pattern and days passed, there is high chance of getting 0.99 on LB by end of this month.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Rocker Ritesh",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4799411-kg.jpeg",
+        "url": "/rockerritesh",
+        "tier": "CONTRIBUTOR",
+        "id": 4799411,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -4,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 505,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Rocker Ritesh",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4799411-kg.jpeg",
+          "url": "/rockerritesh",
+          "userName": "rockerritesh",
+          "tier": "CONTRIBUTOR",
+          "id": 4799411,
+          "profileUrl": "/rockerritesh",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 4799411,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3496488,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 725015,
+    "name": "What if anyone will get 0.999 on lb, then competition will got cancled? I am curious, does any previous competition get 0.99 percentile on LB?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-14T02:02:06.767259300Z",
+    "totalVotes": -4,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/725015",
+    "totalMessages": 4,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

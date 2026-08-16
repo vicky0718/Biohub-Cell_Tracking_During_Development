@@ -1,0 +1,622 @@
+{
+  "forumTopic": {
+    "authorId": 33476309,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Thibaut Goldsborough",
+    "authorUserName": "thibautgoldsborough",
+    "comments": [
+      {
+        "id": 3500919,
+        "postDate": "2026-07-20T21:27:36.867Z",
+        "rawMarkdown": "when will you re-score all our submissions ?",
+        "content": "<p>when will you re-score all our submissions ?</p>",
+        "replies": [
+          {
+            "id": 3501121,
+            "postDate": "2026-07-21T12:42:53.233Z",
+            "rawMarkdown": "I was wondering the same thing @thibautgoldsborough, any updates?",
+            "content": "<p>I was wondering the same thing <a href=\"https://www.kaggle.com/thibautgoldsborough\" target=\"_blank\">@thibautgoldsborough</a>, any updates?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Thiago Munhoz da N\u00f3brega",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14280614-kg.png?t=2026-07-02-19-59-25",
+              "url": "/thiagommtmn",
+              "tier": "CONTRIBUTOR",
+              "id": 14280614,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 713,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Thiago Munhoz da N\u00f3brega",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14280614-kg.png?t=2026-07-02-19-59-25",
+                "url": "/thiagommtmn",
+                "userName": "thiagommtmn",
+                "tier": "CONTRIBUTOR",
+                "id": 14280614,
+                "profileUrl": "/thiagommtmn",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 14280614,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Khalid",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/khalid000000",
+          "tier": "CONTRIBUTOR",
+          "id": 34755107,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 9,
+          "canUpvote": true,
+          "totalUpvotes": 9
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 734,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "SURPRISE",
+            "featuredUserNames": [
+              "thiagommtmn",
+              "arulprasadsp",
+              "antonoof",
+              "galinilin",
+              "shemissmebutidont"
+            ],
+            "userCount": 5
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Khalid",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/khalid000000",
+            "userName": "khalid000000",
+            "tier": "CONTRIBUTOR",
+            "id": 34755107,
+            "profileUrl": "/khalid000000",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 34755107,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3501385,
+        "postDate": "2026-07-21T22:43:16.923Z",
+        "rawMarkdown": "@sweetyheehee @khalid000000 @thedyingkai and others, the re-scoring is running, and it should be updated tomorrow if everything works out.",
+        "content": "<p><a href=\"https://www.kaggle.com/sweetyheehee\" target=\"_blank\">@sweetyheehee</a> <a href=\"https://www.kaggle.com/khalid000000\" target=\"_blank\">@khalid000000</a> <a href=\"https://www.kaggle.com/thedyingkai\" target=\"_blank\">@thedyingkai</a> and others, the re-scoring is running, and it should be updated tomorrow if everything works out.</p>",
+        "replies": [
+          {
+            "id": 3501459,
+            "postDate": "2026-07-22T03:03:43.173Z",
+            "rawMarkdown": "nice, thanks for the update",
+            "content": "<p>nice, thanks for the update</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Thiago Munhoz da N\u00f3brega",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14280614-kg.png?t=2026-07-02-19-59-25",
+              "url": "/thiagommtmn",
+              "tier": "CONTRIBUTOR",
+              "id": 14280614,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 713,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Thiago Munhoz da N\u00f3brega",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14280614-kg.png?t=2026-07-02-19-59-25",
+                "url": "/thiagommtmn",
+                "userName": "thiagommtmn",
+                "tier": "CONTRIBUTOR",
+                "id": 14280614,
+                "profileUrl": "/thiagommtmn",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 14280614,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3501506,
+            "postDate": "2026-07-22T06:34:14.217Z",
+            "rawMarkdown": "Thank you for the update, we are awaiting the results.",
+            "content": "<p>Thank you for the update, we are awaiting the results.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "OzanM.",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-11-18-28-39",
+              "url": "/analyticaobscura",
+              "tier": "GRANDMASTER",
+              "id": 25787455,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 343,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "OzanM.",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-11-18-28-39",
+                "url": "/analyticaobscura",
+                "userName": "analyticaobscura",
+                "tier": "GRANDMASTER",
+                "id": 25787455,
+                "profileUrl": "/analyticaobscura",
+                "performanceTier": "GRANDMASTER",
+                "userId": 25787455,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Jord\u00e3o Bragantini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/jookuma",
+          "tier": "CONTRIBUTOR",
+          "id": 1417736,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "xaxipirulazo",
+              "daimarusui3",
+              "ichigoe",
+              "lime1123",
+              "sweetyheehee",
+              "deepsotaai",
+              "thedyingkai",
+              "shreedsanthagunam",
+              "khalid000000"
+            ],
+            "userCount": 9
+          }
+        ]
+      },
+      {
+        "id": 3501109,
+        "postDate": "2026-07-21T11:57:35.713Z",
+        "rawMarkdown": "I hope you can rerun it as soon as possible so I can evaluate the current strategy quickly as well.",
+        "content": "<p>I hope you can rerun it as soon as possible so I can evaluate the current strategy quickly as well.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Timmy Juicehouse",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+          "url": "/sweetyheehee",
+          "tier": "EXPERT",
+          "id": 18538441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 709,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "SURPRISE",
+            "featuredUserNames": [
+              "thiagommtmn",
+              "antonoof",
+              "officialbiohub"
+            ],
+            "userCount": 3
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Timmy Juicehouse",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+            "url": "/sweetyheehee",
+            "userName": "sweetyheehee",
+            "tier": "EXPERT",
+            "id": 18538441,
+            "profileUrl": "/sweetyheehee",
+            "performanceTier": "EXPERT",
+            "userId": 18538441,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3500762,
+        "postDate": "2026-07-20T13:26:27.690Z",
+        "rawMarkdown": "Thank you for sharing the github repo! It's a great resource for validating the predictions locally before submitting them.\n\nI've taken the liberty of copying it into a public Kaggle dataset, so it can be attached to a notebook and used to debug: https://www.kaggle.com/datasets/dalloliogm/biohub-official-scorer-patched/data",
+        "content": "<p>Thank you for sharing the github repo! It's a great resource for validating the predictions locally before submitting them.</p>\n<p>I've taken the liberty of copying it into a public Kaggle dataset, so it can be attached to a notebook and used to debug: <a href=\"https://www.kaggle.com/datasets/dalloliogm/biohub-official-scorer-patched/data\" target=\"_blank\">https://www.kaggle.com/datasets/dalloliogm/biohub-official-scorer-patched/data</a></p>",
+        "parent": {},
+        "author": {
+          "displayName": "Giovanni Marco Dall'Olio",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/650.jpg",
+          "url": "/dalloliogm",
+          "tier": "EXPERT",
+          "id": 650,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 152,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Giovanni Marco Dall'Olio",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/650.jpg",
+            "url": "/dalloliogm",
+            "userName": "dalloliogm",
+            "tier": "EXPERT",
+            "id": 650,
+            "profileUrl": "/dalloliogm",
+            "performanceTier": "EXPERT",
+            "userId": 650,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3502398,
+        "postDate": "2026-07-24T07:37:33.870Z",
+        "rawMarkdown": "Thank you for the Division Metric exploit and patch. @thibautgoldsborough ",
+        "content": "<p>Thank you for the Division Metric exploit and patch. <a href=\"https://www.kaggle.com/thibautgoldsborough\" target=\"_blank\">@thibautgoldsborough</a> </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Navneet",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15692441-kg.jpg?t=2025-05-18-07-58-06",
+          "url": "/navneetbende",
+          "tier": "CONTRIBUTOR",
+          "id": 15692441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
+        "id": 3501698,
+        "postDate": "2026-07-22T16:03:06.593Z",
+        "rawMarkdown": "Is it just me, or are the submissions taking so much longer to evaluate, now? I submitted this morning and it is still running after 11 hours. It uses to take about 5 hours to complete.\n",
+        "content": "<p>Is it just me, or are the submissions taking so much longer to evaluate, now? I submitted this morning and it is still running after 11 hours. It uses to take about 5 hours to complete.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Giovanni Marco Dall'Olio",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/650.jpg",
+          "url": "/dalloliogm",
+          "tier": "EXPERT",
+          "id": 650,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 152,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Giovanni Marco Dall'Olio",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/650.jpg",
+            "url": "/dalloliogm",
+            "userName": "dalloliogm",
+            "tier": "EXPERT",
+            "id": 650,
+            "profileUrl": "/dalloliogm",
+            "performanceTier": "EXPERT",
+            "userId": 650,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3501630,
+        "postDate": "2026-07-22T12:32:35.473Z",
+        "rawMarkdown": "Thanks for update, we are waiting for this results.",
+        "content": "<p>Thanks for update, we are waiting for this results.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Official Biohub",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/officialbiohub",
+          "tier": "CONTRIBUTOR",
+          "id": 35640940,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
+        "id": 3501441,
+        "postDate": "2026-07-22T01:12:59.720Z",
+        "rawMarkdown": "Thanks for the update and for sharing the local patch so quickly! Really appreciate the team's dedication to maintaining a level playing field for all participants.",
+        "content": "<p>Thanks for the update and for sharing the local patch so quickly! Really appreciate the team's dedication to maintaining a level playing field for all participants.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Maria Aqdas",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27715053-kg.png?t=2026-06-24-02-14-48",
+          "url": "/mariaaqdas",
+          "tier": "CONTRIBUTOR",
+          "id": 27715053,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
+        "id": 3501163,
+        "postDate": "2026-07-21T14:03:50.573Z",
+        "rawMarkdown": "when rescore?",
+        "content": "<p>when rescore?</p>",
+        "parent": {},
+        "author": {
+          "displayName": "thedyingkai",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/32503423-gr.jpg",
+          "url": "/thedyingkai",
+          "tier": "CONTRIBUTOR",
+          "id": 32503423,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 155,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "SURPRISE",
+            "featuredUserNames": [
+              "thiagommtmn",
+              "arulprasadsp",
+              "shreedsanthagunam"
+            ],
+            "userCount": 3
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "thedyingkai",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/32503423-gr.jpg",
+            "url": "/thedyingkai",
+            "userName": "thedyingkai",
+            "tier": "CONTRIBUTOR",
+            "id": 32503423,
+            "profileUrl": "/thedyingkai",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 32503423,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3499867,
+        "postDate": "2026-07-18T05:58:30.563Z",
+        "rawMarkdown": "As it is gonna fix, then it would be now safe to tell what's actually found? I am not aware yet.",
+        "content": "<p>As it is gonna fix, then it would be now safe to tell what's actually found? I am not aware yet.</p>",
+        "replies": [
+          {
+            "id": 3500056,
+            "postDate": "2026-07-18T12:26:15.307Z",
+            "rawMarkdown": "(My current third place exploits the metric hack as I tested it last night.)\n\n**What the division-metric exploit was**\n\nThe competition score is `adjusted_edge_jaccard + 0.1 \u00d7 division_jaccard`. The exploit targeted the second term \u2014 the division Jaccard \u2014 which carries up to 0.1 of the total.\n\nThe division score works by pulling out \"division\" events (a parent node with two children) from your predicted lineage graph and matching them against the ground-truth divisions. In the pre-patch version, that matching relied on **weakly-connected-component** structure and did not strictly require each matched division to be a genuine parent\u2192two-daughter fork sitting near a real GT division.\n\nThe exploit added a small amount of synthetic graph structure **far outside the image volume**:\n\n- a single \"hub\" node placed at coordinates far outside the data (e.g. \u221210000, \u221210000, \u221210000), with edges to the root of every (or the largest *N*) track components \u2014 this merges the whole prediction into one big weakly-connected component;\n- a handful of synthetic \"fork\" chains (a divider node with two children) at those same far-away coordinates;\n- and dropping the real forks from the tracks.\n\nUnder the old matching this pushed the division Jaccard from ~0 to ~1.0, adding close to the full +0.1 to the score \u2014 even though none of the added nodes or edges correspond to a real cell or a real division. It's a pure scoring artifact; it does nothing for actual tracking quality.\n\n**The patch** (now public in the repo) requires divisions to be genuine **strongly-connected** parent\u2192two-daughter structures matched within the 7 \u00b5m distance radius. The far-away synthetic forks now register as false positives instead of true positives, which removes the benefit and is why exploiting submissions will drop on re-score.\n\n",
+            "content": "<p>(My current third place exploits the metric hack as I tested it last night.)</p>\n<p><strong>What the division-metric exploit was</strong></p>\n<p>The competition score is <code>adjusted_edge_jaccard + 0.1 \u00d7 division_jaccard</code>. The exploit targeted the second term \u2014 the division Jaccard \u2014 which carries up to 0.1 of the total.</p>\n<p>The division score works by pulling out \"division\" events (a parent node with two children) from your predicted lineage graph and matching them against the ground-truth divisions. In the pre-patch version, that matching relied on <strong>weakly-connected-component</strong> structure and did not strictly require each matched division to be a genuine parent\u2192two-daughter fork sitting near a real GT division.</p>\n<p>The exploit added a small amount of synthetic graph structure <strong>far outside the image volume</strong>:</p>\n<ul>\n<li>a single \"hub\" node placed at coordinates far outside the data (e.g. \u221210000, \u221210000, \u221210000), with edges to the root of every (or the largest <em>N</em>) track components \u2014 this merges the whole prediction into one big weakly-connected component;</li>\n<li>a handful of synthetic \"fork\" chains (a divider node with two children) at those same far-away coordinates;</li>\n<li>and dropping the real forks from the tracks.</li>\n</ul>\n<p>Under the old matching this pushed the division Jaccard from ~0 to ~1.0, adding close to the full +0.1 to the score \u2014 even though none of the added nodes or edges correspond to a real cell or a real division. It's a pure scoring artifact; it does nothing for actual tracking quality.</p>\n<p><strong>The patch</strong> (now public in the repo) requires divisions to be genuine <strong>strongly-connected</strong> parent\u2192two-daughter structures matched within the 7 \u00b5m distance radius. The far-away synthetic forks now register as false positives instead of true positives, which removes the benefit and is why exploiting submissions will drop on re-score.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "codebeforework",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/codebeforework",
+              "tier": "CONTRIBUTOR",
+              "id": 11146907,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 2,
+              "canUpvote": true,
+              "totalUpvotes": 2
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 94,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "codebeforework",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/codebeforework",
+                "userName": "codebeforework",
+                "tier": "CONTRIBUTOR",
+                "id": 11146907,
+                "profileUrl": "/codebeforework",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 11146907,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "FasterYouChase FasterIRun",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+          "url": "/icoguser",
+          "tier": "CONTRIBUTOR",
+          "id": 23282498,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 296,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "FasterYouChase FasterIRun",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23282498-kg.jpg?t=2026-07-07-12-29-16",
+            "url": "/icoguser",
+            "userName": "icoguser",
+            "tier": "CONTRIBUTOR",
+            "id": 23282498,
+            "profileUrl": "/icoguser",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23282498,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3499801,
+      "postDate": "2026-07-18T00:20:53.127Z",
+      "rawMarkdown": "Hello all, \n\nA few of you might be aware that an exploit of our metrics was found, specifically in the division Jaccard score. \nWe have made a patch and will re-score all submissions as soon as possible (likely Monday). Submissions that did not actively exploit this will not have their scores affected. \n\nIn the meanwhile the patch is already public on https://github.com/royerlab/kaggle-cell-tracking-competition so you can score your submissions locally. \n\nApologies for the mistake and thank you for your understanding. ",
+      "content": "<p>Hello all, </p>\n<p>A few of you might be aware that an exploit of our metrics was found, specifically in the division Jaccard score. \nWe have made a patch and will re-score all submissions as soon as possible (likely Monday). Submissions that did not actively exploit this will not have their scores affected. </p>\n<p>In the meanwhile the patch is already public on <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition\" target=\"_blank\">https://github.com/royerlab/kaggle-cell-tracking-competition</a> so you can score your submissions locally. </p>\n<p>Apologies for the mistake and thank you for your understanding. </p>",
+      "parent": {},
+      "author": {
+        "displayName": "Thibaut Goldsborough",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/thibautgoldsborough",
+        "tier": "CONTRIBUTOR",
+        "id": 33476309,
+        "progressionOptOut": false
+      },
+      "authorType": "HOST",
+      "votes": {
+        "totalVotes": 35,
+        "canUpvote": true,
+        "totalUpvotes": 35
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "YAY",
+          "featuredUserNames": [
+            "dalloliogm",
+            "ramarlina",
+            "bigbag1983",
+            "angantyr",
+            "mgoldfield",
+            "bielabs",
+            "takamitsuaraki",
+            "temuujinerdene",
+            "codebeforework",
+            "ichigoe",
+            "galinilin",
+            "thedyingkai",
+            "shreedsanthagunam"
+          ],
+          "userCount": 13
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Thibaut Goldsborough",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/thibautgoldsborough",
+          "userName": "thibautgoldsborough",
+          "tier": "CONTRIBUTOR",
+          "id": 33476309,
+          "profileUrl": "/thibautgoldsborough",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 33476309,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3499801,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 727154,
+    "name": "Division Metric exploit and patch. ",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-18T00:20:53.126631100Z",
+    "totalVotes": 35,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/727154",
+    "totalMessages": 14,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

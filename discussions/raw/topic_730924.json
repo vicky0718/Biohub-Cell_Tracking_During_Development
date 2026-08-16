@@ -1,0 +1,253 @@
+{
+  "forumTopic": {
+    "authorId": 18476336,
+    "authorThumbnailName": "18476336-kg.png?t=2025-01-18-01-25-01",
+    "authorUserDisplayName": "mige551",
+    "authorUserName": "mige551",
+    "comments": [
+      {
+        "id": 3505981,
+        "postDate": "2026-07-30T18:23:20.893Z",
+        "rawMarkdown": "It's a competition. Every team is competing against the others, so I don't think anyone will share their strongest ideas in detail.\n\nStill, one small hint from my experiments: after the two-seed detection blend plateaued, the more useful gains seemed to come from association consistency rather than additional detection tuning. In particular, it may be worth examining ambiguous parent links from more than one temporal or model view instead of applying a fixed global logit average everywhere.\n\nI would separately diagnose detection, ordinary association, track fragmentation, and division errors. The next improvement may depend less on adding another seed and more on identifying where the current models disagree\u2014and only using the extra view in those uncertain cases.\n",
+        "content": "<p>It's a competition. Every team is competing against the others, so I don't think anyone will share their strongest ideas in detail.</p>\n<p>Still, one small hint from my experiments: after the two-seed detection blend plateaued, the more useful gains seemed to come from association consistency rather than additional detection tuning. In particular, it may be worth examining ambiguous parent links from more than one temporal or model view instead of applying a fixed global logit average everywhere.</p>\n<p>I would separately diagnose detection, ordinary association, track fragmentation, and division errors. The next improvement may depend less on adding another seed and more on identifying where the current models disagree\u2014and only using the extra view in those uncertain cases.</p>",
+        "replies": [
+          {
+            "id": 3505982,
+            "postDate": "2026-07-30T18:27:59.223Z",
+            "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F27966974%2Fbaf53a894e86ee46b7007e1f8b4e157d%2FScreenshot%202026-07-31%20001607.png?generation=1785435886054048&alt=media)\n\nI also share with you a screenshot of my submissions. Happy Learning!",
+            "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F27966974%2Fbaf53a894e86ee46b7007e1f8b4e157d%2FScreenshot%202026-07-31%20001607.png?generation=1785435886054048&amp;alt=media\" alt=\"\"></p>\n<p>I also share with you a screenshot of my submissions. Happy Learning!</p>",
+            "parent": {},
+            "author": {
+              "displayName": "FOYSAL",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
+              "url": "/foysalemonshanto",
+              "tier": "EXPERT",
+              "id": 27966974,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 3,
+              "canUpvote": true,
+              "totalUpvotes": 3
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 69,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "YAY",
+                "featuredUserNames": [
+                  "pr4deepr",
+                  "yunusgmsoy",
+                  "farshidamira"
+                ],
+                "userCount": 3
+              }
+            ],
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "FOYSAL",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
+                "url": "/foysalemonshanto",
+                "userName": "foysalemonshanto",
+                "tier": "EXPERT",
+                "id": 27966974,
+                "profileUrl": "/foysalemonshanto",
+                "performanceTier": "EXPERT",
+                "userId": 27966974,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3506140,
+            "postDate": "2026-07-31T01:40:50.357Z",
+            "rawMarkdown": "Thank you for the helpful advice! I really appreciate you taking the time to share your experience. \nYour suggestions about association consistency and focusing on uncertain cases give me a clear direction for my next experiments. \nGood luck with the competition, and I hope we both do well!",
+            "content": "<p>Thank you for the helpful advice! I really appreciate you taking the time to share your experience. \nYour suggestions about association consistency and focusing on uncertain cases give me a clear direction for my next experiments. \nGood luck with the competition, and I hope we both do well!</p>",
+            "parent": {},
+            "author": {
+              "displayName": "mige551",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+              "url": "/mige551",
+              "tier": "CONTRIBUTOR",
+              "id": 18476336,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 142,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "LOVE",
+                "featuredUserNames": [
+                  "foysalemonshanto"
+                ],
+                "userCount": 1
+              }
+            ],
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "mige551",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+                "url": "/mige551",
+                "userName": "mige551",
+                "tier": "CONTRIBUTOR",
+                "id": 18476336,
+                "profileUrl": "/mige551",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 18476336,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "FOYSAL",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
+          "url": "/foysalemonshanto",
+          "tier": "EXPERT",
+          "id": 27966974,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 69,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "pr4deepr",
+              "mige551",
+              "farshidamira"
+            ],
+            "userCount": 3
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "FOYSAL",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
+            "url": "/foysalemonshanto",
+            "userName": "foysalemonshanto",
+            "tier": "EXPERT",
+            "id": 27966974,
+            "profileUrl": "/foysalemonshanto",
+            "performanceTier": "EXPERT",
+            "userId": 27966974,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3505918,
+        "postDate": "2026-07-30T17:25:31.637Z",
+        "rawMarkdown": "this is exactly where I am, thank you for posting the question, hope someone will reply.",
+        "content": "<p>this is exactly where I am, thank you for posting the question, hope someone will reply.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "OpPrime",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31234056-kg.jpg?t=2026-03-22-23-34-57",
+          "url": "/farshidamira",
+          "tier": "CONTRIBUTOR",
+          "id": 31234056,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 228,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "OpPrime",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31234056-kg.jpg?t=2026-03-22-23-34-57",
+            "url": "/farshidamira",
+            "userName": "farshidamira",
+            "tier": "CONTRIBUTOR",
+            "id": 31234056,
+            "profileUrl": "/farshidamira",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 31234056,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3505690,
+      "postDate": "2026-07-30T14:12:07.410Z",
+      "rawMarkdown": "I am using the public TemporalUNet3D pipeline with a clean graph backend and no metric exploits.\nMy controlled experiments:\n- Clean single-seed pipeline: 0.908\n- Detection/ILP parameter probes around the best configuration: all 0.908\n- Two independent seeds, 50/50 detection-logit blend: 0.910\n- Edge Top-K / feature-TTA branch: 0.885\u20130.886\n\nThe two-seed blend reduced emitted nodes by about 1.7% and improved the score, suggesting that model diversity mainly improved detection precision. However, this appears close to the public two-seed notebook score of 0.911.\n\nFor participants who moved beyond this plateau, which direction was most useful in general?\n1. More diverse detector architectures or training objectives  \n2. Better temporal/context features for association  \n3. Division-specific modeling  \n4. A local validation or proxy metric that correlates with the leaderboard  \n5. Confidence-adaptive ensembling rather than fixed logit averaging\n\nI am not asking for private solution details\u2014general guidance about which class of errors to diagnose next would be greatly appreciated.",
+      "content": "<p>I am using the public TemporalUNet3D pipeline with a clean graph backend and no metric exploits.\nMy controlled experiments:</p>\n<ul>\n<li>Clean single-seed pipeline: 0.908</li>\n<li>Detection/ILP parameter probes around the best configuration: all 0.908</li>\n<li>Two independent seeds, 50/50 detection-logit blend: 0.910</li>\n<li>Edge Top-K / feature-TTA branch: 0.885\u20130.886</li>\n</ul>\n<p>The two-seed blend reduced emitted nodes by about 1.7% and improved the score, suggesting that model diversity mainly improved detection precision. However, this appears close to the public two-seed notebook score of 0.911.</p>\n<p>For participants who moved beyond this plateau, which direction was most useful in general?</p>\n<ol>\n<li>More diverse detector architectures or training objectives  </li>\n<li>Better temporal/context features for association  </li>\n<li>Division-specific modeling  </li>\n<li>A local validation or proxy metric that correlates with the leaderboard  </li>\n<li>Confidence-adaptive ensembling rather than fixed logit averaging</li>\n</ol>\n<p>I am not asking for private solution details\u2014general guidance about which class of errors to diagnose next would be greatly appreciated.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "mige551",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+        "url": "/mige551",
+        "tier": "CONTRIBUTOR",
+        "id": 18476336,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 7,
+        "canUpvote": true,
+        "totalUpvotes": 7
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 142,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "mige551",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+          "url": "/mige551",
+          "userName": "mige551",
+          "tier": "CONTRIBUTOR",
+          "id": 18476336,
+          "profileUrl": "/mige551",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 18476336,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3505690,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 730924,
+    "name": "What model/feature diversity helped beyond the two-seed logit-blend plateau (~0.91)?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-30T14:12:07.410635400Z",
+    "totalVotes": 7,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/730924",
+    "totalMessages": 4,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

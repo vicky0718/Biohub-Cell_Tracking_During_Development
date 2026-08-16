@@ -1,0 +1,220 @@
+{
+  "forumTopic": {
+    "authorId": 4605428,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Davit Khantadze",
+    "authorUserName": "davitkhantadze",
+    "comments": [
+      {
+        "id": 3509323,
+        "postDate": "2026-08-06T07:39:32.507Z",
+        "rawMarkdown": "About 50 minutes. What scores do you get with or without ilp? I am far away from the leaderboard with just the baseline (~80%).",
+        "content": "<p>About 50 minutes. What scores do you get with or without ilp? I am far away from the leaderboard with just the baseline (~80%).</p>",
+        "replies": [
+          {
+            "id": 3509400,
+            "postDate": "2026-08-06T10:03:08.203Z",
+            "rawMarkdown": "thanks. I am not that far now; will let you know.",
+            "content": "<p>thanks. I am not that far now; will let you know.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Davit Khantadze",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/davitkhantadze",
+              "tier": "CONTRIBUTOR",
+              "id": 4605428,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 1602,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Davit Khantadze",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/davitkhantadze",
+                "userName": "davitkhantadze",
+                "tier": "CONTRIBUTOR",
+                "id": 4605428,
+                "profileUrl": "/davitkhantadze",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 4605428,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Timo Kaiser",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/timokaiser",
+          "tier": "CONTRIBUTOR",
+          "id": 35433049,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1838,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Timo Kaiser",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/timokaiser",
+            "userName": "timokaiser",
+            "tier": "CONTRIBUTOR",
+            "id": 35433049,
+            "profileUrl": "/timokaiser",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 35433049,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3508444,
+        "postDate": "2026-08-04T14:54:11.080Z",
+        "rawMarkdown": "2 hours is very too long.",
+        "content": "<p>2 hours is very too long.</p>",
+        "replies": [
+          {
+            "id": 3508823,
+            "postDate": "2026-08-05T13:15:14.393Z",
+            "rawMarkdown": "now it got reduced to 50 minutes;  could you share what is your experience? thanks.\n",
+            "content": "<p>now it got reduced to 50 minutes;  could you share what is your experience? thanks.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Davit Khantadze",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/davitkhantadze",
+              "tier": "CONTRIBUTOR",
+              "id": 4605428,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 1602,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Davit Khantadze",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/davitkhantadze",
+                "userName": "davitkhantadze",
+                "tier": "CONTRIBUTOR",
+                "id": 4605428,
+                "profileUrl": "/davitkhantadze",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 4605428,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Ouedraogo somkieta",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/17576011-kg.png?t=2025-11-17-21-22-41",
+          "url": "/ouedraogosomkieta",
+          "tier": "CONTRIBUTOR",
+          "id": 17576011,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1725,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Ouedraogo somkieta",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/17576011-kg.png?t=2025-11-17-21-22-41",
+            "url": "/ouedraogosomkieta",
+            "userName": "ouedraogosomkieta",
+            "tier": "CONTRIBUTOR",
+            "id": 17576011,
+            "profileUrl": "/ouedraogosomkieta",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 17576011,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3507695,
+      "postDate": "2026-08-02T11:58:28.183Z",
+      "rawMarkdown": "Mine is around 2h, batch size=16. It looks too big to me.",
+      "content": "<p>Mine is around 2h, batch size=16. It looks too big to me.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Davit Khantadze",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/davitkhantadze",
+        "tier": "CONTRIBUTOR",
+        "id": 4605428,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 3
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1602,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Davit Khantadze",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/davitkhantadze",
+          "userName": "davitkhantadze",
+          "tier": "CONTRIBUTOR",
+          "id": 4605428,
+          "profileUrl": "/davitkhantadze",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 4605428,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3507695,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 732345,
+    "name": "could someone share training time per epoch of baseline model? Mine is around 2h, batch size=16. Thanks",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-02T11:58:28.183572500Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/732345",
+    "totalMessages": 4,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

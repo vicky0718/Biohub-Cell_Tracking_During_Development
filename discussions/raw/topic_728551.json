@@ -1,0 +1,142 @@
+{
+  "forumTopic": {
+    "authorId": 17338199,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Arul Prasad S P",
+    "authorUserName": "arulprasadsp",
+    "comments": [
+      {
+        "id": 3504813,
+        "postDate": "2026-07-28T19:01:40.093Z",
+        "rawMarkdown": "I don't know how I did in edge division but I think its something like 0.2",
+        "content": "<p>I don't know how I did in edge division but I think its something like 0.2</p>",
+        "replies": [
+          {
+            "id": 3504951,
+            "postDate": "2026-07-29T03:23:53.583Z",
+            "rawMarkdown": "0.2 on divisions?",
+            "content": "<p>0.2 on divisions?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Arul Prasad S P",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/arulprasadsp",
+              "tier": "CONTRIBUTOR",
+              "id": 17338199,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 19,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Arul Prasad S P",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/arulprasadsp",
+                "userName": "arulprasadsp",
+                "tier": "CONTRIBUTOR",
+                "id": 17338199,
+                "profileUrl": "/arulprasadsp",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 17338199,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 15,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "mikelou1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/mikelou1",
+            "userName": "mikelou1",
+            "tier": "EXPERT",
+            "id": 32181963,
+            "profileUrl": "/mikelou1",
+            "performanceTier": "EXPERT",
+            "userId": 32181963,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3502194,
+      "postDate": "2026-07-23T18:08:45.090Z",
+      "rawMarkdown": "Trying to reconcile something after the division-metric patch \u2014 would love the community's (and host's) read.\n\nAcross the public approaches I can score with the patched metric, two things look consistent:\n\n- **adjusted_edge_jaccard** plateaus around ~0.90\u20130.91 \u2014 the field is on the same split_0 stack, and the post-proc knobs (disappearance cost, D4/9-way TTA, gap-closing) seem to top out there.\n- **division_jaccard \u2248 0** for essentially everyone under the patch.\n\nYet the post-patch top is **0.914\u20130.929**, so the separation comes from somewhere. For those above ~0.914 \u2014 not asking for methods \u2014 is your gain on the **edge term** (a genuinely better/retrained model pushing adj_edge past ~0.91), or on **divisions** (getting div_jaccard up to ~0.15\u20130.2 that the patch accepts)? Just which term, if you're willing to say.\n\n**A finding to give back:** I tried the host's HOCT (general_v0) as a division-aware tracker by feeding my own point detections in as synthetic 3D balls (to get around it needing instance masks). On my train movies it under-performed a tuned ILP on the edge term (it over-links), produced spurious forks rather than recovering real divisions, and ran ~45 min/movie on the open-source solver \u2014 so it's not submission-viable as-is with this input. Almost certainly the uniform-ball masks being OOD for a model trained on real morphology, not a knock on HOCT itself. Sharing in case it saves someone the same detour; happy to detail the setup. Or if someone has tried this and worked out that would be helpful too.\n\nMy hunch is that a cleaner edge model would let the ILP form divisions natively (divisions riding on long-range link recall) \u2014 i.e. the two terms aren't independent. Curious whether that matches what the frontier teams see.",
+      "content": "<p>Trying to reconcile something after the division-metric patch \u2014 would love the community's (and host's) read.</p>\n<p>Across the public approaches I can score with the patched metric, two things look consistent:</p>\n<ul>\n<li><strong>adjusted_edge_jaccard</strong> plateaus around ~0.90\u20130.91 \u2014 the field is on the same split_0 stack, and the post-proc knobs (disappearance cost, D4/9-way TTA, gap-closing) seem to top out there.</li>\n<li><strong>division_jaccard \u2248 0</strong> for essentially everyone under the patch.</li>\n</ul>\n<p>Yet the post-patch top is <strong>0.914\u20130.929</strong>, so the separation comes from somewhere. For those above ~0.914 \u2014 not asking for methods \u2014 is your gain on the <strong>edge term</strong> (a genuinely better/retrained model pushing adj_edge past ~0.91), or on <strong>divisions</strong> (getting div_jaccard up to ~0.15\u20130.2 that the patch accepts)? Just which term, if you're willing to say.</p>\n<p><strong>A finding to give back:</strong> I tried the host's HOCT (general_v0) as a division-aware tracker by feeding my own point detections in as synthetic 3D balls (to get around it needing instance masks). On my train movies it under-performed a tuned ILP on the edge term (it over-links), produced spurious forks rather than recovering real divisions, and ran ~45 min/movie on the open-source solver \u2014 so it's not submission-viable as-is with this input. Almost certainly the uniform-ball masks being OOD for a model trained on real morphology, not a knock on HOCT itself. Sharing in case it saves someone the same detour; happy to detail the setup. Or if someone has tried this and worked out that would be helpful too.</p>\n<p>My hunch is that a cleaner edge model would let the ILP form divisions natively (divisions riding on long-range link recall) \u2014 i.e. the two terms aren't independent. Curious whether that matches what the frontier teams see.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Arul Prasad S P",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/arulprasadsp",
+        "tier": "CONTRIBUTOR",
+        "id": 17338199,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 6,
+        "canUpvote": true,
+        "totalUpvotes": 6
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 19,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Arul Prasad S P",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/arulprasadsp",
+          "userName": "arulprasadsp",
+          "tier": "CONTRIBUTOR",
+          "id": 17338199,
+          "profileUrl": "/arulprasadsp",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 17338199,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3502194,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 728551,
+    "name": "Post-patch: is the 0.91+ frontier separated by the edge term or by divisions?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-23T18:08:45.090986600Z",
+    "totalVotes": 6,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/728551",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

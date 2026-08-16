@@ -1,0 +1,97 @@
+{
+  "forumTopic": {
+    "authorId": 21325433,
+    "authorThumbnailName": "21325433-kg.jpg?t=2026-08-06-04-18-09",
+    "authorUserDisplayName": "James Weatherhead",
+    "authorUserName": "jamesweatherhead",
+    "comments": [
+      {
+        "id": 3496285,
+        "postDate": "2026-07-13T14:49:36.097Z",
+        "rawMarkdown": "@jamesweatherhead, all the data in this competition followed the same protocol (e.g., instrument, developmental stage, etc), each embryo being acquired in a separate imaging session",
+        "content": "<p><a href=\"https://www.kaggle.com/jamesweatherhead\" target=\"_blank\">@jamesweatherhead</a>, all the data in this competition followed the same protocol (e.g., instrument, developmental stage, etc), each embryo being acquired in a separate imaging session</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Jord\u00e3o Bragantini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/jookuma",
+          "tier": "CONTRIBUTOR",
+          "id": 1417736,
+          "progressionOptOut": false
+        },
+        "authorType": "HOST",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "jamesweatherhead"
+            ],
+            "userCount": 1
+          }
+        ]
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3494899,
+      "postDate": "2026-07-11T00:19:02.570Z",
+      "rawMarkdown": "Two questions about the two training embryos (44b6 and 6bba):\n\n1. Are they at the same developmental stage?\n2. Were they acquired with the same imaging protocol, or in separate imaging sessions?",
+      "content": "<p>Two questions about the two training embryos (44b6 and 6bba):</p>\n<ol>\n<li>Are they at the same developmental stage?</li>\n<li>Were they acquired with the same imaging protocol, or in separate imaging sessions?</li>\n</ol>",
+      "parent": {},
+      "author": {
+        "displayName": "James Weatherhead",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21325433-kg.jpg?t=2026-08-06-04-18-09",
+        "url": "/jamesweatherhead",
+        "tier": "CONTRIBUTOR",
+        "id": 21325433,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 4,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 328,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "James Weatherhead",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21325433-kg.jpg?t=2026-08-06-04-18-09",
+          "url": "/jamesweatherhead",
+          "userName": "jamesweatherhead",
+          "tier": "CONTRIBUTOR",
+          "id": 21325433,
+          "profileUrl": "/jamesweatherhead",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 21325433,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3494899,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 724386,
+    "name": "Two training embryos: same developmental stage? Same imaging protocol?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-11T00:19:02.569072500Z",
+    "totalVotes": 4,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/724386",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

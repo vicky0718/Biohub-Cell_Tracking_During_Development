@@ -1,0 +1,58 @@
+{
+  "forumTopic": {
+    "authorId": 14823419,
+    "authorThumbnailName": "14823419-kg.jpg?t=2026-08-04-08-41-55",
+    "authorUserDisplayName": "Luka Duvanov",
+    "authorUserName": "nekkon",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3510706,
+      "postDate": "2026-08-09T10:37:14.977Z",
+      "rawMarkdown": "Two numbers that decide a tracker's architecture, measured across all 199 training movies and 128,883 ground-truth links:\n\nFrame-to-frame displacement: median 1.82 \u00b5m, p95 5.34 \u00b5m, p99 8.38 \u00b5m. A nearest-neighbour linker with an 8.4 \u00b5m radius reaches 99% of true links. In voxels that is ~21 in x/y but only ~5 in z \u2014 voxels are 1.625 \u00d7 0.40625 \u00d7 0.40625 \u00b5m, so a radius expressed in voxels is wrong in one axis by 4\u00d7.\nDivisions: 151 in total, i.e. one link in 853, and 112 of the 199 movies contain none at all.\nTwo things that cost me time and needn't cost yours:\n\n.geff is plain zarr \u2014 the geff package is not in the Kaggle image and you do not need it. Node properties live at nodes/props/<name>/values. Twelve lines of zarr do it.\nThe ground truth follows ~22 tracks per movie, not every cell, but 100% of its edges span exactly one frame \u2014 no gap-closing to learn, and an unannotated blob is not a missed detection.\nAlso: use the intensity quantiles shipped in the zarr metadata for normalisation. p99.9 is 2145 against a maximum of 4319, so min-max squashes everything useful into the bottom half.\n\nhttps://www.kaggle.com/code/nekkon/the-linking-radius-is-8-4-um\n\n",
+      "content": "<p>Two numbers that decide a tracker's architecture, measured across all 199 training movies and 128,883 ground-truth links:</p>\n<p>Frame-to-frame displacement: median 1.82 \u00b5m, p95 5.34 \u00b5m, p99 8.38 \u00b5m. A nearest-neighbour linker with an 8.4 \u00b5m radius reaches 99% of true links. In voxels that is ~21 in x/y but only ~5 in z \u2014 voxels are 1.625 \u00d7 0.40625 \u00d7 0.40625 \u00b5m, so a radius expressed in voxels is wrong in one axis by 4\u00d7.\nDivisions: 151 in total, i.e. one link in 853, and 112 of the 199 movies contain none at all.\nTwo things that cost me time and needn't cost yours:</p>\n<p>.geff is plain zarr \u2014 the geff package is not in the Kaggle image and you do not need it. Node properties live at nodes/props//values. Twelve lines of zarr do it.\nThe ground truth follows ~22 tracks per movie, not every cell, but 100% of its edges span exactly one frame \u2014 no gap-closing to learn, and an unannotated blob is not a missed detection.\nAlso: use the intensity quantiles shipped in the zarr metadata for normalisation. p99.9 is 2145 against a maximum of 4319, so min-max squashes everything useful into the bottom half.</p>\n<p><a href=\"https://www.kaggle.com/code/nekkon/the-linking-radius-is-8-4-um\" target=\"_blank\">https://www.kaggle.com/code/nekkon/the-linking-radius-is-8-4-um</a></p>",
+      "parent": {},
+      "author": {
+        "displayName": "Luka Duvanov",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14823419-kg.jpg?t=2026-08-04-08-41-55",
+        "url": "/nekkon",
+        "tier": "CONTRIBUTOR",
+        "id": 14823419,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1999,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Luka Duvanov",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14823419-kg.jpg?t=2026-08-04-08-41-55",
+          "url": "/nekkon",
+          "userName": "nekkon",
+          "tier": "CONTRIBUTOR",
+          "id": 14823419,
+          "profileUrl": "/nekkon",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 14823419,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3510706,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 733973,
+    "name": "The linking radius is 8.4 \u00b5m, and divisions are one link in 853",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-09T10:37:14.977001900Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/733973",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

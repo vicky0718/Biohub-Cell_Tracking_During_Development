@@ -1,0 +1,60 @@
+{
+  "forumTopic": {
+    "authorId": 34038359,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Uthman Kareem Tunde ",
+    "authorUserName": "uthmankareemtunde",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3494758,
+      "postDate": "2026-07-10T16:38:22.707Z",
+      "rawMarkdown": "Hi everyone. I'm a beginner in this competition documenting my parameter experiments on the JIRKA baseline. So far:\n\u25cf Default settings: 0.728\n\u25cf USE_COUNT_CALIBRATION = True: 0.728 (no change)\n\u25cf DETECT_DIV = True: 0.695 (worse, division detection hurts without tuning)\n\nCurrently testing BUDGET_SAFETY adjustments. Happy to share results. I would love to hear what parameter ranges others have found useful.",
+      "content": "<p>Hi everyone. I'm a beginner in this competition documenting my parameter experiments on the JIRKA baseline. So far:\n\u25cf Default settings: 0.728\n\u25cf USE_COUNT_CALIBRATION = True: 0.728 (no change)\n\u25cf DETECT_DIV = True: 0.695 (worse, division detection hurts without tuning)</p>\n<p>Currently testing BUDGET_SAFETY adjustments. Happy to share results. I would love to hear what parameter ranges others have found useful.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Uthman Kareem Tunde ",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/uthmankareemtunde",
+        "tier": "CONTRIBUTOR",
+        "id": 34038359,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -1,
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1818,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Uthman Kareem Tunde ",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/uthmankareemtunde",
+          "userName": "uthmankareemtunde",
+          "tier": "CONTRIBUTOR",
+          "id": 34038359,
+          "profileUrl": "/uthmankareemtunde",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 34038359,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3494758,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 724323,
+    "name": "Baseline parameter tuning log, what's working and what isn't.",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-10T16:38:22.708297200Z",
+    "totalVotes": -1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/724323",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

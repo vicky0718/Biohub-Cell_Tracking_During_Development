@@ -1,0 +1,70 @@
+{
+  "forumTopic": {
+    "authorId": 2190976,
+    "authorThumbnailName": "2190976-kg.jpg?t=2024-05-22-15-48-12",
+    "authorUserDisplayName": "Mikhail Kotyushev",
+    "authorUserName": "mkotyushev",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3502913,
+      "postDate": "2026-07-25T04:11:18.683Z",
+      "rawMarkdown": "There are open [Cell Tracking Challenge datasets](https://celltrackingchallenge.net/datasets/) that could prove to be useful (haven't done extensive experiments with them yet). \n\nAs per the data usage term \"3) Any public non-CTC-related, scientific use of our datasets requires explicit permission from the challenge organizers.\" on the site, I e-mailed the challenge organizers and they permitted the usage of the datasets, given the proper citation is included in the solution description.\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F2190976%2F18abf1648e5615527a8b5dd74c637638%2FScreenshot%202026-07-25%20090743.png?generation=1784952607487208&alt=media)\n\nSo I share the link here with the community",
+      "content": "<p>There are open <a href=\"https://celltrackingchallenge.net/datasets/\" target=\"_blank\">Cell Tracking Challenge datasets</a> that could prove to be useful (haven't done extensive experiments with them yet). </p>\n<p>As per the data usage term \"3) Any public non-CTC-related, scientific use of our datasets requires explicit permission from the challenge organizers.\" on the site, I e-mailed the challenge organizers and they permitted the usage of the datasets, given the proper citation is included in the solution description.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F2190976%2F18abf1648e5615527a8b5dd74c637638%2FScreenshot%202026-07-25%20090743.png?generation=1784952607487208&amp;alt=media\" alt=\"\"></p>\n<p>So I share the link here with the community</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Mikhail Kotyushev",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2190976-kg.jpg?t=2024-05-22-15-48-12",
+        "url": "/mkotyushev",
+        "tier": "EXPERT",
+        "id": 2190976,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 13,
+        "canUpvote": true,
+        "totalUpvotes": 13
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1496,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "KAGGLE",
+          "featuredUserNames": [
+            "yunusgmsoy"
+          ],
+          "userCount": 1
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Mikhail Kotyushev",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2190976-kg.jpg?t=2024-05-22-15-48-12",
+          "url": "/mkotyushev",
+          "userName": "mkotyushev",
+          "tier": "EXPERT",
+          "id": 2190976,
+          "profileUrl": "/mkotyushev",
+          "performanceTier": "EXPERT",
+          "userId": 2190976,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3502913,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 729057,
+    "name": "Cell Tracking Challenge dataset",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-07-25T04:11:18.683172600Z",
+    "totalVotes": 13,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/729057",
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

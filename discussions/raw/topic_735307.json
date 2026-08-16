@@ -1,0 +1,135 @@
+{
+  "forumTopic": {
+    "authorId": 32954738,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Developer kgf",
+    "authorUserName": "developerkgf",
+    "comments": [
+      {
+        "id": 3513088,
+        "postDate": "2026-08-15T07:28:34.047Z",
+        "rawMarkdown": "I can\u2019t say for sure because I\u2019m not familiar with the code, but perhaps you made significant changes to the processing compared to the previous version. Notebooks can sometimes hit the timeout limit, but I think this is still within the normal range.",
+        "content": "<p>I can\u2019t say for sure because I\u2019m not familiar with the code, but perhaps you made significant changes to the processing compared to the previous version. Notebooks can sometimes hit the timeout limit, but I think this is still within the normal range.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "yoikoarmor",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29299384-kg.png?t=2025-12-01-12-37-47",
+          "url": "/yoikoarmor",
+          "tier": "CONTRIBUTOR",
+          "id": 29299384,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 16,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "yoikoarmor",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29299384-kg.png?t=2025-12-01-12-37-47",
+            "url": "/yoikoarmor",
+            "userName": "yoikoarmor",
+            "tier": "CONTRIBUTOR",
+            "id": 29299384,
+            "profileUrl": "/yoikoarmor",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 29299384,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3513004,
+        "postDate": "2026-08-14T23:51:28.627Z",
+        "rawMarkdown": "Help Me please \ud83e\udd7a",
+        "content": "<p>Help Me please \ud83e\udd7a</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Developer kgf",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/developerkgf",
+          "tier": "CONTRIBUTOR",
+          "id": 32954738,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Developer kgf",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/developerkgf",
+            "userName": "developerkgf",
+            "tier": "CONTRIBUTOR",
+            "id": 32954738,
+            "profileUrl": "/developerkgf",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 32954738,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3513003,
+      "postDate": "2026-08-14T23:50:52.463Z",
+      "rawMarkdown": "I submitted my notebook with my successfully ran version and the submission.cvs , and my last version took just 2.8 hours to complete. But I noticed that after I submitted my latest work to the competition it is runing from 11hours. Please let me know what or why is this thing happening.",
+      "content": "<p>I submitted my notebook with my successfully ran version and the submission.cvs , and my last version took just 2.8 hours to complete. But I noticed that after I submitted my latest work to the competition it is runing from 11hours. Please let me know what or why is this thing happening.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Developer kgf",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/developerkgf",
+        "tier": "CONTRIBUTOR",
+        "id": 32954738,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Developer kgf",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/developerkgf",
+          "userName": "developerkgf",
+          "tier": "CONTRIBUTOR",
+          "id": 32954738,
+          "profileUrl": "/developerkgf",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 32954738,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3513003,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 735307,
+    "name": "What is happening after submitting the notebook for the first time?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-14T23:50:52.463209200Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/735307",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

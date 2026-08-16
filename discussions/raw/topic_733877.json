@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 14823419,
+    "authorThumbnailName": "14823419-kg.jpg?t=2026-08-04-08-41-55",
+    "authorUserDisplayName": "Luka Duvanov",
+    "authorUserName": "nekkon",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3510527,
+      "postDate": "2026-08-08T19:52:11.587Z",
+      "rawMarkdown": "I ran the host's own evaluation code (royerlab/kaggle-cell-tracking-competition) on graphs built by hand to isolate one property at a time. No competition data needed \u2014 the metric is a function of two graphs. Four things came out of it.\n\nOver-detection is almost free. A predicted node that matches no ground-truth node is never a false positive; the whole cost is the adjusted-Jaccard term. The line is exactly 1 \u2212 0.1 \u00d7 over-prediction, so 10% more nodes has to buy only a 1% relative gain in edge Jaccard to break even. Recall on detection is worth far more than precision here, and I think most people's thresholds are too high.\n\nDuplicating a detection costs ~9% and buys nothing. Node matching is a one-to-one bipartite assignment, so a twin one voxel away matches nothing: edge Jaccard did not move at all, only the node count. If you take the union of two models' detections without a merge pass, you pay this in full.\n\nA Hungarian linker forfeits the whole division term by construction. One successor per cell means no node ever has two outgoing edges, so division Jaccard is exactly 0.000 \u2014 in my test, 40 FN out of 40 \u2014 and 0.1 of the available 1.1 is gone before the tracker sees an image. That is the largest single block of score most baselines leave behind.\n\nThe metric was patched on 17 July (commit aa65e90), closing three holes at once: divisions now require directed local topology rather than shared weak connectivity, edges spanning more than one frame are dropped, and merged edges are collapsed. Same graphs, both versions: appending a hub node and 40 fake forks moved a one-to-one linker 0.9839 \u2192 1.0639 under the old metric and 0.9839 \u2192 0.9794 under the new one. If you have a local CV number from early July, it is not comparable with one from today \u2014 that is the reason I wrote this up rather than the exploit, which is closed and now loses score.\n\nhttps://www.kaggle.com/code/nekkon/your-linker-cannot-score-a-single-division\n\n",
+      "content": "<p>I ran the host's own evaluation code (royerlab/kaggle-cell-tracking-competition) on graphs built by hand to isolate one property at a time. No competition data needed \u2014 the metric is a function of two graphs. Four things came out of it.</p>\n<p>Over-detection is almost free. A predicted node that matches no ground-truth node is never a false positive; the whole cost is the adjusted-Jaccard term. The line is exactly 1 \u2212 0.1 \u00d7 over-prediction, so 10% more nodes has to buy only a 1% relative gain in edge Jaccard to break even. Recall on detection is worth far more than precision here, and I think most people's thresholds are too high.</p>\n<p>Duplicating a detection costs ~9% and buys nothing. Node matching is a one-to-one bipartite assignment, so a twin one voxel away matches nothing: edge Jaccard did not move at all, only the node count. If you take the union of two models' detections without a merge pass, you pay this in full.</p>\n<p>A Hungarian linker forfeits the whole division term by construction. One successor per cell means no node ever has two outgoing edges, so division Jaccard is exactly 0.000 \u2014 in my test, 40 FN out of 40 \u2014 and 0.1 of the available 1.1 is gone before the tracker sees an image. That is the largest single block of score most baselines leave behind.</p>\n<p>The metric was patched on 17 July (commit aa65e90), closing three holes at once: divisions now require directed local topology rather than shared weak connectivity, edges spanning more than one frame are dropped, and merged edges are collapsed. Same graphs, both versions: appending a hub node and 40 fake forks moved a one-to-one linker 0.9839 \u2192 1.0639 under the old metric and 0.9839 \u2192 0.9794 under the new one. If you have a local CV number from early July, it is not comparable with one from today \u2014 that is the reason I wrote this up rather than the exploit, which is closed and now loses score.</p>\n<p><a href=\"https://www.kaggle.com/code/nekkon/your-linker-cannot-score-a-single-division\" target=\"_blank\">https://www.kaggle.com/code/nekkon/your-linker-cannot-score-a-single-division</a></p>",
+      "parent": {},
+      "author": {
+        "displayName": "Luka Duvanov",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14823419-kg.jpg?t=2026-08-04-08-41-55",
+        "url": "/nekkon",
+        "tier": "CONTRIBUTOR",
+        "id": 14823419,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 3,
+        "canUpvote": true,
+        "totalUpvotes": 3
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1999,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Luka Duvanov",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14823419-kg.jpg?t=2026-08-04-08-41-55",
+          "url": "/nekkon",
+          "userName": "nekkon",
+          "tier": "CONTRIBUTOR",
+          "id": 14823419,
+          "profileUrl": "/nekkon",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 14823419,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3510527,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 733877,
+    "name": "A one-to-one linker scores 0.000 on divisions - four measurements on the metric itself",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-08T19:52:11.586320800Z",
+    "totalVotes": 3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/733877",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}
