@@ -1,13 +1,13 @@
 """A complete detect -> link -> submit pipeline with no training required.
 
-Purpose is twofold: get a real number on the leaderboard quickly, and give us a
-detector whose threshold we control directly, so the first experiment from
-`notes/02-metric-findings.md` — that the official baseline's `--det-threshold 0.99`
-is tuned on the axis that barely matters — becomes a sweep instead of an argument.
+Experiment #1 is settled (`notes/05-first-sweep.md`): the official baseline's
+`--det-threshold 0.99` scores **0.049** on 199 datasets, and dropping it to 0.15 scores
+**0.533** — +0.48, positive in all five folds. The threshold is now saturated; below 0.15
+extra detections stop finding new ground-truth cells.
 
-Every parameter that the recon measurements should set is a field on `Config`, with
-the source of its value named in the comment. Nothing here is tuned yet; the defaults
-are placeholders chosen from the domain notes, not from data.
+Every tunable is a field on `Config` with the source of its value named in the comment.
+Values now come from measurement, not from the domain notes, and two of them are marked
+with what falsified the earlier guess.
 """
 
 from __future__ import annotations
@@ -34,15 +34,15 @@ DENSE_CAP = 4_000_000  # n_src * n_tgt above which the assignment goes sparse
 
 @dataclass
 class Config:
-    """Everything tunable. Defaults now come from recon (`notes/04-recon-results.md`)
-    except `det_threshold`, which is the axis we are here to sweep."""
+    """Everything tunable. Defaults come from measurement — `notes/05-first-sweep.md`
+    for det_threshold and budget_fill, `notes/04-recon-results.md` for the rest."""
 
     # --- detection ---
     # Intensity threshold on the quantile-normalised image. LOW is the hypothesis:
     # a missed detection is 2 permanent FN (metric findings §3), while a spurious one
     # costs only through the node budget — and `budget_fill` below bounds that cost
     # directly. This is experiment #1.
-    det_threshold: float = 0.30          # the sweep axis
+    det_threshold: float = 0.15          # MEASURED best (notes/05, 199 datasets)
     # Minimum separation between detections, in microns. Recon §4: median annotated
     # NN spacing 24.99 µm at a ~1/28 annotated fraction implies true spacing
     # 25/28^(1/3) ~ 8 µm; the 7 µm match radius is the other anchor.
@@ -56,14 +56,22 @@ class Config:
     # between the two test datasets carrying 95% of the weight. A fixed global
     # threshold emits a roughly fixed count, which zeroes out the sparse crops —
     # the multiplier max(0, 1 - 0.1*(N_pred - N_total)/N_total) reaches 0 at 11x over.
-    # 1.0 sits exactly at budget; slightly under earns the uncapped bonus of §7.
-    budget_fill: float | None = 1.0      # recon §9 — a required guard, not a nicety
+    # MEASURED AND REJECTED (notes/05 §2): the cap cost -0.0226, regressing all five
+    # folds. §9's mechanism is real but its premise was not — this detector runs *under*
+    # budget (pooled ratio -0.111 at threshold 0.15), so the cap could only ever bind on
+    # real detections. Keep the machinery: a future detector that emits far more nodes
+    # would need it. Check the ratio before assuming the bonus still applies.
+    budget_fill: float | None = None     # measured worse than no cap
 
     # --- linking ---
     # Physical search radius. Set from MOTION, not from the 7 µm metric cutoff —
     # matching the metric buys ambiguity, not recall (domain intel §4).
-    # Recon §3: displacement p99 = 8.38 µm, only 2.1% of true links exceed 7 µm.
-    link_radius_um: float = 9.0          # recon §3 (p99 8.38 µm)
+    # Recon §3: displacement p99 = 8.38 µm, only 2.1% of true links exceed 7 µm — but
+    # that p99 was measured on the sparse ANNOTATED set, where neighbours sit 25 µm apart.
+    # The real detection field is ~210 nodes/frame at ~8 µm spacing with 15% of true
+    # successors missing, and notes/05 §3 measures ~42k wrong links against ~38k missing
+    # ones. Sweeping this DOWN is the next experiment.
+    link_radius_um: float = 9.0          # recon §3 — untested against real detections
     # 'hungarian' = optimal one-to-one; 'greedy' = nearest neighbour, collisions allowed.
     # Recon §7: on perfect detections hungarian 0.9915 vs greedy 0.9847 — take the
     # +0.0068, it is cheap, but expect nothing more from the linker than that.

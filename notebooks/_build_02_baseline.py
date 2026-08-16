@@ -385,7 +385,7 @@ for i, n in enumerate(test_names, 1):
           f"{graphs[n].n_edges:>8,} edges  budget ratio={ratio:+.2f} "
           f"-> x{max(0, 1 - 0.1*ratio):.3f}  ({time.time()-t0:.0f}s)", flush=True)
 
-csv = build_submission(graphs, "/kaggle/working/submission.csv")
+csv = build_submission(graphs, WORK / "submission.csv")
 problems = validate_submission(csv, expected_datasets=test_names)
 print("\nREADY TO SUBMIT" if not problems else f"\nFIX {len(problems)} PROBLEM(S) FIRST")
 """)
@@ -409,9 +409,9 @@ payload = {
     "test_names": test_names,
     "test_has_geff": test_geffs,
 }
-Path("/kaggle/working/sweep_results.json").write_text(json.dumps(payload, indent=2, default=str))
+(WORK / "sweep_results.json").write_text(json.dumps(payload, indent=2, default=str))
 print(json.dumps(payload["sweep"], indent=2))
-print("\nWrote /kaggle/working/sweep_results.json - commit it back to the repo.")
+print(f"\nWrote {WORK}/sweep_results.json - commit it back to the repo.")
 """)
 
 nb = {"cells": CELLS,
