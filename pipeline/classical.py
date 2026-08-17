@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
-from scipy.ndimage import maximum_filter
+from scipy.ndimage import gaussian_filter, maximum_filter
 from scipy.optimize import linear_sum_assignment
 from scipy.spatial import cKDTree
 from scipy.spatial.distance import cdist
@@ -38,6 +38,25 @@ class Config:
     for det_threshold and budget_fill, `notes/04-recon-results.md` for the rest."""
 
     # --- detection ---
+    # 'intensity' = threshold the quantile-normalised image (what we measured at 0.5552).
+    # 'dog' = multi-scale Difference-of-Gaussians (notes/08). The public rule-based
+    # baseline scored CV 0.682 with plain DoG and 0.824 multi-scale, against our 0.5552,
+    # and its author measured multi-scale alone worth +0.040 LB. UNMEASURED here.
+    detector: str = "intensity"          # 'intensity' | 'dog'
+    # DoG sigma pairs in microns. A scale-space max over these catches nuclei of
+    # different sizes. None -> a single (dog_small_um, dog_large_um) pair.
+    dog_scales: list | None = None
+    dog_small_um: float = 1.5
+    dog_large_um: float = 4.0
+    # Cut on the DoG response, plus a floor on the normalised intensity so that
+    # band-pass noise in genuinely empty regions cannot peak.
+    dog_rel_threshold: float = 0.02
+    dog_abs_percentile: float = 50.0
+    # Per-frame normalisation percentiles. Whole-movie quantiles (what `intensity` uses,
+    # from the zarr attrs) drift with bleaching; these do not.
+    dog_norm_lo: float = 1.0
+    dog_norm_hi: float = 99.7
+
     # Intensity threshold on the quantile-normalised image. LOW is the hypothesis:
     # a missed detection is 2 permanent FN (metric findings §3), while a spurious one
     # costs only through the node budget — and `budget_fill` below bounds that cost
@@ -47,6 +66,12 @@ class Config:
     # NN spacing 24.99 µm at a ~1/28 annotated fraction implies true spacing
     # 25/28^(1/3) ~ 8 µm; the 7 µm match radius is the other anchor.
     min_separation_um: float = 6.0       # recon §4 (true spacing ~8 µm)
+    # Non-maximum window shape. 'box' is what 0.5552 was measured with and is kept so
+    # that number stays reproducible — but it is DEGENERATE below ~6 um: _footprint
+    # rounds to whole voxels, and on the 1.625 um isotropic grid that downsample=(1,4,4)
+    # produces, 4.5 / 3.5 / 2.5 um ALL collapse to a (3,3,3) window. The 03 grid lost
+    # four arms to that collision (notes/09 §1). Any separation sweep must use 'ball'.
+    footprint: str = "box"               # 'box' | 'ball'
     # Hard cap on detections per frame, keeping the strongest. Overrides the budget
     # cap below when set; normally leave it None and let `budget_fill` do the work.
     max_per_frame: int | None = None
@@ -81,6 +106,22 @@ class Config:
     # neighbour is the true successor 0.19% of the time. Keep this off.
     allow_divisions: bool = False
 
+    # --- graph repair (notes/06-competitor-intel.md §4) ---
+    # Bridge a missing detection by INSERTING a node at t+1, turning an unusable t->t+2
+    # bridge into two scoring edges. 0 = off, 1 = close one-frame gaps. Aimed straight at
+    # the 15.5% of GT nodes the threshold can no longer reach (notes/05 §1), and at the
+    # linking gap, since a track end next to a track start is where wrong links come from.
+    gap_close: int = 0                   # UNMEASURED — an arm, not a default
+    # Ceiling on inserted nodes as a fraction of detections. Both public learned pipelines
+    # cap this hard (~0.045) and one is explicitly testing for over-repair.
+    gap_close_max_frac: float = 0.045
+    # Multiplier on the 2-frame search radius. A cell crossing a gap has two frames to
+    # move, so the budget is 2 x link_radius_um, times this slack.
+    gap_close_slack: float = 1.0
+    # Drop detections that ended up with no edge. They cannot score but do count against
+    # the node budget. Not provably free — see prune_isolated().
+    prune_isolated_nodes: bool = False   # UNMEASURED — an arm, not a default
+
     # --- image handling ---
     # Strided spatial downsample (Z, Y, X). (1, 4, 4) makes the grid isotropic at
     # 1.625 µm, since the anisotropy is exactly 4:1 (domain intel §2).
@@ -105,6 +146,76 @@ def _footprint(min_sep_um: float, voxel_um: tuple[float, float, float]) -> tuple
     return tuple(out)
 
 
+def _ball_footprint(radius_um: float, voxel_um) -> np.ndarray:
+    """Ellipsoidal (physically spherical) neighbourhood, not a box.
+
+    A box footprint reaches `r` along the axes but `r*sqrt(3)` into the corners, so it
+    suppresses diagonal neighbours that are physically further away than the radius
+    claims. On a 4:1 anisotropic grid that error is not symmetric between Z and XY.
+    """
+    r = [max(1, int(round(radius_um / s))) for s in voxel_um]
+    grids = np.meshgrid(*[np.arange(-k, k + 1) for k in r], indexing="ij")
+    d2 = sum((g * s) ** 2 for g, s in zip(grids, voxel_um))
+    return d2 <= radius_um ** 2
+
+
+def detect_frame_dog(
+    vol: np.ndarray,
+    voxel_um: tuple[float, float, float],
+    cfg: Config,
+    cap: int | None = None,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Multi-scale Difference-of-Gaussians blob detection.
+
+    Ported from the public rule-based baseline described in
+    `notes/08-leaderboard-and-dog.md`, whose author measured **multi-scale DoG alone
+    worth +0.040 LB** (0.786 -> 0.826) and whose plain DoG version scored CV 0.682
+    against our 0.5552 with raw-intensity thresholding.
+
+    Three things differ from `detect_frame`, and each one has a reason:
+
+    1. **Band-pass, not absolute intensity.** DoG responds to blob-scale structure and
+       suppresses the smooth background, so a dim nucleus on a bright background still
+       peaks. An absolute intensity cut cannot separate those — which is exactly the
+       15.5% of GT nodes `notes/05` §1 found the threshold could no longer reach.
+    2. **Per-frame normalisation.** `detect_frame` uses whole-movie quantiles from the
+       zarr attrs; this renormalises each frame, so bleaching and intensity drift do not
+       move the operating point through the movie.
+    3. **Scale-space maximum** over several (small, large) sigma pairs, which catches
+       nuclei of different sizes — recon §7 noted cells with Z spans over 24 µm
+       alongside ordinary ones.
+    """
+    vf = np.asarray(vol, np.float32)
+    lo, hi = np.percentile(vf, [cfg.dog_norm_lo, cfg.dog_norm_hi])
+    if hi <= lo:
+        hi = lo + 1.0
+    norm = np.clip((vf - lo) / (hi - lo), 0, None)
+
+    scales = cfg.dog_scales or [(cfg.dog_small_um, cfg.dog_large_um)]
+    eff = np.asarray(voxel_um, float)
+    dog = None
+    for s_um, l_um in scales:
+        resp = (gaussian_filter(norm, sigma=s_um / eff)
+                - gaussian_filter(norm, sigma=l_um / eff))
+        dog = resp if dog is None else np.maximum(dog, resp)
+
+    fp = _ball_footprint(cfg.min_separation_um, voxel_um)
+    mx = maximum_filter(dog, footprint=fp, mode="nearest")
+    abs_thr = np.percentile(norm, cfg.dog_abs_percentile)
+    peaks = (dog == mx) & (dog >= cfg.dog_rel_threshold) & (norm >= abs_thr)
+    idx = np.argwhere(peaks)
+    if idx.size == 0:
+        return np.zeros((0, 3), float), np.zeros(0, float)
+
+    scores = dog[peaks]
+    order = np.argsort(scores)[::-1]
+    idx, scores = idx[order], scores[order]
+    cap = cfg.max_per_frame if cap is None else cap
+    if cap is not None and len(idx) > cap:
+        idx, scores = idx[:cap], scores[:cap]
+    return idx.astype(float), scores
+
+
 def detect_frame(
     vol: np.ndarray,
     voxel_um: tuple[float, float, float],
@@ -119,8 +230,12 @@ def detect_frame(
     ``cap`` is the per-frame detection limit for *this dataset*, normally derived from
     its own node budget by `predict_dataset`; it overrides `cfg.max_per_frame`.
     """
-    fp = _footprint(cfg.min_separation_um, voxel_um)
-    pooled = maximum_filter(vol, size=fp, mode="nearest")
+    if cfg.footprint == "ball":
+        fp = _ball_footprint(cfg.min_separation_um, voxel_um)
+        pooled = maximum_filter(vol, footprint=fp, mode="nearest")
+    else:
+        pooled = maximum_filter(vol, size=_footprint(cfg.min_separation_um, voxel_um),
+                                mode="nearest")
     peaks = (vol == pooled) & (vol > cfg.det_threshold)
     idx = np.argwhere(peaks)
     if idx.size == 0:
@@ -226,6 +341,100 @@ def link_all(coords_tzyx: np.ndarray, scale: tuple[float, float, float],
         for i, j in link_frame(phys[a], phys[b], cfg):
             edges.append((a[i], b[j]))
     return edges
+
+
+def close_gaps(
+    coords_tzyx: np.ndarray,
+    edges: list[tuple[int, int]],
+    scale: tuple[float, float, float],
+    cfg: Config,
+) -> tuple[np.ndarray, list[tuple[int, int]]]:
+    """Bridge one missing frame by INSERTING a node, not by spanning the gap.
+
+    The scorer drops any edge that does not span exactly `t -> t+1`, so a direct
+    `t -> t+2` link scores identically to no edge at all (metric findings §3). Inserting
+    a synthetic detection at `t+1` instead converts that unusable bridge into **two
+    scoring edges**, which is why both learned notebooks in `notes/06-competitor-intel.md`
+    do this and cap it tightly.
+
+    A track end at `t` is matched to a track start at `t+2` within
+    `2 * link_radius_um * gap_close_slack`, by optimal assignment, and the new node goes
+    at the midpoint. `gap_close_max_frac` bounds how many nodes this may add, because
+    over-repair is a real failure mode — one of those notebooks is explicitly testing
+    whether its remaining loss comes from exactly that.
+
+    Returns the extended `(coords, edges)`.
+    """
+    if cfg.gap_close <= 0 or len(coords_tzyx) == 0:
+        return coords_tzyx, edges
+
+    n = len(coords_tzyx)
+    out_deg = np.bincount([s for s, _ in edges], minlength=n) if edges else np.zeros(n, int)
+    in_deg = np.bincount([d for _, d in edges], minlength=n) if edges else np.zeros(n, int)
+
+    by_t: dict[int, list[int]] = {}
+    for i in np.argsort(coords_tzyx[:, 0], kind="stable"):
+        by_t.setdefault(int(coords_tzyx[i, 0]), []).append(int(i))
+    phys = coords_tzyx[:, 1:] * np.asarray(scale)[None, :]
+
+    # ceil, not floor: int() would silently disable repair on any small dataset
+    budget = int(np.ceil(cfg.gap_close_max_frac * n))
+    radius = 2.0 * cfg.link_radius_um * cfg.gap_close_slack
+    new_coords: list[np.ndarray] = []
+    new_edges: list[tuple[int, int]] = []
+
+    for t in sorted(by_t):
+        if len(new_coords) >= budget:
+            break
+        ends = [i for i in by_t.get(t, []) if out_deg[i] == 0]
+        starts = [j for j in by_t.get(t + 2, []) if in_deg[j] == 0]
+        if not ends or not starts:
+            continue
+
+        D = cdist(phys[ends], phys[starts])
+        D[D > radius] = np.inf
+        finite = np.isfinite(D)
+        if not finite.any():
+            continue
+        big = D[finite].max() * 10 + 1.0
+        ri, ci = linear_sum_assignment(np.where(finite, D, big))
+        for i, j in zip(ri, ci):
+            if not finite[i, j] or len(new_coords) >= budget:
+                continue
+            src, dst = ends[i], starts[j]
+            mid = 0.5 * (coords_tzyx[src, 1:] + coords_tzyx[dst, 1:])
+            new_idx = n + len(new_coords)
+            new_coords.append(np.concatenate([[t + 1], mid]))
+            new_edges += [(src, new_idx), (new_idx, dst)]
+            out_deg[src] += 1
+            in_deg[dst] += 1
+
+    if not new_coords:
+        return coords_tzyx, edges
+    return np.vstack([coords_tzyx, np.array(new_coords)]), edges + new_edges
+
+
+def prune_isolated(
+    coords_tzyx: np.ndarray, edges: list[tuple[int, int]]
+) -> tuple[np.ndarray, list[tuple[int, int]]]:
+    """Drop detections with no edge at all, and reindex.
+
+    They cannot contribute an edge but they do count in `N_pred`, so they only ever cost
+    budget multiplier. NOT provably free, though: node matching is a bipartite assignment,
+    so a pruned node may currently be winning a match that would otherwise go to a linked
+    node — which can change edge TP/FP. Measure it, do not assume it.
+    """
+    n = len(coords_tzyx)
+    if n == 0:
+        return coords_tzyx, edges
+    keep = np.zeros(n, bool)
+    for s, d in edges:
+        keep[s] = keep[d] = True
+    if keep.all():
+        return coords_tzyx, edges
+    remap = np.full(n, -1, int)
+    remap[keep] = np.arange(int(keep.sum()))
+    return coords_tzyx[keep], [(int(remap[s]), int(remap[d])) for s, d in edges]
 
 
 # --------------------------------------------------------------------------
@@ -339,7 +548,8 @@ def predict_dataset(
     for t in range(T):
         vol = np.asarray(arr[t, ::dz, ::dy, ::dx]).astype(np.float32)
         vol = np.clip((vol - q_lo) / (q_hi - q_lo + 1e-6), 0.0, None)
-        c, _ = detect_frame(vol, voxel_um, cfg, cap=cap)
+        det = detect_frame_dog if cfg.detector == "dog" else detect_frame
+        c, _ = det(vol, voxel_um, cfg, cap=cap)
         c = refine_centroids(vol, c, voxel_um)
         if len(c):
             all_coords.append(np.column_stack([np.full(len(c), t, float), c]))
@@ -355,6 +565,18 @@ def predict_dataset(
     coords[:, 1:] *= np.array([dz, dy, dx], float)
 
     edges = link_all(coords, scale, cfg)
+
+    n_before = len(coords)
+    coords, edges = close_gaps(coords, edges, scale, cfg)
+    if verbose and len(coords) != n_before:
+        print(f"    gap closing inserted {len(coords) - n_before:,} nodes", flush=True)
+
+    if cfg.prune_isolated_nodes:
+        n_before = len(coords)
+        coords, edges = prune_isolated(coords, edges)
+        if verbose and len(coords) != n_before:
+            print(f"    pruned {n_before - len(coords):,} isolated nodes", flush=True)
+
     if verbose:
         print(f"    -> {len(coords):,} nodes, {len(edges):,} links", flush=True)
     return build_graph(coords, edges)
@@ -373,5 +595,5 @@ def make_predictor(cfg: Config, verbose: bool = False,
     return _fn
 
 
-__all__ = ["Config", "detect_frame", "refine_centroids", "link_frame", "link_all",
+__all__ = ["Config", "detect_frame", "detect_frame_dog", "refine_centroids", "link_frame", "link_all",
            "build_graph", "predict_dataset", "make_predictor", "estimated_total_nodes"]

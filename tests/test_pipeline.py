@@ -172,6 +172,109 @@ def main() -> int:
           estimated_total_nodes(ds, {"extra": {"estimated_number_of_nodes": 1234}}) == 1234.0,
           "nested lookup")
 
+    print("\n[the box footprint is degenerate below 6um — the 03 grid's lost arms]")
+    from pipeline.classical import _ball_footprint as _ball
+    vox_ds = (1.625, 0.40625 * 4, 0.40625 * 4)   # what downsample=(1,4,4) produces
+    boxes = {s_: _footprint(s_, vox_ds) for s_ in (6.0, 4.5, 3.5, 2.5)}
+    check("box footprint COLLIDES for 4.5/3.5/2.5",
+          boxes[4.5] == boxes[3.5] == boxes[2.5],
+          f"all -> {boxes[4.5]}; this silently duplicated 4 arms of the 03 grid")
+    balls = {s_: int(_ball(s_, vox_ds).sum()) for s_ in (6.0, 4.5, 3.5, 2.5)}
+    check("ball footprint separates them", len(set(balls.values())) == 4, str(balls))
+    check("ball is monotone in radius",
+          all(balls[a] > balls[b] for a, b in [(6.0, 4.5), (4.5, 3.5), (3.5, 2.5)]),
+          str(balls))
+
+    print("\n[DoG detection recovers DIM nuclei that intensity thresholding misses]")
+    from pipeline.classical import _ball_footprint, detect_frame_dog
+
+    fpb = _ball_footprint(5.0, SCALE)
+    check("ball footprint is not a box", fpb.sum() < fpb.size,
+          f"{int(fpb.sum())} of {fpb.size} voxels inside the 5um sphere")
+    check("ball footprint is anisotropic", fpb.shape[0] < fpb.shape[1], str(fpb.shape))
+
+    # bright nuclei plus DIM ones at 12% amplitude sitting on a smooth bright gradient —
+    # the case an absolute intensity cut cannot separate but a band-pass can.
+    dim_shape = (24, 128, 128)
+    bright = centres[:6]
+    dim = centres[6:12]
+    v = synth_volume(bright, shape=dim_shape, seed=1)
+    v += 0.12 * synth_volume(dim, shape=dim_shape, noise=0.0, seed=2)
+    zz, yy, xx = np.meshgrid(*[np.arange(s) for s in dim_shape], indexing="ij")
+    v += (0.55 * yy / dim_shape[1]).astype(np.float32)      # smooth background ramp
+    v = v / v.max()
+
+    cfg_i = Config(det_threshold=0.15, min_separation_um=4.0, downsample=(1, 1, 1))
+    cfg_d = Config(detector="dog", min_separation_um=4.0, downsample=(1, 1, 1),
+                   dog_scales=[(1.5, 4.0), (2.5, 6.0)])
+    gi, _ = detect_frame(v, SCALE, cfg_i)
+    gd, _ = detect_frame_dog(v, SCALE, cfg_d)
+
+    def recall(got, truth, tol=7.0):
+        if not len(got):
+            return 0.0
+        d = np.linalg.norm((np.array(truth) * SCALE)[:, None, :]
+                           - (got * SCALE)[None, :, :], axis=2).min(axis=1)
+        return float((d < tol).mean())
+
+    # Compare at a MATCHED detection budget. Without that the intensity detector can
+    # "win" recall by spraying peaks over the background ramp — 153 detections for 12
+    # nuclei is not a detector, it is a shotgun. Equal budget, strongest peaks kept,
+    # is the comparison that reflects what the node budget actually charges for.
+    N = len(gd)
+    gi_eq, _ = detect_frame(v, SCALE, Config(det_threshold=0.15, min_separation_um=4.0,
+                                             downsample=(1, 1, 1), max_per_frame=N))
+    ri, rd = recall(gi_eq, dim), recall(gd, dim)
+    print(f"    at a matched budget of {N} detections — dim-nucleus recall: "
+          f"intensity {ri:.2f} vs DoG {rd:.2f}")
+    print(f"    (unmatched, intensity needs {len(gi)} detections to reach "
+          f"{recall(gi, dim):.2f})")
+    check("DoG finds more dim nuclei per detection spent", rd > ri, f"{rd:.2f} vs {ri:.2f}")
+    check("DoG still finds the bright ones", recall(gd, bright) >= 0.8,
+          f"bright recall {recall(gd, bright):.2f}")
+    check("DoG is far more economical", len(gd) < len(gi) / 3,
+          f"{len(gd)} vs {len(gi)} detections for the same volume")
+    check("single-scale DoG also detects",
+          len(detect_frame_dog(v, SCALE, Config(detector="dog", min_separation_um=4.0,
+                                                downsample=(1,1,1)))[0]) > 0, "")
+
+    print("\n[graph repair: gap closing and isolated pruning]")
+    from pipeline.classical import close_gaps, prune_isolated
+
+    # a track detected at t=0 and t=2 but MISSING at t=1. A direct 0->2 edge is dropped
+    # by the scorer, so the repair has to insert a node instead.
+    gc = np.array([[0., 10., 50., 50.], [2., 10., 52., 52.]])
+    cfg_gap = Config(gap_close=1, link_radius_um=9.0)
+    c2, e2 = close_gaps(gc, [], SCALE, cfg_gap)
+    check("gap closing inserts a node", len(c2) == 3, f"{len(c2)} nodes")
+    check("inserted node sits at t+1", len(c2) == 3 and c2[2, 0] == 1.0,
+          f"t={c2[2, 0] if len(c2) > 2 else 'n/a'}")
+    check("inserted node is at the midpoint", len(c2) == 3
+          and abs(c2[2, 2] - 51.0) < 1e-9, f"y={c2[2, 2] if len(c2) > 2 else 'n/a'}")
+    check("it makes TWO consecutive edges, not one bridge",
+          len(e2) == 2 and all(abs(c2[d, 0] - c2[s, 0]) == 1 for s, d in e2),
+          f"edges={e2}")
+    check("gap closing is off by default",
+          close_gaps(gc, [], SCALE, Config())[0].shape[0] == 2, "no nodes added")
+
+    # too far apart to be the same cell across a 2-frame gap
+    far = np.array([[0., 10., 50., 50.], [2., 10., 200., 200.]])
+    check("gap closing respects the radius",
+          len(close_gaps(far, [], SCALE, cfg_gap)[0]) == 2, "no bridge over 60um")
+
+    # the cap must bind
+    many = np.array([[float(t), 10., 50. + 20 * i, 50.] for i in range(40) for t in (0, 2)])
+    c3, _ = close_gaps(many, [], SCALE, Config(gap_close=1, link_radius_um=9.0,
+                                               gap_close_max_frac=0.05))
+    check("gap_close_max_frac caps insertions",
+          len(c3) - len(many) <= int(0.05 * len(many)) ,
+          f"added {len(c3) - len(many)}, cap {int(0.05 * len(many))}")
+
+    iso = np.array([[0., 1., 1., 1.], [1., 1., 1., 1.], [0., 9., 9., 9.]])
+    c4, e4 = prune_isolated(iso, [(0, 1)])
+    check("prune drops the unlinked node", len(c4) == 2, f"{len(c4)} nodes")
+    check("prune reindexes edges correctly", e4 == [(0, 1)], f"{e4}")
+
     print("\n[downsampling maps coordinates back to original space]")
     cfg_ds = Config(det_threshold=0.3, min_separation_um=5.0, downsample=(1, 2, 2))
     g2 = predict_dataset(ds, cfg_ds, verbose=False)
