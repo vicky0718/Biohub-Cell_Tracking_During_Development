@@ -200,6 +200,30 @@ cannot be rendered here either — the 71 forum *opening posts* stay unretrieved
 replies and all 25 HOST/ADMIN messages we do have). Any Zebrahub acquisition must run in a
 Kaggle notebook with internet enabled.
 
+**EXPERIMENTS 2-3 (2026-08-16), full write-ups `notes/09` and `notes/10`.**
+**#2 linking grid — all three predictions confirmed, and the linker is not the answer.**
+Tightening the detection window took node recall 0.895 -> 0.976 and the score 0.5790 ->
+0.3449: 1.86M extra detections bought ~3,264 extra GT nodes, i.e. **571 spurious detections
+per additional GT node**. The binding constraint is detection **precision**, not recall.
+Best linker gain available was +0.0073 (radius 9->7), which fails the gate. Also found a
+design flaw of mine: `_footprint` quantises to odd voxel counts, so on the 1.625 µm grid
+only 4 separations exist (1.625/4.875/8.125/11.375) — the grid's 4.5 and 3.5 rows were the
+same experiment. The DoG ball footprint is continuous.
+**#3 DoG detector — PROMOTED, +0.0970, positive in every fold.** 0.5790 -> **0.6760** at
+0.92x the node count, so it is the detector not the density. It reaches *lower* recall
+(0.857 vs 0.895) and still wins. Multi-scale confirmed at matched density (+0.0353, 2
+scales vs 1) — the notebook's own check said FALSIFIED because I reused the 2-scale
+calibration for the 3-scale arm, which then ran at 2x density; its edge_J (0.7027) actually
+ties the winner. **The node budget has flipped sign**: DoG runs +0.24…+0.53 OVER budget
+where intensity ran -0.111 under, so `budget_fill` is back on the table for the exact
+reason it was dropped. `dog_sep4.5` has the best quality yet measured (edge_J **0.7195**)
+and is taxed 5.3% for over-detecting — bringing it to budget is worth ~+0.05, landing ~0.72.
+Density is controlled by `min_separation_um`, not `dog_rel_threshold` (16x threshold change
+moved density 15%). **Caution: `04` printed "leave-one-embryo-out" as hardcoded text while
+actually running the 5-way hash split** — the uploaded snapshot predated `fold_by`. Cross-
+embryo generalisation of DoG is still unmeasured; `05` asserts the fold structure instead
+of claiming it.
+
 **Status:** the metric findings (§1-5 above) remain toy-graph probes. Recon and the sweep
 numbers ARE real data. Best known config: `det_threshold=0.15, min_separation_um=6.0,
 link_radius_um=9.0, budget_fill=None` → **0.5552** on 199 train datasets. Still no
