@@ -5,7 +5,14 @@ Raw output in `recon_summary.json`.
 
 ---
 
-## 0. The thing to check before anything else
+## 0. ~~The thing to check before anything else~~ — RESOLVED, no leak
+
+> **CLOSED 2026-08-16 (`notes/07-forum-intel.md` §2).** The host answered this on the
+> forum: the visible `test/` files are **dummy placeholders** so competitors can check
+> their submission notebook produces a CSV without erroring. The leaderboard scores a
+> *much bigger private test set* with **no overlap with train**. Reading 1 below was
+> right. Nothing to report, nothing to exploit. The section is kept for the record.
+
 
 **All 4 test dataset names also appear in the train list**, and we have ground truth for
 all four:

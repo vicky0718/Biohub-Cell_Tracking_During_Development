@@ -15,12 +15,16 @@ is *not* readable at test time. We know the four budgets anyway, because those f
 also appear in train and recon read their GEFF metadata (§9). But a general solution
 cannot rely on that.
 
-**The leak is real.** `sample_submission.csv` names exactly
-`44b6_0113de3b, 44b6_0b24845f, 6bba_05b6850b, 6bba_05db0fb1` — the four datasets whose
-ground truth ships in `train/`. Anyone can score ~1.0 by echoing the training annotations.
+**~~The leak is real.~~ RESOLVED — there is no leak.** `sample_submission.csv` names
+exactly the four datasets whose ground truth ships in `train/`.
 
-**Action: tell the organisers. Do not exploit it.** And treat any leaderboard position
-built on it as meaningless — ours included, until we know whether a private split exists.
+> **CLOSED 2026-08-16 (`notes/07-forum-intel.md` §2).** Already reported by another
+> competitor, and answered by the host: these are **dummy placeholder files** so you can
+> check your submission notebook produces a CSV. The leaderboard uses a much bigger
+> private test set with no train overlap. No action needed.
+
+The live consequence is the opposite of what this section assumed: because those four are
+placeholders, **scoring them locally predicts nothing about the leaderboard**.
 
 ## 1. The sweep — the prediction was right, and by a lot
 
@@ -37,11 +41,15 @@ Pre-registered in `notes/02-metric-findings.md`: the official baseline's
 | **0.15** | **0.5327** | 0.5282 | 0.845 | 4,200,408 |
 | 0.05 | 0.5230 | 0.5211 | 0.846 | 4,346,107 |
 
-**PROMOTE**, pooled `+0.4836`, positive in all five folds (+0.434 … +0.520).
+**PROMOTE**, pooled `+0.4836`, positive in all five folds (+0.434 … +0.520). The largest
+single result we have: **our detector's threshold belongs near 0.15, not near 1.0.**
 
-The baseline's own default scores **0.049**. Its CLI help justifies 0.99 as protecting
-precision; on this metric precision is nearly free and recall is everything, so that
-default costs about **0.48 of score**. This is the largest single result we have.
+> **Correction (2026-08-16, `notes/06-competitor-intel.md` §2).** This section originally
+> read the result as "the official baseline's default costs 0.48 of score". That was a
+> category error and is withdrawn. Our `det_threshold` cuts *quantile-normalised image
+> intensity*; the baseline's `--det-threshold` cuts the *TemporalUNet3D's predicted centre
+> probability*. Competitors run the latter at 0.96875–0.985 and score 0.9+ on the
+> leaderboard. The measured fact — where **our** threshold belongs — is unaffected.
 
 **The threshold is now saturated**, and that matters more than the winner:
 

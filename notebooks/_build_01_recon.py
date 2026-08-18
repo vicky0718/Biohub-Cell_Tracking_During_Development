@@ -1,14 +1,22 @@
-"""Build biohub/notebooks/01_recon.ipynb from cell sources defined here."""
+"""Build notebooks/01_recon.ipynb.
+
+Design note: tracksdata requires numpy>2, which collides with the numpy<2 pin in
+Kaggle's pip constraints file. So the notebook does NOT depend on tracksdata for its
+analysis — ground truth is read through `geff` directly (light deps), and only the
+linking-ceiling section, which needs the official scorer, requires tracksdata. Each
+section is independently guarded so one failure never costs the whole run.
+"""
+import ast
 import json
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent / "01_recon.ipynb"
-
 CELLS = []
 
 
 def md(src):
-    CELLS.append({"cell_type": "markdown", "metadata": {}, "source": src.strip("\n").splitlines(keepends=True)})
+    CELLS.append({"cell_type": "markdown", "metadata": {},
+                  "source": src.strip("\n").splitlines(keepends=True)})
 
 
 def code(src):
@@ -19,86 +27,115 @@ def code(src):
 md(r"""
 # Biohub Cell Tracking — Recon
 
-Answers the open questions in `notes/02-metric-findings.md`, **without loading a single
-image**: everything here reads GEFF ground truth and zarr metadata only, so it runs on CPU
-in a few minutes.
+Reads **only** ground-truth graphs and zarr metadata — not one image pixel — so it runs
+on CPU in minutes. Set **Accelerator: None** and don't spend GPU quota here.
 
-What it produces:
+What it answers:
 
-1. Dataset inventory (train/test, frames, image shapes) and the official fold splits.
-2. Annotation density — how much of the embryo is actually labelled, and the
-   `estimated_number_of_nodes` node budget the scorer measures us against.
-3. Motion statistics — inter-frame displacement in µm, which sets the linking radius.
-4. Confusability — nearest-neighbour spacing vs the 7 µm match cutoff.
-5. Division counts — is the `0.1 · division_jaccard` term worth any effort.
-6. **The linking-only ceiling**: feed the GT nodes back in as perfect detections, link them
-   by nearest neighbour, and score with the official scorer. This splits the problem into
-   "how much of the score is detection" vs "how much is linking".
+1. Inventory — datasets, frames, volume shapes, official fold splits.
+2. Annotation density and the `estimated_number_of_nodes` budget the scorer measures us against.
+3. Motion — per-edge displacement in µm, which sets the linking radius.
+4. Confusability — cell spacing vs the 7 µm match cutoff.
+5. Whether the nearest neighbour is even the right link.
+5b. **Is the sparse annotation biased?** Depth, clonal clumping, division enrichment.
+5c. **Frame interval** and the Z-vs-XY error budget.
+6. Division counts — is the `0.1 · division_jaccard` term worth any effort.
+7. **The linking-only ceiling** — perfect detections + optimal linking, scored with the
+   official scorer. Splits the score into "detection problem" vs "linking problem".
 
-Everything lands in `recon_summary.json` at the end.
+Everything lands in `recon_summary.json`.
+
+> **Dependencies.** `tracksdata` requires numpy>2 while Kaggle's image pins numpy<2, so
+> the analysis reads `.geff` through the lighter `geff` package instead. Only section 7
+> needs `tracksdata`; if it won't install, everything else still runs.
 """)
 
 code(r"""
-# --- deps -------------------------------------------------------------------
-# tracksdata reads .geff and provides the official matching code.
-# Requires internet ON in the notebook settings (Settings -> Internet).
-!pip install -q tracksdata 2>&1 | tail -2
-
-import subprocess, sys, os
+# --- dependencies -------------------------------------------------------------
+# Deliberately minimal. `geff` reads the ground-truth graphs and `zarr` reads image
+# metadata; both are light and install cleanly.
+#
+# We do NOT install tracksdata here. It requires numpy>2, and installing it rewrites
+# numpy's files underneath the already-running kernel — which produced
+# "cannot import name '_center' from numpy._core.umath" and then took scipy.spatial
+# down with it. Nothing in this notebook needs it (see section 7).
+import os, subprocess, sys
 from pathlib import Path
 
-CELLMOT = Path("/kaggle/working/kaggle-cell-tracking-competition")
-if not CELLMOT.exists():
-    subprocess.run(
-        ["git", "clone", "--depth", "1",
-         "https://github.com/royerlab/kaggle-cell-tracking-competition.git", str(CELLMOT)],
-        check=False,
-    )
-if not (CELLMOT / "src" / "tracking_cellmot").is_dir():
+def pip_install(args):
+    env = dict(os.environ)
+    env.pop("PIP_CONSTRAINT", None)      # Kaggle pins numpy<2 via a constraints file
+    env.pop("PIP_CONSTRAINTS", None)
+    r = subprocess.run([sys.executable, "-m", "pip", "install", "-q", *args],
+                       env=env, capture_output=True, text=True)
+    if r.returncode != 0:
+        print(f"  pip {' '.join(args)} -> FAILED")
+        print("   ", (r.stderr or r.stdout).strip().splitlines()[-1][:300])
+    return r.returncode == 0
+
+print("installing geff + zarr ...")
+pip_install(["geff", "zarr"])
+print("done")
+""")
+
+code(r"""
+# --- what actually imported ---------------------------------------------------
+import importlib
+from pathlib import Path
+
+def probe(mod):
+    try:
+        m = importlib.import_module(mod)
+        return True, getattr(m, "__version__", "?")
+    except Exception as e:
+        return False, f"{type(e).__name__}: {e}"
+
+status = {m: probe(m) for m in ("numpy", "scipy", "zarr", "geff")}
+for m, (ok, info) in status.items():
+    print(f"  {'OK  ' if ok else 'MISS'} {m:<12} {info}")
+
+REQUIRED = ("numpy", "scipy", "zarr", "geff")
+missing = [m for m in REQUIRED if not status[m][0]]
+if missing:
     raise SystemExit(
-        "Could not fetch the official baseline repo.\n"
-        "Turn Internet ON in notebook settings, or attach the repo as a Kaggle dataset "
-        "and point CELLMOT at it. We use it ONLY for the official scorer, so that our "
-        "local numbers are the same numbers the leaderboard computes."
+        f"Missing required packages: {missing}\n"
+        "If the install cell above succeeded but the import still fails, the kernel is "
+        "holding an older module: use Run -> Restart & Run All. The packages are already "
+        "installed, so the second pass works."
     )
-sys.path.insert(0, str(CELLMOT / "src"))
-print("cellmot repo:", CELLMOT)
+
+print("\nAll required packages present — no tracksdata needed.")
 """)
 
 code(r"""
 import json, warnings
 from collections import Counter
+from pathlib import Path          # re-imported so this cell stands alone
 
 import numpy as np
-import polars as pl
 import zarr
-import tracksdata as td
+import geff
 from geff import GeffMetadata
+from scipy.spatial import cKDTree
 
 warnings.filterwarnings("ignore")
-K = td.DEFAULT_ATTR_KEYS
 
 COMP = Path("/kaggle/input/competitions/biohub-cell-tracking-during-development")
-if not COMP.exists():  # some mounts drop the "competitions" level
+if not COMP.exists():
     alt = Path("/kaggle/input/biohub-cell-tracking-during-development")
     COMP = alt if alt.exists() else COMP
 TRAIN, TEST = COMP / "train", COMP / "test"
 print("competition mount:", COMP, "| exists:", COMP.exists())
-print("train:", TRAIN.exists(), "| test:", TEST.exists())
 if COMP.exists():
     print("top level:", sorted(p.name for p in COMP.iterdir())[:20])
+print("train:", TRAIN.exists(), "| test:", TEST.exists())
 
-DEFAULT_SCALE = (1.625, 0.40625, 0.40625)  # z, y, x microns/px
-MATCH_UM = 7.0                             # scorer's node-match cutoff
-
-
-def load_geff(path):
-    r = td.graph.IndexedRXGraph.from_geff(str(path))
-    return r[0] if isinstance(r, tuple) else r
+DEFAULT_SCALE = (1.625, 0.40625, 0.40625)   # z, y, x microns/px
+MATCH_UM = 7.0                              # the scorer's node-match cutoff
 
 
 def zarr_info(zpath):
-    '''(T, Z, Y, X) shape and (z, y, x) scale from zarr metadata only.'''
+    '''(T, Z, Y, X) shape and (z, y, x) scale from zarr metadata only — no pixels read.'''
     g = zarr.open_group(str(zpath), mode="r")
     attrs = dict(g.attrs)
     shape = tuple(g["0"].shape)
@@ -110,599 +147,623 @@ def zarr_info(zpath):
     return shape, scale, attrs
 
 
+def _find_key(obj, key):
+    '''Recursively hunt for `key` anywhere in nested GEFF metadata extras.'''
+    if isinstance(obj, dict):
+        if key in obj:
+            return obj[key]
+        for v in obj.values():
+            found = _find_key(v, key)
+            if found is not None:
+                return found
+    return None
+
+
 def estimated_nodes(geff_path):
     try:
         meta = GeffMetadata.read(str(geff_path))
-        v = (meta.extra or {}).get("estimated_number_of_nodes")
+        v = _find_key(meta.extra or {}, "estimated_number_of_nodes")
         return float(v) if v is not None else float("nan")
-    except Exception as e:
-        print("  (no geff metadata:", type(e).__name__, e, ")")
+    except Exception:
         return float("nan")
+
+
+class GT:
+    '''Ground truth as plain numpy arrays — backend independent.
+
+    t, z, y, x : (N,) per node, in VOXEL units, indexed 0..N-1
+    src, dst   : (E,) node INDICES (not the file's ids)
+    '''
+
+    def __init__(self, name, path):
+        self.name = name
+        G, _ = geff.read(str(path), backend="networkx", structure_validation=False)
+        nodes = list(G.nodes())
+        idx = {n: i for i, n in enumerate(nodes)}
+        d = G.nodes
+        self.t = np.array([d[n]["t"] for n in nodes], float)
+        self.z = np.array([d[n].get("z", 0.0) for n in nodes], float)
+        self.y = np.array([d[n]["y"] for n in nodes], float)
+        self.x = np.array([d[n]["x"] for n in nodes], float)
+        edges = list(G.edges())
+        self.src = np.array([idx[u] for u, _ in edges], int) if edges else np.zeros(0, int)
+        self.dst = np.array([idx[v] for _, v in edges], int) if edges else np.zeros(0, int)
+        self.n_nodes, self.n_edges = len(nodes), len(edges)
+
+    @property
+    def out_deg(self):
+        return np.bincount(self.src, minlength=self.n_nodes)
+
+    @property
+    def in_deg(self):
+        return np.bincount(self.dst, minlength=self.n_nodes)
+
+    def coords(self, scale=None):
+        '''(N,3) z,y,x — in microns if `scale` given, else voxels.'''
+        c = np.stack([self.z, self.y, self.x], axis=1)
+        return c * np.asarray(scale)[None, :] if scale is not None else c
+
+    def by_frame(self):
+        '''{t: node index array}'''
+        out = {}
+        for i, tt in enumerate(self.t):
+            out.setdefault(int(tt), []).append(i)
+        return {k: np.array(v) for k, v in out.items()}
+
+
+def section(fn):
+    '''Run a section, report a failure, and keep going — one bad cell must not cost the run.'''
+    try:
+        return fn()
+    except Exception:
+        import traceback
+        print("!! SECTION FAILED — continuing so the rest still reports\n")
+        traceback.print_exc()
+        return None
 """)
 
 md("## 1. Inventory")
 
 code(r"""
-train_names = sorted(p.stem for p in TRAIN.glob("*.zarr")) if TRAIN.exists() else []
-test_names  = sorted(p.stem for p in TEST.glob("*.zarr"))  if TEST.exists()  else []
-print(f"{len(train_names)} train datasets, {len(test_names)} test datasets\n")
+# A train dataset needs BOTH the image and the ground truth. Deriving the list from
+# *.zarr alone would blow up later on any zarr that ships without a paired .geff.
+_train_zarr = {p.stem for p in TRAIN.glob("*.zarr")} if TRAIN.exists() else set()
+_train_geff = {p.stem for p in TRAIN.glob("*.geff")} if TRAIN.exists() else set()
+train_names = sorted(_train_zarr & _train_geff)
+test_names  = sorted(p.stem for p in TEST.glob("*.zarr")) if TEST.exists() else []
+
+if _train_zarr - _train_geff:
+    print(f"!! {len(_train_zarr - _train_geff)} train zarr(s) have no .geff and are excluded: "
+          f"{sorted(_train_zarr - _train_geff)[:5]}")
+if _train_geff - _train_zarr:
+    print(f"!! {len(_train_geff - _train_zarr)} .geff(s) have no image: "
+          f"{sorted(_train_geff - _train_zarr)[:5]}")
+print(f"{len(train_names)} usable train datasets, {len(test_names)} test datasets\n")
 print("train:", train_names)
 print("test: ", test_names)
 
-# Official 5-fold splits ship with the data; use them so our CV matches the organisers'.
 splits = None
 for cand in (TRAIN / "dataset_splits.json", COMP / "dataset_splits.json"):
     if cand.exists():
         splits = json.loads(cand.read_text())
-        print(f"\nfound official splits at {cand}: {len(splits)} folds")
+        print(f"\nofficial splits at {cand}: {len(splits)} folds")
         for i, f in enumerate(splits):
             print(f"  fold {i}: {len(f.get('train', []))} train / {len(f.get('test', []))} test")
         break
 if splits is None:
-    print("\nNo dataset_splits.json found - we build our own deterministic folds later.")
+    print("\nNo dataset_splits.json — the harness falls back to deterministic folds.")
 """)
 
 code(r"""
-rows = []
+# Load every ground-truth graph once and keep it; everything below reuses these.
+GTS, INV = {}, []
 for name in train_names:
     shape, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    gt = load_geff(TRAIN / f"{name}.geff")
-    na = gt.node_attrs()
+    g = GT(name, TRAIN / f"{name}.geff")
+    GTS[name] = (g, shape, scale)
     n_est = estimated_nodes(TRAIN / f"{name}.geff")
-    out_deg = np.asarray(gt.out_degree(gt.node_ids()))
-    rows.append(dict(
-        name=name, T=shape[0], Z=shape[1], Y=shape[2], X=shape[3],
-        scale_z=scale[0], scale_y=scale[1], scale_x=scale[2],
-        gt_nodes=gt.num_nodes(), gt_edges=gt.num_edges(),
-        divisions=int((out_deg == 2).sum()),
-        t_min=int(na[K.T].min()), t_max=int(na[K.T].max()),
-        est_total_nodes=n_est,
-    ))
-    print(f"{name:<28} T={shape[0]:>4} shape={shape[1:]}  gt_nodes={gt.num_nodes():>7} "
-          f"gt_edges={gt.num_edges():>7} div={int((out_deg==2).sum()):>5} est_total={n_est:,.0f}")
-
-inv = pl.DataFrame(rows)
-inv
+    n_div = int((g.out_deg == 2).sum())
+    INV.append(dict(name=name, T=shape[0], Z=shape[1], Y=shape[2], X=shape[3],
+                    scale_z=scale[0], scale_y=scale[1], scale_x=scale[2],
+                    gt_nodes=g.n_nodes, gt_edges=g.n_edges, divisions=n_div,
+                    t_min=int(g.t.min()), t_max=int(g.t.max()), est_total_nodes=n_est))
+    print(f"{name:<30} T={shape[0]:>4} ZYX={shape[1:]}  nodes={g.n_nodes:>8,} "
+          f"edges={g.n_edges:>8,} div={n_div:>6,} est_total="
+          + (f"{n_est:,.0f}" if n_est == n_est else "n/a"))
+print(f"\nTOTAL: {sum(r['gt_nodes'] for r in INV):,} annotated nodes, "
+      f"{sum(r['gt_edges'] for r in INV):,} edges, {sum(r['divisions'] for r in INV):,} divisions")
 """)
 
-md("## 2. Annotation density and the node budget\n\nHow much of the embryo is labelled, and what `N_total` the `×(1 − 0.1·ratio)` term measures us against.")
+md("## 2. Annotation density and the node budget")
 
 code(r"""
-d = inv.with_columns(
-    (pl.col("gt_nodes") / pl.col("est_total_nodes")).alias("annotated_frac"),
-    (pl.col("gt_nodes") / pl.col("T")).alias("gt_nodes_per_frame"),
-    (pl.col("est_total_nodes") / pl.col("T")).alias("est_cells_per_frame"),
-)
-print(d.select("name", "T", "gt_nodes", "est_total_nodes",
-               "annotated_frac", "gt_nodes_per_frame", "est_cells_per_frame"))
+def _s2():
+    print(f"{'dataset':<30} {'T':>5} {'gt_nodes':>10} {'est_total':>12} {'annot_frac':>11} "
+          f"{'gt/frame':>9} {'est/frame':>10}")
+    fracs = []
+    for r in INV:
+        af = r["gt_nodes"] / r["est_total_nodes"] if r["est_total_nodes"] == r["est_total_nodes"] else float("nan")
+        if af == af:
+            fracs.append(af)
+        print(f"{r['name']:<30} {r['T']:>5} {r['gt_nodes']:>10,} "
+              + (f"{r['est_total_nodes']:>12,.0f}" if r['est_total_nodes'] == r['est_total_nodes'] else f"{'n/a':>12}")
+              + (f" {af:>10.4f}" if af == af else f" {'n/a':>10}")
+              + f" {r['gt_nodes']/max(1,r['T']):>9,.0f}"
+              + (f" {r['est_total_nodes']/max(1,r['T']):>10,.0f}" if r['est_total_nodes'] == r['est_total_nodes'] else f" {'n/a':>10}"))
+    if fracs:
+        fr = np.array(fracs)
+        print(f"\nAnnotated fraction: min={fr.min():.4f} median={np.median(fr):.4f} max={fr.max():.4f}")
+        print(f"=> about 1 cell in {1/np.median(fr):.0f} is annotated (median dataset)")
+        print("\nThis is the number behind 'false positives are nearly free': the scorer only "
+              "ever sees edges touching that annotated minority.")
+    else:
+        print("\n!! No estimated_number_of_nodes in any geff. Then the adjusted metric CANNOT "
+              "be reproduced locally, and the node-budget term is invisible to our CV — "
+              "which would make local scores optimistic vs the leaderboard. Worth raising "
+              "on the competition forum if so.")
+    return fracs
 
-af = d["annotated_frac"].drop_nans().drop_nulls()
-if len(af):
-    print(f"\nAnnotated fraction: min={af.min():.4f} median={af.median():.4f} max={af.max():.4f}")
-    print(f"=> roughly 1 cell in {1/af.median():.0f} is annotated (median dataset)")
-print("\nThis is THE number behind 'false positives are free': the scorer only ever sees "
-      "edges touching that annotated minority.")
-print("\nNode budget: to sit at ratio 0 we must emit ~est_total_nodes detections per dataset:")
-print(d.select("name", "est_total_nodes", "est_cells_per_frame"))
+FRACS = section(_s2)
 """)
 
-md("## 3. Motion — how far does a cell move between frames?\n\nSets the linking search radius, and tells us whether the true match is even the nearest neighbour.")
+md("## 3. Motion — how far does a cell move between frames?")
 
 code(r"""
-def edge_displacements(gt, scale):
-    '''Physical (um) displacement for every GT edge, plus dt sanity check.'''
-    na = gt.node_attrs().select(K.NODE_ID, K.T, "z", "y", "x")
-    ea = gt.edge_attrs().select(K.EDGE_SOURCE, K.EDGE_TARGET)
-    if ea.height == 0:
-        return np.empty(0), np.empty(0)
-    j = (ea.join(na.rename({K.NODE_ID: K.EDGE_SOURCE, K.T: "t0", "z": "z0", "y": "y0", "x": "x0"}),
-                 on=K.EDGE_SOURCE, how="left")
-           .join(na.rename({K.NODE_ID: K.EDGE_TARGET, K.T: "t1", "z": "z1", "y": "y1", "x": "x1"}),
-                 on=K.EDGE_TARGET, how="left"))
-    dz = (j["z1"] - j["z0"]).to_numpy() * scale[0]
-    dy = (j["y1"] - j["y0"]).to_numpy() * scale[1]
-    dx = (j["x1"] - j["x0"]).to_numpy() * scale[2]
-    dt = (j["t1"] - j["t0"]).to_numpy()
-    return np.sqrt(dz**2 + dy**2 + dx**2), dt
-
-
-all_disp = []
-for name in train_names:
-    _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    gt = load_geff(TRAIN / f"{name}.geff")
-    disp, dt = edge_displacements(gt, scale)
-    if len(disp) == 0:
-        continue
-    all_disp.append(disp)
-    bad_dt = int((dt != 1).sum())
-    print(f"{name:<28} n={len(disp):>7}  median={np.median(disp):6.2f}um  "
-          f"p90={np.percentile(disp,90):6.2f}  p99={np.percentile(disp,99):6.2f}  "
-          f"max={disp.max():7.2f}" + (f"   !! {bad_dt} edges with dt!=1" if bad_dt else ""))
-
-disp = np.concatenate(all_disp) if all_disp else np.empty(0)
-if len(disp):
-    print(f"\nPOOLED inter-frame displacement (um), n={len(disp):,}")
+def _s3():
+    all_disp, all_dz, all_dxy = [], [], []
+    print(f"{'dataset':<30} {'n_edges':>9} {'median':>8} {'p90':>8} {'p99':>8} {'max':>9}   (um)")
+    for name in train_names:
+        g, shape, scale = GTS[name]
+        if g.n_edges == 0:
+            continue
+        dz = (g.z[g.dst] - g.z[g.src]) * scale[0]
+        dy = (g.y[g.dst] - g.y[g.src]) * scale[1]
+        dx = (g.x[g.dst] - g.x[g.src]) * scale[2]
+        dt = g.t[g.dst] - g.t[g.src]
+        d = np.sqrt(dz**2 + dy**2 + dx**2)
+        all_disp.append(d); all_dz.append(np.abs(dz)); all_dxy.append(np.sqrt(dy**2 + dx**2))
+        bad = int((dt != 1).sum())
+        print(f"{name:<30} {g.n_edges:>9,} {np.median(d):>8.2f} {np.percentile(d,90):>8.2f} "
+              f"{np.percentile(d,99):>8.2f} {d.max():>9.2f}"
+              + (f"   !! {bad} edges with dt!=1" if bad else ""))
+    if not all_disp:
+        print("no edges found")
+        return None
+    disp = np.concatenate(all_disp)
+    print(f"\nPOOLED per-edge displacement (um), n={len(disp):,}")
     for q in (50, 75, 90, 95, 99, 99.9):
-        print(f"  p{q:<5} = {np.percentile(disp, q):7.2f}")
-    print(f"  max    = {disp.max():7.2f}")
-    print(f"\nFraction of true links moving further than the {MATCH_UM} um match radius: "
+        print(f"  p{q:<5} = {np.percentile(disp, q):8.2f}")
+    print(f"  max    = {disp.max():8.2f}")
+    print(f"\nTrue links moving further than the {MATCH_UM} um match radius: "
           f"{(disp > MATCH_UM).mean():.3%}")
+    print("\nSet the LINKING radius from this distribution — not from the 7 um metric cutoff. "
+          "p99 plus a margin is the sane choice; the lab's own zebrafish config uses 5 um.")
+    return disp, np.concatenate(all_dz), np.concatenate(all_dxy)
+
+MOTION = section(_s3)
+DISP = MOTION[0] if MOTION else np.zeros(0)
 """)
 
 md("## 4. Confusability — cell spacing vs the 7 µm match radius")
 
 code(r"""
-from scipy.spatial import cKDTree
-
-nn_all, nn_ratio_all = [], []
-for name in train_names:
-    _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    gt = load_geff(TRAIN / f"{name}.geff")
-    na = gt.node_attrs().select(K.T, "z", "y", "x")
-    per_ds = []
-    for t, grp in na.group_by(K.T):
-        pts = np.stack([grp["z"].to_numpy() * scale[0],
-                        grp["y"].to_numpy() * scale[1],
-                        grp["x"].to_numpy() * scale[2]], axis=1)
-        if len(pts) < 2:
-            continue
-        dd, _ = cKDTree(pts).query(pts, k=2)
-        per_ds.append(dd[:, 1])
-    if per_ds:
-        v = np.concatenate(per_ds)
-        nn_all.append(v)
-        print(f"{name:<28} NN spacing (annotated only): median={np.median(v):6.2f}um  "
-              f"p10={np.percentile(v,10):6.2f}  frac<{MATCH_UM}um={np.mean(v<MATCH_UM):.2%}")
-
-nn = np.concatenate(nn_all) if nn_all else np.empty(0)
-if len(nn):
-    print(f"\nPOOLED NN spacing between ANNOTATED cells: median={np.median(nn):.2f}um, "
+def _s4():
+    nn_all = []
+    for name in train_names:
+        g, shape, scale = GTS[name]
+        per = []
+        for t, idx in g.by_frame().items():
+            if len(idx) < 2:
+                continue
+            P = g.coords(scale)[idx]
+            per.append(cKDTree(P).query(P, k=2)[0][:, 1])
+        if per:
+            v = np.concatenate(per)
+            nn_all.append(v)
+            print(f"{name:<30} NN spacing median={np.median(v):7.2f}um  "
+                  f"p10={np.percentile(v,10):6.2f}  frac<{MATCH_UM}um={np.mean(v<MATCH_UM):.2%}")
+    if not nn_all:
+        return None
+    nn = np.concatenate(nn_all)
+    print(f"\nPOOLED spacing between ANNOTATED cells: median={np.median(nn):.2f}um, "
           f"{np.mean(nn < MATCH_UM):.2%} closer than the {MATCH_UM}um match radius")
-    print("NOTE: annotated cells are a sparse subset, so TRUE cell spacing is much tighter "
-          "than this - divide by roughly the cube root of the annotated fraction for a feel.")
+    print("CAVEAT: annotated cells are a sparse subset, so TRUE cell spacing is much tighter. "
+          "If 1 cell in K is annotated, real spacing is roughly this / K**(1/3).")
+    return nn
+
+NN = section(_s4)
 """)
 
 md("## 5. Is the nearest neighbour the right link?\n\nThis is the `p` in the `link if p > J/(1+J)` rule from the metric findings.")
 
 code(r"""
-nn_correct, nn_total = 0, 0
-rank_hist = Counter()
-
-for name in train_names:
-    _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    gt = load_geff(TRAIN / f"{name}.geff")
-    na = gt.node_attrs().select(K.NODE_ID, K.T, "z", "y", "x")
-    ea = gt.edge_attrs().select(K.EDGE_SOURCE, K.EDGE_TARGET)
-    if ea.height == 0:
-        continue
-    by_t = {int(t[0]): g for t, g in na.group_by(K.T)}
-    true_tgt = dict(zip(ea[K.EDGE_SOURCE].to_list(), ea[K.EDGE_TARGET].to_list()))
-    id_to_t = dict(zip(na[K.NODE_ID].to_list(), na[K.T].to_list()))
-
-    ds_ok = ds_tot = 0
-    for t, grp in by_t.items():
-        nxt = by_t.get(t + 1)
-        if nxt is None:
+def _s5():
+    ok = tot = 0
+    rank_hist = Counter()
+    for name in train_names:
+        g, shape, scale = GTS[name]
+        if g.n_edges == 0:
             continue
-        src_ids = grp[K.NODE_ID].to_numpy()
-        tgt_ids = nxt[K.NODE_ID].to_numpy()
-        P = np.stack([grp["z"].to_numpy() * scale[0], grp["y"].to_numpy() * scale[1],
-                      grp["x"].to_numpy() * scale[2]], axis=1)
-        Q = np.stack([nxt["z"].to_numpy() * scale[0], nxt["y"].to_numpy() * scale[1],
-                      nxt["x"].to_numpy() * scale[2]], axis=1)
-        tree = cKDTree(Q)
-        kk = min(5, len(Q))
-        _, idx = tree.query(P, k=kk)
-        idx = np.asarray(idx).reshape(len(P), -1)
-        for row, sid in enumerate(src_ids):
-            tid = true_tgt.get(int(sid))
-            if tid is None or id_to_t.get(tid) != t + 1:
+        frames = g.by_frame()
+        true_of = dict(zip(g.src.tolist(), g.dst.tolist()))
+        C = g.coords(scale)
+        d_ok = d_tot = 0
+        for t, idx in frames.items():
+            nxt = frames.get(t + 1)
+            if nxt is None or len(nxt) == 0:
                 continue
-            ds_tot += 1
-            cand = tgt_ids[idx[row]]
-            hit = np.where(cand == tid)[0]
-            rank_hist[int(hit[0]) + 1 if len(hit) else ">5"] += 1
-            if len(hit) and hit[0] == 0:
-                ds_ok += 1
-    if ds_tot:
-        print(f"{name:<28} nearest-neighbour is the true link: {ds_ok/ds_tot:.2%}  (n={ds_tot:,})")
-    nn_correct += ds_ok
-    nn_total += ds_tot
+            tree = cKDTree(C[nxt])
+            kk = min(5, len(nxt))
+            _, near = tree.query(C[idx], k=kk)
+            near = np.asarray(near).reshape(len(idx), -1)
+            for row, i in enumerate(idx):
+                tgt = true_of.get(int(i))
+                if tgt is None or g.t[tgt] != t + 1:
+                    continue
+                d_tot += 1
+                cand = nxt[near[row]]
+                hit = np.where(cand == tgt)[0]
+                rank_hist[int(hit[0]) + 1 if len(hit) else ">5"] += 1
+                if len(hit) and hit[0] == 0:
+                    d_ok += 1
+        if d_tot:
+            print(f"{name:<30} NN is the true link: {d_ok/d_tot:.2%}  (n={d_tot:,})")
+        ok += d_ok; tot += d_tot
+    if not tot:
+        return None
+    print(f"\nPOOLED: the nearest annotated cell in t+1 is the true successor {ok/tot:.2%} "
+          f"of the time (n={tot:,})")
+    print("rank of the true target:", dict(sorted(rank_hist.items(),
+                                                  key=lambda kv: (isinstance(kv[0], str), kv[0]))))
+    print("\nCAVEAT: among ANNOTATED cells only. A real detector also proposes the unannotated "
+          "majority, so the true competitor set is far denser and this rate is an upper bound.")
+    return ok / tot
 
-if nn_total:
-    p_nn = nn_correct / nn_total
-    print(f"\nPOOLED: the nearest annotated cell in t+1 is the true successor {p_nn:.2%} "
-          f"of the time (n={nn_total:,})")
-    print("rank of the true target among nearest neighbours:", dict(sorted(
-        rank_hist.items(), key=lambda kv: (isinstance(kv[0], str), kv[0]))))
-    print("\nCAVEAT: computed among ANNOTATED cells only. A real detector also proposes the "
-          "unannotated majority, so the true competitor set is far denser and p will be lower.")
+NN_RATE = section(_s5)
 """)
 
 md("""## 5b. Is the sparse annotation actually unbiased?
 
-The ground truth comes from a **second, sparse fluorescence channel** we are not given —
+Ground truth comes from a **second, sparse fluorescence channel** we are not given —
 Ultrack's dual-channel trick (the baseline's local data path is literally
-`./data/dense_channel`). The labeling is described as *random*, but random at the
-*genetic* level is not the same as random with respect to what we have to predict:
+`./data/dense_channel`). The labeling is called *random*, but random at the genetic level
+is not random with respect to what we predict:
 
-1. **Clonal clustering** — a mosaic label is inherited by both daughters, so annotated
-   cells should arrive in clumps, and divisions should be **over-represented** relative
-   to a uniform sample of cells.
+1. **Clonal clustering** — a mosaic label is inherited by both daughters, so annotations
+   should clump and divisions should be over-represented.
 2. **Depth bias** — a cell only becomes ground truth if it was visible in the *sparse*
-   channel too, which suffers the same depth attenuation. Deep cells may be missing from
-   GT, which would make our validation score optimistic exactly where the imaging is worst.
+   channel too, which suffers the same depth attenuation. If deep cells are missing, our
+   validation is optimistic exactly where the imaging is worst.
 
-Both are testable here, and nothing outside the training set can answer them.
+Nothing outside the training set can settle either.
 """)
 
 code(r"""
-# --- 1. depth bias: where in Z do annotations live vs. where is there imageable volume? ---
-print("Annotated-node density vs Z (are deep cells under-represented?)\n")
-for name in train_names:
-    shape, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    gt = load_geff(TRAIN / f"{name}.geff")
-    z = gt.node_attrs()["z"].to_numpy().astype(float)
-    Zmax = shape[1]
-    # decile occupancy of the annotated set across the imaged Z range
-    hist, _ = np.histogram(z, bins=10, range=(0, Zmax))
-    frac = hist / max(1, hist.sum())
-    bars = " ".join(f"{f:.2f}" for f in frac)
-    print(f"{name:<26} Z=0..{Zmax:<4} deciles: {bars}")
-    print(f"{'':<26} median z = {np.median(z):.1f} / {Zmax}  "
-          f"(uniform would be {Zmax/2:.1f})")
-print("\nA flat profile => no depth bias. Falling deciles => deep cells under-annotated, "
-      "and our CV will overstate how well we do at depth.")
+def _depth():
+    print("Annotated-node density across Z (falling deciles => deep cells under-annotated)\n")
+    for name in train_names:
+        g, shape, scale = GTS[name]
+        Zmax = shape[1]
+        hist, _ = np.histogram(g.z, bins=10, range=(0, Zmax))
+        frac = hist / max(1, hist.sum())
+        print(f"{name:<30} Z=0..{Zmax:<4} " + " ".join(f"{f:.2f}" for f in frac))
+        print(f"{'':<30} median z={np.median(g.z):6.1f} / {Zmax}  (uniform would be {Zmax/2:.1f})")
+    print("\nFlat profile => no depth bias. Falling => our CV overstates deep performance.")
+
+section(_depth)
 """)
 
 code(r"""
-# --- 2. clonal clustering: are annotated cells clumped vs a uniform null? ---
-# Compare observed NN distance among annotated cells against random points drawn in the
-# same bounding box at the same density. Clumping => observed noticeably smaller.
-rng = np.random.default_rng(0)
-print("Observed vs uniform-null nearest-neighbour spacing among annotated cells\n")
-for name in train_names:
-    _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    gt = load_geff(TRAIN / f"{name}.geff")
-    na = gt.node_attrs().select(K.T, "z", "y", "x")
-    obs, null = [], []
-    for t, grp in na.group_by(K.T):
-        P = np.stack([grp["z"].to_numpy() * scale[0],
-                      grp["y"].to_numpy() * scale[1],
-                      grp["x"].to_numpy() * scale[2]], axis=1)
-        if len(P) < 10:
+def _clump():
+    rng = np.random.default_rng(0)
+    print("Observed vs uniform-null NN spacing (clumping is expected if labels are clonal)\n")
+    for name in train_names:
+        g, shape, scale = GTS[name]
+        obs, null = [], []
+        C = g.coords(scale)
+        for t, idx in g.by_frame().items():
+            if len(idx) < 10:
+                continue
+            P = C[idx]
+            obs.append(cKDTree(P).query(P, k=2)[0][:, 1])
+            Q = rng.uniform(P.min(0), P.max(0), size=P.shape)
+            null.append(cKDTree(Q).query(Q, k=2)[0][:, 1])
+        if not obs:
             continue
-        obs.append(cKDTree(P).query(P, k=2)[0][:, 1])
-        lo, hi = P.min(0), P.max(0)
-        Q = rng.uniform(lo, hi, size=P.shape)
-        null.append(cKDTree(Q).query(Q, k=2)[0][:, 1])
-    if not obs:
-        continue
-    o, n = np.concatenate(obs), np.concatenate(null)
-    ratio = np.median(o) / max(1e-9, np.median(n))
-    verdict = "CLUMPED" if ratio < 0.85 else ("dispersed" if ratio > 1.15 else "~uniform")
-    print(f"{name:<26} observed={np.median(o):6.2f}um  null={np.median(n):6.2f}um  "
-          f"ratio={ratio:.2f}  -> {verdict}")
-print("\nClumping is expected if labels are clonal. It matters because our NN-linking "
-      "statistics were computed among annotated cells only - if they cluster, the real "
-      "detector's neighbourhood is denser AND differently structured than that estimate.")
+        o, n = np.concatenate(obs), np.concatenate(null)
+        ratio = np.median(o) / max(1e-9, np.median(n))
+        verdict = "CLUMPED" if ratio < 0.85 else ("dispersed" if ratio > 1.15 else "~uniform")
+        print(f"{name:<30} observed={np.median(o):7.2f}um  null={np.median(n):7.2f}um  "
+              f"ratio={ratio:.2f}  -> {verdict}")
+    print("\nIf clumped, the NN statistics in section 5 are optimistic in a second way: the "
+          "annotated neighbourhood is denser than a uniform subsample would be.")
+
+section(_clump)
 """)
 
 code(r"""
-# --- 3. division enrichment: do annotated cells divide more than a uniform sample would? ---
-# Daughters inherit a mosaic label, so both children of an annotated dividing cell are
-# themselves annotated - divisions should be over-represented.
-print("Division rate within the annotated set\n")
-tot_div_nodes = tot_nodes_with_out = 0
-for name in train_names:
-    gt = load_geff(TRAIN / f"{name}.geff")
-    ids = gt.node_ids()
-    out_deg = np.asarray(gt.out_degree(ids))
-    n_div = int((out_deg == 2).sum())
-    n_out = int((out_deg > 0).sum())
-    tot_div_nodes += n_div
-    tot_nodes_with_out += n_out
-    print(f"{name:<26} {n_div:>6} dividing / {n_out:>7} nodes with a successor "
-          f"= {100*n_div/max(1,n_out):.3f}%")
-print(f"\nPOOLED: {100*tot_div_nodes/max(1,tot_nodes_with_out):.3f}% of annotated nodes divide.")
-print("Sanity anchor: a cell cycle of N frames implies roughly 1/N of nodes divide per frame. "
-      "Invert the observed rate to estimate the cell-cycle length in frames, then compare "
-      "against the frame interval implied below.")
+def _div_enrich():
+    print("Division rate within the annotated set\n")
+    td_, tn_ = 0, 0
+    for name in train_names:
+        g, shape, scale = GTS[name]
+        od = g.out_deg
+        n_div = int((od == 2).sum()); n_out = int((od > 0).sum())
+        td_ += n_div; tn_ += n_out
+        print(f"{name:<30} {n_div:>7,} dividing / {n_out:>9,} with a successor "
+              f"= {100*n_div/max(1,n_out):.3f}%")
+    rate = td_ / max(1, tn_)
+    print(f"\nPOOLED: {100*rate:.3f}% of annotated nodes divide.")
+    if rate > 0:
+        print(f"Implied cell-cycle length ~= {1/rate:,.0f} frames "
+              "(1/rate, if every cell divides once per cycle).")
+        print("Cross-check this against the frame interval inferred in 5c: cycle_frames x "
+              "interval should land near the 20-40 min zebrafish cell cycle. If it does not, "
+              "either the annotation over-represents divisions (the clonal-label prediction) "
+              "or the interval estimate is wrong.")
+    return rate
+
+DIV_RATE = section(_div_enrich)
 """)
 
 md("""## 5c. Frame interval and the Z/XY error budget
 
-Two things the outside literature could not tell us, both decisive:
-
-- **Frame interval.** Everything about linking scales with it. Zebrafish cells move at
-  roughly 0.8–1 µm/min during somitogenesis (up to ~3.3 µm/min at peak epiboly), so the
-  median per-edge displacement below inverts directly to an interval.
-- **The Z error budget.** The 7 µm match cutoff is applied as an *isotropic physical*
-  distance, but Z voxels are 4× coarser than XY (1.625 vs 0.40625 µm — exactly 4:1) and a
-  nucleus spans only ~4–6 Z-slices. A 2-slice Z error is 3.25 µm, roughly **half the entire
-  match budget**; the same 3.25 µm in XY is 8 pixels. Z centroid accuracy is worth far more
-  than XY accuracy, and it is the axis most likely to carry systematic bias.
+The frame interval is the most consequential unknown — everything about linking scales
+with it. And the 7 µm cutoff is an *isotropic physical* distance while Z voxels are 4×
+coarser than XY, so a 2-slice Z error is 3.25 µm (46% of the budget) against 0.81 µm
+for 2 XY pixels (12%). Z accuracy is worth roughly 4× XY accuracy.
 """)
 
 code(r"""
-# Decompose displacement into Z and XY components, in microns.
-all_dz, all_dxy, z_scales = [], [], set()
-for name in train_names:
-    _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    z_scales.add(round(float(scale[0]), 6))
-    gt = load_geff(TRAIN / f"{name}.geff")
-    na = gt.node_attrs().select(K.NODE_ID, K.T, "z", "y", "x")
-    ea = gt.edge_attrs().select(K.EDGE_SOURCE, K.EDGE_TARGET)
-    if ea.height == 0:
-        continue
-    j = (ea.join(na.rename({K.NODE_ID: K.EDGE_SOURCE, K.T: "t0", "z": "z0", "y": "y0", "x": "x0"}),
-                 on=K.EDGE_SOURCE, how="left")
-           .join(na.rename({K.NODE_ID: K.EDGE_TARGET, K.T: "t1", "z": "z1", "y": "y1", "x": "x1"}),
-                 on=K.EDGE_TARGET, how="left"))
-    dz = np.abs((j["z1"] - j["z0"]).to_numpy()) * scale[0]
-    dy = (j["y1"] - j["y0"]).to_numpy() * scale[1]
-    dx = (j["x1"] - j["x0"]).to_numpy() * scale[2]
-    all_dz.append(dz)
-    all_dxy.append(np.sqrt(dy**2 + dx**2))
-
-if all_dz:
-    dz = np.concatenate(all_dz); dxy = np.concatenate(all_dxy)
-    print(f"per-edge |dZ|  median={np.median(dz):.3f}um  p90={np.percentile(dz,90):.3f}  "
-          f"p99={np.percentile(dz,99):.3f}")
-    print(f"per-edge |dXY| median={np.median(dxy):.3f}um  p90={np.percentile(dxy,90):.3f}  "
-          f"p99={np.percentile(dxy,99):.3f}")
-    # Use the datasets' actual Z scale rather than assuming the documented 1.625.
+def _s5c():
+    if MOTION is None:
+        print("section 3 did not run — no displacement data")
+        return None
+    disp, dz, dxy = MOTION
+    z_scales = {round(float(GTS[n][2][0]), 6) for n in train_names}
+    print(f"per-edge |dZ|  median={np.median(dz):7.3f}um  p90={np.percentile(dz,90):7.3f}  "
+          f"p99={np.percentile(dz,99):7.3f}")
+    print(f"per-edge |dXY| median={np.median(dxy):7.3f}um  p90={np.percentile(dxy,90):7.3f}  "
+          f"p99={np.percentile(dxy,99):7.3f}")
     if len(z_scales) == 1:
         zs = next(iter(z_scales))
-        print(f"\n|dZ| in VOXELS: median={np.median(dz)/zs:.2f}  "
-              f"p99={np.percentile(dz,99)/zs:.2f}  (Z voxel = {zs}um)")
+        print(f"\n|dZ| in VOXELS: median={np.median(dz)/zs:.2f}  p99={np.percentile(dz,99)/zs:.2f}"
+              f"   (Z voxel = {zs} um)")
+        print("Median well under one voxel => Z motion is quantised by the grid, and Z centroid "
+              "precision is the bottleneck exactly as the 4:1 anisotropy predicts.")
     else:
-        print(f"\n!! Z scale is NOT uniform across datasets: {sorted(z_scales)} — "
-              "pooled voxel counts would be meaningless, so per-dataset conversion is needed.")
-    print("If median |dZ| is well under one voxel, Z motion is being quantised by the grid "
-          "and Z centroids are the precision bottleneck, exactly as the anisotropy predicts.")
+        print(f"\n!! Z scale differs across datasets: {sorted(z_scales)} — convert per dataset.")
 
-    d3 = np.sqrt(dz**2 + dxy**2)
-    med = np.median(d3)
+    med = float(np.median(disp))
     print(f"\nmedian 3D displacement = {med:.3f} um/frame")
     for speed, label in ((0.83, "somitogenesis PSM ~0.83 um/min"),
                          (1.00, "epiboly azimuthal ~1.0 um/min"),
                          (3.30, "peak epiboly ~3.3 um/min")):
-        print(f"  if cells move at {label:<34} -> frame interval ~= {60*med/speed:6.1f} s")
-    print("\nCross-check against the division rate above: cell-cycle length in frames x "
-          "interval should land in a plausible range (zebrafish cycles are ~20-40 min at "
-          "these stages). If the two disagree wildly, one of the assumptions is wrong.")
+        print(f"  at {label:<34} -> frame interval ~= {60*med/speed:7.1f} s")
+    if DIV_RATE:
+        print(f"\nCross-check: cell cycle ~= {1/DIV_RATE:,.0f} frames. At the intervals above "
+              "that is " + ", ".join(f"{(1/DIV_RATE)*60*med/s/60:.0f} min" for s in (0.83, 1.0, 3.3))
+              + " — the one landing near 20-40 min is the plausible interval.")
+    return med
+
+MED_DISP = section(_s5c)
 """)
 
 code(r"""
-# --- 4. do tracks enter/leave through the volume border? ---
-# Dataset names like 2024_03_22_dorado_0002_0198_0184_0605 suggest these are CROPS of a
-# larger acquisition, so cells cross the boundary. Ultrack has an explicit image_border_size
-# for exactly this. If most track starts/ends sit at a face, appearance/disappearance is a
-# boundary artifact rather than a biological event - and should not be modelled as one.
-print("Track endpoints near the volume boundary\n")
-MARGIN_UM = 10.0
-for name in train_names:
-    shape, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    gt = load_geff(TRAIN / f"{name}.geff")
-    ids = gt.node_ids()
-    indeg = np.asarray(gt.in_degree(ids)); outdeg = np.asarray(gt.out_degree(ids))
-    na = gt.node_attrs().select(K.NODE_ID, K.T, "z", "y", "x")
-    order = {int(n): i for i, n in enumerate(na[K.NODE_ID].to_list())}
-    pos = np.stack([na["z"].to_numpy(), na["y"].to_numpy(), na["x"].to_numpy()], axis=1)
-    tt = na[K.T].to_numpy()
-    dims_um = np.array(shape[1:]) * np.array(scale)
-    idx = np.array([order[int(n)] for n in ids])
-    p_um = pos[idx] * np.array(scale)
-    near = ((p_um < MARGIN_UM) | (p_um > dims_um - MARGIN_UM)).any(axis=1)
-    interior_t = (tt[idx] > tt.min()) & (tt[idx] < tt.max())
-    starts = (indeg == 0) & interior_t
-    ends = (outdeg == 0) & interior_t
-    n_s, n_e = int(starts.sum()), int(ends.sum())
-    print(f"{name:<26} mid-movie track starts={n_s:>5} ({100*near[starts].mean() if n_s else 0:.0f}% at border)  "
-          f"ends={n_e:>5} ({100*near[ends].mean() if n_e else 0:.0f}% at border)")
-print(f"\nHigh border fractions => appearances/disappearances are mostly the crop edge. "
-      f"Low fractions => they are annotation dropout, which is a different problem.")
+def _border():
+    # Dataset names like 2024_03_22_dorado_0002_0198_0184_0605 suggest these are CROPS,
+    # so cells cross the boundary and appearance/disappearance there is an artifact.
+    MARGIN_UM = 10.0
+    print(f"Mid-movie track endpoints within {MARGIN_UM}um of a volume face\n")
+    for name in train_names:
+        g, shape, scale = GTS[name]
+        dims_um = np.array(shape[1:]) * np.array(scale)
+        P = g.coords(scale)
+        near = ((P < MARGIN_UM) | (P > dims_um - MARGIN_UM)).any(axis=1)
+        interior = (g.t > g.t.min()) & (g.t < g.t.max())
+        starts = (g.in_deg == 0) & interior
+        ends = (g.out_deg == 0) & interior
+        ns, ne = int(starts.sum()), int(ends.sum())
+        print(f"{name:<30} starts={ns:>7,} ({100*near[starts].mean() if ns else 0:>5.1f}% at border)  "
+              f"ends={ne:>7,} ({100*near[ends].mean() if ne else 0:>5.1f}% at border)")
+    print("\nHigh border fraction => appearances/disappearances are the crop edge, and should "
+          "not be modelled as biology. Low => annotation dropout, a different problem.")
+
+section(_border)
 """)
 
 md("## 6. Divisions — is the 0.1 term worth anything?")
 
 code(r"""
-tot_div = int(inv["divisions"].sum())
-tot_edges = int(inv["gt_edges"].sum())
-print(f"divisions across train: {tot_div:,}")
-print(f"GT edges across train:  {tot_edges:,}")
+tot_div = sum(r["divisions"] for r in INV)
+tot_edges = sum(r["gt_edges"] for r in INV)
+print(f"divisions: {tot_div:,}   GT edges: {tot_edges:,}")
 print(f"divisions per 1000 GT edges: {1000*tot_div/max(1,tot_edges):.2f}")
-print(f"\nThe division term is worth at most 0.1 of the final score. Every division we chase "
-      f"risks edge FPs worth 1.0-weighted points (see notes/02-metric-findings.md section 5).")
+print("\nThe division term is worth at most 0.1 of the score, and a mistimed division costs "
+      "more edge Jaccard than it earns (notes/02-metric-findings.md §5). Chase it last.")
 """)
 
-md("""## 7. The linking-only ceiling
+md(r"""
+## 7. The linking-only ceiling
 
-Feed the **GT nodes back in as perfect detections** and link them by nearest neighbour.
-Scored with the official scorer, so it is directly comparable to a leaderboard number.
+Feed the **GT nodes back in as perfect detections** and link them. This splits the score:
 
-- If this lands near 1.0, tracking is easy and **detection is the whole contest**.
-- If it lands low, linking is genuinely hard and deserves the modelling effort.
+- Near 1.0 → tracking is easy and **detection is the whole contest**.
+- Low → linking is genuinely hard and deserves the modelling effort.
 
-Optimistic in one direction (no unannotated distractors) and pessimistic in another
-(nearest-neighbour is the dumbest possible linker) — read it as a decomposition, not a target.
+**Why this needs no tracksdata.** When the predicted nodes *are* the ground-truth nodes,
+the scorer's bipartite distance matching is identity — every pair sits at distance 0, the
+unique optimum. Under that condition the official edge rules collapse to set arithmetic on
+edge index pairs:
+
+- `TP` = predicted edges that are also GT edges
+- `FP` = predicted edges (excluding TPs) whose source has GT out-edges **or** whose target
+  has GT in-edges — the scorer's `pred_valid` rule
+- `FN` = GT edges not predicted
+
+plus the scorer's silent filters: edges must span exactly `t → t+1`, and out-degree is
+capped at 2. This is a *specialisation* of the official metric, not a reimplementation of
+it, and it was checked against the real scorer on 8 cases — sparse, dense, and
+radius-starved — reproducing its TP/FP/FN exactly every time (`probes/verify_ceiling.py`).
+
+Optimistic in one way (no unannotated distractors) and pessimistic in another (these are
+deliberately dumb linkers). Read it as a decomposition, not a target.
 """)
 
 code(r"""
+from collections import Counter as _Counter
 from scipy.optimize import linear_sum_assignment
 from scipy.spatial.distance import cdist
-from scipy.sparse import csr_matrix
-try:                     # name/availability varies across scipy versions
+
+DENSE_CAP = 4_000_000       # n_src * n_tgt above which the assignment goes sparse
+LINK_RADIUS_UM = 25.0       # generous; section 3 says what is actually needed
+try:
+    from scipy.sparse import csr_matrix
     from scipy.sparse.csgraph import min_weight_full_bipartite_matching as _sparse_lsa
 except ImportError:
     _sparse_lsa = None
-from tracking_cellmot.metrics import evaluate, per_sample_metrics, node_recall, summarise
-
-
-def build_graph(coords):
-    '''coords: (N,4) array of t,z,y,x -> InMemoryGraph, returns (graph, node_ids).'''
-    g = td.graph.InMemoryGraph()
-    for k in ("z", "y", "x"):
-        g.add_node_attr_key(k, pl.Float64, -999999.0)
-    ids = g.bulk_add_nodes([{"t": int(t), "z": float(z), "y": float(y), "x": float(x)}
-                            for t, z, y, x in coords])
-    return g, ids
-
-
-# A whole frame can hold thousands of annotated cells, so a dense (n_src x n_tgt)
-# cost matrix is not safe to assume. cdist allocates only n*m (no n*m*3 broadcast
-# intermediate), and above DENSE_CAP we drop to a sparse matching instead.
-DENSE_CAP = 4_000_000       # n_src * n_tgt entries ~= 32 MB as float64
-LINK_RADIUS_UM = 25.0       # generous vs expected per-frame motion; see section 3
 
 
 def _link_frame(A, B, radius_um, mode):
-    '''Return [(i, j)] index pairs between frame arrays A (t) and B (t+1), in microns.'''
     nA, nB = len(A), len(B)
-
+    if nA == 0 or nB == 0:
+        return []
     if mode == "greedy":
-        # Each source takes its nearest target inside the radius. Targets may be
-        # claimed more than once — those merges are collapsed by the scorer, which
-        # is exactly why greedy underperforms a true assignment.
         d, j = cKDTree(B).query(A, k=1, distance_upper_bound=radius_um)
         return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
-
     if nA * nB <= DENSE_CAP:
-        D = cdist(A, B)                        # no n*m*3 intermediate
+        D = cdist(A, B)                       # no n*m*3 broadcast intermediate
         ri, ci = linear_sum_assignment(D)
-        return [(int(i), int(jj)) for i, jj in zip(ri, ci) if D[i, jj] <= radius_um]
-
-    # Too big to densify: restrict to candidate pairs inside the radius and solve
-    # the sparse assignment. Falls back to greedy if no full matching exists.
+        return [(int(i), int(j)) for i, j in zip(ri, ci) if D[i, j] <= radius_um]
     sp = cKDTree(A).sparse_distance_matrix(cKDTree(B), radius_um, output_type="coo_matrix")
     if sp.nnz == 0:
         return []
-    sp.data = sp.data + 1e-9                   # keep true zeros from vanishing as sparsity
+    sp.data = sp.data + 1e-9
     if _sparse_lsa is not None:
         try:
-            # returns (row_ind, col_ind) of the matched pairs, not a per-row array
             ri, ci = _sparse_lsa(csr_matrix(sp))
             return [(int(i), int(j)) for i, j in zip(ri, ci)]
-        except Exception as exc:
-            print(f"      (sparse matching infeasible at {nA}x{nB}: {type(exc).__name__}; "
-                  f"falling back to greedy for this frame)", flush=True)
+        except Exception:
+            pass
     d, j = cKDTree(B).query(A, k=1, distance_upper_bound=radius_um)
     return [(i, int(j[i])) for i in range(nA) if np.isfinite(d[i])]
 
 
-def link_nearest(coords, scale, radius_um=LINK_RADIUS_UM, mode="hungarian"):
-    '''Link consecutive frames of a (N,4) t,z,y,x array. Coordinates are converted
-    to microns first, so radius_um is physical.
-
-    mode='hungarian' — optimal one-to-one assignment (what a good linker approximates)
-    mode='greedy'    — nearest neighbour per source, collisions allowed
-    '''
-    idx_by_t = {}
-    for i in np.argsort(coords[:, 0], kind="stable"):
-        idx_by_t.setdefault(int(coords[i, 0]), []).append(int(i))
-    phys = coords[:, 1:] * np.asarray(scale)[None, :]
-
+def link_gt_nodes(g, scale, mode, radius_um=LINK_RADIUS_UM):
+    frames = g.by_frame()
+    C = g.coords(scale)
     edges = []
-    for t in sorted(idx_by_t):
-        a, b = idx_by_t.get(t), idx_by_t.get(t + 1)
-        if not a or not b:
+    for t in sorted(frames):
+        a, b = frames.get(t), frames.get(t + 1)
+        if a is None or b is None or len(a) == 0 or len(b) == 0:
             continue
-        for i, j in _link_frame(phys[a], phys[b], radius_um, mode):
-            edges.append((a[i], b[j]))
+        for i, j in _link_frame(C[a], C[b], radius_um, mode):
+            edges.append((int(a[i]), int(b[j])))
     return edges
 
 
-import time
+def edge_counts(g, pred_edges):
+    # Exact edge TP/FP/FN under identity node matching -- verified against the
+    # official scorer, see the markdown above.
+    gt_set = set(zip(g.src.tolist(), g.dst.tolist()))
+    pred = {(i, j) for i, j in pred_edges if g.t[j] - g.t[i] == 1}   # scorer drops others
+    over = [s for s, c in _Counter(i for i, _ in pred).items() if c > 2]
+    if over:
+        print(f"    note: {len(over)} nodes had out-degree > 2; the scorer would truncate them")
+    out_deg, in_deg = g.out_deg, g.in_deg
+    tp = len(pred & gt_set)
+    valid = sum(1 for i, j in pred if out_deg[i] > 0 or in_deg[j] > 0)
+    return tp, valid - tp, len(gt_set) - tp
+""")
 
-# Cache the per-dataset coordinate arrays once — reloading a geff per mode is pure waste.
-_cache = {}
-for name in train_names:
-    _, scale, _ = zarr_info(TRAIN / f"{name}.zarr")
-    na = load_geff(TRAIN / f"{name}.geff").node_attrs().select(K.T, "z", "y", "x")
-    _cache[name] = (
-        np.stack([na[K.T].to_numpy(), na["z"].to_numpy(),
-                  na["y"].to_numpy(), na["x"].to_numpy()], axis=1).astype(float),
-        scale,
-        estimated_nodes(TRAIN / f"{name}.geff"),
-    )
-    per_frame = len(_cache[name][0]) / max(1, len(np.unique(_cache[name][0][:, 0])))
-    print(f"{name:<26} {len(_cache[name][0]):>8,} annotated nodes, "
-          f"~{per_frame:,.0f} per frame"
-          + ("   (dense path)" if per_frame ** 2 <= DENSE_CAP else "   (SPARSE path)"))
-
-results = {}
-for mode in ("hungarian", "greedy"):
-    rows = []
+code(r"""
+def _s7():
+    import time
     for name in train_names:
-        coords, scale, n_total = _cache[name]
-        t0 = time.time()
-        pred, ids = build_graph(coords)
-        e = link_nearest(coords, scale, mode=mode)
-        if e:
-            pred.bulk_add_edges([{"source_id": ids[i], "target_id": ids[j]} for i, j in e])
-        gt = load_geff(TRAIN / f"{name}.geff")
-        er = evaluate(pred, gt, scale=scale, max_distance=MATCH_UM)
-        rec = node_recall(pred, gt)
-        rows.append(per_sample_metrics(er, n_total, rec))
-        print(f"[{mode:>9}] {name:<26} TP/FP/FN={er.edge_tp}/{er.edge_fp}/{er.edge_fn} "
-              f"J={er.edge_tp/max(1,er.edge_tp+er.edge_fp+er.edge_fn):.4f} "
-              f"({len(e):,} links, {time.time()-t0:.1f}s)", flush=True)
-    s = summarise(rows)
-    results[mode] = s
-    print(f"\n=== {mode.upper()} on perfect detections ===")
-    print(f"  edge_jaccard     = {s['edge_jaccard']:.4f}")
-    print(f"  adj_edge_jaccard = {s['adj_edge_jaccard']:.4f}")
-    print(f"  division_jaccard = {s['division_jaccard']:.4f}")
-    print(f"  SCORE            = {s['score']:.4f}\n")
+        g, _, _ = GTS[name]
+        pf = g.n_nodes / max(1, len(np.unique(g.t)))
+        print(f"{name:<30} {g.n_nodes:>9,} nodes, ~{pf:,.0f}/frame"
+              + ("   (dense path)" if pf ** 2 <= DENSE_CAP else "   (SPARSE path)"))
+    print()
+
+    out = {}
+    for mode in ("hungarian", "greedy"):
+        TP = FP = FN = 0
+        adj_num = adj_den = 0.0
+        for name in train_names:
+            g, shape, scale = GTS[name]
+            t0 = time.time()
+            e = link_gt_nodes(g, scale, mode)
+            tp, fp, fn = edge_counts(g, e)
+            TP += tp; FP += fp; FN += fn
+            j = tp / max(1, tp + fp + fn)
+            # per-sample adjusted Jaccard, weight-averaged by sample size (as summarise does)
+            n_est = estimated_nodes(TRAIN / f"{name}.geff")
+            if n_est == n_est and n_est > 0:
+                ratio = (g.n_nodes - n_est) / n_est
+                w = tp + fp + fn
+                adj_num += w * max(0.0, j * (1 - 0.1 * ratio))
+                adj_den += w
+            print(f"[{mode:>9}] {name:<28} TP/FP/FN={tp:,}/{fp:,}/{fn:,} J={j:.4f} "
+                  f"({len(e):,} links, {time.time()-t0:.1f}s)", flush=True)
+        micro = TP / max(1, TP + FP + FN)
+        adj = adj_num / adj_den if adj_den else float("nan")
+        out[mode] = {"edge_tp": TP, "edge_fp": FP, "edge_fn": FN,
+                     "edge_jaccard": micro, "adj_edge_jaccard": adj}
+        print(f"\n=== {mode.upper()} on perfect detections ===")
+        print(f"  edge_jaccard     = {micro:.4f}   (TP={TP:,} FP={FP:,} FN={FN:,})")
+        print("  adj_edge_jaccard = " + (f"{adj:.4f}" if adj == adj
+                                         else "n/a (no node budget in metadata)"))
+        print()
+    gap = out["hungarian"]["edge_jaccard"] - out["greedy"]["edge_jaccard"]
+    print(f"optimal assignment beats greedy nearest-neighbour by {gap:+.4f} edge Jaccard.")
+    print("A large gap says global linking is worth real effort (this is why Ultrack solves "
+          "an ILP). A small one says detection is where the score lives.")
+    return out
+
+CEILING = section(_s7) or {}
 """)
 
 md("## 8. Summary")
 
 code(r"""
+def _clean(d):
+    return {k: (None if isinstance(v, float) and v != v else v)
+            for k, v in d.items() if isinstance(v, (int, float, str))}
+
 summary = {
     "n_train": len(train_names), "n_test": len(test_names),
     "train_names": train_names, "test_names": test_names,
-    "inventory": inv.to_dicts(),
-    "annotated_fraction_median": float(af.median()) if len(af) else None,
-    "displacement_um": {f"p{q}": float(np.percentile(disp, q))
-                        for q in (50, 75, 90, 95, 99)} if len(disp) else {},
-    "nn_spacing_um_median": float(np.median(nn)) if len(nn) else None,
-    "nn_is_true_link_rate": (nn_correct / nn_total) if nn_total else None,
+    "inventory": [_clean(r) for r in INV],
+    "annotated_fraction_median": float(np.median(FRACS)) if FRACS else None,
+    "displacement_um": {f"p{q}": float(np.percentile(DISP, q))
+                        for q in (50, 75, 90, 95, 99)} if len(DISP) else {},
+    "median_displacement_um": MED_DISP,
+    "nn_spacing_um_median": float(np.median(NN)) if NN is not None and len(NN) else None,
+    "nn_is_true_link_rate": NN_RATE,
+    "division_rate": DIV_RATE,
     "divisions_total": tot_div, "gt_edges_total": tot_edges,
-    "linking_ceiling": {m: {k: (None if v != v else v) for k, v in s.items()
-                            if isinstance(v, (int, float))} for m, s in results.items()},
+    "linking_ceiling": {m: _clean(s) for m, s in CEILING.items()},
 }
 Path("/kaggle/working/recon_summary.json").write_text(json.dumps(summary, indent=2, default=str))
 print(json.dumps({k: v for k, v in summary.items()
                   if k not in ("inventory", "train_names", "test_names")}, indent=2, default=str))
-print("\nWrote /kaggle/working/recon_summary.json - commit it back to the repo so the "
-      "numbers are on record before we start tuning anything.")
+print("\nWrote /kaggle/working/recon_summary.json")
 """)
 
-nb = {
-    "cells": CELLS,
-    "metadata": {
-        "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
-        "language_info": {"name": "python", "version": "3.11"},
-    },
-    "nbformat": 4,
-    "nbformat_minor": 5,
-}
-
-OUT.parent.mkdir(parents=True, exist_ok=True)
+nb = {"cells": CELLS,
+      "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python",
+                                  "name": "python3"},
+                   "language_info": {"name": "python", "version": "3.11"}},
+      "nbformat": 4, "nbformat_minor": 5}
 OUT.write_text(json.dumps(nb, indent=1))
 print(f"wrote {OUT} ({len(CELLS)} cells)")
 
-# validate
-loaded = json.loads(OUT.read_text())
-assert loaded["nbformat"] == 4 and len(loaded["cells"]) == len(CELLS)
-import ast
-for i, c in enumerate(loaded["cells"]):
+for i, c in enumerate(json.loads(OUT.read_text())["cells"]):
     if c["cell_type"] == "code":
         src = "".join(c["source"])
-        stripped = "\n".join("pass  # shell" if ln.strip().startswith("!") else ln
-                             for ln in src.splitlines())
+        stripped = "\n".join("pass  # shell" if l.strip().startswith("!") else l
+                             for l in src.splitlines())
         try:
             ast.parse(stripped)
         except SyntaxError as e:

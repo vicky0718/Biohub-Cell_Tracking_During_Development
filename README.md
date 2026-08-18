@@ -8,26 +8,25 @@ of zebrafish embryos. Started 2026-08-13.
 ├── MEMORY.md                     state of play, condensed — read this first
 ├── notes/
 │   ├── 01-competition-brief.md   the terrain: data, submission format, scoring, baseline
-<<<<<<< HEAD
 │   ├── 02-metric-findings.md     what actually scores points — measured, not assumed
 │   └── 03-domain-intel.md        where the data comes from; Ultrack's ILP; linking radius
 ├── harness/
 │   ├── scorer.py                 adapter onto the OFFICIAL scorer (never reimplemented)
 │   ├── harness.py                fold-based scoring, caching, and the promote/reject gate
 │   └── submission.py             build submission.csv + catch what the scorer fixes silently
-=======
-│   └── 02-metric-findings.md     what actually scores points — measured, not assumed
->>>>>>> 910b533ef98b4bffb5e96f3c42f5228827f76339
 ├── probes/
 │   ├── metric_probe.py           free FPs, the node budget, wrong-vs-missing links
 │   ├── metric_probe2.py          gap bridging, division timing
 │   └── test_recon_logic.py       offline dry-run of the recon notebook's linking code
-<<<<<<< HEAD
+├── pipeline/
+│   └── classical.py              detect -> link -> submit, no training required
 ├── tests/
-│   └── test_harness.py           15 tests, runnable without competition data
+│   ├── test_harness.py           15 tests, runnable without competition data
+│   └── test_pipeline.py          detector checked against synthetic 3D microscopy
 └── notebooks/
-    ├── 01_recon.ipynb            run this on Kaggle first — answers the open questions
-    └── _build_01_recon.py        regenerates the notebook (keeps its JSON valid)
+    ├── 01_recon.ipynb            run this on Kaggle FIRST — answers the open questions
+    ├── 02_classical_baseline.ipynb  first submission + the threshold sweep
+    └── _build_*.py               regenerate the notebooks (keeps their JSON valid)
 ```
 
 ## The harness
@@ -50,10 +49,6 @@ local number is the leaderboard's number. Run the tests with:
 
 ```bash
 CELLMOT_REPO=/path/to/kaggle-cell-tracking-competition python tests/test_harness.py
-=======
-└── notebooks/
-    └── 01_recon.ipynb            run this on Kaggle first — answers the open questions
->>>>>>> 910b533ef98b4bffb5e96f3c42f5228827f76339
 ```
 
 ## Where things stand
@@ -73,11 +68,19 @@ until late.
 
 ## Next step
 
-Run `notebooks/01_recon.ipynb` on Kaggle (CPU is enough — it never loads an image) and
-commit `recon_summary.json` back here. It answers the questions the strategy hangs on:
-annotation density, the node budget, inter-frame motion, cell spacing, division counts,
-and the linking-only ceiling that splits the score into "detection problem" vs
-"linking problem".
+1. **`notebooks/01_recon.ipynb`** — CPU only, loads no images. Answers what the strategy
+   hangs on: annotation density, the node budget, inter-frame motion, cell spacing,
+   division counts, whether the sparse annotation is biased, and the linking-only ceiling
+   that splits the score into "detection problem" vs "linking problem". Commit
+   `recon_summary.json` back here.
+2. **`notebooks/02_classical_baseline.ipynb`** — plants a real number on the leaderboard
+   and runs experiment #1, the detection-threshold sweep. Its `Config` defaults are
+   placeholders from the domain notes; recon supplies the real values.
+
+Experiment #1 is a **prediction, not a result**: the metric findings say the official
+baseline's `--det-threshold 0.99` is tuned on the axis that barely matters, so the score
+should improve as the threshold falls until the node budget bites. The sweep is how we
+find out, and the gate decides whether it ships.
 
 ## Running the probes locally
 
