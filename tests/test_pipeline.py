@@ -275,6 +275,52 @@ def main() -> int:
     check("prune drops the unlinked node", len(c4) == 2, f"{len(c4)} nodes")
     check("prune reindexes edges correctly", e4 == [(0, 1)], f"{e4}")
 
+    print("\n[adaptive separation targets each dataset's own budget]")
+    # notes/12 §3: 44b6 wants a dense field and 6bba a sparse one, so a global setting
+    # cannot serve both. Adapting per dataset should make the SAME config produce
+    # different densities for different budgets.
+    # downsample=(1,4,4) as the real pipeline uses: the grid is isotropic at 1.625um,
+    # so even a 12um ball stays a cheap 1,743-voxel footprint. At (1,1,1) the anisotropic
+    # grid makes it 27,067 and maximum_filter wedges — that is what BALL_MAX_VOXELS guards.
+    cfg_a = Config(detector="dog", downsample=(1, 4, 4), adaptive_separation=True,
+                   min_separation_um=6.0, dog_rel_threshold=0.005)
+    lo = predict_dataset(ds, cfg_a, verbose=False, est_total_nodes=4.0 * T)
+    hi = predict_dataset(ds, cfg_a, verbose=False, est_total_nodes=40.0 * T)
+    print(f"    budget 4/frame -> {lo.n_nodes} nodes;  budget 40/frame -> {hi.n_nodes} nodes")
+    check("a bigger budget yields more detections", hi.n_nodes > lo.n_nodes,
+          f"{lo.n_nodes} vs {hi.n_nodes}")
+    # On a volume this small the detector cannot get arbitrarily sparse, so the honest
+    # check is that adapting moves TOWARD the target, not that it arrives.
+    fixed = predict_dataset(ds, Config(detector="dog", downsample=(1, 4, 4),
+                                       min_separation_um=6.0, dog_rel_threshold=0.005),
+                            verbose=False).n_nodes
+    target = 4.0 * T
+    check("adapting moves the count toward a small target",
+          abs(lo.n_nodes - target) < abs(fixed - target),
+          f"fixed {fixed} -> adaptive {lo.n_nodes}, target {int(target)}")
+    check("adaptive is off by default",
+          predict_dataset(ds, Config(detector="dog", downsample=(1, 4, 4),
+                                     dog_rel_threshold=0.005), verbose=False,
+                          est_total_nodes=4.0 * T).n_nodes
+          == predict_dataset(ds, Config(detector="dog", downsample=(1, 4, 4),
+                                        dog_rel_threshold=0.005), verbose=False,
+                             est_total_nodes=40.0 * T).n_nodes,
+          "budget ignored unless adaptive_separation or budget_fill is set")
+    check("no budget -> adaptive is a no-op, not a crash",
+          predict_dataset(ds, cfg_a, verbose=False).n_nodes > 0, "still produces nodes")
+    check("the config itself is not mutated", cfg_a.min_separation_um == 6.0,
+          f"min_separation_um still {cfg_a.min_separation_um}")
+
+    from pipeline.classical import BALL_MAX_VOXELS, _ball_footprint, _max_filter_sep
+    big = _ball_footprint(12.0, (1.625, 0.40625, 0.40625))
+    v = np.zeros((8, 40, 40), np.float32); v[4, 20, 20] = 1.0
+    _, used = _max_filter_sep(v, 12.0, (1.625, 0.40625, 0.40625), want_ball=True)
+    check("an oversized ball falls back to the separable box",
+          int(big.sum()) > BALL_MAX_VOXELS and not used,
+          f"{int(big.sum()):,} voxels > cap {BALL_MAX_VOXELS:,}")
+    _, used_small = _max_filter_sep(v, 6.0, (1.625, 1.625, 1.625), want_ball=True)
+    check("a normal ball is still exact", used_small, "uses the true footprint")
+
     print("\n[downsampling maps coordinates back to original space]")
     cfg_ds = Config(det_threshold=0.3, min_separation_um=5.0, downsample=(1, 2, 2))
     g2 = predict_dataset(ds, cfg_ds, verbose=False)

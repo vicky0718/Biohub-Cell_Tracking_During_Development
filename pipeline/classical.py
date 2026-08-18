@@ -12,7 +12,7 @@ with what falsified the earlier guess.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import numpy as np
@@ -87,6 +87,30 @@ class Config:
     # real detections. Keep the machinery: a future detector that emits far more nodes
     # would need it. Check the ratio before assuming the bonus still applies.
     budget_fill: float | None = None     # measured worse than no cap
+    # Choose `min_separation_um` PER DATASET so the detector naturally emits about
+    # `adaptive_target * estimated_number_of_nodes / T` detections per frame, instead of
+    # truncating a global setting down to that count.
+    #
+    # notes/12 §3: every node-count change so far splits the two embryos — `44b6` wants a
+    # denser field (median budget 32,681, ~327 cells/frame) and `6bba` a sparser one
+    # (9,691, ~97/frame), so `05` and `06` kept failing the gate on one embryo or the
+    # other. There is no global setting that serves both. Adapting per dataset removes the
+    # question: dense crops get tight separation, sparse crops get wide, with no embryo
+    # assumption anywhere. And unlike `budget_fill` it hits the count by changing the
+    # detector, not by discarding its output — `06` measured blind truncation at
+    # -0.0264 edge Jaccard.
+    adaptive_separation: bool = False    # UNMEASURED — an arm, not a default
+    adaptive_target: float = 1.0         # fraction of the per-frame budget to aim at
+    # Clamp, in microns. The upper bound must actually reach the sparse datasets: after
+    # downsample=(1,4,4) the volume is a 104 um cube, so hitting recon's minimum budget of
+    # 38 detections/frame needs ~31 um of separation, and the median (179/frame) ~18.5 um.
+    # An earlier value of 12.0 only reached ~786/frame -- the densest dataset in the whole
+    # corpus -- so it would have bound on essentially every run and made this a no-op.
+    # NOTE: above ~9.5 um the ball footprint exceeds BALL_MAX_VOXELS and the separable box
+    # is used instead. The box quantises to odd voxel counts (3.25 um steps up there), but
+    # the calibration loop measures the ACHIEVED count and re-solves, so it simply
+    # converges on whichever reachable separation lands closest to the target.
+    adaptive_bounds: tuple[float, float] = (2.5, 32.0)
 
     # --- linking ---
     # Physical search radius. Set from MOTION, not from the 7 µm metric cutoff —
@@ -146,6 +170,31 @@ def _footprint(min_sep_um: float, voxel_um: tuple[float, float, float]) -> tuple
     return tuple(out)
 
 
+# `maximum_filter` with an explicit boolean footprint costs O(N x |footprint|); with
+# `size=` it is separable and costs O(N) per axis. A 12 um ball is 1,743 voxels on the
+# isotropic 1.625 um grid that downsample=(1,4,4) produces, but 27,067 on a full-resolution
+# anisotropic grid -- enough to wedge the process for minutes per frame. Above this many
+# elements we fall back to the separable box.
+BALL_MAX_VOXELS = 4_000
+
+
+def _max_filter_sep(vol: np.ndarray, radius_um: float, voxel_um, want_ball: bool
+                    ) -> tuple[np.ndarray, bool]:
+    """Local maximum over a `radius_um` neighbourhood. Returns (filtered, used_ball).
+
+    The box is a superset of the ball, so `vol == box_max` implies `vol == ball_max`:
+    the fallback yields a SUBSET of the true ball maxima -- fewer detections, never
+    spurious ones. It is a conservative degradation, and the caller is told which
+    happened so it never silently changes what an experiment measured.
+    """
+    if want_ball:
+        fp = _ball_footprint(radius_um, voxel_um)
+        if int(fp.sum()) <= BALL_MAX_VOXELS:
+            return maximum_filter(vol, footprint=fp, mode="nearest"), True
+    return (maximum_filter(vol, size=_footprint(radius_um, voxel_um), mode="nearest"),
+            False)
+
+
 def _ball_footprint(radius_um: float, voxel_um) -> np.ndarray:
     """Ellipsoidal (physically spherical) neighbourhood, not a box.
 
@@ -199,8 +248,7 @@ def detect_frame_dog(
                 - gaussian_filter(norm, sigma=l_um / eff))
         dog = resp if dog is None else np.maximum(dog, resp)
 
-    fp = _ball_footprint(cfg.min_separation_um, voxel_um)
-    mx = maximum_filter(dog, footprint=fp, mode="nearest")
+    mx, _ = _max_filter_sep(dog, cfg.min_separation_um, voxel_um, want_ball=True)
     abs_thr = np.percentile(norm, cfg.dog_abs_percentile)
     peaks = (dog == mx) & (dog >= cfg.dog_rel_threshold) & (norm >= abs_thr)
     idx = np.argwhere(peaks)
@@ -230,12 +278,8 @@ def detect_frame(
     ``cap`` is the per-frame detection limit for *this dataset*, normally derived from
     its own node budget by `predict_dataset`; it overrides `cfg.max_per_frame`.
     """
-    if cfg.footprint == "ball":
-        fp = _ball_footprint(cfg.min_separation_um, voxel_um)
-        pooled = maximum_filter(vol, footprint=fp, mode="nearest")
-    else:
-        pooled = maximum_filter(vol, size=_footprint(cfg.min_separation_um, voxel_um),
-                                mode="nearest")
+    pooled, _ = _max_filter_sep(vol, cfg.min_separation_um, voxel_um,
+                                want_ball=cfg.footprint == "ball")
     peaks = (vol == pooled) & (vol > cfg.det_threshold)
     idx = np.argwhere(peaks)
     if idx.size == 0:
@@ -544,11 +588,41 @@ def predict_dataset(
             print("    !! no estimated_number_of_nodes for this dataset — running "
                   "UNCAPPED; the budget multiplier is unguarded here", flush=True)
 
+    det = detect_frame_dog if cfg.detector == "dog" else detect_frame
+
+    # Adaptive per-dataset separation. Calibrated on one mid-movie frame: count at the
+    # configured separation, then solve for the separation that would hit the target.
+    # A 3D non-maximum window of radius r excludes a volume ~r^3, so the surviving peak
+    # count goes roughly as 1/r^3 and sep_new = sep_old * (n_now / n_target)^(1/3).
+    # Two refinement passes, because the 1/r^3 law is only approximate once the field
+    # stops being packing-limited.
+    if cfg.adaptive_separation:
+        if est_total_nodes is None:
+            est_total_nodes = estimated_total_nodes(ds_path, attrs)
+        if est_total_nodes and est_total_nodes > 0:
+            target = max(1.0, cfg.adaptive_target * est_total_nodes / max(1, T_full))
+            t_cal = T_full // 2
+            vol = np.asarray(arr[t_cal, ::dz, ::dy, ::dx]).astype(np.float32)
+            vol = np.clip((vol - q_lo) / (q_hi - q_lo + 1e-6), 0.0, None)
+            lo_b, hi_b = cfg.adaptive_bounds
+            sep = cfg.min_separation_um
+            for _ in range(3):
+                n_now = len(det(vol, voxel_um, replace(cfg, min_separation_um=sep))[0])
+                if n_now == 0:
+                    break
+                sep = float(np.clip(sep * (n_now / target) ** (1.0 / 3.0), lo_b, hi_b))
+            cfg = replace(cfg, min_separation_um=sep)
+            if verbose:
+                print(f"    adaptive separation -> {sep:.2f} um "
+                      f"(target {target:.0f} detections/frame)", flush=True)
+        elif verbose:
+            print("    !! no budget for this dataset — adaptive separation disabled",
+                  flush=True)
+
     all_coords = []
     for t in range(T):
         vol = np.asarray(arr[t, ::dz, ::dy, ::dx]).astype(np.float32)
         vol = np.clip((vol - q_lo) / (q_hi - q_lo + 1e-6), 0.0, None)
-        det = detect_frame_dog if cfg.detector == "dog" else detect_frame
         c, _ = det(vol, voxel_um, cfg, cap=cap)
         c = refine_centroids(vol, c, voxel_um)
         if len(c):
