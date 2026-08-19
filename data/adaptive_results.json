@@ -1,0 +1,130 @@
+{
+  "arms": {
+    "champion_04": {
+      "n": 60,
+      "edge_jaccard": 0.7053224258950664,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "division_fp": 0,
+      "division_fn": 51,
+      "node_recall": 0.8568146969867826,
+      "adj_edge_jaccard": 0.6759633841698098,
+      "n_adj": 60,
+      "score": 0.6759633841698098
+    },
+    "prune_plus_cap": {
+      "n": 60,
+      "edge_jaccard": 0.7012938448881909,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "division_fp": 0,
+      "division_fn": 51,
+      "node_recall": 0.869762108789184,
+      "adj_edge_jaccard": 0.7071870255828293,
+      "n_adj": 60,
+      "score": 0.7071870255828293
+    },
+    "adaptive_0.8": {
+      "n": 60,
+      "edge_jaccard": 0.6729878438899553,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "division_fp": 0,
+      "division_fn": 51,
+      "node_recall": 0.788770087639226,
+      "adj_edge_jaccard": 0.6848807555250996,
+      "n_adj": 60,
+      "score": 0.6848807555250996
+    },
+    "adaptive_1.0": {
+      "n": 60,
+      "edge_jaccard": 0.7035142799270813,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "division_fp": 0,
+      "division_fn": 51,
+      "node_recall": 0.8389539708445918,
+      "adj_edge_jaccard": 0.704824489104155,
+      "n_adj": 60,
+      "score": 0.704824489104155
+    },
+    "adaptive_1.2": {
+      "n": 60,
+      "edge_jaccard": 0.716905199084438,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "division_fp": 0,
+      "division_fn": 51,
+      "node_recall": 0.8668243880432428,
+      "adj_edge_jaccard": 0.7098099170299661,
+      "n_adj": 60,
+      "score": 0.7098099170299661
+    },
+    "adaptive_noprune": {
+      "n": 60,
+      "edge_jaccard": 0.7111111111111111,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "division_fp": 0,
+      "division_fn": 51,
+      "node_recall": 0.8789168424355213,
+      "adj_edge_jaccard": 0.6961884303001973,
+      "n_adj": 60,
+      "score": 0.6961884303001973
+    },
+    "adaptive_wide": {
+      "n": 60,
+      "edge_jaccard": 0.7075376120763892,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "division_fp": 0,
+      "division_fn": 51,
+      "node_recall": 0.831870434661613,
+      "adj_edge_jaccard": 0.7115341600802695,
+      "n_adj": 60,
+      "score": 0.7115341600802695
+    }
+  },
+  "nodes": {
+    "champion_04": 1160180,
+    "prune_plus_cap": 1126596,
+    "adaptive_0.8": 956259,
+    "adaptive_1.0": 1112166,
+    "adaptive_1.2": 1215318,
+    "adaptive_noprune": 1284257,
+    "adaptive_wide": 996972
+  },
+  "fold_deltas": {
+    "prune_plus_cap": {
+      "0": 0.025579166129138242,
+      "1": 0.03229809323600952
+    },
+    "adaptive_0.8": {
+      "0": -0.005930284602459146,
+      "1": 0.011808735778267132
+    },
+    "adaptive_1.0": {
+      "0": 0.03175367324794942,
+      "1": 0.028430822572292902
+    },
+    "adaptive_1.2": {
+      "0": 0.04489402752148486,
+      "1": 0.03197540031682067
+    },
+    "adaptive_noprune": {
+      "0": 0.035706493909361536,
+      "1": 0.017556258618960263
+    },
+    "adaptive_wide": {
+      "0": 0.0031756304401098223,
+      "1": 0.04163054557057566
+    }
+  },
+  "promoted": [
+    "prune_plus_cap",
+    "adaptive_1.0",
+    "adaptive_1.2",
+    "adaptive_noprune",
+    "adaptive_wide"
+  ]
+}

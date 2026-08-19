@@ -532,20 +532,16 @@ def estimated_total_nodes(ds_path: Path | str, zarr_attrs: dict | None = None) -
     return None
 
 
-def predict_dataset(
-    ds_path: Path | str,
-    cfg: Config,
-    verbose: bool = True,
-    est_total_nodes: float | None = None,
-) -> Tracks:
-    """Detect + link one dataset, returning a graph in ORIGINAL voxel coordinates.
+def open_movie(ds_path: Path | str, cfg: Config):
+    """Open one dataset's image and return ``(arr, attrs, scale, voxel_um, q_lo, q_hi)``.
 
-    Frames are streamed one at a time, so peak memory is one volume rather than the
-    whole movie. Normalisation uses the quantiles stored in the zarr attrs, so no
-    extra pass over the data is needed.
+    ``scale`` is the stored voxel size in microns; ``voxel_um`` is that scale after
+    `cfg.downsample`. Both are needed: detection works on the downsampled grid, while
+    linking happens in ORIGINAL voxel coordinates.
 
-    ``est_total_nodes`` overrides the per-dataset node budget; when None it is looked
-    up via `estimated_total_nodes`.
+    Everything that turns a stored zarr into the array space the detector works in —
+    the coordinate scale, the downsample, and the normalisation quantiles — lives
+    here, so `predict_dataset` and `budget_features` cannot drift apart.
     """
     import zarr
 
@@ -570,6 +566,85 @@ def predict_dataset(
 
     dz, dy, dx = cfg.downsample
     voxel_um = (scale[0] * dz, scale[1] * dy, scale[2] * dx)
+    return arr, attrs, scale, voxel_um, q_lo, q_hi
+
+
+def load_frame(arr, t: int, cfg: Config, q_lo: float, q_hi: float) -> np.ndarray:
+    """One frame, downsampled and normalised into the detector's units."""
+    dz, dy, dx = cfg.downsample
+    vol = np.asarray(arr[t, ::dz, ::dy, ::dx]).astype(np.float32)
+    return np.clip((vol - q_lo) / (q_hi - q_lo + 1e-6), 0.0, None)
+
+
+def budget_features(
+    ds_path: Path | str,
+    cfg: Config,
+    frac_frames: tuple[float, ...] = (0.2, 0.5, 0.8),
+    ref_seps: tuple[float, ...] = (4.0, 8.0, 16.0),
+) -> dict[str, float]:
+    """Metadata-free proxies for a dataset's true cell count.
+
+    `estimated_number_of_nodes` is GEFF metadata, and `notes/05` §0 found the test
+    folder ships images only — so at submission time the node budget that both
+    `budget_fill` and `adaptive_separation` key off cannot be read (`notes/13` §3).
+    These features are what a regression can use to predict it from the image instead.
+
+    Cheap by construction: a few frames, and detection only — no linking.
+
+    **The raw peak count is not a density proxy on its own.** Measured on synthetic
+    movies of 12 / 8 / 6 / 3 nuclei, the count at a fixed separation runs
+    20 / 36 / 50 / 104 — it *rises* as the field gets sparser. `dog_abs_percentile`
+    floors the detector at a percentile of the volume, so in an emptier frame the floor
+    sinks into the background and noise peaks fill the space. That is also why `07`
+    needed separations up to 31 um to reach the sparse datasets' budgets. The intensity
+    features are monotone where the counts are not, so both are returned and the
+    regression picks.
+    """
+    arr, _attrs, _scale, voxel_um, q_lo, q_hi = open_movie(ds_path, cfg)
+    T = int(arr.shape[0])
+    ts = sorted({min(T - 1, max(0, int(round(f * T)))) for f in frac_frames})
+
+    counts = {s: [] for s in ref_seps}
+    strong = {s: [] for s in ref_seps}
+    mean_int, frac_fg = [], []
+    for t in ts:
+        vol = load_frame(arr, t, cfg, q_lo, q_hi)
+        mean_int.append(float(vol.mean()))
+        frac_fg.append(float((vol > cfg.det_threshold).mean()))
+        hi_shape = np.array(vol.shape) - 1
+        for s in ref_seps:
+            c, _ = detect_frame_dog(vol, voxel_um, replace(cfg, min_separation_um=s))
+            counts[s].append(len(c))
+            # The same peaks, but only those sitting on real signal. An ABSOLUTE cut,
+            # so it cannot slide into the background the way the percentile floor does.
+            idx = np.clip(np.round(np.asarray(c)).astype(int), 0, hi_shape) if len(c) else None
+            strong[s].append(0 if idx is None else int((vol[tuple(idx.T)] > 0.3).sum()))
+
+    out = {f"n_sep{s:g}": float(np.mean(counts[s])) for s in ref_seps}
+    out.update({f"nstrong_sep{s:g}": float(np.mean(strong[s])) for s in ref_seps})
+    out["mean_int"] = float(np.mean(mean_int))
+    out["frac_fg"] = float(np.mean(frac_fg))
+    out["T"] = float(T)
+    return out
+
+
+def predict_dataset(
+    ds_path: Path | str,
+    cfg: Config,
+    verbose: bool = True,
+    est_total_nodes: float | None = None,
+) -> Tracks:
+    """Detect + link one dataset, returning a graph in ORIGINAL voxel coordinates.
+
+    Frames are streamed one at a time, so peak memory is one volume rather than the
+    whole movie. Normalisation uses the quantiles stored in the zarr attrs, so no
+    extra pass over the data is needed.
+
+    ``est_total_nodes`` overrides the per-dataset node budget; when None it is looked
+    up via `estimated_total_nodes`.
+    """
+    ds_path = Path(ds_path)
+    arr, attrs, scale, voxel_um, q_lo, q_hi = open_movie(ds_path, cfg)
 
     T_full = arr.shape[0]
     T = T_full if cfg.max_frames is None else min(T_full, cfg.max_frames)
@@ -601,9 +676,7 @@ def predict_dataset(
             est_total_nodes = estimated_total_nodes(ds_path, attrs)
         if est_total_nodes and est_total_nodes > 0:
             target = max(1.0, cfg.adaptive_target * est_total_nodes / max(1, T_full))
-            t_cal = T_full // 2
-            vol = np.asarray(arr[t_cal, ::dz, ::dy, ::dx]).astype(np.float32)
-            vol = np.clip((vol - q_lo) / (q_hi - q_lo + 1e-6), 0.0, None)
+            vol = load_frame(arr, T_full // 2, cfg, q_lo, q_hi)
             lo_b, hi_b = cfg.adaptive_bounds
             sep = cfg.min_separation_um
             for _ in range(3):
@@ -621,8 +694,7 @@ def predict_dataset(
 
     all_coords = []
     for t in range(T):
-        vol = np.asarray(arr[t, ::dz, ::dy, ::dx]).astype(np.float32)
-        vol = np.clip((vol - q_lo) / (q_hi - q_lo + 1e-6), 0.0, None)
+        vol = load_frame(arr, t, cfg, q_lo, q_hi)
         c, _ = det(vol, voxel_um, cfg, cap=cap)
         c = refine_centroids(vol, c, voxel_um)
         if len(c):
@@ -636,7 +708,7 @@ def predict_dataset(
 
     coords = np.vstack(all_coords)
     # Back to ORIGINAL voxel coordinates — the ground truth lives in that space.
-    coords[:, 1:] *= np.array([dz, dy, dx], float)
+    coords[:, 1:] *= np.array(cfg.downsample, float)
 
     edges = link_all(coords, scale, cfg)
 
@@ -670,4 +742,5 @@ def make_predictor(cfg: Config, verbose: bool = False,
 
 
 __all__ = ["Config", "detect_frame", "detect_frame_dog", "refine_centroids", "link_frame", "link_all",
+           "open_movie", "load_frame", "budget_features",
            "build_graph", "predict_dataset", "make_predictor", "estimated_total_nodes"]

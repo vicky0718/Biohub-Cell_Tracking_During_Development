@@ -321,6 +321,47 @@ def main() -> int:
     _, used_small = _max_filter_sep(v, 6.0, (1.625, 1.625, 1.625), want_ball=True)
     check("a normal ball is still exact", used_small, "uses the true footprint")
 
+    print("\n[budget features are readable from the image alone]")
+    # notes/13 §3: `estimated_number_of_nodes` is GEFF metadata and test/ ships images
+    # only, so every adaptive gain is unbuildable unless the budget can be predicted from
+    # the pixels. These features are that regression's input, so they must be
+    # (a) computable with no .geff anywhere near, and (b) monotone in true density.
+    from pipeline.classical import budget_features, open_movie
+    cfg_f = Config(detector="dog", downsample=(1, 4, 4), dog_rel_threshold=0.005)
+    feats = budget_features(ds, cfg_f, frac_frames=(0.2, 0.5), ref_seps=(4.0, 8.0))
+    check("features come back with no GEFF present",
+          estimated_total_nodes(ds) is None
+          and set(feats) >= {"n_sep4", "n_sep8", "nstrong_sep4", "mean_int", "frac_fg", "T"},
+          str({k: round(v, 3) for k, v in feats.items()}))
+    check("tighter separation admits at least as many peaks",
+          feats["n_sep4"] >= feats["n_sep8"],
+          f"sep 4um -> {feats['n_sep4']:.0f}, sep 8um -> {feats['n_sep8']:.0f}")
+    # Ladder of true densities. The RAW peak count runs backwards down it — the
+    # percentile floor sinks into the background as the field empties and noise peaks
+    # fill in — so pin that, or a future detector change flips it silently and the
+    # budget regression of notes/13 quietly learns the wrong sign.
+    ladder = {}
+    for k in (12, 6, 3):
+        mv = np.stack([synth_volume(centres[:k], shape=shape, seed=t) for t in range(T)])
+        mv = (mv / mv.max()).astype(np.float32)
+        ladder[k] = budget_features(write_zarr(tmp / f"dens{k}.zarr", mv), cfg_f,
+                                    frac_frames=(0.2, 0.5), ref_seps=(4.0, 8.0))
+    print("    nuclei -> n_sep4 / frac_fg: "
+          + ", ".join(f"{k}: {v['n_sep4']:.0f} / {v['frac_fg']:.3f}"
+                      for k, v in ladder.items()))
+    check("raw peak count is ANTI-correlated with density (known, documented)",
+          ladder[12]["n_sep4"] < ladder[6]["n_sep4"] < ladder[3]["n_sep4"],
+          f"{ladder[12]['n_sep4']:.0f} < {ladder[6]['n_sep4']:.0f} < {ladder[3]['n_sep4']:.0f}")
+    check("frac_fg IS monotone in density — the usable feature",
+          ladder[12]["frac_fg"] > ladder[6]["frac_fg"] > ladder[3]["frac_fg"],
+          f"{ladder[12]['frac_fg']:.3f} > {ladder[6]['frac_fg']:.3f} > {ladder[3]['frac_fg']:.3f}")
+    check("the absolute-cut peak count does not run backwards",
+          ladder[12]["nstrong_sep4"] >= ladder[3]["nstrong_sep4"],
+          f"12 nuclei: {ladder[12]['nstrong_sep4']:.0f}, "
+          f"3 nuclei: {ladder[3]['nstrong_sep4']:.0f}")
+    check("open_movie reports the stored scale, not the downsampled one",
+          tuple(open_movie(ds, cfg_f)[2]) == SCALE, str(tuple(open_movie(ds, cfg_f)[2])))
+
     print("\n[downsampling maps coordinates back to original space]")
     cfg_ds = Config(det_threshold=0.3, min_separation_um=5.0, downsample=(1, 2, 2))
     g2 = predict_dataset(ds, cfg_ds, verbose=False)
