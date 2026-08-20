@@ -34,6 +34,23 @@ available. Three consequences shaped the code:
 - **`test/` is swapped at rerun**, so dataset names are globbed, never hardcoded, and
   `max_frames` is never set.
 
+That leaves `numpy`, `scipy` and `zarr`, all of which ship in the Kaggle image — verified
+against a grandmaster's probe notebook with no data sources and no install, which prints
+`Success` on `import zarr` (`notes/07`). The forum's "zarr import error in submitted
+notebook" threads are the *opposite* failure: notebooks that try to `pip install zarr`,
+which is what breaks with internet off.
+
+**If the probe below ever fails**, build a wheelhouse rather than changing this notebook.
+In any notebook with internet on:
+
+```
+!pip download zarr -d /kaggle/working/wheels
+```
+
+Save that output as a Kaggle Dataset and attach it here; cell 1 finds any attached
+directory of `.whl` files and installs from it with `--no-index`, which needs no network.
+Downloading the wheels *on Kaggle* is what guarantees they match its Python and platform.
+
 ## The one thing that must not be got wrong
 
 `notes/14` §2: applying a single constant budget to every dataset scores **0.0882 below
@@ -43,26 +60,53 @@ notebook is built to avoid.
 """)
 
 code(r"""
-# NO pip install. This cell is the honest test of what the rerun environment has.
-import sys, platform
+# No network install anywhere in this notebook. This cell reports what the image has.
+import sys, platform, subprocess
+from pathlib import Path
 print(f"python {platform.python_version()}")
-missing = []
-for mod in ("numpy", "scipy", "zarr", "polars", "geff", "pandas"):
-    try:
-        m = __import__(mod)
-        print(f"  {mod:<8} {getattr(m, '__version__', '?')}")
-    except ImportError as e:
-        print(f"  {mod:<8} MISSING ({e})")
-        missing.append(mod)
 
-for need in ("numpy", "scipy", "zarr"):
-    if need in missing:
-        raise SystemExit(
-            f"{need} is not in this image and internet is off in a scored rerun, so it "
-            "cannot be installed. The submission cannot be built without it."
-        )
-print("\nrequired packages present (numpy, scipy, zarr).")
-print("optional and NOT required by this notebook:",
+def probe():
+    have, gone = {}, []
+    for mod in ("numpy", "scipy", "zarr", "polars", "geff", "pandas"):
+        try:
+            m = __import__(mod)
+            have[mod] = getattr(m, "__version__", "?")
+        except ImportError:
+            gone.append(mod)
+    return have, gone
+
+have, missing = probe()
+for mod, ver in have.items():
+    print(f"  {mod:<8} {ver}")
+for mod in missing:
+    print(f"  {mod:<8} MISSING")
+
+REQUIRED = ("numpy", "scipy", "zarr")
+if any(m in missing for m in REQUIRED):
+    # Fallback, expected never to fire: install from an attached wheelhouse dataset.
+    # --no-index means pip never touches the network, so this works with internet off.
+    # See the header for how to build the dataset (pip download, ON Kaggle, so the
+    # wheels match its python and platform).
+    wheelhouses = sorted({p.parent for p in Path("/kaggle/input").glob("**/*.whl")})
+    print(f"\nwheelhouse directories found: {[str(w) for w in wheelhouses] or 'NONE'}")
+    for w in wheelhouses:
+        r = subprocess.run([sys.executable, "-m", "pip", "install", "--no-index",
+                            f"--find-links={w}", *[m for m in missing if m in REQUIRED]],
+                           capture_output=True, text=True)
+        print(f"  install from {w}: {'ok' if r.returncode == 0 else 'failed'}")
+        if r.returncode != 0:
+            print(r.stdout[-1500:]); print(r.stderr[-1500:])
+    have, missing = probe()
+
+still = [m for m in REQUIRED if m in missing]
+if still:
+    raise SystemExit(
+        f"{', '.join(still)} not importable, and internet is off in a scored rerun so "
+        "PyPI is unreachable. Build a wheelhouse dataset as described in the header "
+        "(pip download, on Kaggle, with internet on) and attach it as an input."
+    )
+print("\nrequired packages present:", ", ".join(f"{m} {have[m]}" for m in REQUIRED))
+print("not required by this notebook:",
       [m for m in ("polars", "geff", "pandas") if m in missing] or "none missing")
 """)
 
