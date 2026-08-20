@@ -215,9 +215,25 @@ Internet is off in the scored rerun. **Every notebook we have opens with
 `pip_install(["geff", "zarr"])`, and that cell would fail a submission run.**
 
 The fix is easy and worth stating precisely: at test time there is no ground truth to
-read, so `geff` is not needed at all — only `zarr` (preinstalled on Kaggle), numpy and
-scipy. The submission notebook must install nothing. `geff` stays a research-only
-dependency for `02`/`03`, which run interactively with internet on.
+read, so `geff` is not needed at all — only `zarr`, numpy and scipy. The submission
+notebook must install nothing. `geff` stays a research-only dependency for `02`/`03`,
+which run interactively with internet on.
+
+> **"preinstalled on Kaggle" VERIFIED 2026-08-20.** That was an assumption when first
+> written, and two forum threads read as evidence against it — *"zarr import error in
+> submitted notebook"* (727881) and a tutorial advertising an *"Offline Zarr Fix"*
+> (727462). Both trace back to 726955, where a GRANDMASTER answers by linking
+> `kaggle.com/code/antonoof/import-kaggle?scriptVersionId=336231500`. Pulling that
+> notebook's source via `/kernels/scriptcontent/336231500/download` settles it: **zero
+> data sources, no pip install, one cell — `try: import zarr; print('Success')` — and
+> the saved output is `Success`**, on Python 3.12.13. Internet state cannot change what
+> is in the image, only whether pip can reach PyPI. So zarr *is* preinstalled, and the
+> reported failures are notebooks whose own `pip install zarr` cell fails offline — the
+> opposite problem, and one that afflicts only notebooks that try to install it.
+>
+> Residual risk is small but real: that probe is a month old and Kaggle rotates images.
+> `09` therefore probes in its first cell — five seconds, before any work — and carries a
+> wheelhouse fallback that fires only if the import actually fails.
 
 ### The maximum score is 1.1, not 1.0
 
