@@ -509,10 +509,17 @@ def estimated_total_nodes(ds_path: Path | str, zarr_attrs: dict | None = None) -
     ``max(0, J * (1 - 0.1*(N_pred - N_total)/N_total))``, and recon §9 shows it varies
     20.8x across datasets — so it has to be read per dataset, not assumed.
 
-    Looked for in two places, because it is *unconfirmed* whether the test folder ships
-    ``.geff`` metadata at all: the sibling ``.geff``'s GEFF metadata extras (where it
-    lives for train), then the image's own zarr attrs. Returns None if absent, and the
-    caller then runs uncapped — see the fallback note in `predict_dataset`.
+    Looked for in three places: the sibling ``.geff``'s GEFF metadata extras (where it
+    lives for train), the same group's raw zarr attrs, then the image's own zarr attrs.
+    Returns None if absent, and the caller then runs uncapped — see the fallback note in
+    `predict_dataset`.
+
+    The middle path exists because a ``.geff`` is just a zarr group, and the scored
+    rerun has internet off: whatever is not already in the image cannot be installed.
+    Reading the attrs directly means the submission needs `zarr` and nothing else, which
+    is what lets `09` fit the budget regression on `train/` at runtime (`notes/14` §4).
+    `notes/05` §0: `test/` ships images only, so this is never the test path — only the
+    path by which the submission learns from train.
     """
     ds_path = Path(ds_path)
     geff_path = ds_path if ds_path.suffix == ".geff" else ds_path.with_suffix(".geff")
@@ -524,6 +531,14 @@ def estimated_total_nodes(ds_path: Path | str, zarr_attrs: dict | None = None) -
             if v is not None:
                 return float(v)
         except Exception:  # metadata is a nicety; never let it break a prediction
+            pass
+        try:
+            import zarr
+            v = _find_key(dict(zarr.open_group(str(geff_path), mode="r").attrs),
+                          "estimated_number_of_nodes")
+            if v is not None:
+                return float(v)
+        except Exception:
             pass
     if zarr_attrs:
         v = _find_key(zarr_attrs, "estimated_number_of_nodes")
@@ -591,14 +606,18 @@ def budget_features(
 
     Cheap by construction: a few frames, and detection only — no linking.
 
-    **The raw peak count is not a density proxy on its own.** Measured on synthetic
-    movies of 12 / 8 / 6 / 3 nuclei, the count at a fixed separation runs
-    20 / 36 / 50 / 104 — it *rises* as the field gets sparser. `dog_abs_percentile`
-    floors the detector at a percentile of the volume, so in an emptier frame the floor
-    sinks into the background and noise peaks fill the space. That is also why `07`
-    needed separations up to 31 um to reach the sparse datasets' budgets. The intensity
-    features are monotone where the counts are not, so both are returned and the
-    regression picks.
+    Two kinds of peak count are returned, and the difference matters. `n_sep*` is the raw
+    count; `nstrong_sep*` keeps only peaks sitting on real signal, by an ABSOLUTE
+    intensity cut. `dog_abs_percentile` floors the detector at a *percentile* of the
+    volume, so as a frame empties that floor sinks into the background and noise peaks
+    fill the space — on synthetic movies of 12/8/6/3 nuclei the raw count runs
+    20/36/50/104, i.e. backwards.
+
+    That artefact needs volumes far emptier than this corpus: on the real data the raw
+    count is +0.91 correlated with the true budget (`notes/14` §1), not negative. But the
+    absolute cut is still the better feature — **+0.987, and equally strong on both
+    embryos**, where the raw counts drop to +0.87 on the sparse one. Both are returned
+    and the regression picks.
     """
     arr, _attrs, _scale, voxel_um, q_lo, q_hi = open_movie(ds_path, cfg)
     T = int(arr.shape[0])

@@ -338,8 +338,11 @@ def main() -> int:
           f"sep 4um -> {feats['n_sep4']:.0f}, sep 8um -> {feats['n_sep8']:.0f}")
     # Ladder of true densities. The RAW peak count runs backwards down it — the
     # percentile floor sinks into the background as the field empties and noise peaks
-    # fill in — so pin that, or a future detector change flips it silently and the
-    # budget regression of notes/13 quietly learns the wrong sign.
+    # fill in. NOTE this synthetic regime is emptier than any real dataset: on the
+    # competition data the raw count is +0.91 correlated with the true budget, not
+    # negative (notes/14 §1). What the ladder is really pinning is that the ABSOLUTE-cut
+    # count is the robust one — on real data it scores +0.987 and, unlike the raw count,
+    # is equally strong on both embryos.
     ladder = {}
     for k in (12, 6, 3):
         mv = np.stack([synth_volume(centres[:k], shape=shape, seed=t) for t in range(T)])
@@ -408,6 +411,64 @@ def main() -> int:
               f"pure {row['adj_edge_jaccard']:.10f} vs official {off['adj_edge_jaccard']:.10f}")
     except ImportError as e:
         print(f"    (cross-check skipped — tracksdata unavailable here: {e})")
+
+    print("\n[the stdlib submission writer — the scored-rerun path]")
+    # harness.submission goes through polars, which a scored rerun may not have and
+    # which cannot be installed there. csvout is the fallback, so it is on the critical
+    # path for every point this project ever scores.
+    from harness.csvout import COLUMNS, check_graph, write_submission
+    sub = tmp / "sub.csv"
+    summary = write_submission({"ds_a": graph, "ds_b": gt}, sub, verbose=False)
+    with sub.open() as fh:
+        header = fh.readline().strip().split(",")
+        body = [ln.rstrip("\n").split(",") for ln in fh]
+    check("header matches the official schema with id prepended", tuple(header) == COLUMNS,
+          str(header))
+    check("every node and edge got exactly one row",
+          len(body) == graph.n_nodes + graph.n_edges + gt.n_nodes + gt.n_edges,
+          f"{len(body)} rows for {graph.n_nodes + gt.n_nodes} nodes "
+          f"+ {graph.n_edges + gt.n_edges} edges")
+    check("ids are contiguous from zero across datasets",
+          [int(r[0]) for r in body] == list(range(len(body))), "id column")
+    check("node rows carry -1 in the edge columns and vice versa",
+          all(r[8] == "-1" and r[9] == "-1" for r in body if r[2] == "node")
+          and all(r[3] == "-1" for r in body if r[2] == "edge"),
+          "sentinel columns")
+    check("a clean graph reports no problems", summary["problems"] == [],
+          str(summary["problems"]))
+
+    # Each malformation below is one the scorer repairs SILENTLY -- points vanish with
+    # no error and no leaderboard clue -- so check_graph has to catch every one.
+    from pipeline.classical import build_graph
+    # t = 0, 1, 1, 0, 2 -- so a division (0->1, 0->2) and a merge (0->1, 3->1) are both
+    # expressible with every edge spanning exactly one frame, and each case below trips
+    # only the check it is aimed at.
+    coords = np.array([[0, 1.0, 1, 1], [1, 2.0, 2, 2], [1, 3.0, 3, 3],
+                       [0, 5.0, 5, 5], [2, 7.0, 7, 7]])
+    for label, edges, want in [
+        ("t->t+2 edge", [(0, 4)], "do not span exactly"),
+        ("self-loop", [(0, 0)], "self-loop"),
+        ("duplicate edge", [(0, 1), (0, 1)], "duplicate"),
+        ("merge", [(0, 1), (3, 1)], "incoming"),
+        ("division with divisions off", [(0, 1), (0, 2)], "out-degree"),
+    ]:
+        probs = check_graph(build_graph(coords, edges), "x")
+        check(f"catches {label}", any(want in p for p in probs), str(probs))
+    check("a division is allowed when divisions are on",
+          check_graph(build_graph(coords, [(0, 1), (0, 2)]), "x", allow_divisions=True) == [],
+          "allow_divisions=True")
+    # check_graph guards out-of-range endpoints too, but Tracks rejects them first --
+    # so that class of malformation cannot reach a submission at all.
+    try:
+        build_graph(coords, [(0, 99)])
+        check("out-of-range endpoints are rejected", False, "build_graph accepted one")
+    except ValueError as e:
+        check("out-of-range endpoints are rejected before check_graph sees them",
+              "does not exist" in str(e), str(e))
+    check("an empty graph writes cleanly",
+          write_submission({"empty": build_graph(np.zeros((0, 4)), [])},
+                           tmp / "empty.csv", verbose=False)["rows"] == 0,
+          "zero rows, valid header")
 
     shutil.rmtree(tmp, ignore_errors=True)
     print("\n" + "=" * 60)
