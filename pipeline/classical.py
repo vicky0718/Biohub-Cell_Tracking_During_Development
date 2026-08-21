@@ -208,6 +208,31 @@ def _ball_footprint(radius_um: float, voxel_um) -> np.ndarray:
     return d2 <= radius_um ** 2
 
 
+def dog_response(vol: np.ndarray, voxel_um: tuple[float, float, float], cfg: Config
+                 ) -> tuple[np.ndarray, np.ndarray]:
+    """The per-frame normalised volume and its multi-scale DoG response.
+
+    Split out of `detect_frame_dog` so the learned detector's loss mask
+    (`pipeline/detector.make_loss_mask`) scores "how blob-like is this voxel" with
+    exactly the filter the classical arm uses. Two implementations would drift, and the
+    mask decides which voxels a network is allowed to call background.
+    """
+    vf = np.asarray(vol, np.float32)
+    lo, hi = np.percentile(vf, [cfg.dog_norm_lo, cfg.dog_norm_hi])
+    if hi <= lo:
+        hi = lo + 1.0
+    norm = np.clip((vf - lo) / (hi - lo), 0, None)
+
+    scales = cfg.dog_scales or [(cfg.dog_small_um, cfg.dog_large_um)]
+    eff = np.asarray(voxel_um, float)
+    dog = None
+    for s_um, l_um in scales:
+        resp = (gaussian_filter(norm, sigma=s_um / eff)
+                - gaussian_filter(norm, sigma=l_um / eff))
+        dog = resp if dog is None else np.maximum(dog, resp)
+    return norm, dog
+
+
 def detect_frame_dog(
     vol: np.ndarray,
     voxel_um: tuple[float, float, float],
@@ -234,20 +259,7 @@ def detect_frame_dog(
        nuclei of different sizes — recon §7 noted cells with Z spans over 24 µm
        alongside ordinary ones.
     """
-    vf = np.asarray(vol, np.float32)
-    lo, hi = np.percentile(vf, [cfg.dog_norm_lo, cfg.dog_norm_hi])
-    if hi <= lo:
-        hi = lo + 1.0
-    norm = np.clip((vf - lo) / (hi - lo), 0, None)
-
-    scales = cfg.dog_scales or [(cfg.dog_small_um, cfg.dog_large_um)]
-    eff = np.asarray(voxel_um, float)
-    dog = None
-    for s_um, l_um in scales:
-        resp = (gaussian_filter(norm, sigma=s_um / eff)
-                - gaussian_filter(norm, sigma=l_um / eff))
-        dog = resp if dog is None else np.maximum(dog, resp)
-
+    norm, dog = dog_response(vol, voxel_um, cfg)
     mx, _ = _max_filter_sep(dog, cfg.min_separation_um, voxel_um, want_ball=True)
     abs_thr = np.percentile(norm, cfg.dog_abs_percentile)
     peaks = (dog == mx) & (dog >= cfg.dog_rel_threshold) & (norm >= abs_thr)
@@ -761,5 +773,5 @@ def make_predictor(cfg: Config, verbose: bool = False,
 
 
 __all__ = ["Config", "detect_frame", "detect_frame_dog", "refine_centroids", "link_frame", "link_all",
-           "open_movie", "load_frame", "budget_features",
+           "open_movie", "load_frame", "budget_features", "dog_response",
            "build_graph", "predict_dataset", "make_predictor", "estimated_total_nodes"]
