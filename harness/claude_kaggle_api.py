@@ -86,6 +86,7 @@ def kernel_push(slug: str, notebook_path: str | Path, *, title: str,
                 dataset_sources: list[str] | None = None,
                 competition_sources: list[str] | None = None,
                 kernel_sources: list[str] | None = None,
+                machine_shape: str | None = None,
                 is_private: bool = True) -> dict:
     """Create or update a kernel and start a run. Returns the push response.
 
@@ -111,6 +112,13 @@ def kernel_push(slug: str, notebook_path: str | Path, *, title: str,
         "categoryIds": [],
         "text": json.dumps(nb),
     }
+    # Kaggle's plain `enableGpu` hands out a Tesla P100 (sm_60), and the image's
+    # torch 2.10+cu128 ships kernels only for sm_70+ -- CUDA reports "available" and
+    # then every launch dies with "no kernel image is available for execution on the
+    # device". T4 is sm_75, and has tensor cores the P100 lacks, so fp16 autocast is
+    # faster there too.
+    if machine_shape:
+        payload["machineShape"] = machine_shape
     return post_json("/kernels/push", payload)
 
 

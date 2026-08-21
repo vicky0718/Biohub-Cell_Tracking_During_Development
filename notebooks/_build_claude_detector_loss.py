@@ -64,12 +64,40 @@ only thing that varies is which voxels the response map prefers.
 """)
 
 code(r"""
-import subprocess, sys
-def pip_install(pkgs):
-    r = subprocess.run([sys.executable, "-m", "pip", "install", "-q", *pkgs],
-                       capture_output=True, text=True)
+import subprocess, sys, time
+
+def sh(*args, **kw):
+    # A missing binary raises FileNotFoundError rather than returning non-zero, which
+    # would kill this cell outright on a CPU-only machine that has no nvidia-smi.
+    try:
+        return subprocess.run(args, capture_output=True, text=True, **kw)
+    except (FileNotFoundError, OSError) as e:
+        return subprocess.CompletedProcess(args, 127, "", str(e))
+
+def pip_install(pkgs, extra=()):
+    r = sh(sys.executable, "-m", "pip", "install", "-q", *extra, *pkgs)
     if r.returncode != 0:
         print(r.stdout[-2000:]); print(r.stderr[-2000:])
+    return r.returncode == 0
+
+# Which GPU did Kaggle give us? Ask nvidia-smi, NOT torch -- we may have to replace torch
+# before importing it, and a module cannot be cleanly re-imported afterwards.
+gpu = sh("nvidia-smi", "--query-gpu=name", "--format=csv,noheader").stdout.strip()
+print(f"accelerator: {gpu or 'NONE'}")
+
+# Kaggle's plain GPU option hands out a Tesla P100 (compute capability sm_60), and the
+# image's torch 2.10+cu128 ships kernels for sm_70 and up only. CUDA then reports itself
+# available and every launch dies with "no kernel image is available for execution on the
+# device" -- which is what killed version 1 of this notebook, 250s in. machineShape is
+# read-only on the kernels/push API, so T4 cannot be requested; replacing torch is the
+# only lever we have. The cu121 builds carry sm_50 through sm_90.
+if "P100" in gpu:
+    print("P100 detected -> installing a torch with sm_60 kernels (a few minutes) ...")
+    t0 = time.time()
+    ok = pip_install(["torch==2.5.1"],
+                     extra=("--index-url", "https://download.pytorch.org/whl/cu121"))
+    print(f"  torch replacement {'ok' if ok else 'FAILED'} ({time.time()-t0:.0f}s)")
+
 print("installing geff + zarr ...")
 pip_install(["geff", "zarr"])
 """)
@@ -87,6 +115,23 @@ print(f"torch {torch.__version__}  device {DEV}"
       + (f"  {torch.cuda.get_device_name(0)}" if DEV.type == "cuda" else ""))
 if DEV.type != "cuda":
     print("!! no GPU — this will be slow. Settings -> Accelerator -> GPU.")
+else:
+    cc = torch.cuda.get_device_capability(0)
+    arch = torch.cuda.get_arch_list()
+    print(f"  compute capability sm_{cc[0]}{cc[1]}   torch built for {arch}")
+    # Fail in SECONDS, not after four minutes of data building. torch.cuda.is_available()
+    # is true on a P100 whose kernels do not exist; only an actual launch proves it.
+    try:
+        _a = torch.randn(8, 1, 8, 8, 8, device=DEV)
+        _w = torch.nn.Conv3d(1, 4, 3, padding=1).to(DEV)
+        _ = _w(_a).sum().item()
+        torch.cuda.synchronize()
+        print("  GPU smoke test passed (conv3d + sync)")
+    except Exception as e:
+        raise SystemExit(
+            f"GPU present but unusable: {type(e).__name__}: {str(e)[:200]}\n"
+            f"sm_{cc[0]}{cc[1]} is not in this torch's arch list {arch}. "
+            "The pip cell should have replaced torch; check its output above.")
 
 def find_dir(is_match, roots, max_depth=5):
     for root in roots:
@@ -196,7 +241,8 @@ for emb in SPLITS:
     for split in ("train", "eval"):
         v, tg, mk, pr, me = DATA[(emb, split)]
         print(f"  {emb}/{split}: {v.shape[0]} volumes {v.shape[1:]}  "
-              f"pos {tg.mean():.4%}  mask keeps {mk.mean():.1%}  prior {pr[0]:.4f}  "
+              f"pos {tg.mean():.4%}  mask keeps {mk.mean():.1%}  "
+              f"prior min/med/max {pr.min():.4f}/{np.median(pr):.4f}/{pr.max():.4f}  "
               f"({time.time()-t0:.0f}s)", flush=True)
 """)
 
