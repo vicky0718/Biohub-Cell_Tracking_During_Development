@@ -1,7 +1,7 @@
-"""Build notebooks/11_detector_loss.ipynb."""
+"""Build notebooks/claude_detector_loss.ipynb."""
 import ast, json
 from pathlib import Path
-OUT = Path("/workspace/biohub-cell_tracking_during_development/notebooks/11_detector_loss.ipynb")
+OUT = Path("/workspace/biohub-cell_tracking_during_development/notebooks/claude_detector_loss.ipynb")
 CELLS = []
 def md(src): CELLS.append({"cell_type":"markdown","metadata":{},"source":src.strip("\n").splitlines(keepends=True)})
 def code(src): CELLS.append({"cell_type":"code","execution_count":None,"metadata":{},"outputs":[],"source":src.strip("\n").splitlines(keepends=True)})

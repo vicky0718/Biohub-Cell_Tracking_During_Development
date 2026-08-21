@@ -10,3 +10,7 @@ cache/
 predictions/
 *.geff
 submission*.csv
+
+# Never commit credentials
+.kaggle/
+kaggle.json
