@@ -8,6 +8,7 @@ this file stays useful on the submission image.
 
 from __future__ import annotations
 
+import shutil
 import sys
 from pathlib import Path
 
@@ -127,6 +128,54 @@ def main() -> int:
     one = recall_at_budget(np.zeros(1), np.array([[16, 16, 16.5]]), np.zeros(2), twin, VOX)
     check("one prediction cannot match two nearby GT nodes", abs(one - 0.5) < 1e-9,
           f"recall {one:.4f} for 1 prediction vs 2 GT within 7um")
+
+    print("\n[prob_fn swaps the detector inside the real pipeline]")
+    import tempfile
+    from pipeline.classical import predict_dataset
+    tmp = Path(tempfile.mkdtemp(prefix="detector_test_"))
+    T = 4
+    movie = np.stack([synth(centres + t * np.array([0.0, 0.4, 0.4]), shape) for t in range(T)])
+    movie = (movie / movie.max()).astype(np.float32)
+    import zarr
+    g = zarr.open_group(str(tmp / "m.zarr"), mode="w")
+    g.create_array("0", shape=movie.shape, dtype=movie.dtype, chunks=(1,) + shape)
+    g["0"][:] = movie
+    g.attrs["multiscales"] = [{"datasets": [{"path": "0", "coordinateTransformations":
+                               [{"type": "scale", "scale": [1.0, *VOX]}]}]}]
+    g.attrs["image_statistics"] = {"quantiles": {"0.001": 0.0, "0.999": 1.0}}
+
+    calls = {"n": 0}
+
+    def oracle_prob(vol):
+        # A perfect detector: probability peaks exactly at the true centres. If the
+        # pipeline really routes through prob_fn, this must beat the DoG arm outright.
+        calls["n"] += 1
+        return gaussian_heatmap(centres, vol.shape, VOX, sigma_um=2.0)
+
+    cfg_p = Config(detector="dog", downsample=(1, 1, 1), min_separation_um=6.0,
+                   dog_rel_threshold=0.005, link_radius_um=8.0)
+    g_dog = predict_dataset(tmp / "m.zarr", cfg_p, verbose=False)
+    g_unet = predict_dataset(tmp / "m.zarr", cfg_p, verbose=False, prob_fn=oracle_prob)
+    check("prob_fn is actually called, once per frame", calls["n"] == T,
+          f"{calls['n']} calls for {T} frames")
+    check("the learned path produces a linked graph",
+          g_unet.n_nodes > 0 and g_unet.n_edges > 0,
+          f"{g_unet.n_nodes} nodes, {g_unet.n_edges} edges")
+    check("an oracle detector emits exactly the true cells",
+          g_unet.n_nodes == len(centres) * T,
+          f"{g_unet.n_nodes} vs {len(centres) * T} expected")
+    check("and differs from the DoG arm", g_unet.n_nodes != g_dog.n_nodes,
+          f"unet {g_unet.n_nodes} vs dog {g_dog.n_nodes} nodes")
+    # The budget path must route through prob_fn too, or the calibration would count DoG
+    # peaks and then detect with the network -- the two would disagree silently.
+    calls["n"] = 0
+    cfg_a = Config(detector="dog", downsample=(1, 1, 1), min_separation_um=6.0,
+                   dog_rel_threshold=0.005, adaptive_separation=True)
+    predict_dataset(tmp / "m.zarr", cfg_a, verbose=False, prob_fn=oracle_prob,
+                    est_total_nodes=float(len(centres) * T))
+    check("adaptive calibration also routes through prob_fn", calls["n"] > T,
+          f"{calls['n']} calls (> {T} means the calibration frames used it too)")
+    shutil.rmtree(tmp, ignore_errors=True)
 
     try:
         import torch

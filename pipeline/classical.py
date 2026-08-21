@@ -111,6 +111,11 @@ class Config:
     # the calibration loop measures the ACHIEVED count and re-solves, so it simply
     # converges on whichever reachable separation lands closest to the target.
     adaptive_bounds: tuple[float, float] = (2.5, 32.0)
+    # Threshold on a LEARNED probability map, used only when `predict_dataset` is given a
+    # `prob_fn`. Kept at a floor rather than a real operating point: notes/18 §5 settles
+    # density with the per-frame cap, and a threshold that binds first is exactly the
+    # confound that made phase 0's "matched count" comparison meaningless.
+    unet_threshold: float = 1e-6
 
     # --- linking ---
     # Physical search radius. Set from MOTION, not from the 7 µm metric cutoff —
@@ -664,6 +669,7 @@ def predict_dataset(
     cfg: Config,
     verbose: bool = True,
     est_total_nodes: float | None = None,
+    prob_fn=None,
 ) -> Tracks:
     """Detect + link one dataset, returning a graph in ORIGINAL voxel coordinates.
 
@@ -673,6 +679,13 @@ def predict_dataset(
 
     ``est_total_nodes`` overrides the per-dataset node budget; when None it is looked
     up via `estimated_total_nodes`.
+
+    ``prob_fn`` swaps the detector for a learned one: a callable taking the normalised
+    (Z, Y, X) volume and returning a probability map of the same shape. It is passed as a
+    function rather than selected by a `Config.detector` string so that **torch never
+    becomes an import of this module** -- it has to stay importable on the submission
+    image. Everything downstream (adaptive separation, the budget cap, pruning, linking)
+    is untouched, so a learned arm and a DoG arm differ in exactly one place.
     """
     ds_path = Path(ds_path)
     arr, attrs, scale, voxel_um, q_lo, q_hi = open_movie(ds_path, cfg)
@@ -694,7 +707,19 @@ def predict_dataset(
             print("    !! no estimated_number_of_nodes for this dataset — running "
                   "UNCAPPED; the budget multiplier is unguarded here", flush=True)
 
-    det = detect_frame_dog if cfg.detector == "dog" else detect_frame
+    if prob_fn is None:
+        _base = detect_frame_dog if cfg.detector == "dog" else detect_frame
+
+        def det(vol, voxel_um, cfg_, cap=None):
+            return _base(vol, voxel_um, cfg_, cap=cap)
+    else:
+        # Imported here, not at module scope: pipeline.detector imports _max_filter_sep
+        # from this module, so a top-level import would be circular.
+        from pipeline.detector import peaks_from_prob
+
+        def det(vol, voxel_um, cfg_, cap=None):
+            return peaks_from_prob(prob_fn(vol), voxel_um, cfg_.min_separation_um,
+                                   threshold=cfg_.unet_threshold, cap=cap)
 
     # Adaptive per-dataset separation. Calibrated on one mid-movie frame: count at the
     # configured separation, then solve for the separation that would hit the target.
@@ -760,7 +785,7 @@ def predict_dataset(
 
 
 def make_predictor(cfg: Config, verbose: bool = False,
-                   budgets: dict[str, float] | None = None):
+                   budgets: dict[str, float] | None = None, prob_fn=None):
     """Adapt `predict_dataset` to the harness's ``fn(name, data_dir) -> graph``.
 
     ``budgets`` maps dataset name -> ``estimated_number_of_nodes``, for the case where
@@ -768,7 +793,8 @@ def make_predictor(cfg: Config, verbose: bool = False,
     """
     def _fn(name: str, data_dir: Path) -> Tracks:
         return predict_dataset(Path(data_dir) / name, cfg, verbose=verbose,
-                               est_total_nodes=(budgets or {}).get(name))
+                               est_total_nodes=(budgets or {}).get(name),
+                               prob_fn=prob_fn)
     return _fn
 
 
