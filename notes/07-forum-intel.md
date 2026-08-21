@@ -219,21 +219,35 @@ read, so `geff` is not needed at all — only `zarr`, numpy and scipy. The submi
 notebook must install nothing. `geff` stays a research-only dependency for `02`/`03`,
 which run interactively with internet on.
 
-> **"preinstalled on Kaggle" VERIFIED 2026-08-20.** That was an assumption when first
-> written, and two forum threads read as evidence against it — *"zarr import error in
-> submitted notebook"* (727881) and a tutorial advertising an *"Offline Zarr Fix"*
-> (727462). Both trace back to 726955, where a GRANDMASTER answers by linking
-> `kaggle.com/code/antonoof/import-kaggle?scriptVersionId=336231500`. Pulling that
-> notebook's source via `/kernels/scriptcontent/336231500/download` settles it: **zero
-> data sources, no pip install, one cell — `try: import zarr; print('Success')` — and
-> the saved output is `Success`**, on Python 3.12.13. Internet state cannot change what
-> is in the image, only whether pip can reach PyPI. So zarr *is* preinstalled, and the
-> reported failures are notebooks whose own `pip install zarr` cell fails offline — the
-> opposite problem, and one that afflicts only notebooks that try to install it.
+> **`zarr` is NOT preinstalled. MEASURED 2026-08-21.** On the current image — python
+> 3.12.13, numpy 2.0.2, scipy 1.16.3, polars 1.35.2, pandas 2.3.3 — `import zarr` fails.
+> `09` stopped in its first cell.
 >
-> Residual risk is small but real: that probe is a month old and Kaggle rotates images.
-> `09` therefore probes in its first cell — five seconds, before any work — and carries a
-> wheelhouse fallback that fires only if the import actually fails.
+> I got this wrong the day before and should record how, because the failure mode is
+> reusable. Two forum threads read as evidence that zarr was missing — *"zarr import
+> error in submitted notebook"* (727881) and a tutorial advertising an *"Offline Zarr
+> Fix"* (727462). Both trace to 726955, where a GRANDMASTER answers by linking
+> `kaggle.com/code/antonoof/import-kaggle?scriptVersionId=336231500`. I pulled that
+> notebook's source, found zero data sources, no pip install, one cell — `try: import
+> zarr; print('Success')` — with saved output `Success`, and called the question settled.
+>
+> The evidence was real and the inference was wrong. A saved notebook output is a
+> measurement of **the image that ran it**, dated 2026-07-18. Kaggle rotates images. I
+> treated one month-old observation as a property of the platform, and in doing so
+> dismissed two contemporaneous reports from people who had actually hit the failure —
+> the strongest available evidence, discarded because it disagreed with a cleaner-looking
+> artefact. The forum was right and I explained it away.
+>
+> **The fix is the wheelhouse, which is what the forum said all along**
+> (FasterYouChase, 726955: *"uploading a dataset containing the .whl files required for
+> its install"*). `10_wheelhouse.ipynb` builds it: `pip download zarr` on Kaggle with
+> internet on, save the output as a Dataset, attach it to `09`. `09` cell 1 then installs
+> with `--no-index`, which reads only local files and so works in a scored rerun.
+> Verified against a real wheelhouse in a zarr-less interpreter: detect, install, re-probe
+> in 1.9 s, with numpy left alone because it was already satisfied.
+>
+> Wheels are tagged to a python version (`cp312`), so the wheelhouse must be rebuilt if
+> Kaggle moves to `cp313`. `09` reports that in its first cell rather than at hour three.
 
 ### The maximum score is 1.1, not 1.0
 
