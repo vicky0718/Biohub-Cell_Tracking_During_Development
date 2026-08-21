@@ -34,22 +34,16 @@ available. Three consequences shaped the code:
 - **`test/` is swapped at rerun**, so dataset names are globbed, never hardcoded, and
   `max_frames` is never set.
 
-That leaves `numpy`, `scipy` and `zarr`, all of which ship in the Kaggle image — verified
-against a grandmaster's probe notebook with no data sources and no install, which prints
-`Success` on `import zarr` (`notes/07`). The forum's "zarr import error in submitted
-notebook" threads are the *opposite* failure: notebooks that try to `pip install zarr`,
-which is what breaks with internet off.
+That leaves `numpy`, `scipy` and `zarr`. **numpy and scipy ship in the Kaggle image;
+`zarr` does not** — measured 2026-08-21 on the current image (python 3.12.13, numpy
+2.0.2, scipy 1.16.3), where `import zarr` fails. An older probe notebook said otherwise,
+but Kaggle rotates images and that reading is now stale (`notes/07`).
 
-**If the probe below ever fails**, build a wheelhouse rather than changing this notebook.
-In any notebook with internet on:
-
-```
-!pip download zarr -d /kaggle/working/wheels
-```
-
-Save that output as a Kaggle Dataset and attach it here; cell 1 finds any attached
-directory of `.whl` files and installs from it with `--no-index`, which needs no network.
-Downloading the wheels *on Kaggle* is what guarantees they match its Python and platform.
+**So this notebook needs a wheelhouse dataset attached.** Build it once with
+`10_wheelhouse.ipynb` (internet ON), save its output as a Dataset, and add that Dataset
+as an input here. Cell 1 then installs from it with `--no-index`, which touches no
+network and so works in a scored rerun. Downloading the wheels *on Kaggle* is what
+guarantees they match its python and platform — wheels built anywhere else may not load.
 
 ## The one thing that must not be got wrong
 
@@ -61,7 +55,7 @@ notebook is built to avoid.
 
 code(r"""
 # No network install anywhere in this notebook. This cell reports what the image has.
-import sys, platform, subprocess
+import sys, os, time, platform, subprocess
 from pathlib import Path
 print(f"python {platform.python_version()}")
 
@@ -87,8 +81,27 @@ if any(m in missing for m in REQUIRED):
     # --no-index means pip never touches the network, so this works with internet off.
     # See the header for how to build the dataset (pip download, ON Kaggle, so the
     # wheels match its python and platform).
-    wheelhouses = sorted({p.parent for p in Path("/kaggle/input").glob("**/*.whl")})
-    print(f"\nwheelhouse directories found: {[str(w) for w in wheelhouses] or 'NONE'}")
+    # Bounded scan, NOT Path.glob("**/*.whl") -- that walks into every .zarr and takes
+    # ~3 minutes on this mount, because each dataset is thousands of chunk files.
+    def find_wheelhouses(root="/kaggle/input", max_depth=4):
+        found, stack = set(), [(Path(root), 0)]
+        while stack:
+            d, depth = stack.pop()
+            try:
+                kids = list(os.scandir(d))
+            except (PermissionError, OSError, FileNotFoundError):
+                continue
+            if any(e.is_file() and e.name.endswith(".whl") for e in kids):
+                found.add(d)
+            if depth < max_depth:
+                stack += [(Path(e.path), depth + 1) for e in kids
+                          if e.is_dir() and not e.name.endswith((".zarr", ".geff"))]
+        return sorted(found)
+
+    t_scan = time.time()
+    wheelhouses = find_wheelhouses()
+    print(f"\nwheelhouse directories found ({time.time()-t_scan:.1f}s): "
+          f"{[str(w) for w in wheelhouses] or 'NONE'}")
     for w in wheelhouses:
         r = subprocess.run([sys.executable, "-m", "pip", "install", "--no-index",
                             f"--find-links={w}", *[m for m in missing if m in REQUIRED]],
