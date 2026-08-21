@@ -7,6 +7,14 @@ Raw output in `adaptive_results.json`.
 **Reproduction check passed exactly**: `champion_04` 0.6760 against `04`'s 0.6760, drift
 −0.0000.
 
+> **The whole notebook was then re-run in a fresh Kaggle session (2026-08-21, 11,110 s)
+> and every arm came back bit-identical to four decimals** — 0.6760 / 0.7072 / 0.6849 /
+> 0.7048 / 0.7098 / 0.6962 / 0.7115 — with the same fold deltas (+0.0449 / +0.0320 for
+> `adaptive_1.2`, −0.0417 / +0.0097 for `adaptive_wide`). Per-arm wall times moved by up
+> to 40 %, so the machine differed; the numbers did not. The pipeline is deterministic
+> across sessions, which means CV differences of the size we have been gating on are real
+> signal and not run-to-run noise.
+
 | arm | SCORE | micro edge_J | budget mult | recall | nodes | ratio | gate vs `champion_04` |
 |---|---|---|---|---|---|---|---|
 | adaptive_wide | **0.7115** | 0.7075 | 1.0056 | 0.832 | 996,972 | −0.118 | PROMOTE +0.0356 |
