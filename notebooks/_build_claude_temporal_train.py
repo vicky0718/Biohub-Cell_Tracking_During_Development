@@ -504,7 +504,17 @@ for train_emb in embryos:
               f"{best['epoch']}  node {best['node']:.4f}  pos {best['position']:+.1%}  "
               f"(DoG paired {base['paired']:.4f})", flush=True)
 
-        if best["paired"] > base["paired"]:
+        # The sub-DoG guard applies to CANDIDATES, not to the control. notes/20 added it to
+        # stop unusable weights (0.2654 against DoG's 0.7696) reaching a scorer and
+        # masquerading as a clean refutation. But r=0 here is the baseline the candidate is
+        # measured against -- a measurement, not a shipment -- and refusing to save it
+        # destroys the comparison rather than protecting it.
+        #
+        # This is not hypothetical: the first run of this notebook refused r0/44b6 at
+        # paired 0.8529 against DoG's 0.8550, a -0.0021 tie, which left the scorer unable
+        # to compare radii on that fold at all.
+        is_control = radius == min(RADII)
+        if best["paired"] > base["paired"] or is_control:
             torch.save({"state_dict": best["state"], "loss": LOSS_NAME,
                         "train_emb": train_emb, "base": 16, "depth": 3,
                         "in_ch": 1 if radius == 0 else 2 * radius + 1,
@@ -513,7 +523,10 @@ for train_emb in embryos:
                         "best_recall": best["node"], "dog_paired": base["paired"],
                         "dog_recall": base["node"]},
                        WORK / f"claude_temporal_r{radius}_{train_emb}.pt")
-            print(f"    saved checkpoint from epoch {best['epoch']}", flush=True)
+            below = best["paired"] <= base["paired"]
+            print(f"    saved checkpoint from epoch {best['epoch']}"
+                  + ("  (control, saved despite being <= DoG)" if below else ""),
+                  flush=True)
         else:
             print(f"    NOT SAVED: paired {best['paired']:.4f} <= DoG "
                   f"{base['paired']:.4f}", flush=True)

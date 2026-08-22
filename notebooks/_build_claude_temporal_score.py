@@ -24,10 +24,14 @@ PREDICTIONS = [
      "network is insensitive to input scale and the skew was never costing anything.",
      "norm_fix_helps"),
     ("Temporal input beats single-frame at matched normalisation, through coherence.",
-     "notes/22 sized the remaining coherence deficit at 88% of 66.5 points. Measured as: "
-     "r1_perframe beats r0_perframe on SCORE **and** on temporal position. Falsified if "
-     "the score moves without the position moving -- that would mean something other than "
-     "coherence produced it and the mechanism is still not understood.",
+     "**Registered AFTER the training run, which already measured this at the paired-recall "
+     "level and found +0.0063 on one fold and -0.0152 on the other -- noise around zero. So "
+     "this is now expected to FAIL, and is scored anyway because paired recall on 5-frame "
+     "eval runs is not the leaderboard metric on full movies, and the two have already "
+     "disagreed once (notes/21 §1).** Measured as: r1_perframe beats r0_perframe on SCORE "
+     "**and** on temporal position, on the datasets both radii can score out-of-fold. "
+     "Falsified if the score moves without the position moving -- that would mean something "
+     "other than coherence produced it.",
      "temporal_beats_single"),
     ("It is still not enough to pass the champion gate.",
      "notes/22 projected 0.7006 at full DoG-parity coherence from a 0.6556 baseline -- "
@@ -45,19 +49,32 @@ md(r"""
 
 ## Four arms, and why not three
 
-| arm | radius | `prob_input_norm` | what it isolates |
-|---|---|---|---|
-| `champion` | — | — | drift control, reproduces CV 0.7070 in-run |
-| `r0_movie` | 0 | `movie` | the notes/21–22 serving path, reproduced |
-| `r0_perframe` | 0 | `per_frame` | **minus `r0_movie` = the normalisation skew** |
-| `r1_perframe` | 1 | `per_frame` | **minus `r0_perframe` = temporal input** |
+| arm | radius | `prob_input_norm` | datasets | what it isolates |
+|---|---|---|---|---|
+| `champion` | — | — | all 60 | drift control, reproduces CV 0.7070 in-run |
+| `r1_movie` | 1 | `movie` | all 60 | the notes/21–22 serving path, reproduced |
+| `r1_perframe` | 1 | `per_frame` | all 60 | **minus `r1_movie` = the normalisation skew** |
+| `r0_perframe` | 0 | `per_frame` | subset | **vs `r1_perframe` = temporal input** |
 
 Two changes landed between `notes/22` and here: the temporal input, and a train/serve
-normalisation fix. Scoring `r1_perframe` against `r0_movie` alone would bundle them and
-credit both to the temporal input. That is the `notes/18` §1 failure — and it is *harder*
-to catch here, because the bundled number would look better than either change deserves.
+normalisation fix. Measuring them against a single baseline would bundle them and credit
+both to whichever is named — the `notes/18` §1 failure, and *harder* to catch here because
+a bundled number looks better than either change deserves. So each comparison moves exactly
+one thing.
 
-So `r0_perframe` exists purely to split them. It costs one arm.
+**Why `r1` carries the normalisation comparison rather than `r0`.** The training run's
+sub-DoG guard refused to save `r0/44b6` (paired 0.8529 against DoG's 0.8550 — a −0.0021
+tie), so `r=0` has an out-of-fold model for only one embryo. `r=1` covers both, so it is
+the radius that can hold the full-subset comparison. The temporal comparison then runs on
+the datasets where **both** radii are out-of-fold, with `r1_perframe` re-summarised over
+exactly those datasets so neither side sees data the other did not. Reusing the `6bba`
+model on `6bba` data would have kept all 60 datasets and leaked; a smaller honest number
+is worth more than a larger contaminated one.
+
+*(That guard firing on a control is a design error carried over from `notes/20`, where it
+existed to stop unusable weights — 0.2654 against DoG's 0.7696 — reaching a scorer. A
+control is a measurement, not a shipment, and should be saved regardless. Fixed in the
+training notebook for future runs; not worth re-running 1.5 h of GPU to regenerate here.)*
 
 ## What the normalisation bug was
 
@@ -207,18 +224,34 @@ by_radius = {}
 for (rad, emb), v in ckpts.items():
     by_radius.setdefault(rad, {})[emb] = v
 embryos_needed = {e for _, e in ckpts}
-# Both radii must cover both folds or the comparison is a chimera: an r=1 number built
-# from one fold against an r=0 number built from two is not a difference in radius.
-missing = {rad: sorted(embryos_needed - set(v)) for rad, v in by_radius.items()}
-missing = {k: v for k, v in missing.items() if v}
-if missing or set(by_radius) != {0, 1}:
-    raise SystemExit(
-        f"Need both radii on both folds. Have "
-        f"{ {r: sorted(v) for r, v in by_radius.items()} }"
-        + (f"; missing {missing}" if missing else "")
-        + ". The training run's sub-DoG guard refuses to save a checkpoint worse than "
-          "DoG, so a gap here means that arm genuinely failed and there is nothing to "
-          "score -- read the training log rather than re-running this.")
+if 1 not in by_radius or set(by_radius[1]) != embryos_needed:
+    raise SystemExit(f"r=1 must cover every fold; have "
+                     f"{ {r: sorted(v) for r, v in by_radius.items()} }")
+
+# A model may only score datasets from an embryo it did NOT train on, so a radius covers
+# exactly the embryos it has an "other" model for. The training run's sub-DoG guard
+# refused to save r0/44b6 (paired 0.8529 vs DoG 0.8550, a -0.0021 tie), which leaves r=0
+# able to score only the 44b6 datasets.
+#
+# Rather than drop the temporal comparison or -- worse -- reuse the 6bba model on 6bba
+# data and leak, each comparison runs on the datasets where BOTH of its arms are
+# out-of-fold:
+#
+#   normalisation (r1_movie vs r1_perframe)   full subset, r=1 covers both folds
+#   temporal      (r0_perframe vs r1_perframe) only the embryos r=0 can score
+#
+# The temporal delta is then computed by re-summarising the FULL r1_perframe run over
+# that same restricted set, so both sides of it see identical datasets.
+def coverage(rad):
+    return {e for e in embryos_needed if any(o != e for o in by_radius.get(rad, {}))}
+
+COVER = {rad: coverage(rad) for rad in by_radius}
+TEMPORAL_EMBRYOS = COVER.get(0, set()) & COVER.get(1, set())
+print(f"\nscoreable embryos by radius: { {r: sorted(v) for r, v in COVER.items()} }")
+print(f"temporal comparison restricted to: {sorted(TEMPORAL_EMBRYOS) or 'NONE'}")
+if not TEMPORAL_EMBRYOS:
+    print("!! no embryo has an out-of-fold model at BOTH radii — the temporal delta "
+          "cannot be measured here, only the normalisation one.")
 
 MODELS = {}             # radius -> {embryo -> model}
 for rad, per_emb in sorted(by_radius.items()):
@@ -368,12 +401,12 @@ def make_dog_predictor(cfg, budgets):
         return graph
     return _fn
 
-def run(name, cfg, predictor=None):
+def run(name, cfg, predictor=None, names=None):
     global CURRENT_ARM
     CURRENT_ARM = name
     t0 = time.time()
     fn = predictor if predictor is not None else make_dog_predictor(cfg, PRED_BUDGETS)
-    res = h.evaluate(fn, arm=name, names=SUBSET, verbose=False)
+    res = h.evaluate(fn, arm=name, names=names or SUBSET, verbose=False)
     s = res.summary
     n = sum(r["num_pred_nodes"] for r in res.rows.values())
     mult = s["adj_edge_jaccard"] / s["edge_jaccard"] if s["edge_jaccard"] else float("nan")
@@ -400,15 +433,47 @@ if abs(drift) > 0.005:
 
 code(r"""
 # budget_fill=1.2 and refine=False are notes/22's best learned configuration, held fixed
-# across all three learned arms so the only things that move are the two under test.
+# across every learned arm so the only things that move are the two under test.
 LEARNED = dict(min_separation_um=6.0, budget_fill=1.2, refine=False,
                prune_isolated_nodes=True, **BASE)
 
-for tag, radius, norm in (("r0_movie", 0, "movie"),
-                          ("r0_perframe", 0, "per_frame"),
-                          ("r1_perframe", 1, "per_frame")):
-    cfg = Config(temporal_radius=radius, prob_input_norm=norm, **LEARNED)
-    run(tag, cfg, predictor=make_unet_predictor(cfg, PRED_BUDGETS, radius))
+# Normalisation, on the FULL subset. r=1 rather than r=0 because only r=1 covers both
+# folds -- the two arms differ in prob_input_norm and in nothing else, which is what makes
+# this an isolated measurement of the train/serve skew.
+for tag, norm in (("r1_movie", "movie"), ("r1_perframe", "per_frame")):
+    cfg = Config(temporal_radius=1, prob_input_norm=norm, **LEARNED)
+    run(tag, cfg, predictor=make_unet_predictor(cfg, PRED_BUDGETS, 1))
+
+# Temporal, on the embryos r=0 can score out-of-fold.
+TEMPORAL_NAMES = sorted(n for n in SUBSET if n.split("_")[0] in TEMPORAL_EMBRYOS)
+print(f"\ntemporal comparison on {len(TEMPORAL_NAMES)} of {len(SUBSET)} datasets "
+      f"({sorted(TEMPORAL_EMBRYOS)})")
+if TEMPORAL_NAMES:
+    cfg0 = Config(temporal_radius=0, prob_input_norm="per_frame", **LEARNED)
+    run("r0_perframe", cfg0, predictor=make_unet_predictor(cfg0, PRED_BUDGETS, 0),
+        names=TEMPORAL_NAMES)
+""")
+
+code(r"""
+from harness.harness import summarise
+
+# Re-summarise the FULL r1_perframe run over the temporal subset, so both sides of the
+# temporal delta are scored on identical datasets. Re-running r=1 on the subset would
+# produce the same graphs at extra cost; restricting the rows is the same measurement.
+def sub_score(tag, names):
+    rows = [r for n, r in results[tag].rows.items() if n in set(names)]
+    return summarise(rows)["score"] if rows else float("nan")
+
+TEMPORAL_NAMES = sorted(n for n in SUBSET if n.split("_")[0] in TEMPORAL_EMBRYOS)
+if TEMPORAL_NAMES and "r0_perframe" in results:
+    r1_sub = sub_score("r1_perframe", TEMPORAL_NAMES)
+    r0_sub = results["r0_perframe"].score
+    print(f"on the {len(TEMPORAL_NAMES)} temporal-comparable datasets:")
+    print(f"  r0_perframe {r0_sub:.4f}   r1_perframe {r1_sub:.4f}   "
+          f"temporal delta {r1_sub - r0_sub:+.4f}")
+else:
+    r1_sub = r0_sub = float("nan")
+    print("temporal delta not measurable from the attached checkpoints")
 """)
 
 md("""## 3. Grade the pre-registered predictions""")
@@ -422,28 +487,33 @@ def P(tag): return getattr(results[tag], "position", float("nan")) if tag in res
 
 print(f"{'arm':<16} {'SCORE':>8} {'edge_J':>8} {'recall':>7} {'position':>10} {'vs champ':>9}")
 print("-" * 62)
-for tag in ("champion", "r0_movie", "r0_perframe", "r1_perframe"):
+for tag in ("champion", "r1_movie", "r1_perframe", "r0_perframe"):
     if tag not in results:
         continue
     s = results[tag].summary
+    note = "  (subset)" if tag == "r0_perframe" else ""
     print(f"{tag:<16} {s['score']:>8.4f} {s['edge_jaccard']:>8.4f} "
           f"{s['node_recall']:>7.3f} {P(tag):>9.1%} "
-          f"{s['score'] - ref.score:>+9.4f}")
+          f"{s['score'] - ref.score:>+9.4f}{note}")
 
-d_norm = S("r0_perframe") - S("r0_movie")
-d_temp = S("r1_perframe") - S("r0_perframe")
+# Normalisation: full subset, both arms r=1, differing ONLY in prob_input_norm.
+d_norm = S("r1_perframe") - S("r1_movie")
+# Temporal: restricted to the datasets both radii can score out-of-fold, with r=1
+# re-summarised over exactly those datasets so neither side sees data the other did not.
+d_temp = r1_sub - r0_sub
 d_pos = P("r1_perframe") - P("r0_perframe")
-print(f"\nDECOMPOSED, and this is the point of the fourth arm:")
-print(f"  normalisation fix   r0_movie -> r0_perframe   {d_norm:+.4f}")
-print(f"  temporal input      r0_perframe -> r1_perframe {d_temp:+.4f}  "
-      f"(position {d_pos:+.1%})")
-print(f"  together                                       "
-      f"{S('r1_perframe') - S('r0_movie'):+.4f}")
+print(f"\nDECOMPOSED — the two changes measured separately, on matched datasets:")
+print(f"  normalisation fix   r1_movie -> r1_perframe    {d_norm:+.4f}   "
+      f"({len(SUBSET)} datasets)")
+print(f"  temporal input      r0_perframe -> r1_perframe {d_temp:+.4f}   "
+      f"({len(TEMPORAL_NAMES)} datasets, position {d_pos:+.1%})")
 print(f"\n  notes/22 baseline (unet_cap1.2_norefine): {BASELINE_CV:.4f}")
-print(f"  best learned arm here:                    "
-      f"{max(S('r0_movie'), S('r0_perframe'), S('r1_perframe')):.4f}")
+print(f"  best full-subset learned arm here:        "
+      f"{max(S('r1_movie'), S('r1_perframe')):.4f}")
 
-best_learned = max(S("r0_movie"), S("r0_perframe"), S("r1_perframe"))
+# Only full-subset arms can be compared to the champion; r0_perframe ran on a subset and
+# its number is not commensurable with a 60-dataset score.
+best_learned = max(S("r1_movie"), S("r1_perframe"))
 VERDICTS = {
     "norm_fix_helps": bool(d_norm > 0),
     # BOTH clauses. A score gain without a position gain means something other than
@@ -471,6 +541,7 @@ blob = json.dumps({
     "summaries": {t: dict(results[t].summary) for t in results},
     "position": {t: P(t) for t in results},
     "deltas": {"normalisation": d_norm, "temporal": d_temp, "position": d_pos},
+    "temporal_subset": {"names": TEMPORAL_NAMES, "r0": r0_sub, "r1": r1_sub},
     "champion_cv": CHAMPION_CV, "champion_drift": drift,
     "baseline_cv": BASELINE_CV, "verdicts": VERDICTS,
     "diag": {k: v for k, v in DIAG.items()},
