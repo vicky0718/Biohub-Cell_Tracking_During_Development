@@ -191,23 +191,55 @@ def _upload_one(path: Path) -> dict:
     return {"token": token}
 
 
+def dataset_version_number(owner: str, slug: str) -> int | None:
+    """The dataset's current version number, or None if it cannot be read."""
+    try:
+        return int(get_json(f"/datasets/view/{owner}/{slug}").get("currentVersionNumber"))
+    except Exception:
+        return None
+
+
 def dataset_new_version(owner: str, slug: str, folder: Path | str, notes: str,
-                        *, delete_old_versions: bool = False) -> dict:
+                        *, delete_old_versions: bool = False, wait: bool = True,
+                        poll: int = 10, timeout: int = 1800) -> dict:
     """Upload every file in ``folder`` as a NEW VERSION of an existing dataset.
 
     ``delete_old_versions`` is forced False: the standing rule is new versions only,
     never destroy what is already there.
+
+    ``wait`` blocks until the version number ACTUALLY INCREMENTS. Do not substitute
+    `dataset_status`: it reports "ready" for the version already published, so straight
+    after a push it returns ready immediately and a kernel launched on that signal
+    attaches the PREVIOUS version. That cost a run -- claude-detector-refine died 302 s in
+    on a guard for a Config field that was in the upload but not yet in the attached
+    version. The guard turned a silent wrong answer into a loud fast failure; this makes
+    the failure not happen.
     """
     folder = Path(folder)
+    before = dataset_version_number(owner, slug)
     files = sorted(p for p in folder.rglob("*") if p.is_file())
     tokens = [_upload_one(p) for p in files]
-    return post_json(
+    res = post_json(
         f"/datasets/create/version/{owner}/{slug}",
         {"versionNotes": notes, "files": tokens, "subtitle": None, "description": None,
          "isPrivate": True, "convertToCsv": False,
          "categoryIds": [], "deleteOldVersions": False},
         timeout=1800,
     )
+    if not wait:
+        return res
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        now = dataset_version_number(owner, slug)
+        ready = str(dataset_status(owner, slug)).lower().strip('"') == "ready"
+        if now is not None and (before is None or now > before) and ready:
+            res["version_number"] = now
+            res["waited_s"] = round(time.time() - t0, 1)
+            return res
+        time.sleep(poll)
+    raise KaggleError(0, f"version did not advance past {before} within {timeout}s "
+                         f"(now {dataset_version_number(owner, slug)})",
+                      f"datasets/create/version/{owner}/{slug}")
 
 
 # ---------------------------------------------------------------- competitions
@@ -221,5 +253,6 @@ def leaderboard(competition: str) -> dict:
 
 
 __all__ = ["KaggleError", "username", "get_json", "post_json", "kernel_push",
+           "dataset_version_number",
            "kernel_status", "kernel_output", "kernel_wait", "dataset_status",
            "dataset_list", "dataset_new_version", "submissions_list", "leaderboard"]
