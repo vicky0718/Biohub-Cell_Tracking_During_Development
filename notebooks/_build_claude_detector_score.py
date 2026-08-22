@@ -292,19 +292,68 @@ print("scoring map (dataset embryo -> model trained on):",
 for e in OTHER:
     assert OTHER[e] != e, f"{e} would be scored by a model that trained on it"
 
+# Why a miss happened, not just that it did. A prediction 9um from a GT node is BOTH a
+# false negative and a wasted detection, and it is fixed by resolution or sub-voxel
+# refinement -- completely different work from a cell the detector never saw at all.
+# Recall alone cannot tell those apart, and neither can a 2x2 confusion matrix: at a fixed
+# cap, node precision is pinned to recall, and "true negative" is 262k background voxels
+# per frame.
+from harness.tracks import read_geff
+from harness.purescore import match_nodes
+NEAR_UM = 14.0        # 2x the metric's 7um match radius
+DIAG = {}
+
+def diagnose(name, data_dir, graph, scale):
+    g = read_geff(Path(data_dir) / f"{name}.geff")
+    if not len(g.t) or not len(graph.t):
+        return
+    matched = match_nodes(graph.t, graph.zyx, g.t, g.zyx, scale=scale, max_distance=7.0)
+    hit = set(matched[matched >= 0].tolist())
+    s = np.asarray(scale, float)
+    near = far = 0
+    for t in np.unique(g.t):
+        gi = np.flatnonzero((g.t == t))
+        miss = [i for i in gi if i not in hit]
+        if not miss:
+            continue
+        pj = np.flatnonzero(graph.t == t)
+        if not len(pj):
+            far += len(miss); continue
+        d = np.linalg.norm((g.zyx[miss][:, None] - graph.zyx[pj][None]) * s, axis=2).min(1)
+        near += int((d <= NEAR_UM).sum()); far += int((d > NEAR_UM).sum())
+    DIAG.setdefault(CURRENT_ARM, []).append(
+        {"name": name, "n_gt": int(len(g.t)), "matched": len(hit),
+         "near_miss": near, "far_miss": far, "n_pred": int(len(graph.t))})
+
+CURRENT_ARM = ""
+
 def make_unet_predictor(cfg, budgets):
     def _fn(name, data_dir):
         emb = name.split("_")[0]
         model = MODELS[OTHER[emb]]
         def prob_fn(vol):
             return predict_volume(model, vol, DEV)
-        return predict_dataset(Path(data_dir) / name, cfg, verbose=False,
-                               est_total_nodes=budgets.get(name), prob_fn=prob_fn)
+        graph = predict_dataset(Path(data_dir) / name, cfg, verbose=False,
+                                est_total_nodes=budgets.get(name), prob_fn=prob_fn)
+        diagnose(name, data_dir, graph, SCALE_UM)
+        return graph
     return _fn
 
+def make_dog_predictor(cfg, budgets):
+    base = make_predictor(cfg, budgets=budgets)
+    def _fn(name, data_dir):
+        graph = base(name, data_dir)
+        diagnose(name, data_dir, graph, SCALE_UM)
+        return graph
+    return _fn
+
+SCALE_UM = (1.625, 0.40625, 0.40625)     # GT lives in FULL-resolution voxels
+
 def run(name, cfg, predictor=None):
+    global CURRENT_ARM
+    CURRENT_ARM = name
     t0 = time.time()
-    fn = predictor if predictor is not None else make_predictor(cfg, budgets=PRED_BUDGETS)
+    fn = predictor if predictor is not None else make_dog_predictor(cfg, PRED_BUDGETS)
     res = h.evaluate(fn, arm=name, names=SUBSET, verbose=False)
     s = res.summary
     n = sum(r["num_pred_nodes"] for r in res.rows.values())
@@ -348,6 +397,38 @@ for k, r in sorted(results.items(), key=lambda kv: -kv[1].score):
     print(f"{k:<20}{r.score:>9.4f}{r.summary['edge_jaccard']:>9.4f}{m:>8.4f}"
           f"{r.summary['node_recall']:>8.3f}{r.score - ref.score:>+10.4f}{tag:>9}")
 
+# Edge confusion matrix, split. edge_jaccard = TP/(TP+FP+FN) hides which way it fails:
+# FP >> FN means spurious links, FN >> FP means cells never found, and those want
+# opposite fixes. Eight experiments have optimised the collapsed number without once
+# looking at the split.
+print("\n" + "=" * 84)
+print(f"{'arm':<20}{'edge TP':>10}{'FP':>9}{'FN':>9}{'precision':>11}{'recall':>9}{'FP/FN':>8}")
+for k, r in sorted(results.items(), key=lambda kv: -kv[1].score):
+    tp = sum(x["edge_tp"] for x in r.rows.values())
+    fp = sum(x["edge_fp"] for x in r.rows.values())
+    fn = sum(x["edge_fn"] for x in r.rows.values())
+    prec = tp / max(tp + fp, 1); rec = tp / max(tp + fn, 1)
+    print(f"{k:<20}{tp:>10,}{fp:>9,}{fn:>9,}{prec:>11.4f}{rec:>9.4f}{fp/max(fn,1):>8.2f}")
+
+print("\nnode misses: is the detector blind, or does it see the cell and miss the 7um radius?")
+print(f"{'arm':<20}{'GT':>9}{'matched':>9}{'near<=14um':>12}{'far>14um':>10}{'near share':>12}")
+for k in sorted(DIAG, key=lambda k: -results[k].score if k in results else 0):
+    rows = DIAG[k]
+    g = sum(x["n_gt"] for x in rows); mt = sum(x["matched"] for x in rows)
+    nr = sum(x["near_miss"] for x in rows); fr = sum(x["far_miss"] for x in rows)
+    print(f"{k:<20}{g:>9,}{mt:>9,}{nr:>12,}{fr:>10,}{nr/max(nr+fr,1):>12.1%}")
+print("  a high near share means localisation, not detection -- resolution or sub-voxel")
+print("  refinement, NOT more capacity. a high far share means cells never seen at all.")
+
+print("\nper-dataset node recall spread (the pooled mean hides this):")
+for k, r in sorted(results.items(), key=lambda kv: -kv[1].score):
+    rc = sorted(x["node_recall"] for x in r.rows.values()
+                if x["node_recall"] == x["node_recall"])
+    if rc:
+        q = lambda f: rc[min(len(rc) - 1, int(f * len(rc)))]
+        print(f"  {k:<20} min {rc[0]:.3f}  p25 {q(.25):.3f}  median {q(.5):.3f}  "
+              f"p75 {q(.75):.3f}  max {rc[-1]:.3f}")
+
 unet = {k: v for k, v in results.items() if k.startswith("unet_")}
 promoted = [k for k, v in unet.items() if gate(ref, v).promote]
 best = max(unet, key=lambda k: unet[k].score)
@@ -382,7 +463,12 @@ payload = {"arms": {k: {kk: (None if isinstance(vv, float) and vv != vv else vv)
            "fold_deltas": {k: gate(ref, v).fold_deltas for k, v in results.items()
                            if k != "champion"},
            "promoted": promoted, "verdicts": verdicts,
-           "budget_median_rel_err": float(np.median(err))}
+           "budget_median_rel_err": float(np.median(err)),
+           "edge_confusion": {k: {"tp": sum(x["edge_tp"] for x in v.rows.values()),
+                                  "fp": sum(x["edge_fp"] for x in v.rows.values()),
+                                  "fn": sum(x["edge_fn"] for x in v.rows.values())}
+                              for k, v in results.items()},
+           "node_misses": DIAG}
 blob = json.dumps(payload, indent=2, default=str)
 (WORK / "claude_detector_score_results.json").write_text(blob)
 print("\n===== RESULTS JSON BEGIN =====")
