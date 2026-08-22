@@ -226,6 +226,10 @@ def main() -> int:
         print("\n[the network can actually learn this signal]")
         # 60 steps on one volume. Not a benchmark -- a wiring check. If the loss cannot
         # be driven down on a single trivial example, nothing downstream is worth running.
+        # Seeded: without this the initial loss ranges 0.66-0.96 across runs and the
+        # "halved" assertion fails by chance roughly one run in ten. A flaky gate is
+        # worse than no gate -- it trains you to ignore it.
+        torch.manual_seed(0)
         model = UNet3D(base=8, depth=2).to(dev)
         opt = torch.optim.Adam(model.parameters(), lr=3e-3)
         xin = torch.as_tensor(vol, dtype=torch.float32)[None, None]
