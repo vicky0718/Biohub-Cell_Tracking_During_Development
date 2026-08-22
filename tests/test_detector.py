@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import shutil
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -222,6 +223,53 @@ def main() -> int:
     check("temporal_radius is a no-op for DoG (it gets the window's centre)",
           a.n_nodes == b.n_nodes and np.allclose(a.zyx, b.zyx),
           f"{a.n_nodes} vs {b.n_nodes} nodes")
+
+    print("\n[prob_input_norm closes the train/serve skew]")
+    # Every training notebook stored dog_response(load_frame(...))[0] as its input tensor;
+    # predict_dataset used to hand prob_fn the raw load_frame output. Different
+    # distributions, so models were served inputs they never trained on.
+    from pipeline.classical import dog_response, frame_norm, load_frame, open_movie
+    arr_, _at, _sc, vox_, qlo_, qhi_ = open_movie(tmp / "m.zarr", cfg_p)
+    served_old = load_frame(arr_, 1, cfg_p, qlo_, qhi_)          # what inference gave
+    trained_on = dog_response(served_old, vox_, cfg_p)[0]        # what training stored
+    check("the two normalisations are genuinely different distributions",
+          not np.allclose(served_old, trained_on),
+          f"max|diff| {np.abs(served_old - trained_on).max():.4f}, "
+          f"ranges [{served_old.min():.3f},{served_old.max():.3f}] vs "
+          f"[{trained_on.min():.3f},{trained_on.max():.3f}]")
+    check("frame_norm reproduces exactly what dog_response normalises to",
+          np.allclose(frame_norm(served_old, cfg_p), trained_on),
+          "so the mask and the detector cannot drift apart")
+
+    seen_norm = []
+
+    def norm_probe(x):
+        seen_norm.append(x.copy())
+        return gaussian_heatmap(centres, x.shape[-3:], VOX, sigma_um=2.0)
+
+    for mode, want in (("per_frame", trained_on), ("movie", served_old)):
+        seen_norm.clear()
+        predict_dataset(tmp / "m.zarr", replace(cfg_p, prob_input_norm=mode),
+                        verbose=False, prob_fn=norm_probe)
+        check(f"prob_input_norm={mode!r} serves the matching distribution",
+              np.allclose(seen_norm[1], want, atol=1e-5),
+              f"max|diff| {np.abs(seen_norm[1] - want).max():.2e}")
+    # A temporal window must be normalised per CHANNEL, not as one block, because
+    # training normalised each frame on its own percentiles.
+    seen_norm.clear()
+    predict_dataset(tmp / "m.zarr", replace(cfg_t, prob_input_norm="per_frame"),
+                    verbose=False, prob_fn=norm_probe)
+    w = seen_norm[1]
+    check("each channel of a temporal window is normalised on its own percentiles",
+          all(np.allclose(w[c], frame_norm(w[c], cfg_p), atol=1e-5) for c in range(3)),
+          f"window {w.shape}")
+    try:
+        predict_dataset(tmp / "m.zarr", replace(cfg_p, prob_input_norm="nope"),
+                        verbose=False, prob_fn=norm_probe)
+        ok_ = False
+    except ValueError:
+        ok_ = True
+    check("an unknown prob_input_norm is rejected, not silently ignored", ok_)
 
     print("\n[paired_recall sees the coherence that node recall is blind to]")
     # The notes/21 §2 scenario, reproduced exactly: two detectors with IDENTICAL node

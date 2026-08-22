@@ -143,6 +143,16 @@ class Config:
     # the window's centre frame, so an arm can switch detector without also silently
     # switching what "frame t" means.
     temporal_radius: int = 0
+    # How the volume handed to `prob_fn` is normalised.
+    #   "per_frame" -- `frame_norm`, the per-frame percentile rescale. This is what EVERY
+    #                  training notebook stored as its input tensor, so it is what every
+    #                  trained checkpoint expects.
+    #   "movie"     -- `load_frame`'s whole-movie quantiles, unchanged.
+    # These are different distributions, and until this field existed the pipeline trained
+    # on the first and served the second. `frame_norm`'s docstring has the detail. The
+    # default is the one that matches the checkpoints; "movie" is kept only so the old
+    # behaviour stays reproducible when reading notes/21 and notes/22 back.
+    prob_input_norm: str = "per_frame"
 
     # --- linking ---
     # Physical search radius. Set from MOTION, not from the 7 µm metric cutoff —
@@ -240,6 +250,33 @@ def _ball_footprint(radius_um: float, voxel_um) -> np.ndarray:
     return d2 <= radius_um ** 2
 
 
+def frame_norm(vol: np.ndarray, cfg: Config) -> np.ndarray:
+    """PER-FRAME percentile normalisation — the input distribution learned models see.
+
+    Distinct from `load_frame`'s normalisation, which uses the WHOLE-MOVIE quantiles
+    stored in the zarr attrs. The difference is not cosmetic and it caused a real
+    train/serve skew:
+
+    * every training notebook stored ``dog_response(load_frame(...))[0]`` as the model's
+      input tensor — that is, this function's output;
+    * `predict_dataset` handed ``prob_fn`` the raw `load_frame` output.
+
+    So every learned arm scored through the pipeline was served an input distribution it
+    had never trained on, rescaled by a per-frame affine map that drifts with bleaching.
+    `Config.prob_input_norm` closes that, defaulting to the behaviour trained models
+    actually expect.
+
+    Kept as its own function, with `dog_response` calling it, so the two cannot drift:
+    the mask that decides which voxels a network may call background has to score
+    "how blob-like is this voxel" on the same footing the detector does.
+    """
+    vf = np.asarray(vol, np.float32)
+    lo, hi = np.percentile(vf, [cfg.dog_norm_lo, cfg.dog_norm_hi])
+    if hi <= lo:
+        hi = lo + 1.0
+    return np.clip((vf - lo) / (hi - lo), 0, None)
+
+
 def dog_response(vol: np.ndarray, voxel_um: tuple[float, float, float], cfg: Config
                  ) -> tuple[np.ndarray, np.ndarray]:
     """The per-frame normalised volume and its multi-scale DoG response.
@@ -249,12 +286,7 @@ def dog_response(vol: np.ndarray, voxel_um: tuple[float, float, float], cfg: Con
     exactly the filter the classical arm uses. Two implementations would drift, and the
     mask decides which voxels a network is allowed to call background.
     """
-    vf = np.asarray(vol, np.float32)
-    lo, hi = np.percentile(vf, [cfg.dog_norm_lo, cfg.dog_norm_hi])
-    if hi <= lo:
-        hi = lo + 1.0
-    norm = np.clip((vf - lo) / (hi - lo), 0, None)
-
+    norm = frame_norm(vol, cfg)
     scales = cfg.dog_scales or [(cfg.dog_small_um, cfg.dog_large_um)]
     eff = np.asarray(voxel_um, float)
     dog = None
@@ -776,7 +808,16 @@ def predict_dataset(
         # from this module, so a top-level import would be circular.
         from pipeline.detector import peaks_from_prob
 
+        if cfg.prob_input_norm not in ("per_frame", "movie"):
+            raise ValueError(f"prob_input_norm must be 'per_frame' or 'movie', "
+                             f"got {cfg.prob_input_norm!r}")
+
         def det(x, voxel_um, cfg_, cap=None):
+            if cfg_.prob_input_norm == "per_frame":
+                # Per CHANNEL: training normalised each frame independently, so a window
+                # normalised as a block would not be the distribution the model met.
+                x = (frame_norm(x, cfg_) if x.ndim == 3
+                     else np.stack([frame_norm(c, cfg_) for c in x]))
             return peaks_from_prob(prob_fn(x), voxel_um, cfg_.min_separation_um,
                                    threshold=cfg_.unet_threshold, cap=cap)
 
@@ -862,5 +903,5 @@ def make_predictor(cfg: Config, verbose: bool = False,
 
 
 __all__ = ["Config", "detect_frame", "detect_frame_dog", "refine_centroids", "link_frame", "link_all",
-           "open_movie", "load_frame", "budget_features", "dog_response",
+           "open_movie", "load_frame", "budget_features", "dog_response", "frame_norm",
            "build_graph", "predict_dataset", "make_predictor", "estimated_total_nodes"]
