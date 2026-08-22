@@ -152,23 +152,57 @@ if not wpaths:
     raise SystemExit("No claude_unet_*.pt found. Add the claude_detector_train kernel "
                      "as a data source (Add Input -> Notebook Output).")
 
-MODELS = {}          # keyed by the embryo the model was TRAINED on
-seen = {}
+# A training kernel may save several losses x both folds, and attaching a kernel as a
+# data source attaches ALL of its outputs -- there is no way to pick a subset. So this
+# SELECTS a loss rather than refusing, which an earlier version did on the strength of an
+# instruction ("attach only the winning loss's files") that cannot actually be carried out.
+FORCE_LOSS = None       # set to "masked" / "pu" to override the automatic choice
+
+ckpts = {}              # (loss, train_emb) -> (path, checkpoint)
 for wp in wpaths:
     ck = torch.load(wp, map_location="cpu")
-    emb = ck["train_emb"]
-    if emb in seen:
-        # Two checkpoints for one embryo means two training runs are attached and the
-        # winner would be whichever the scan happened to reach last. Refuse rather than
-        # silently score with an unknown model.
-        raise SystemExit(f"Two checkpoints claim train_emb={emb}: {seen[emb].name} and "
-                         f"{wp.name}. Attach exactly one claude_detector_train version.")
-    seen[emb] = wp
+    key = (ck.get("loss", "?"), ck["train_emb"])
+    if key in ckpts:
+        # Same loss AND same fold twice means two runs of the same thing are attached;
+        # that IS ambiguous and the winner would be whichever the scan reached last.
+        raise SystemExit(f"Two checkpoints for {key}: {ckpts[key][0].name} and {wp.name}. "
+                         "Attach exactly one training kernel version.")
+    ckpts[key] = (wp, ck)
+    print(f"  found {wp.name}: loss={key[0]}, trained on {key[1]}, "
+          f"best_recall={ck.get('best_recall')} @epoch {ck.get('best_epoch')}, "
+          f"DoG {ck.get('dog_recall')}")
+
+embryos_needed = {e for _, e in ckpts}
+by_loss = {}
+for (ln, emb), (wp, ck) in ckpts.items():
+    by_loss.setdefault(ln, {})[emb] = (wp, ck)
+complete = {ln: v for ln, v in by_loss.items() if set(v) == embryos_needed}
+if not complete:
+    raise SystemExit(f"No loss covers every embryo. Have: "
+                     f"{ {ln: sorted(v) for ln, v in by_loss.items()} }")
+
+def margin(v):
+    # Mean held-out recall ABOVE DoG across folds. DoG differs per embryo (0.7696 vs
+    # 0.8776), so raw recall is not comparable between folds and the margin is.
+    return float(np.mean([ck.get("best_recall", 0.0) - ck.get("dog_recall", 0.0)
+                          for _, ck in v.values()]))
+
+ranked = sorted(complete, key=lambda ln: -margin(complete[ln]))
+CHOSEN = FORCE_LOSS or ranked[0]
+if CHOSEN not in complete:
+    raise SystemExit(f"FORCE_LOSS={FORCE_LOSS!r} does not cover every embryo.")
+print(f"\nloss ranking by mean margin over DoG: "
+      + ", ".join(f"{ln} {margin(complete[ln]):+.4f}" for ln in ranked))
+print(f"CHOSEN LOSS: {CHOSEN}"
+      + (" (forced)" if FORCE_LOSS else " (best mean margin)"))
+# One loss for BOTH folds. Picking per embryo independently would score a chimera --
+# two different models stitched across the folds of one number.
+MODELS = {}
+for emb, (wp, ck) in sorted(complete[CHOSEN].items()):
     m = UNet3D(base=ck.get("base", 16), depth=ck.get("depth", 3))
     m.load_state_dict(ck["state_dict"]); m.eval().to(DEV)
-    MODELS[ck["train_emb"]] = m
-    print(f"  loaded {wp.name}: trained on {ck['train_emb']}, "
-          f"loss={ck.get('loss')}, {ck.get('n_volumes')} volumes")
+    MODELS[emb] = m
+    print(f"  using {wp.name} for datasets NOT from {emb}")
 if len(MODELS) < 2:
     raise SystemExit(f"Need a model per embryo; got {sorted(MODELS)}")
 

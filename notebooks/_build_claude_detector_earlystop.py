@@ -389,8 +389,9 @@ saved = sorted(p.name for p in WORK.glob("claude_unet_*.pt"))
 print(f"\nweights written: {saved or 'NONE'}")
 best_arm = max(RESULTS, key=lambda k: RESULTS[k]["best_delta"])
 print(f"best arm: {best_arm} -> delta {RESULTS[best_arm]['best_delta']:+.4f}")
-print("NOTE: claude_detector_score expects exactly ONE checkpoint per embryo. If both "
-      "losses saved, keep only the winning loss's two files when attaching.")
+print("NOTE: attach this whole kernel to claude_detector_score as a kernel data source. "
+      "It selects one loss for BOTH folds by mean held-out margin over DoG; a subset "
+      "cannot be attached, so selection has to happen there, not here.")
 
 payload = {"results": RESULTS, "verdicts": verdicts,
            "dog": {e: {"recall": DOG[e]["recall"],
