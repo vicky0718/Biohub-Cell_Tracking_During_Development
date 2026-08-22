@@ -175,8 +175,37 @@ def main() -> int:
                     est_total_nodes=float(len(centres) * T))
     check("adaptive calibration also routes through prob_fn", calls["n"] > T,
           f"{calls['n']} calls (> {T} means the calibration frames used it too)")
-    shutil.rmtree(tmp, ignore_errors=True)
 
+    print("\n[Config.refine gates the intensity-weighted shift]")
+    from pipeline.classical import Config as _C
+    g_on = predict_dataset(tmp / "m.zarr", cfg_p, verbose=False, prob_fn=oracle_prob)
+    cfg_off = _C(detector="dog", downsample=(1, 1, 1), min_separation_um=6.0,
+                 dog_rel_threshold=0.005, link_radius_um=8.0, refine=False)
+    g_off = predict_dataset(tmp / "m.zarr", cfg_off, verbose=False, prob_fn=oracle_prob)
+    check("refine=True and refine=False give the same node COUNT",
+          g_on.n_nodes == g_off.n_nodes, f"{g_on.n_nodes} vs {g_off.n_nodes}")
+    moved = float(np.abs(g_on.zyx - g_off.zyx).max()) if g_on.n_nodes == g_off.n_nodes else -1
+    check("but different coordinates — the shift is real and gated", moved > 1e-9,
+          f"max coordinate shift {moved:.4f} voxels")
+    # With an ORACLE probability map the peaks sit exactly on the cells, so any intensity
+    # shift can only move them away. That is the whole hypothesis in miniature.
+    # Compare PER FRAME: graph node order interleaves frames, and the oracle map is built
+    # from `centres` at every t, so frame-0 truth is the reference throughout.
+    def mean_err(g):
+        d = []
+        for t in np.unique(g.t):
+            zz = g.zyx[g.t == t]
+            if not len(zz):
+                continue
+            dist = np.linalg.norm((zz[:, None] - centres[None]) * np.array(VOX), axis=2)
+            d.append(dist.min(axis=1).mean())
+        return float(np.mean(d))
+    d_on, d_off = mean_err(g_on), mean_err(g_off)
+    check("on an oracle map, refinement moves peaks AWAY from truth", d_off < d_on,
+          f"refined {d_on:.3f}um vs unrefined {d_off:.3f}um "
+          f"({d_on - d_off:+.3f}um of pure damage)")
+
+    shutil.rmtree(tmp, ignore_errors=True)
     try:
         import torch
     except ImportError:

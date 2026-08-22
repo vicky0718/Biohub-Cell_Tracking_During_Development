@@ -116,6 +116,13 @@ class Config:
     # density with the per-frame cap, and a threshold that binds first is exactly the
     # confound that made phase 0's "matched count" comparison meaningless.
     unet_threshold: float = 1e-6
+    # Intensity-weighted sub-voxel refinement of each peak. COHERENT for the classical
+    # detectors, whose coordinates are intensity maxima being refined against intensity.
+    # INCOHERENT for a learned detector: peaks_from_prob already returns the sub-voxel
+    # centroid of the probability plateau, and refining that against intensity applies a
+    # second, uncalibrated shift which varies frame to frame with intensity noise --
+    # a candidate source of the temporal jitter notes/21 §2 measured.
+    refine: bool = True
 
     # --- linking ---
     # Physical search radius. Set from MOTION, not from the 7 µm metric cutoff —
@@ -752,7 +759,8 @@ def predict_dataset(
     for t in range(T):
         vol = load_frame(arr, t, cfg, q_lo, q_hi)
         c, _ = det(vol, voxel_um, cfg, cap=cap)
-        c = refine_centroids(vol, c, voxel_um)
+        if cfg.refine:
+            c = refine_centroids(vol, c, voxel_um)
         if len(c):
             all_coords.append(np.column_stack([np.full(len(c), t, float), c]))
         if verbose and (t % 25 == 0 or t == T - 1):
