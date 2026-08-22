@@ -147,9 +147,29 @@ LOSSES = {"naive": naive_loss, "masked": masked_loss, "pu": pu_loss}
 
 @torch.no_grad()
 def predict_volume(model, vol: np.ndarray, device, amp: bool = True) -> np.ndarray:
-    """Probability map for one (Z, Y, X) volume, as float32 numpy."""
+    """Probability map for one input, as float32 numpy.
+
+    Accepts either a single ``(Z, Y, X)`` volume or a stacked ``(C, Z, Y, X)`` temporal
+    window, so the same function serves a single-frame model and a ``temporal_radius``
+    one. The output is always ``(Z, Y, X)``: the network predicts the CENTRE frame's
+    cell centres whatever it was given as context.
+    """
     model.eval()
-    x = torch.as_tensor(vol, dtype=torch.float32, device=device)[None, None]
+    x = torch.as_tensor(vol, dtype=torch.float32, device=device)
+    if x.ndim == 3:
+        x = x[None, None]           # (Z,Y,X)   -> (1, 1, Z, Y, X)
+    elif x.ndim == 4:
+        x = x[None]                 # (C,Z,Y,X) -> (1, C, Z, Y, X)
+    else:
+        raise ValueError(f"expected a 3D volume or a 4D temporal window, got {x.shape}")
+    in_ch = next(model.parameters()).shape[1]
+    if x.shape[1] != in_ch:
+        raise ValueError(
+            f"model expects {in_ch} input channel(s) but was given {x.shape[1]}. A "
+            "temporal model fed single frames (or the reverse) fails silently on shape-"
+            "compatible input only when in_ch is 1, so this is checked rather than left "
+            "to broadcast."
+        )
     if amp and device.type == "cuda":
         with torch.autocast("cuda", dtype=torch.float16):
             logits = model(x)

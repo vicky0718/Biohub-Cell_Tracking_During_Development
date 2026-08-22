@@ -123,6 +123,26 @@ class Config:
     # second, uncalibrated shift which varies frame to frame with intensity noise --
     # a candidate source of the temporal jitter notes/21 §2 measured.
     refine: bool = True
+    # Half-width of the temporal window handed to `prob_fn`, in frames. 0 reproduces the
+    # single-frame behaviour every run up to notes/22 used; 1 stacks (t-1, t, t+1) as
+    # input channels so the network can see persistence.
+    #
+    # This exists because of notes/21 §2: at identical node count AND identical node
+    # recall the per-frame UNet's edge Jaccard is 0.0737 below DoG's, and it sits BELOW
+    # the temporal-independence bound where DoG sits above it. An edge scores only if
+    # both endpoints match, so a detector that wobbles between frames pays twice for
+    # every wobble. Dropping `refine` closed 12 % of that deficit (notes/22); the other
+    # 88 % is that nothing in the model's input or loss ever asks it to agree with the
+    # frame before or after. This is the input half of that fix.
+    #
+    # Windows are CLAMPED at the movie boundaries, never zero-padded: t=0 sees (0, 0, 1).
+    # Training must clamp identically -- a model shown a black frame at inference that it
+    # never saw in training would be off-distribution exactly where nothing checks it.
+    #
+    # Ignored by the classical detectors, which have no temporal capacity: they are handed
+    # the window's centre frame, so an arm can switch detector without also silently
+    # switching what "frame t" means.
+    temporal_radius: int = 0
 
     # --- linking ---
     # Physical search radius. Set from MOTION, not from the 7 µm metric cutoff —
@@ -714,18 +734,50 @@ def predict_dataset(
             print("    !! no estimated_number_of_nodes for this dataset — running "
                   "UNCAPPED; the budget multiplier is unguarded here", flush=True)
 
+    # Temporal window. `window(t)` is what the DETECTOR sees; `centre(x)` recovers the
+    # frame those detections belong to, which is what refinement and the coordinate
+    # bookkeeping downstream must use.
+    rad = max(0, int(cfg.temporal_radius))
+
+    _cache: dict[int, np.ndarray] = {}
+
+    def _frame(t: int) -> np.ndarray:
+        # CLAMP at the movie ends -- see Config.temporal_radius. Zero-padding would show
+        # the network a black frame it never met in training.
+        t = int(min(max(t, 0), T_full - 1))
+        if t not in _cache:
+            _cache[t] = load_frame(arr, t, cfg, q_lo, q_hi)
+            # With radius r each frame is needed 2r+1 times; caching turns that back into
+            # one zarr read per frame, and anything below t-r can never be asked for again
+            # because t only ever increases.
+            for k in [k for k in _cache if k < t - 2 * rad]:
+                del _cache[k]
+        return _cache[t]
+
+    def window(t: int) -> np.ndarray:
+        if rad == 0:
+            return _frame(t)
+        return np.stack([_frame(t + d) for d in range(-rad, rad + 1)])
+
+    def centre(x: np.ndarray) -> np.ndarray:
+        return x if x.ndim == 3 else x[x.shape[0] // 2]
+
     if prob_fn is None:
         _base = detect_frame_dog if cfg.detector == "dog" else detect_frame
 
-        def det(vol, voxel_um, cfg_, cap=None):
-            return _base(vol, voxel_um, cfg_, cap=cap)
+        def det(x, voxel_um, cfg_, cap=None):
+            # The classical detectors are single-frame. Handing them the window's centre
+            # (rather than refusing) means temporal_radius changes what the LEARNED
+            # detector sees and nothing else -- so a DoG arm and a UNet arm in the same
+            # sweep still differ in exactly one place.
+            return _base(centre(x), voxel_um, cfg_, cap=cap)
     else:
         # Imported here, not at module scope: pipeline.detector imports _max_filter_sep
         # from this module, so a top-level import would be circular.
         from pipeline.detector import peaks_from_prob
 
-        def det(vol, voxel_um, cfg_, cap=None):
-            return peaks_from_prob(prob_fn(vol), voxel_um, cfg_.min_separation_um,
+        def det(x, voxel_um, cfg_, cap=None):
+            return peaks_from_prob(prob_fn(x), voxel_um, cfg_.min_separation_um,
                                    threshold=cfg_.unet_threshold, cap=cap)
 
     # Adaptive per-dataset separation. Calibrated on one mid-movie frame: count at the
@@ -739,7 +791,9 @@ def predict_dataset(
             est_total_nodes = estimated_total_nodes(ds_path, attrs)
         if est_total_nodes and est_total_nodes > 0:
             target = max(1.0, cfg.adaptive_target * est_total_nodes / max(1, T_full))
-            vol = load_frame(arr, T_full // 2, cfg, q_lo, q_hi)
+            # The calibration frame goes through `window` too, so the separation is solved
+            # against the same detector input the real loop will use.
+            vol = window(T_full // 2)
             lo_b, hi_b = cfg.adaptive_bounds
             sep = cfg.min_separation_um
             for _ in range(3):
@@ -757,8 +811,9 @@ def predict_dataset(
 
     all_coords = []
     for t in range(T):
-        vol = load_frame(arr, t, cfg, q_lo, q_hi)
-        c, _ = det(vol, voxel_um, cfg, cap=cap)
+        x = window(t)
+        vol = centre(x)          # refinement acts on frame t, never on its neighbours
+        c, _ = det(x, voxel_um, cfg, cap=cap)
         if cfg.refine:
             c = refine_centroids(vol, c, voxel_um)
         if len(c):

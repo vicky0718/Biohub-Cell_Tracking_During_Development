@@ -18,8 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from pipeline.classical import Config, detect_frame_dog  # noqa: E402
 from pipeline.detector import (  # noqa: E402
-    TargetConfig, gaussian_heatmap, make_loss_mask, make_target, peaks_from_prob,
-    recall_at_budget,
+    TargetConfig, gaussian_heatmap, make_loss_mask, make_target, paired_recall,
+    peaks_from_prob, recall_at_budget,
 )
 
 VOX = (1.625, 1.625, 1.625)   # isotropic grid that downsample=(1,4,4) produces
@@ -176,6 +176,97 @@ def main() -> int:
     check("adaptive calibration also routes through prob_fn", calls["n"] > T,
           f"{calls['n']} calls (> {T} means the calibration frames used it too)")
 
+    print("\n[Config.temporal_radius stacks neighbouring frames as channels]")
+    seen = []
+
+    def shape_probe(x):
+        seen.append(x.shape)
+        return gaussian_heatmap(centres, x.shape[-3:], VOX, sigma_um=2.0)
+
+    cfg_t = Config(detector="dog", downsample=(1, 1, 1), min_separation_um=6.0,
+                   dog_rel_threshold=0.005, link_radius_um=8.0, temporal_radius=1)
+    g_temp = predict_dataset(tmp / "m.zarr", cfg_t, verbose=False, prob_fn=shape_probe)
+    check("prob_fn receives a (3, Z, Y, X) window at radius 1",
+          all(s == (3, *shape) for s in seen), f"{sorted(set(seen))}")
+    check("still one call per frame", len(seen) == T, f"{len(seen)} calls for {T} frames")
+    check("the temporal arm still produces the true cells",
+          g_temp.n_nodes == len(centres) * T,
+          f"{g_temp.n_nodes} vs {len(centres) * T}")
+
+    # Boundary CLAMPING, not zero padding. At t=0 the window is (0, 0, 1), so its first
+    # two channels are identical -- and critically NOT a black frame the model never saw
+    # in training. Checked on the real movie, frame by frame.
+    got = []
+
+    def window_probe(x):
+        got.append(x.copy())
+        return gaussian_heatmap(centres, x.shape[-3:], VOX, sigma_um=2.0)
+
+    predict_dataset(tmp / "m.zarr", cfg_t, verbose=False, prob_fn=window_probe)
+    check("t=0 clamps: channels 0 and 1 identical, and neither is empty",
+          np.array_equal(got[0][0], got[0][1]) and got[0][0].max() > 0,
+          f"max {got[0][0].max():.3f}")
+    check(f"t={T-1} clamps at the other end",
+          np.array_equal(got[-1][1], got[-1][2]) and got[-1][2].max() > 0)
+    check("interior windows are three DIFFERENT frames",
+          not np.array_equal(got[1][0], got[1][1])
+          and not np.array_equal(got[1][1], got[1][2]))
+    check("the window centre is frame t itself",
+          all(np.array_equal(got[t][1], got[min(t + 1, T - 1)][0] if t + 1 < T else got[t][1])
+              or t == T - 1 for t in range(T)))
+
+    # temporal_radius must be inert for the classical detectors, or an arm could change
+    # its detector and silently change what "frame t" means at the same time.
+    a = predict_dataset(tmp / "m.zarr", cfg_p, verbose=False)
+    b = predict_dataset(tmp / "m.zarr", cfg_t, verbose=False)
+    check("temporal_radius is a no-op for DoG (it gets the window's centre)",
+          a.n_nodes == b.n_nodes and np.allclose(a.zyx, b.zyx),
+          f"{a.n_nodes} vs {b.n_nodes} nodes")
+
+    print("\n[paired_recall sees the coherence that node recall is blind to]")
+    # The notes/21 §2 scenario, reproduced exactly: two detectors with IDENTICAL node
+    # recall and very different edge behaviour. If this metric cannot separate them it is
+    # no better than the one it replaces.
+    n_cells = 10
+    gt_zyx2 = np.repeat(np.arange(n_cells)[:, None] * 8.0 + 4.0, 3, axis=1)
+    gt_t2 = np.concatenate([np.zeros(n_cells), np.ones(n_cells)])
+    gt_all = np.vstack([gt_zyx2, gt_zyx2])                 # cells do not move
+    gt_e = np.column_stack([np.arange(n_cells), np.arange(n_cells) + n_cells])
+
+    def arm(f0, f1):
+        return (np.concatenate([np.zeros(len(f0)), np.ones(len(f1))]),
+                np.vstack([gt_zyx2[f0], gt_zyx2[f1]]))
+
+    keep = list(range(8))
+    coh_t, coh_z = arm(keep, keep)                          # same 8 cells both frames
+    inc_t, inc_z = arm(keep, list(range(2, 10)))            # 8 cells, only 6 in common
+
+    coh = paired_recall(coh_t, coh_z, gt_t2, gt_all, gt_e, VOX)
+    inc = paired_recall(inc_t, inc_z, gt_t2, gt_all, gt_e, VOX)
+    check("both arms have IDENTICAL node recall", abs(coh["node"] - inc["node"]) < 1e-9,
+          f"{coh['node']:.4f} both")
+    check("but paired recall separates them",
+          abs(coh["paired"] - 0.8) < 1e-9 and abs(inc["paired"] - 0.6) < 1e-9,
+          f"coherent {coh['paired']:.2f} vs incoherent {inc['paired']:.2f} "
+          f"at node recall {coh['node']:.2f}")
+    check("the coherent arm sits at the top of the interval",
+          abs(coh["position"] - 1.0) < 1e-9, f"position {coh['position']:+.3f}")
+    check("the incoherent arm falls BELOW independence, as the UNet did",
+          inc["position"] < 0, f"position {inc['position']:+.3f} "
+          f"(paired {inc['paired']:.2f} < r^2 = {inc['independent']:.2f})")
+    # A model that finds every cell every frame is the r == paired == 1 corner; position
+    # is 0/0 there and must not come back as a number that ranks above a real result.
+    per_t, per_z = arm(list(range(n_cells)), list(range(n_cells)))
+    per = paired_recall(per_t, per_z, gt_t2, gt_all, gt_e, VOX)
+    check("a perfect detector gives paired 1.0 and an undefined position",
+          abs(per["paired"] - 1.0) < 1e-9 and np.isnan(per["position"]),
+          f"paired {per['paired']:.2f}, position {per['position']}")
+    # An edge leaving the evaluated window is unscoreable; charging the model for it would
+    # make any frame subset look incoherent for a reason unrelated to the model.
+    sub = paired_recall(coh_t, coh_z, gt_t2, gt_all, gt_e, VOX, frames=[0])
+    check("frames= drops edges that leave the evaluated window", sub["n_edges"] == 0,
+          f"{sub['n_edges']} edges kept when only frame 0 is evaluated")
+
     print("\n[Config.refine gates the intensity-weighted shift]")
     from pipeline.classical import Config as _C
     g_on = predict_dataset(tmp / "m.zarr", cfg_p, verbose=False, prob_fn=oracle_prob)
@@ -251,6 +342,23 @@ def main() -> int:
         check("predict_volume returns a probability map",
               p.shape == vol.shape and 0.0 <= p.min() and p.max() <= 1.0,
               f"range [{p.min():.3f}, {p.max():.3f}]")
+
+        # A temporal model takes 3 channels in and still predicts ONE frame's centres.
+        tmodel = UNet3D(base=8, depth=2, in_ch=3)
+        stack = np.stack([vol, vol, vol])
+        pt = predict_volume(tmodel, stack, dev, amp=False)
+        check("predict_volume accepts a (3, Z, Y, X) window and returns (Z, Y, X)",
+              pt.shape == vol.shape, f"{stack.shape} -> {pt.shape}")
+        # The silent failure this guards: a 1-channel model handed a 3-frame stack would
+        # otherwise read the window as a BATCH of three frames and return the wrong one.
+        for bad, m_, label in ((stack, model, "1-channel model given a 3-frame window"),
+                               (vol, tmodel, "3-channel model given a single frame")):
+            try:
+                predict_volume(m_, bad, dev, amp=False)
+                ok_ = False
+            except ValueError:
+                ok_ = True
+            check(f"rejects a {label}", ok_)
 
         print("\n[the network can actually learn this signal]")
         # 60 steps on one volume. Not a benchmark -- a wiring check. If the loss cannot

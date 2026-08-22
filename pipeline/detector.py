@@ -175,6 +175,77 @@ def recall_at_budget(pred_t, pred_zyx, gt_t, gt_zyx, scale, max_distance: float 
     return float(len(np.unique(matched[matched >= 0])) / len(gt_t))
 
 
+def paired_recall(pred_t, pred_zyx, gt_t, gt_zyx, gt_edges, scale,
+                  max_distance: float = 7.0, frames=None) -> dict:
+    """Fraction of ground-truth LINKS with **both** endpoints matched — i.e. coherence.
+
+    Why this exists, and why node recall is not a substitute. The metric scores an edge
+    only when both of its endpoints match ground truth, so a detector is rewarded for
+    finding *the same cell twice in a row*, not for finding many cells once. `notes/21` §2
+    measured the consequence: at identical node count and identical node recall (0.866
+    both), the learned detector's edge Jaccard was 0.0737 below DoG's. Node recall could
+    not see the difference at all — it was the same number on both sides of a 0.074 gap.
+
+    So a training run that selects its checkpoint on node recall is selecting on a
+    quantity provably blind to the failure it is trying to fix. This is the quantity that
+    is not blind to it, and it is exact rather than a proxy: the same
+    `purescore.match_nodes` the leaderboard uses, applied to the real GT edge list.
+
+    Returns ``{"paired": p, "node": r, "independent": r*r, "position": q, "n_edges": n}``
+    where ``position`` places ``p`` on the interval `notes/21` §2 defines:
+
+        r*r  detections independent frame to frame (a fresh coin flip each frame)
+        r    the same cells found every frame (perfect coherence)
+
+    so ``q = (p - r*r) / (r - r*r)``. DoG measured **+25.2 %** on that scale, the
+    per-frame UNet **−41.3 %** — below independence, which means active mispairing rather
+    than mere flicker. ``q`` is the number to move.
+
+    ``frames`` restricts the accounting to GT edges whose BOTH endpoints fall in that set
+    of frame indices. Required whenever predictions cover only some frames: an edge
+    leaving the evaluated window has no chance of being matched, and counting it would
+    charge the model for frames it was never shown.
+    """
+    gt_t = np.asarray(gt_t)
+    gt_edges = np.asarray(gt_edges).reshape(-1, 2)
+    if len(gt_t) == 0 or len(gt_edges) == 0:
+        return {"paired": float("nan"), "node": float("nan"),
+                "independent": float("nan"), "position": float("nan"), "n_edges": 0}
+
+    # `match_nodes` returns one entry PER PREDICTION holding the GT index it claimed, so
+    # it has to be inverted before it can be indexed by GT node. Reading it the other way
+    # round is a silent error whenever the two graphs differ in size, which is always.
+    matched = match_nodes(pred_t, pred_zyx, gt_t, gt_zyx, scale=scale,
+                          max_distance=max_distance)
+    ok = np.zeros(len(gt_t), bool)
+    sel = matched >= 0
+    ok[matched[sel]] = True
+
+    u, v = gt_edges[:, 0], gt_edges[:, 1]
+    # Only edges that span exactly t -> t+1 can score; the scorer drops the rest, so
+    # counting them here would understate coherence for a reason unrelated to the model.
+    keep = gt_t[v] == gt_t[u] + 1
+    if frames is not None:
+        fr = np.asarray(sorted(frames))
+        keep &= np.isin(gt_t[u], fr) & np.isin(gt_t[v], fr)
+    u, v = u[keep], v[keep]
+    if len(u) == 0:
+        return {"paired": float("nan"), "node": float("nan"),
+                "independent": float("nan"), "position": float("nan"), "n_edges": 0}
+
+    # Node recall over the SAME nodes the edges touch, so `paired` and `node` are
+    # commensurable and `position` means what it says. Pooling recall over all GT nodes
+    # -- including those in frames with no evaluable edge -- would mix two populations.
+    touched = np.unique(np.concatenate([u, v]))
+    r = float(ok[touched].mean())
+    p = float((ok[u] & ok[v]).mean())
+    indep = r * r
+    denom = r - indep
+    return {"paired": p, "node": r, "independent": indep,
+            "position": float((p - indep) / denom) if denom > 1e-9 else float("nan"),
+            "n_edges": int(len(u))}
+
+
 def gaussian_heatmap(centres_vox: np.ndarray, shape, voxel_um, sigma_um: float
                      ) -> np.ndarray:
     """Soft float32 target: sum of unit Gaussians at the annotated centres, peak-scaled.
@@ -196,4 +267,4 @@ def gaussian_heatmap(centres_vox: np.ndarray, shape, voxel_um, sigma_um: float
 
 
 __all__ = ["TargetConfig", "make_target", "make_loss_mask", "peaks_from_prob",
-           "recall_at_budget", "gaussian_heatmap"]
+           "recall_at_budget", "paired_recall", "gaussian_heatmap"]
