@@ -65,7 +65,8 @@ measures only.
 """)
 
 code(r"""
-import subprocess, sys, time
+import os, subprocess, sys, time
+from pathlib import Path
 
 def sh(*a, **kw):
     try:
@@ -91,12 +92,82 @@ if "P100" in gpu:
                      extra=("--index-url", "https://download.pytorch.org/whl/cu121"))
     print(f"  torch replacement {'ok' if ok else 'FAILED'} ({time.time()-t0:.0f}s)")
 
-# From the pack's own README ("Kaggle dependency input command"). ILP needs pyscipopt+ilpy.
+def numpy_version():
+    r = sh(sys.executable, "-c", "import numpy; print(numpy.__version__)")
+    return (r.stdout or r.stderr).strip()
+
+print(f"numpy before deps: {numpy_version()}")
+
+# Install from the PACK'S OWN WHEELS, not PyPI.
+#
+# Installing these from PyPI produced:
+#   ImportError: cannot import name '_center' from 'numpy._core.umath'
+# `_center` exists only in numpy >= 2.3, so a package compiled against a NEW numpy landed
+# next to the image's OLD one. Resolving that by hand means guessing which of blosc2 /
+# imagecodecs / numcodecs forced it. The pack ships a wheel set its author actually ran --
+# including numpy itself -- so installing that set wholesale is coherent by construction,
+# and it is exactly what their offline submission notebook does.
+PACK_GUESS = None
+for root in (Path("/kaggle/input"),):
+    stack = [(root, 0)]
+    while stack and PACK_GUESS is None:
+        d, depth = stack.pop(0)
+        try:
+            kids = list(os.scandir(d)) if d.is_dir() else []
+        except (PermissionError, OSError):
+            continue
+        for e in kids:
+            if e.is_dir() and e.name == "wheels":
+                PACK_GUESS = Path(e.path); break
+            if e.is_dir() and depth < 5 and not e.name.endswith((".zarr", ".geff")):
+                stack.append((Path(e.path), depth + 1))
+
 t0 = time.time()
-ok = pip_install(["tracksdata", "zarr>=3.0.10,<4", "pyscipopt", "geff", "ilpy",
-                  "polars", "blosc2", "dask", "imagecodecs", "pyarrow", "rustworkx",
-                  "sqlalchemy"])
-print(f"pack requirements {'ok' if ok else 'FAILED'} ({time.time()-t0:.0f}s)")
+if PACK_GUESS is not None:
+    n_whl = len([p for p in PACK_GUESS.iterdir() if p.name.endswith(".whl")])
+    print(f"installing {n_whl} wheels from {PACK_GUESS} (--no-index)")
+    ok = pip_install([str(p) for p in sorted(PACK_GUESS.glob("*.whl"))],
+                     extra=("--no-index", f"--find-links={PACK_GUESS}"))
+    print(f"  pack wheels {'ok' if ok else 'FAILED'} ({time.time()-t0:.0f}s)")
+else:
+    print("!! no wheels/ directory found in the pack; falling back to PyPI")
+    ok = pip_install(["tracksdata", "zarr>=3.0.10,<4", "pyscipopt", "geff", "ilpy",
+                      "polars", "blosc2", "dask", "imagecodecs", "pyarrow", "rustworkx",
+                      "sqlalchemy", "numpy>=2.3"])
+    print(f"  PyPI requirements {'ok' if ok else 'FAILED'} ({time.time()-t0:.0f}s)")
+
+print(f"numpy after deps:  {numpy_version()}")
+
+# The official scorer. Their model PREDICTS DIVISIONS -- run 1 saw 564 forking nodes in
+# one dataset -- and our purescore's division term is exact only for fork-free
+# predictions, so harness.score_graph routes any forking prediction to the organisers'
+# code and refuses to guess. That code needs this repo plus tracksdata (installed above).
+#
+# This also means the number below INCLUDES the division term, which is worth 0.1 of the
+# 1.1 maximum and which every arm we have ever run scored 0.000 on.
+CELLMOT = Path("/kaggle/working/kaggle-cell-tracking-competition")
+if not (CELLMOT / "src" / "tracking_cellmot").is_dir():
+    t0 = time.time()
+    r = sh("git", "clone", "--depth", "1",
+           "https://github.com/royerlab/kaggle-cell-tracking-competition", str(CELLMOT))
+    print(f"official scorer clone rc={r.returncode} ({time.time()-t0:.0f}s)")
+    if r.returncode != 0:
+        print(r.stdout[-800:]); print(r.stderr[-800:])
+os.environ["CELLMOT_REPO"] = str(CELLMOT)
+print(f"CELLMOT_REPO={CELLMOT}  present={(CELLMOT / 'src' / 'tracking_cellmot').is_dir()}")
+
+# Prove the stack actually imports in a FRESH interpreter before the notebook commits to
+# it. An ImportError here costs seconds; the same one after model load costs the run.
+probe = sh(sys.executable, "-c",
+           "import numpy, zarr, polars, tracksdata, torch; "
+           "import numpy._core.umath as u; "
+           "print('numpy', numpy.__version__, '| torch', torch.__version__, "
+           "'| zarr', zarr.__version__, '| tracksdata ok')")
+print(probe.stdout.strip() or probe.stderr.strip()[-1200:])
+if probe.returncode != 0:
+    raise SystemExit("dependency stack does not import cleanly -- see above. Fix the "
+                     "install before running the model; a partial numpy split will "
+                     "surface as an unrelated-looking error deeper in.")
 """)
 
 code(r"""
@@ -160,147 +231,171 @@ WEIGHTS = PACK / "weights/unet_transformer/split_0/edge_predictor_best.pth"
 if not WEIGHTS.exists():
     raise SystemExit(f"weights not found at {WEIGHTS}")
 print(f"weights: {WEIGHTS.name} ({WEIGHTS.stat().st_size/1e6:.1f} MB)")
+
+# --- run configuration, baked into the worker script below -------------------
+# notes/15 §3 transcribed DET_THRESHOLD = 0.985 from the public notebook; their script's
+# own default is 0.99. Run both, so the operating point is measured here rather than
+# inherited from a five-day-old reading of a notebook that has since 404'd.
+DET_THRESHOLDS = (0.985, 0.99)
+N_DATASETS = 6        # run 1 is a plumbing + timing check, not a score
+UNET_BATCH = 4
+print(f"config: det_thresholds={DET_THRESHOLDS}  n_datasets={N_DATASETS}  "
+      f"unet_batch={UNET_BATCH}")
 """)
 
-md("""## 1. Import their inference code
+md("""## 1. Run everything in a fresh interpreter
 
-`dataspec` is replaced with a shim before the import. It exists to carry the author's local
-paths (`USERNAME`, `WEIGHTS_PATH`, `DATASET_PATH`, `PREDICTIONS_PATH`), none of which exist
-here — and `predict_unet_transformer` imports three of them at module scope, so a missing
-or assertive `dataspec` would break the import rather than one function.
+The pack's wheels upgrade numpy **2.0.2 -> 2.4.6**, and this notebook's process already
+imported numpy 2.0.2's compiled extensions before that happened. In-process the result is a
+hybrid — old `.so` files already resident, new pure-Python files on disk — which surfaces as
+
+```
+AttributeError: module 'numpy._core._multiarray_umath' has no attribute '_blas_supports_fpe'
+```
+
+A fresh interpreter imports the same stack cleanly (the probe above proves it), so the
+whole job — their model, our `Harness`, the scoring — runs in a **subprocess** and returns
+JSON. That is also how their code is meant to be invoked: `predict_unet_transformer.py` has
+a `main()` and a CLI.
+
+Doing only *part* of the work in the subprocess would not help: our harness reads ground
+truth through `zarr`, which the same upgrade touched.
 """)
 
 code(r"""
+WORKER = WORK / "run_pack.py"
+WORKER.write_text(f'''
+import json, sys, time, types, hashlib
+from pathlib import Path
+import numpy as np
+
+PACK = Path({str(PACK)!r})
+REPO = Path({str(REPO)!r})
+TRAIN = Path({str(TRAIN)!r})
+WEIGHTS = Path({str(WEIGHTS)!r})
+OUT = Path({str(WORK / "pack_result.json")!r})
+N_DATASETS = {N_DATASETS}
+DET_THRESHOLDS = {DET_THRESHOLDS!r}
+UNET_BATCH = {UNET_BATCH}
+
+import os
+os.environ["CELLMOT_REPO"] = {str(CELLMOT)!r}
+
+import torch
+DEV = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("worker numpy", np.__version__, "torch", torch.__version__, "device", DEV, flush=True)
+
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(PACK / "repo" / "src"))
 sys.path.insert(0, str(PACK / "repo" / "scripts"))
 
-# Shim BEFORE importing their module. Their dataspec carries local paths; we supply the
-# three names imported at module scope plus the two used inside functions we do not call.
+# Shim their dataspec: it carries the author local paths, and predict_unet_transformer
+# imports three of its names at module scope.
 _ds = types.ModuleType("dataspec")
-_ds.USERNAME = "claude"
-_ds.INTERACTIVE = False
-_ds.WEIGHTS_PATH = PACK / "weights"
-_ds.DATASET_PATH = TRAIN
-_ds.PREDICTIONS_PATH = WORK / "predictions"
+_ds.USERNAME = "claude"; _ds.INTERACTIVE = False
+_ds.WEIGHTS_PATH = PACK / "weights"; _ds.DATASET_PATH = TRAIN
+_ds.PREDICTIONS_PATH = Path("/kaggle/working/predictions")
 sys.modules["dataspec"] = _ds
 
 import predict_unet_transformer as P
-print("imported their predict module:",
-      [n for n in ("predict_video", "load_model", "PredictConfig") if hasattr(P, n)])
-
-model, window_size, downsample = P.load_model(WEIGHTS, DEV)
-n_par = sum(p.numel() for p in model.parameters())
-print(f"model loaded: {n_par:,} parameters, window_size={window_size}, "
-      f"downsample={downsample}")
-print(f"  our pipeline uses downsample=(1, 4, 4) — "
-      f"{'MATCH' if tuple(downsample) == (1, 4, 4) else 'MISMATCH, investigate'}")
-""")
-
-md("""## 2. Wrap it as a predictor and score on our harness
-
-`notes/15` §3 recorded `DET_THRESHOLD = 0.985` and `USE_ILP = 1` from the public notebook;
-their script's own default is 0.99. Both are run so the choice is measured rather than
-inherited from a transcription.
-""")
-
-code(r"""
 from harness import Harness
 from pipeline.classical import build_graph as our_build_graph
 
-DET_THRESHOLDS = (0.985, 0.99)
-USE_ILP = True
-N_DATASETS = 6            # run 1 is a plumbing + timing check, not a score
-UNET_BATCH = 4
+model, window_size, downsample = P.load_model(WEIGHTS, DEV)
+n_par = sum(p.numel() for p in model.parameters())
+print(f"model {{n_par:,}} params, window_size={{window_size}}, downsample={{downsample}}",
+      flush=True)
 
-train_names = sorted({p.stem for p in TRAIN.glob("*.zarr")}
-                     & {p.stem for p in TRAIN.glob("*.geff")})
-def stable_key(n): return int(hashlib.sha1(n.encode()).hexdigest(), 16)
-by_prefix = {}
-for n in train_names:
-    by_prefix.setdefault(n.split("_")[0], []).append(n)
-# Same stable, embryo-balanced selection our other notebooks use, so the subset is not a
-# different population from the one the champion was measured on.
+names = sorted({{p.stem for p in TRAIN.glob("*.zarr")}}
+               & {{p.stem for p in TRAIN.glob("*.geff")}})
+def key(n): return int(hashlib.sha1(n.encode()).hexdigest(), 16)
+by = {{}}
+for n in names:
+    by.setdefault(n.split("_")[0], []).append(n)
 SUBSET = []
-for pfx, ns in sorted(by_prefix.items()):
-    SUBSET += sorted(ns, key=stable_key)[:max(1, round(N_DATASETS * len(ns) / len(train_names)))]
+for pfx, ns in sorted(by.items()):
+    SUBSET += sorted(ns, key=key)[:max(1, round(N_DATASETS * len(ns) / len(names)))]
 SUBSET = sorted(SUBSET)[:N_DATASETS]
-print(f"{len(SUBSET)} datasets: {SUBSET}")
+print("subset:", SUBSET, flush=True)
 
-CACHE = WORK / "cache"; CACHE.mkdir(parents=True, exist_ok=True)
-h = Harness(data_dir=TRAIN, cache_dir=None)   # no cache: arms differ by threshold
+h = Harness(data_dir=TRAIN, cache_dir=None)
+out = {{"subset": SUBSET, "n_params": int(n_par), "window_size": int(window_size),
+       "downsample": [int(x) for x in downsample], "device": str(DEV),
+       "scores": {{}}, "summaries": {{}}, "sec_per_dataset": {{}}}}
 
-TIMES = {}
-
-def make_predictor(det_threshold):
-    cfg = P.PredictConfig(det_threshold=det_threshold, use_ilp=False)
-    def _fn(name, data_dir):
+for th in DET_THRESHOLDS:
+    cfg = P.PredictConfig(det_threshold=th, use_ilp=False)
+    times = []
+    def fn(name, data_dir, _cfg=cfg, _times=times):
         t0 = time.time()
         coords, edges = P.predict_video(
-            model, Path(data_dir) / f"{name}.zarr", DEV, cfg=cfg,
-            window_size=window_size, unet_batch_size=UNET_BATCH,
-            downsample=downsample,
-        )
-        # Their coords are ORIGINAL voxel space already (predict_video scales by ds_arr
-        # before returning), which is the space our Tracks live in -- no conversion.
+            model, Path(data_dir) / f"{{name}}.zarr", DEV, cfg=_cfg,
+            window_size=window_size, unet_batch_size=UNET_BATCH, downsample=downsample)
         idx = [(int(s), int(t)) for s, t, _p, _d in edges]
         g = our_build_graph(np.asarray(coords, float), idx)
-        TIMES.setdefault(det_threshold, []).append(time.time() - t0)
-        print(f"    {name:<22} {g.n_nodes:>7,} nodes {g.n_edges:>7,} edges "
-              f"({time.time()-t0:.0f}s)", flush=True)
+        _times.append(time.time() - t0)
+        print(f"    {{name:<22}} {{g.n_nodes:>7,}} nodes {{g.n_edges:>7,}} edges "
+              f"({{time.time()-t0:.0f}}s)", flush=True)
         return g
-    return _fn
-
-results = {}
-for th in DET_THRESHOLDS:
-    print(f"\n=== det_threshold={th} (ILP off for run 1) ===", flush=True)
-    t0 = time.time()
-    res = h.evaluate(make_predictor(th), arm=f"pack_th{th}", names=SUBSET, verbose=False)
+    print(f"=== det_threshold={{th}} ===", flush=True)
+    res = h.evaluate(fn, arm=f"pack_th{{th}}", names=SUBSET, verbose=False)
     s = res.summary
-    results[th] = res
-    n = sum(r["num_pred_nodes"] for r in res.rows.values())
-    print(f"  SCORE={s['score']:.4f}  edge_J={s['edge_jaccard']:.4f}  "
-          f"recall={s['node_recall']:.3f}  nodes={n:,}  ({time.time()-t0:.0f}s)", flush=True)
+    out["scores"][str(th)] = float(res.score)
+    out["summaries"][str(th)] = {{k: float(v) for k, v in s.items()
+                                 if isinstance(v, (int, float))}}
+    out["sec_per_dataset"][str(th)] = float(np.mean(times)) if times else None
+    print(f"  SCORE={{s['score']:.4f}} edge_J={{s['edge_jaccard']:.4f}} "
+          f"recall={{s['node_recall']:.3f}}", flush=True)
+
+OUT.write_text(json.dumps(out, indent=2))
+print("worker wrote", OUT, flush=True)
+''')
+print(f"wrote worker ({len(WORKER.read_text()):,} chars)")
+
+t0 = time.time()
+proc = subprocess.Popen([sys.executable, "-u", str(WORKER)],
+                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+for line in proc.stdout:
+    print(line.rstrip(), flush=True)
+rc = proc.wait()
+print(f"\nworker exited {rc} after {time.time()-t0:.0f}s")
+if rc != 0:
+    raise SystemExit(f"worker failed (exit {rc}) — see its output above")
 """)
 
 code(r"""
-CHAMPION_CV = 0.7070      # notes/14, and the 0.752 LB submission
-OURS_BEST_LEARNED = 0.6490
+import json
+RES = json.loads((WORK / "pack_result.json").read_text())
+CHAMPION_CV, OURS_BEST_LEARNED = 0.7070, 0.6490
 
-print(f"{'arm':<18} {'SCORE':>8} {'edge_J':>8} {'recall':>7} {'s/dataset':>10}")
-print("-" * 56)
-for th, res in results.items():
-    s = res.summary
-    t = np.mean(TIMES.get(th, [0])) if TIMES.get(th) else float("nan")
-    print(f"{'pack th='+str(th):<18} {s['score']:>8.4f} {s['edge_jaccard']:>8.4f} "
-          f"{s['node_recall']:>7.3f} {t:>10.1f}")
-print(f"{'champion (ours)':<18} {CHAMPION_CV:>8.4f} {'0.7128':>8} {'0.866':>7} {'~30':>10}")
-print(f"{'best learned (ours)':<18} {OURS_BEST_LEARNED:>8.4f} {'0.6556':>8} {'0.885':>7} {'—':>10}")
+print(f"{'arm':<20} {'SCORE':>8} {'edge_J':>8} {'recall':>7} {'s/dataset':>10}")
+print("-" * 58)
+for th, sc in RES["scores"].items():
+    s = RES["summaries"][th]
+    t = RES["sec_per_dataset"].get(th) or float("nan")
+    print(f"{'pack th='+th:<20} {sc:>8.4f} {s.get('edge_jaccard', float('nan')):>8.4f} "
+          f"{s.get('node_recall', float('nan')):>7.3f} {t:>10.1f}")
+print(f"{'champion (ours)':<20} {CHAMPION_CV:>8.4f} {0.7128:>8.4f} {0.866:>7.3f} {'~30':>10}")
+print(f"{'best learned (ours)':<20} {OURS_BEST_LEARNED:>8.4f} {0.6556:>8.4f} {0.885:>7.3f} {'-':>10}")
 
-best_th = max(results, key=lambda k: results[k].score) if results else None
-if best_th is not None:
-    best = results[best_th].score
-    print(f"\nbest pack arm: {best:.4f} at det_threshold={best_th}")
-    print(f"  vs our champion {CHAMPION_CV:.4f}: {best - CHAMPION_CV:+.4f}")
-    per_ds = np.mean([t for ts in TIMES.values() for t in ts])
-    print(f"\ncost: {per_ds:.1f} s/dataset on {DEV}")
-    print(f"  60-dataset CV run would take {per_ds*60/3600:.2f} h")
-    print(f"  a ~200-dataset hidden test set would take {per_ds*200/3600:.2f} h "
-          f"(12 h submission ceiling)")
-    if per_ds * 200 > 10.5 * 3600:
-        print("  !! that does not fit a scored rerun — batching or a faster path is "
-              "needed before any submission is possible")
+best_th = max(RES["scores"], key=lambda k: RES["scores"][k])
+best = RES["scores"][best_th]
+print(f"\nbest pack arm: {best:.4f} at det_threshold={best_th}")
+print(f"  vs our champion {CHAMPION_CV:.4f}:  {best - CHAMPION_CV:+.4f}")
+print(f"\nmodel: {RES['n_params']:,} params, window_size={RES['window_size']}, "
+      f"downsample={RES['downsample']}")
 
-(WORK / "claude_cluster_repro.json").write_text(json.dumps({
-    "scores": {str(k): v.score for k, v in results.items()},
-    "summaries": {str(k): dict(v.summary) for k, v in results.items()},
-    "sec_per_dataset": {str(k): float(np.mean(v)) for k, v in TIMES.items()},
-    "n_datasets": len(SUBSET), "subset": SUBSET,
-    "champion_cv": CHAMPION_CV, "window_size": int(window_size),
-    "downsample": list(map(int, downsample)), "n_params": int(n_par),
-    "device": str(DEV), "hours": (time.time() - T_START) / 3600,
-}, indent=2, default=float))
-print("\nwrote claude_cluster_repro.json")
+per = [v for v in RES["sec_per_dataset"].values() if v]
+if per:
+    p = sum(per) / len(per)
+    print(f"\ncost {p:.1f} s/dataset on {RES['device']}")
+    print(f"  60-dataset CV run: {p*60/3600:.2f} h")
+    print(f"  ~200-dataset scored rerun: {p*200/3600:.2f} h against a 12 h ceiling")
+    if p * 200 > 10.5 * 3600:
+        print("  !! does not fit a scored rerun as-is — batching or a faster path is "
+              "required before any submission is possible")
+print(f"\nNOTE: this is a MEASUREMENT ONLY. No submission is written; the "
+      f"Competition-Specific Rules section is still unconfirmed.")
 """)
 
 nb = {"cells": CELLS, "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},

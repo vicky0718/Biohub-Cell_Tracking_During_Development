@@ -244,10 +244,15 @@ class Harness:
                     "scorer is needed here but tracksdata is not importable. Either set "
                     "allow_divisions=False, or run where tracksdata is installed."
                 )
-            er = off.evaluate(pred.to_tracksdata(), gt.to_tracksdata(),
+            # Convert ONCE and reuse. `evaluate` writes its matching back onto the graphs
+            # it is handed (as `match_node_id`) and `node_recall` reads that attribute, so
+            # passing fresh conversions raises KeyError('match_node_id'). Latent until the
+            # first forking prediction: every fork-free arm takes the purescore branch
+            # below and never reaches this code.
+            pred_td, gt_td = pred.to_tracksdata(), gt.to_tracksdata()
+            er = off.evaluate(pred_td, gt_td,
                               scale=scale, max_distance=self.max_distance)
-            rec = er.num_pred_nodes and off.node_recall(pred.to_tracksdata(),
-                                                        gt.to_tracksdata())
+            rec = er.num_pred_nodes and off.node_recall(pred_td, gt_td)
             return off.per_sample_metrics(er, self._n_total(name), rec or 0.0)
 
         counts = purescore.count_edges(pred.t, pred.zyx, pred.edges,
