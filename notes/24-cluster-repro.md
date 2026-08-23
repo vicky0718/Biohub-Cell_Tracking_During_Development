@@ -105,3 +105,74 @@ separate runs. The asymmetry is real and it aims at the node-budget multiplier, 
    if the delta is positive.
 
 Runtime is not a risk (1.92 h of a 12 h ceiling). The banked floor remains **0.752**.
+
+---
+
+# Addendum, same day — both tracks measured
+
+## Track A: the offline submission works
+
+`claude_submit_pack`, internet OFF, on a P100:
+
+```
+numpy 2.4.6 | torch 2.5.1+cu121 | gpu_ok True
+model 2,076,706 params, window_size=2, downsample=(1, 4, 4)
+254,146 rows | 4 datasets | 135,083 nodes | 119,063 edges
+no malformed-graph problems
+```
+
+Three blockers had to be cleared, and each was measured rather than assumed:
+
+- **The free GPU is a P100 (sm_60)** and the image torch 2.10+cu128 builds sm_70+ only —
+  confirmed directly as `CUDA error: no kernel image is available`. Also confirmed:
+  `machineShape="nvidiaTeslaT4"` is **accepted by `kernels/push` and silently ignored**, so
+  the accelerator cannot be selected through the API. Fixed by `claude_torch_wheelhouse`
+  (23 wheels, 2.84 GB, torch 2.5.1+cu121), verified to resolve `--no-index` *before*
+  anything depended on it.
+- **A numpy split**: the pack's wheels upgrade 2.0.2 → 2.4.6 under a process that has
+  already imported the old one. All work runs in a subprocess.
+- **`write_submission` hardcoded `allow_divisions=False`**, which would have reported every
+  one of the model's hundreds of divisions per dataset as an out-degree violation.
+
+## Track B: training this architecture ourselves is not affordable
+
+The batch-size search answered it in one run.
+
+| batch | result |
+|---|---|
+| 4 | `CUDA error: invalid configuration argument` |
+| 2 | same |
+| **1** | **works — 1,014 s/epoch on 20 datasets** |
+
+`_TemporalAttention` reshapes to `(B·S, T, C)`, so the attention batch is
+batch-size × spatial-voxels; at B=2 on a 32³ stage that is 65,536, right at CUDA's 65,535
+grid limit. Only B=1 fits on a P100.
+
+Scaled to a full 128-dataset fold at **~6,492 s/epoch**:
+
+| epochs | wall time | |
+|---|---|---|
+| 50 | **90 h** | exceeds a 12 h session |
+| 100 | 180 h | |
+| **402** (their checkpoint) | **725 h ≈ 30 days** | |
+
+Kaggle gives roughly 30 GPU-hours per week and the deadline is ~5 weeks out, so 402 epochs
+is ~24 weeks of quota. **Not reachable.** Their trainer's own message — *"For 2 GPUs set the
+Kaggle accelerator to 'GPU T4 x2'"* — says this model was sized for more hardware than a
+free P100.
+
+T4 ×2 would help on two axes at once (sm_75 may lift the grid limit, allowing a larger
+batch, and their data-parallel path uses both cards), plausibly 10–15× combined. That puts
+50 epochs near 7 h — viable — but 402 still is not.
+
+## What this reprioritises
+
+Track B was justified by giving an honest CV and our own weights. At this cost it would
+produce a model **worse** than the pack's (fewer epochs from scratch) for many GPU-hours.
+
+Meanwhile the differentiator — our per-dataset budget calibration against their single
+global `det_threshold` — needs **no retraining at all**. It applies to their weights
+directly, and §3 above already establishes it can be screened as a delta.
+
+So the order should be: submission first, **differentiator second**, and our own training
+only if something specifically requires our own weights.

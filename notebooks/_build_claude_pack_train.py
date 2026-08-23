@@ -205,28 +205,58 @@ env["PYTHONPATH"] = f"{RUNREPO/'src'}:{RUNREPO/'scripts'}"
 env["BIOHUB_DATA_DIR"] = str(TRAIN)
 env["USER"] = "claude"
 
-cmd = [sys.executable, "-u", str(TRAINER),
-       "--data-dir", str(TRAIN),
-       "--splits", str(SPLITS),
-       "--split", "0",
-       "--epochs", str(EPOCHS),
-       "--batch-size", str(BATCH_SIZE),
-       "--window-size", str(WINDOW_SIZE),
-       "--unet-layers", UNET_LAYERS,
-       "--single-gpu"]
-print("running:", " ".join(cmd), "\n", flush=True)
+# Batch-size search, descending, in ONE run.
+#
+# batch_size=4 died with:
+#   RuntimeError: CUDA error: invalid configuration argument
+#     in scaled_dot_product_attention <- multi_head_attention_forward
+#     <- _TemporalAttention.forward
+# That attention reshapes to (B*S, T, C) where S is the spatial voxel count of the stage,
+# so the attention batch is B*S. CUDA caps grid y/z at 65535, and B=4 at a 32^3 stage is
+# 4*32768 = 131072 -- past it. Halving B halves that product.
+#
+# Their own trainer prints "For 2 GPUs set the Kaggle accelerator to 'GPU T4 x2'", so this
+# model is sized for more GPU than a single P100. Finding the largest batch that fits here
+# in one run beats discovering it one kernel launch at a time.
+def run_trainer(bs):
+    c = [sys.executable, "-u", str(TRAINER),
+         "--data-dir", str(TRAIN), "--splits", str(SPLITS), "--split", "0",
+         "--epochs", str(EPOCHS), "--batch-size", str(bs),
+         "--window-size", str(WINDOW_SIZE), "--unet-layers", UNET_LAYERS,
+         "--single-gpu"]
+    print("\n" + "=" * 70)
+    print(f"batch_size={bs}: " + " ".join(c[-12:]), flush=True)
+    t = time.time()
+    pr = subprocess.Popen(c, cwd=str(RUNREPO / "scripts"), env=env,
+                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    ls = []
+    for ln in pr.stdout:
+        ln = ln.rstrip()
+        # tqdm redraws the same bar hundreds of times; keep the content, drop the noise.
+        if "it/s]" in ln or "?it/s" in ln:
+            continue
+        ls.append(ln)
+        print(ln, flush=True)
+    return pr.wait(), time.time() - t, ls
 
-t0 = time.time()
-proc = subprocess.Popen(cmd, cwd=str(RUNREPO / "scripts"), env=env,
-                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-lines = []
-for line in proc.stdout:
-    line = line.rstrip()
-    lines.append(line)
-    print(line, flush=True)
-rc = proc.wait()
-elapsed = time.time() - t0
-print(f"\ntrainer exited {rc} after {elapsed:.0f}s")
+rc, elapsed, lines = 1, 0.0, []
+BATCH_TRIED = []
+for bs in (BATCH_SIZE, 2, 1):
+    rc, elapsed, lines = run_trainer(bs)
+    BATCH_TRIED.append({"batch_size": bs, "rc": rc, "elapsed_s": round(elapsed, 1)})
+    print(f"  -> batch_size={bs} exited {rc} after {elapsed:.0f}s", flush=True)
+    if rc == 0:
+        BATCH_SIZE = bs
+        break
+    if not any("invalid configuration argument" in l for l in lines):
+        print("  (failure is NOT the attention grid limit — stopping the search rather "
+              "than assuming a smaller batch helps)", flush=True)
+        break
+
+print(f"\nbatch-size search: {BATCH_TRIED}")
+if rc != 0:
+    print("!! no batch size completed. Either the P100 cannot run this attention at any "
+          "batch, or the failure is unrelated to batch size — read the trace above.")
 """)
 
 code(r"""
@@ -250,7 +280,8 @@ else:
 Path("/kaggle/working/claude_pack_train.json").write_text(json.dumps({
     "rc": rc, "elapsed_s": elapsed, "epochs": EPOCHS,
     "n_train": N_TRAIN_SUBSET, "n_test": N_TEST_SUBSET,
-    "batch_size": BATCH_SIZE, "window_size": WINDOW_SIZE,
+    "batch_size": BATCH_SIZE, "batch_tried": BATCH_TRIED,
+    "window_size": WINDOW_SIZE,
     "unet_layers": UNET_LAYERS, "folds": folds,
     "tail": lines[-60:],
 }, indent=2))
