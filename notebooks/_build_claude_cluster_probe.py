@@ -260,6 +260,71 @@ print("#" * 78)
 print(p.read_text(errors="replace") if p.exists() else "!! not present")
 """)
 
+code(r"""
+# CONTAMINATION CHECK. Their model trained on some subset of the same 199 competition
+# training datasets, and predict() reads the membership from `data_dir/dataset_splits.json`
+# -- which is NOT in the pack. Until it is known which datasets were in split_0's TRAIN
+# set, any score measured on competition train data is suspect: a model scores high on
+# data it was fitted to, and that number says nothing about the leaderboard.
+import os
+from pathlib import Path
+comp = None
+stack = [(Path("/kaggle/input"), 0)]
+while stack and comp is None:
+    d, depth = stack.pop(0)
+    try:
+        kids = list(os.scandir(d))
+    except (PermissionError, OSError):
+        continue
+    if any(e.name == "train" for e in kids) and any(e.name == "test" for e in kids):
+        comp = d; break
+    if depth < 5:
+        stack += [(Path(e.path), depth + 1) for e in kids
+                  if e.is_dir() and not e.name.endswith((".zarr", ".geff"))]
+print("competition root:", comp)
+if comp:
+    print("top-level entries:")
+    for e in sorted(os.scandir(comp), key=lambda x: x.name):
+        print("   ", e.name + ("/" if e.is_dir() else ""))
+    sp = comp / "dataset_splits.json"
+    print(f"\ndataset_splits.json present in competition data: {sp.exists()}")
+    if sp.exists():
+        print(sp.read_text()[:3000])
+
+# Their own split-generation logic, which is what would let the held-out fold be
+# reconstructed exactly rather than guessed.
+for rel in ("repo/scripts/dataspec.py", "repo/scripts/evaluate.py"):
+    f = PACK / rel
+    print("\n" + "#" * 78)
+    print("### FILE:", rel)
+    print("#" * 78)
+    print(f.read_text(errors="replace") if f.exists() else "!! not present")
+""")
+
+code(r"""
+# Only the split-making part of the training script -- the whole file is 50 KB.
+import re
+tp = PACK / "repo/scripts/train_unet_transformer.py"
+if tp.exists():
+    src = tp.read_text(errors="replace")
+    print(f"train_unet_transformer.py: {len(src):,} chars")
+    hits = [m.start() for m in re.finditer(r"split|fold|KFold|shuffle|seed|random", src)]
+    shown, last = 0, -1
+    for h in hits:
+        a = src.rfind("\n", 0, max(0, h - 400)) + 1
+        b = src.find("\n", h + 400)
+        if a <= last:
+            continue
+        last = b
+        print("-" * 70)
+        print(src[a:b if b > 0 else len(src)])
+        shown += 1
+        if shown >= 12:
+            break
+else:
+    print("!! train_unet_transformer.py not present")
+""")
+
 nb = {"cells": CELLS, "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
       "language_info": {"name": "python", "version": "3.11"}}, "nbformat": 4, "nbformat_minor": 5}
 OUT.write_text(json.dumps(nb, indent=1))
