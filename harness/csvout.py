@@ -84,13 +84,20 @@ def graph_rows(tracks, name: str, start_id: int):
         rid += 1
 
 
-def write_submission(graphs, csv_path: Path | str, verbose: bool = True) -> dict:
+def write_submission(graphs, csv_path: Path | str, verbose: bool = True,
+                     allow_divisions: bool = False) -> dict:
     """Stream `{dataset_name: Tracks}` (or an iterable of pairs) to a submission CSV.
 
     Accepts an iterable of `(name, tracks)` as well as a dict, so a caller can predict
     one dataset at a time and never hold more than one graph in memory.
 
     Returns a summary dict; `problems` is empty when every graph passed `check_graph`.
+
+    ``allow_divisions`` must match what the predictor actually emits. Every arm in this
+    project up to `notes/23` was fork-free, so False was right; a model that predicts
+    divisions -- the public pack's does, hundreds per dataset -- would otherwise have every
+    one of them reported as an out-degree violation, burying any real problem in noise.
+    Divisions are worth 0.1 of the 1.1 maximum, so emitting them is the point, not a fault.
     """
     csv_path = Path(csv_path)
     csv_path.parent.mkdir(parents=True, exist_ok=True)
@@ -101,7 +108,7 @@ def write_submission(graphs, csv_path: Path | str, verbose: bool = True) -> dict
         w = csv.writer(fh)
         w.writerow(COLUMNS)
         for name, tr in items:
-            problems += check_graph(tr, name)
+            problems += check_graph(tr, name, allow_divisions=allow_divisions)
             for row in graph_rows(tr, name, rid):
                 w.writerow(row)
             rid += tr.n_nodes + tr.n_edges

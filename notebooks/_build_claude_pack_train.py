@@ -183,12 +183,25 @@ print("verified: no dataset and no embryo appears on both sides of any fold")
 md("""## 2. Train, and measure what an epoch costs""")
 
 code(r"""
-TRAINER = PACK / "repo" / "scripts" / "train_unet_transformer.py"
+# Their dataspec sets WEIGHTS_PATH = <repo>/weights, computed from __file__ -- and the
+# pack is a READ-ONLY mount, so the trainer dies at
+#   OSError: [Errno 30] Read-only file system: '.../repo/weights'
+# before the first epoch. Copying the repo somewhere writable fixes every derived path at
+# once (weights/, predictions/, results/) rather than shimming them one at a time.
+import shutil
+RUNREPO = Path("/kaggle/working/repo")
+if not RUNREPO.exists():
+    shutil.copytree(PACK / "repo", RUNREPO)
+    print(f"copied repo -> {RUNREPO}")
+for sub in ("weights", "predictions", "results"):
+    (RUNREPO / sub).mkdir(parents=True, exist_ok=True)
+
+TRAINER = RUNREPO / "scripts" / "train_unet_transformer.py"
 if not TRAINER.exists():
     raise SystemExit(f"trainer not found at {TRAINER}")
 
 env = dict(os.environ)
-env["PYTHONPATH"] = f"{PACK/'repo'/'src'}:{PACK/'repo'/'scripts'}"
+env["PYTHONPATH"] = f"{RUNREPO/'src'}:{RUNREPO/'scripts'}"
 env["BIOHUB_DATA_DIR"] = str(TRAIN)
 env["USER"] = "claude"
 
@@ -204,7 +217,7 @@ cmd = [sys.executable, "-u", str(TRAINER),
 print("running:", " ".join(cmd), "\n", flush=True)
 
 t0 = time.time()
-proc = subprocess.Popen(cmd, cwd=str(PACK / "repo" / "scripts"), env=env,
+proc = subprocess.Popen(cmd, cwd=str(RUNREPO / "scripts"), env=env,
                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 lines = []
 for line in proc.stdout:
