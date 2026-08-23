@@ -1,0 +1,6495 @@
+/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+
+  validate(nb)
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+candidate pack roots: ['/kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1']
+
+using /kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1
+
+66 entries (depth<=6, <=40 files/dir), 0.1s
+
+
+
+  ARTIFACT_MANIFEST.json                                                      0.00 MB
+
+  README.md                                                                   0.00 MB
+
+  kaggle_dependency_install_command.txt                                       0.00 MB
+
+  requirements-unet-ilp-kaggle-predownload.txt                                0.00 MB
+
+  requirements-unet-ilp.txt                                                   0.00 MB
+
+  source_scripts/build_biohub_support_pack.py                                 0.02 MB
+
+  source_scripts/package_and_upload_support_pack_version.sh                   0.01 MB
+
+  source_scripts/run_full_frame_center_training.sh                            0.01 MB
+
+  source_scripts/train_full_frame_center_detector.py                          0.04 MB
+
+  wheels/annotated_doc-0.0.4-py3-none-any.whl                                 0.01 MB
+
+  wheels/annotated_types-0.7.0-py3-none-any.whl                               0.01 MB
+
+  wheels/bidict-0.23.1-py3-none-any.whl                                       0.03 MB
+
+  wheels/blosc2-4.7.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl      6.75 MB
+
+  wheels/certifi-2026.6.17-py3-none-any.whl                                   0.13 MB
+
+  wheels/charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl      0.22 MB
+
+  wheels/click-8.4.2-py3-none-any.whl                                         0.12 MB
+
+  wheels/cloudpickle-3.1.2-py3-none-any.whl                                   0.02 MB
+
+  wheels/dask-2026.6.0-py3-none-any.whl                                       1.49 MB
+
+  wheels/deprecated-1.3.1-py2.py3-none-any.whl                                0.01 MB
+
+  wheels/donfig-0.8.1.post1-py3-none-any.whl                                  0.02 MB
+
+  wheels/fsspec-2026.6.0-py3-none-any.whl                                     0.20 MB
+
+  wheels/geff-1.2.0.1.1-py3-none-any.whl                                      0.07 MB
+
+  wheels/geff_spec-1.1.1-py3-none-any.whl                                     0.01 MB
+
+  wheels/google_crc32c-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl      0.03 MB
+
+  wheels/greenlet-3.5.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl      0.61 MB
+
+  wheels/idna-3.18-py3-none-any.whl                                           0.07 MB
+
+  wheels/ilpy-0.6.0-py3-none-any.whl                                          0.03 MB
+
+  wheels/imagecodecs-2026.6.26-cp312-abi3-manylinux_2_28_x86_64.whl          28.86 MB
+
+  wheels/imageio-2.37.3-py3-none-any.whl                                      0.32 MB
+
+  wheels/lazy_loader-0.5-py3-none-any.whl                                     0.01 MB
+
+  wheels/llvmlite-0.47.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl     56.28 MB
+
+  wheels/locket-1.0.0-py2.py3-none-any.whl                                    0.00 MB
+
+  wheels/markdown_it_py-4.2.0-py3-none-any.whl                                0.09 MB
+
+  wheels/mdurl-0.1.2-py3-none-any.whl                                         0.01 MB
+
+  wheels/msgpack-1.2.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl      0.42 MB
+
+  wheels/ndindex-1.10.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl      0.55 MB
+
+  wheels/networkx-3.6.1-py3-none-any.whl                                      2.07 MB
+
+  wheels/numba-0.65.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl      3.80 MB
+
+  wheels/numcodecs-0.15.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl      8.88 MB
+
+  wheels/numexpr-2.14.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl      0.44 MB
+
+  wheels/numpy-2.4.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl     16.65 MB
+
+  wheels/packaging-26.2-py3-none-any.whl                                      0.10 MB
+
+  wheels/partd-1.4.2-py3-none-any.whl                                         0.02 MB
+
+  wheels/pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl      7.09 MB
+
+  wheels/polars-1.42.0-py3-none-any.whl                                       0.84 MB
+
+  wheels/polars_runtime_32-1.42.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl     57.30 MB
+
+  wheels/psygnal-0.15.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl      0.89 MB
+
+  wheels/pyarrow-24.0.0-cp312-cp312-manylinux_2_28_x86_64.whl                48.86 MB
+
+  wheels/pydantic-2.13.4-py3-none-any.whl                                     0.47 MB
+
+  wheels/... 22 more files 
+
+  repo/scripts/augmentations.py                                               0.00 MB
+
+  repo/scripts/dataspec.py                                                    0.00 MB
+
+  repo/scripts/evaluate.py                                                    0.01 MB
+
+  repo/scripts/predict_unet_transformer.py                                    0.03 MB
+
+  repo/scripts/train_unet_transformer.py                                      0.05 MB
+
+  repo/src/biohub_tracking/__init__.py                                        0.00 MB
+
+  repo/src/biohub_tracking/division_metrics.py                                0.02 MB
+
+  repo/src/biohub_tracking/img_proc.py                                        0.01 MB
+
+  repo/src/biohub_tracking/io.py                                              0.01 MB
+
+  repo/src/biohub_tracking/metrics.py                                         0.02 MB
+
+  weights/unet_transformer/split_0/checkpoint_last.pth                       25.07 MB
+
+  weights/unet_transformer/split_0/config.json                                0.00 MB
+
+  weights/unet_transformer/split_0/edge_predictor_best.pth                    8.36 MB
+
+  repo/src/biohub_tracking/models/__init__.py                                 0.00 MB
+
+  repo/src/biohub_tracking/models/simple_node_transformer.py                  0.01 MB
+
+  repo/src/biohub_tracking/models/temporal_unet.py                            0.01 MB
+
+
+
+listed total 277.5 MB
+
+2 checkpoint file(s)
+
+
+
+==============================================================================
+
+weights/unet_transformer/split_0/checkpoint_last.pth
+
+  top-level keys (8): ['epoch', 'best_score', 'model_state_dict', 'optimizer_state_dict', 'model_config', 'method', 'fold', 'metrics']
+
+    epoch = 402
+
+    best_score = 0.9834918738001537
+
+    optimizer_state_dict (config dict) = {"state": {"0": {"step": "tensor(940278.)", "exp_avg": "tensor([[[[[-2.4498e-05,  7.9760e-06,  2.9512e-05],\n           [-9.9259e-06,  8.7943e-06,  1.4216e-05],\n           [ 3.8451e-05,  4.6248e-05,  2.6694e-05]],\n\n          [[-1.2736e-05,  2.2177e-05,  3.8952e-05],\n           [-9.5947e-06,  1.5140e-05,  1.8109e-05],\n           [ 2.6374e-05,  4.0969e-05,  2.1512e-05]],\n\n          [[-1.3534e
+
+    model_config (config dict) = {"unet_out_channels": 32, "unet_layers": [32, 64, 128], "downsample": [1, 4, 4], "window_size": 2, "pool_kernel_um": 5.0}
+
+    method = 'unet_transformer_5090_50ep_v1'
+
+    fold = 0
+
+    metrics (config dict) = {"edge_loss": 0.00016856644078224755, "det_loss": 0.002302572453824075, "test_loss": 0.0001229801857024339, "test_acc": 0.9998819222750215, "test_recall": 0.9764795144157815, "score": 0.9763642139362312}
+
+  -> state_dict under 'model_state_dict'
+
+  136 tensors, 2,077,996 parameters
+
+    unet.encoder_blocks.0.0.weight                             (32, 1, 3, 3, 3)
+
+    unet.encoder_blocks.0.1.weight                             (32,)
+
+    unet.encoder_blocks.0.1.bias                               (32,)
+
+    unet.encoder_blocks.0.1.running_mean                       (32,)
+
+    unet.encoder_blocks.0.1.running_var                        (32,)
+
+    unet.encoder_blocks.0.1.num_batches_tracked                ()
+
+    unet.encoder_blocks.0.3.weight                             (32, 32, 3, 3, 3)
+
+    unet.encoder_blocks.0.4.weight                             (32,)
+
+    unet.encoder_blocks.0.4.bias                               (32,)
+
+    unet.encoder_blocks.0.4.running_mean                       (32,)
+
+    unet.encoder_blocks.0.4.running_var                        (32,)
+
+    unet.encoder_blocks.0.4.num_batches_tracked                ()
+
+    unet.encoder_blocks.1.0.weight                             (64, 32, 3, 3, 3)
+
+    unet.encoder_blocks.1.1.weight                             (64,)
+
+    unet.encoder_blocks.1.1.bias                               (64,)
+
+    unet.encoder_blocks.1.1.running_mean                       (64,)
+
+    unet.encoder_blocks.1.1.running_var                        (64,)
+
+    unet.encoder_blocks.1.1.num_batches_tracked                ()
+
+    unet.encoder_blocks.1.3.weight                             (64, 64, 3, 3, 3)
+
+    unet.encoder_blocks.1.4.weight                             (64,)
+
+    unet.encoder_blocks.1.4.bias                               (64,)
+
+    unet.encoder_blocks.1.4.running_mean                       (64,)
+
+    unet.encoder_blocks.1.4.running_var                        (64,)
+
+    unet.encoder_blocks.1.4.num_batches_tracked                ()
+
+    unet.encoder_blocks.2.0.weight                             (128, 64, 3, 3, 3)
+
+    unet.encoder_blocks.2.1.weight                             (128,)
+
+    unet.encoder_blocks.2.1.bias                               (128,)
+
+    unet.encoder_blocks.2.1.running_mean                       (128,)
+
+    unet.encoder_blocks.2.1.running_var                        (128,)
+
+    unet.encoder_blocks.2.1.num_batches_tracked                ()
+
+    unet.encoder_blocks.2.3.weight                             (128, 128, 3, 3, 3)
+
+    unet.encoder_blocks.2.4.weight                             (128,)
+
+    unet.encoder_blocks.2.4.bias                               (128,)
+
+    unet.encoder_blocks.2.4.running_mean                       (128,)
+
+    unet.encoder_blocks.2.4.running_var                        (128,)
+
+    unet.encoder_blocks.2.4.num_batches_tracked                ()
+
+    unet.temporal_blocks.1.norm.weight                         (64,)
+
+    unet.temporal_blocks.1.norm.bias                           (64,)
+
+    unet.temporal_blocks.1.attn.in_proj_weight                 (192, 64)
+
+    unet.temporal_blocks.1.attn.in_proj_bias                   (192,)
+
+    unet.temporal_blocks.1.attn.out_proj.weight                (64, 64)
+
+    unet.temporal_blocks.1.attn.out_proj.bias                  (64,)
+
+    unet.temporal_blocks.2.norm.weight                         (128,)
+
+    unet.temporal_blocks.2.norm.bias                           (128,)
+
+    unet.temporal_blocks.2.attn.in_proj_weight                 (384, 128)
+
+    unet.temporal_blocks.2.attn.in_proj_bias                   (384,)
+
+    unet.temporal_blocks.2.attn.out_proj.weight                (128, 128)
+
+    unet.temporal_blocks.2.attn.out_proj.bias                  (128,)
+
+    unet.decoder_blocks.0.0.weight                             (64, 192, 3, 3, 3)
+
+    unet.decoder_blocks.0.1.weight                             (64,)
+
+    unet.decoder_blocks.0.1.bias                               (64,)
+
+    unet.decoder_blocks.0.1.running_mean                       (64,)
+
+    unet.decoder_blocks.0.1.running_var                        (64,)
+
+    unet.decoder_blocks.0.1.num_batches_tracked                ()
+
+    unet.decoder_blocks.0.3.weight                             (64, 64, 3, 3, 3)
+
+    unet.decoder_blocks.0.4.weight                             (64,)
+
+    unet.decoder_blocks.0.4.bias                               (64,)
+
+    unet.decoder_blocks.0.4.running_mean                       (64,)
+
+    unet.decoder_blocks.0.4.running_var                        (64,)
+
+    unet.decoder_blocks.0.4.num_batches_tracked                ()
+
+    ... 76 more
+
+==============================================================================
+
+weights/unet_transformer/split_0/edge_predictor_best.pth
+
+  top-level keys (136): ['unet.encoder_blocks.0.0.weight', 'unet.encoder_blocks.0.1.weight', 'unet.encoder_blocks.0.1.bias', 'unet.encoder_blocks.0.1.running_mean', 'unet.encoder_blocks.0.1.running_var', 'unet.encoder_blocks.0.1.num_batches_tracked', 'unet.encoder_blocks.0.3.weight', 'unet.encoder_blocks.0.4.weight', 'unet.encoder_blocks.0.4.bias', 'unet.encoder_blocks.0.4.running_mean', 'unet.encoder_blocks.0.4.running_var', 'unet.encoder_blocks.0.4.num_batches_tracked'] ...
+
+  -> the dict IS the state_dict
+
+  136 tensors, 2,077,996 parameters
+
+    unet.encoder_blocks.0.0.weight                             (32, 1, 3, 3, 3)
+
+    unet.encoder_blocks.0.1.weight                             (32,)
+
+    unet.encoder_blocks.0.1.bias                               (32,)
+
+    unet.encoder_blocks.0.1.running_mean                       (32,)
+
+    unet.encoder_blocks.0.1.running_var                        (32,)
+
+    unet.encoder_blocks.0.1.num_batches_tracked                ()
+
+    unet.encoder_blocks.0.3.weight                             (32, 32, 3, 3, 3)
+
+    unet.encoder_blocks.0.4.weight                             (32,)
+
+    unet.encoder_blocks.0.4.bias                               (32,)
+
+    unet.encoder_blocks.0.4.running_mean                       (32,)
+
+    unet.encoder_blocks.0.4.running_var                        (32,)
+
+    unet.encoder_blocks.0.4.num_batches_tracked                ()
+
+    unet.encoder_blocks.1.0.weight                             (64, 32, 3, 3, 3)
+
+    unet.encoder_blocks.1.1.weight                             (64,)
+
+    unet.encoder_blocks.1.1.bias                               (64,)
+
+    unet.encoder_blocks.1.1.running_mean                       (64,)
+
+    unet.encoder_blocks.1.1.running_var                        (64,)
+
+    unet.encoder_blocks.1.1.num_batches_tracked                ()
+
+    unet.encoder_blocks.1.3.weight                             (64, 64, 3, 3, 3)
+
+    unet.encoder_blocks.1.4.weight                             (64,)
+
+    unet.encoder_blocks.1.4.bias                               (64,)
+
+    unet.encoder_blocks.1.4.running_mean                       (64,)
+
+    unet.encoder_blocks.1.4.running_var                        (64,)
+
+    unet.encoder_blocks.1.4.num_batches_tracked                ()
+
+    unet.encoder_blocks.2.0.weight                             (128, 64, 3, 3, 3)
+
+    unet.encoder_blocks.2.1.weight                             (128,)
+
+    unet.encoder_blocks.2.1.bias                               (128,)
+
+    unet.encoder_blocks.2.1.running_mean                       (128,)
+
+    unet.encoder_blocks.2.1.running_var                        (128,)
+
+    unet.encoder_blocks.2.1.num_batches_tracked                ()
+
+    unet.encoder_blocks.2.3.weight                             (128, 128, 3, 3, 3)
+
+    unet.encoder_blocks.2.4.weight                             (128,)
+
+    unet.encoder_blocks.2.4.bias                               (128,)
+
+    unet.encoder_blocks.2.4.running_mean                       (128,)
+
+    unet.encoder_blocks.2.4.running_var                        (128,)
+
+    unet.encoder_blocks.2.4.num_batches_tracked                ()
+
+    unet.temporal_blocks.1.norm.weight                         (64,)
+
+    unet.temporal_blocks.1.norm.bias                           (64,)
+
+    unet.temporal_blocks.1.attn.in_proj_weight                 (192, 64)
+
+    unet.temporal_blocks.1.attn.in_proj_bias                   (192,)
+
+    unet.temporal_blocks.1.attn.out_proj.weight                (64, 64)
+
+    unet.temporal_blocks.1.attn.out_proj.bias                  (64,)
+
+    unet.temporal_blocks.2.norm.weight                         (128,)
+
+    unet.temporal_blocks.2.norm.bias                           (128,)
+
+    unet.temporal_blocks.2.attn.in_proj_weight                 (384, 128)
+
+    unet.temporal_blocks.2.attn.in_proj_bias                   (384,)
+
+    unet.temporal_blocks.2.attn.out_proj.weight                (128, 128)
+
+    unet.temporal_blocks.2.attn.out_proj.bias                  (128,)
+
+    unet.decoder_blocks.0.0.weight                             (64, 192, 3, 3, 3)
+
+    unet.decoder_blocks.0.1.weight                             (64,)
+
+    unet.decoder_blocks.0.1.bias                               (64,)
+
+    unet.decoder_blocks.0.1.running_mean                       (64,)
+
+    unet.decoder_blocks.0.1.running_var                        (64,)
+
+    unet.decoder_blocks.0.1.num_batches_tracked                ()
+
+    unet.decoder_blocks.0.3.weight                             (64, 64, 3, 3, 3)
+
+    unet.decoder_blocks.0.4.weight                             (64,)
+
+    unet.decoder_blocks.0.4.bias                               (64,)
+
+    unet.decoder_blocks.0.4.running_mean                       (64,)
+
+    unet.decoder_blocks.0.4.running_var                        (64,)
+
+    unet.decoder_blocks.0.4.num_batches_tracked                ()
+
+    ... 76 more
+
+21 small text/config file(s)
+
+
+
+==============================================================================
+
+ARTIFACT_MANIFEST.json
+
+{
+
+  "artifact_name": "biohub-tracking-support-pack-400ep-snapshot-v1",
+
+  "compatibility": {
+
+    "coordinate_order": [
+
+      "z",
+
+      "y",
+
+      "x"
+
+    ],
+
+    "coordinate_unit": "original_voxel",
+
+    "gate_diagnostics": {
+
+      "files": [
+
+        "weights/full_frame_center/gate_summary.json",
+
+        "weights/full_frame_center/gate_threshold_metrics.csv",
+
+        "weights/full_frame_center/gate_frame_metrics.csv",
+
+        "weights/full_frame_center/gate_peak_samples.csv"
+
+      ],
+
+      "purpose": "threshold calibration for full_frame_center node rescue",
+
+      "warning": "Sparse-label precision/recall are calibration features, not complete-cell metrics."
+
+    },
+
+    "models": {
+
+      "full_frame_center": {
+
+        "outputs": [
+
+          "center heatmap on XY-pooled volume",
+
+          "peak coordinates mapped back to original z/y/x voxel coordinates",
+
+          "peak score usable as a conservative node-rescue gate"
+
+        ],
+
+        "recommended_use": "Use only as a high-confidence rescue prior near graph gaps, short components, or unmatched motion endpoints. Avoid adding all peaks directly to the node set.",
+
+        "role": "auxiliary_center_prior"
+
+      },
+
+      "unet_transformer": {
+
+        "outputs": [
+
+          "node detections in original z/y/x voxel coordinates",
+
+          "learned edge probabilities between adjacent frames",
+
+          "ILP candidate graph before notebook-level graph repair"
+
+        ],
+
+        "role": "primary_graph_generator"
+
+      }
+
+    },
+
+    "schema_version": 1,
+
+    "voxel_scale_um": {
+
+      "x": 0.40625,
+
+      "y": 0.40625,
+
+      "z": 1.625
+
+    }
+
+  },
+
+  "contents": {
+
+    "full_frame_center_included": false,
+
+    "repo": {
+
+      "bytes": 148660,
+
+      "files": 13
+
+    },
+
+    "source_scripts": {
+
+      "build_biohub_support_pack.py": {
+
+        "bytes": 16869,
+
+        "path": "source_scripts/build_biohub_support_pack.py",
+
+        "sha256": "01a895ece59fd842bd80e936104d6a22be3c498cd87c7b8bf280a1f8367e1556"
+
+      },
+
+      "package_and_upload_support_pack_version.sh": {
+
+        "bytes": 5072,
+
+        "path": "source_scripts/package_and_upload_support_pack_version.sh",
+
+        "sha256": "3d51bbef78075247757dc39df641bfd34223d24b09eb04656709975599994941"
+
+      },
+
+      "run_full_frame_center_training.sh": {
+
+        "bytes": 9458,
+
+        "path": "source_scripts/run_full_frame_center_training.sh",
+
+        "sha256": "fefe6822cef273a60f12078efa8d59f3cde2b630cf5524faec5f38ce46173670"
+
+      },
+
+      "train_full_frame_center_detector.py": {
+
+        "bytes": 43133,
+
+        "path": "source_scripts/train_full_frame_center_detector.py",
+
+        "sha256": "96f39e25901fc3f728d08d945efa62c5eac28d4ef771d71889053b65396cde5e"
+
+      }
+
+    },
+
+    "weights": {
+
+      "bytes": 33432975,
+
+      "files": 3
+
+    },
+
+    "wheels_included": true
+
+  },
+
+  "generated_at_utc": "2026-07-08T22:41:42.637485+00:00",
+
+  "model": {
+
+    "config": {
+
+      "downsample": [
+
+        1,
+
+        4,
+
+        4
+
+      ],
+
+      "pool_kernel_um": 5.0,
+
+      "unet_layers": [
+
+        32,
+
+        64,
+
+        128
+
+      ],
+
+      "unet_out_channels": 32,
+
+      "window_size": 2
+
+    },
+
+    "method": "unet_transformer",
+
+    "weight_bytes": 8363159,
+
+    "weight_path": "weights/unet_transformer/split_0/edge_predictor_best.pth",
+
+    "weight_sha256": "12f6881ee3620a831697ca098ff8f48e687a24225f4e048b538deec3562fe771"
+
+  },
+
+  "models": {
+
+    "unet_transformer": {
+
+      "config": {
+
+        "downsample": [
+
+          1,
+
+          4,
+
+          4
+
+        ],
+
+        "pool_kernel_um": 5.0,
+
+        "unet_layers": [
+
+          32,
+
+          64,
+
+          128
+
+        ],
+
+        "unet_out_channels": 32,
+
+        "window_size": 2
+
+      },
+
+      "method": "unet_transformer",
+
+      "weight_bytes": 8363159,
+
+      "weight_path": "weights/unet_transformer/split_0/edge_predictor_best.pth",
+
+      "weight_sha256": "12f6881ee3620a831697ca098ff8f48e687a24225f4e048b538deec3562fe771"
+
+    }
+
+  },
+
+  "notes": [
+
+    "This support artifact includes offline dependency wheels for code-submission reruns.",
+
+    "U
+
+  ... [376 more chars]
+
+==============================================================================
+
+README.md
+
+# Biohub Tracking Support Pack V1
+
+
+
+This artifact contains the learned inference code and weights required by the
+
+UNet + node-transformer + ILP submission notebooks. When present, it can also
+
+contain a separately trained full-frame center detector used only as an
+
+auxiliary node-rescue prior.
+
+
+
+Included:
+
+
+
+- `repo/`: inference/training source used by the notebook.
+
+- `weights/`: `unet_transformer/split_0/edge_predictor_best.pth` and `config.json`.
+
+- `source_scripts/`: local training/packaging scripts used to create the support pack.
+
+- `requirements-unet-ilp.txt`: Python dependencies to install separately.
+
+- `requirements-unet-ilp-kaggle-predownload.txt`: quote-free package list for Kaggle dependency helpers.
+
+- `kaggle_dependency_install_command.txt`: one-line Kaggle dependency input command.
+
+- `ARTIFACT_MANIFEST.json`: generated provenance and weight checksum.
+
+- `wheels/`: offline dependency wheels for code-submission reruns.
+
+
+
+
+
+The manifest includes a `compatibility` section that defines the shared
+
+coordinate contract:
+
+
+
+```text
+
+coordinate order: z, y, x
+
+coordinate unit:  original voxel
+
+voxel scale:      z=1.625, y=x=0.40625 microns/voxel
+
+```
+
+
+
+If `weights/full_frame_center/` exists, the detector outputs are calibrated by:
+
+
+
+```text
+
+gate_summary.json
+
+gate_threshold_metrics.csv
+
+gate_frame_metrics.csv
+
+gate_peak_samples.csv
+
+```
+
+
+
+These files are sparse-label calibration features. They are intended for
+
+conservative node-rescue gates, not as complete-cell leaderboard estimates.
+
+
+
+Kaggle dependency input command:
+
+
+
+```bash
+
+pip install tracksdata zarr>=3.0.10,<4 pyscipopt geff ilpy polars blosc2 dask imagecodecs pyarrow rustworkx sqlalchemy
+
+```
+
+
+
+Do not add quotes around `zarr>=3.0.10,<4` in Kaggle's dependency input.
+
+
+
+==============================================================================
+
+kaggle_dependency_install_command.txt
+
+pip install tracksdata zarr>=3.0.10,<4 pyscipopt geff ilpy polars blosc2 dask imagecodecs pyarrow rustworkx sqlalchemy
+
+
+
+==============================================================================
+
+requirements-unet-ilp-kaggle-predownload.txt
+
+tracksdata
+
+zarr>=3.0.10,<4
+
+pyscipopt
+
+geff
+
+geff-spec
+
+ilpy
+
+polars
+
+polars-runtime-32
+
+blosc2
+
+dask
+
+imagecodecs
+
+pyarrow
+
+rustworkx
+
+sqlalchemy
+
+donfig
+
+google-crc32c
+
+numcodecs>=0.13,<0.16
+
+bidict
+
+psygnal
+
+rich
+
+networkx
+
+pydantic
+
+pydantic-core
+
+annotated-types
+
+typing-extensions
+
+typing-inspection
+
+markdown-it-py
+
+pygments
+
+click
+
+cloudpickle
+
+fsspec
+
+partd
+
+locket
+
+toolz
+
+pyyaml
+
+ndindex
+
+msgpack
+
+numexpr
+
+deprecated
+
+wrapt
+
+imageio
+
+pillow
+
+tifffile
+
+lazy-loader
+
+tqdm
+
+
+
+==============================================================================
+
+requirements-unet-ilp.txt
+
+# Learned UNet + node-transformer + ILP inference baseline.
+
+#
+
+# Kaggle GPU images usually already provide torch, numpy, pandas, scipy, and
+
+# scikit-image, but they are listed here so a clean environment is explicit.
+
+# In a code-competition notebook with internet disabled, install these before
+
+# submission or attach equivalent offline wheels as a Kaggle dataset.
+
+
+
+torch
+
+numpy>=2
+
+pandas>=2
+
+polars>=1.36
+
+zarr>=3.0.10,<4
+
+numcodecs>=0.13
+
+blosc2
+
+dask
+
+imagecodecs
+
+scikit-image>=0.24
+
+tqdm
+
+tracksdata
+
+pyscipopt
+
+geff>=1.1.3.1.1
+
+ilpy>=0.5.1
+
+pyarrow
+
+rustworkx>=0.17.1
+
+sqlalchemy>=2
+
+
+
+==============================================================================
+
+source_scripts/build_biohub_support_pack.py
+
+#!/usr/bin/env python
+
+"""Build a lightweight Biohub tracking inference artifact.
+
+
+
+The public full artifact contains:
+
+
+
+    repo/
+
+    weights/
+
+    wheels/
+
+
+
+For our notebook variants, only ``repo/`` and ``weights/`` are required when
+
+dependencies are installed separately. This script creates a reproducible
+
+support artifact with a manifest and optional Kaggle dataset metadata.
+
+"""
+
+
+
+from __future__ import annotations
+
+
+
+import argparse
+
+import hashlib
+
+import json
+
+import shutil
+
+from datetime import datetime, timezone
+
+from pathlib import Path
+
+
+
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+DEFAULT_SOURCE = ROOT / "PublicNotebook" / "cellmot-baseline-artifacts"
+
+DEFAULT_OUTPUT = ROOT / "PublicNotebook" / "biohub-tracking-support-pack-v1"
+
+DEFAULT_REQUIREMENTS = ROOT / "requirements-unet-ilp.txt"
+
+DEFAULT_PREDOWNLOAD_REQUIREMENTS = ROOT / "requirements-unet-ilp-kaggle-predownload.txt"
+
+DEFAULT_KAGGLE_INSTALL_COMMAND = ROOT / "kaggle_dependency_install_command.txt"
+
+
+
+
+
+def sha256_file(path: Path, block_size: int = 1024 * 1024) -> str:
+
+    h = hashlib.sha256()
+
+    with path.open("rb") as f:
+
+        while True:
+
+            block = f.read(block_size)
+
+            if not block:
+
+                break
+
+            h.update(block)
+
+    return h.hexdigest()
+
+
+
+
+
+def file_count_and_bytes(path: Path) -> tuple[int, int]:
+
+    count = 0
+
+    total = 0
+
+    for item in path.rglob("*"):
+
+        if item.is_file():
+
+            count += 1
+
+            total += item.stat().st_size
+
+    return count, total
+
+
+
+
+
+def validate_source(source: Path) -> None:
+
+    required = [
+
+        source / "repo" / "scripts" / "predict_unet_transformer.py",
+
+        source / "repo" / "scripts" / "train_unet_transformer.py",
+
+        source / "repo" / "src" / "tracking_cellmot" / "models" / "temporal_unet.py",
+
+        source / "weights" / "unet_transformer" / "split_0" / "edge_predictor_best.pth",
+
+        source / "weights" / "unet_transformer" / "split_0" / "config.json",
+
+    ]
+
+    missing = [path for path in required if not path.exists()]
+
+    if missing:
+
+        raise FileNotFoundError("Missing required source files:\n" + "\n".join(map(str, missing)))
+
+
+
+
+
+def copy_tree(src: Path, dst: Path) -> None:
+
+    if dst.exists():
+
+        shutil.rmtree(dst)
+
+    shutil.copytree(src, dst)
+
+
+
+
+
+def sanitise_repo_names(repo_dir: Path) -> None:
+
+    """Use neutral package/docs names inside the uploaded support artifact."""
+
+    for generated_dir in ["predictions", "results", "__pycache__"]:
+
+        path = repo_dir / generated_dir
+
+        if path.exists():
+
+            shutil.rmtree(path)
+
+
+
+    old_pkg = repo_dir / "src" / "tracking_cellmot"
+
+    new_pkg = repo_dir / "src" / "biohub_tracking"
+
+    if old_pkg.exists():
+
+        if new_pkg.exists():
+
+            shutil.rmtree(new_pkg)
+
+        old_pkg.rename(new_pkg)
+
+
+
+    replacements = {
+
+        "tracking_cellmot": "biohub_tracking",
+
+        "tracking-cellmot": "biohub-tracking",
+
+        "CellMot": "Biohub tracking",
+
+        "cellmot": "biohub_tracking",
+
+        "CELLMOT_DATA_DIR": "BIOHUB_DATA_DIR",
+
+    }
+
+    for path in repo_dir.rglob("*"):
+
+        if not path.is_file() or path.suffix not in {".py", ".md", ".txt"}:
+
+            continue
+
+        text = path.read_text(errors="ignore")
+
+        updated = text
+
+        for old, new in replacements.items():
+
+            updated = updated.replace(old, new)
+
+        if updated != text:
+
+            path.write_text(updated)
+
+
+
+
+
+def optional_file_info(path: Path, relative_path: str) -> dict | None:
+
+    if not path.exists():
+
+        return None
+
+    return {
+
+        "weight_path": relative_path,
+
+        "weight_bytes": path.stat().st_size,
+
+        "weight_sha256": sha256_file(path),
+
+    }
+
+
+
+
+
+def copy_source_scripts(output: Path) -> dict[str, dict]:
+
+    source_output = output / "source_scripts"
+
+    source_output.mkdir(parents=True, exist_ok=True)
+
+    source_files = [
+
+        (ROOT / "scripts" / "train_full_frame_center_detector.py", "train_full_frame_center_detector.py"),
+
+        (ROOT / "scripts" / "build_biohub_support_pack.py", "build_biohub_suppor
+
+  ... [12869 more chars]
+
+==============================================================================
+
+source_scripts/train_full_frame_center_detector.py
+
+#!/usr/bin/env python
+
+"""Train a full-frame 3D U-Net center-heatmap detector for Biohub tracking.
+
+
+
+This is a separate detector backend from the UNet+transformer edge model. It
+
+learns only cell centers:
+
+
+
+    frame volume -> XY pooled volume -> center heatmap
+
+
+
+The loss is positive-unlabelled: labelled centers are strong positives, dark
+
+background is a normal negative, and bright unlabelled voxels receive a small
+
+weight so sparse labels do not become hard false negatives.
+
+"""
+
+
+
+from __future__ import annotations
+
+
+
+import argparse
+
+import csv
+
+import json
+
+import math
+
+import os
+
+import random
+
+import shutil
+
+import time
+
+from dataclasses import asdict, dataclass, fields
+
+from pathlib import Path
+
+from typing import Any
+
+
+
+import numpy as np
+
+import torch
+
+import torch.nn as nn
+
+import torch.nn.functional as F
+
+from torch.utils.data import DataLoader, Dataset
+
+
+
+
+
+VOXEL_SCALE_UM = (1.625, 0.40625, 0.40625)
+
+
+
+
+
+@dataclass
+
+class FullFrameTrainingConfig:
+
+    seed: int = 2026
+
+    pool_factor: int = 4
+
+    base_channels: int = 24
+
+
+
+    gauss_sigma: float = 1.0
+
+    pos_thresh: float = 0.05
+
+    bg_quantile: float = 0.40
+
+    w_pos: float = 12.0
+
+    w_bg: float = 1.0
+
+    w_ignore: float = 0.05
+
+
+
+    norm_lo_pct: float = 50.0
+
+    norm_hi_pct: float = 99.5
+
+    norm_clip_lo: float = -0.5
+
+    norm_clip_hi: float = 6.0
+
+
+
+    batch_size: int = 8
+
+    epochs: int = 50
+
+    frames_per_movie: int = 0
+
+    movie_limit: int | None = None
+
+    val_fraction: float = 0.10
+
+    num_workers: int = 4
+
+
+
+    learning_rate: float = 1.0e-3
+
+    weight_decay: float = 0.0
+
+    grad_clip_norm: float | None = None
+
+
+
+    random_flip: bool = True
+
+    brightness_jitter: float = 0.0
+
+
+
+
+
+def config_from_args(args: argparse.Namespace) -> FullFrameTrainingConfig:
+
+    return FullFrameTrainingConfig(
+
+        seed=args.seed,
+
+        pool_factor=args.pool_factor,
+
+        base_channels=args.base_channels,
+
+        gauss_sigma=args.gauss_sigma,
+
+        pos_thresh=args.pos_thresh,
+
+        bg_quantile=args.bg_quantile,
+
+        w_pos=args.w_pos,
+
+        w_bg=args.w_bg,
+
+        w_ignore=args.w_ignore,
+
+        norm_lo_pct=args.norm_lo_pct,
+
+        norm_hi_pct=args.norm_hi_pct,
+
+        norm_clip_lo=args.norm_clip_lo,
+
+        norm_clip_hi=args.norm_clip_hi,
+
+        batch_size=args.batch_size,
+
+        epochs=args.epochs,
+
+        frames_per_movie=args.frames_per_movie,
+
+        movie_limit=args.movie_limit,
+
+        val_fraction=args.val_fraction,
+
+        num_workers=args.num_workers,
+
+        learning_rate=args.learning_rate,
+
+        weight_decay=args.weight_decay,
+
+        grad_clip_norm=args.grad_clip_norm,
+
+        random_flip=not args.no_random_flip,
+
+        brightness_jitter=args.brightness_jitter,
+
+    )
+
+
+
+
+
+def config_from_checkpoint(
+
+    checkpoint_path: Path,
+
+    args: argparse.Namespace,
+
+) -> FullFrameTrainingConfig:
+
+    checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+
+    saved = dict(checkpoint.get("config", {}))
+
+    valid_keys = {field.name for field in fields(FullFrameTrainingConfig)}
+
+    defaults = asdict(FullFrameTrainingConfig())
+
+    merged = {**defaults, **{k: v for k, v in saved.items() if k in valid_keys}}
+
+
+
+    # A resume run should keep the trained model/loss/data geometry contract.
+
+    # These runtime controls are safe to change when extending a run.
+
+    merged["epochs"] = args.epochs
+
+    merged["batch_size"] = args.batch_size
+
+    merged["num_workers"] = args.num_workers
+
+    return FullFrameTrainingConfig(**merged)
+
+
+
+
+
+class ConvBlock3d(nn.Module):
+
+    def __init__(self, in_channels: int, out_channels: int) -> None:
+
+        super().__init__()
+
+        groups = min(8, out_channels)
+
+        self.block = nn.Sequential(
+
+            nn.Conv3d(in_channels, out_channels, kernel_size=3, padding=1, bias=False),
+
+            nn.GroupNorm(groups, out_channels),
+
+            nn.SiLU(inplace=True),
+
+            nn.Conv3d(out_channels, out_channels, kernel_size=3, padding=1, bias=False),
+
+            nn.GroupNorm(groups, out_channels),
+
+            nn.SiLU(inplace=True),
+
+        )
+
+
+
+    def forward(s
+
+  ... [39133 more chars]
+
+==============================================================================
+
+repo/scripts/augmentations.py
+
+"""Simple image augmentations for training."""
+
+
+
+import numpy as np
+
+import torch
+
+
+
+
+
+def brightness_augment(
+
+    imgs: torch.Tensor,
+
+    coords: torch.Tensor,
+
+    masks: torch.Tensor,
+
+    *,
+
+    rng: np.random.Generator,
+
+    shift_range: float = 0.1,
+
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+
+    """Random additive brightness shift.
+
+
+
+    Parameters
+
+    ----------
+
+    imgs : torch.Tensor
+
+        (W, *spatial) normalised images.
+
+    coords : torch.Tensor
+
+        (W, M, 3) node coordinates — passed through unchanged.
+
+    masks : torch.Tensor
+
+        (W, M) boolean masks — passed through unchanged.
+
+    rng : np.random.Generator
+
+        Random number generator.
+
+    shift_range : float
+
+        Maximum absolute shift sampled from [-shift_range, shift_range].
+
+    """
+
+    shift = rng.uniform(-shift_range, shift_range)
+
+    return imgs + shift, coords, masks
+
+
+
+
+
+def flip_augment(
+
+    imgs: torch.Tensor,
+
+    coords: torch.Tensor,
+
+    masks: torch.Tensor,
+
+    *,
+
+    rng: np.random.Generator,
+
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+
+    """Random spatial flip: samples uniformly from all 8 axis-aligned symmetries.
+
+
+
+    Each of Z, Y, X is independently flipped with probability 0.5,
+
+    giving 2^3 = 8 equally likely outcomes (including identity).
+
+
+
+    Creates a copy of coords so the underlying dataset is not mutated.
+
+    Only real (non-padded) coordinates are flipped; padding stays at zero.
+
+    """
+
+    flip_mask = rng.random(3) < 0.5  # (Z, Y, X)
+
+    dims_to_flip = [1 + dim for dim, flip in enumerate(flip_mask) if flip]
+
+
+
+    if not dims_to_flip:
+
+        return imgs, coords, masks
+
+
+
+    imgs = imgs.flip(dims=dims_to_flip)
+
+
+
+    coords = coords.clone()
+
+    shape = imgs.shape[1:]  # (Z, Y, X)
+
+    for dim in range(3):
+
+        if flip_mask[dim]:
+
+            dim_coords = coords[..., dim]
+
+            dim_coords[masks] = shape[dim] - dim_coords[masks] - 1
+
+            coords[..., dim] = dim_coords
+
+
+
+    return imgs, coords, masks
+
+
+
+==============================================================================
+
+repo/scripts/dataspec.py
+
+"""Central path configuration for Biohub tracking datasets."""
+
+
+
+import os
+
+import sys
+
+from pathlib import Path
+
+
+
+INTERACTIVE = sys.stderr.isatty()
+
+
+
+USERNAME = os.environ.get("USER", os.environ.get("USERNAME", "unknown"))
+
+
+
+_BASE = Path(__file__).resolve().parent.parent
+
+
+
+# Kaggle competition mount (present when running in a Kaggle notebook).
+
+_KAGGLE_TRAIN = Path(
+
+    "/kaggle/input/competitions/biohub-cell-tracking-during-development/train"
+
+)
+
+
+
+
+
+def _default_dataset_path() -> Path:
+
+    """Resolve the dataset directory.
+
+
+
+    Priority:
+
+      1. ``$BIOHUB_DATA_DIR`` — explicit override (any environment).
+
+      2. the Kaggle competition ``train`` mount, when running on Kaggle.
+
+      3. local ``./data/dense_channel`` — default for local development.
+
+
+
+    Scripts also accept ``--data-dir`` to override this per run (e.g. to point
+
+    at the competition ``test`` directory for prediction).
+
+    """
+
+    env = os.environ.get("BIOHUB_DATA_DIR")
+
+    if env:
+
+        return Path(env)
+
+    if _KAGGLE_TRAIN.exists():
+
+        return _KAGGLE_TRAIN
+
+    return _BASE / "data/dense_channel"
+
+
+
+
+
+DATASET_PATH = _default_dataset_path()
+
+PREDICTIONS_PATH = _BASE / "predictions"
+
+RESULTS_PATH = _BASE / "results"
+
+WEIGHTS_PATH = _BASE / "weights"
+
+==============================================================================
+
+repo/scripts/evaluate.py
+
+#!/usr/bin/env python
+
+"""Evaluate predictions against ground truth and save results.
+
+
+
+Discovers predictions from predictions/{username}/{method}/split_{fold}/*.geff,
+
+loads matching GT from DATASET_PATH/{name}.geff, computes edge and division
+
+TP/FP/FN per sample via :func:`biohub_tracking.metrics.evaluate`, and upserts
+
+per-sample counts into a shared SQLite DB (WAL mode for concurrency).
+
+
+
+Per-run summary prints **cumulative (micro-averaged) Jaccard** for edges and
+
+divisions — i.e. TP/FP/FN are summed across all samples of the run and Jaccard
+
+is computed from those totals.
+
+
+
+Usage:
+
+    python scripts/evaluate.py
+
+    python scripts/evaluate.py --split 0
+
+"""
+
+
+
+import argparse
+
+import json
+
+from pathlib import Path
+
+
+
+import tracksdata as td
+
+from geff import GeffMetadata
+
+from tqdm import tqdm
+
+
+
+from biohub_tracking.io import open_dataset
+
+from biohub_tracking.metrics import (
+
+    evaluate as compute_metric,
+
+    nan_metrics_row,
+
+    node_recall,
+
+    per_sample_metrics,
+
+    summarise,
+
+)
+
+
+
+from dataspec import DATASET_PATH, INTERACTIVE, PREDICTIONS_PATH, USERNAME
+
+
+
+PREDICTIONS_DIR = PREDICTIONS_PATH
+
+DATA_DIR = DATASET_PATH
+
+
+
+
+
+def _read_estimated_n_total(geff_path: Path) -> float:
+
+    """Read ``estimated_number_of_nodes`` from a GEFF file's metadata extras.
+
+
+
+    Returns NaN when the key is missing or the file can't be read.
+
+    """
+
+    try:
+
+        meta = GeffMetadata.read(geff_path)
+
+    except Exception:
+
+        return float("nan")
+
+    val = (meta.extra or {}).get("estimated_number_of_nodes")
+
+    return float(val) if val is not None else float("nan")
+
+
+
+
+
+def discover_runs(
+
+    predictions_dir: Path,
+
+    username: str | None = None,
+
+    method: str | None = None,
+
+    fold: int | None = None,
+
+) -> list[dict]:
+
+    """Find all (username, method, fold) combinations with predictions.
+
+
+
+    Layout: predictions/{username}/{method}/split_{fold}/*.geff
+
+    """
+
+    runs = []
+
+    users = [username] if username else sorted(p.name for p in predictions_dir.iterdir() if p.is_dir())
+
+    for u in users:
+
+        u_dir = predictions_dir / u
+
+        if not u_dir.is_dir():
+
+            continue
+
+        methods = [method] if method else sorted(p.name for p in u_dir.iterdir() if p.is_dir())
+
+        for m in methods:
+
+            m_dir = u_dir / m
+
+            if not m_dir.is_dir():
+
+                continue
+
+            splits = [f"split_{fold}"] if fold is not None else sorted(p.name for p in m_dir.iterdir() if p.is_dir() and p.name.startswith("split_"))
+
+            for s in splits:
+
+                s_dir = m_dir / s
+
+                if not s_dir.is_dir():
+
+                    continue
+
+                geffs = sorted(s_dir.glob("*.geff"))
+
+                if geffs:
+
+                    runs.append({"username": u, "method": m, "split": s, "dir": s_dir, "geffs": geffs})
+
+    return runs
+
+
+
+
+
+def _nan_row(username: str, method: str, split: str, dataset: str) -> dict:
+
+    return {
+
+        "username": username, "method": method,
+
+        "split": split, "dataset": dataset,
+
+        **nan_metrics_row(),
+
+    }
+
+
+
+
+
+def evaluate_run(run: dict, max_distance: float | None = None) -> list[dict]:
+
+    """Evaluate all predictions in a single run, return per-sample results."""
+
+    username = run["username"]
+
+    method = run["method"]
+
+    split = run["split"]
+
+    results: list[dict] = []
+
+
+
+    # Check for missing predictions against the splits file
+
+    splits_file = DATA_DIR / "dataset_splits.json"
+
+    if splits_file.exists():
+
+        fold_idx = int(split.split("_")[1])
+
+        folds = json.loads(splits_file.read_text())
+
+        expected = set(folds[fold_idx]["test"])
+
+        found = {p.stem for p in run["geffs"]}
+
+        missing = sorted(expected - found)
+
+        if missing:
+
+            print(f"  WARNING: {len(missing)} missing predictions for {username}/{method}/{split}: {missing[:5]}{'...' if len(missing) > 5 else ''}")
+
+            for name in missing:
+
+                results.append(_nan_row(username, method, split, name))
+
+
+
+    desc = f"  {username}/{method}/{split}"
+
+    for pred_path in tqdm(run["geffs"
+
+  ... [2833 more chars]
+
+==============================================================================
+
+repo/scripts/predict_unet_transformer.py
+
+#!/usr/bin/env python
+
+"""Run UNet + transformer edge prediction on datasets and export to .geff.
+
+
+
+Usage:
+
+    uv run scripts/predict_unet_transformer.py --split 0
+
+"""
+
+
+
+import argparse
+
+import contextlib
+
+import json
+
+import os
+
+import sys
+
+from dataclasses import dataclass
+
+from pathlib import Path
+
+
+
+import numpy as np
+
+import polars as pl
+
+import torch
+
+import torch.nn.functional as F
+
+import zarr
+
+from tqdm import tqdm
+
+
+
+import tracksdata as td
+
+
+
+from biohub_tracking.io import open_dataset, save_graph
+
+
+
+# Import model and helpers from companion training script.
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+from train_unet_transformer import (
+
+    DEFAULT_METHOD,
+
+    UNetNodeTransformer,
+
+    extract_pos_features,
+
+    _POS_EMBED_DIM,
+
+)
+
+from biohub_tracking.models import TemporalUNet3D
+
+
+
+from dataspec import USERNAME, INTERACTIVE, WEIGHTS_PATH
+
+from evaluate import evaluate_run
+
+from biohub_tracking.metrics import summarise
+
+
+
+
+
+# =============================================================================
+
+# Prediction config
+
+# =============================================================================
+
+
+
+@dataclass
+
+class PredictConfig:
+
+    """All hyperparameters that can affect prediction quality / score.
+
+
+
+    Detection
+
+    ---------
+
+    det_threshold : float
+
+        Minimum sigmoid probability for a local-max peak to be kept.
+
+
+
+    Edge filtering
+
+    --------------
+
+    edge_activation : str
+
+        Activation applied to raw edge logits: ``"sigmoid"`` (independent
+
+        per-edge scores) or ``"softmax"`` (row-normalised over t+1 nodes).
+
+    threshold : float
+
+        Minimum edge probability to consider a link at all.
+
+    max_parents_per_node : int
+
+        Maximum number of incoming edges per node (typically 1).
+
+    max_children_per_node : int
+
+        Maximum number of outgoing edges per node (1 = no divisions, 2 = divisions allowed).
+
+    """
+
+    # Detection
+
+    det_threshold: float = 0.5
+
+    det_tta: bool = True  # flip-xy TTA for detection logits
+
+    pool_kernel_um: float = 3.0  # max-pool kernel size in µm for detection peak extraction
+
+    # Edge filtering
+
+    edge_activation: str = "softmax"  # "sigmoid" or "softmax"
+
+    threshold: float = 0.5
+
+
+
+    # ILP post-processing
+
+    use_ilp: bool = False
+
+    ilp_edge_weight: float = -1.0
+
+    ilp_appearance_weight: float = 0.1
+
+    ilp_disappearance_weight: float = 0.1
+
+    ilp_division_weight: float = 1.0
+
+
+
+    max_parents_per_node: int | None = None
+
+    max_children_per_node: int | None = None
+
+
+
+    def __post_init__(self) -> None:
+
+        # When ILP is enabled it handles parent/children constraints itself,
+
+        # so greedy limits are left unconstrained (None).  When ILP is
+
+        # disabled, default to 1/1 to avoid unconstrained edge assignment.
+
+        if not self.use_ilp:
+
+            if self.max_parents_per_node is None:
+
+                self.max_parents_per_node = 1
+
+            if self.max_children_per_node is None:
+
+                self.max_children_per_node = 2
+
+
+
+
+
+
+
+# =============================================================================
+
+# Helpers
+
+# =============================================================================
+
+
+
+
+
+@contextlib.contextmanager
+
+def suppress_output():
+
+    """Context manager to suppress stdout and stderr."""
+
+    with open(os.devnull, "w") as devnull:
+
+        with contextlib.redirect_stdout(devnull), contextlib.redirect_stderr(devnull):
+
+            yield
+
+
+
+
+
+# =============================================================================
+
+# Graph building
+
+# =============================================================================
+
+
+
+def build_graph(
+
+    coords: np.ndarray,
+
+    edges: list[tuple[int, int, float, float]],
+
+) -> td.graph.InMemoryGraph:
+
+    """Build a tracksdata graph from detection coords and predicted edges.
+
+
+
+    Avoids ``add_node_attr_key`` to sidestep a tracksdata/Polars compatibility
+
+    issue where the float default value is mistakenly used as a dtype.
+
+    Probabilities are passed as-is (softmax output, already in [0, 1]).
+
+    """
+
+    graph = td.graph.I
+
+  ... [21998 more chars]
+
+==============================================================================
+
+repo/scripts/train_unet_transformer.py
+
+#!/usr/bin/env python
+
+"""
+
+Train a temporal UNet + transformer edge predictor end-to-end.
+
+
+
+The UNet (TemporalUNet3D) runs on each batch of consecutive frame pairs
+
+during training.  Its output feature maps are indexed at integer node
+
+coordinates (round + clamp), concatenated with sinusoidal positional
+
+embeddings, and fed to SimpleNodeTransformer.  Gradients flow back through
+
+the integer indexing into the UNet weights.
+
+
+
+Usage:
+
+    uv run scripts/train_unet_transformer.py --split 0 --epochs 50
+
+"""
+
+
+
+import argparse
+
+import json
+
+import time
+
+from dataclasses import dataclass
+
+from pathlib import Path
+
+
+
+import numpy as np
+
+import polars as pl
+
+import torch
+
+import torch.nn as nn
+
+import torch.nn.functional as F
+
+import zarr
+
+from torch.utils.data import Dataset, DataLoader
+
+from tqdm import tqdm
+
+
+
+import tracksdata as td
+
+
+
+from biohub_tracking.io import invert_time_graph, open_dataset
+
+from biohub_tracking.models import SimpleNodeTransformer, TemporalUNet3D
+
+
+
+from itertools import cycle as _cycle
+
+
+
+
+
+def compute_gt_transition_matrix(
+
+    gt_ids_t: np.ndarray,
+
+    gt_ids_t1: np.ndarray,
+
+    edge_attrs: pl.DataFrame,
+
+) -> torch.Tensor:
+
+    """Build GT transition matrix directly as a float32 torch tensor."""
+
+    t_to_row = {nid: i for i, nid in enumerate(gt_ids_t)}
+
+    t1_to_col = {nid: i for i, nid in enumerate(gt_ids_t1)}
+
+
+
+    matrix = torch.zeros(len(gt_ids_t), len(gt_ids_t1), dtype=torch.float32)
+
+    for source_id, target_id in zip(edge_attrs["source_id"], edge_attrs["target_id"]):
+
+        if source_id in t_to_row and target_id in t1_to_col:
+
+            matrix[t_to_row[source_id], t1_to_col[target_id]] = 1.0
+
+
+
+    return matrix
+
+
+
+
+
+def compute_loss(logits: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+
+    """BCE on annotated rows and columns (sparse GT — unannotated cells ignored)."""
+
+    active_rows = target.sum(dim=1) > 0
+
+    active_cols = target.sum(dim=0) > 0
+
+    mask = active_rows.unsqueeze(1) | active_cols.unsqueeze(0)
+
+    if not mask.any():
+
+        return torch.tensor(0.0, requires_grad=True, device=logits.device)
+
+
+
+    probs = torch.softmax(logits, dim=0)  # dim=0 intentional: divisions allowed, merges aren't
+
+    bce = F.binary_cross_entropy(probs, target, reduction="none")
+
+    p_t = probs * target + (1 - probs) * (1 - target)
+
+    loss = ((1 - p_t) ** 2) * bce
+
+
+
+    div_rows = target.sum(dim=1) > 1
+
+    weight = torch.ones_like(loss)
+
+    weight[div_rows] = 1.0
+
+
+
+    return (loss * weight)[mask].mean()
+
+
+
+
+
+def compute_batch_loss(
+
+    logits: torch.Tensor,
+
+    target: torch.Tensor,
+
+    mask_t: torch.Tensor,
+
+    mask_t1: torch.Tensor,
+
+) -> torch.Tensor:
+
+    """Compute loss over a batch by slicing out real (unpadded) regions."""
+
+    B = logits.shape[0]
+
+    losses = []
+
+    for b in range(B):
+
+        nt = mask_t[b].sum().item()
+
+        nt1 = mask_t1[b].sum().item()
+
+        losses.append(compute_loss(logits[b, :nt, :nt1], target[b, :nt, :nt1]))
+
+    return torch.stack(losses).mean()
+
+
+
+
+
+def _evaluate_pair(
+
+    logits: torch.Tensor,
+
+    target: torch.Tensor,
+
+) -> tuple[float, int, int]:
+
+    """Per-pair evaluation. Returns (loss, correct, total)."""
+
+    active_rows = target.sum(dim=1) > 0
+
+    active_cols = target.sum(dim=0) > 0
+
+    if not active_rows.any():
+
+        return 0.0, 0, 0
+
+
+
+    loss = compute_loss(logits, target).item()
+
+    probs = torch.softmax(logits, dim=0)
+
+    preds = (probs > 0.5).float()
+
+
+
+    mask = active_rows.unsqueeze(1) | active_cols.unsqueeze(0)
+
+    correct = (preds[mask] == target[mask]).sum().item()
+
+    total = mask.sum().item()
+
+
+
+    return loss, correct, total
+
+
+
+from augmentations import brightness_augment, flip_augment
+
+
+
+DEFAULT_AUGMENTATIONS = [brightness_augment, flip_augment]
+
+from dataspec import WEIGHTS_PATH
+
+
+
+DEFAULT_METHOD = "unet_transformer"
+
+_POS_EMBED_DIM = 8   # per axis; total = 4 axes × _POS_EMBED_DIM = 32
+
+
+
+
+
+# =============================================================================
+
+# Data structures
+
+# =============================================================================
+
+
+
+@dataclass(frozen=True)
+
+class FrameWind
+
+  ... [45398 more chars]
+
+==============================================================================
+
+repo/src/biohub_tracking/__init__.py
+
+"""biohub-tracking: cell tracking utilities for the CTC/Biohub tracking challenge."""
+
+
+
+==============================================================================
+
+repo/src/biohub_tracking/division_metrics.py
+
+import warnings
+
+from collections import deque
+
+from typing import NamedTuple
+
+
+
+import polars as pl
+
+import tracksdata as td
+
+
+
+
+
+class DivisionCounts(NamedTuple):
+
+    """Counts for division event evaluation."""
+
+
+
+    tp: int
+
+    fn: int
+
+    fp: int
+
+
+
+
+
+def _reset_matching_attrs(graph: td.graph.BaseGraph) -> None:
+
+    """Reset any pre-existing match attrs in place so a fresh ``.match()`` isn't
+
+    contaminated by stale values carried in from a previous matching pass."""
+
+    node_keys = graph.node_attr_keys()
+
+    if td.DEFAULT_ATTR_KEYS.MATCHED_NODE_ID in node_keys:
+
+        node_ids = graph.node_ids()
+
+        if len(node_ids) > 0:
+
+            reset: dict = {td.DEFAULT_ATTR_KEYS.MATCHED_NODE_ID: -1}
+
+            if td.DEFAULT_ATTR_KEYS.MATCH_SCORE in node_keys:
+
+                reset[td.DEFAULT_ATTR_KEYS.MATCH_SCORE] = 0.0
+
+            graph.update_node_attrs(node_ids=node_ids, attrs=reset)
+
+    if td.DEFAULT_ATTR_KEYS.MATCHED_EDGE_MASK in graph.edge_attr_keys():
+
+        edge_ids = graph.edge_ids()
+
+        if len(edge_ids) > 0:
+
+            graph.update_edge_attrs(
+
+                edge_ids=edge_ids,
+
+                attrs={td.DEFAULT_ATTR_KEYS.MATCHED_EDGE_MASK: False},
+
+            )
+
+
+
+
+
+def extract_divisions(
+
+    graph: td.graph.BaseGraph,
+
+) -> dict[int, td.graph.BaseGraph]:
+
+    """Extract individual division events as separate subgraphs.
+
+
+
+    Each division event includes the parent of the dividing node, the
+
+    dividing node, its children, and the grandchildren::
+
+
+
+        parent → divider → child1 → grandchild1
+
+                         → child2 → grandchild2
+
+
+
+    Parameters
+
+    ----------
+
+    graph : td.graph.BaseGraph
+
+        The input tracking graph.
+
+
+
+    Returns
+
+    -------
+
+    dict[int, td.graph.BaseGraph]
+
+        Mapping from dividing node ID to a subgraph containing the
+
+        parent, divider, children, and grandchildren.
+
+    """
+
+    divisions: dict[int, td.graph.BaseGraph] = {}
+
+    for div_node in graph.dividing_nodes():
+
+        parents = graph.predecessors(div_node)
+
+        children = graph.successors(div_node)
+
+        grandchildren = [gc for child in children for gc in graph.successors(child)]
+
+        keep = [*parents, div_node, *children, *grandchildren]
+
+        divisions[div_node] = graph.filter(node_ids=keep).subgraph()
+
+    return divisions
+
+
+
+
+
+def match_divisions(
+
+    pred_graph: td.graph.BaseGraph,
+
+    gt_graph: td.graph.BaseGraph,
+
+    scale: tuple[float, ...] | None = None,
+
+    max_distance: float = 7.0,
+
+) -> dict[int, td.graph.BaseGraph]:
+
+    """Match the predicted graph against each GT division subgraph.
+
+
+
+    Extracts division events from *gt_graph* via :func:`extract_divisions`,
+
+    then runs ``pred_graph.match(gt_div, ...)`` for each one independently.
+
+    A fresh copy of *pred_graph* is used per division so matchings don't
+
+    interfere.
+
+
+
+    Parameters
+
+    ----------
+
+    pred_graph : td.graph.BaseGraph
+
+        The predicted tracking graph.
+
+    gt_graph : td.graph.BaseGraph
+
+        The ground-truth tracking graph.
+
+    scale : tuple[float, ...] | None
+
+        Physical voxel scale used for centroid-distance matching.
+
+    max_distance : float
+
+        Maximum centroid distance for a match.
+
+
+
+    Returns
+
+    -------
+
+    dict[int, td.graph.BaseGraph]
+
+        Mapping from GT dividing-node ID to the matched copy of
+
+        *pred_graph* for that division.
+
+    """
+
+    from tracksdata.metrics import DistanceMatching
+
+    matching = DistanceMatching(max_distance=max_distance, scale=scale)
+
+
+
+    gt_divisions = extract_divisions(gt_graph)
+
+    matched: dict[int, td.graph.BaseGraph] = {}
+
+
+
+    from tracksdata.options import get_options, set_options
+
+
+
+    prev_show_progress = get_options().show_progress
+
+    set_options(show_progress=False)
+
+    try:
+
+        for div_node, gt_div in gt_divisions.items():
+
+            pred_copy = pred_graph.copy()
+
+            _reset_matching_attrs(pred_copy)
+
+            with warnings.catch_warnings():
+
+                from scipy.sparse import SparseEfficiencyWarning
+
+                warnings.filterwarnings("ignore", cate
+
+  ... [11850 more chars]
+
+==============================================================================
+
+repo/src/biohub_tracking/img_proc.py
+
+import numpy as np
+
+import torch
+
+from typing import Optional
+
+
+
+def quantile_normalize(
+
+    image: np.ndarray,
+
+    gamma: float = 1.0,
+
+    subsample_factor: int = 50,
+
+    q_min: float = 0.001,
+
+    q_max: float = 0.999,
+
+    clip_min: float = 0.0,
+
+    clip_max: float = 4.0,
+
+) -> np.ndarray:
+
+
+
+    image = image.astype(np.float32)
+
+    q1, q2 = np.quantile(image.ravel()[::subsample_factor], [q_min, q_max])
+
+    image_normalized = (image - q1) / (q2 - q1 + 1e-6)
+
+    image_normalized = np.clip(image_normalized, 0.0, None)  # clip negatives before gamma
+
+    image_normalized = image_normalized ** gamma
+
+    image_normalized = np.clip(image_normalized, clip_min, clip_max)
+
+
+
+    return image_normalized
+
+
+
+def min_max_normalize(image: np.ndarray) -> np.ndarray:
+
+    image = image.astype(np.float32)
+
+    return (image - image.min()) / (image.max() - image.min() + 1e-6)
+
+
+
+
+
+
+
+def rescale_coords_to_isotropic(
+
+    coords: np.ndarray,
+
+    scale: tuple[float, float, float],
+
+) -> np.ndarray:
+
+    """
+
+    Rescale coordinates from anisotropic voxel space to isotropic space.
+
+
+
+    Parameters
+
+    ----------
+
+    coords : np.ndarray
+
+        (N, 4) array of coordinates (T, Z, Y, X) in anisotropic voxel units.
+
+    scale : tuple[float, float, float]
+
+        Physical scale (Z, Y, X).
+
+
+
+    Returns
+
+    -------
+
+    np.ndarray
+
+        (N, 4) array of coordinates in isotropic voxel units.
+
+    """
+
+    scale_arr = np.array(scale)
+
+    target_scale = scale_arr.min()
+
+    zoom_factors = scale_arr / target_scale
+
+
+
+    # Scale spatial coordinates (Z, Y, X), keep T unchanged
+
+    coords_iso = coords.astype(np.float32).copy()
+
+    coords_iso[:, 1] *= zoom_factors[0]  # Z
+
+    coords_iso[:, 2] *= zoom_factors[1]  # Y
+
+    coords_iso[:, 3] *= zoom_factors[2]  # X
+
+
+
+    return coords_iso
+
+
+
+
+
+def rescale_coords_from_isotropic(
+
+    coords: np.ndarray,
+
+    scale: tuple[float, float, float],
+
+) -> np.ndarray:
+
+    """
+
+    Rescale coordinates from isotropic voxel space back to anisotropic space.
+
+
+
+    Parameters
+
+    ----------
+
+    coords : np.ndarray
+
+        (N, 4) array of coordinates (T, Z, Y, X) in isotropic voxel units.
+
+    scale : tuple[float, float, float]
+
+        Original physical scale (Z, Y, X).
+
+
+
+    Returns
+
+    -------
+
+    np.ndarray
+
+        (N, 4) array of coordinates in anisotropic voxel units.
+
+    """
+
+    scale_arr = np.array(scale)
+
+    target_scale = scale_arr.min()
+
+    zoom_factors = scale_arr / target_scale
+
+
+
+    # Inverse scale spatial coordinates (Z, Y, X), keep T unchanged
+
+    coords_aniso = coords.astype(np.float32).copy()
+
+    coords_aniso[:, 1] /= zoom_factors[0]  # Z
+
+    coords_aniso[:, 2] /= zoom_factors[1]  # Y
+
+    coords_aniso[:, 3] /= zoom_factors[2]  # X
+
+
+
+    return coords_aniso
+
+
+
+
+
+def resample_image_to_isotropic(
+
+    image: np.ndarray,
+
+    scale: tuple[float, float, float],
+
+    target_scale: Optional[tuple[float, float, float]] = None,
+
+) -> np.ndarray:
+
+    """
+
+    Resample image from anisotropic to isotropic voxel space.
+
+
+
+    Parameters
+
+    ----------
+
+    image : np.ndarray
+
+        Input image array (T, Z, Y, X).
+
+    scale : tuple[float, float, float]
+
+        Physical scale (Z, Y, X).
+
+
+
+    Returns
+
+    -------
+
+    np.ndarray
+
+        Resampled image in isotropic space.
+
+    """
+
+    assert image.ndim == 4, f"Expected 4D image (T, Z, Y, X), got {image.ndim}D"
+
+
+
+    scale_arr = np.array(scale)
+
+
+
+    if target_scale is None:
+
+        target_scale = scale_arr.min()
+
+    else:
+
+        target_scale = np.array(target_scale)
+
+
+
+    zoom_factors = scale_arr / target_scale
+
+
+
+    new_spatial_shape = (np.array(image.shape[1:]) * zoom_factors).astype(int).tolist()
+
+
+
+    # Resample on GPU
+
+    tensor = torch.from_numpy(image).cuda().float()
+
+    # Add channel dim for interpolate: (T, Z, Y, X) -> (T, 1, Z, Y, X)
+
+    tensor = tensor.unsqueeze(1)
+
+    tensor = torch.nn.functional.interpolate(
+
+        tensor, size=new_spatial_shape, mode="trilinear", align_corners=False
+
+    )
+
+    # Remove channel dim: (T, 1, Z, Y, X) -> (T, Z, Y, X)
+
+    tensor = tensor.squeeze(1)
+
+
+
+    return tensor.cpu().numpy()
+
+
+
+
+
+def nms_3d(co
+
+  ... [1319 more chars]
+
+==============================================================================
+
+repo/src/biohub_tracking/io.py
+
+"""I/O utilities for tracking challenge datasets."""
+
+
+
+from dataclasses import dataclass, field
+
+from pathlib import Path
+
+
+
+import dask.array as da
+
+import numpy as np
+
+import polars as pl
+
+import torch
+
+import tracksdata as td
+
+import zarr
+
+
+
+DEFAULT_SCALE: tuple[float, float, float] = (1.625, 0.40625, 0.40625)
+
+
+
+
+
+@dataclass
+
+class Dataset:
+
+    path: Path
+
+    image: da.Array | np.ndarray | torch.Tensor | None
+
+    tracks: td.graph.IndexedRXGraph | None
+
+    scale: tuple[float, float, float]
+
+    original_scale: tuple[float, float, float] | None = None
+
+    image_shape: tuple[int, ...] | None = None  # (T, Z, Y, X), always available
+
+    zarr_path: Path | None = None
+
+    quantiles: dict[str, float] = field(default_factory=dict)
+
+
+
+    def napari_tracks(self) -> tuple[np.ndarray, dict[int, int]]:
+
+        return td.functional.to_napari_format(
+
+            self.tracks,
+
+            self.image.shape,
+
+            solution_key=None,
+
+            output_tracklet_id_key="track_id",
+
+            mask_key=None,
+
+        )
+
+
+
+
+
+def open_dataset(ds_path: Path | str,
+
+                target_scale: tuple[float, float, float] | None = None,
+
+                normalize: bool = True,
+
+                gamma: float = 1.0,
+
+                device: str = "cuda",
+
+                require_tracks: bool = False,
+
+                load_image: bool = True,
+
+                downsample: tuple[int, ...] | None = None) -> Dataset:
+
+    """Open a dataset from a zarr file and optionally a geff tracks file.
+
+
+
+    Parameters
+
+    ----------
+
+    ds_path : Path or str
+
+        Path to the dataset (without extension, or with .zarr/.geff).
+
+    target_scale : tuple, optional
+
+        Resample to this isotropic (Z, Y, X) voxel scale. If None, no resampling.
+
+    normalize : bool
+
+        Whether to normalize the image intensities.
+
+    gamma : float
+
+        Gamma correction value for normalization.
+
+    device : str
+
+        Device to use for GPU processing.
+
+    require_tracks : bool
+
+        Whether to require a .geff tracks file.
+
+    load_image : bool
+
+        If False, skip loading image data (metadata + tracks only).
+
+    downsample : tuple, optional
+
+        Spatial downsample strides (Z, Y, X). Applied via strided indexing.
+
+
+
+    Returns
+
+    -------
+
+    Dataset
+
+        Dataset with image shape (T, Z, Y, X). When ``load_image=False``,
+
+        ``image`` is None but ``image_shape`` and ``zarr_path`` are populated.
+
+    """
+
+    ds_path = Path(ds_path)
+
+    if ds_path.suffix in (".zarr", ".geff"):
+
+        ds_path = ds_path.parent / ds_path.stem
+
+
+
+    image_path = ds_path.parent / f"{ds_path.stem}.zarr"
+
+    tracks_path = ds_path.parent / f"{ds_path.stem}.geff"
+
+
+
+    if not image_path.exists():
+
+        raise FileNotFoundError(f"Image file not found: {image_path}")
+
+    if require_tracks and not tracks_path.exists():
+
+        raise FileNotFoundError(f"Tracks file not found: {tracks_path}")
+
+
+
+    img_ds = zarr.open_group(image_path, mode="r")
+
+    tracks = None
+
+    if require_tracks and tracks_path.exists():
+
+        result = td.graph.IndexedRXGraph.from_geff(tracks_path)
+
+        tracks = result[0] if isinstance(result, tuple) else result
+
+
+
+    attrs = dict(img_ds.attrs)
+
+    scale = _parse_scale(attrs)
+
+    quantiles = attrs.get("image_statistics", {}).get("quantiles", {})
+
+
+
+    raw_shape = tuple(img_ds["0"].shape)
+
+    if downsample is not None:
+
+        ds_shape = raw_shape[:1] + tuple(-(-s // d) for s, d in zip(raw_shape[1:], downsample))
+
+    else:
+
+        ds_shape = raw_shape
+
+
+
+    if not load_image:
+
+        return Dataset(
+
+            path=ds_path, image=None, tracks=tracks, scale=scale,
+
+            image_shape=ds_shape, zarr_path=image_path, quantiles=quantiles,
+
+        )
+
+
+
+    da_arr = da.from_zarr(img_ds["0"]).compute()
+
+
+
+    resample = target_scale is not None
+
+    original_scale = None
+
+    if resample or normalize:
+
+        if resample:
+
+            original_scale = scale
+
+        da_arr, tracks, scale = _process_on_gpu(
+
+            da_arr, tracks, scale, device,
+
+            resample=resample, target_scale=target_scale,
+
+         
+
+  ... [9485 more chars]
+
+==============================================================================
+
+repo/src/biohub_tracking/metrics.py
+
+import warnings
+
+from typing import Literal, NamedTuple
+
+
+
+import polars as pl
+
+import tracksdata as td
+
+
+
+
+
+class EvaluationResult(NamedTuple):
+
+    """Counts returned by :func:`evaluate`."""
+
+
+
+    edge_tp: int
+
+    edge_fp: int
+
+    edge_fn: int
+
+    division_tp: int
+
+    division_fp: int
+
+    division_fn: int
+
+    num_pred_nodes: int
+
+
+
+
+
+class DatasetsResult(NamedTuple):
+
+    """Cumulative (micro-averaged) Jaccards plus the combined score."""
+
+
+
+    edge_jaccard: float
+
+    division_jaccard: float
+
+    score: float
+
+
+
+
+
+# Penalty coefficient for the adjusted edge Jaccard:
+
+#   J_adj = max(0, J · (1 - ADJUSTMENT_ALPHA · total_node_ratio))
+
+ADJUSTMENT_ALPHA: float = 0.1
+
+
+
+# Weight of the division Jaccard in the combined run-level score:
+
+#   score = adj_edge_jaccard + SCORE_DIVISION_WEIGHT · division_jaccard
+
+SCORE_DIVISION_WEIGHT: float = 0.1
+
+
+
+COUNT_COLUMNS: tuple[str, ...] = (
+
+    "edge_tp", "edge_fp", "edge_fn",
+
+    "division_tp", "division_fp", "division_fn",
+
+    "num_pred_nodes",
+
+)
+
+METRIC_COLUMNS: tuple[str, ...] = COUNT_COLUMNS + (
+
+    "node_recall", "total_node_ratio", "edge_jaccard", "adj_edge_jaccard",
+
+)
+
+
+
+
+
+def _jaccard(tp: int, fp: int, fn: int) -> float:
+
+    denom = tp + fp + fn
+
+    return tp / denom if denom > 0 else float("nan")
+
+
+
+
+
+# function is split for easier testing
+
+def _evaluate_matched_graph(
+
+    graph: td.graph.BaseGraph,
+
+    gt_graph: td.graph.BaseGraph,
+
+) -> pl.DataFrame:
+
+    edge_attrs = graph.edge_attrs(attr_keys=[td.DEFAULT_ATTR_KEYS.MATCHED_EDGE_MASK])
+
+    # Guard against duplicate edges (same source→target pair appearing multiple times).
+
+    # tracksdata's match() inner-join marks all duplicates as matched, which inflates
+
+    # the intersection count and can push scores above 1.0. Sort matched rows first
+
+    # so the dedup keeps the matched copy when duplicates disagree on the mask.
+
+    edge_attrs = edge_attrs.sort(
+
+        td.DEFAULT_ATTR_KEYS.MATCHED_EDGE_MASK, descending=True,
+
+    ).unique(
+
+        subset=[td.DEFAULT_ATTR_KEYS.EDGE_SOURCE, td.DEFAULT_ATTR_KEYS.EDGE_TARGET],
+
+        keep="first",
+
+    )
+
+    node_attrs = graph.node_attrs(attr_keys=[td.DEFAULT_ATTR_KEYS.NODE_ID, td.DEFAULT_ATTR_KEYS.MATCHED_NODE_ID])
+
+
+
+    # I'm assuming valid ground-truth edges are always 100% correct if they have an edge.
+
+    # Therefore, we don't have cases where the cell divided, but not in the ground truth.
+
+    gt_node_ids = gt_graph.node_ids()
+
+    gt_node_attrs = pl.DataFrame(
+
+        {
+
+            td.DEFAULT_ATTR_KEYS.NODE_ID: gt_node_ids,
+
+            "out_degree": gt_graph.out_degree(gt_node_ids),
+
+            "in_degree": gt_graph.in_degree(gt_node_ids),
+
+        }
+
+    ).with_columns(
+
+        (pl.col("out_degree") > 0).alias("out_valid"),
+
+        (pl.col("in_degree") > 0).alias("in_valid"),
+
+    )
+
+
+
+    # merging ground truth graph into the predicted graph
+
+    node_attrs = node_attrs.join(
+
+        gt_node_attrs,
+
+        left_on=td.DEFAULT_ATTR_KEYS.MATCHED_NODE_ID,
+
+        right_on=td.DEFAULT_ATTR_KEYS.NODE_ID,
+
+        how="left",
+
+    ).with_columns(
+
+        pl.col("out_valid").fill_null(False),
+
+        pl.col("in_valid").fill_null(False),
+
+    )
+
+
+
+    # merge out valid into source and in valid into target
+
+    edge_attrs = edge_attrs.join(
+
+        node_attrs.select(td.DEFAULT_ATTR_KEYS.NODE_ID, "out_valid"),
+
+        left_on=td.DEFAULT_ATTR_KEYS.EDGE_SOURCE,
+
+        right_on=td.DEFAULT_ATTR_KEYS.NODE_ID,
+
+        how="left",
+
+    ).join(
+
+        node_attrs.select(td.DEFAULT_ATTR_KEYS.NODE_ID, "in_valid"),
+
+        left_on=td.DEFAULT_ATTR_KEYS.EDGE_TARGET,
+
+        right_on=td.DEFAULT_ATTR_KEYS.NODE_ID,
+
+        how="left",
+
+    )
+
+
+
+    edge_attrs = edge_attrs.with_columns(
+
+        (pl.col("out_valid") | pl.col("in_valid")).alias("pred_valid"),
+
+    )
+
+
+
+    # sanity check that `pred_valid` is a superset of all matched edges
+
+    assert edge_attrs.filter(td.DEFAULT_ATTR_KEYS.MATCHED_EDGE_MASK)["pred_valid"].all()
+
+
+
+    return edge_attrs
+
+
+
+
+
+def _compute_score(
+
+    edge_attrs: pl.DataFrame,
+
+    gt_num_edges: int,
+
+    metric: Literal["jaccard", "dice"],
+
+) -> float
+
+  ... [11827 more chars]
+
+==============================================================================
+
+weights/unet_transformer/split_0/config.json
+
+{
+
+  "unet_out_channels": 32,
+
+  "unet_layers": [
+
+    32,
+
+    64,
+
+    128
+
+  ],
+
+  "downsample": [
+
+    1,
+
+    4,
+
+    4
+
+  ],
+
+  "window_size": 2,
+
+  "pool_kernel_um": 5.0
+
+}
+
+==============================================================================
+
+repo/src/biohub_tracking/models/__init__.py
+
+"""Model architectures for cell tracking."""
+
+
+
+from biohub_tracking.models.simple_node_transformer import SimpleNodeTransformer
+
+from biohub_tracking.models.temporal_unet import TemporalUNet3D
+
+
+
+__all__ = ["SimpleNodeTransformer", "TemporalUNet3D"]
+
+
+
+==============================================================================
+
+repo/src/biohub_tracking/models/simple_node_transformer.py
+
+"""Transformer operating on nodes to predict edges between nodes."""
+
+
+
+from __future__ import annotations
+
+
+
+import torch
+
+import torch.nn as nn
+
+import torch.nn.functional as F
+
+from torch.utils.checkpoint import checkpoint as grad_ckpt
+
+
+
+
+
+class CrossAttentionBlock(nn.Module):
+
+    """A single cross-attention block with MLP and residual connections."""
+
+
+
+    def __init__(
+
+        self,
+
+        hidden_dim: int = 64,
+
+        n_heads: int = 4,
+
+        mlp_ratio: float = 2.0,
+
+        dropout: float = 0.1,
+
+    ):
+
+        super().__init__()
+
+        self.norm1 = nn.LayerNorm(hidden_dim)
+
+        self.norm2 = nn.LayerNorm(hidden_dim)
+
+        self.cross_attn = nn.MultiheadAttention(
+
+            hidden_dim, n_heads, batch_first=True, dropout=dropout
+
+        )
+
+
+
+        mlp_hidden = int(hidden_dim * mlp_ratio)
+
+        self.mlp = nn.Sequential(
+
+            nn.Linear(hidden_dim, mlp_hidden),
+
+            nn.GELU(),
+
+            nn.Dropout(dropout),
+
+            nn.Linear(mlp_hidden, hidden_dim),
+
+            nn.Dropout(dropout),
+
+        )
+
+
+
+    def forward(
+
+        self,
+
+        q: torch.Tensor,
+
+        kv: torch.Tensor,
+
+        kv_mask: torch.Tensor | None = None,
+
+    ) -> torch.Tensor:
+
+        """Cross-attention with residual.
+
+
+
+        Parameters
+
+        ----------
+
+        q : torch.Tensor
+
+            Query tensor, shape (B, N_q, D).
+
+        kv : torch.Tensor
+
+            Key/value tensor, shape (B, N_kv, D).
+
+        kv_mask : torch.Tensor, optional
+
+            Boolean mask for kv positions, shape (B, N_kv).
+
+            True = real position, False = padding (will be ignored).
+
+        """
+
+        key_padding_mask = ~kv_mask if kv_mask is not None else None
+
+        attn_out, _ = self.cross_attn(
+
+            self.norm1(q), self.norm1(kv), self.norm1(kv),
+
+            key_padding_mask=key_padding_mask,
+
+        )
+
+        q = q + attn_out
+
+        q = q + self.mlp(self.norm2(q))
+
+        return q
+
+
+
+
+
+class SimpleNodeTransformer(nn.Module):
+
+    """Transformer for predicting edges between cell detections."""
+
+
+
+    def __init__(
+
+        self,
+
+        feat_dim: int = 33,
+
+        hidden_dim: int = 128,
+
+        n_heads: int = 4,
+
+        n_blocks: int = 4,
+
+        mlp_ratio: float = 2.0,
+
+        dropout: float = 0.3,
+
+        pair_chunk_size: int | None = 32,
+
+    ):
+
+        super().__init__()
+
+        self.pair_chunk_size = pair_chunk_size
+
+        self.proj = nn.Linear(feat_dim, hidden_dim)
+
+        self.norm_in = nn.LayerNorm(hidden_dim)
+
+
+
+        self.blocks = nn.ModuleList([
+
+            CrossAttentionBlock(hidden_dim, n_heads, mlp_ratio, dropout)
+
+            for _ in range(n_blocks)
+
+        ])
+
+
+
+        self.norm_out = nn.LayerNorm(hidden_dim)
+
+
+
+        # MLP for pairwise scoring: concatenated features + relative position
+
+        self.pair_mlp = nn.Sequential(
+
+            nn.Linear(hidden_dim * 2 + 3, hidden_dim),
+
+            nn.GELU(),
+
+            nn.Dropout(dropout),
+
+            nn.Linear(hidden_dim, hidden_dim // 2),
+
+            nn.GELU(),
+
+            nn.Linear(hidden_dim // 2, 1),
+
+        )
+
+
+
+    def forward(
+
+        self,
+
+        feat_t: torch.Tensor,
+
+        feat_t1: torch.Tensor,
+
+        coords_t: torch.Tensor,
+
+        coords_t1: torch.Tensor,
+
+        mask_t: torch.Tensor | None = None,
+
+        mask_t1: torch.Tensor | None = None,
+
+    ) -> torch.Tensor:
+
+        """
+
+        Predict edge logits between detections at consecutive frames.
+
+
+
+        Accepts both unbatched (N, D) and batched (B, N, D) inputs.
+
+        When unbatched, a batch dimension is added and removed automatically.
+
+
+
+        Parameters
+
+        ----------
+
+        feat_t : torch.Tensor
+
+            Features at time t, shape (N_t, D) or (B, N_t, D).
+
+        feat_t1 : torch.Tensor
+
+            Features at time t+1, shape (N_t1, D) or (B, N_t1, D).
+
+        coords_t : torch.Tensor
+
+            Coordinates (z, y, x) at time t, shape (N_t, 3) or (B, N_t, 3).
+
+        coords_t1 : torch.Tensor
+
+            Coordinates (z, y, x) at time t+1, shape (N_t1, 3) or (B, N_t1, 3).
+
+        mask_t : torch.Tensor, optional
+
+         
+
+  ... [3225 more chars]
+
+==============================================================================
+
+repo/src/biohub_tracking/models/temporal_unet.py
+
+"""Simple 3D+T U-Net.
+
+
+
+Input shape  : ``(B, T, C_in, Z, Y, X)``
+
+Output shape : ``(B, T, C_out, Z, Y, X)``
+
+
+
+"""
+
+
+
+from __future__ import annotations
+
+
+
+import math
+
+from collections.abc import Sequence
+
+
+
+import torch
+
+import torch.nn as nn
+
+import torch.nn.functional as F
+
+from torch.utils.checkpoint import checkpoint as _grad_ckpt
+
+
+
+
+
+def _conv_block(in_channels: int, out_channels: int) -> nn.Sequential:
+
+    return nn.Sequential(
+
+        nn.Conv3d(in_channels, out_channels, kernel_size=3, padding=1, bias=False),
+
+        nn.BatchNorm3d(out_channels),
+
+        nn.ReLU(inplace=True),
+
+        nn.Conv3d(out_channels, out_channels, kernel_size=3, padding=1, bias=False),
+
+        nn.BatchNorm3d(out_channels),
+
+        nn.ReLU(inplace=True),
+
+    )
+
+
+
+
+
+class _TemporalAttention(nn.Module):
+
+    """Per-voxel multi-head self-attention across time."""
+
+
+
+    def __init__(self, channels: int, n_heads: int = 4) -> None:
+
+        super().__init__()
+
+        self.norm = nn.LayerNorm(channels)
+
+        self.attn = nn.MultiheadAttention(channels, n_heads, batch_first=True)
+
+
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+
+        # x: (B, T, C, Z, Y, X)
+
+        B, T, C = x.shape[:3]
+
+        spatial = x.shape[3:]
+
+        S = math.prod(spatial)
+
+
+
+        h = x.reshape(B, T, C, S).permute(0, 3, 1, 2).reshape(B * S, T, C)
+
+        h = self.norm(h)
+
+        h, _ = self.attn(h, h, h, need_weights=False)
+
+        h = h.reshape(B, S, T, C).permute(0, 2, 3, 1).reshape(B, T, C, *spatial)
+
+        return x + h
+
+
+
+
+
+class TemporalUNet3D(nn.Module):
+
+    """Minimal 3D temporal U-Net.
+
+
+
+    Parameters
+
+    ----------
+
+    in_channels : int
+
+        Input channels per frame.
+
+    out_channels : int
+
+        Output feature channels per frame.
+
+    layers : sequence of int
+
+        Encoder channel widths, shallow to deep. Number of stages equals
+
+        ``len(layers)``; spatial size is halved before every stage except
+
+        the first.
+
+    gradient_checkpointing : bool
+
+        If True (default), wrap encoder/decoder conv blocks with
+
+        ``torch.utils.checkpoint`` during training to reduce activation
+
+        memory at the cost of recomputing activations in the backward
+
+        pass.
+
+    skip_fullres_temporal : bool
+
+        If True (default), replace the temporal-attention block at the
+
+        full-resolution (first) encoder stage with an Identity. Per-voxel
+
+        attention at full res dominates both memory and runtime; skipping
+
+        it gives ~3x speedup and ~30% less memory with negligible quality
+
+        loss in practice.
+
+    """
+
+
+
+    def __init__(
+
+        self,
+
+        in_channels: int = 1,
+
+        out_channels: int = 32,
+
+        layers: Sequence[int] = (32, 64, 128),
+
+        gradient_checkpointing: bool = True,
+
+        skip_fullres_temporal: bool = True,
+
+    ) -> None:
+
+        super().__init__()
+
+        layers = list(layers)
+
+        if len(layers) < 2:
+
+            raise ValueError("layers must contain at least two stages")
+
+
+
+        self.gradient_checkpointing = gradient_checkpointing
+
+
+
+        self.encoder_blocks = nn.ModuleList()
+
+        self.temporal_blocks = nn.ModuleList()
+
+        prev = in_channels
+
+        for i, ch in enumerate(layers):
+
+            self.encoder_blocks.append(_conv_block(prev, ch))
+
+            if skip_fullres_temporal and i == 0:
+
+                self.temporal_blocks.append(nn.Identity())
+
+            else:
+
+                self.temporal_blocks.append(_TemporalAttention(ch))
+
+            prev = ch
+
+        self.pool = nn.MaxPool3d(kernel_size=2, stride=2)
+
+
+
+        self.upsamples = nn.ModuleList()
+
+        self.decoder_blocks = nn.ModuleList()
+
+        for i in range(len(layers) - 1, 0, -1):
+
+            self.upsamples.append(
+
+                nn.Upsample(scale_factor=2, mode="trilinear", align_corners=False)
+
+            )
+
+            self.decoder_blocks.append(_conv_block(layers[i] + layers[i - 1], layers[i - 1]))
+
+
+
+        self.head = nn.Conv3d(layers[0], out_channels, kernel_size=1)
+
+
+
+    def _run(self, block: nn.Module, x: torch.Tensor) -> torch.Tensor:
+
+        if sel
+
+  ... [1112 more chars]
+
+
+
+wheel directories: ['/kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1/wheels']
+
+{
+
+  "pack": "/kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1",
+
+  "n_entries": 66,
+
+  "total_mb": 277.5,
+
+  "wheel_dirs": [
+
+    "/kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1/wheels"
+
+  ],
+
+  "text_files": [
+
+    "ARTIFACT_MANIFEST.json",
+
+    "README.md",
+
+    "kaggle_dependency_install_command.txt",
+
+    "requirements-unet-ilp-kaggle-predownload.txt",
+
+    "requirements-unet-ilp.txt",
+
+    "source_scripts/build_biohub_support_pack.py",
+
+    "source_scripts/train_full_frame_center_detector.py",
+
+    "repo/scripts/augmentations.py",
+
+    "repo/scripts/dataspec.py",
+
+    "repo/scripts/evaluate.py",
+
+    "repo/scripts/predict_unet_transformer.py",
+
+    "repo/scripts/train_unet_transformer.py",
+
+    "repo/src/biohub_tracking/__init__.py",
+
+    "repo/src/biohub_tracking/division_metrics.py",
+
+    "repo/src/biohub_tracking/img_proc.py",
+
+    "repo/src/biohub_tracking/io.py",
+
+    "repo/src/biohub_tracking/metrics.py",
+
+    "weights/unet_transformer/split_0/config.json",
+
+    "repo/src/biohub_tracking/models/__init__.py",
+
+    "repo/src/biohub_tracking/models/simple_node_transformer.py",
+
+    "repo/src/biohub_tracking/models/temporal_unet.py"
+
+  ]
+
+}
+
+
+
+checkpoints described: ['weights/unet_transformer/split_0/checkpoint_last.pth', 'weights/unet_transformer/split_0/edge_predictor_best.pth']
+
+total elapsed 4s
+
+
+
+##############################################################################
+
+### FILE: weights/unet_transformer/split_0/config.json
+
+##############################################################################
+
+{
+
+  "unet_out_channels": 32,
+
+  "unet_layers": [
+
+    32,
+
+    64,
+
+    128
+
+  ],
+
+  "downsample": [
+
+    1,
+
+    4,
+
+    4
+
+  ],
+
+  "window_size": 2,
+
+  "pool_kernel_um": 5.0
+
+}
+
+
+
+##############################################################################
+
+### FILE: ARTIFACT_MANIFEST.json
+
+##############################################################################
+
+{
+
+  "artifact_name": "biohub-tracking-support-pack-400ep-snapshot-v1",
+
+  "compatibility": {
+
+    "coordinate_order": [
+
+      "z",
+
+      "y",
+
+      "x"
+
+    ],
+
+    "coordinate_unit": "original_voxel",
+
+    "gate_diagnostics": {
+
+      "files": [
+
+        "weights/full_frame_center/gate_summary.json",
+
+        "weights/full_frame_center/gate_threshold_metrics.csv",
+
+        "weights/full_frame_center/gate_frame_metrics.csv",
+
+        "weights/full_frame_center/gate_peak_samples.csv"
+
+      ],
+
+      "purpose": "threshold calibration for full_frame_center node rescue",
+
+      "warning": "Sparse-label precision/recall are calibration features, not complete-cell metrics."
+
+    },
+
+    "models": {
+
+      "full_frame_center": {
+
+        "outputs": [
+
+          "center heatmap on XY-pooled volume",
+
+          "peak coordinates mapped back to original z/y/x voxel coordinates",
+
+          "peak score usable as a conservative node-rescue gate"
+
+        ],
+
+        "recommended_use": "Use only as a high-confidence rescue prior near graph gaps, short components, or unmatched motion endpoints. Avoid adding all peaks directly to the node set.",
+
+        "role": "auxiliary_center_prior"
+
+      },
+
+      "unet_transformer": {
+
+        "outputs": [
+
+          "node detections in original z/y/x voxel coordinates",
+
+          "learned edge probabilities between adjacent frames",
+
+          "ILP candidate graph before notebook-level graph repair"
+
+        ],
+
+        "role": "primary_graph_generator"
+
+      }
+
+    },
+
+    "schema_version": 1,
+
+    "voxel_scale_um": {
+
+      "x": 0.40625,
+
+      "y": 0.40625,
+
+      "z": 1.625
+
+    }
+
+  },
+
+  "contents": {
+
+    "full_frame_center_included": false,
+
+    "repo": {
+
+      "bytes": 148660,
+
+      "files": 13
+
+    },
+
+    "source_scripts": {
+
+      "build_biohub_support_pack.py": {
+
+        "bytes": 16869,
+
+        "path": "source_scripts/build_biohub_support_pack.py",
+
+        "sha256": "01a895ece59fd842bd80e936104d6a22be3c498cd87c7b8bf280a1f8367e1556"
+
+      },
+
+      "package_and_upload_support_pack_version.sh": {
+
+        "bytes": 5072,
+
+        "path": "source_scripts/package_and_upload_support_pack_version.sh",
+
+        "sha256": "3d51bbef78075247757dc39df641bfd34223d24b09eb04656709975599994941"
+
+      },
+
+      "run_full_frame_center_training.sh": {
+
+        "bytes": 9458,
+
+        "path": "source_scripts/run_full_frame_center_training.sh",
+
+        "sha256": "fefe6822cef273a60f12078efa8d59f3cde2b630cf5524faec5f38ce46173670"
+
+      },
+
+      "train_full_frame_center_detector.py": {
+
+        "bytes": 43133,
+
+        "path": "source_scripts/train_full_frame_center_detector.py",
+
+        "sha256": "96f39e25901fc3f728d08d945efa62c5eac28d4ef771d71889053b65396cde5e"
+
+      }
+
+    },
+
+    "weights": {
+
+      "bytes": 33432975,
+
+      "files": 3
+
+    },
+
+    "wheels_included": true
+
+  },
+
+  "generated_at_utc": "2026-07-08T22:41:42.637485+00:00",
+
+  "model": {
+
+    "config": {
+
+      "downsample": [
+
+        1,
+
+        4,
+
+        4
+
+      ],
+
+      "pool_kernel_um": 5.0,
+
+      "unet_layers": [
+
+        32,
+
+        64,
+
+        128
+
+      ],
+
+      "unet_out_channels": 32,
+
+      "window_size": 2
+
+    },
+
+    "method": "unet_transformer",
+
+    "weight_bytes": 8363159,
+
+    "weight_path": "weights/unet_transformer/split_0/edge_predictor_best.pth",
+
+    "weight_sha256": "12f6881ee3620a831697ca098ff8f48e687a24225f4e048b538deec3562fe771"
+
+  },
+
+  "models": {
+
+    "unet_transformer": {
+
+      "config": {
+
+        "downsample": [
+
+          1,
+
+          4,
+
+          4
+
+        ],
+
+        "pool_kernel_um": 5.0,
+
+        "unet_layers": [
+
+          32,
+
+          64,
+
+          128
+
+        ],
+
+        "unet_out_channels": 32,
+
+        "window_size": 2
+
+      },
+
+      "method": "unet_transformer",
+
+      "weight_bytes": 8363159,
+
+      "weight_path": "weights/unet_transformer/split_0/edge_predictor_best.pth",
+
+      "weight_sha256": "12f6881ee3620a831697ca098ff8f48e687a24225f4e048b538deec3562fe771"
+
+    }
+
+  },
+
+  "notes": [
+
+    "This support artifact includes offline dependency wheels for code-submission reruns.",
+
+    "Use kaggle_dependency_install_command.txt in Kaggle dependency input before inference, or attach offline wheels.",
+
+    "Do not quote zarr>=3.0.10,<4 in Kaggle dependency input; helper parsers may treat quotes as literal text.",
+
+    "The model architecture is reconstructed from repo/ plus config.json."
+
+  ],
+
+  "source": "public learned baseline artifact, repackaged locally"
+
+}
+
+
+
+
+
+##############################################################################
+
+### FILE: repo/src/biohub_tracking/models/temporal_unet.py
+
+##############################################################################
+
+"""Simple 3D+T U-Net.
+
+
+
+Input shape  : ``(B, T, C_in, Z, Y, X)``
+
+Output shape : ``(B, T, C_out, Z, Y, X)``
+
+
+
+"""
+
+
+
+from __future__ import annotations
+
+
+
+import math
+
+from collections.abc import Sequence
+
+
+
+import torch
+
+import torch.nn as nn
+
+import torch.nn.functional as F
+
+from torch.utils.checkpoint import checkpoint as _grad_ckpt
+
+
+
+
+
+def _conv_block(in_channels: int, out_channels: int) -> nn.Sequential:
+
+    return nn.Sequential(
+
+        nn.Conv3d(in_channels, out_channels, kernel_size=3, padding=1, bias=False),
+
+        nn.BatchNorm3d(out_channels),
+
+        nn.ReLU(inplace=True),
+
+        nn.Conv3d(out_channels, out_channels, kernel_size=3, padding=1, bias=False),
+
+        nn.BatchNorm3d(out_channels),
+
+        nn.ReLU(inplace=True),
+
+    )
+
+
+
+
+
+class _TemporalAttention(nn.Module):
+
+    """Per-voxel multi-head self-attention across time."""
+
+
+
+    def __init__(self, channels: int, n_heads: int = 4) -> None:
+
+        super().__init__()
+
+        self.norm = nn.LayerNorm(channels)
+
+        self.attn = nn.MultiheadAttention(channels, n_heads, batch_first=True)
+
+
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+
+        # x: (B, T, C, Z, Y, X)
+
+        B, T, C = x.shape[:3]
+
+        spatial = x.shape[3:]
+
+        S = math.prod(spatial)
+
+
+
+        h = x.reshape(B, T, C, S).permute(0, 3, 1, 2).reshape(B * S, T, C)
+
+        h = self.norm(h)
+
+        h, _ = self.attn(h, h, h, need_weights=False)
+
+        h = h.reshape(B, S, T, C).permute(0, 2, 3, 1).reshape(B, T, C, *spatial)
+
+        return x + h
+
+
+
+
+
+class TemporalUNet3D(nn.Module):
+
+    """Minimal 3D temporal U-Net.
+
+
+
+    Parameters
+
+    ----------
+
+    in_channels : int
+
+        Input channels per frame.
+
+    out_channels : int
+
+        Output feature channels per frame.
+
+    layers : sequence of int
+
+        Encoder channel widths, shallow to deep. Number of stages equals
+
+        ``len(layers)``; spatial size is halved before every stage except
+
+        the first.
+
+    gradient_checkpointing : bool
+
+        If True (default), wrap encoder/decoder conv blocks with
+
+        ``torch.utils.checkpoint`` during training to reduce activation
+
+        memory at the cost of recomputing activations in the backward
+
+        pass.
+
+    skip_fullres_temporal : bool
+
+        If True (default), replace the temporal-attention block at the
+
+        full-resolution (first) encoder stage with an Identity. Per-voxel
+
+        attention at full res dominates both memory and runtime; skipping
+
+        it gives ~3x speedup and ~30% less memory with negligible quality
+
+        loss in practice.
+
+    """
+
+
+
+    def __init__(
+
+        self,
+
+        in_channels: int = 1,
+
+        out_channels: int = 32,
+
+        layers: Sequence[int] = (32, 64, 128),
+
+        gradient_checkpointing: bool = True,
+
+        skip_fullres_temporal: bool = True,
+
+    ) -> None:
+
+        super().__init__()
+
+        layers = list(layers)
+
+        if len(layers) < 2:
+
+            raise ValueError("layers must contain at least two stages")
+
+
+
+        self.gradient_checkpointing = gradient_checkpointing
+
+
+
+        self.encoder_blocks = nn.ModuleList()
+
+        self.temporal_blocks = nn.ModuleList()
+
+        prev = in_channels
+
+        for i, ch in enumerate(layers):
+
+            self.encoder_blocks.append(_conv_block(prev, ch))
+
+            if skip_fullres_temporal and i == 0:
+
+                self.temporal_blocks.append(nn.Identity())
+
+            else:
+
+                self.temporal_blocks.append(_TemporalAttention(ch))
+
+            prev = ch
+
+        self.pool = nn.MaxPool3d(kernel_size=2, stride=2)
+
+
+
+        self.upsamples = nn.ModuleList()
+
+        self.decoder_blocks = nn.ModuleList()
+
+        for i in range(len(layers) - 1, 0, -1):
+
+            self.upsamples.append(
+
+                nn.Upsample(scale_factor=2, mode="trilinear", align_corners=False)
+
+            )
+
+            self.decoder_blocks.append(_conv_block(layers[i] + layers[i - 1], layers[i - 1]))
+
+
+
+        self.head = nn.Conv3d(layers[0], out_channels, kernel_size=1)
+
+
+
+    def _run(self, block: nn.Module, x: torch.Tensor) -> torch.Tensor:
+
+        if self.gradient_checkpointing and self.training:
+
+            return _grad_ckpt(block, x, use_reentrant=False)
+
+        return block(x)
+
+
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+
+        # x: (B, T, C_in, Z, Y, X) -> (B, T, C_out, Z, Y, X)
+
+        B, T = x.shape[:2]
+
+        x = x.reshape(B * T, *x.shape[2:])
+
+
+
+        skips: list[torch.Tensor] = []
+
+        for i, (block, temporal) in enumerate(zip(self.encoder_blocks, self.temporal_blocks)):
+
+            if i > 0:
+
+                x = self.pool(x)
+
+            x = self._run(block, x)
+
+            x = temporal(x.reshape(B, T, *x.shape[1:])).reshape(B * T, *x.shape[1:])
+
+            if i < len(self.encoder_blocks) - 1:
+
+                skips.append(x)
+
+
+
+        for up, block, skip in zip(self.upsamples, self.decoder_blocks, skips[::-1]):
+
+            x = up(x)
+
+            if x.shape[2:] != skip.shape[2:]:
+
+                x = F.interpolate(x, size=skip.shape[2:], mode="trilinear", align_corners=False)
+
+            x = torch.cat([x, skip], dim=1)
+
+            x = self._run(block, x)
+
+
+
+        x = self.head(x)
+
+        return x.reshape(B, T, *x.shape[1:])
+
+
+
+
+
+##############################################################################
+
+### FILE: repo/src/biohub_tracking/models/simple_node_transformer.py
+
+##############################################################################
+
+"""Transformer operating on nodes to predict edges between nodes."""
+
+
+
+from __future__ import annotations
+
+
+
+import torch
+
+import torch.nn as nn
+
+import torch.nn.functional as F
+
+from torch.utils.checkpoint import checkpoint as grad_ckpt
+
+
+
+
+
+class CrossAttentionBlock(nn.Module):
+
+    """A single cross-attention block with MLP and residual connections."""
+
+
+
+    def __init__(
+
+        self,
+
+        hidden_dim: int = 64,
+
+        n_heads: int = 4,
+
+        mlp_ratio: float = 2.0,
+
+        dropout: float = 0.1,
+
+    ):
+
+        super().__init__()
+
+        self.norm1 = nn.LayerNorm(hidden_dim)
+
+        self.norm2 = nn.LayerNorm(hidden_dim)
+
+        self.cross_attn = nn.MultiheadAttention(
+
+            hidden_dim, n_heads, batch_first=True, dropout=dropout
+
+        )
+
+
+
+        mlp_hidden = int(hidden_dim * mlp_ratio)
+
+        self.mlp = nn.Sequential(
+
+            nn.Linear(hidden_dim, mlp_hidden),
+
+            nn.GELU(),
+
+            nn.Dropout(dropout),
+
+            nn.Linear(mlp_hidden, hidden_dim),
+
+            nn.Dropout(dropout),
+
+        )
+
+
+
+    def forward(
+
+        self,
+
+        q: torch.Tensor,
+
+        kv: torch.Tensor,
+
+        kv_mask: torch.Tensor | None = None,
+
+    ) -> torch.Tensor:
+
+        """Cross-attention with residual.
+
+
+
+        Parameters
+
+        ----------
+
+        q : torch.Tensor
+
+            Query tensor, shape (B, N_q, D).
+
+        kv : torch.Tensor
+
+            Key/value tensor, shape (B, N_kv, D).
+
+        kv_mask : torch.Tensor, optional
+
+            Boolean mask for kv positions, shape (B, N_kv).
+
+            True = real position, False = padding (will be ignored).
+
+        """
+
+        key_padding_mask = ~kv_mask if kv_mask is not None else None
+
+        attn_out, _ = self.cross_attn(
+
+            self.norm1(q), self.norm1(kv), self.norm1(kv),
+
+            key_padding_mask=key_padding_mask,
+
+        )
+
+        q = q + attn_out
+
+        q = q + self.mlp(self.norm2(q))
+
+        return q
+
+
+
+
+
+class SimpleNodeTransformer(nn.Module):
+
+    """Transformer for predicting edges between cell detections."""
+
+
+
+    def __init__(
+
+        self,
+
+        feat_dim: int = 33,
+
+        hidden_dim: int = 128,
+
+        n_heads: int = 4,
+
+        n_blocks: int = 4,
+
+        mlp_ratio: float = 2.0,
+
+        dropout: float = 0.3,
+
+        pair_chunk_size: int | None = 32,
+
+    ):
+
+        super().__init__()
+
+        self.pair_chunk_size = pair_chunk_size
+
+        self.proj = nn.Linear(feat_dim, hidden_dim)
+
+        self.norm_in = nn.LayerNorm(hidden_dim)
+
+
+
+        self.blocks = nn.ModuleList([
+
+            CrossAttentionBlock(hidden_dim, n_heads, mlp_ratio, dropout)
+
+            for _ in range(n_blocks)
+
+        ])
+
+
+
+        self.norm_out = nn.LayerNorm(hidden_dim)
+
+
+
+        # MLP for pairwise scoring: concatenated features + relative position
+
+        self.pair_mlp = nn.Sequential(
+
+            nn.Linear(hidden_dim * 2 + 3, hidden_dim),
+
+            nn.GELU(),
+
+            nn.Dropout(dropout),
+
+            nn.Linear(hidden_dim, hidden_dim // 2),
+
+            nn.GELU(),
+
+            nn.Linear(hidden_dim // 2, 1),
+
+        )
+
+
+
+    def forward(
+
+        self,
+
+        feat_t: torch.Tensor,
+
+        feat_t1: torch.Tensor,
+
+        coords_t: torch.Tensor,
+
+        coords_t1: torch.Tensor,
+
+        mask_t: torch.Tensor | None = None,
+
+        mask_t1: torch.Tensor | None = None,
+
+    ) -> torch.Tensor:
+
+        """
+
+        Predict edge logits between detections at consecutive frames.
+
+
+
+        Accepts both unbatched (N, D) and batched (B, N, D) inputs.
+
+        When unbatched, a batch dimension is added and removed automatically.
+
+
+
+        Parameters
+
+        ----------
+
+        feat_t : torch.Tensor
+
+            Features at time t, shape (N_t, D) or (B, N_t, D).
+
+        feat_t1 : torch.Tensor
+
+            Features at time t+1, shape (N_t1, D) or (B, N_t1, D).
+
+        coords_t : torch.Tensor
+
+            Coordinates (z, y, x) at time t, shape (N_t, 3) or (B, N_t, 3).
+
+        coords_t1 : torch.Tensor
+
+            Coordinates (z, y, x) at time t+1, shape (N_t1, 3) or (B, N_t1, 3).
+
+        mask_t : torch.Tensor, optional
+
+            Boolean mask for t nodes, shape (B, N_t). True = real, False = pad.
+
+        mask_t1 : torch.Tensor, optional
+
+            Boolean mask for t+1 nodes, shape (B, N_t1). True = real, False = pad.
+
+
+
+        Returns
+
+        -------
+
+        torch.Tensor
+
+            Edge logits, shape (N_t, N_t1) or (B, N_t, N_t1).
+
+        """
+
+        unbatched = feat_t.ndim == 2
+
+        if unbatched:
+
+            feat_t = feat_t.unsqueeze(0)
+
+            feat_t1 = feat_t1.unsqueeze(0)
+
+            coords_t = coords_t.unsqueeze(0)
+
+            coords_t1 = coords_t1.unsqueeze(0)
+
+
+
+        q = self.norm_in(self.proj(feat_t))   # (B, N_t, hidden)
+
+        k = self.norm_in(self.proj(feat_t1))  # (B, N_t1, hidden)
+
+
+
+        # Bi-directional cross-attention: t attends to t+1 and vice versa.
+
+        for block in self.blocks:
+
+            def _q_fn(
+
+                q: torch.Tensor, kv: torch.Tensor,
+
+                mask: torch.Tensor | None, _b: CrossAttentionBlock = block,
+
+            ) -> torch.Tensor:
+
+                return _b(q, kv, kv_mask=mask)
+
+
+
+            def _k_fn(
+
+                k: torch.Tensor, kv: torch.Tensor,
+
+                mask: torch.Tensor | None, _b: CrossAttentionBlock = block,
+
+            ) -> torch.Tensor:
+
+                return _b(k, kv, kv_mask=mask)
+
+
+
+            if torch.is_grad_enabled():
+
+                q = grad_ckpt(_q_fn, q, k, mask_t1, use_reentrant=False)
+
+                k = grad_ckpt(_k_fn, k, q, mask_t, use_reentrant=False)
+
+            else:
+
+                q = _q_fn(q, k, mask_t1)
+
+                k = _k_fn(k, q, mask_t)
+
+
+
+        q = self.norm_out(q)  # (B, N_t, hidden)
+
+        k = self.norm_out(k)  # (B, N_t1, hidden)
+
+
+
+        # Build pairwise logits in chunks over N_t to avoid O(N²) peak allocation.
+
+        # Full tensor (B, N_t, N_t1, 2*hidden+3) can be tens of GB for large N.
+
+        # Each chunk is grad-checkpointed: forward peak = B×chunk×N_t1×(2H+3),
+
+        # backward only re-stores tiny q_c / coords slice instead of all activations.
+
+        N_t = q.shape[1]
+
+        chunk = self.pair_chunk_size or N_t
+
+        chunks = []
+
+        pair_mlp = self.pair_mlp
+
+
+
+        for i in range(0, N_t, chunk):
+
+            q_c = q[:, i : i + chunk, :]
+
+            coords_c = coords_t[:, i : i + chunk, :]
+
+
+
+            def _chunk_fn(
+
+                qc: torch.Tensor,
+
+                kk: torch.Tensor,
+
+                cc: torch.Tensor,
+
+                cc1: torch.Tensor,
+
+                _pm: nn.Module = pair_mlp,
+
+            ) -> torch.Tensor:
+
+                nc_i = qc.shape[1]
+
+                n1 = kk.shape[1]
+
+                qe = qc.unsqueeze(2).expand(-1, -1, n1, -1)
+
+                ke = kk.unsqueeze(1).expand(-1, nc_i, -1, -1)
+
+                rel = (cc.unsqueeze(2) - cc1.unsqueeze(1)) / 100.0
+
+                return _pm(torch.cat([qe, ke, rel], dim=-1)).squeeze(-1)
+
+
+
+            if torch.is_grad_enabled():
+
+                out = grad_ckpt(
+
+                    _chunk_fn, q_c, k, coords_c, coords_t1, use_reentrant=False
+
+                )
+
+            else:
+
+                out = _chunk_fn(q_c, k, coords_c, coords_t1)
+
+
+
+            chunks.append(out)
+
+
+
+        logits = torch.cat(chunks, dim=1)  # (B, N_t, N_t1)
+
+
+
+        if unbatched:
+
+            logits = logits.squeeze(0)
+
+
+
+        return logits
+
+
+
+### FILE: repo/scripts/predict_unet_transformer.py
+
+##############################################################################
+
+#!/usr/bin/env python
+
+"""Run UNet + transformer edge prediction on datasets and export to .geff.
+
+
+
+Usage:
+
+    uv run scripts/predict_unet_transformer.py --split 0
+
+"""
+
+
+
+import argparse
+
+import contextlib
+
+import json
+
+import os
+
+import sys
+
+from dataclasses import dataclass
+
+from pathlib import Path
+
+
+
+import numpy as np
+
+import polars as pl
+
+import torch
+
+import torch.nn.functional as F
+
+import zarr
+
+from tqdm import tqdm
+
+
+
+import tracksdata as td
+
+
+
+from biohub_tracking.io import open_dataset, save_graph
+
+
+
+# Import model and helpers from companion training script.
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+from train_unet_transformer import (
+
+    DEFAULT_METHOD,
+
+    UNetNodeTransformer,
+
+    extract_pos_features,
+
+    _POS_EMBED_DIM,
+
+)
+
+from biohub_tracking.models import TemporalUNet3D
+
+
+
+from dataspec import USERNAME, INTERACTIVE, WEIGHTS_PATH
+
+from evaluate import evaluate_run
+
+from biohub_tracking.metrics import summarise
+
+
+
+
+
+# =============================================================================
+
+# Prediction config
+
+# =============================================================================
+
+
+
+@dataclass
+
+class PredictConfig:
+
+    """All hyperparameters that can affect prediction quality / score.
+
+
+
+    Detection
+
+    ---------
+
+    det_threshold : float
+
+        Minimum sigmoid probability for a local-max peak to be kept.
+
+
+
+    Edge filtering
+
+    --------------
+
+    edge_activation : str
+
+        Activation applied to raw edge logits: ``"sigmoid"`` (independent
+
+        per-edge scores) or ``"softmax"`` (row-normalised over t+1 nodes).
+
+    threshold : float
+
+        Minimum edge probability to consider a link at all.
+
+    max_parents_per_node : int
+
+        Maximum number of incoming edges per node (typically 1).
+
+    max_children_per_node : int
+
+        Maximum number of outgoing edges per node (1 = no divisions, 2 = divisions allowed).
+
+    """
+
+    # Detection
+
+    det_threshold: float = 0.5
+
+    det_tta: bool = True  # flip-xy TTA for detection logits
+
+    pool_kernel_um: float = 3.0  # max-pool kernel size in µm for detection peak extraction
+
+    # Edge filtering
+
+    edge_activation: str = "softmax"  # "sigmoid" or "softmax"
+
+    threshold: float = 0.5
+
+
+
+    # ILP post-processing
+
+    use_ilp: bool = False
+
+    ilp_edge_weight: float = -1.0
+
+    ilp_appearance_weight: float = 0.1
+
+    ilp_disappearance_weight: float = 0.1
+
+    ilp_division_weight: float = 1.0
+
+
+
+    max_parents_per_node: int | None = None
+
+    max_children_per_node: int | None = None
+
+
+
+    def __post_init__(self) -> None:
+
+        # When ILP is enabled it handles parent/children constraints itself,
+
+        # so greedy limits are left unconstrained (None).  When ILP is
+
+        # disabled, default to 1/1 to avoid unconstrained edge assignment.
+
+        if not self.use_ilp:
+
+            if self.max_parents_per_node is None:
+
+                self.max_parents_per_node = 1
+
+            if self.max_children_per_node is None:
+
+                self.max_children_per_node = 2
+
+
+
+
+
+
+
+# =============================================================================
+
+# Helpers
+
+# =============================================================================
+
+
+
+
+
+@contextlib.contextmanager
+
+def suppress_output():
+
+    """Context manager to suppress stdout and stderr."""
+
+    with open(os.devnull, "w") as devnull:
+
+        with contextlib.redirect_stdout(devnull), contextlib.redirect_stderr(devnull):
+
+            yield
+
+
+
+
+
+# =============================================================================
+
+# Graph building
+
+# =============================================================================
+
+
+
+def build_graph(
+
+    coords: np.ndarray,
+
+    edges: list[tuple[int, int, float, float]],
+
+) -> td.graph.InMemoryGraph:
+
+    """Build a tracksdata graph from detection coords and predicted edges.
+
+
+
+    Avoids ``add_node_attr_key`` to sidestep a tracksdata/Polars compatibility
+
+    issue where the float default value is mistakenly used as a dtype.
+
+    Probabilities are passed as-is (softmax output, already in [0, 1]).
+
+    """
+
+    graph = td.graph.InMemoryGraph()
+
+
+
+    for key in ["z", "y", "x"]:
+
+        graph.add_node_attr_key(key, pl.Float64, -999999.0)
+
+
+
+    node_ids = graph.bulk_add_nodes([
+
+        {"t": int(t), "z": float(z), "y": float(y), "x": float(x)}
+
+        for t, z, y, x in coords
+
+    ])
+
+
+
+    if edges:
+
+        graph.add_edge_attr_key("edge_prob", pl.Float64, 0.0)
+
+        graph.add_edge_attr_key("edge_dist", pl.Float64, 0.0)
+
+        graph.bulk_add_edges([
+
+            {
+
+                "source_id": node_ids[src],
+
+                "target_id": node_ids[tgt],
+
+                "edge_prob": prob,
+
+                "edge_dist": dist,
+
+            }
+
+            for src, tgt, prob, dist in edges
+
+        ])
+
+
+
+    return graph
+
+
+
+
+
+# =============================================================================
+
+# Model loading
+
+# =============================================================================
+
+
+
+_DEFAULT_CONFIG = {
+
+    "unet_out_channels": 32,
+
+    "unet_layers": [32, 64, 128],
+
+    "downsample": [1, 4, 4],
+
+    "window_size": 2,
+
+}
+
+
+
+
+
+def load_model(
+
+    weights_path: Path, device: torch.device,
+
+) -> tuple[UNetNodeTransformer, int, tuple[int, ...]]:
+
+    """Reconstruct UNetNodeTransformer from saved config + weights.
+
+
+
+    Reads ``config.json`` from the same directory as the weights file.
+
+    Falls back to ``_DEFAULT_CONFIG`` if the file is missing.
+
+
+
+    Returns ``(model, window_size, downsample)``.
+
+    """
+
+    config_path = weights_path.parent / "config.json"
+
+    if config_path.exists():
+
+        config = {**_DEFAULT_CONFIG, **json.loads(config_path.read_text())}
+
+    else:
+
+        print(f"Warning: config.json not found at {config_path}, using defaults.", flush=True)
+
+        config = _DEFAULT_CONFIG
+
+
+
+    # Support legacy configs that used "downsample_factor" (scalar).
+
+    if "downsample_factor" in config and "downsample" not in config:
+
+        df = config["downsample_factor"]
+
+        config["downsample"] = [df, df, df]
+
+
+
+    downsample = tuple(config["downsample"])
+
+
+
+    unet = TemporalUNet3D(
+
+        in_channels=1,
+
+        out_channels=config["unet_out_channels"],
+
+        layers=config["unet_layers"],
+
+    )
+
+    model = UNetNodeTransformer(
+
+        unet=unet,
+
+        unet_out_channels=config["unet_out_channels"],
+
+        pos_feat_dim=4 * _POS_EMBED_DIM,
+
+    )
+
+    state = torch.load(weights_path, map_location=device, weights_only=True)
+
+    model.load_state_dict(state)
+
+    model.to(device)
+
+    model.eval()
+
+    return model, config["window_size"], downsample
+
+
+
+
+
+# =============================================================================
+
+# Per-frame loading
+
+# =============================================================================
+
+
+
+def _load_frame(
+
+    zarr_arr,
+
+    t: int,
+
+    target_shape: list[int],
+
+    downsample: tuple[int, ...] = (1, 1, 1),
+
+) -> torch.Tensor:
+
+    """Load one frame from zarr with strided spatial downsample (no normalisation)."""
+
+    dz, dy, dx = downsample
+
+    raw = zarr_arr[t, ::dz, ::dy, ::dx].astype(np.float32)
+
+    frame = torch.from_numpy(raw)
+
+    if list(frame.shape) != target_shape:
+
+        frame = F.interpolate(
+
+            frame[None, None], size=target_shape,
+
+            mode="trilinear", align_corners=False,
+
+        )[0, 0]
+
+    return frame
+
+
+
+
+
+# =============================================================================
+
+# Inference
+
+# =============================================================================
+
+
+
+def pool_kernel_from_um(
+
+    um: float,
+
+    voxel_size: tuple[float, ...],
+
+) -> tuple[int, ...]:
+
+    """Convert a physical suppression distance (microns) to a per-axis voxel kernel.
+
+
+
+    Each axis gets ``round(um / voxel_size_axis)`` voxels, forced to odd
+
+    (for symmetric padding) and at least 1.
+
+
+
+    Parameters
+
+    ----------
+
+    um : float
+
+        Desired suppression distance in microns.
+
+    voxel_size : tuple[float, ...]
+
+        Per-axis voxel sizes in microns, e.g. ``(1.625, 0.40625, 0.40625)``.
+
+    """
+
+    kernel = []
+
+    for s in voxel_size:
+
+        k = max(1, round(um / s))
+
+        if k % 2 == 0:
+
+            k += 1
+
+        kernel.append(k)
+
+    return tuple(kernel)
+
+
+
+
+
+def _detect_cells_pooled(
+
+    det_logits: torch.Tensor,
+
+    t: int,
+
+    det_threshold: float = 0.5,
+
+    pool_kernel: tuple[int, ...] = (3, 3, 3),
+
+) -> np.ndarray:
+
+    """Extract cell coordinates via max-pool local-max (same as training).
+
+
+
+    Coordinates are returned in the downsampled grid.  The caller is
+
+    responsible for scaling back to original resolution if needed.
+
+
+
+    Parameters
+
+    ----------
+
+    det_logits : torch.Tensor
+
+        (1, Z, Y, X) raw logits.
+
+    t : int
+
+        Time index to prepend as the first column.
+
+    det_threshold : float
+
+        Minimum sigmoid probability for a peak to be considered (default 0.5).
+
+    pool_kernel : tuple[int, ...]
+
+        Per-axis kernel size for local-max pooling,
+
+        e.g. ``(3, 11, 11)`` for anisotropic data.
+
+
+
+    Returns
+
+    -------
+
+    np.ndarray
+
+        (N, 4) int16 array with columns [t, z, y, x] in downsampled space.
+
+    """
+
+    logits = det_logits.unsqueeze(0)  # (1, 1, Z, Y, X)
+
+    pad = tuple(k // 2 for k in pool_kernel)
+
+    pooled = F.max_pool3d(logits, pool_kernel, stride=1, padding=pad)
+
+    is_peak = (logits == pooled) & (torch.sigmoid(logits) > det_threshold)
+
+    peak_idx = torch.nonzero(is_peak[0, 0])  # (N, 3)
+
+
+
+    if peak_idx.shape[0] == 0:
+
+        return np.empty((0, 4), dtype=np.int16)
+
+
+
+    coords = peak_idx.float().cpu().numpy()
+
+    t_col = np.full((len(coords), 1), t, dtype=np.float32)
+
+    return np.concatenate([t_col, coords], axis=1).astype(np.int16)
+
+
+
+
+
+@torch.no_grad()
+
+def predict_video(
+
+    model: UNetNodeTransformer,
+
+    ds_path: Path,
+
+    device: torch.device,
+
+    cfg: PredictConfig,
+
+    window_size: int = 2,
+
+    max_frames: int | None = None,
+
+    unet_batch_size: int = 4,
+
+    downsample: tuple[int, ...] = (1, 4, 4),
+
+) -> tuple[np.ndarray, list[tuple[int, int, float, float]]]:
+
+    """Run inference on a single video using sliding windows of W frames.
+
+
+
+    Windows slide with stride ``W - 1`` so every consecutive pair is covered
+
+    exactly once.  UNet features from each window are reused for edge
+
+    prediction on all ``W - 1`` consecutive pairs within the window.
+
+
+
+    Returns
+
+    -------
+
+    coords : np.ndarray
+
+        Shape (N, 4) — columns [t, z, y, x] in original resolution.
+
+    edges : list of (src_idx, tgt_idx, prob, distance) tuples
+
+    """
+
+    ds = open_dataset(ds_path, normalize=False, load_image=False, downsample=downsample)
+
+    if "0.001" not in ds.quantiles or "0.999" not in ds.quantiles:
+
+        raise ValueError(f"Zarr attrs missing image_statistics.quantiles for {ds_path}")
+
+    zarr_arr = zarr.open_group(str(ds.zarr_path), mode="r")["0"]
+
+    q_low = float(ds.quantiles["0.001"])
+
+    q_high = float(ds.quantiles["0.999"])
+
+
+
+    T = ds.image_shape[0] if max_frames is None else min(ds.image_shape[0], max_frames)
+
+    image_shape = (T,) + ds.image_shape[1:]
+
+    target_shape = list(image_shape[1:])
+
+
+
+    ds_arr = np.array(downsample, dtype=np.float32)  # for coord rescaling at the end
+
+    ds_arr_t = torch.from_numpy(ds_arr).to(device)   # for predict_edges (original-space coords)
+
+    pos_feat_dim = 4 * _POS_EMBED_DIM
+
+    W = window_size
+
+    voxel_size = tuple(s * d for s, d in zip(ds.scale, downsample))
+
+    pool_k = pool_kernel_from_um(cfg.pool_kernel_um, voxel_size)
+
+
+
+    # Running node registry — each entry records the frame-t detections.
+
+    # coord_offset[t] = (start, end) half-open range into the stacked array.
+
+    seen_frames: set[int] = set()
+
+    seen_pairs: set[tuple[int, int]] = set()
+
+    coord_lists: list[np.ndarray] = []
+
+    coord_offset: dict[int, tuple[int, int]] = {}
+
+    global_node_count: int = 0
+
+    all_edges: list[tuple[int, int, float, float]] = []
+
+
+
+    # Sliding windows with stride W-1 cover every consecutive pair exactly once.
+
+    stride = max(W - 1, 1)
+
+    window_starts = list(range(0, T - W + 1, stride))
+
+    # Ensure the very last pair (T-2 → T-1) is covered.
+
+    if not window_starts or window_starts[-1] + W < T:
+
+        last = max(T - W, 0)
+
+        if not window_starts or last != window_starts[-1]:
+
+            window_starts.append(last)
+
+
+
+    for ws in tqdm(
+
+        window_starts,
+
+        desc="  windows",
+
+        leave=False,
+
+        disable=not INTERACTIVE,
+
+    ):
+
+        frame_indices = list(range(ws, ws + W))
+
+
+
+        # --- UNet encode (single window, batch_size=1) ---
+
+        imgs = torch.stack([
+
+            _load_frame(zarr_arr, t, target_shape, downsample)
+
+            for t in frame_indices
+
+        ])  # (W, *spatial)
+
+        # Quantile normalisation (0.1%–99.9%) to match training pipeline.
+
+        imgs = ((imgs - q_low) / (q_high - q_low + 1e-6)).clamp(0.0)
+
+        imgs = imgs.unsqueeze(0).to(device)   # (1, W, *spatial)
+
+
+
+        unet_out, det_logits = model.encode(imgs)
+
+        # unet_out: (1, W, C, *spatial_down), det_logits: list of W × (1, 1, *spatial_down)
+
+
+
+        # Detection TTA: original + flip-x + flip-y + flip-xy, average logits.
+
+        # TTA: flip along Y (-2) and X (-1) only.  Z is excluded because
+
+        # the data is highly anisotropic (Z resolution ~4x coarser than XY),
+
+        # so Z-flips would produce out-of-distribution inputs.
+
+        if cfg.det_tta:
+
+            tta_flips = [(-1,), (-2,), (-2, -1)]
+
+            for dims in tta_flips:
+
+                imgs_flip = imgs.flip(dims)
+
+                _, det_flip = model.encode(imgs_flip)
+
+                for f in range(W):
+
+                    det_logits[f] = det_logits[f] + det_flip[f].flip(dims)
+
+                del imgs_flip, det_flip
+
+            for f in range(W):
+
+                det_logits[f] = det_logits[f] / 4
+
+
+
+        del imgs
+
+
+
+        # --- Detect cells in each frame (dedup across windows) ---
+
+        for f_idx, t in enumerate(frame_indices):
+
+            if t not in seen_frames:
+
+                arr = _detect_cells_pooled(
+
+                    det_logits[f_idx][0], t, cfg.det_threshold, pool_k,
+
+                )
+
+                coord_offset[t] = (global_node_count, global_node_count + len(arr))
+
+                global_node_count += len(arr)
+
+                coord_lists.append(arr)
+
+                seen_frames.add(t)
+
+
+
+        coords_so_far = (
+
+            np.concatenate(coord_lists) if coord_lists else np.empty((0, 4), dtype=np.int16)
+
+        )
+
+
+
+        # --- Edge prediction for each consecutive pair in the window ---
+
+        for f_idx in range(W - 1):
+
+            t_src, t_tgt = frame_indices[f_idx], frame_indices[f_idx + 1]
+
+            if (t_src, t_tgt) in seen_pairs:
+
+                continue
+
+            seen_pairs.add((t_src, t_tgt))
+
+
+
+            if t_src not in coord_offset or t_tgt not in coord_offset:
+
+                continue
+
+            s_src, e_src = coord_offset[t_src]
+
+            s_tgt, e_tgt = coord_offset[t_tgt]
+
+            if e_src == s_src or e_tgt == s_tgt:
+
+                continue
+
+
+
+            c_src = coords_so_far[s_src:e_src]
+
+            c_tgt = coords_so_far[s_tgt:e_tgt]
+
+            n_src, n_tgt = len(c_src), len(c_tgt)
+
+            idx_src = np.arange(s_src, e_src, dtype=np.int64)
+
+            idx_tgt = np.arange(s_tgt, e_tgt, dtype=np.int64)
+
+
+
+            # Build tensors (batch_size=1).
+
+            p_coords_src = torch.from_numpy(c_src[:, 1:].astype(np.float32)).unsqueeze(0).to(device)
+
+            p_coords_tgt = torch.from_numpy(c_tgt[:, 1:].astype(np.float32)).unsqueeze(0).to(device)
+
+            # Use window-relative time (f_idx, f_idx+1) normalised by W, not absolute frame index.
+
+            window_shape = (W,) + image_shape[1:]
+
+            c_src_rel = c_src.copy()
+
+            c_src_rel[:, 0] = f_idx
+
+            c_tgt_rel = c_tgt.copy()
+
+            c_tgt_rel[:, 0] = f_idx + 1
+
+            p_pos_src = torch.from_numpy(extract_pos_features(c_src_rel, window_shape)).unsqueeze(0).to(device)
+
+            p_pos_tgt = torch.from_numpy(extract_pos_features(c_tgt_rel, window_shape)).unsqueeze(0).to(device)
+
+            p_mask_src = torch.ones(1, n_src, dtype=torch.bool, device=device)
+
+            p_mask_tgt = torch.ones(1, n_tgt, dtype=torch.bool, device=device)
+
+
+
+            unet_feat_src = model._index_features(
+
+                unet_out[:, f_idx], p_coords_src, p_mask_src,
+
+            )
+
+            unet_feat_tgt = model._index_features(
+
+                unet_out[:, f_idx + 1], p_coords_tgt, p_mask_tgt,
+
+            )
+
+            edge_logits_pair = model.predict_edges(
+
+                unet_feat_src, unet_feat_tgt,
+
+                p_coords_src * ds_arr_t, p_coords_tgt * ds_arr_t,
+
+                p_pos_src, p_pos_tgt,
+
+                p_mask_src, p_mask_tgt,
+
+            )  # (1, n_src, n_tgt)
+
+
+
+            raw = edge_logits_pair[0]
+
+            if cfg.edge_activation == "softmax":
+
+                probs = torch.softmax(raw, dim=0).cpu().numpy()
+
+            else:
+
+                probs = torch.sigmoid(raw).cpu().numpy()
+
+
+
+            candidates = sorted(
+
+                [
+
+                    (probs[i, j], i, j)
+
+                    for i in range(n_src)
+
+                    for j in range(n_tgt)
+
+                    if probs[i, j] > cfg.threshold
+
+                ],
+
+                reverse=True,
+
+            )
+
+
+
+            children_count: dict[int, int] = {}
+
+            parents_count: dict[int, int] = {}
+
+
+
+            for prob, i, j in candidates:
+
+                n_ch = children_count.get(i, 0)
+
+                n_pa = parents_count.get(j, 0)
+
+                if cfg.max_children_per_node is not None and n_ch >= cfg.max_children_per_node:
+
+                    continue
+
+                if cfg.max_parents_per_node is not None and n_pa >= cfg.max_parents_per_node:
+
+                    continue
+
+
+
+                gi, gj = int(idx_src[i]), int(idx_tgt[j])
+
+                dist = float(np.linalg.norm(
+
+                    coords_so_far[gi, 1:].astype(np.float32)
+
+                    - coords_so_far[gj, 1:].astype(np.float32)
+
+                ))
+
+                all_edges.append((gi, gj, float(prob), dist))
+
+                children_count[i] = n_ch + 1
+
+                parents_count[j] = n_pa + 1
+
+
+
+        del unet_out
+
+
+
+    coords = np.concatenate(coord_lists) if coord_lists else np.empty((0, 4), dtype=np.int16)
+
+    # Scale spatial coords back to original resolution.
+
+    coords = coords.astype(np.float32)
+
+    coords[:, 1:] *= ds_arr
+
+    coords = coords.astype(np.int16)
+
+    return coords, all_edges
+
+
+
+
+
+# =============================================================================
+
+# Prediction loop
+
+# =============================================================================
+
+
+
+def predict(
+
+    data_dir: Path,
+
+    fold: int,
+
+    splits_file: Path,
+
+    weights_path: Path,
+
+    cfg: PredictConfig,
+
+    method: str = DEFAULT_METHOD,
+
+    debug_video: Path | None = None,
+
+    unet_batch_size: int = 4,
+
+    video_slice: slice | None = None,
+
+    evaluate: bool = False,
+
+) -> None:
+
+    """Run inference on the test split and save predictions as .geff files."""
+
+    if debug_video is not None:
+
+        test_names = [debug_video.name]
+
+        data_dir = debug_video.parent
+
+    else:
+
+        folds = json.loads(splits_file.read_text())
+
+        test_names = folds[fold]["test"]
+
+        if video_slice is not None:
+
+            test_names = test_names[video_slice]
+
+
+
+    from dataspec import PREDICTIONS_PATH
+
+    output_dir = PREDICTIONS_PATH / USERNAME / method / f"split_{fold}"
+
+    if output_dir.exists():
+
+        import shutil
+
+        for old in output_dir.glob("*.geff"):
+
+            if old.is_dir():
+
+                shutil.rmtree(old)
+
+            else:
+
+                old.unlink()
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    model, window_size, downsample = load_model(weights_path, device)
+
+    print(
+
+        f"Fold {fold}: {len(test_names)} datasets | "
+
+        f"weights={weights_path} | device={device} | window_size={window_size} | pool_kernel_um={cfg.pool_kernel_um}",
+
+        flush=True,
+
+    )
+
+
+
+    for name in tqdm(test_names, desc="Predicting", disable=not INTERACTIVE):
+
+        ds_path = data_dir / name
+
+        coords, edges = predict_video(
+
+                model, ds_path, device,
+
+                cfg=cfg,
+
+                window_size=window_size,
+
+                unet_batch_size=unet_batch_size,
+
+                downsample=downsample,
+
+            )
+
+        graph = build_graph(coords, edges)
+
+        if cfg.use_ilp and graph.num_edges() > 0:
+
+            solver = td.solvers.ILPSolver(
+
+                edge_weight=cfg.ilp_edge_weight * td.EdgeAttr("edge_prob"),
+
+                appearance_weight=cfg.ilp_appearance_weight,
+
+                disappearance_weight=cfg.ilp_disappearance_weight,
+
+                division_weight=cfg.ilp_division_weight,
+
+            )
+
+            with suppress_output():
+
+                graph = solver.solve(graph)
+
+        save_graph(graph, output_dir / f"{name}.geff")
+
+
+
+    print(f"Saved {len(test_names)} predictions to {output_dir}", flush=True)
+
+
+
+    if evaluate:
+
+        run = {
+
+            "username": USERNAME,
+
+            "method": method,
+
+            "split": f"split_{fold}",
+
+            "dir": output_dir,
+
+            "geffs": sorted(output_dir.glob("*.geff")),
+
+        }
+
+        results = evaluate_run(run)
+
+        s = summarise(results)
+
+        print(
+
+            f"Evaluation ({len(results)} videos): "
+
+            f"score={s['score']:.4f}  "
+
+            f"edge_jaccard={s['edge_jaccard']:.4f}  "
+
+            f"adj_edge_jaccard={s['adj_edge_jaccard']:.4f} (n_adj={s['n_adj']})  "
+
+            f"division_jaccard={s['division_jaccard']:.4f} "
+
+            f"(TP={s['division_tp']} FP={s['division_fp']} FN={s['division_fn']})  "
+
+            f"node_recall={s['node_recall']:.4f}  (n={s['n']})",
+
+            flush=True,
+
+        )
+
+
+
+
+
+# =============================================================================
+
+# CLI
+
+# =============================================================================
+
+
+
+def main() -> None:
+
+    parser = argparse.ArgumentParser(
+
+        description="Run UNet + transformer edge prediction.",
+
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+
+    )
+
+    parser.add_argument("--method", type=str, default=DEFAULT_METHOD)
+
+    parser.add_argument("--data-dir", type=str, default=None,
+
+                        help="Default: DATASET_PATH")
+
+    parser.add_argument("--splits", type=str, default=None,
+
+                        help="Default: DATASET_PATH/dataset_splits.json")
+
+    parser.add_argument("--split", type=str, default="0",
+
+                        help="Split index (0-4) or 'all'.")
+
+    parser.add_argument("--weights", type=str, default=None,
+
+                        help="Path to weights file. "
+
+                             "Default: weights/{method}/split_{split}/edge_predictor_best.pth")
+
+    parser.add_argument("--debug-video", type=str, default=None,
+
+                        help="Path to a single dataset. Ignores fold/splits.")
+
+    parser.add_argument("--slice", type=str, default=None,
+
+                        help="Python slice of the test list, e.g. ':1' for first video, "
+
+                             "'2:5' for videos 2-4.")
+
+    parser.add_argument("--unet-batch-size", type=int, default=4,
+
+                        help="Number of frame pairs per UNet forward pass (default: 4).")
+
+    parser.add_argument("--evaluate", action="store_true",
+
+                        help="Run evaluation against GT after saving predictions.")
+
+    parser.add_argument("--det-threshold", type=float, default=0.99,
+
+                        help="Min sigmoid probability for a detection peak to be kept. "
+
+                             "Default 0.99: the detector is poorly calibrated because the "
+
+                             "ground truth is sparse (only some cells annotated), so a high "
+
+                             "threshold keeps precision up. Sweep it for your model.")
+
+    parser.add_argument("--use-ilp", action="store_true",
+
+                        help="Post-process the predicted graph with the tracksdata ILP "
+
+                             "solver (global, flow-consistent linking) instead of greedy "
+
+                             "assignment. Needs pyscipopt; produces cleaner tracks.")
+
+    parser.add_argument("--ilp-edge-weight", type=float, default=-1.0,
+
+                        help="ILP: weight on edge_prob (default -1.0).")
+
+    parser.add_argument("--ilp-appearance-weight", type=float, default=0.1,
+
+                        help="ILP: cost of a track appearing (default 0.1).")
+
+    parser.add_argument("--ilp-disappearance-weight", type=float, default=0.1,
+
+                        help="ILP: cost of a track disappearing (default 0.1).")
+
+    parser.add_argument("--ilp-division-weight", type=float, default=1.0,
+
+                        help="ILP: cost of a division; lower to allow more splits (default 1.0).")
+
+
+
+    args = parser.parse_args()
+
+
+
+    from dataspec import DATASET_PATH
+
+    data_dir = Path(args.data_dir) if args.data_dir else Path(DATASET_PATH)
+
+    splits_file = Path(args.splits) if args.splits else data_dir / "dataset_splits.json"
+
+    debug_video = Path(args.debug_video) if args.debug_video else None
+
+    video_slice = (
+
+        slice(*[int(x) if x else None for x in args.slice.split(":")])
+
+        if args.slice else None
+
+    )
+
+    cfg = PredictConfig(
+
+        det_threshold=args.det_threshold,
+
+        use_ilp=args.use_ilp,
+
+        ilp_edge_weight=args.ilp_edge_weight,
+
+        ilp_appearance_weight=args.ilp_appearance_weight,
+
+        ilp_disappearance_weight=args.ilp_disappearance_weight,
+
+        ilp_division_weight=args.ilp_division_weight,
+
+    )
+
+
+
+    folds = range(5) if args.split == "all" else [int(args.split)]
+
+
+
+    for fold in folds:
+
+        weights_path = (
+
+            Path(args.weights) if args.weights
+
+            else WEIGHTS_PATH / args.method / f"split_{fold}" / "edge_predictor_best.pth"
+
+        )
+
+        predict(
+
+            data_dir=data_dir,
+
+            fold=fold,
+
+            splits_file=splits_file,
+
+            weights_path=weights_path,
+
+            cfg=cfg,
+
+            method=args.method,
+
+            debug_video=debug_video,
+
+            unet_batch_size=args.unet_batch_size,
+
+            video_slice=video_slice,
+
+            evaluate=args.evaluate,
+
+        )
+
+
+
+
+
+if __name__ == "__main__":
+
+    main()
+
+
+
+/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+
+/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+
+[NbConvertApp] Writing 173679 bytes to __notebook__.ipynb
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+
+[NbConvertApp] Writing 450674 bytes to __results__.html

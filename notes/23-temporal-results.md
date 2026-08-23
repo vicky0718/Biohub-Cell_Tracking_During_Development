@@ -1,4 +1,14 @@
-# Step 1 — temporal input does not work, and the coherence deficit may not be real
+# Step 1 — channel-stacked temporal input does not work, and the deficit was an artifact
+
+> **Correction, 2026-08-23, after reading the public pack's source.** This note originally
+> concluded "temporal input does not work". That is too broad and I have narrowed it. What
+> was tested here is **frame stacking as input channels**. The 0.915 pipeline does
+> temporal modelling a completely different way — `_TemporalAttention`, *per-voxel
+> multi-head self-attention across the time axis*, applied at every encoder stage. Channel
+> stacking lets the first convolution mix frames once and then the information is gone;
+> attention compares frames explicitly at every depth. **Temporal modelling as such is
+> untested by us. Only the cheap version of it was tested, and the cheap version is what
+> failed.** See §6.
 
 `claude_temporal_train`, Kaggle 2026-08-22, P100, ~1.6 h. `temporal_radius` ∈ {0, 1} ×
 both leave-one-embryo-out folds, loss `pu`, checkpoints selected on **paired recall**.
@@ -160,9 +170,49 @@ leaked. A smaller honest number beats a larger contaminated one.
 
 ---
 
+## 6. What the 0.915 pipeline actually is — read from the pack, not from a transcription
+
+`claude_cluster_probe` mounted `pilkwang/biohub-tracking-support-pack-50ep-v1` (public,
+**CC0: Public Domain**, 355 MB, v10). It ships not just weights but the **entire training
+and inference source**: `repo/src/biohub_tracking/models/temporal_unet.py`,
+`simple_node_transformer.py`, `repo/scripts/train_unet_transformer.py`,
+`predict_unet_transformer.py`, plus offline wheels.
+
+Their checkpoint's own `model_config`:
+
+```json
+{"unet_out_channels": 32, "unet_layers": [32, 64, 128],
+ "downsample": [1, 4, 4], "window_size": 2, "pool_kernel_um": 5.0}
+```
+
+`epoch = 402`, `best_score = 0.9835`, `test_recall = 0.9765`, 2,077,996 parameters.
+
+Set against what we built:
+
+| | ours | theirs |
+|---|---|---|
+| parameters | 350,809 | **2,077,996** (6×) |
+| epochs | 15 | **402** (27×) |
+| temporal mechanism | frames as input channels | **per-voxel self-attention across T** |
+| linking | Hungarian, hand-written | **learned** (joint `det_loss` + `edge_loss`) |
+| `downsample` | (1, 4, 4) | (1, 4, 4) — *identical* |
+
+The geometry matches exactly, which means our data pipeline was never the problem. What
+differed is capacity, training length, the temporal mechanism, and — most of all — that
+**they learn the linking and we hand-wrote it**.
+
+**And their density control is a single global constant.** `det_threshold` (a fixed sigmoid
+probability, run at 0.985) plus a `pool_kernel_um` max-pool NMS — one number for every
+dataset in the corpus. We have a per-dataset budget regression at 10.7 % median error,
+reproduced exactly in four separate runs. That asymmetry is the clearest differentiator
+available, and it is confirmed from their source rather than assumed.
+
+---
+
 ## What to do next
 
-**Stop work on the learned detector.** Five runs, and every lever is now measured:
+**Stop building our own detector from scratch.** Five runs, and every lever we can reach
+alone is measured:
 
 | lever | measured worth |
 |---|---|
@@ -191,10 +241,21 @@ Two findings make continuing worse than a coin flip rather than merely unpromisi
 **What is banked:** the classical champion at **CV 0.7070 / LB 0.752**, reproduced exactly
 (drift +0.0000) in three separate scoring runs. It is not in doubt.
 
-**On the goal.** Gold is **0.9350**. The gap from 0.752 is +0.183, and the largest single
-lever measured anywhere in this project is worth ~+0.06. The detection-side hypothesis —
-that a learned detector closes it — is now tested to exhaustion and does not. Any honest
-route to gold is a different architecture (the public 0.915 cluster runs a
-`TemporalUNet3D` inside a full tracking framework, not a detector swap), and that is a
-rebuild rather than a next experiment. That is a decision for the owner, and it should be
-made against these numbers rather than against momentum.
+**On the goal.** Live leaderboard: top **0.962**, gold ~**0.935**, the public cluster
+**0.913–0.916** with ~514 teams, us at **0.752**. The gap from us to the cluster is +0.163;
+the gap from the cluster to gold is **+0.02**. Those are very different problems, and the
+project has been framing the wrong one.
+
+Rules §6.b permits external models ("acceptable unless specifically prohibited by the
+Host"); §6.a's "publicly available and equally accessible ... at no cost" is satisfied by a
+CC0 public dataset. So the route is:
+
+1. **Reach the cluster** using the published pack — a floor jump of +0.163 that costs days,
+   not weeks, and does not depend on out-training 514 teams.
+2. **Beat it by +0.02** with the asymmetry §6 identifies: their global `det_threshold`
+   against our per-dataset budget regression, aimed at the node-budget multiplier, which
+   `notes/16` §2.3 already argued is "the only way the arithmetic reaches 0.935".
+
+The open item is the **Competition-Specific Rules** section, which §7.a references and
+which the probe could not read. If it restricts external models, everything above is void
+and the honest position reverts to banking 0.752.
