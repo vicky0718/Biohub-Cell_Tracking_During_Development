@@ -54,7 +54,21 @@ is available for execution on the device`. `machineShape="nvidiaTeslaT4"` is acc
 **ignored** — the accelerator cannot be chosen. CPU is not viable either: 2.1 M parameters
 with per-voxel temporal attention at a 10–30× CPU penalty puts this at 19–58 h.
 
-## Two things this run must get right
+## The fix from the 0.843 run
+
+The first submission scored **0.843** — well above our banked 0.752, but 0.07 short of the
+cluster's 0.913–0.916. The cause: `predict_video()` returns **candidate** edges with
+probabilities, and their `predict()` then runs an **ILP** over them to select a consistent
+subset (at most one parent, at most two children, paying appearance / disappearance /
+division costs). That run called `predict_video()` and went straight to a graph, keeping
+*every* candidate edge.
+
+The `use_ilp` flag was set on the config and did nothing, because the solve lives in
+`predict()`, which was bypassed. A flag that looks configured and is inert is worse than an
+obviously missing one, so the solve is now written out explicitly in the worker rather than
+delegated to a flag, and the log prints how many candidates the ILP kept per dataset.
+
+## Three things this run must get right
 
 - **The work runs in a subprocess.** The wheels upgrade numpy 2.0.2 → 2.4.6, and this
   notebook's process has already imported 2.0.2's compiled extensions. In-process that is a
@@ -62,6 +76,15 @@ with per-voxel temporal attention at a 10–30× CPU penalty puts this at 19–5
 - **Divisions are kept.** Their model predicts them — hundreds per dataset — and the term
   is worth 0.1 of the 1.1 maximum. `write_submission(..., allow_divisions=True)` so the
   graph check does not report every one of them as an out-degree violation.
+- **The ILP actually runs.** See above. `ILP kept N/M candidates` in the log is the check:
+  if N equals M on every dataset, the solve is not doing anything and the result will
+  reproduce 0.843.
+
+## Inputs this notebook needs
+
+`pilkwang/biohub-tracking-support-pack-50ep-v1`, `vigneshnehru/biohub-cell-tracking`
+(v21+, for `write_submission`'s `allow_divisions`), the competition data, and the
+`claude_torch_wheelhouse` kernel output. Internet **off**.
 """)
 
 code(r"""
@@ -194,7 +217,8 @@ _ds.PREDICTIONS_PATH = WORK / "predictions"
 sys.modules["dataspec"] = _ds
 
 import predict_unet_transformer as P
-from pipeline.classical import build_graph as our_build_graph
+import tracksdata as td
+from harness.tracks import Tracks
 from harness.csvout import write_submission
 
 WEIGHTS = PACK / "weights/unet_transformer/split_0/edge_predictor_best.pth"
@@ -208,7 +232,27 @@ print(f"{{len(names)}} test datasets; first three {{names[:3]}}", flush=True)
 if not names:
     raise SystemExit(f"no .zarr under {{TEST}}")
 
-cfg = P.PredictConfig(det_threshold=DET_THRESHOLD, use_ilp=False)
+# ILP ON. This is the fix for the 0.843 submission.
+#
+# predict_video() returns CANDIDATE edges with probabilities; their predict() then runs an
+# ILP over them to select a consistent subset -- at most one parent, at most two children,
+# paying appearance / disappearance / division costs. The previous submission called
+# predict_video() and went straight to a graph, keeping EVERY candidate edge, and scored
+# 0.843 against the cluster's 0.913-0.916.
+#
+# The use_ilp flag was set on the config even then, and did nothing, because the solve
+# lives in predict() which was bypassed. A flag that looks configured and is inert is
+# worse than an obviously missing one, so the solve is now written out explicitly here
+# rather than delegated to a flag.
+#
+# Weights are their defaults, which notes/15 §3 also read off the public notebook:
+#   edge -1.0 * edge_prob, appearance 0.1, disappearance 0.1, division 1.0
+ILP_EDGE_W, ILP_APP_W, ILP_DIS_W, ILP_DIV_W = -1.0, 0.1, 0.1, 1.0
+cfg = P.PredictConfig(det_threshold=DET_THRESHOLD, use_ilp=True,
+                      ilp_edge_weight=ILP_EDGE_W,
+                      ilp_appearance_weight=ILP_APP_W,
+                      ilp_disappearance_weight=ILP_DIS_W,
+                      ilp_division_weight=ILP_DIV_W)
 
 def gen():
     starved = False
@@ -221,17 +265,29 @@ def gen():
                       f"written empty so the run still produces a valid submission",
                       flush=True)
                 starved = True
-            yield name, our_build_graph(np.zeros((0, 4)), [])
+            yield name, Tracks(np.zeros(0), np.zeros((0, 3)), np.zeros((0, 2), int))
             continue
         t0 = time.time()
         coords, edges = P.predict_video(model, TEST / f"{{name}}.zarr", DEV, cfg=cfg,
                                         window_size=window_size,
                                         unet_batch_size=UNET_BATCH, downsample=downsample)
-        g = our_build_graph(np.asarray(coords, float),
-                            [(int(s), int(t)) for s, t, _p, _d in edges])
+        # THEIR build_graph, which attaches edge_prob -- the ILP objective reads it.
+        g_td = P.build_graph(coords, edges)
+        n_cand = g_td.num_edges()
+        if g_td.num_edges() > 0:
+            solver = td.solvers.ILPSolver(
+                edge_weight=ILP_EDGE_W * td.EdgeAttr("edge_prob"),
+                appearance_weight=ILP_APP_W,
+                disappearance_weight=ILP_DIS_W,
+                division_weight=ILP_DIV_W,
+            )
+            with P.suppress_output():
+                g_td = solver.solve(g_td)
+        g = Tracks.from_tracksdata(g_td)
         el = time.time() - t0
         print(f"[{{i:>3}}/{{len(names)}}] {{name:<24}} {{g.n_nodes:>7,}} nodes "
-              f"{{g.n_edges:>7,}} edges ({{el:.0f}}s, projected total "
+              f"{{g.n_edges:>7,}} edges (ILP kept {{g.n_edges}}/{{n_cand}} candidates, "
+              f"{{el:.0f}}s, projected total "
               f"{{(time.time()-t_start)/i*len(names)/3600:.1f}}h)", flush=True)
         yield name, g
 
