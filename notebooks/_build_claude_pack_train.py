@@ -75,13 +75,30 @@ def pip_install(pkgs, extra=()):
     return r.returncode == 0
 
 gpu = sh("nvidia-smi", "--query-gpu=name,compute_cap", "--format=csv,noheader").stdout.strip()
-print(f"accelerator: {gpu or 'NONE'}")
+gpu_lines = [l for l in gpu.splitlines() if l.strip()]
+print(f"accelerator ({len(gpu_lines)} device(s)):")
+for l in gpu_lines:
+    print(f"  {l}")
+if not gpu_lines:
+    print("  NONE")
 if "P100" in gpu:
     print("P100 (sm_60) -> replacing torch; the image build ships sm_70+ only")
     t0 = time.time()
     ok = pip_install(["torch==2.5.1"],
                      extra=("--index-url", "https://download.pytorch.org/whl/cu121"))
     print(f"  torch replacement {'ok' if ok else 'FAILED'} ({time.time()-t0:.0f}s)")
+
+# N_GPUS decides --single-gpu below. Read from torch, not from the nvidia-smi line count:
+# torch is what the trainer actually calls, and this is what a T4x2 run needs to be
+# real -- a previous run requested T4x2 in the Kaggle UI, printed a single P100 here, and
+# every trainer invocation logged "Single-GPU training (--single-gpu set)" because that
+# flag was hardcoded regardless of what accelerator actually showed up.
+ngpu_probe = sh(sys.executable, "-c", "import torch; print(torch.cuda.device_count())")
+try:
+    N_GPUS = int((ngpu_probe.stdout or "0").strip())
+except ValueError:
+    N_GPUS = 0
+print(f"torch.cuda.device_count() = {N_GPUS}")
 
 def find_dir(is_match, roots, max_depth=6):
     for root in roots:
@@ -218,14 +235,20 @@ env["USER"] = "claude"
 # Their own trainer prints "For 2 GPUs set the Kaggle accelerator to 'GPU T4 x2'", so this
 # model is sized for more GPU than a single P100. Finding the largest batch that fits here
 # in one run beats discovering it one kernel launch at a time.
+#
+# --single-gpu is passed ONLY when N_GPUS <= 1. On a real T4x2 run their trainer's own
+# default (--data-parallel, on unless overridden) takes over -- passing --single-gpu
+# unconditionally, as an earlier version of this notebook did, would have forced one card
+# even with two visible, throwing away the whole reason to request T4x2.
 def run_trainer(bs):
     c = [sys.executable, "-u", str(TRAINER),
          "--data-dir", str(TRAIN), "--splits", str(SPLITS), "--split", "0",
          "--epochs", str(EPOCHS), "--batch-size", str(bs),
-         "--window-size", str(WINDOW_SIZE), "--unet-layers", UNET_LAYERS,
-         "--single-gpu"]
+         "--window-size", str(WINDOW_SIZE), "--unet-layers", UNET_LAYERS]
+    if N_GPUS <= 1:
+        c.append("--single-gpu")
     print("\n" + "=" * 70)
-    print(f"batch_size={bs}: " + " ".join(c[-12:]), flush=True)
+    print(f"batch_size={bs}, N_GPUS={N_GPUS}: " + " ".join(c[-13:]), flush=True)
     t = time.time()
     pr = subprocess.Popen(c, cwd=str(RUNREPO / "scripts"), env=env,
                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
