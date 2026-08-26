@@ -19,8 +19,12 @@ this run answers two questions that decide HOW to spend them:
    (10.7 % median error, reproduced in four runs) is the differentiator. If it does not,
    that thesis is dead and should be abandoned rather than pursued on faith.
 
-Datasets are stratified by ground-truth node count rather than hash-sampled, precisely so
-question 2 is answerable.
+Datasets are stratified by the scorer's node budget `estimated_number_of_nodes`, not
+hash-sampled and **not** by the annotated GT node count. The first version of this notebook
+used the annotated count, which made question 2 unanswerable: annotation rate varies 20x
+between the two embryos (`notes/04` §9), so that count sorts by labelling protocol rather
+than by size, and the correlation it produced ran with the *opposite sign* to the real one.
+`notes/25` §2 records the correction.
 """
 import ast, json
 from pathlib import Path
@@ -70,8 +74,11 @@ correlation means their constants are miscalibrated at the extremes and our regr
 a genuine differentiator. **No correlation means the thesis is dead**, and I would rather
 learn that from one run than from three weeks of building on it.
 
-Datasets are **stratified by GT node count**, not hash-sampled, so question 2 is
-answerable at all.
+Datasets are **stratified by the scorer's node budget** (`estimated_number_of_nodes`),
+which is both the true size and the quantity the multiplier is computed against. Not by
+the *annotated* GT node count: annotation rate varies 20× between the two embryos, so that
+count sorts by labelling protocol as much as by size. The first run of this notebook made
+exactly that substitution and reported a correlation of the wrong sign (`notes/25` §2).
 
 *(Scores here are on training data, which `notes/24` §2 established is contaminated for
 these weights — their splits were never published. Absolute values are inflated. The
@@ -198,7 +205,7 @@ sys.modules["dataspec"] = _ds
 import predict_unet_transformer as P
 import tracksdata as td
 from harness import Harness
-from harness.tracks import Tracks, read_geff
+from harness.tracks import Tracks, read_geff, read_estimated_nodes
 from harness.purescore import summarise
 
 WEIGHTS = PACK / "weights/unet_transformer/split_0/edge_predictor_best.pth"
@@ -207,23 +214,37 @@ print(f"model window_size={{window_size}} downsample={{downsample}}", flush=True
 
 names = sorted({{p.stem for p in TRAIN.glob("*.zarr")}} & {{p.stem for p in TRAIN.glob("*.geff")}})
 
-# STRATIFY BY GT NODE COUNT. The whole point of question 2 is whether their global
-# constants misbehave at the density extremes, so a hash-sample that happens to avoid the
-# extremes would answer it by accident and wrongly.
-sizes = {{}}
+# STRATIFY BY THE SCORER'S NODE BUDGET, `estimated_number_of_nodes`.
+#
+# NOT by the annotated GT node count, which is what an earlier version of this notebook
+# used and which made its answer to question 2 uninterpretable. Annotation rate varies 20x
+# between embryos (`notes/04` §9: 6bba is labelled 1-in-8, 44b6 1-in-167), so the annotated
+# count sorts by *labelling protocol* far more strongly than by embryo size, and every
+# small-count dataset in the resulting subset came from one embryo and every large-count
+# one from the other. `n_total` is both the true size and the quantity the budget
+# multiplier is actually computed against, so it is the only correct axis here.
+sizes, budgets = {{}}, {{}}
 for n in names:
     try:
         g = read_geff(TRAIN / f"{{n}}.geff")
         sizes[n] = len(g.t)
+        b = read_estimated_nodes(TRAIN / f"{{n}}.geff")
+        if b == b and b > 0:
+            budgets[n] = float(b)
     except Exception:
         pass
-ordered = sorted(sizes, key=lambda n: sizes[n])
+if len(budgets) < len(sizes) * 0.9:
+    raise SystemExit(f"only {{len(budgets)}}/{{len(sizes)}} datasets expose a node budget; "
+                     "question 2 cannot be answered on the annotated count -- see above")
+ordered = sorted(budgets, key=lambda n: budgets[n])
 idx = np.linspace(0, len(ordered) - 1, N_DATASETS).astype(int)
 SUBSET = [ordered[i] for i in sorted(set(idx.tolist()))]
-print(f"{{len(ordered)}} datasets, GT nodes {{sizes[ordered[0]]:,}} .. {{sizes[ordered[-1]]:,}} "
-      f"({{sizes[ordered[-1]]/max(1,sizes[ordered[0]]):.1f}}x spread)", flush=True)
-print(f"stratified subset ({{len(SUBSET)}}): "
-      f"{{[sizes[n] for n in SUBSET]}}", flush=True)
+print(f"{{len(ordered)}} datasets, budget {{budgets[ordered[0]]:,.0f}} .. "
+      f"{{budgets[ordered[-1]]:,.0f}} "
+      f"({{budgets[ordered[-1]]/max(1.0,budgets[ordered[0]]):.1f}}x spread)", flush=True)
+print(f"stratified subset ({{len(SUBSET)}}) budgets: "
+      f"{{[round(budgets[n]) for n in SUBSET]}}", flush=True)
+print(f"  their annotated counts, for contrast:   {{[sizes[n] for n in SUBSET]}}", flush=True)
 
 ILP_EDGE_W, ILP_APP_W, ILP_DIS_W, ILP_DIV_W = -1.0, 0.1, 0.1, 1.0
 cfg = P.PredictConfig(det_threshold=DET_THRESHOLD, use_ilp=True,
@@ -248,7 +269,8 @@ def predict(name, data_dir):
         with P.suppress_output():
             g_td = solver.solve(g_td)
     g = Tracks.from_tracksdata(g_td)
-    PER[name] = {{"gt_nodes": sizes.get(name), "pred_nodes": int(g.n_nodes),
+    PER[name] = {{"gt_nodes": sizes.get(name), "budget": budgets.get(name),
+                 "pred_nodes": int(g.n_nodes),
                  "pred_edges": int(g.n_edges), "cand_edges": int(n_cand),
                  "forks": int(g.n_divisions), "sec": round(time.time() - t0, 1)}}
     print(f"  {{name:<24}} gt={{sizes.get(name):>7,}} pred={{g.n_nodes:>7,}} "
@@ -313,45 +335,100 @@ print(f"    0.1 * division_j = {div_contrib:.4f}")
 print(f"    total            = {S.get('score', float('nan')):.4f}")
 
 print()
-print("=" * 66)
+print("=" * 74)
 print("QUESTION 2 — does their calibration drift with dataset size?")
-print("=" * 66)
-rows = [(n, r) for n, r in PER.items()
-        if r.get("gt_nodes") and r.get("total_node_ratio") == r.get("total_node_ratio")]
-rows.sort(key=lambda kv: kv[1]["gt_nodes"])
-print(f"{'dataset':<26}{'GT nodes':>10}{'pred':>10}{'ratio':>9}{'edge_J':>9}{'forks':>8}")
-print("-" * 72)
-for n, r in rows:
-    print(f"{n:<26}{r['gt_nodes']:>10,}{r['pred_nodes']:>10,}"
-          f"{r['total_node_ratio']:>+9.3f}{r.get('edge_jaccard', float('nan')):>9.4f}"
-          f"{r.get('forks', 0):>8,}")
+print("=" * 74)
+print("Size means the scorer's node budget `estimated_number_of_nodes`, NOT the annotated")
+print("GT node count. Annotation rate varies 20x between the two embryos, so the annotated")
+print("count sorts by labelling protocol rather than by size and answers a different")
+print("question. Both are printed; only the budget column is the test.")
+print()
 
-if len(rows) >= 6:
-    x = np.log10([r["gt_nodes"] for _, r in rows])
-    y = np.array([r["total_node_ratio"] for _, r in rows], float)
+def _budget(r):
+    b = r.get("budget")
+    if b:
+        return float(b)
+    # Fall back to inverting ratio = (pred - n_total)/n_total. Exact, and it keeps this
+    # cell readable against a report produced before `budget` was recorded.
+    rat = r.get("total_node_ratio")
+    return (r["pred_nodes"] / (1.0 + rat)) if (rat == rat and rat > -1) else float("nan")
+
+rows = [(n, r) for n, r in PER.items()
+        if r.get("pred_nodes") and r.get("total_node_ratio") == r.get("total_node_ratio")]
+for _, r in rows:
+    r["_budget"] = _budget(r)
+rows = [(n, r) for n, r in rows if np.isfinite(r["_budget"])]
+rows.sort(key=lambda kv: kv[1]["_budget"])
+
+print(f"{'dataset':<26}{'budget':>10}{'annot':>9}{'pred':>10}{'ratio':>9}"
+      f"{'edge_J':>9}{'forks':>7}")
+print("-" * 80)
+for n, r in rows:
+    print(f"{n:<26}{r['_budget']:>10,.0f}{(r.get('gt_nodes') or 0):>9,}"
+          f"{r['pred_nodes']:>10,}{r['total_node_ratio']:>+9.3f}"
+          f"{r.get('edge_jaccard', float('nan')):>9.4f}{r.get('forks', 0):>7,}")
+
+def _corr(xs, ys):
+    x, y = np.asarray(xs, float), np.asarray(ys, float)
     ok = np.isfinite(x) & np.isfinite(y)
-    r_pearson = float(np.corrcoef(x[ok], y[ok])[0, 1])
-    lo = y[ok][:len(y[ok]) // 3].mean()
-    hi = y[ok][-(len(y[ok]) // 3):].mean()
-    print(f"\n  corr(log10 GT nodes, node ratio) = {r_pearson:+.3f}")
-    print(f"  mean ratio, smallest third: {lo:+.4f}")
-    print(f"  mean ratio, largest third:  {hi:+.4f}")
-    print(f"  drift across the range:     {hi - lo:+.4f}")
+    if ok.sum() < 3 or np.ptp(x[ok]) == 0 or np.ptp(y[ok]) == 0:
+        return float("nan")
+    return float(np.corrcoef(x[ok], y[ok])[0, 1])
+
+r_pearson = r_annot = float("nan")
+by_embryo = {}
+if len(rows) >= 6:
+    y = [r["total_node_ratio"] for _, r in rows]
+    r_pearson = _corr(np.log10([r["_budget"] for _, r in rows]), y)
+    r_annot = _corr(np.log10([max(1, r.get("gt_nodes") or 1) for _, r in rows]), y)
+    third = max(1, len(rows) // 3)
+    lo = float(np.mean(y[:third])); hi = float(np.mean(y[-third:]))
+
+    print(f"\n  corr(log10 BUDGET,    node ratio) = {r_pearson:+.3f}   <- the size test")
+    print(f"  corr(log10 annotated, node ratio) = {r_annot:+.3f}   "
+          "<- confounded by annotation rate; not the test")
+    print(f"  mean ratio, smallest third by budget: {lo:+.4f}")
+    print(f"  mean ratio, largest third by budget:  {hi:+.4f}")
+    print(f"  drift across the range:               {hi - lo:+.4f}")
+
+    # Within-embryo, because a between-embryo correlation can be produced entirely by the
+    # two embryos differing in both size and behaviour, with no size effect inside either.
+    for n, r in rows:
+        by_embryo.setdefault(n.split("_")[0], []).append(r)
+    print("\n  within each embryo (this is what rules out the between-embryo confound):")
+    for emb, rs in sorted(by_embryo.items()):
+        yy = [r["total_node_ratio"] for r in rs]
+        rc = _corr(np.log10([r["_budget"] for r in rs]), yy)
+        bl = min(r["_budget"] for r in rs); bh = max(r["_budget"] for r in rs)
+        print(f"    {emb:<10} n={len(rs):<3} mean ratio {np.mean(yy):+.4f} "
+              f"sd {np.std(yy):.4f}  budget {bl:,.0f}..{bh:,.0f}  corr {rc:+.3f}")
+    print("  A flat within-embryo correlation is only evidence of no effect if that")
+    print("  embryo's budgets actually SPAN the range where the effect appears — compare")
+    print("  the budget ranges above before reading a +0.0 as a refutation.")
+
     if abs(r_pearson) > 0.4:
-        print("\n  ** THESIS SUPPORTED ** — their node ratio moves systematically with")
-        print("     dataset size, which is what a global constant on a 20x density range")
-        print("     would do. Our per-dataset budget regression targets exactly this.")
+        sign = "UNDER" if r_pearson < 0 else "OVER"
+        print(f"\n  ** DRIFT PRESENT ** — node ratio moves with true dataset size, and the")
+        print(f"     sign says they {sign}-predict on the LARGEST datasets. That is what a")
+        print("     global constant does on a 20x range, and it is what a per-dataset")
+        print("     budget calibration is for. Confirm the sign against the table before")
+        print("     building on it — the correction direction depends on it.")
     else:
-        print("\n  ** THESIS NOT SUPPORTED ** — no systematic drift with size. Their global")
-        print("     constants are not obviously miscalibrated, and the per-dataset budget")
-        print("     angle should be ABANDONED rather than pursued on faith. Spend the")
-        print("     remaining effort on whichever term question 1 says is short.")
+        print("\n  ** NO DRIFT ** — their global constants are not obviously miscalibrated")
+        print("     against true size. The per-dataset budget angle should be ABANDONED")
+        print("     rather than pursued on faith; spend the effort on whichever term")
+        print("     question 1 says is short.")
 
 (WORK / "pack_diag_report.json").write_text(json.dumps(
     {"summary": S, "n": D["n"],
      "divisions": {"tp": dtp, "fp": dfp, "fn": dfn, "pred_forks": forks},
      "multiplier": mult,
-     "size_corr": (r_pearson if len(rows) >= 6 else None)}, indent=2, default=float))
+     "budget_corr": r_pearson, "annotated_corr_confounded": r_annot,
+     "within_embryo": {e: {"n": len(rs),
+                           "mean_ratio": float(np.mean([r["total_node_ratio"] for r in rs])),
+                           "budget_min": float(min(r["_budget"] for r in rs)),
+                           "budget_max": float(max(r["_budget"] for r in rs))}
+                       for e, rs in by_embryo.items()}}, indent=2, default=float))
 print("\nwrote pack_diag_report.json")
 """)
 

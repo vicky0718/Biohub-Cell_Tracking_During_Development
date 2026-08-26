@@ -234,6 +234,7 @@ class Harness:
         gt = load_geff(self.data_dir / f"{name}.geff")
         scale = read_scale(self.data_dir / f"{name}.zarr")
 
+        n_total = self._n_total(name)
         needs_official = self.use_official or pred.has_forks()
         if needs_official:
             off = _official()
@@ -253,13 +254,23 @@ class Harness:
             er = off.evaluate(pred_td, gt_td,
                               scale=scale, max_distance=self.max_distance)
             rec = er.num_pred_nodes and off.node_recall(pred_td, gt_td)
-            return off.per_sample_metrics(er, self._n_total(name), rec or 0.0)
+            row = off.per_sample_metrics(er, n_total, rec or 0.0)
+        else:
+            counts = purescore.count_edges(pred.t, pred.zyx, pred.edges,
+                                           gt.t, gt.zyx, gt.edges,
+                                           scale=scale, max_distance=self.max_distance)
+            row = purescore.per_sample(counts, n_total, gt.n_nodes,
+                                       n_gt_divisions=gt.n_divisions)
 
-        counts = purescore.count_edges(pred.t, pred.zyx, pred.edges,
-                                       gt.t, gt.zyx, gt.edges,
-                                       scale=scale, max_distance=self.max_distance)
-        return purescore.per_sample(counts, self._n_total(name), gt.n_nodes,
-                                    n_gt_divisions=gt.n_divisions)
+        # The budget itself, not only the ratio derived from it. Any analysis of how a
+        # predictor's density behaves with dataset SIZE has to use this: `gt.n_nodes` is
+        # the *annotated* count, and the annotation rate varies 20x between embryos
+        # (`notes/04` §9 — 1-in-8 for 6bba, 1-in-167 for 44b6), so it measures the
+        # labelling protocol at least as much as the embryo. Carrying `n_total` on the row
+        # removes the temptation to reach for the count that happens to be at hand.
+        row["n_total"] = float(n_total)
+        row["n_gt_annotated"] = int(gt.n_nodes)
+        return row
 
     def evaluate(
         self,
