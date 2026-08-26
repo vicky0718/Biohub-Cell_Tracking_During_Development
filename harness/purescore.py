@@ -166,15 +166,54 @@ def count_edges(
     in-edge. Everything else is invisible to the metric, which is why FPs on the
     unannotated 96.5% of cells are free.
     """
+    s = survivors(pred_t, pred_zyx, pred_edges, gt_t, gt_zyx, gt_edges,
+                  scale, max_distance)
+    tp = int(s["is_tp"].sum())
+    fp = int(s["pred_valid"].sum()) - tp
+    fn = s["n_gt_edges"] - tp
+    # The official code asserts the same thing: every TP must be pred_valid.
+    assert not (s["is_tp"] & ~s["pred_valid"]).any(), "TP outside pred_valid — matching is wrong"
+    return EdgeCounts(tp, fp, fn, len(np.asarray(pred_t)), s["n_matched"])
+
+
+def survivors(
+    pred_t: np.ndarray,
+    pred_zyx: np.ndarray,
+    pred_edges: np.ndarray,
+    gt_t: np.ndarray,
+    gt_zyx: np.ndarray,
+    gt_edges: np.ndarray,
+    scale: tuple[float, float, float] = DEFAULT_SCALE,
+    max_distance: float = MAX_DISTANCE,
+) -> dict:
+    """Everything `count_edges` computes, before it collapses to three integers.
+
+    Extracted so that anything wanting to ask *which* edges survived the scorer's four
+    silent repairs, or *which* GT node a prediction claimed, measures the same graph the
+    metric counts rather than a hand-rolled second opinion. `pipeline/anatomy.py` is the
+    caller that needed it: classifying a missing GT edge as a gap or a mislink is only
+    meaningful against the post-repair prediction, because a link that the out-degree cap
+    truncated is not a link the metric ever saw.
+
+    Returns ``matched`` (per PREDICTION, the GT index it claimed, or -1), ``keep`` (per
+    predicted edge, survived the four repairs), ``is_tp``, ``pred_valid``, ``ms``/``mt``
+    (the matched GT index of each predicted edge's endpoints), and the two counts.
+
+    This is a pure extraction: `count_edges` produced these exact arrays inline before,
+    and its numbers are unchanged.
+    """
     pred_edges = np.asarray(pred_edges, int).reshape(-1, 2)
     gt_edges = np.asarray(gt_edges, int).reshape(-1, 2)
     n_gt_edges = len(gt_edges)
 
     matched = match_nodes(pred_t, pred_zyx, gt_t, gt_zyx, scale, max_distance)
     n_matched = int((matched >= 0).sum())
+    empty = np.zeros(len(pred_edges), bool)
 
     if len(pred_edges) == 0:
-        return EdgeCounts(0, 0, n_gt_edges, len(pred_t), n_matched)
+        return {"matched": matched, "keep": empty, "is_tp": empty, "pred_valid": empty,
+                "ms": empty.astype(int), "mt": empty.astype(int),
+                "n_matched": n_matched, "n_gt_edges": n_gt_edges}
 
     src, tgt = pred_edges[:, 0], pred_edges[:, 1]
     eid = np.arange(len(pred_edges))
@@ -231,12 +270,8 @@ def count_edges(
     in_valid = np.where(mt >= 0, gt_in[np.clip(mt, 0, None)], False)
     pred_valid = (out_valid | in_valid) & keep
 
-    tp = int(is_tp.sum())
-    fp = int(pred_valid.sum()) - tp
-    fn = n_gt_edges - tp
-    # The official code asserts the same thing: every TP must be pred_valid.
-    assert not (is_tp & ~pred_valid).any(), "TP outside pred_valid — matching is wrong"
-    return EdgeCounts(tp, fp, fn, len(pred_t), n_matched)
+    return {"matched": matched, "keep": keep, "is_tp": is_tp, "pred_valid": pred_valid,
+            "ms": ms, "mt": mt, "n_matched": n_matched, "n_gt_edges": n_gt_edges}
 
 
 # --------------------------------------------------------------------------
@@ -318,5 +353,5 @@ def summarise(rows: list[dict]) -> dict:
     }
 
 
-__all__ = ["EdgeCounts", "match_nodes", "count_edges", "per_sample", "summarise",
+__all__ = ["EdgeCounts", "match_nodes", "count_edges", "survivors", "per_sample", "summarise",
            "DEFAULT_SCALE", "MAX_DISTANCE"]
