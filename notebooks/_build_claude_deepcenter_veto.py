@@ -23,7 +23,7 @@ OUT = Path("/workspace/biohub-cell_tracking_during_development/notebooks/claude_
 N_DATASETS = 12
 CELLS = []
 def md(src): CELLS.append({"cell_type":"markdown","metadata":{},"source":src.strip("\n").splitlines(keepends=True)})
-def code(src): CELLS.append({"cell_type":"code","execution_count":None,"metadata":{},"outputs":[],"source":src.strip("\n").splitlines(keepends=True)})
+def code(src): CELLS.append({"cell_type":"code","execution_count":None,"metadata":{},"outputs":[],"source":src.replace("__N_DATASETS__", str(N_DATASETS)).strip("\n").splitlines(keepends=True)})
 
 md(r"""
 # Does a second detector know which invented nodes are real?
@@ -85,6 +85,7 @@ from pathlib import Path
 
 T_START = time.time()
 WORK = Path("/kaggle/working"); WORK.mkdir(parents=True, exist_ok=True)
+N_DATASETS = __N_DATASETS__   # emitted by the builder; the worker f-string reads it here
 
 def sh(*a, **kw):
     try:
@@ -138,9 +139,31 @@ if root:
     for p in sorted(Path(root).rglob("*"))[:40]:
         if p.is_file():
             print(f"    {p.relative_to(root)}  {p.stat().st_size/1e6:.1f} MB")
-if None in (PACK, REPO, COMP, CACHE) or root is None:
-    raise SystemExit("missing mount — needs the pack, our repo, the competition data, "
-                     "claude-relink-sweep as a kernel source, and the deepcenter dataset")
+# Name the missing mount. v1 of this notebook died on a generic five-item list while the
+# actual cause was one specific thing: the repo dataset had been uploaded as loose files
+# instead of a zip, so Kaggle flattened it and `harness/` no longer existed as a directory.
+MOUNTS = {"pack (pilkwang support pack)": PACK, "our repo (vigneshnehru/biohub-cell-tracking)": REPO,
+          "competition data": COMP, "cand cache (claude-relink-sweep kernel source)": CACHE,
+          "deepcenter dataset": root}
+missing = [k for k, v in MOUNTS.items() if v is None]
+if missing:
+    print("\n/kaggle/input contents, for diagnosis:")
+    for q in sorted(Path("/kaggle/input").glob("*/*/*"))[:40]:
+        print("   ", q)
+    raise SystemExit("MISSING MOUNT: " + "; ".join(missing))
+
+# A found repo is not necessarily the CURRENT repo. Attaching a stale dataset version has
+# already cost this project one run, so require the module this notebook is built around
+# rather than discovering its absence 300 s in.
+NEEDED = [Path(REPO) / "pipeline" / "deepcenter.py", Path(REPO) / "pipeline" / "repair.py"]
+absent = [q for q in NEEDED if not q.is_file()]
+if absent:
+    raise SystemExit(f"repo mount {REPO} is STALE — missing {[q.name for q in absent]}. "
+                     "The attached dataset version predates pipeline/deepcenter.py.")
+if "accept" not in (Path(REPO) / "pipeline" / "repair.py").read_text():
+    raise SystemExit(f"repo mount {REPO} has a repair.py without close_gaps(accept=...) — "
+                     "stale dataset version, the veto would silently do nothing.")
+print(f"  repo carries deepcenter.py and close_gaps(accept=) — not stale")
 TRAIN = COMP / "train"
 print(f"\n  cached instances  {len(list(CACHE.glob('cand_*.npz')))}")
 

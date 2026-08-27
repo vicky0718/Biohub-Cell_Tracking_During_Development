@@ -16,6 +16,7 @@ matter most here:
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -108,6 +109,35 @@ def main() -> int:
     check("the heatmap cache is sized to hold a whole dataset",
           "max_frames=110" in worker,
           "a small cache recomputes every frame once per arm")
+
+    # The worker is written by an f-string evaluated INSIDE the notebook, so every {name}
+    # in it must resolve in the NOTEBOOK's namespace -- not the builder's. v2 of this run
+    # died on `N_DATASETS`, a builder constant the notebook had never heard of. Static-check
+    # it: pull the single-brace placeholders out of the worker's f-string (doubled braces
+    # are literal) and require each root name to be assigned in the setup cell.
+    setup = "".join(code[0]["source"])
+    MARKER = "write_text(f" + chr(39) * 3
+    # Bound the slice at the f-string's CLOSING quote. The same cell also contains the
+    # launcher, whose own f-strings (rc, t0) legitimately read notebook-local names — of
+    # course they resolve, they are evaluated in the notebook. Only the worker's f-string
+    # is written out to a separate file and re-executed elsewhere.
+    if MARKER in worker:
+        _a = worker.index(MARKER) + len(MARKER)
+        _b = worker.index(chr(39) * 3, _a)
+        body = worker[_a:_b]
+    else:
+        body = ""
+    masked = body.replace("{{", chr(0)).replace("}}", chr(0))
+    names = set()
+    for expr in re.findall(r"\{([^{}]+)\}", masked):
+        names |= set(re.findall(r"\b([A-Za-z_][A-Za-z0-9_]*)\b", expr.split("!")[0]))
+    builtins_ok = {"str", "int", "float", "repr", "len", "p", "for", "in", "if", "else"}
+    unresolved = sorted(n for n in names - builtins_ok
+                        if not re.search(rf"^[A-Za-z_,() ]*\b{re.escape(n)}\b[A-Za-z_,() ]*=",
+                                         setup, re.M))
+    check("every name the worker f-string interpolates exists in the setup cell",
+          not unresolved,
+          f"unresolved: {unresolved} — these become NameError at notebook runtime")
 
     results = {}
     for scen in ("normal", "misaligned", "degenerate", "outcome_fail", "nan"):
