@@ -6,6 +6,44 @@
     "authorUserName": "developerkgf",
     "comments": [
       {
+        "id": 3514794,
+        "postDate": "2026-08-20T06:00:07.540Z",
+        "rawMarkdown": "I have the similar problem, but my version took like 20 minutes and after submitting it is still running for 11 hours.",
+        "content": "<p>I have the similar problem, but my version took like 20 minutes and after submitting it is still running for 11 hours.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "NurpeyisRiskeldi",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/nurpeyisriskeldi",
+          "tier": "CONTRIBUTOR",
+          "id": 35747271,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2072,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "NurpeyisRiskeldi",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/nurpeyisriskeldi",
+            "userName": "nurpeyisriskeldi",
+            "tier": "CONTRIBUTOR",
+            "id": 35747271,
+            "profileUrl": "/nurpeyisriskeldi",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 35747271,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3513088,
         "postDate": "2026-08-15T07:28:34.047Z",
         "rawMarkdown": "I can\u2019t say for sure because I\u2019m not familiar with the code, but perhaps you made significant changes to the processing compared to the previous version. Notebooks can sometimes hit the timeout limit, but I think this is still within the normal range.",
@@ -24,7 +62,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 16,
+        "competitionRanking": 40,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -98,6 +136,7 @@
       },
       "authorType": "TOPIC",
       "votes": {
+        "totalVotes": -2,
         "canUpvote": true
       },
       "kernelVersion": 0,
@@ -127,8 +166,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-14T23:50:52.463209200Z",
+    "totalVotes": -2,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/735307",
-    "totalMessages": 2,
+    "totalMessages": 3,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

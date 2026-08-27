@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 13484631,
+    "authorThumbnailName": "13484631-kg.jpeg?t=2025-02-19-17-18-43",
+    "authorUserDisplayName": "Yunus G\u00fcm\u00fc\u015fsoy",
+    "authorUserName": "yunusgmsoy",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3515901,
+      "postDate": "2026-08-22T14:50:45.067Z",
+      "rawMarkdown": "The metric bug was fixed and the leaderboard was recalculated, but some public notebooks still display their old, inflated scores from the pre-fix metric.\n\nSince \u201cHighest Score\u201d is the natural way to find strong baselines, these notebooks are still appearing above solutions that actually perform better under the corrected metric.\n\nCould we consider updating or flagging those old notebook scores? Otherwise, we are essentially keeping a few ghosts at the top of the leaderboard. \ud83d\udc7b\n@thibautgoldsborough @macruzbar ",
+      "content": "<p>The metric bug was fixed and the leaderboard was recalculated, but some public notebooks still display their old, inflated scores from the pre-fix metric.</p>\n<p>Since \u201cHighest Score\u201d is the natural way to find strong baselines, these notebooks are still appearing above solutions that actually perform better under the corrected metric.</p>\n<p>Could we consider updating or flagging those old notebook scores? Otherwise, we are essentially keeping a few ghosts at the top of the leaderboard. \ud83d\udc7b\n<a href=\"https://www.kaggle.com/thibautgoldsborough\" target=\"_blank\">@thibautgoldsborough</a> <a href=\"https://www.kaggle.com/macruzbar\" target=\"_blank\">@macruzbar</a> </p>",
+      "parent": {},
+      "author": {
+        "displayName": "Yunus G\u00fcm\u00fc\u015fsoy",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13484631-kg.jpeg?t=2025-02-19-17-18-43",
+        "url": "/yunusgmsoy",
+        "tier": "CONTRIBUTOR",
+        "id": 13484631,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 36,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Yunus G\u00fcm\u00fc\u015fsoy",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13484631-kg.jpeg?t=2025-02-19-17-18-43",
+          "url": "/yunusgmsoy",
+          "userName": "yunusgmsoy",
+          "tier": "CONTRIBUTOR",
+          "id": 13484631,
+          "profileUrl": "/yunusgmsoy",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 13484631,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3515901,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 736937,
+    "name": "Public Notebook Rankings Need a Metric Refresh",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-22T14:50:45.065018400Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/736937",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

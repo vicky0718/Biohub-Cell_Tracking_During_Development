@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 366,
+            "competitionRanking": 748,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +68,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 365,
+        "competitionRanking": 219,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -114,7 +114,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 366,
+            "competitionRanking": 748,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -150,7 +150,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 2076,
+        "competitionRanking": 1040,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -187,23 +187,24 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 35,
+        "totalVotes": 40,
         "canUpvote": true,
-        "totalUpvotes": 35
+        "totalUpvotes": 40
       },
       "kernelVersion": 0,
-      "competitionRanking": 366,
+      "competitionRanking": 748,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
         {
           "emoji": "YAY",
           "featuredUserNames": [
+            "godhand",
             "playwithme",
             "tanetisanjay",
             "juancneira"
           ],
-          "userCount": 3
+          "userCount": 4
         }
       ],
       "teamUpInfo": {
@@ -230,7 +231,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-01T21:12:10.502460400Z",
-    "totalVotes": 35,
+    "totalVotes": 40,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/732103",
     "totalMessages": 4,
     "authorPerformanceTier": "CONTRIBUTOR",

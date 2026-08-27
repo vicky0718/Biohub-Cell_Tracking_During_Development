@@ -26,7 +26,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 99,
+        "competitionRanking": 11,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -42,7 +42,6 @@
           }
         ],
         "teamUpInfo": {
-          "enabled": true,
           "teamLeader": {
             "displayName": "Tom",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -55,7 +54,7 @@
             "userId": 4310004,
             "progressionOptOut": false
           },
-          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+          "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
         }
       },
       {
@@ -77,7 +76,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2273,
+        "competitionRanking": 2657,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -151,12 +150,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 38,
+        "totalVotes": 39,
         "canUpvote": true,
-        "totalUpvotes": 38
+        "totalUpvotes": 39
       },
       "kernelVersion": 0,
-      "competitionRanking": 99,
+      "competitionRanking": 11,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -168,20 +167,23 @@
             "coderrkj",
             "playwithme",
             "saqibm128",
+            "davitkhantadze",
             "beckpro",
             "hashimrazi",
             "tergelmunkhbat",
             "jonathanweiss00",
             "yunusgmsoy",
             "zinutag",
+            "trizyx",
             "arulprasadsp",
+            "vova2006",
             "jamesweatherhead",
             "caramelite",
             "jordanjin",
             "marcuseno",
             "alfonso1799"
           ],
-          "userCount": 17
+          "userCount": 20
         },
         {
           "emoji": "LOVE",
@@ -200,7 +202,6 @@
         }
       ],
       "teamUpInfo": {
-        "enabled": true,
         "teamLeader": {
           "displayName": "Tom",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -213,7 +214,7 @@
           "userId": 4310004,
           "progressionOptOut": false
         },
-        "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+        "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
       }
     },
     "firstMessageId": 3485475,
@@ -224,7 +225,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-01T14:00:25.871499400Z",
-    "totalVotes": 38,
+    "totalVotes": 39,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/717109",
     "totalMessages": 2,
     "authorPerformanceTier": "MASTER",

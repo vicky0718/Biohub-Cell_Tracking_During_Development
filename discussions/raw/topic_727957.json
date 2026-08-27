@@ -103,23 +103,23 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 291,
+        "competitionRanking": 11,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "Taha_Alshatiri",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18473244-kg.png?t=2026-07-04-06-40-32",
-            "url": "/tahaalshatiri",
-            "userName": "tahaalshatiri",
+            "displayName": "Tom",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+            "url": "/tom99763",
+            "userName": "tom99763",
             "tier": "MASTER",
-            "id": 18473244,
-            "profileUrl": "/tahaalshatiri",
+            "id": 4310004,
+            "profileUrl": "/tom99763",
             "performanceTier": "MASTER",
-            "userId": 18473244,
+            "userId": 4310004,
             "progressionOptOut": false
           },
-          "intro": ""
+          "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
         }
       }
     ],
@@ -145,7 +145,7 @@
         "totalUpvotes": 13
       },
       "kernelVersion": 0,
-      "competitionRanking": 1127,
+      "competitionRanking": 1395,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

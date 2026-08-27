@@ -26,7 +26,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 442,
+        "competitionRanking": 798,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -75,7 +75,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 15,
+        "competitionRanking": 39,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -88,6 +88,7 @@
           }
         ],
         "teamUpInfo": {
+          "enabled": true,
           "teamLeader": {
             "displayName": "mikelou1",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -100,7 +101,7 @@
             "userId": 32181963,
             "progressionOptOut": false
           },
-          "intro": ""
+          "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
         }
       }
     ],
@@ -125,7 +126,7 @@
         "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 172,
+      "competitionRanking": 220,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

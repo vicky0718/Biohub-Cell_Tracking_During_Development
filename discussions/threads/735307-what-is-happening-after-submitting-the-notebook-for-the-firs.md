@@ -4,8 +4,8 @@
 - **Topic id**: 735307
 - **Author**: Developer kgf (CONTRIBUTOR)
 - **Posted**: 2026-08-14T23:50:52.463209200Z
-- **Votes**: 0
-- **Comments**: 2
+- **Votes**: -2
+- **Comments**: 3
 
 ---
 
@@ -15,8 +15,12 @@ I submitted my notebook with my successfully ran version and the submission.cvs 
 
 ---
 
-## Comments (2)
+## Comments (3)
 
+
+### NurpeyisRiskeldi (CONTRIBUTOR) — 2026-08-20T06:00:07.540Z
+
+I have the similar problem, but my version took like 20 minutes and after submitting it is still running for 11 hours.
 
 ### yoikoarmor (CONTRIBUTOR) — 2026-08-15T07:28:34.047Z
 

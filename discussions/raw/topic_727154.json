@@ -2,7 +2,7 @@
   "forumTopic": {
     "authorId": 33476309,
     "authorThumbnailName": "default-thumb.png",
-    "authorUserDisplayName": "Thibaut Goldsborough",
+    "authorUserDisplayName": "Thibgolds",
     "authorUserName": "thibautgoldsborough",
     "comments": [
       {
@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 713,
+            "competitionRanking": 1017,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +68,7 @@
           "totalUpvotes": 9
         },
         "kernelVersion": 0,
-        "competitionRanking": 734,
+        "competitionRanking": 1033,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -125,7 +125,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 713,
+            "competitionRanking": 1017,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -152,7 +152,7 @@
             "parent": {},
             "author": {
               "displayName": "OzanM.",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-11-18-28-39",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-24-07-47-18",
               "url": "/analyticaobscura",
               "tier": "GRANDMASTER",
               "id": 25787455,
@@ -163,13 +163,13 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 343,
+            "competitionRanking": 256,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
               "teamLeader": {
                 "displayName": "OzanM.",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-11-18-28-39",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-24-07-47-18",
                 "url": "/analyticaobscura",
                 "userName": "analyticaobscura",
                 "tier": "GRANDMASTER",
@@ -227,7 +227,7 @@
         "parent": {},
         "author": {
           "displayName": "Timmy Juicehouse",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
           "url": "/sweetyheehee",
           "tier": "EXPERT",
           "id": 18538441,
@@ -240,7 +240,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 709,
+        "competitionRanking": 803,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -257,7 +257,7 @@
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "Timmy Juicehouse",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
             "url": "/sweetyheehee",
             "userName": "sweetyheehee",
             "tier": "EXPERT",
@@ -291,7 +291,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 152,
+        "competitionRanking": 313,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -351,7 +351,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 152,
+        "competitionRanking": 313,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -433,7 +433,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 155,
+        "competitionRanking": 614,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -490,7 +490,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 94,
+            "competitionRanking": 567,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -524,7 +524,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 296,
+        "competitionRanking": 686,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -552,7 +552,7 @@
       "content": "<p>Hello all, </p>\n<p>A few of you might be aware that an exploit of our metrics was found, specifically in the division Jaccard score. \nWe have made a patch and will re-score all submissions as soon as possible (likely Monday). Submissions that did not actively exploit this will not have their scores affected. </p>\n<p>In the meanwhile the patch is already public on <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition\" target=\"_blank\">https://github.com/royerlab/kaggle-cell-tracking-competition</a> so you can score your submissions locally. </p>\n<p>Apologies for the mistake and thank you for your understanding. </p>",
       "parent": {},
       "author": {
-        "displayName": "Thibaut Goldsborough",
+        "displayName": "Thibgolds",
         "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
         "url": "/thibautgoldsborough",
         "tier": "CONTRIBUTOR",
@@ -591,7 +591,7 @@
       ],
       "teamUpInfo": {
         "teamLeader": {
-          "displayName": "Thibaut Goldsborough",
+          "displayName": "Thibgolds",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
           "url": "/thibautgoldsborough",
           "userName": "thibautgoldsborough",

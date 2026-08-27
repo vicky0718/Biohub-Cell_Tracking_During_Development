@@ -18,7 +18,7 @@
 ## Comments (2)
 
 
-### Thibaut Goldsborough (CONTRIBUTOR) — 2026-06-30T16:45:29.833Z
+### Thibgolds (CONTRIBUTOR) — 2026-06-30T16:45:29.833Z
 
 Hi, if this is the UNet baseline, this is expected, inference is very slow, and needs to be improved!
 

@@ -26,7 +26,7 @@
           "totalUpvotes": 14
         },
         "kernelVersion": 0,
-        "competitionRanking": 99,
+        "competitionRanking": 11,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -64,7 +64,6 @@
           }
         ],
         "teamUpInfo": {
-          "enabled": true,
           "teamLeader": {
             "displayName": "Tom",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -77,7 +76,7 @@
             "userId": 4310004,
             "progressionOptOut": false
           },
-          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+          "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
         }
       },
       {
@@ -99,7 +98,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 326,
+        "competitionRanking": 702,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -196,7 +195,7 @@
         "totalUpvotes": 9
       },
       "kernelVersion": 0,
-      "competitionRanking": 170,
+      "competitionRanking": 220,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

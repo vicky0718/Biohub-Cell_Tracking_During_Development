@@ -4,7 +4,7 @@
 - **Topic id**: 734192
 - **Author**: mikelou1 (EXPERT)
 - **Posted**: 2026-08-10T12:04:24.138409800Z
-- **Votes**: 2
+- **Votes**: 3
 - **Comments**: 2
 
 ---
@@ -28,6 +28,6 @@ Nice thread — I'd like to compare, but I want to be sure I'm reading your numb
 
 One thing that may be useful in return: summarise() drops the division term entirely when a submission contains no divisions at all (score = edge_jaccard if not has_divisions). So a fork-free submission returns your pure adjusted edge Jaccard, and the division term follows by subtraction — one submission for an exact split.
 
-#### ↳ mikelou1 (EXPERT) — 2026-08-10T14:19:06.043Z
+#### ↳ mikelou1 (EXPERT) — 2026-08-10T14:19:06.043Z — 1 votes
 
 > 0.03 is already weighted [so 30%], I got it on public lb by submitting a division only and reducing it slightly for matched edges.

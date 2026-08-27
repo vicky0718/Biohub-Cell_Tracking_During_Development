@@ -1,7 +1,7 @@
 {
   "forumTopic": {
     "authorId": 18476336,
-    "authorThumbnailName": "18476336-kg.png?t=2025-01-18-01-25-01",
+    "authorThumbnailName": "18476336-kg.jpeg?t=2026-08-18-12-04-15",
     "authorUserDisplayName": "mige551",
     "authorUserName": "mige551",
     "comments": [
@@ -32,7 +32,7 @@
               "totalUpvotes": 3
             },
             "kernelVersion": 0,
-            "competitionRanking": 69,
+            "competitionRanking": 99,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -48,15 +48,15 @@
             ],
             "teamUpInfo": {
               "teamLeader": {
-                "displayName": "FOYSAL",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
-                "url": "/foysalemonshanto",
-                "userName": "foysalemonshanto",
+                "displayName": "Md. Hamid Hosen",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/6026821-kg.png?t=2026-08-23-18-23-23",
+                "url": "/hosen42",
+                "userName": "hosen42",
                 "tier": "EXPERT",
-                "id": 27966974,
-                "profileUrl": "/foysalemonshanto",
+                "id": 6026821,
+                "profileUrl": "/hosen42",
                 "performanceTier": "EXPERT",
-                "userId": 27966974,
+                "userId": 6026821,
                 "progressionOptOut": false
               },
               "intro": ""
@@ -70,7 +70,7 @@
             "parent": {},
             "author": {
               "displayName": "mige551",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.jpeg?t=2026-08-18-12-04-15",
               "url": "/mige551",
               "tier": "CONTRIBUTOR",
               "id": 18476336,
@@ -81,7 +81,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 142,
+            "competitionRanking": 42,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -96,7 +96,7 @@
             "teamUpInfo": {
               "teamLeader": {
                 "displayName": "mige551",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.jpeg?t=2026-08-18-12-04-15",
                 "url": "/mige551",
                 "userName": "mige551",
                 "tier": "CONTRIBUTOR",
@@ -126,7 +126,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 69,
+        "competitionRanking": 99,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -142,15 +142,15 @@
         ],
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "FOYSAL",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
-            "url": "/foysalemonshanto",
-            "userName": "foysalemonshanto",
+            "displayName": "Md. Hamid Hosen",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/6026821-kg.png?t=2026-08-23-18-23-23",
+            "url": "/hosen42",
+            "userName": "hosen42",
             "tier": "EXPERT",
-            "id": 27966974,
-            "profileUrl": "/foysalemonshanto",
+            "id": 6026821,
+            "profileUrl": "/hosen42",
             "performanceTier": "EXPERT",
-            "userId": 27966974,
+            "userId": 6026821,
             "progressionOptOut": false
           },
           "intro": ""
@@ -175,7 +175,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 228,
+        "competitionRanking": 193,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -204,7 +204,7 @@
       "parent": {},
       "author": {
         "displayName": "mige551",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.jpeg?t=2026-08-18-12-04-15",
         "url": "/mige551",
         "tier": "CONTRIBUTOR",
         "id": 18476336,
@@ -217,13 +217,13 @@
         "totalUpvotes": 7
       },
       "kernelVersion": 0,
-      "competitionRanking": 142,
+      "competitionRanking": 42,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
         "teamLeader": {
           "displayName": "mige551",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.png?t=2025-01-18-01-25-01",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18476336-kg.jpeg?t=2026-08-18-12-04-15",
           "url": "/mige551",
           "userName": "mige551",
           "tier": "CONTRIBUTOR",

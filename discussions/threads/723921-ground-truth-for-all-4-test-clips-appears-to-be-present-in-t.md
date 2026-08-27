@@ -40,7 +40,7 @@ Those are just a placeholder
 
 > Placeholder for what? Can you please clarify?
 
-#### ↳ ↳ Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-10T20:17:58.243Z
+#### ↳ ↳ Thibgolds (CONTRIBUTOR) — 2026-07-10T20:17:58.243Z
 
 > > Its a placeholder to see if your notebook actually produces a csv file, it's just to help participants debug and has nothing to do with the actual scoring or leaderboard. Once you submit the notebook for evaluation, a different test set is used (that you don't have access to).
 

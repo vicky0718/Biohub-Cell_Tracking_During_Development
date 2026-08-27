@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 44,
+        "competitionRanking": 104,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -68,7 +68,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 385,
+            "competitionRanking": 763,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -102,7 +102,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2376,
+        "competitionRanking": 2763,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -132,6 +132,48 @@
             "postDate": "2026-08-10T16:49:50.647Z",
             "rawMarkdown": "That's new, probably the hidden dataset is way bigger than i expected \n",
             "content": "<p>That's new, probably the hidden dataset is way bigger than i expected </p>",
+            "replies": [
+              {
+                "id": 3514887,
+                "postDate": "2026-08-20T10:52:54.350Z",
+                "rawMarkdown": "From the Overview: \"The size of the hidden test set is approximately the same size as the training dataset.\"",
+                "content": "<p>From the Overview: \"The size of the hidden test set is approximately the same size as the training dataset.\"</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Tim Krige",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+                  "url": "/timkrige",
+                  "tier": "EXPERT",
+                  "id": 3326547,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 841,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Tim Krige",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+                    "url": "/timkrige",
+                    "userName": "timkrige",
+                    "tier": "EXPERT",
+                    "id": 3326547,
+                    "profileUrl": "/timkrige",
+                    "performanceTier": "EXPERT",
+                    "userId": 3326547,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
             "parent": {},
             "author": {
               "displayName": "Moawiz",
@@ -146,7 +188,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 385,
+            "competitionRanking": 763,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -180,10 +222,11 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 15,
+        "competitionRanking": 39,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
+          "enabled": true,
           "teamLeader": {
             "displayName": "mikelou1",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -196,7 +239,7 @@
             "userId": 32181963,
             "progressionOptOut": false
           },
-          "intro": ""
+          "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
         }
       }
     ],
@@ -222,7 +265,7 @@
         "totalUpvotes": 2
       },
       "kernelVersion": 0,
-      "competitionRanking": 385,
+      "competitionRanking": 763,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -251,7 +294,7 @@
     "postDate": "2026-08-10T16:35:37.428153400Z",
     "totalVotes": -1,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/734237",
-    "totalMessages": 5,
+    "totalMessages": 6,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

@@ -1,0 +1,151 @@
+{
+  "forumTopic": {
+    "authorId": 23336356,
+    "authorThumbnailName": "23336356-kg.jpg?t=2026-08-25-20-05-47",
+    "authorUserDisplayName": "Jawad Ahmed",
+    "authorUserName": "nusrati",
+    "comments": [
+      {
+        "id": 3517187,
+        "postDate": "2026-08-26T11:55:37.080Z",
+        "rawMarkdown": "Hi Jawad, sorry for this question , which is not related to your post: I saw your score; does this mean you got this score with division jaccard being 0? Currently I am in 0.85 and wondering how to proceed next. Is it mainly about training or inference tuning; i trained 50 epochs.",
+        "content": "<p>Hi Jawad, sorry for this question , which is not related to your post: I saw your score; does this mean you got this score with division jaccard being 0? Currently I am in 0.85 and wondering how to proceed next. Is it mainly about training or inference tuning; i trained 50 epochs.</p>",
+        "replies": [
+          {
+            "id": 3517206,
+            "postDate": "2026-08-26T12:56:28.023Z",
+            "rawMarkdown": "Dont consider my current score for this post. What im doing is basically having 2 approaches. \n\n1) Going with public model and tuning it around to grab a pinch of score somehow.\n2) Training from scratch myself. I started doing so 2 days ago. As public one hits a final checkpoint. No further work induces it. So this post is about the scratch model im working on.",
+            "content": "<p>Dont consider my current score for this post. What im doing is basically having 2 approaches. </p>\n<p>1) Going with public model and tuning it around to grab a pinch of score somehow.\n2) Training from scratch myself. I started doing so 2 days ago. As public one hits a final checkpoint. No further work induces it. So this post is about the scratch model im working on.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Jawad Ahmed",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+              "url": "/nusrati",
+              "tier": "CONTRIBUTOR",
+              "id": 23336356,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 299,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "LOVE",
+                "featuredUserNames": [
+                  "davitkhantadze"
+                ],
+                "userCount": 1
+              }
+            ],
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Jawad Ahmed",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+                "url": "/nusrati",
+                "userName": "nusrati",
+                "tier": "CONTRIBUTOR",
+                "id": 23336356,
+                "profileUrl": "/nusrati",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 23336356,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Davit Khantadze",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/davitkhantadze",
+          "tier": "CONTRIBUTOR",
+          "id": 4605428,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1819,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Davit Khantadze",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/davitkhantadze",
+            "userName": "davitkhantadze",
+            "tier": "CONTRIBUTOR",
+            "id": 4605428,
+            "profileUrl": "/davitkhantadze",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 4605428,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3517118,
+      "postDate": "2026-08-26T08:00:08.593Z",
+      "rawMarkdown": "For me division_jaccard never rises above 0.0004, at any weight tested. Even at 0.5, where the ILP does find 1 real division (div_tp=1), it does so alongside 3260 false ones. div_j = tp/(tp+fp+fn) \u2248 1/3260 - swamped to near-zero by the FP volume.\n\nThis means weight-tuning cannot produce a real division_jaccard contribution. It can only choose between \"suppress everything, div_j=0\" (weight 1.0) or \"let a few real ones through, buried under thousands of fake ones, div_j still \u22480\" (weight 0.5\u20130.65). Neither path gets me a meaningful positive division score.\n\nI highely need help with thisl",
+      "content": "<p>For me division_jaccard never rises above 0.0004, at any weight tested. Even at 0.5, where the ILP does find 1 real division (div_tp=1), it does so alongside 3260 false ones. div_j = tp/(tp+fp+fn) \u2248 1/3260 - swamped to near-zero by the FP volume.</p>\n<p>This means weight-tuning cannot produce a real division_jaccard contribution. It can only choose between \"suppress everything, div_j=0\" (weight 1.0) or \"let a few real ones through, buried under thousands of fake ones, div_j still \u22480\" (weight 0.5\u20130.65). Neither path gets me a meaningful positive division score.</p>\n<p>I highely need help with thisl</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Jawad Ahmed",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+        "url": "/nusrati",
+        "tier": "CONTRIBUTOR",
+        "id": 23336356,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 299,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Jawad Ahmed",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+          "url": "/nusrati",
+          "userName": "nusrati",
+          "tier": "CONTRIBUTOR",
+          "id": 23336356,
+          "profileUrl": "/nusrati",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 23336356,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3517118,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 737577,
+    "name": "division jaccard",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-26T08:00:08.592129900Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/737577",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

@@ -30,10 +30,11 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 15,
+            "competitionRanking": 39,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
+              "enabled": true,
               "teamLeader": {
                 "displayName": "mikelou1",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -46,7 +47,7 @@
                 "userId": 32181963,
                 "progressionOptOut": false
               },
-              "intro": ""
+              "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
             }
           },
           {
@@ -54,6 +55,46 @@
             "postDate": "2026-08-15T18:12:20.333Z",
             "rawMarkdown": "Hi @tweakai, by plugin do you mean something that optimizes/refines the tracking graph, or do you mean you take the public notebook detections and apply your own tracking method on top?\n\nGot curious about it, but no worries if you can\u2019t share more\n",
             "content": "<p>Hi <a href=\"https://www.kaggle.com/tweakai\" target=\"_blank\">@tweakai</a>, by plugin do you mean something that optimizes/refines the tracking graph, or do you mean you take the public notebook detections and apply your own tracking method on top?</p>\n<p>Got curious about it, but no worries if you can\u2019t share more</p>",
+            "replies": [
+              {
+                "id": 3513384,
+                "postDate": "2026-08-16T09:56:04.003Z",
+                "rawMarkdown": "yeah i believe it is very interesting to know if the calibration was for keeping the track or reassigning",
+                "content": "<p>yeah i believe it is very interesting to know if the calibration was for keeping the track or reassigning</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Moawiz",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+                  "url": "/moawiz",
+                  "tier": "CONTRIBUTOR",
+                  "id": 20852044,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 763,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Moawiz",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+                    "url": "/moawiz",
+                    "userName": "moawiz",
+                    "tier": "CONTRIBUTOR",
+                    "id": 20852044,
+                    "profileUrl": "/moawiz",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 20852044,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
             "parent": {},
             "author": {
               "displayName": "Sergio Alvarez",
@@ -68,7 +109,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 63,
+            "competitionRanking": 349,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -82,6 +123,44 @@
                 "profileUrl": "/sersasj",
                 "performanceTier": "MASTER",
                 "userId": 2221915,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3514408,
+            "postDate": "2026-08-19T08:44:19.630Z",
+            "rawMarkdown": "that is an impressive approach/tool. Thank you for the information.",
+            "content": "<p>that is an impressive approach/tool. Thank you for the information.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "OpPrime",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31234056-kg.jpg?t=2026-03-22-23-34-57",
+              "url": "/farshidamira",
+              "tier": "CONTRIBUTOR",
+              "id": 31234056,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 191,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "OpPrime",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31234056-kg.jpg?t=2026-03-22-23-34-57",
+                "url": "/farshidamira",
+                "userName": "farshidamira",
+                "tier": "CONTRIBUTOR",
+                "id": 31234056,
+                "profileUrl": "/farshidamira",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 31234056,
                 "progressionOptOut": false
               },
               "intro": ""
@@ -108,12 +187,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 3,
+          "totalVotes": 7,
           "canUpvote": true,
-          "totalUpvotes": 3
+          "totalUpvotes": 7
         },
         "kernelVersion": 0,
-        "competitionRanking": 2,
+        "competitionRanking": 4,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -128,6 +207,87 @@
             "profileUrl": "/tweakai",
             "performanceTier": "EXPERT",
             "userId": 28207655,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3513149,
+        "postDate": "2026-08-15T11:43:45.287Z",
+        "rawMarkdown": "I guess what we can do is:\n- Build a reliable CV, and trust it.\n- Use external datasets or synthetic data to make our model more robust on division cells prediction.",
+        "content": "<p>I guess what we can do is:</p>\n<ul>\n<li>Build a reliable CV, and trust it.</li>\n<li>Use external datasets or synthetic data to make our model more robust on division cells prediction.</li>\n</ul>",
+        "replies": [
+          {
+            "id": 3513868,
+            "postDate": "2026-08-17T20:06:00.097Z",
+            "rawMarkdown": "did you train your very own model uptil now or used the publicly available one and did u take the public notebook detections and apply your own tracking method on top",
+            "content": "<p>did you train your very own model uptil now or used the publicly available one and did u take the public notebook detections and apply your own tracking method on top</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Jawad Ahmed",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+              "url": "/nusrati",
+              "tier": "CONTRIBUTOR",
+              "id": 23336356,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": -1,
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 301,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Jawad Ahmed",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+                "url": "/nusrati",
+                "userName": "nusrati",
+                "tier": "CONTRIBUTOR",
+                "id": 23336356,
+                "profileUrl": "/nusrati",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 23336356,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Tang",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+          "url": "/hirotetsu",
+          "tier": "MASTER",
+          "id": 2312281,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 3,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Tang",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+            "url": "/hirotetsu",
+            "userName": "hirotetsu",
+            "tier": "MASTER",
+            "id": 2312281,
+            "profileUrl": "/hirotetsu",
+            "performanceTier": "MASTER",
+            "userId": 2312281,
             "progressionOptOut": false
           },
           "intro": ""
@@ -149,10 +309,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "canUpvote": true
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 28,
+        "competitionRanking": 96,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -172,17 +334,100 @@
         }
       },
       {
-        "id": 3513149,
-        "postDate": "2026-08-15T11:43:45.287Z",
-        "rawMarkdown": "I guess what we can do is:\n- Build a reliable CV, and trust it.\n- Use external datasets or synthetic data to make our model more robust on division cells prediction.",
-        "content": "<p>I guess what we can do is:</p>\n<ul>\n<li>Build a reliable CV, and trust it.</li>\n<li>Use external datasets or synthetic data to make our model more robust on division cells prediction.</li>\n</ul>",
+        "id": 3513867,
+        "postDate": "2026-08-17T20:04:44.877Z",
+        "rawMarkdown": "you dont mind me asking you, did you train your very own model from scratch or rather you fine tuned public model?",
+        "content": "<p>you dont mind me asking you, did you train your very own model from scratch or rather you fine tuned public model?</p>",
+        "replies": [
+          {
+            "id": 3513915,
+            "postDate": "2026-08-18T00:00:15.817Z",
+            "rawMarkdown": "I trained mine from scratch since my division score is quite good [0.3] and edge is really bad [its ~0.01 points below public notebooks] so I'm trying to improve that.",
+            "content": "<p>I trained mine from scratch since my division score is quite good [0.3] and edge is really bad [its ~0.01 points below public notebooks] so I'm trying to improve that.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "mikelou1",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/mikelou1",
+              "tier": "EXPERT",
+              "id": 32181963,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 39,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "mikelou1",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/mikelou1",
+                "userName": "mikelou1",
+                "tier": "EXPERT",
+                "id": 32181963,
+                "profileUrl": "/mikelou1",
+                "performanceTier": "EXPERT",
+                "userId": 32181963,
+                "progressionOptOut": false
+              },
+              "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
+            }
+          },
+          {
+            "id": 3514774,
+            "postDate": "2026-08-20T04:44:28.813Z",
+            "rawMarkdown": "Trained from scratch. And training here isn't very expensive. Its affordable.",
+            "content": "<p>Trained from scratch. And training here isn't very expensive. Its affordable.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Komil Parmar",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/11351811-kg.jpg?t=2025-07-02-06-16-19",
+              "url": "/komilparmar",
+              "tier": "EXPERT",
+              "id": 11351811,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 50,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Komil Parmar",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/11351811-kg.jpg?t=2025-07-02-06-16-19",
+                "url": "/komilparmar",
+                "userName": "komilparmar",
+                "tier": "EXPERT",
+                "id": 11351811,
+                "profileUrl": "/komilparmar",
+                "performanceTier": "EXPERT",
+                "userId": 11351811,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
         "parent": {},
         "author": {
-          "displayName": "Tang",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
-          "url": "/hirotetsu",
-          "tier": "MASTER",
-          "id": 2312281,
+          "displayName": "Jawad Ahmed",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+          "url": "/nusrati",
+          "tier": "CONTRIBUTOR",
+          "id": 23336356,
           "progressionOptOut": false
         },
         "authorType": "COMMENT",
@@ -190,20 +435,20 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 11,
+        "competitionRanking": 301,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "Tang",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
-            "url": "/hirotetsu",
-            "userName": "hirotetsu",
-            "tier": "MASTER",
-            "id": 2312281,
-            "profileUrl": "/hirotetsu",
-            "performanceTier": "MASTER",
-            "userId": 2312281,
+            "displayName": "Jawad Ahmed",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+            "url": "/nusrati",
+            "userName": "nusrati",
+            "tier": "CONTRIBUTOR",
+            "id": 23336356,
+            "profileUrl": "/nusrati",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23336356,
             "progressionOptOut": false
           },
           "intro": ""
@@ -227,15 +472,16 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 2,
+        "totalVotes": 9,
         "canUpvote": true,
-        "totalUpvotes": 2
+        "totalUpvotes": 9
       },
       "kernelVersion": 0,
-      "competitionRanking": 15,
+      "competitionRanking": 39,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
+        "enabled": true,
         "teamLeader": {
           "displayName": "mikelou1",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -248,7 +494,7 @@
           "userId": 32181963,
           "progressionOptOut": false
         },
-        "intro": ""
+        "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
       }
     },
     "firstMessageId": 3513101,
@@ -259,9 +505,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-15T08:25:14.079757100Z",
-    "totalVotes": 2,
+    "totalVotes": 9,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/735352",
-    "totalMessages": 5,
+    "totalMessages": 11,
     "authorPerformanceTier": "EXPERT",
     "authorProgressionOptOut": false
   }

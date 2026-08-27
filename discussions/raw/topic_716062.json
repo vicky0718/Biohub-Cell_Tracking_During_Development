@@ -2,7 +2,7 @@
   "forumTopic": {
     "authorId": 33476309,
     "authorThumbnailName": "default-thumb.png",
-    "authorUserDisplayName": "Thibaut Goldsborough",
+    "authorUserDisplayName": "Thibgolds",
     "authorUserName": "thibautgoldsborough",
     "comments": [
       {
@@ -41,87 +41,6 @@
         ]
       },
       {
-        "id": 3493936,
-        "postDate": "2026-07-08T19:12:09.417Z",
-        "rawMarkdown": "Hi @thibautgoldsborough ,\n\nThanks for putting this challenge together, really interesting problem and dataset.\n\nWanted to flag something I found while setting up local cross-validation: all 4 official test clips appear to have byte-identical copies in the train split, including full ground truth annotations.\n\nVerified by comparing actual pixel data (not just filenames) at t=0, t=50, and t=99 for each clip:\n\n| Test clip id | Train copy | Pixel-identical | Train `.geff` present |\n|---|---|---|---|\n| `44b6_0113de3b` | `train/44b6_0113de3b.zarr` | Yes | Yes |\n| `44b6_0b24845f` | `train/44b6_0b24845f.zarr` | Yes | Yes |\n| `6bba_05b6850b` | `train/6bba_05b6850b.zarr` | Yes | Yes |\n| `6bba_05db0fb1` | `train/6bba_05db0fb1.zarr` | Yes | Yes |\n\nReproduction: read `train/{clip_id}.zarr/0/c/{t}/0/0/0` and `test/{clip_id}.zarr/0/c/{t}/0/0/0` from the competition zip for the same clip id and timepoint, decompress with blosc2, and compare arrays: they match exactly frame for frame.\n\nIf this is intentional (e.g. these clips are meant to double as both a train example and a test target), no action needed, just wanted to confirm. But if not, it means the ground truth for the hidden test set is currently downloadable by anyone through the train split, which could affect leaderboard integrity. Happy to share the verification script if it's useful for checking on your end.\n\nThanks again for the great competition.\n",
-        "content": "<p>Hi <a href=\"https://www.kaggle.com/thibautgoldsborough\" target=\"_blank\">@thibautgoldsborough</a> ,</p>\n<p>Thanks for putting this challenge together, really interesting problem and dataset.</p>\n<p>Wanted to flag something I found while setting up local cross-validation: all 4 official test clips appear to have byte-identical copies in the train split, including full ground truth annotations.</p>\n<p>Verified by comparing actual pixel data (not just filenames) at t=0, t=50, and t=99 for each clip:</p>\n<table>\n<thead>\n<tr>\n<th>Test clip id</th>\n<th>Train copy</th>\n<th>Pixel-identical</th>\n<th>Train <code>.geff</code> present</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>44b6_0113de3b</code></td>\n<td><code>train/44b6_0113de3b.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>44b6_0b24845f</code></td>\n<td><code>train/44b6_0b24845f.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>6bba_05b6850b</code></td>\n<td><code>train/6bba_05b6850b.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>6bba_05db0fb1</code></td>\n<td><code>train/6bba_05db0fb1.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n</tbody>\n</table>\n<p>Reproduction: read <code>train/{clip_id}.zarr/0/c/{t}/0/0/0</code> and <code>test/{clip_id}.zarr/0/c/{t}/0/0/0</code> from the competition zip for the same clip id and timepoint, decompress with blosc2, and compare arrays: they match exactly frame for frame.</p>\n<p>If this is intentional (e.g. these clips are meant to double as both a train example and a test target), no action needed, just wanted to confirm. But if not, it means the ground truth for the hidden test set is currently downloadable by anyone through the train split, which could affect leaderboard integrity. Happy to share the verification script if it's useful for checking on your end.</p>\n<p>Thanks again for the great competition.</p>",
-        "replies": [
-          {
-            "id": 3494866,
-            "postDate": "2026-07-10T20:59:33.480Z",
-            "rawMarkdown": "Hi, thank you for expressing your concern. \nIndeed these are dummy placeholder files to help you ensure that your submission notebook actually produces a .csv file without erroring out. The actual leaderboard score is obtained from a much bigger test set, that is deliberately kept private, and I assure you there is no overlap between that hidden test set and the train set that is publicly available. \nI hope that answers your question. \n",
-            "content": "<p>Hi, thank you for expressing your concern. \nIndeed these are dummy placeholder files to help you ensure that your submission notebook actually produces a .csv file without erroring out. The actual leaderboard score is obtained from a much bigger test set, that is deliberately kept private, and I assure you there is no overlap between that hidden test set and the train set that is publicly available. \nI hope that answers your question. </p>",
-            "parent": {},
-            "author": {
-              "displayName": "Thibaut Goldsborough",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
-              "url": "/thibautgoldsborough",
-              "tier": "CONTRIBUTOR",
-              "id": 33476309,
-              "progressionOptOut": false
-            },
-            "authorType": "HOST",
-            "votes": {
-              "totalVotes": 1,
-              "canUpvote": true,
-              "totalUpvotes": 1
-            },
-            "kernelVersion": 0,
-            "feedbackTrackingData": {},
-            "isThankYou": false,
-            "teamUpInfo": {
-              "teamLeader": {
-                "displayName": "Thibaut Goldsborough",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
-                "url": "/thibautgoldsborough",
-                "userName": "thibautgoldsborough",
-                "tier": "CONTRIBUTOR",
-                "id": 33476309,
-                "profileUrl": "/thibautgoldsborough",
-                "performanceTier": "CONTRIBUTOR",
-                "userId": 33476309,
-                "progressionOptOut": false
-              },
-              "intro": ""
-            }
-          }
-        ],
-        "parent": {},
-        "author": {
-          "displayName": "LeeWhieldon",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
-          "url": "/leewhieldon",
-          "tier": "CONTRIBUTOR",
-          "id": 1715297,
-          "progressionOptOut": false
-        },
-        "authorType": "COMMENT",
-        "votes": {
-          "totalVotes": 1,
-          "canUpvote": true,
-          "totalUpvotes": 1
-        },
-        "kernelVersion": 0,
-        "competitionRanking": 1591,
-        "feedbackTrackingData": {},
-        "isThankYou": false,
-        "teamUpInfo": {
-          "teamLeader": {
-            "displayName": "LeeWhieldon",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
-            "url": "/leewhieldon",
-            "userName": "leewhieldon",
-            "tier": "CONTRIBUTOR",
-            "id": 1715297,
-            "profileUrl": "/leewhieldon",
-            "performanceTier": "CONTRIBUTOR",
-            "userId": 1715297,
-            "progressionOptOut": false
-          },
-          "intro": ""
-        }
-      },
-      {
         "id": 3487249,
         "postDate": "2026-07-03T15:05:59.287Z",
         "rawMarkdown": "would you please provide a script to evaluate predictions? Something that takes \"submission.csv\", reads  \"train/xxx.geff\" data, and outputs final competition score? This is a required resource for a competition, and it is not easy to create it from documentation alone. \n\nThanks.",
@@ -134,7 +53,7 @@
             "content": "<p>Hey! The repo (<a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition\" target=\"_blank\">https://github.com/royerlab/kaggle-cell-tracking-competition</a>) we shared does implement the official metric (from a folder with .geff predictions and a folder with .geff ground truth). You're right that there was no official code for converting a .csv file to a list of .geff files, so I wrote a simple script and I recently added it to the repo, I hope that helps you running the official metric. </p>",
             "parent": {},
             "author": {
-              "displayName": "Thibaut Goldsborough",
+              "displayName": "Thibgolds",
               "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
               "url": "/thibautgoldsborough",
               "tier": "CONTRIBUTOR",
@@ -152,7 +71,7 @@
             "isThankYou": false,
             "teamUpInfo": {
               "teamLeader": {
-                "displayName": "Thibaut Goldsborough",
+                "displayName": "Thibgolds",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
                 "url": "/thibautgoldsborough",
                 "userName": "thibautgoldsborough",
@@ -183,7 +102,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 1730,
+        "competitionRanking": 2067,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -197,6 +116,87 @@
             "profileUrl": "/ymatioun",
             "performanceTier": "GRANDMASTER",
             "userId": 1753973,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3493936,
+        "postDate": "2026-07-08T19:12:09.417Z",
+        "rawMarkdown": "Hi @thibautgoldsborough ,\n\nThanks for putting this challenge together, really interesting problem and dataset.\n\nWanted to flag something I found while setting up local cross-validation: all 4 official test clips appear to have byte-identical copies in the train split, including full ground truth annotations.\n\nVerified by comparing actual pixel data (not just filenames) at t=0, t=50, and t=99 for each clip:\n\n| Test clip id | Train copy | Pixel-identical | Train `.geff` present |\n|---|---|---|---|\n| `44b6_0113de3b` | `train/44b6_0113de3b.zarr` | Yes | Yes |\n| `44b6_0b24845f` | `train/44b6_0b24845f.zarr` | Yes | Yes |\n| `6bba_05b6850b` | `train/6bba_05b6850b.zarr` | Yes | Yes |\n| `6bba_05db0fb1` | `train/6bba_05db0fb1.zarr` | Yes | Yes |\n\nReproduction: read `train/{clip_id}.zarr/0/c/{t}/0/0/0` and `test/{clip_id}.zarr/0/c/{t}/0/0/0` from the competition zip for the same clip id and timepoint, decompress with blosc2, and compare arrays: they match exactly frame for frame.\n\nIf this is intentional (e.g. these clips are meant to double as both a train example and a test target), no action needed, just wanted to confirm. But if not, it means the ground truth for the hidden test set is currently downloadable by anyone through the train split, which could affect leaderboard integrity. Happy to share the verification script if it's useful for checking on your end.\n\nThanks again for the great competition.\n",
+        "content": "<p>Hi <a href=\"https://www.kaggle.com/thibautgoldsborough\" target=\"_blank\">@thibautgoldsborough</a> ,</p>\n<p>Thanks for putting this challenge together, really interesting problem and dataset.</p>\n<p>Wanted to flag something I found while setting up local cross-validation: all 4 official test clips appear to have byte-identical copies in the train split, including full ground truth annotations.</p>\n<p>Verified by comparing actual pixel data (not just filenames) at t=0, t=50, and t=99 for each clip:</p>\n<table>\n<thead>\n<tr>\n<th>Test clip id</th>\n<th>Train copy</th>\n<th>Pixel-identical</th>\n<th>Train <code>.geff</code> present</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>44b6_0113de3b</code></td>\n<td><code>train/44b6_0113de3b.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>44b6_0b24845f</code></td>\n<td><code>train/44b6_0b24845f.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>6bba_05b6850b</code></td>\n<td><code>train/6bba_05b6850b.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>6bba_05db0fb1</code></td>\n<td><code>train/6bba_05db0fb1.zarr</code></td>\n<td>Yes</td>\n<td>Yes</td>\n</tr>\n</tbody>\n</table>\n<p>Reproduction: read <code>train/{clip_id}.zarr/0/c/{t}/0/0/0</code> and <code>test/{clip_id}.zarr/0/c/{t}/0/0/0</code> from the competition zip for the same clip id and timepoint, decompress with blosc2, and compare arrays: they match exactly frame for frame.</p>\n<p>If this is intentional (e.g. these clips are meant to double as both a train example and a test target), no action needed, just wanted to confirm. But if not, it means the ground truth for the hidden test set is currently downloadable by anyone through the train split, which could affect leaderboard integrity. Happy to share the verification script if it's useful for checking on your end.</p>\n<p>Thanks again for the great competition.</p>",
+        "replies": [
+          {
+            "id": 3494866,
+            "postDate": "2026-07-10T20:59:33.480Z",
+            "rawMarkdown": "Hi, thank you for expressing your concern. \nIndeed these are dummy placeholder files to help you ensure that your submission notebook actually produces a .csv file without erroring out. The actual leaderboard score is obtained from a much bigger test set, that is deliberately kept private, and I assure you there is no overlap between that hidden test set and the train set that is publicly available. \nI hope that answers your question. \n",
+            "content": "<p>Hi, thank you for expressing your concern. \nIndeed these are dummy placeholder files to help you ensure that your submission notebook actually produces a .csv file without erroring out. The actual leaderboard score is obtained from a much bigger test set, that is deliberately kept private, and I assure you there is no overlap between that hidden test set and the train set that is publicly available. \nI hope that answers your question. </p>",
+            "parent": {},
+            "author": {
+              "displayName": "Thibgolds",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/thibautgoldsborough",
+              "tier": "CONTRIBUTOR",
+              "id": 33476309,
+              "progressionOptOut": false
+            },
+            "authorType": "HOST",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Thibgolds",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/thibautgoldsborough",
+                "userName": "thibautgoldsborough",
+                "tier": "CONTRIBUTOR",
+                "id": 33476309,
+                "profileUrl": "/thibautgoldsborough",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 33476309,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "LeeWhieldon",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
+          "url": "/leewhieldon",
+          "tier": "CONTRIBUTOR",
+          "id": 1715297,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1781,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "LeeWhieldon",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
+            "url": "/leewhieldon",
+            "userName": "leewhieldon",
+            "tier": "CONTRIBUTOR",
+            "id": 1715297,
+            "profileUrl": "/leewhieldon",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 1715297,
             "progressionOptOut": false
           },
           "intro": ""
@@ -221,7 +221,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1599,
+        "competitionRanking": 1818,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -249,7 +249,7 @@
       "content": "<h1>Welcome to the Biohub - Cell Tracking During Development Challenge</h1>\n<p>Hello everyone,</p>\n<p>We, at Biohub, are excited to present this challenge to you! </p>\n<p>Advances in machine learning and computer vision have transformed many areas of science, from image analysis to biological discovery. These methods are now being applied to increasingly complex microscopy data, where even expert researchers face major challenges in managing the scale, noise, and biological complexity of the data.</p>\n<p>Tracking cells across time in 3D microscopy is a fundamental problem in biological research. Scientists use time-lapse 3D imaging to study how cells grow, move, interact, divide, and form complex biological structures. However, analyzing these datasets remains a major bottleneck. In many studies, researchers still spend countless hours manually detecting and linking cells across frames, especially when datasets contain thousands of visually similar cells that move, deform, and divide over time.</p>\n<p>Automated cell-tracking tools already exist, but they often struggle in real-world conditions. Dense cell populations, imaging noise, irregular cell shapes, cell divisions, and complex 3D structures can lead to tracking errors and incorrect lineage reconstruction. These errors limit scientists' ability to scale their analyses and compare results across datasets and experiments.</p>\n<p>Based on real microscopy datasets from developing Zebrafish embryos, we are launching this challenge to provide a shared benchmark for robust 3D+time cell tracking. Your goal is to develop algorithms that can detect cells, associate them across time, identify division events, and reconstruct accurate cell lineages. We hope this challenge will inspire new methods that are reliable, generalizable, and useful for real biological research.</p>\n<p>We have prepared the following resource to help you get started:</p>\n<p>1 - Python library for working with 3D+time datasets, including training a small baseline, running inference, visualizing ground-truth and model predictions, understanding and computing the metrics is available here:  <a href=\"https://github.com/royerlab/kaggle-cell-tracking-competition\" target=\"_blank\">https://github.com/royerlab/kaggle-cell-tracking-competition</a></p>\n<h2>Data</h2>\n<p>By node and edge count, this dataset is the largest cell tracking dataset published to date. The provided ground truth annotations are sparse. You have to develop methods that can leverage sparsely annotated datasets. While inference will require the tracking of all cells present in the videos, your submissions will be evaluated on a random sparse subset of these cells. </p>\n<h2>Open Problem and Research Ideas</h2>\n<h3>1 - Data perspective</h3>\n<p>We strongly encourage you to visit the Cell Tracking Challenge (<a href=\"https://celltrackingchallenge.net/)\" target=\"_blank\">https://celltrackingchallenge.net/)</a>, which is highly regarded in the field for hosting a number of 2D+time and 3D+time datasets as well as benchmarking state-of-the-art methods for cell tracking. </p>\n<h3>2 - Useful packages:</h3>\n<p>geff (<a href=\"https://github.com/live-image-tracking-tools/geff\" target=\"_blank\">https://github.com/live-image-tracking-tools/geff</a>)<br>\nzarr (<a href=\"https://zarr.readthedocs.io/en/stable/\" target=\"_blank\">https://zarr.readthedocs.io/en/stable/</a>)<br>\ntracksdata (<a href=\"https://github.com/royerlab/tracksdata\" target=\"_blank\">https://github.com/royerlab/tracksdata</a>)<br>\ncupy (<a href=\"https://docs.cupy.dev/en/stable/index.html\" target=\"_blank\">https://docs.cupy.dev/en/stable/index.html</a>)<br>\ncucim (<a href=\"https://github.com/rapidsai/cucim\" target=\"_blank\">https://github.com/rapidsai/cucim</a>)<br>\nnapari (native usage only) (<a href=\"https://napari.org/\" target=\"_blank\">https://napari.org/</a>)<br>\nndv (<a href=\"https://github.com/pyapp-kit/ndv\" target=\"_blank\">https://github.com/pyapp-kit/ndv</a>)<br>\nmotile (<a href=\"https://github.com/funkelab/motile\" target=\"_blank\">https://github.com/funkelab/motile</a>)  </p>\n<h3>3 - Some competitive tracking methods</h3>\n<p>ultrack (<a href=\"https://github.com/royerlab/ultrack\" target=\"_blank\">https://github.com/royerlab/ultrack</a>)<br>\ntrackastra (<a href=\"https://github.com/weigertlab/trackastra\" target=\"_blank\">https://github.com/weigertlab/trackastra</a>)<br>\nbyotrack (<a href=\"https://github.com/raphaelreme/byotrack\" target=\"_blank\">https://github.com/raphaelreme/byotrack</a>)<br>\nlaptrack (<a href=\"https://github.com/yfukai/laptrack\" target=\"_blank\">https://github.com/yfukai/laptrack</a>)<br>\ncellect (<a href=\"https://github.com/zzz333za/CELLECT\" target=\"_blank\">https://github.com/zzz333za/CELLECT</a>)<br>\nascent (<a href=\"https://github.com/lu-lab/ascent\" target=\"_blank\">https://github.com/lu-lab/ascent</a>)<br>\nOrganoidTracker (<a href=\"https://github.com/jvzonlab/OrganoidTracker\" target=\"_blank\">https://github.com/jvzonlab/OrganoidTracker</a>)  </p>\n<p>Last but not least, we really hope you enjoy the competition. We cannot wait to see your solutions. We strongly encourage you to open-source your code and solutions so that the entire community can benefit from your work.</p>\n<p>On behalf of all the organizers,</p>",
       "parent": {},
       "author": {
-        "displayName": "Thibaut Goldsborough",
+        "displayName": "Thibgolds",
         "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
         "url": "/thibautgoldsborough",
         "tier": "CONTRIBUTOR",
@@ -258,9 +258,9 @@
       },
       "authorType": "HOST",
       "votes": {
-        "totalVotes": 69,
+        "totalVotes": 72,
         "canUpvote": true,
-        "totalUpvotes": 69
+        "totalUpvotes": 72
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -319,7 +319,7 @@
       ],
       "teamUpInfo": {
         "teamLeader": {
-          "displayName": "Thibaut Goldsborough",
+          "displayName": "Thibgolds",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
           "url": "/thibautgoldsborough",
           "userName": "thibautgoldsborough",
@@ -337,11 +337,12 @@
     "forumId": 10656304,
     "forumName": "Biohub - Cell Tracking During Development",
     "id": 716062,
+    "isStickied": true,
     "name": "Welcome to the Biohub - Cell Tracking During Development Challenge",
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-06-30T02:16:18.647926700Z",
-    "totalVotes": 69,
+    "totalVotes": 72,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/716062",
     "totalMessages": 6,
     "authorPerformanceTier": "CONTRIBUTOR",

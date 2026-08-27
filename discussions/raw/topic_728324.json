@@ -30,7 +30,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 444,
+            "competitionRanking": 793,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -61,12 +61,12 @@
         },
         "authorType": "ADMIN",
         "votes": {
-          "totalVotes": 9,
+          "totalVotes": 10,
           "canUpvote": true,
-          "totalUpvotes": 9
+          "totalUpvotes": 10
         },
         "kernelVersion": 0,
-        "competitionRanking": 2248,
+        "competitionRanking": 2623,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -120,7 +120,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 130,
+        "competitionRanking": 467,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -160,7 +160,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 727,
+        "competitionRanking": 1023,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -174,6 +174,7 @@
           }
         ],
         "teamUpInfo": {
+          "enabled": true,
           "teamLeader": {
             "displayName": "Zejun_",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26336666-kg.png?t=2026-04-09-13-38-39",
@@ -212,7 +213,7 @@
         "totalUpvotes": 20
       },
       "kernelVersion": 0,
-      "competitionRanking": 2248,
+      "competitionRanking": 2623,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [

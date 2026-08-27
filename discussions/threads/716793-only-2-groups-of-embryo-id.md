@@ -20,7 +20,7 @@ Hi, biohub team. During my EDA, I found only two groups of embryo_ids. I would l
 ## Comments (6)
 
 
-### Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-01T22:17:13.263Z — 4 votes
+### Thibgolds (CONTRIBUTOR) — 2026-07-01T22:17:13.263Z — 4 votes
 
 Hi, indeed there are two unique embryo_ids in the training set. You can assume the test sit is roughly similar in size, with no overlap in embryo_ids between train and test sets.
 

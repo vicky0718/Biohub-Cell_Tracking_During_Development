@@ -24,7 +24,7 @@
                 "content": "<p>Its a placeholder to see if your notebook actually produces a csv file, it's just to help participants debug and has nothing to do with the actual scoring or leaderboard. Once you submit the notebook for evaluation, a different test set is used (that you don't have access to).</p>",
                 "parent": {},
                 "author": {
-                  "displayName": "Thibaut Goldsborough",
+                  "displayName": "Thibgolds",
                   "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
                   "url": "/thibautgoldsborough",
                   "tier": "CONTRIBUTOR",
@@ -40,7 +40,7 @@
                 "isThankYou": false,
                 "teamUpInfo": {
                   "teamLeader": {
-                    "displayName": "Thibaut Goldsborough",
+                    "displayName": "Thibgolds",
                     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
                     "url": "/thibautgoldsborough",
                     "userName": "thibautgoldsborough",
@@ -73,7 +73,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1594,
+                "competitionRanking": 1786,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -144,7 +144,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1594,
+            "competitionRanking": 1786,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -180,7 +180,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 172,
+        "competitionRanking": 220,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -220,7 +220,7 @@
                 "parent": {},
                 "author": {
                   "displayName": "Timmy Juicehouse",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                   "url": "/sweetyheehee",
                   "tier": "EXPERT",
                   "id": 18538441,
@@ -231,13 +231,13 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 707,
+                "competitionRanking": 803,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
                   "teamLeader": {
                     "displayName": "Timmy Juicehouse",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                     "url": "/sweetyheehee",
                     "userName": "sweetyheehee",
                     "tier": "EXPERT",
@@ -269,7 +269,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1594,
+                "competitionRanking": 1786,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -303,7 +303,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1594,
+            "competitionRanking": 1786,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -326,7 +326,7 @@
         "parent": {},
         "author": {
           "displayName": "Timmy Juicehouse",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
           "url": "/sweetyheehee",
           "tier": "EXPERT",
           "id": 18538441,
@@ -339,13 +339,13 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 707,
+        "competitionRanking": 803,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "Timmy Juicehouse",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
             "url": "/sweetyheehee",
             "userName": "sweetyheehee",
             "tier": "EXPERT",
@@ -399,7 +399,7 @@
         "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 1594,
+      "competitionRanking": 1786,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

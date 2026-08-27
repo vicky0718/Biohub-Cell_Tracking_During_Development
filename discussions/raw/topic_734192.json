@@ -27,13 +27,16 @@
             },
             "authorType": "TOPIC",
             "votes": {
-              "canUpvote": true
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 15,
+            "competitionRanking": 39,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
+              "enabled": true,
               "teamLeader": {
                 "displayName": "mikelou1",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -46,7 +49,7 @@
                 "userId": 32181963,
                 "progressionOptOut": false
               },
-              "intro": ""
+              "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
             }
           }
         ],
@@ -66,7 +69,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 18,
+        "competitionRanking": 31,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -103,15 +106,16 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 2,
+        "totalVotes": 3,
         "canUpvote": true,
-        "totalUpvotes": 2
+        "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 15,
+      "competitionRanking": 39,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
+        "enabled": true,
         "teamLeader": {
           "displayName": "mikelou1",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -124,7 +128,7 @@
           "userId": 32181963,
           "progressionOptOut": false
         },
-        "intro": ""
+        "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
       }
     },
     "firstMessageId": 3511101,
@@ -135,7 +139,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-10T12:04:24.138409800Z",
-    "totalVotes": 2,
+    "totalVotes": 3,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/734192",
     "totalMessages": 2,
     "authorPerformanceTier": "EXPERT",

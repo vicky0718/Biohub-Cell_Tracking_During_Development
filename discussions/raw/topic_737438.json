@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 35874797,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "kevin park",
+    "authorUserName": "k3v1npark",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3516861,
+      "postDate": "2026-08-25T14:20:22.700Z",
+      "rawMarkdown": "hey im kinda stuck and wanna know if ppl have a different design to me especially in a few areas.\n\nmy linker is basically 1:1 right now. hungarian assignment frame to frame. then i add divisions in a totally separate step after on top of the result. so the division decision never actually sees the model. its js a hand written rule with distance and image checks.\n\nmy divJ is around 0.12 which is way below what some ppl report. edge side is ok. its the divisions.\n\nthe thing i measured that surprised me. the ones im missing arent random at all. theyre almost all in crowded frames. like 3x the node count of the ones i get right and closer neighbours. and when i checked why each one failed basically none of them fail for js one reason. they fail 2 or 3 checks at once. so loosening any single threshold recovers nothing. it js adds false ones.\n\nso the areas where i wanna know if ur design is different.\n\nwhere the division decision lives. do u let a cell have 2 children inside the assignment itself w some learned prob. or do u bolt it on after like me. if its inside was it worth the rewrite.\n\ndense regions. is there a design that actually handles crowded frames. or does everyone js lose those and accept it.\n\nhigh divJ. for ppl getting way more than me is it a better model on the same structure. or is the structure itself different.\n\nnot asking for anyones solution. js wanna know if im stuck on a design everyone else already moved past. thanks",
+      "content": "<p>hey im kinda stuck and wanna know if ppl have a different design to me especially in a few areas.</p>\n<p>my linker is basically 1:1 right now. hungarian assignment frame to frame. then i add divisions in a totally separate step after on top of the result. so the division decision never actually sees the model. its js a hand written rule with distance and image checks.</p>\n<p>my divJ is around 0.12 which is way below what some ppl report. edge side is ok. its the divisions.</p>\n<p>the thing i measured that surprised me. the ones im missing arent random at all. theyre almost all in crowded frames. like 3x the node count of the ones i get right and closer neighbours. and when i checked why each one failed basically none of them fail for js one reason. they fail 2 or 3 checks at once. so loosening any single threshold recovers nothing. it js adds false ones.</p>\n<p>so the areas where i wanna know if ur design is different.</p>\n<p>where the division decision lives. do u let a cell have 2 children inside the assignment itself w some learned prob. or do u bolt it on after like me. if its inside was it worth the rewrite.</p>\n<p>dense regions. is there a design that actually handles crowded frames. or does everyone js lose those and accept it.</p>\n<p>high divJ. for ppl getting way more than me is it a better model on the same structure. or is the structure itself different.</p>\n<p>not asking for anyones solution. js wanna know if im stuck on a design everyone else already moved past. thanks</p>",
+      "parent": {},
+      "author": {
+        "displayName": "kevin park",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/k3v1npark",
+        "tier": "CONTRIBUTOR",
+        "id": 35874797,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 60,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "kevin park",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/k3v1npark",
+          "userName": "k3v1npark",
+          "tier": "CONTRIBUTOR",
+          "id": 35874797,
+          "profileUrl": "/k3v1npark",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 35874797,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3516861,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 737438,
+    "name": "does anyone have a different design for divisions",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-25T14:20:22.701260400Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/737438",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

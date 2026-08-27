@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1604,
+        "competitionRanking": 1814,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -74,10 +74,11 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 15,
+                "competitionRanking": 39,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
+                  "enabled": true,
                   "teamLeader": {
                     "displayName": "mikelou1",
                     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -90,7 +91,7 @@
                     "userId": 32181963,
                     "progressionOptOut": false
                   },
-                  "intro": ""
+                  "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
                 }
               },
               {
@@ -112,7 +113,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1604,
+                "competitionRanking": 1814,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -150,10 +151,11 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 15,
+                "competitionRanking": 39,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
+                  "enabled": true,
                   "teamLeader": {
                     "displayName": "mikelou1",
                     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -166,7 +168,7 @@
                     "userId": 32181963,
                     "progressionOptOut": false
                   },
-                  "intro": ""
+                  "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
                 }
               }
             ],
@@ -184,7 +186,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1604,
+            "competitionRanking": 1814,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -218,10 +220,11 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 15,
+        "competitionRanking": 39,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
+          "enabled": true,
           "teamLeader": {
             "displayName": "mikelou1",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -234,7 +237,7 @@
             "userId": 32181963,
             "progressionOptOut": false
           },
-          "intro": ""
+          "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
         }
       }
     ],
@@ -255,12 +258,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 2,
+        "totalVotes": 3,
         "canUpvote": true,
-        "totalUpvotes": 2
+        "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 2203,
+      "competitionRanking": 2579,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -287,7 +290,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-27T09:29:37.742488700Z",
-    "totalVotes": 2,
+    "totalVotes": 3,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/729930",
     "totalMessages": 6,
     "authorPerformanceTier": "CONTRIBUTOR",

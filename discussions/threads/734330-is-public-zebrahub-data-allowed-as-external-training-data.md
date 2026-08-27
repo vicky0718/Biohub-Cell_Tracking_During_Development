@@ -4,7 +4,7 @@
 - **Topic id**: 734330
 - **Author**: marumarukun (EXPERT)
 - **Posted**: 2026-08-11T00:18:51.970829200Z
-- **Votes**: 10
+- **Votes**: 15
 - **Comments**: 3
 
 ---
@@ -27,7 +27,7 @@ Thanks!
 ## Comments (3)
 
 
-### Thibaut Goldsborough (CONTRIBUTOR) — 2026-08-13T21:58:20.713Z — 2 votes
+### Thibgolds (CONTRIBUTOR) — 2026-08-13T21:58:20.713Z — 3 votes
 
 Hi! Yes you are free to use the data and all resources in Zebrahub for this competition! There is no overlap with the test set.
 

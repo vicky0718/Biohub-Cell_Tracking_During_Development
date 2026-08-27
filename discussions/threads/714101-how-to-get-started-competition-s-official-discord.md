@@ -5,7 +5,7 @@
 - **Author**: María Cruz (STAFF)
 - **Posted**: 2026-06-25T16:44:43.592999100Z
 - **Votes**: 24
-- **Comments**: 6
+- **Comments**: 7
 - **Pinned**: yes
 
 ---
@@ -39,10 +39,10 @@ Happy modeling!
 
 ---
 
-## Comments (6)
+## Comments (7)
 
 
-### Mori Lab. Cho Royou (EXPERT) — 2026-07-17T15:45:54.417Z — 5 votes
+### Cho Royou (EXPERT) — 2026-07-17T15:45:54.417Z — 7 votes
 
 Hi organizers,
 
@@ -84,6 +84,10 @@ Is there any available code for the applied combined tracking metric?
 #### ↳ Tomás Travis (CONTRIBUTOR) — 2026-07-18T20:38:00.347Z — 1 votes
 
 > Yes! It’s available in the [official GitHub repository](https://github.com/royerlab/kaggle-cell-tracking-competition). The metric itself is in [metrics.py](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/src/tracking_cellmot/metrics.py), and the [README](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/README.md) shows how to run [scripts/evaluate.py](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/scripts/evaluate.py) locally against the training GEFF files. [metrics.md](https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md) also explains each part of the combined score.
+
+### axorina (CONTRIBUTOR) — 2026-08-22T07:38:14.340Z
+
+hi everyone im a 12th grader  and im looking for a beginner friendly team for biohub cell track if annyone is interested let me know!
 
 ### Asogwa Samson (CONTRIBUTOR) — 2026-07-31T16:53:46.037Z
 

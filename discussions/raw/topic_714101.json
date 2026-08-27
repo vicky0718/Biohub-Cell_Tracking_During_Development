@@ -38,7 +38,7 @@
                   "totalUpvotes": 4
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1386,
+                "competitionRanking": 1688,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -89,7 +89,7 @@
         ],
         "parent": {},
         "author": {
-          "displayName": "Mori Lab. Cho Royou",
+          "displayName": "Cho Royou",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1075338-kg.png?t=2026-06-01-10-05-42",
           "url": "/ngyzly",
           "tier": "EXPERT",
@@ -98,12 +98,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 5,
+          "totalVotes": 7,
           "canUpvote": true,
-          "totalUpvotes": 5
+          "totalUpvotes": 7
         },
         "kernelVersion": 0,
-        "competitionRanking": 728,
+        "competitionRanking": 94,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -118,7 +118,7 @@
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
-            "displayName": "Mori Lab. Cho Royou",
+            "displayName": "Cho Royou",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1075338-kg.png?t=2026-06-01-10-05-42",
             "url": "/ngyzly",
             "userName": "ngyzly",
@@ -159,7 +159,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 684,
+            "competitionRanking": 988,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -204,7 +204,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 2187,
+        "competitionRanking": 2573,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -233,6 +233,44 @@
         }
       },
       {
+        "id": 3515635,
+        "postDate": "2026-08-22T07:38:14.340Z",
+        "rawMarkdown": "hi everyone im a 12th grader  and im looking for a beginner friendly team for biohub cell track if annyone is interested let me know! ",
+        "content": "<p>hi everyone im a 12th grader  and im looking for a beginner friendly team for biohub cell track if annyone is interested let me know! </p>",
+        "parent": {},
+        "author": {
+          "displayName": "axorina",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/axorina",
+          "tier": "CONTRIBUTOR",
+          "id": 36256426,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "axorina",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/axorina",
+            "userName": "axorina",
+            "tier": "CONTRIBUTOR",
+            "id": 36256426,
+            "profileUrl": "/axorina",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 36256426,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3506616,
         "postDate": "2026-07-31T16:53:46.037Z",
         "rawMarkdown": "Pardon me,\nHow long will it take for ones file to be processed?",
@@ -253,15 +291,6 @@
         "kernelVersion": 0,
         "feedbackTrackingData": {},
         "isThankYou": false,
-        "reactions": [
-          {
-            "emoji": "FUNNY",
-            "featuredUserNames": [
-              "asogwasamson"
-            ],
-            "userCount": 1
-          }
-        ],
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
@@ -362,7 +391,7 @@
     "postDate": "2026-06-25T16:44:43.592999100Z",
     "totalVotes": 24,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/714101",
-    "totalMessages": 6,
+    "totalMessages": 7,
     "authorPerformanceTier": "STAFF",
     "authorProgressionOptOut": false
   }

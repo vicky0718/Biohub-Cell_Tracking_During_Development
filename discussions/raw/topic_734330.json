@@ -12,7 +12,7 @@
         "content": "<p>Hi! Yes you are free to use the data and all resources in Zebrahub for this competition! There is no overlap with the test set. </p>",
         "parent": {},
         "author": {
-          "displayName": "Thibaut Goldsborough",
+          "displayName": "Thibgolds",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
           "url": "/thibautgoldsborough",
           "tier": "CONTRIBUTOR",
@@ -21,9 +21,9 @@
         },
         "authorType": "HOST",
         "votes": {
-          "totalVotes": 2,
+          "totalVotes": 3,
           "canUpvote": true,
-          "totalUpvotes": 2
+          "totalUpvotes": 3
         },
         "kernelVersion": 0,
         "feedbackTrackingData": {},
@@ -45,7 +45,7 @@
         ],
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "Thibaut Goldsborough",
+            "displayName": "Thibgolds",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
             "url": "/thibautgoldsborough",
             "userName": "thibautgoldsborough",
@@ -143,9 +143,9 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 10,
+        "totalVotes": 15,
         "canUpvote": true,
-        "totalUpvotes": 10
+        "totalUpvotes": 15
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -184,7 +184,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-11T00:18:51.970829200Z",
-    "totalVotes": 10,
+    "totalVotes": 15,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/734330",
     "totalMessages": 3,
     "authorPerformanceTier": "EXPERT",

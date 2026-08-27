@@ -26,7 +26,7 @@ Edit: and I went from 19th to 20th by the time i finished making this post! Wild
 
 ahh, i see, there was a metric exploit made public and a bunch of people cloned it... i wonder if that'll be banned or bring modifications to the competition? or maybe it just won't score well at the final results?
 
-#### ↳ Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-17T22:36:46.567Z — 2 votes
+#### ↳ Thibgolds (CONTRIBUTOR) — 2026-07-17T22:36:46.567Z — 2 votes
 
 > Indeed, we're working on a patch and we will re-score all of the submissions. Any submissions that were not actively exploiting the issue will be unaffected. I will make a separate post explaining what happened and the fix.
 

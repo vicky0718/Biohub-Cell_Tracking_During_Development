@@ -1,0 +1,253 @@
+{
+  "forumTopic": {
+    "authorId": 3326547,
+    "authorThumbnailName": "3326547-kg.png?t=2025-11-07-16-37-02",
+    "authorUserDisplayName": "Tim Krige",
+    "authorUserName": "timkrige",
+    "comments": [
+      {
+        "id": 3516494,
+        "postDate": "2026-08-24T14:25:12.757Z",
+        "rawMarkdown": "no thats not allowed clearly mentioned in rules.",
+        "content": "<p>no thats not allowed clearly mentioned in rules.</p>",
+        "replies": [
+          {
+            "id": 3516574,
+            "postDate": "2026-08-24T17:56:29.667Z",
+            "rawMarkdown": "Can you post where you found this? I only see mention specifically prohibiting hand-labeling the competition's validation and test records (section 3.4), not unrelated external data. So I'd still love to see a host answer as that's different than OPs question. ",
+            "content": "<p>Can you post where you found this? I only see mention specifically prohibiting hand-labeling the competition's validation and test records (section 3.4), not unrelated external data. So I'd still love to see a host answer as that's different than OPs question. </p>",
+            "parent": {},
+            "author": {
+              "displayName": "Joseph Adamski",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-gr.jpg",
+              "url": "/josephadamski91",
+              "tier": "CONTRIBUTOR",
+              "id": 33210778,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 233,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Joseph Adamski",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-gr.jpg",
+                "url": "/josephadamski91",
+                "userName": "josephadamski91",
+                "tier": "CONTRIBUTOR",
+                "id": 33210778,
+                "profileUrl": "/josephadamski91",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 33210778,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3516671,
+            "postDate": "2026-08-24T23:15:49.393Z",
+            "rawMarkdown": "Please point me to where this is stated clearly. I missed it.\n",
+            "content": "<p>Please point me to where this is stated clearly. I missed it.</p>",
+            "replies": [
+              {
+                "id": 3516762,
+                "postDate": "2026-08-25T07:17:41.127Z",
+                "rawMarkdown": "Hand labeling data has usually been allowed in previous competition.\nWhat you cannot do is label the test data but we don't have access to it.\nI can't 100% confirm it's allowed for this competition but unless the hosts state otherwise I think you can go ahead.",
+                "content": "<p>Hand labeling data has usually been allowed in previous competition.\nWhat you cannot do is label the test data but we don't have access to it.\nI can't 100% confirm it's allowed for this competition but unless the hosts state otherwise I think you can go ahead.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Theo Viel",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2062758-kg.png",
+                  "url": "/theoviel",
+                  "tier": "GRANDMASTER",
+                  "id": 2062758,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 3,
+                  "canUpvote": true,
+                  "totalUpvotes": 3
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 1840,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "reactions": [
+                  {
+                    "emoji": "THANK_YOU",
+                    "featuredUserNames": [
+                      "timkrige",
+                      "nilabhamukherjea"
+                    ],
+                    "userCount": 2
+                  }
+                ],
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Theo Viel",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2062758-kg.png",
+                    "url": "/theoviel",
+                    "userName": "theoviel",
+                    "tier": "GRANDMASTER",
+                    "id": 2062758,
+                    "profileUrl": "/theoviel",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 2062758,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Tim Krige",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+              "url": "/timkrige",
+              "tier": "EXPERT",
+              "id": 3326547,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 836,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Tim Krige",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+                "url": "/timkrige",
+                "userName": "timkrige",
+                "tier": "EXPERT",
+                "id": 3326547,
+                "profileUrl": "/timkrige",
+                "performanceTier": "EXPERT",
+                "userId": 3326547,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Jawad Ahmed",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+          "url": "/nusrati",
+          "tier": "CONTRIBUTOR",
+          "id": 23336356,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -4,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 296,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Jawad Ahmed",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+            "url": "/nusrati",
+            "userName": "nusrati",
+            "tier": "CONTRIBUTOR",
+            "id": 23336356,
+            "profileUrl": "/nusrati",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23336356,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3516481,
+        "postDate": "2026-08-24T13:49:44.010Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3516155,
+      "postDate": "2026-08-23T09:59:31.383Z",
+      "rawMarkdown": "If I hand label data and train on it, is this an external data source? Would I need to open-source this before the competition ends?\n\nI am not sure what the general rules interpretation is here, and there is a massive risk training on data from my interpretation,  but I want to know before I try.",
+      "content": "<p>If I hand label data and train on it, is this an external data source? Would I need to open-source this before the competition ends?</p>\n<p>I am not sure what the general rules interpretation is here, and there is a massive risk training on data from my interpretation,  but I want to know before I try.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Tim Krige",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+        "url": "/timkrige",
+        "tier": "EXPERT",
+        "id": 3326547,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 7,
+        "canUpvote": true,
+        "totalUpvotes": 7
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 836,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Tim Krige",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+          "url": "/timkrige",
+          "userName": "timkrige",
+          "tier": "EXPERT",
+          "id": 3326547,
+          "profileUrl": "/timkrige",
+          "performanceTier": "EXPERT",
+          "userId": 3326547,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3516155,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 737103,
+    "name": "Hand labeling - is it external data?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-23T09:59:31.382203600Z",
+    "totalVotes": 7,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/737103",
+    "totalMessages": 5,
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

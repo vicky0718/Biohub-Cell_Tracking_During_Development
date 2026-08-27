@@ -18,7 +18,7 @@ According to pattern and days passed, there is high chance of getting 0.99 on LB
 ## Comments (4)
 
 
-### Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-14T02:11:53.310Z — 5 votes
+### Thibgolds (CONTRIBUTOR) — 2026-07-14T02:11:53.310Z — 5 votes
 
 Hi, the best submission score is actually 1.1, not 1, so it is possible for the scores to go over 1. In fact it is theoretically possible to obtain a score slightly above 1.1 (due to our adjusted jaccard metric) but we don't expect to happen. 
 Our metrics are detailed here https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md

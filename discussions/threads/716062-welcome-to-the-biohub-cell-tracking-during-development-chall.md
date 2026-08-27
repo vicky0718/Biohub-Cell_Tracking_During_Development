@@ -2,10 +2,11 @@
 
 - **URL**: https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/716062
 - **Topic id**: 716062
-- **Author**: Thibaut Goldsborough (CONTRIBUTOR)
+- **Author**: Thibgolds (CONTRIBUTOR)
 - **Posted**: 2026-06-30T02:16:18.647926700Z
-- **Votes**: 69
+- **Votes**: 72
 - **Comments**: 6
+- **Pinned**: yes
 
 ---
 
@@ -77,6 +78,16 @@ https://openaccess.thecvf.com/content_CVPR_2020/papers/Hayashida_MPM_Joint_Repre
 
 https://www.nature.com/articles/s41587-022-01427-7.pdf
 
+### Youri Matiounine (GRANDMASTER) — 2026-07-03T15:05:59.287Z — 4 votes
+
+would you please provide a script to evaluate predictions? Something that takes "submission.csv", reads  "train/xxx.geff" data, and outputs final competition score? This is a required resource for a competition, and it is not easy to create it from documentation alone. 
+
+Thanks.
+
+#### ↳ Thibgolds (CONTRIBUTOR) — 2026-07-10T20:55:43.780Z — 3 votes
+
+> Hey! The repo (https://github.com/royerlab/kaggle-cell-tracking-competition) we shared does implement the official metric (from a folder with .geff predictions and a folder with .geff ground truth). You're right that there was no official code for converting a .csv file to a list of .geff files, so I wrote a simple script and I recently added it to the repo, I hope that helps you running the official metric.
+
 ### LeeWhieldon (CONTRIBUTOR) — 2026-07-08T19:12:09.417Z — 1 votes
 
 Hi @thibautgoldsborough ,
@@ -100,21 +111,11 @@ If this is intentional (e.g. these clips are meant to double as both a train exa
 
 Thanks again for the great competition.
 
-#### ↳ Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-10T20:59:33.480Z — 1 votes
+#### ↳ Thibgolds (CONTRIBUTOR) — 2026-07-10T20:59:33.480Z — 1 votes
 
 > Hi, thank you for expressing your concern. 
 > Indeed these are dummy placeholder files to help you ensure that your submission notebook actually produces a .csv file without erroring out. The actual leaderboard score is obtained from a much bigger test set, that is deliberately kept private, and I assure you there is no overlap between that hidden test set and the train set that is publicly available. 
 > I hope that answers your question.
-
-### Youri Matiounine (GRANDMASTER) — 2026-07-03T15:05:59.287Z — 4 votes
-
-would you please provide a script to evaluate predictions? Something that takes "submission.csv", reads  "train/xxx.geff" data, and outputs final competition score? This is a required resource for a competition, and it is not easy to create it from documentation alone. 
-
-Thanks.
-
-#### ↳ Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-10T20:55:43.780Z — 3 votes
-
-> Hey! The repo (https://github.com/royerlab/kaggle-cell-tracking-competition) we shared does implement the official metric (from a folder with .geff predictions and a folder with .geff ground truth). You're right that there was no official code for converting a .csv file to a list of .geff files, so I wrote a simple script and I recently added it to the repo, I hope that helps you running the official metric.
 
 ### Davit Khantadze (CONTRIBUTOR) — 2026-08-02T13:27:44.360Z
 

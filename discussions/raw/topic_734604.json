@@ -6,6 +6,128 @@
     "authorUserName": "moawiz",
     "comments": [
       {
+        "id": 3513403,
+        "postDate": "2026-08-16T11:20:35.360Z",
+        "rawMarkdown": "I'd recommend retraining the model instead of just using the public ckpt.\nunet+transformer is a strong approach, but there are still things you can improve, like preprocessing, model architecture\nthe current ckpt has kind of hit a wall, it's hard to get more gain from post-processing alone.",
+        "content": "<p>I'd recommend retraining the model instead of just using the public ckpt.\nunet+transformer is a strong approach, but there are still things you can improve, like preprocessing, model architecture\nthe current ckpt has kind of hit a wall, it's hard to get more gain from post-processing alone.</p>",
+        "replies": [
+          {
+            "id": 3513406,
+            "postDate": "2026-08-16T11:25:44.900Z",
+            "rawMarkdown": "I\u2019m currently running into a roadblock with the public approach and haven't been able to make meaningful progress on it yet. I would really appreciate some guidance on the best direction to take here.",
+            "content": "<p>I\u2019m currently running into a roadblock with the public approach and haven't been able to make meaningful progress on it yet. I would really appreciate some guidance on the best direction to take here.</p>",
+            "replies": [
+              {
+                "id": 3514405,
+                "postDate": "2026-08-19T08:36:15.220Z",
+                "rawMarkdown": "the common approach for this task is basically two parts: modeling and track optimization, aka post-processing.\nfor modeling, use gpt or something to rebuild the training pipeline from the public notebook. just treat it like a normal CV task , here are a lot of similar competitions , so you can check those.\nas for track optimization, maybe some algorithm or correction model. i'm not working on that part. so I don\u2019t know much about it yet.",
+                "content": "<p>the common approach for this task is basically two parts: modeling and track optimization, aka post-processing.\nfor modeling, use gpt or something to rebuild the training pipeline from the public notebook. just treat it like a normal CV task , here are a lot of similar competitions , so you can check those.\nas for track optimization, maybe some algorithm or correction model. i'm not working on that part. so I don\u2019t know much about it yet.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Tang",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+                  "url": "/hirotetsu",
+                  "tier": "MASTER",
+                  "id": 2312281,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 3,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Tang",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+                    "url": "/hirotetsu",
+                    "userName": "hirotetsu",
+                    "tier": "MASTER",
+                    "id": 2312281,
+                    "profileUrl": "/hirotetsu",
+                    "performanceTier": "MASTER",
+                    "userId": 2312281,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Moawiz",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+              "url": "/moawiz",
+              "tier": "CONTRIBUTOR",
+              "id": 20852044,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 763,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Moawiz",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20852044-kg.jpeg?t=2026-08-02-09-10-32",
+                "url": "/moawiz",
+                "userName": "moawiz",
+                "tier": "CONTRIBUTOR",
+                "id": 20852044,
+                "profileUrl": "/moawiz",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 20852044,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Tang",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+          "url": "/hirotetsu",
+          "tier": "MASTER",
+          "id": 2312281,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 3,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Tang",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+            "url": "/hirotetsu",
+            "userName": "hirotetsu",
+            "tier": "MASTER",
+            "id": 2312281,
+            "profileUrl": "/hirotetsu",
+            "performanceTier": "MASTER",
+            "userId": 2312281,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3511826,
         "postDate": "2026-08-12T05:17:31.760Z",
         "rawMarkdown": "I would first decompose the score before switching models.\n\nThe metric:\n\n**Adjusted edge Jaccard + 0.1 \u00d7 division Jaccard**\n\nAn edge is correct only if both cells are detected and then linked correctly. A useful approximation is:\n\n**Edge recall \u2248 node recall\u00b2 \u00d7 conditional linking accuracy**\n\nThis means detector misses are especially expensive. Divisions are even more demanding because the parent and both daughters must be detected before a linker or division ranker can recover the event.\n\nI would measure four things separately:\n\n1. **Detection:** node recall within the 7 \u00b5m matching radius and predicted-node count versus the provided estimated count.\n2. **Linking:** linking accuracy only where both GT endpoints were successfully detected.\n3. **Detection ceiling:** the best possible edge score using your current detections with an oracle or GT-aware linker diagnostic.\n4. **Divisions:** parent/daughter detection availability, candidate recall@K, ranking quality, and final division TP/FP/FN.\n\nThen keep the detector fixed while comparing linkers, and keep the linker fixed while comparing detectors. Otherwise, post-processing can appear to improve locally by changing the candidate set and graph simultaneously.\n\nFrom my experiments, Pilkwang's UNet/node-transformer is still a very strong backbone. \n\nIf conditional linking is already high, I would focus on detector calibration/precision and division ranking before spending much more time on a new linker.",
@@ -30,7 +152,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 385,
+            "competitionRanking": 763,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -61,12 +183,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 1,
+          "totalVotes": 5,
           "canUpvote": true,
-          "totalUpvotes": 1
+          "totalUpvotes": 5
         },
         "kernelVersion": 0,
-        "competitionRanking": 45,
+        "competitionRanking": 104,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -76,9 +198,10 @@
               "mkotyushev",
               "qiweiyin",
               "vivekjami",
-              "moawiz"
+              "moawiz",
+              "sawadatsurumai"
             ],
-            "userCount": 4
+            "userCount": 5
           }
         ],
         "teamUpInfo": {
@@ -115,12 +238,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 1,
+        "totalVotes": 2,
         "canUpvote": true,
-        "totalUpvotes": 1
+        "totalUpvotes": 2
       },
       "kernelVersion": 0,
-      "competitionRanking": 385,
+      "competitionRanking": 763,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -147,9 +270,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-12T05:01:34.624924500Z",
-    "totalVotes": 1,
+    "totalVotes": 2,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/734604",
-    "totalMessages": 2,
+    "totalMessages": 5,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

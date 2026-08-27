@@ -1,0 +1,142 @@
+{
+  "forumTopic": {
+    "authorId": 35874797,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "kevin park",
+    "authorUserName": "k3v1npark",
+    "comments": [
+      {
+        "id": 3517363,
+        "postDate": "2026-08-27T00:36:00.903Z",
+        "rawMarkdown": "improvements com from all of them.\nit's hard to say which one matter most, but i think there's a \"correct\" order to work on them:\ndetection -> linking -> division.\ndetection should come first, once detection is solid, it's easier to improve others.",
+        "content": "<p>improvements com from all of them.\nit's hard to say which one matter most, but i think there's a \"correct\" order to work on them:\ndetection -&gt; linking -&gt; division.\ndetection should come first, once detection is solid, it's easier to improve others.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Tang",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+          "url": "/hirotetsu",
+          "tier": "MASTER",
+          "id": 2312281,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 3,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Tang",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2312281-kg.png?t=2026-01-05-02-44-35",
+            "url": "/hirotetsu",
+            "userName": "hirotetsu",
+            "tier": "MASTER",
+            "id": 2312281,
+            "profileUrl": "/hirotetsu",
+            "performanceTier": "MASTER",
+            "userId": 2312281,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3517441,
+        "postDate": "2026-08-27T07:10:52.763Z",
+        "rawMarkdown": "Could it be because the training data isn't good enough? The training data is too sparsely labeled, and I feel like that makes it very difficult to train a detection model.",
+        "content": "<p>Could it be because the training data isn't good enough? The training data is too sparsely labeled, and I feel like that makes it very difficult to train a detection model.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "abcbcbc",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/abcbcbc",
+          "tier": "CONTRIBUTOR",
+          "id": 33789361,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2130,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "abcbcbc",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/abcbcbc",
+            "userName": "abcbcbc",
+            "tier": "CONTRIBUTOR",
+            "id": 33789361,
+            "profileUrl": "/abcbcbc",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 33789361,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3517057,
+      "postDate": "2026-08-26T03:10:45.083Z",
+      "rawMarkdown": "im at 0.933 and pretty stuck. top of the board is 0.962 so thats a big gap and i genuinely dont know what its made of.\n\nheres what i can see. the public notebooks are all basically the same stack. learned unet then node transformer then ILP. i checked the configs on a few of the higher ones and theyre nearly identical to mine knob for knob. so the public field and me are all the same lineage sitting between 0.92 and 0.933.\n\nbut the top 10 is 0.945 plus. thats way outside that cluster so it feels structural not js better tuning.\n\nwhat i actually wanna know is which LAYER ur gains came from. not the solution js the layer.\n\ndetection. did u retrain the detector or swap it for smth else entirely.\n\nlinking. is ur linker still 1:1 hungarian or did u replace it.\n\ndivisions. inside the assignment or bolted on after.\n\npost processing. how much of ur score is stuff that happens after the graph exists.\n\nor none of those and its js a lot more training on the base model.\n\nfor context im not fishing for a config. ive tuned every knob i have and every division route i tried came back closed. so im trying to work out if im stuck on the wrong layer entirely rather than missing a setting.\n\neven js which one mattered most for u would help. thanks",
+      "content": "<p>im at 0.933 and pretty stuck. top of the board is 0.962 so thats a big gap and i genuinely dont know what its made of.</p>\n<p>heres what i can see. the public notebooks are all basically the same stack. learned unet then node transformer then ILP. i checked the configs on a few of the higher ones and theyre nearly identical to mine knob for knob. so the public field and me are all the same lineage sitting between 0.92 and 0.933.</p>\n<p>but the top 10 is 0.945 plus. thats way outside that cluster so it feels structural not js better tuning.</p>\n<p>what i actually wanna know is which LAYER ur gains came from. not the solution js the layer.</p>\n<p>detection. did u retrain the detector or swap it for smth else entirely.</p>\n<p>linking. is ur linker still 1:1 hungarian or did u replace it.</p>\n<p>divisions. inside the assignment or bolted on after.</p>\n<p>post processing. how much of ur score is stuff that happens after the graph exists.</p>\n<p>or none of those and its js a lot more training on the base model.</p>\n<p>for context im not fishing for a config. ive tuned every knob i have and every division route i tried came back closed. so im trying to work out if im stuck on the wrong layer entirely rather than missing a setting.</p>\n<p>even js which one mattered most for u would help. thanks</p>",
+      "parent": {},
+      "author": {
+        "displayName": "kevin park",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/k3v1npark",
+        "tier": "CONTRIBUTOR",
+        "id": 35874797,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 60,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "kevin park",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/k3v1npark",
+          "userName": "k3v1npark",
+          "tier": "CONTRIBUTOR",
+          "id": 35874797,
+          "profileUrl": "/k3v1npark",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 35874797,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3517057,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 737543,
+    "name": "what layer did ur gains actually come from",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-26T03:10:45.084626300Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/737543",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

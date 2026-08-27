@@ -38,7 +38,7 @@
                   "totalUpvotes": 2
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 293,
+                "competitionRanking": 214,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -65,7 +65,7 @@
                 "parent": {},
                 "author": {
                   "displayName": "Timmy Juicehouse",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                   "url": "/sweetyheehee",
                   "tier": "EXPERT",
                   "id": 18538441,
@@ -78,14 +78,14 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 709,
+                "competitionRanking": 803,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
                 "teamUpInfo": {
                   "teamLeader": {
                     "displayName": "Timmy Juicehouse",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                     "url": "/sweetyheehee",
                     "userName": "sweetyheehee",
                     "tier": "EXPERT",
@@ -119,7 +119,7 @@
                   "totalUpvotes": 5
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 293,
+                "competitionRanking": 214,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -147,7 +147,7 @@
                 "parent": {},
                 "author": {
                   "displayName": "Timmy Juicehouse",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                   "url": "/sweetyheehee",
                   "tier": "EXPERT",
                   "id": 18538441,
@@ -160,14 +160,14 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 709,
+                "competitionRanking": 803,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
                 "teamUpInfo": {
                   "teamLeader": {
                     "displayName": "Timmy Juicehouse",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                     "url": "/sweetyheehee",
                     "userName": "sweetyheehee",
                     "tier": "EXPERT",
@@ -201,7 +201,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 622,
+                "competitionRanking": 241,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -242,7 +242,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 293,
+                "competitionRanking": 214,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -292,12 +292,11 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 99,
+                "competitionRanking": 11,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
                 "teamUpInfo": {
-                  "enabled": true,
                   "teamLeader": {
                     "displayName": "Tom",
                     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -310,7 +309,7 @@
                     "userId": 4310004,
                     "progressionOptOut": false
                   },
-                  "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+                  "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
                 }
               },
               {
@@ -334,7 +333,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 293,
+                "competitionRanking": 214,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -375,7 +374,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 368,
+                "competitionRanking": 221,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -412,7 +411,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 622,
+            "competitionRanking": 241,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -448,7 +447,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 293,
+        "competitionRanking": 214,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -475,7 +474,7 @@
         "parent": {},
         "author": {
           "displayName": "Timmy Juicehouse",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
           "url": "/sweetyheehee",
           "tier": "EXPERT",
           "id": 18538441,
@@ -488,13 +487,13 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 709,
+        "competitionRanking": 803,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "Timmy Juicehouse",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
             "url": "/sweetyheehee",
             "userName": "sweetyheehee",
             "tier": "EXPERT",
@@ -526,7 +525,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 102,
+        "competitionRanking": 572,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -564,7 +563,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 836,
+        "competitionRanking": 1133,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -602,7 +601,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1610,
+        "competitionRanking": 1929,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -640,7 +639,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 99,
+        "competitionRanking": 11,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -663,13 +662,13 @@
             "emoji": "FUNNY",
             "featuredUserNames": [
               "saqibm128",
+              "timkrige",
               "ouedraogosomkieta"
             ],
-            "userCount": 2
+            "userCount": 3
           }
         ],
         "teamUpInfo": {
-          "enabled": true,
           "teamLeader": {
             "displayName": "Tom",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -682,7 +681,7 @@
             "userId": 4310004,
             "progressionOptOut": false
           },
-          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+          "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
         }
       }
     ],
@@ -703,12 +702,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 38,
+        "totalVotes": 40,
         "canUpvote": true,
-        "totalUpvotes": 38
+        "totalUpvotes": 40
       },
       "kernelVersion": 0,
-      "competitionRanking": 622,
+      "competitionRanking": 241,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -735,7 +734,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-10T12:47:17.916832900Z",
-    "totalVotes": 38,
+    "totalVotes": 40,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/724283",
     "totalMessages": 16,
     "authorPerformanceTier": "GRANDMASTER",

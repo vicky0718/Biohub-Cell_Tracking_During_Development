@@ -22,7 +22,7 @@ Considering just the one embryo_id = 44b6_0113de3b is my understanding correct t
 ## Comments (2)
 
 
-### Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-07T22:17:02.137Z — 1 votes
+### Thibgolds (CONTRIBUTOR) — 2026-07-07T22:17:02.137Z — 1 votes
 
 Hi, the embryo_id is just 44b6, the other part is the crop id. You might have picked an example with a single annotation, but the vast majority of crops have many annotated cells, which can be at any time point (0 to 100). The task is to track ALL the cells in the video, not just the ones that we provide annotations for, at test time you are only evaluated on the tracks that we have annotated in the test set.
 

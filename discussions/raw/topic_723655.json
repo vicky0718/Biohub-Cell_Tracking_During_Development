@@ -25,7 +25,7 @@
                 "parent": {},
                 "author": {
                   "displayName": "Timmy Juicehouse",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                   "url": "/sweetyheehee",
                   "tier": "EXPERT",
                   "id": 18538441,
@@ -38,13 +38,13 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 709,
+                "competitionRanking": 803,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
                   "teamLeader": {
                     "displayName": "Timmy Juicehouse",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                     "url": "/sweetyheehee",
                     "userName": "sweetyheehee",
                     "tier": "EXPERT",
@@ -65,7 +65,7 @@
                 "parent": {},
                 "author": {
                   "displayName": "Timmy Juicehouse",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                   "url": "/sweetyheehee",
                   "tier": "EXPERT",
                   "id": 18538441,
@@ -78,13 +78,13 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 709,
+                "competitionRanking": 803,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
                   "teamLeader": {
                     "displayName": "Timmy Juicehouse",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-03-26-01-25-24",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
                     "url": "/sweetyheehee",
                     "userName": "sweetyheehee",
                     "tier": "EXPERT",
@@ -104,7 +104,7 @@
                 "content": "<p>Indeed the division metric can be gamed. We're working on a patch and will update the scoring asap. I will make a separate post explaining this. </p>",
                 "parent": {},
                 "author": {
-                  "displayName": "Thibaut Goldsborough",
+                  "displayName": "Thibgolds",
                   "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
                   "url": "/thibautgoldsborough",
                   "tier": "CONTRIBUTOR",
@@ -122,7 +122,7 @@
                 "isThankYou": false,
                 "teamUpInfo": {
                   "teamLeader": {
-                    "displayName": "Thibaut Goldsborough",
+                    "displayName": "Thibgolds",
                     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
                     "url": "/thibautgoldsborough",
                     "userName": "thibautgoldsborough",
@@ -139,7 +139,7 @@
             ],
             "parent": {},
             "author": {
-              "displayName": "Thibaut Goldsborough",
+              "displayName": "Thibgolds",
               "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
               "url": "/thibautgoldsborough",
               "tier": "CONTRIBUTOR",
@@ -157,7 +157,7 @@
             "isThankYou": false,
             "teamUpInfo": {
               "teamLeader": {
-                "displayName": "Thibaut Goldsborough",
+                "displayName": "Thibgolds",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
                 "url": "/thibautgoldsborough",
                 "userName": "thibautgoldsborough",
@@ -192,7 +192,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 622,
+            "competitionRanking": 241,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -228,7 +228,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 622,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -268,7 +268,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 622,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -320,7 +320,7 @@
                   "totalUpvotes": 2
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 622,
+                "competitionRanking": 241,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -366,7 +366,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 622,
+            "competitionRanking": 241,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -402,11 +402,10 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 99,
+        "competitionRanking": 11,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
-          "enabled": true,
           "teamLeader": {
             "displayName": "Tom",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -419,7 +418,7 @@
             "userId": 4310004,
             "progressionOptOut": false
           },
-          "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+          "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
         }
       },
       {
@@ -443,7 +442,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 622,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -492,7 +491,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 622,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -553,7 +552,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 622,
+                "competitionRanking": 241,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -593,11 +592,10 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 99,
+                "competitionRanking": 11,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
-                  "enabled": true,
                   "teamLeader": {
                     "displayName": "Tom",
                     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -610,7 +608,7 @@
                     "userId": 4310004,
                     "progressionOptOut": false
                   },
-                  "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+                  "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
                 }
               },
               {
@@ -634,7 +632,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 622,
+                "competitionRanking": 241,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -670,7 +668,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 622,
+            "competitionRanking": 241,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -706,7 +704,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 622,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -746,7 +744,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 622,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -786,7 +784,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 622,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -832,12 +830,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 22,
+        "totalVotes": 23,
         "canUpvote": true,
-        "totalUpvotes": 22
+        "totalUpvotes": 23
       },
       "kernelVersion": 0,
-      "competitionRanking": 622,
+      "competitionRanking": 241,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -864,7 +862,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-07T17:37:36.697254400Z",
-    "totalVotes": 22,
+    "totalVotes": 23,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/723655",
     "totalMessages": 19,
     "authorPerformanceTier": "GRANDMASTER",

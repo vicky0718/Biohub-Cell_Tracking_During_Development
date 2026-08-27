@@ -5,7 +5,7 @@
 - **Author**: Moawiz (CONTRIBUTOR)
 - **Posted**: 2026-08-10T16:35:37.428153400Z
 - **Votes**: -1
-- **Comments**: 5
+- **Comments**: 6
 
 ---
 
@@ -16,7 +16,7 @@ There is no error uptill now, also i was using T4 so it isnt a gpu/cpu accelerat
 
 ---
 
-## Comments (5)
+## Comments (6)
 
 
 ### Mendrika Ramarlina (MASTER) — 2026-08-11T08:32:00.433Z
@@ -38,3 +38,7 @@ it takes ~50x longer than running notebook i think
 #### ↳ Moawiz (CONTRIBUTOR) — 2026-08-10T16:49:50.647Z
 
 > That's new, probably the hidden dataset is way bigger than i expected
+
+#### ↳ ↳ Tim Krige (EXPERT) — 2026-08-20T10:52:54.350Z — 1 votes
+
+> > From the Overview: "The size of the hidden test set is approximately the same size as the training dataset."

@@ -6,6 +6,61 @@
     "authorUserName": "tom99763",
     "comments": [
       {
+        "id": 3515166,
+        "postDate": "2026-08-21T00:33:12.047Z",
+        "rawMarkdown": "After 30 days suspension. I finally back",
+        "content": "<p>After 30 days suspension. I finally back</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Tom",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+          "url": "/tom99763",
+          "tier": "MASTER",
+          "id": 4310004,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": -1,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 11,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "FUNNY",
+            "featuredUserNames": [
+              "nataliajakowska"
+            ],
+            "userCount": 1
+          },
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "bharath111l"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Tom",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+            "url": "/tom99763",
+            "userName": "tom99763",
+            "tier": "MASTER",
+            "id": 4310004,
+            "profileUrl": "/tom99763",
+            "performanceTier": "MASTER",
+            "userId": 4310004,
+            "progressionOptOut": false
+          },
+          "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
+        }
+      },
+      {
         "id": 3494479,
         "postDate": "2026-07-10T04:23:54.487Z",
         "rawMarkdown": "there is a napari chatgpt plugin\nhttps://github.com/royerlab/napari-chatgpt\n\nseems that this competition is a good testbed for biomedical image agent\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fb7dbb6b7dd0f585e8117890ea79fafe9%2FSelection_4357.png?generation=1783657431797421&alt=media)\n",
@@ -36,11 +91,10 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 99,
+                "competitionRanking": 11,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
-                  "enabled": true,
                   "teamLeader": {
                     "displayName": "Tom",
                     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -53,7 +107,7 @@
                     "userId": 4310004,
                     "progressionOptOut": false
                   },
-                  "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+                  "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
                 }
               }
             ],
@@ -93,7 +147,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 620,
+        "competitionRanking": 239,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -160,11 +214,50 @@
         },
         "authorType": "COMMENT",
         "votes": {
+          "totalVotes": -2,
           "canUpvote": true
         },
         "kernelVersion": 0,
         "feedbackTrackingData": {},
         "isThankYou": false
+      },
+      {
+        "id": 3516520,
+        "postDate": "2026-08-24T15:51:58.507Z",
+        "rawMarkdown": "Thank you this was super helpful. ",
+        "content": "<p>Thank you this was super helpful. </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Joseph Adamski",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-gr.jpg",
+          "url": "/josephadamski91",
+          "tier": "CONTRIBUTOR",
+          "id": 33210778,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 240,
+        "feedbackTrackingData": {},
+        "isThankYou": true,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Joseph Adamski",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-gr.jpg",
+            "url": "/josephadamski91",
+            "userName": "josephadamski91",
+            "tier": "CONTRIBUTOR",
+            "id": 33210778,
+            "profileUrl": "/josephadamski91",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 33210778,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
       },
       {
         "id": 3494434,
@@ -194,7 +287,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1036,
+        "competitionRanking": 515,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -231,12 +324,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 35,
+        "totalVotes": 43,
         "canUpvote": true,
-        "totalUpvotes": 35
+        "totalUpvotes": 44
       },
       "kernelVersion": 0,
-      "competitionRanking": 99,
+      "competitionRanking": 11,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -252,7 +345,6 @@
         }
       ],
       "teamUpInfo": {
-        "enabled": true,
         "teamLeader": {
           "displayName": "Tom",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
@@ -265,7 +357,7 @@
           "userId": 4310004,
           "progressionOptOut": false
         },
-        "intro": "I discover a very good approach and want to hire 1 teammate to collaborate on it. Feel free to reach out.\n\nRequirements: \n6+ years 3d computer vision experience\nHaving MoT experience is plus\nAt least working 4 days a week\nKaggle competition expert"
+        "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
       }
     },
     "firstMessageId": 3494317,
@@ -276,9 +368,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-09T16:55:59.111354100Z",
-    "totalVotes": 35,
+    "totalVotes": 43,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/724130",
-    "totalMessages": 6,
+    "totalMessages": 8,
     "authorPerformanceTier": "MASTER",
     "authorProgressionOptOut": false
   }

@@ -4,7 +4,7 @@
 - **Topic id**: 723655
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-07-07T17:37:36.697254400Z
-- **Votes**: 22
+- **Votes**: 23
 - **Comments**: 19
 
 ---
@@ -33,7 +33,7 @@ you make a graph. if your just repeat your tracks (giving new id) your edge\_jac
 
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F0c8f49fc633511f2736c46579fa5b7f3%2FSelection_4383.png?generation=1784177205409163&alt=media)
 
-#### ↳ Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-16T17:04:28.493Z — 1 votes
+#### ↳ Thibgolds (CONTRIBUTOR) — 2026-07-16T17:04:28.493Z — 1 votes
 
 > Hi, perfectly duplicated edges are filtered out before scoring the edge Jaccard, this might be why you are not seeing a change in the Jaccard score, each ground truth edge can only used for a single TP. If you duplicate the edges but modify the nodes very slightly, then you should see a drop in Jaccard. This should not allow you to hack (i.e. increase) your score.  Please contact us if you can actually game the metric.
 
@@ -55,7 +55,7 @@ you make a graph. if your just repeat your tracks (giving new id) your edge\_jac
 
 > > I fully understand the original intention behind designing this metric. When I performed local validation, I found that achieving very high accuracy (e.g., 0.999) is quite easy, but balancing recall and other metrics is relatively difficult, because excluding negative samples is a very challenging task. I believe that refining the metrics is also an indispensable step in advancing this research, as your current work is already pushing the limits.
 
-#### ↳ ↳ Thibaut Goldsborough (CONTRIBUTOR) — 2026-07-17T22:33:20.300Z — 1 votes
+#### ↳ ↳ Thibgolds (CONTRIBUTOR) — 2026-07-17T22:33:20.300Z — 1 votes
 
 > > Indeed the division metric can be gamed. We're working on a patch and will update the scoring asap. I will make a separate post explaining this.
 

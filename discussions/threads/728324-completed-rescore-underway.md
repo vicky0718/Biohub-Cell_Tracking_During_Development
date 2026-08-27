@@ -20,7 +20,7 @@ This post will be updated when the rescore is complete.
 ## Comments (4)
 
 
-### inversion (STAFF) — 2026-07-23T01:16:56.140Z — 9 votes
+### inversion (STAFF) — 2026-07-23T01:16:56.140Z — 10 votes
 
 The rescore is complete. Thanks for everyone's patience!
 

@@ -30,10 +30,11 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 505,
+            "competitionRanking": 235,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
+              "enabled": true,
               "teamLeader": {
                 "displayName": "Rocker Ritesh",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4799411-kg.jpeg",
@@ -52,7 +53,7 @@
         ],
         "parent": {},
         "author": {
-          "displayName": "Thibaut Goldsborough",
+          "displayName": "Thibgolds",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
           "url": "/thibautgoldsborough",
           "tier": "CONTRIBUTOR",
@@ -90,7 +91,7 @@
         ],
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "Thibaut Goldsborough",
+            "displayName": "Thibgolds",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
             "url": "/thibautgoldsborough",
             "userName": "thibautgoldsborough",
@@ -130,7 +131,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 620,
+            "competitionRanking": 239,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -164,7 +165,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 155,
+        "competitionRanking": 613,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -206,10 +207,11 @@
         "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 505,
+      "competitionRanking": 235,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
+        "enabled": true,
         "teamLeader": {
           "displayName": "Rocker Ritesh",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4799411-kg.jpeg",

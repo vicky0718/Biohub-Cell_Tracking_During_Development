@@ -12,7 +12,7 @@
         "content": "<p>Hi, if this is the UNet baseline, this is expected, inference is very slow, and needs to be improved!</p>",
         "parent": {},
         "author": {
-          "displayName": "Thibaut Goldsborough",
+          "displayName": "Thibgolds",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
           "url": "/thibautgoldsborough",
           "tier": "CONTRIBUTOR",
@@ -28,7 +28,7 @@
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "Thibaut Goldsborough",
+            "displayName": "Thibgolds",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
             "url": "/thibautgoldsborough",
             "userName": "thibautgoldsborough",
@@ -61,7 +61,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1156,
+        "competitionRanking": 1428,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -102,7 +102,7 @@
         "canUpvote": true
       },
       "kernelVersion": 0,
-      "competitionRanking": 2104,
+      "competitionRanking": 2482,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
