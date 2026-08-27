@@ -119,6 +119,17 @@ def motion_relink(
         return edges
 
     cs, ct, cp = _cand_arrays(cand)
+    if len(cs) and (cs.max() >= n or ct.max() >= n or cs.min() < 0 or ct.min() < 0):
+        # The pack's candidate table indexes the PRE-ILP detections; a graph built from
+        # the post-ILP solution is a renumbered subset of them. Passing one to the other
+        # is an index-space error, and it must not be silently tolerated: if the two
+        # happened to be the same length it would produce plausible, wrong probabilities.
+        # Remap with `Tracks.from_tracksdata_with_ids` before calling this.
+        raise ValueError(
+            f"candidate edges index up to {max(int(cs.max()), int(ct.max()))} but the "
+            f"graph has {n} nodes. The candidate table is in a different index space "
+            "than the graph — remap it (see Tracks.from_tracksdata_with_ids) rather than "
+            "letting it be silently misread.")
 
     # Where each node came from, so velocity is available. Built from the ORIGINAL graph:
     # a node's arrival direction is evidence regardless of what happens downstream.

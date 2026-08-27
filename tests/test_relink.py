@@ -201,6 +201,24 @@ def main() -> int:
           len(iso) == 1 and np.array_equal(aniso, ee),
           f"iso {len(iso)} edge(s); at 4 µm/px on y everything is out of range")
 
+    # -- an index-space mismatch must fail LOUDLY --------------------------------
+    # The pack's candidate table indexes the pre-ILP detections; a graph built from the
+    # post-ILP solution is a renumbered subset. Passing one to the other raised
+    # `IndexError: index 3478 is out of bounds for axis 0 with size 3476` on Kaggle — and
+    # had the two been the same length it would have silently produced plausible, wrong
+    # probabilities instead. That is the failure worth converting into a clear error.
+    bad = np.array([[0, len(t) + 5, 0.9], [1, 2, 0.5]], float)
+    raised = ""
+    try:
+        motion_relink(t, zyx, e, cand=bad, scale=ISO, max_change_frac=0.2)
+    except ValueError as ex:
+        raised = str(ex)
+    except IndexError as ex:  # pragma: no cover - the bug this replaced
+        raised = f"IndexError: {ex}"
+    check("out-of-range candidate indices raise a diagnosable ValueError",
+          "different index space" in raised,
+          raised[:110] or "nothing raised — the mismatch would be read as real data")
+
     # -- degenerate inputs ------------------------------------------------------
     empty = np.zeros((0, 2), np.int64)
     check("an empty graph is handled",

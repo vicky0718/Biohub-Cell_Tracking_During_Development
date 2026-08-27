@@ -249,8 +249,23 @@ for name in SUBSET:
     coords, edges = P.predict_video(model, TRAIN / f"{{name}}.zarr", DEV, cfg=cfg,
                                     window_size=window_size, unet_batch_size=4,
                                     downsample=downsample)
-    cand = np.asarray(edges, float)          # (K, 4): src, tgt, prob, dist
+    raw_cand = np.asarray(edges, float)      # (K, 4): src, tgt, prob, dist -- COORDS rows
     g_td = P.build_graph(coords, edges)
+
+    # The candidate table indexes `coords`; the graph uses tracksdata node ids; and Tracks
+    # renumbers again to 0..M-1 over the ILP's surviving subset. Three index spaces, and
+    # mixing them raised `IndexError: index 3478 out of bounds for size 3476` on the first
+    # run. Build the map instead of assuming, and VERIFY it against the coordinates rather
+    # than trusting that build_graph adds nodes in coords order.
+    _pre, pre_ids = Tracks.from_tracksdata_with_ids(g_td)
+    if len(pre_ids) != len(coords):
+        raise SystemExit(f"{{name}}: pre-ILP graph has {{len(pre_ids)}} nodes for "
+                         f"{{len(coords)}} detections — cannot align the candidate table")
+    if not np.allclose(_pre.zyx, np.asarray(coords, float)[:, 1:], atol=1e-6):
+        raise SystemExit(f"{{name}}: build_graph does not add nodes in coords order, so "
+                         "the candidate table cannot be aligned positionally")
+    row_to_id = pre_ids                       # coords row -> tracksdata node id
+
     if g_td.num_edges() > 0:
         solver = td.solvers.ILPSolver(
             edge_weight=ILP_W[0] * td.EdgeAttr("edge_prob"),
@@ -258,16 +273,27 @@ for name in SUBSET:
             division_weight=ILP_W[3])
         with P.suppress_output():
             g_td = solver.solve(g_td)
-    base_g = Tracks.from_tracksdata(g_td)
+    base_g, post_ids = Tracks.from_tracksdata_with_ids(g_td)
     base = (base_g.t, base_g.zyx, base_g.edges)
+
+    # coords row -> Tracks index, via the tracksdata id. -1 where the ILP dropped the node.
+    id_to_track = {{int(v): i for i, v in enumerate(post_ids)}}
+    row_to_track = np.array([id_to_track.get(int(row_to_id[r]), -1)
+                             for r in range(len(coords))], np.int64)
+    cs = row_to_track[raw_cand[:, 0].astype(np.int64)]
+    ct = row_to_track[raw_cand[:, 1].astype(np.int64)]
+    alive = (cs >= 0) & (ct >= 0)
+    cand = np.stack([cs[alive].astype(float), ct[alive].astype(float),
+                     raw_cand[alive, 2]], axis=1)
     sc = read_scale(TRAIN / f"{{name}}.zarr")
     gt = read_geff(TRAIN / f"{{name}}.geff")
     # THE CACHE no previous run has: candidate edges WITH probabilities.
     np.savez_compressed(WORK / f"cand_{{name}}.npz", t=base[0], zyx=base[1],
                         edges=base[2], cand=cand)
     print(f"\\n{{name}}  pred={{base_g.n_nodes:,}} edges={{base_g.n_edges:,}} "
-          f"cand={{len(cand):,}} forks={{base_g.n_divisions}} {{time.time()-t0:.0f}}s",
-          flush=True)
+          f"cand={{len(raw_cand):,}}->{{len(cand):,}} after remap "
+          f"({{100.0*len(cand)/max(1,len(raw_cand)):.0f}}% survived the ILP) "
+          f"forks={{base_g.n_divisions}} {{time.time()-t0:.0f}}s", flush=True)
 
     for arm, fn, needs_prob in ARMS:
         for with_repair in (False, True):

@@ -92,6 +92,20 @@ class Tracks:
 
     @classmethod
     def from_tracksdata(cls, graph) -> "Tracks":
+        return cls.from_tracksdata_with_ids(graph)[0]
+
+    @classmethod
+    def from_tracksdata_with_ids(cls, graph) -> tuple["Tracks", np.ndarray]:
+        """`Tracks` plus `ids`, where `ids[i]` is the tracksdata node id of index `i`.
+
+        `Tracks` renumbers nodes to `0..M-1`, which silently breaks any array that
+        indexes the ORIGINAL graph. The pack's candidate-edge table is exactly that: it
+        indexes the pre-ILP detections, while a `Tracks` built from the post-ILP solution
+        is a renumbered subset. Feeding one to the other raised
+        `IndexError: index 3478 is out of bounds for axis 0 with size 3476` — and would
+        have silently mismatched rather than raised had the two happened to be the same
+        length. Returning the map is what lets a caller convert between the two spaces.
+        """
         import tracksdata as td
 
         na = graph.node_attrs(attr_keys=[td.DEFAULT_ATTR_KEYS.NODE_ID,
@@ -106,7 +120,7 @@ class Tracks:
             edges = np.stack([src, dst], 1)
         else:
             edges = np.zeros((0, 2), int)
-        return cls(na[td.DEFAULT_ATTR_KEYS.T].to_numpy(), zyx, edges)
+        return cls(na[td.DEFAULT_ATTR_KEYS.T].to_numpy(), zyx, edges), ids.astype(np.int64)
 
 
 def read_geff(path: Path | str) -> Tracks:
