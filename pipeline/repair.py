@@ -188,7 +188,7 @@ def linefit_smooth(t, zyx, edges, window=2, weight=0.76,
 
 
 def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
-               max_added_frac=0.038, max_added_abs=1650):
+               max_added_frac=0.038, max_added_abs=1650, accept=None):
     """Bridge one-frame holes by inserting a node at the midpoint.
 
     A track ending at `t` and another starting at `t+2` within `max_um` is one missed
@@ -201,6 +201,13 @@ def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
 
     Capped two ways because the node budget is a two-sided term: `max_added_frac` of the
     current node count and `max_added_abs` outright.
+
+    `accept(t_mid, zyx_mid) -> bool[K]` optionally vetoes candidates by their proposed
+    midpoint (voxel coordinates) before any endpoint is consumed. Filtering here rather
+    than after assignment matters: a rejected pair must not burn a tail or a head that a
+    surviving pair could have used. `pipeline.deepcenter.FrameScorer.accept` supplies the
+    learned version — the whole point being that this function otherwise invents nodes
+    without ever looking at the image (`notes/27` §1, `notes/33` §1).
     """
     t, zyx, edges = _as_arrays(t, zyx, edges)
     n = len(t)
@@ -239,6 +246,21 @@ def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
         return t, zyx, edges
 
     cands.sort()
+    if accept is not None:
+        # Score every surviving candidate's midpoint in ONE batch. Per-candidate calls
+        # would re-run a heatmap per point in the worst frame ordering; the veto is only
+        # cheap if it is asked in bulk.
+        ci = np.asarray([c[1] for c in cands], np.int64)
+        cj = np.asarray([c[2] for c in cands], np.int64)
+        keep = np.asarray(accept(t[ci] + 1, 0.5 * (zyx[ci] + zyx[cj])), bool)
+        if keep.shape != (len(cands),):
+            raise ValueError(
+                f"accept returned {keep.shape}, expected ({len(cands)},) — a veto that "
+                "silently returns the wrong length would filter the wrong candidates")
+        cands = [c for c, k in zip(cands, keep) if k]
+        if not cands:
+            return t, zyx, edges
+
     used_t: set[int] = set()
     used_h: set[int] = set()
     new_pos, new_t, new_edges = [], [], []
