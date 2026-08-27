@@ -194,6 +194,23 @@ def main() -> int:
                   "dec1.block.4.weight", "head.weight", "head.bias"}
         check("the state_dict tree matches the published layout",
               expect <= keys, f"missing {sorted(expect - keys)}")
+        # usable_device must never return a device the model cannot actually run on.
+        # Kaggle's free P100 reports CUDA available and then fails every kernel launch;
+        # that has now cost two runs, so the probe is a forward pass, not a flag read.
+        d = dc.usable_device(verbose=False)
+        ok = False
+        try:
+            m2 = dc._build_module(4).to(d)
+            with torch.no_grad():
+                m2(torch.zeros(1, 1, 8, 8, 8, device=d))
+            ok = True
+        except Exception:
+            ok = False
+        check("usable_device returns a device that actually runs a forward pass", ok,
+              f"device={d}")
+        check("usable_device falls back to CPU when CUDA is absent",
+              (d.type == "cpu") if not torch.cuda.is_available() else True)
+
         v = np.random.default_rng(0).random((16, 128, 128)).astype(np.float32)
         p = dc.pool_xy(v, 4)
         check("pool_xy pools y and x only", p.shape == (16, 32, 32), f"{p.shape}")

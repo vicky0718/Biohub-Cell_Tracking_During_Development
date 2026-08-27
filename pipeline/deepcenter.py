@@ -89,17 +89,49 @@ def _build_module(base_channels: int):
     return DeepCenterUNet3D(base_channels=base_channels)
 
 
+def usable_device(module=None, verbose: bool = True):
+    """The best device that can ACTUALLY run this model, proven by a forward pass.
+
+    `torch.cuda.is_available()` is not the question. Kaggle's free accelerator is a P100
+    (sm_60) and the image's torch ships kernels for sm_70+, so CUDA reports available and
+    then every launch dies with "no kernel image is available for execution on the device"
+    (`MEMORY.md`, infrastructure facts — and it has now cost two runs). The only reliable
+    test is to run something on it.
+    """
+    import torch
+
+    if not torch.cuda.is_available():
+        return torch.device("cpu")
+    try:
+        probe = (module if module is not None else _build_module(4)).to("cuda")
+        with torch.no_grad():
+            probe(torch.zeros(1, 1, 8, 8, 8, device="cuda"))
+        if verbose:
+            print(f"deepcenter: CUDA usable ({torch.cuda.get_device_name(0)})")
+        return torch.device("cuda")
+    except Exception as exc:  # noqa: BLE001 — any CUDA failure means fall back, not crash
+        if verbose:
+            name = torch.cuda.get_device_name(0) if torch.cuda.device_count() else "?"
+            print(f"deepcenter: CUDA present ({name}) but unusable "
+                  f"({type(exc).__name__}: {str(exc).splitlines()[0][:90]}) — using CPU")
+        return torch.device("cpu")
+
+
 def load(checkpoint_path: str | Path, device: str | None = None) -> dict:
     """Load the published checkpoint. Raises rather than returning a degraded bundle.
 
     The public notebook falls back to "no veto" when the checkpoint will not load. Here
     that would silently turn a veto arm into its own control and report the two as
     different, so this raises instead.
+
+    `device=None` picks a device that is *proven* to run a forward pass — see
+    `usable_device`. A CPU fallback is slow but correct; a CUDA device that cannot launch
+    a kernel is neither.
     """
     import torch
 
     path = Path(checkpoint_path)
-    dev = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
+    dev = torch.device(device) if device else usable_device()
     ckpt = torch.load(path, map_location=dev, weights_only=False)
     if not isinstance(ckpt, dict) or "model_state" not in ckpt:
         raise ValueError(f"{path}: checkpoint has no model_state")

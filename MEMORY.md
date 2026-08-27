@@ -320,6 +320,24 @@ the deficit** — the first time in this project a measured ceiling covered it. 
 - Free Kaggle GPU is a **P100 (sm_60)**; the image torch builds sm_70+ only. `claude_torch_wheelhouse`
   ships torch 2.5.1+cu121. `machineShape` is **accepted by `kernels/push` and silently ignored** —
   the accelerator can only be chosen in the UI. T4 reproduces P100's ILP counts exactly.
+  **This has now cost two runs.** `torch.cuda.is_available()` returns True on a P100 and
+  then every launch dies with `no kernel image is available for execution on the device`.
+  Never branch on that flag — use `pipeline.deepcenter.usable_device()`, which decides by
+  running an actual forward pass and falls back to CPU. For a small model prefer
+  `enable_gpu=False` outright: it dodges the P100 lottery, gets the 12 h CPU limit instead
+  of 9 h, and leaves the scarce 30 h/week GPU quota alone.
+- 🚨 **`dataset_new_version` uploads files FLAT.** `_upload_one` sends `path.name` only, so
+  a folder of 24 files lands as 24 files at the dataset root and `harness/` stops existing
+  as a directory — every notebook's `find_dir` then returns None. Every working upload has
+  staged **one zip** (`biohub-cell_tracking_during_development.zip`), which Kaggle extracts.
+  Always stage a zip. v30 broke this and had to be re-uploaded as v31.
+- The pre-upload **credential scan must match the `key` field only.** Matching every long
+  string in `kaggle.json` also matches `username` — the public dataset owner, which appears
+  in every attach path. Seven false positives per run trains the eye to skip the scan,
+  which is worse than not running it.
+- A notebook's worker file is written by an **f-string evaluated inside the notebook**, so
+  every `{name}` in it must exist in the *notebook's* namespace, not the builder's.
+  `probes/exec_deepcenter_veto.py` now static-checks this against the setup cell.
 - **`pip install` does not work in a scored rerun** (no internet). Wheels must be attached.
 - `claude-relink-sweep`'s output caches `cand_*.npz` for all 24 datasets: coords, post-ILP
   graph, and candidate edges **with probabilities** — the ILP's own input. Attach it as a
