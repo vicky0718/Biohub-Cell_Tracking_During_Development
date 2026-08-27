@@ -1,0 +1,321 @@
+/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+
+  validate(nb)
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+  pack          /kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1
+
+  our repo      /kaggle/input/datasets/vigneshnehru/biohub-cell-tracking
+
+  competition   /kaggle/input/competitions/biohub-cell-tracking-during-development
+
+  cand cache    /kaggle/input/notebooks/vigneshnehru/claude-relink-sweep
+
+  deepcenter    /kaggle/input/datasets/pilkwang/biohub-deepcenter-unet3d-center-prior-v1/weights
+
+  dc root       /kaggle/input/datasets/pilkwang/biohub-deepcenter-unet3d-center-prior-v1
+
+
+
+deepcenter dataset tree:
+
+    ARTIFACT_MANIFEST.json  0.0 MB
+
+    README.md  0.0 MB
+
+    source_scripts/build_full_frame_center_pack.py  0.0 MB
+
+    source_scripts/package_and_upload_full_frame_center_pack.sh  0.0 MB
+
+    source_scripts/run_full_frame_center_training.sh  0.0 MB
+
+    source_scripts/train_full_frame_center_detector.py  0.0 MB
+
+    weights/full_frame_center/SNAPSHOT_MANIFEST.json  0.0 MB
+
+    weights/full_frame_center/best.pt  37.9 MB
+
+    weights/full_frame_center/checkpoint_last.pt  37.9 MB
+
+    weights/full_frame_center/config.json  0.0 MB
+
+    weights/full_frame_center/gate_frame_metrics.csv  0.2 MB
+
+    weights/full_frame_center/gate_peak_samples.csv  3.4 MB
+
+    weights/full_frame_center/gate_summary.json  0.0 MB
+
+    weights/full_frame_center/gate_threshold_metrics.csv  0.0 MB
+
+    weights/full_frame_center/history.csv  0.0 MB
+
+    weights/full_frame_center/split_manifest.json  0.0 MB
+
+  repo carries deepcenter.py and close_gaps(accept=) — not stale
+
+
+
+  cached instances  24
+
+  checkpoints: ['weights/full_frame_center/best.pt', 'weights/full_frame_center/checkpoint_last.pt']
+
+pack wheels ok
+
+official scorer clone rc=0
+
+numpy 2.4.6 | torch 2.10.0+cpu | cuda False
+
+setup took 67s
+
+worker numpy 2.4.6
+
+loaded /kaggle/input/datasets/pilkwang/biohub-deepcenter-unet3d-center-prior-v1/weights/full_frame_center/best.pt  epoch=2 best_score=-0.04500306242456039 pool=4 device=cpu
+
+  3,151,369 parameters
+
+12 datasets, 6 arms
+
+
+
+==============================================================================
+
+ALIGNMENT: annotated GT nodes vs random in-volume points
+
+==============================================================================
+
+  44b6_144b256d  n=8  GT median 0.246 (>=0.25: 50.0%)   random median 0.063 (>=0.25: 12.5%)
+
+  44b6_18ced818  n=4  GT median 0.103 (>=0.25: 0.0%)   random median 0.062 (>=0.25: 0.0%)
+
+  44b6_1d530831  n=4  GT median 0.457 (>=0.25: 100.0%)   random median 0.096 (>=0.25: 25.0%)
+
+
+
+44b6_144b256d  nodes=26,092 cand=22,498 kept=22,017
+
+    repair 1.0510  veto0.1 +0.0001  veto0.25 +0.0006  veto0.4 +0.0009  veto0.6 +0.0009   heatmaps=96  116s
+
+
+
+44b6_18ced818  nodes=78,184 cand=69,503 kept=67,569
+
+    repair 0.8640  veto0.1 +0.0006  veto0.25 +0.0015  veto0.4 +0.0017  veto0.6 +0.0017   heatmaps=96  160s
+
+
+
+44b6_1d530831  nodes=37,220 cand=33,779 kept=33,111
+
+    repair 0.7895  veto0.1 +0.0003  veto0.25 -0.0057  veto0.4 -0.0067  veto0.6 -0.0067   heatmaps=96  119s
+
+
+
+44b6_267148e4  nodes=22,954 cand=20,746 kept=20,230
+
+    repair 0.7706  veto0.1 -0.0062  veto0.25 +0.0137  veto0.4 +0.0247  veto0.6 +0.0248   heatmaps=91  97s
+
+
+
+44b6_3bb3690f  nodes=15,876 cand=14,472 kept=14,128
+
+    repair 0.9236  veto0.1 +0.0001  veto0.25 +0.0004  veto0.4 -0.0021  veto0.6 -0.0021   heatmaps=88  90s
+
+
+
+44b6_551a5dba  nodes=32,845 cand=29,098 kept=28,316
+
+    repair 0.8824  veto0.1 +0.0001  veto0.25 -0.0152  veto0.4 -0.0347  veto0.6 -0.0347   heatmaps=96  112s
+
+
+
+44b6_66f9292d  nodes=21,352 cand=18,324 kept=17,879
+
+    repair 0.9967  veto0.1 +0.0002  veto0.25 +0.0007  veto0.4 -0.0145  veto0.6 -0.0145   heatmaps=96  101s
+
+
+
+44b6_996155de  nodes=9,546 cand=8,857 kept=8,700
+
+    repair 0.9504  veto0.1 +0.0004  veto0.25 +0.0009  veto0.4 +0.0013  veto0.6 +0.0014   heatmaps=62  63s
+
+
+
+44b6_deabac95  nodes=16,132 cand=15,131 kept=14,880
+
+    repair 0.9459  veto0.1 +0.0000  veto0.25 +0.0003  veto0.4 +0.0007  veto0.6 +0.0009   heatmaps=67  74s
+
+
+
+44b6_e35b117d  nodes=22,358 cand=19,237 kept=18,627
+
+    repair 0.9725  veto0.1 -0.0073  veto0.25 -0.0066  veto0.4 -0.0061  veto0.6 -0.0061   heatmaps=94  100s
+
+
+
+6bba_07e24132  nodes=28,767 cand=25,640 kept=25,022
+
+    repair 0.8427  veto0.1 +0.0027  veto0.25 +0.0036  veto0.4 +0.0040  veto0.6 +0.0040   heatmaps=88  108s
+
+
+
+6bba_13f19531  nodes=6,004 cand=5,602 kept=5,539
+
+    repair 0.9592  veto0.1 +0.0001  veto0.25 +0.0002  veto0.4 +0.0002  veto0.6 +0.0002   heatmaps=13  20s
+
+
+
+worker done in 1180s
+
+
+
+worker exited 0 after 1181s
+
+12 datasets, 6 arms   checkpoint /kaggle/input/datasets/pilkwang/biohub-deepcenter-unet3d-center-prior-v1/weights/full_frame_center/best.pt
+
+
+
+arm             score  vs repair   edge_J  mislink    gap  detect     nodes     edges
+
+-------------------------------------------------------------------------------------
+
+norepair       0.8992    -0.0100   0.8925      120     53      46   312,835   276,018
+
+repair         0.9092    +0.0000   0.9034      105     44      45   318,596   287,540
+
+veto0.1        0.9086    -0.0006   0.9025      105     44      50   317,251   284,850
+
+veto0.25       0.9092    +0.0000   0.9027      104     45      52   314,420   279,188
+
+veto0.4        0.9079    -0.0013   0.9011      104     50      56   312,888   276,124
+
+veto0.6        0.9079    -0.0013   0.9011      104     50      56   312,835   276,018
+
+
+
+=====================================================================================
+
+PREDICTION GRADING
+
+=====================================================================================
+
+
+
+1. the heatmap is aligned — GT nodes score far above random in-volume points
+
+   44b6_144b256d    GT 0.246 vs random 0.063   ratio    3.9x  FAIL
+
+   44b6_18ced818    GT 0.103 vs random 0.062   ratio    1.7x  FAIL
+
+   44b6_1d530831    GT 0.457 vs random 0.096   ratio    4.7x  PASS
+
+   ->  FAIL
+
+   The heatmap does NOT light up on real cells at our coordinates. Either the
+
+   z/y/x pooling convention is wrong (probes/exec_deepcenter.py pins it on
+
+   synthetic data — re-check against the real volume shape) or this checkpoint
+
+   is not the center-prior detector. NOTHING BELOW IS READABLE until this passes.
+
+
+
+2. `repair` with no veto reproduces the arm that scored 0.883
+
+   repair = 0.9092 on 12 datasets
+
+   notes/31 measured 0.8958 for the same chain on 24 datasets — a different
+
+   subset, so this is a sanity range, not an equality check.
+
+   ->  PASS — in range
+
+   repair vs norepair: +0.0100   (the +0.0115-ish that notes/28 transferred to the LB)
+
+
+
+3. the veto rejects a real minority of candidates — neither ~0% nor ~100%
+
+   veto0.1    proposed   5,991  kept   4,592  rejected  23.4%  ok
+
+   veto0.25   proposed   5,991  kept   1,636  rejected  72.7%  ok
+
+   veto0.4    proposed   5,991  kept      55  rejected  99.1%  <-- degenerate
+
+   veto0.6    proposed   5,991  kept       0  rejected 100.0%  <-- degenerate
+
+   ->  FAIL
+
+   A threshold that rejects ~nothing is not being tested; one that rejects almost
+
+   everything means the scores are not on the scale the public notebook assumes.
+
+
+
+4. the veto reduces fn_detect (the MECHANISM claim)
+
+   norepair 46 -> repair 45  (repair's own detection tax: -1)
+
+   best veto: veto0.1 at 50  (+5 vs repair)  ->  FAIL
+
+   The veto does not reduce the bucket it exists to reduce. Either the rejected
+
+   nodes were the ones that DID match, or fn_detect is not dominated by invented
+
+   nodes at all — check norepair's own fn_detect above before going further.
+
+
+
+5. at its best threshold the veto beats plain repair on score (the OUTCOME claim)
+
+   veto0.25   0.9092  (+0.0000)
+
+   veto0.1    0.9086  (-0.0006)
+
+   veto0.6    0.9079  (-0.0013)
+
+   veto0.4    0.9079  (-0.0013)
+
+   ->  PASS
+
+   veto0.25 is submittable on top of the 0.883 chain.
+
+
+
+=====================================================================================
+
+BEST ARM: veto0.25 at 0.9092  (+0.0000 vs repair)
+
+  remaining: mislink 104  gap 45  undetected 52
+
+=====================================================================================
+
+/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+
+/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+
+[NbConvertApp] Writing 41997 bytes to __notebook__.ipynb
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+
+[NbConvertApp] Writing 372966 bytes to __results__.html
