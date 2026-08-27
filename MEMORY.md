@@ -235,3 +235,97 @@ constraints, not yet run for real.
 Method carried over from ROGII (see `chat/memory/rogii-validation-harness.md` in the
 `vicky0718/rogii` repo): honest fixed harness, preregistered gates, gains promoted only when
 sign-stable across folds, LB movement is not evidence.
+
+---
+
+# CURRENT STATE (2026-08-27) — everything above predates the first leaderboard score
+
+The section above ends at "Still no leaderboard score / best 0.5552". Both are long
+superseded. What follows is the load-bearing state; `notes/15` onward carry the detail.
+
+## Score trajectory (leaderboard, max is 1.1 not 1.0)
+
+```
+0.752  classical champion (DoG + Hungarian)   <- banked floor, reproducible
+0.843  public pack weights, ILP BYPASSED (a bug: predict_video returns CANDIDATES)
+0.867  public pack weights, ILP running
+0.880  + graph repair: close_gaps(5.75 um) then linefit_smooth(0.76, win 2)   <- best
+0.913-0.916  the cluster of ~514 teams sharing these weights
+```
+
+**The strategy is Track A**: reproduce the public pack's UNet+transformer weights, then
+beat the cluster by repairing the graph they all ship unrepaired. The pack's own manifest
+says it emits the *"ILP candidate graph before notebook-level graph repair"*.
+
+## What is CLOSED, with the number that closed it
+
+Each of these was measured, not assumed. Do not reopen without new evidence.
+
+| direction | verdict | evidence |
+|---|---|---|
+| learned detector from scratch | dead | 5 runs, best CV **0.649**; `notes/23` §2c measured the learned CV->LB offset as **0.061 worse** than classical, so an arm needs **CV ~0.813** just to match the 0.752 floor |
+| training the pack's architecture ourselves | dead | **725 h** for 402 epochs on a P100 (`notes/24`); ~30 GPU-h/week quota |
+| divisions | dead from 3 directions | `notes/04` §10 (151 divisions in 128,883 edges); `notes/25` geometric insertion = **1 TP per 2,223 guesses**, +0.0015; ILP's own forks measured *unevaluable* (37 emitted, 0 TP, 0 FP) |
+| per-dataset node-budget calibration | ~0.002, parked | `notes/26`: the multiplier is already at 0.9892-1.0012, nearly saturated |
+| **local motion relink** | dead from BOTH ends | `notes/29` mine (no margin) made `fn_mislink` monotonically worse; `notes/30` the user's (margin 0.35) made **zero swaps** in the entire test set. Loose enough to fire => harmful; strict enough to be safe => never fires |
+
+## What WORKS
+
+**Graph repair.** `pipeline/repair.py`: `close_gaps` then `linefit_smooth`, in that order
+(reversed is +0.0006 worse). Measured +0.0115 on 24 training datasets, scored **+0.0130**
+on the leaderboard — a **1.13x transfer ratio**, i.e. it transferred *better* than measured.
+Coherent reason: contamination (`notes/24` §2 — these weights were fitted on an unpublished
+subset of the same 199 datasets) makes the model's graphs on training data BETTER than on
+unseen data, so there is less for a repair to fix there. n=1, so a direction not a coefficient.
+
+Measured no-ops, do not re-add: `cap_edge_length` is **harmful** (-0.0002);
+`prune_isolated` and `single_parent_repair` are **exact** no-ops because the ILP already
+emits graphs with no isolated nodes and no merges.
+
+## The edge-loss anatomy (`notes/26`, `pipeline/anatomy.py`) — the map for everything left
+
+Of 13,832 GT edges on the 24 budget-stratified datasets:
+
+```
+tp           12,909  93.33%
+fn_mislink      473   3.42%   <- largest failure; both ends detected, wrong pair joined
+fn_detect       238   1.72%   <- detection is NOT the ceiling
+fn_gap          212   1.53%
+             + 669 false-positive edges
+```
+
+Repairing every gap and mislink puts edge Jaccard at **0.9375-0.9691**, i.e. **+0.047 to
++0.079**. The gap to the cluster is +0.046 (now 0.033-0.036). **The reachable band contains
+the deficit** — the first time in this project a measured ceiling covered it. ~15-24% claimed.
+
+## Methodological findings that keep repeating
+
+1. **Node recall is blind to temporal coherence.** `notes/21` measured a 0.074 edge-Jaccard
+   gap under *identical* 0.866 node recall. `pipeline/detector.py::paired_recall` exists for
+   this — and I then used node recall to bound position repair anyway and was wrong by 70%
+   (`notes/27`). With 20-150x more predictions than annotations, a GT node is usually matched
+   to a *nearby wrong* prediction; moving positions flips the assignment. Node recall cannot see it.
+2. **Position repair TRADES mislinks for detection failures**, ~4:1 where it works and
+   inverting when pushed. Any node-moving repair needs a bound like `max_shift_um`.
+3. **Silent-pass-on-missing-input is the recurring bug class.** A NaN node budget made a
+   grading check print PASS on absent data (NaN comparisons are False); a confounded
+   stratification (`notes/25` §2) gave a correlation of the *wrong sign*. Every grading cell
+   now detects and says NOT GRADED instead.
+4. **Verify notebooks by EXECUTING their real cells against synthetic data** with the answer
+   constructed, not inferred (`scratchpad/exec_*.py`). This has caught more real defects than
+   any other practice here — including three where the *harness itself* was wrong.
+
+## Infrastructure facts (measured, save re-discovery)
+
+- Free Kaggle GPU is a **P100 (sm_60)**; the image torch builds sm_70+ only. `claude_torch_wheelhouse`
+  ships torch 2.5.1+cu121. `machineShape` is **accepted by `kernels/push` and silently ignored** —
+  the accelerator can only be chosen in the UI. T4 reproduces P100's ILP counts exactly.
+- **`pip install` does not work in a scored rerun** (no internet). Wheels must be attached.
+- `claude-relink-sweep`'s output caches `cand_*.npz` for all 24 datasets: coords, post-ILP
+  graph, and candidate edges **with probabilities** — the ILP's own input. Attach it as a
+  `kernelDataSource` to re-solve without a ~25 min prediction pass.
+- **Three index spaces** exist and mixing them is silent: `coords` rows, tracksdata node ids,
+  and `Tracks`' renumbering of the ILP's surviving subset. Use
+  `Tracks.from_tracksdata_with_ids`.
+- Kaggle's `/api/i/` endpoints reject Basic auth, so **submission cannot be automated** — a
+  human must click Submit.
