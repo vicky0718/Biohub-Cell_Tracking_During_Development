@@ -36,7 +36,7 @@ from __future__ import annotations
 import numpy as np
 
 __all__ = ["prune_isolated", "cap_edge_length", "single_parent_repair",
-           "linefit_smooth", "close_gaps"]
+           "linefit_smooth", "close_gaps", "prune_short_tracks"]
 
 
 def _as_arrays(t, zyx, edges):
@@ -188,7 +188,7 @@ def linefit_smooth(t, zyx, edges, window=2, weight=0.76,
 
 
 def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
-               max_added_frac=0.038, max_added_abs=1650, accept=None):
+               max_added_frac=0.038, max_added_abs=1650, accept=None, max_gap=1):
     """Bridge one-frame holes by inserting a node at the midpoint.
 
     A track ending at `t` and another starting at `t+2` within `max_um` is one missed
@@ -208,6 +208,15 @@ def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
     surviving pair could have used. `pipeline.deepcenter.FrameScorer.accept` supplies the
     learned version — the whole point being that this function otherwise invents nodes
     without ever looking at the image (`notes/27` §1, `notes/33` §1).
+
+    `max_gap` is the largest hole in FRAMES that may be bridged. 1 (the default) is the
+    original behaviour: tail at `f`, head at `f+2`, one node inserted. 2 also joins a head
+    at `f+3` with two interpolated nodes. `notes/39`'s audit found the 0.927 public notebook
+    runs `GAP_CLOSE_MAX_GAP = 2` where we have only ever done 1.
+
+    Candidates are ranked by `(gap, distance)`, not distance alone, so a one-frame bridge
+    always outranks a two-frame one over the same span. A wider hole is strictly more
+    speculative for the same geometry, and this keeps `max_gap=1` byte-identical.
     """
     t, zyx, edges = _as_arrays(t, zyx, edges)
     n = len(t)
@@ -231,17 +240,21 @@ def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
     for f in np.unique(t[heads]):
         by_frame_heads[int(f)] = heads[t[heads] == f]
 
-    cands: list[tuple[float, int, int]] = []
+    cands: list[tuple[int, float, int, int]] = []
     for f in np.unique(t[tails]):
         f = int(f)
-        h = by_frame_heads.get(f + 2)
-        if h is None:
-            continue
         tl = tails[t[tails] == f]
-        pairs = _pairs_within(pos[tl], pos[h], max_um)
-        for a, b in pairs:
-            i, j = int(tl[a]), int(h[b])
-            cands.append((float(np.linalg.norm(pos[j] - pos[i])), i, j))
+        for gap in range(1, int(max_gap) + 1):
+            h = by_frame_heads.get(f + gap + 1)
+            if h is None:
+                continue
+            # The radius scales with the hole: a cell crossing two frames may legitimately
+            # travel twice as far. Using a fixed max_um would make wide gaps unreachable
+            # rather than merely rarer, which is not the trade being tested.
+            pairs = _pairs_within(pos[tl], pos[h], max_um * gap)
+            for a, b in pairs:
+                i, j = int(tl[a]), int(h[b])
+                cands.append((gap, float(np.linalg.norm(pos[j] - pos[i])), i, j))
     if not cands:
         return t, zyx, edges
 
@@ -250,8 +263,8 @@ def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
         # Score every surviving candidate's midpoint in ONE batch. Per-candidate calls
         # would re-run a heatmap per point in the worst frame ordering; the veto is only
         # cheap if it is asked in bulk.
-        ci = np.asarray([c[1] for c in cands], np.int64)
-        cj = np.asarray([c[2] for c in cands], np.int64)
+        ci = np.asarray([c[2] for c in cands], np.int64)
+        cj = np.asarray([c[3] for c in cands], np.int64)
         keep = np.asarray(accept(t[ci] + 1, 0.5 * (zyx[ci] + zyx[cj])), bool)
         if keep.shape != (len(cands),):
             raise ValueError(
@@ -264,18 +277,23 @@ def close_gaps(t, zyx, edges, scale=(1.625, 0.40625, 0.40625), max_um=5.75,
     used_t: set[int] = set()
     used_h: set[int] = set()
     new_pos, new_t, new_edges = [], [], []
-    for _, i, j in cands:
-        if len(new_t) >= budget:
-            break
+    for gap, _, i, j in cands:
+        if len(new_t) + gap > budget:
+            continue          # a wider gap may not fit where a narrower one still would
         if i in used_t or j in used_h:
             continue
         used_t.add(i)
         used_h.add(j)
-        k = n + len(new_t)
-        new_t.append(t[i] + 1)
-        new_pos.append(0.5 * (zyx[i] + zyx[j]))
-        new_edges.append((i, k))
-        new_edges.append((k, j))
+        # Interpolate `gap` nodes evenly between the endpoints and chain them.
+        prev = i
+        for step in range(1, gap + 1):
+            k = n + len(new_t)
+            frac = step / (gap + 1.0)
+            new_t.append(t[i] + step)
+            new_pos.append((1.0 - frac) * zyx[i] + frac * zyx[j])
+            new_edges.append((prev, k))
+            prev = k
+        new_edges.append((prev, j))
     if not new_t:
         return t, zyx, edges
 
@@ -299,3 +317,62 @@ def _pairs_within(a: np.ndarray, b: np.ndarray, radius: float) -> np.ndarray:
         d = np.linalg.norm(a[:, None, :] - b[None, :, :], axis=2)
         i, j = np.nonzero(d <= radius)
         return np.stack([i, j], axis=1).astype(np.int64)
+
+
+def prune_short_tracks(t, zyx, edges, min_frames: int = 6,
+                       keep_division_components: bool = True):
+    """Drop connected components spanning fewer than `min_frames` frames.
+
+    `notes/39`'s audit: the 0.927 public notebook runs `OUTPUT_MIN_TRACK_LEN = 6` with
+    `OUTPUT_FILTER_SHORT_TRACKS = 1`; we have never pruned anything. A two-node fragment
+    is almost always a detection artifact, and it costs twice — the spurious edge misses,
+    and both nodes eat the node budget, which `notes/35` §3 measured as worth ~0.01 of
+    score on its own.
+
+    `keep_division_components` mirrors their `OUTPUT_KEEP_DIVISION_COMPONENTS = 1`: a short
+    component containing a fork is kept, because a division is the one structure whose
+    shortness is expected rather than suspicious, and `division_jaccard` is a tenth of the
+    metric.
+
+    Span is measured in FRAMES, not nodes: a component with 8 nodes all in one frame is not
+    an 8-frame track. Counting nodes instead would keep exactly the dense-region clutter
+    this is meant to remove.
+    """
+    t, zyx, edges = _as_arrays(t, zyx, edges)
+    n = len(t)
+    if n == 0 or min_frames <= 1:
+        return t, zyx, edges
+
+    parent = np.arange(n)
+
+    def find(a):
+        while parent[a] != a:
+            parent[a] = parent[parent[a]]
+            a = parent[a]
+        return a
+
+    for u, v in edges:
+        ru, rv = find(int(u)), find(int(v))
+        if ru != rv:
+            parent[ru] = rv
+    roots = np.array([find(i) for i in range(n)], np.int64)
+
+    has_fork = np.zeros(n, bool)
+    if len(edges):
+        out_deg = np.bincount(edges[:, 0], minlength=n)
+        for r in np.unique(roots[out_deg >= 2]):
+            has_fork[roots == r] = True
+
+    keep = np.ones(n, bool)
+    for r in np.unique(roots):
+        sel = roots == r
+        span = int(t[sel].max() - t[sel].min()) + 1
+        if span < min_frames and not (keep_division_components and has_fork[sel][0]):
+            keep[sel] = False
+    if keep.all():
+        return t, zyx, edges
+
+    remap = np.full(n, -1, np.int64)
+    remap[keep] = np.arange(int(keep.sum()))
+    e = edges[keep[edges[:, 0]] & keep[edges[:, 1]]] if len(edges) else edges
+    return t[keep], zyx[keep], (remap[e] if len(e) else np.zeros((0, 2), np.int64))
