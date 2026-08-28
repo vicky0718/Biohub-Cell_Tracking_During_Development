@@ -1,0 +1,201 @@
+/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+
+  validate(nb)
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+Tesla P100-PCIE-16GB, 6.0
+
+  pack           /kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1
+
+  our repo       /kaggle/input/datasets/vigneshnehru/biohub-cell-tracking
+
+  competition    /kaggle/input/competitions/biohub-cell-tracking-during-development
+
+  torch wheels   /kaggle/input/notebooks/vigneshnehru/claude-torch-wheelhouse/wheels
+
+  cand cache     /kaggle/input/notebooks/vigneshnehru/claude-relink-sweep
+
+official scorer clone rc=0
+
+pack wheels ok (51s)
+
+torch wheels ok (151s)
+
+numpy 2.4.6 | torch 2.5.1+cu121 | gpu_ok True
+
+/usr/local/lib/python3.12/dist-packages/dask/array/image.py:7: FutureWarning: `find_available_plugins` is deprecated since version 0.25 and will be removed in version 0.27. The plugin infrastructure of `skimage.io` is deprecated. Instead, use `imageio` or other I/O packages directly.
+
+  from skimage.io import imread as sk_imread
+
+/usr/lib/python3.12/importlib/__init__.py:90: FutureWarning: `reset_plugins` is deprecated since version 0.25 and will be removed in version 0.27. The plugin infrastructure of `skimage.io` is deprecated. Instead, use `imageio` or other I/O packages directly.
+
+  return _bootstrap._gcd_import(name[level:], package, level)
+
+worker numpy 2.4.6 torch 2.5.1+cu121
+
+anchor matches 1 x in 8678 chars
+
+model params 2076706 window 2 downsample (1, 4, 4)
+
+12 datasets: 5 x 44b6, 7 x 6bba
+
+  44b6_144b256d  w0.0 1.0522  w0.15 1.0606  w0.25 1.0606  w0.4 1.0608   228s
+
+  44b6_18ced818  w0.0 0.7980  w0.15 0.8583  w0.25 0.8579  w0.4 0.8674   528s
+
+  44b6_1d530831  w0.0 0.7771  w0.15 0.8135  w0.25 0.8167  w0.4 0.8127   297s
+
+  44b6_267148e4  w0.0 0.7906  w0.15 0.8009  w0.25 0.8491  w0.4 0.8619   226s
+
+  44b6_3bb3690f  w0.0 0.9545  w0.15 0.9589  w0.25 0.9588  w0.4 0.9613   202s
+
+  6bba_07e24132  w0.0 0.8961  w0.15 0.8928  w0.25 0.8922  w0.4 0.8920   251s
+
+  6bba_13f19531  w0.0 0.9731  w0.15 0.9738  w0.25 0.9752  w0.4 0.9751   154s
+
+  6bba_15403b9a  w0.0 0.9928  w0.15 0.9839  w0.25 0.9774  w0.4 0.9749   157s
+
+  6bba_20852818  w0.0 0.9423  w0.15 0.9451  w0.25 0.9481  w0.4 0.9450   180s
+
+  6bba_2540cd90  w0.0 1.0101  w0.15 1.0100  w0.25 1.0101  w0.4 1.0101   149s
+
+  6bba_48816121  w0.0 0.9215  w0.15 0.9285  w0.25 0.9306  w0.4 0.9367   269s
+
+  6bba_5dfe9ad1  w0.0 0.9508  w0.15 0.9559  w0.25 0.9526  w0.4 0.9526   274s
+
+worker done in 2926 s
+
+worker exited 0 after 2928 s
+
+12 datasets, 8 arms, weights [0.0, 0.15, 0.25, 0.4]
+
+
+
+arm                 score   vs ctl   edge_J   div_J  mislink    gap  detect      cand     edges
+
+-----------------------------------------------------------------------------------------------
+
+w0.0               0.9433  -0.0029   0.9330  0.0690       94     33     158   264,336   236,834
+
+w0.15              0.9449  -0.0014   0.9368  0.0571      100     26     119   269,955   243,637
+
+w0.25              0.9429  -0.0033   0.9379  0.0270       97     24     115   270,887   244,521
+
+w0.4               0.9433  -0.0030   0.9383  0.0263       96     22     116   271,277   244,742
+
+w0.0+repair        0.9462  +0.0000   0.9361  0.0690       86     33     158   264,336   239,432
+
+w0.15+repair       0.9499  +0.0036   0.9419  0.0571       83     25     124   269,955   246,255
+
+w0.25+repair       0.9485  +0.0022   0.9436  0.0270       80     23     116   270,887   247,075
+
+w0.4+repair        0.9492  +0.0030   0.9444  0.0263       79     21     117   271,277   247,182
+
+
+
+===============================================================================================
+
+PREDICTION GRADING
+
+===============================================================================================
+
+
+
+1. w=0 reproduces notes/35's ratio0.4_2.0+repair (0.9179 +- 0.002)
+
+   w0.0+repair = 0.9462  ->  FAIL
+
+   A fresh prediction pass does NOT match the cached candidates the last three
+
+   sweeps were scored from. Either the cache was stale or the patch touched the
+
+   control — and w=0 uses the ORIGINAL function object, so suspect the cache.
+
+   Nothing below is comparable to notes/35 until this is understood.
+
+
+
+2. the reverse pass actually changes the candidate set
+
+   w=0.15  candidates   269,955  vs control 264,336  (+2.13%)  ok
+
+   w=0.25  candidates   270,887  vs control 264,336  (+2.48%)  ok
+
+   w=0.4   candidates   271,277  vs control 264,336  (+2.63%)  ok
+
+   ->  PASS
+
+
+
+3. the blend reduces fn_mislink (the MECHANISM claim)
+
+   w0.0+repair      mislink     86  (+0)   detect    158  (+0)
+
+   w0.15+repair     mislink     83  (-3)   detect    124  (-34)
+
+   w0.25+repair     mislink     80  (-6)   detect    116  (-42)
+
+   w0.4+repair      mislink     79  (-7)   detect    117  (-41)
+
+   best w0.4+repair  ->  PASS
+
+
+
+4. some weight beats the control by more than 0.001
+
+   w=0.15  0.9499  (+0.0036)
+
+   w=0.4   0.9492  (+0.0030)
+
+   w=0.25  0.9485  (+0.0022)
+
+   best w=0.15 at +0.0036  ->  PASS
+
+
+
+5. the optimum is not at the largest weight tried
+
+   w0.0:0.9462  w0.15:0.9499  w0.25:0.9485  w0.4:0.9492
+
+   best w=0.15  ->  PASS — interior or at the floor
+
+
+
+===============================================================================================
+
+BEST ARM: w0.15+repair at 0.9499  (+0.0036 vs control)
+
+  remaining: mislink 83  gap 25  undetected 124
+
+===============================================================================================
+
+/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+
+/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+
+[NbConvertApp] Writing 36767 bytes to __notebook__.ipynb
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+
+[NbConvertApp] Writing 360943 bytes to __results__.html
