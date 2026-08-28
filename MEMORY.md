@@ -326,6 +326,14 @@ the deficit** — the first time in this project a measured ceiling covered it. 
   running an actual forward pass and falls back to CPU. For a small model prefer
   `enable_gpu=False` outright: it dodges the P100 lottery, gets the 12 h CPU limit instead
   of 9 h, and leaves the scarce 30 h/week GPU quota alone.
+- 🚨 **Never retype a kernel's source list — clone it.** `claude_submit_ratio` v1 died in 8 s
+  on the P100 because an inspection printed only `datasetDataSources` and the
+  `kernelDataSources` entry carrying `vigneshnehru/claude-torch-wheelhouse` never reached
+  the push. The notebook's own markdown listed the wheelhouse as a required input. Use
+  `claude_kaggle_api.kernel_push_like(..., reference="claude-submit-ilp",
+  require=("wheelhouse",))`, which copies every source list plus the GPU/internet flags
+  from a kernel known to have worked and raises if a required substring is absent.
+  **Every GPU submission needs the wheelhouse** — it is the only thing that makes a P100 run.
 - 🚨 **`dataset_new_version` uploads files FLAT.** `_upload_one` sends `path.name` only, so
   a folder of 24 files lands as 24 files at the dataset root and `harness/` stops existing
   as a directory — every notebook's `find_dir` then returns None. Every working upload has

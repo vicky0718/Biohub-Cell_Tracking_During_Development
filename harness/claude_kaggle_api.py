@@ -256,3 +256,36 @@ __all__ = ["KaggleError", "username", "get_json", "post_json", "kernel_push",
            "dataset_version_number",
            "kernel_status", "kernel_output", "kernel_wait", "dataset_status",
            "dataset_list", "dataset_new_version", "submissions_list", "leaderboard"]
+
+
+def kernel_push_like(slug: str, notebook_path: str | Path, *, title: str,
+                     reference: str, require: tuple[str, ...] = (),
+                     is_private: bool = True, **overrides) -> dict:
+    """Push a kernel reusing ANOTHER kernel's whole source configuration.
+
+    Retyping a source list is how `claude_submit_ratio` v1 died: an inspection printed only
+    ``datasetDataSources``, the ``kernelDataSources`` entry carrying the torch wheelhouse
+    never made it into the push, and the run drew a P100 that the image torch cannot run.
+    The notebook's own markdown listed the wheelhouse as a required input; the push did not.
+
+    ``reference`` is the slug of a kernel known to have worked. Every source list, plus the
+    GPU and internet flags, is copied from it. ``require`` names substrings that MUST appear
+    somewhere in the resulting sources -- a loud failure here beats an 8-second CUDA death.
+    """
+    ref = get_json("/kernels/pull", userName=username(),
+                   kernelSlug=reference).get("metadata", {})
+    cfg = {
+        "dataset_sources": ref.get("datasetDataSources") or [],
+        "competition_sources": ref.get("competitionDataSources") or [],
+        "kernel_sources": ref.get("kernelDataSources") or [],
+        "enable_gpu": bool(ref.get("enableGpu")),
+        "enable_internet": bool(ref.get("enableInternet")),
+    }
+    cfg.update(overrides)
+    everything = " ".join(cfg["dataset_sources"] + cfg["competition_sources"]
+                          + cfg["kernel_sources"])
+    missing = [r for r in require if r not in everything]
+    if missing:
+        raise KaggleError(0, f"reference {reference} does not supply {missing}; "
+                             f"sources were {everything}", "kernels/push")
+    return kernel_push(slug, notebook_path, title=title, is_private=is_private, **cfg)
