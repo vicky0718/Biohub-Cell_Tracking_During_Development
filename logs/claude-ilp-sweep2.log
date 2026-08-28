@@ -1,0 +1,447 @@
+/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+
+  validate(nb)
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+  pack          /kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1
+
+  our repo      /kaggle/input/datasets/vigneshnehru/biohub-cell-tracking
+
+  competition   /kaggle/input/competitions/biohub-cell-tracking-during-development
+
+  cand cache    /kaggle/input/notebooks/vigneshnehru/claude-relink-sweep
+
+  cached instances  24
+
+pack wheels ok
+
+official scorer clone rc=0
+
+numpy 2.4.6
+
+no GPU or model needed — setup took 71s
+
+worker numpy 2.4.6
+
+17 arms, each also scored with the notes/28 repair chain
+
+24 cached instances with ground truth
+
+
+
+44b6_144b256d  nodes=26,092 cand=22,498
+
+    control 1.0512  best ratio0.4_2.0 1.0589 (+0.0077)  364s
+
+
+
+44b6_18ced818  nodes=78,184 cand=69,503
+
+    control 0.8136  best div0.8+asym+repair 0.8641 (+0.0505)  1144s
+
+
+
+44b6_1d530831  nodes=37,220 cand=33,779
+
+    control 0.7685  best asym0.1_2.0+repair 0.8054 (+0.0369)  561s
+
+
+
+44b6_267148e4  nodes=22,954 cand=20,746
+
+    control 0.8100  best control 0.8100 (+0.0000)  333s
+
+
+
+44b6_3bb3690f  nodes=15,876 cand=14,472
+
+    control 0.9098  best sym1.0+repair 0.9471 (+0.0373)  247s
+
+
+
+44b6_551a5dba  nodes=32,845 cand=29,098
+
+    control 0.8285  best ratio0.2_1.0+repair 0.8897 (+0.0612)  460s
+
+
+
+44b6_66f9292d  nodes=21,352 cand=18,324
+
+    control 0.9283  best asym0.1_0.75+repair 1.0141 (+0.0858)  295s
+
+
+
+44b6_996155de  nodes=9,546 cand=8,857
+
+    control 0.9534  best ratio0.4_2.0 0.9675 (+0.0141)  161s
+
+
+
+44b6_deabac95  nodes=16,132 cand=15,131
+
+    control 0.9231  best asym0.1_2.0+repair 0.9516 (+0.0285)  257s
+
+
+
+44b6_e35b117d  nodes=22,358 cand=19,237
+
+    control 0.9650  best asym0.1_2.0+repair 0.9902 (+0.0252)  312s
+
+
+
+6bba_07e24132  nodes=28,767 cand=25,640
+
+    control 0.8417  best ratio0.4_2.0 0.8949 (+0.0532)  443s
+
+
+
+6bba_13f19531  nodes=6,004 cand=5,602
+
+    control 0.9543  best ratio0.4_2.0 0.9779 (+0.0236)  104s
+
+
+
+6bba_15403b9a  nodes=6,826 cand=6,376
+
+    control 0.9659  best ratio0.4_2.0+repair 0.9924 (+0.0265)  110s
+
+
+
+6bba_20852818  nodes=10,690 cand=9,905
+
+    control 0.9391  best asym0.1_1.0+repair 0.9480 (+0.0089)  202s
+
+
+
+6bba_2540cd90  nodes=3,476 cand=3,392
+
+    control 1.0081  best asym0.1_2.0 1.0097 (+0.0016)  76s
+
+
+
+6bba_48816121  nodes=25,871 cand=24,479
+
+    control 0.9042  best asym0.1_1.5+repair 0.9231 (+0.0189)  515s
+
+
+
+6bba_5dfe9ad1  nodes=31,664 cand=29,936
+
+    control 0.9396  best asym0.1_2.0+repair 0.9524 (+0.0128)  537s
+
+
+
+6bba_67ebd073  nodes=17,090 cand=14,617
+
+    control 0.7300  best sym0.5+repair 0.7550 (+0.0250)  245s
+
+
+
+6bba_6feb10f0  nodes=12,879 cand=11,018
+
+    control 0.7677  best asym0.1_2.0+repair 0.8156 (+0.0479)  192s
+
+
+
+6bba_76db78c1  nodes=4,844 cand=4,636
+
+    control 1.0002  best ratio0.4_2.0 1.0054 (+0.0052)  92s
+
+
+
+6bba_afb141ff  nodes=6,305 cand=5,646
+
+[08/27/26 20:52:23] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:24] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:30] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:31] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:36] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:37] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:43] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:44] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:49] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:50] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:56] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:52:57] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:02] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:03] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:09] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:10] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:16] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:17] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:23] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:24] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:30] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:31] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:36] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:37] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:43] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:44] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:50] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:51] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:57] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:53:58] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:54:04] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:54:05] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:54:11] WARNING  No matching edges found.        _base_graph.py:1281
+
+[08/27/26 20:54:12] WARNING  No matching edges found.        _base_graph.py:1281
+
+    control 0.9159  best ratio0.2_1.0+repair 0.9579 (+0.0420)  115s
+
+
+
+6bba_d6ecebbb  nodes=6,940 cand=6,358
+
+    control 0.9295  best ratio0.4_2.0 0.9564 (+0.0269)  108s
+
+
+
+6bba_debd7bfa  nodes=12,385 cand=11,530
+
+    control 0.9641  best asym0.1_2.0 0.9693 (+0.0052)  204s
+
+
+
+6bba_ebff6e76  nodes=56,725 cand=49,641
+
+    control 0.6629  best asym0.1_1.5+repair 0.7436 (+0.0807)  852s
+
+
+
+worker done in 7932s
+
+
+
+worker exited 0 after 7934s
+
+24 datasets, 34 arms (17 weight settings x with/without repair)
+
+
+
+arm                     score   vs ctl  vs 0.883   edge_J   div_J   forks  d_mis  d_det
+
+---------------------------------------------------------------------------------------
+
+control                0.8806  +0.0000   -0.0152   0.8902  0.0000      54     +0     +0
+
+asym0.1_0.5            0.8849  +0.0043   -0.0109   0.8930  0.0000      51    -35    +46
+
+div0.9                 0.8802  -0.0003   -0.0156   0.8898  0.0000     544     -2     +0
+
+div0.8                 0.8856  +0.0050   -0.0102   0.8896  0.0556   1,779    -12     +0
+
+div0.7                 0.8857  +0.0051   -0.0101   0.8894  0.0583   3,889    -35     +0
+
+div0.6                 0.8839  +0.0033   -0.0119   0.8878  0.0559   7,149    -61     +0
+
+div0.5                 0.8839  +0.0033   -0.0119   0.8878  0.0559   7,149    -61     +0
+
+asym0.1_0.75           0.8900  +0.0094   -0.0058   0.8954  0.0000      32    -79   +120
+
+asym0.1_1.0            0.8909  +0.0103   -0.0049   0.8955  0.0000      29    -90   +141
+
+asym0.1_1.5            0.8956  +0.0150   -0.0002   0.8974  0.0000      24   -153   +244
+
+asym0.1_2.0            0.8975  +0.0169   +0.0017   0.8969  0.0000      20   -191   +330
+
+ratio0.2_1.0           0.8924  +0.0118   -0.0034   0.8965  0.0000     303   -108   +163
+
+ratio0.4_2.0           0.9093  +0.0287   +0.0135   0.8959  0.1154   1,443   -219   +370
+
+sym0.5                 0.8980  +0.0174   +0.0022   0.8950  0.0787   4,617   -132   +123
+
+sym1.0                 0.9036  +0.0230   +0.0078   0.8953  0.0849   3,661   -204   +297
+
+div0.8+asym            0.8897  +0.0091   -0.0061   0.8922  0.0566   1,712    -45    +46
+
+div0.6+asym            0.8874  +0.0068   -0.0084   0.8896  0.0606   6,327    -80    +44
+
+control+repair         0.8921  +0.0115   -0.0037   0.9029  0.0000      54    -62    -20
+
+asym0.1_0.5+repair     0.8958  +0.0152   +0.0000   0.9050  0.0000      51    -91    +16
+
+div0.9+repair          0.8915  +0.0109   -0.0043   0.9023  0.0000     544    -62    -20
+
+div0.8+repair          0.8959  +0.0153   +0.0001   0.9011  0.0556   1,779    -67    -18
+
+div0.7+repair          0.8949  +0.0143   -0.0009   0.8997  0.0583   3,889    -83    -18
+
+div0.6+repair          0.8921  +0.0115   -0.0037   0.8971  0.0562   7,149   -101    -14
+
+div0.5+repair          0.8921  +0.0115   -0.0037   0.8971  0.0562   7,149   -101    -14
+
+asym0.1_0.75+repair    0.9020  +0.0215   +0.0062   0.9081  0.0000      32   -139    +88
+
+asym0.1_1.0+repair     0.9031  +0.0226   +0.0074   0.9083  0.0000      29   -152   +110
+
+asym0.1_1.5+repair     0.9069  +0.0263   +0.0111   0.9092  0.0000      24   -205   +215
+
+asym0.1_2.0+repair     0.9085  +0.0279   +0.0127   0.9082  0.0000      20   -233   +299
+
+ratio0.2_1.0+repair    0.9040  +0.0234   +0.0082   0.9087  0.0000     303   -167   +136
+
+ratio0.4_2.0+repair    0.9179  +0.0373   +0.0221   0.9047  0.1154   1,443   -250   +343
+
+sym0.5+repair          0.9075  +0.0269   +0.0117   0.9049  0.0800   4,617   -176    +97
+
+sym1.0+repair          0.9132  +0.0326   +0.0174   0.9052  0.0849   3,661   -244   +273
+
+div0.8+asym+repair     0.8994  +0.0188   +0.0036   0.9029  0.0566   1,712    -94    +18
+
+div0.6+asym+repair     0.8956  +0.0150   -0.0002   0.8986  0.0613   6,327   -119    +20
+
+
+
+=======================================================================================
+
+PREDICTION GRADING
+
+=======================================================================================
+
+
+
+1. control reproduces 0.8806 and asym0.1_0.5+repair reproduces 0.8958 (+-0.0005)
+
+   control              0.8806 vs 0.8806  PASS
+
+   asym0.1_0.5+repair   0.8958 vs 0.8958  PASS
+
+
+
+2. division_weight in (0.5, 1.0) gives fork counts strictly between the endpoints
+
+   default (dv=1.0): 54 forks     saturation (dv=0.5): 7,149 forks
+
+   dv=0.9:544  dv=0.8:1,779  dv=0.7:3,889  dv=0.6:7,149  dv=0.5:7,149
+
+   3/4 interior settings land strictly between ->  PASS
+
+
+
+3. some intermediate division_weight beats BOTH endpoints on total score
+
+   endpoints 0.8806 (dv=1.0) / 0.8839 (dv=0.5)
+
+   best interior: div0.7 0.8857  ->  PASS
+
+   The curve between the endpoints is HUMPED — an intermediate fork count
+
+   buys the division term without paying the full edge cost.
+
+
+
+4. the asymmetry optimum is INTERIOR to the extended grid
+
+   dis=0.5:0.8849  dis=0.75:0.8900  dis=1:0.8909  dis=1.5:0.8956  dis=2:0.8975
+
+   dis=0.5:det+46  dis=0.75:det+120  dis=1:det+141  dis=1.5:det+244  dis=2:det+330
+
+   best: asym0.1_2.0 (disappear 2)  ->  FAIL — on the boundary again
+
+   The knob still has room past the widest setting tried. Do NOT submit the
+
+   boundary arm on the assumption it is near-optimal — extend once more first,
+
+   and expect the turn to exist somewhere, since fn_detect rises monotonically.
+
+
+
+5. the asymmetry gain survives a matched-magnitude symmetric control
+
+   asym0.1_0.5      0.8849  vs  sym0.5     0.8980   -0.0132  MAGNITUDE
+
+   asym0.1_1.0      0.8909  vs  sym1.0     0.9036   -0.0127  MAGNITUDE
+
+   ->  FAIL
+
+   At least one scale's gain is really a MAGNITUDE effect. Report it as that —
+
+   the lab's ratio is not what is doing the work there.
+
+
+
+(extra) do the two knobs interact? v1 measured division only at the DEFAULT asymmetry
+
+   div0.8: alone +0.0050   on top of asym0.1_0.5 +0.0048   ADDITIVE
+
+   div0.6: alone +0.0033   on top of asym0.1_0.5 +0.0025   ADDITIVE
+
+
+
+=======================================================================================
+
+BEST ARM: ratio0.4_2.0+repair at 0.9179
+
+  vs control          +0.0373
+
+  vs the 0.883 arm    +0.0221   <- the only delta that matters
+
+  weights: {'label': 'ratio0.4_2.0', 'edge': -1.0, 'appear': 0.4, 'disappear': 2.0, 'division': 1.0}
+
+  remaining: mislink 223  gap 86  undetected 581
+
+=======================================================================================
+
+/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+
+/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+
+[NbConvertApp] Writing 45626 bytes to __notebook__.ipynb
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+
+[NbConvertApp] Writing 381165 bytes to __results__.html
