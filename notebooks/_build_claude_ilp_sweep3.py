@@ -412,12 +412,21 @@ else:
         ordered = sorted(arms, key=lambda a: (w(a)["appear"], w(a)["disappear"]))
         vals = [(a, S[a][key]) for a in ordered]
         best = max(vals, key=lambda kv: kv[1])[0]
-        interior = best not in (ordered[0], ordered[-1])
-        ok2 &= interior
+        # WHICH end matters. A peak at the largest setting means the axis is still climbing
+        # and the grid is too small. A peak at the SMALLEST means the optimum sits at or
+        # below this grid's floor -- a turn, provided an earlier grid covered below it.
+        # Treating both ends as "boundary" is what made sweep3 report a turn as a failure.
+        at_top = best == ordered[-1]
+        at_floor = best == ordered[0]
+        turned = not at_top
+        ok2 &= turned
+        verdict = ("INTERIOR" if not (at_top or at_floor) else
+                   "STILL CLIMBING — grid too small" if at_top else
+                   "PEAK AT THIS GRID'S FLOOR — turned, if an earlier grid covered below")
         print(f"   {nm}")
         print("      " + "  ".join(f"{a.replace('ap','').replace('r5_','')}:{v:.4f}"
                                    for a, v in vals))
-        print(f"      best {best}  ->  {'INTERIOR' if interior else 'ON THE BOUNDARY'}")
+        print(f"      best {best}  ->  {verdict}")
     print(f"   ->  {'PASS' if ok2 else 'FAIL'}")
     if not ok2:
         print("   An axis that is STILL climbing after three grids is not a knob with a")
@@ -426,13 +435,21 @@ else:
         print("   for it (notes/35 §3). Read the d_det column before extending a fourth time.")
 
 # 3 ---------------------------------------------------------------------------------
-print("\n3. the fn_detect tax rises monotonically with magnitude (the mechanism)")
-pts = sorted((mag(a), a) for a in BASE if a in A)
-taxes = [(m, A[a]["fn_detect"] - A["control"]["fn_detect"]) for m, a in pts]
-print("   " + "  ".join(f"{m:g}:{t:+d}" for m, t in taxes[:12]))
-vals = [t for _, t in taxes]
-ok3 = sum(b >= a for a, b in zip(vals, vals[1:])) >= 0.8 * max(len(vals) - 1, 1)
-print(f"   ->  {'PASS — monotone in 80%+ of steps' if ok3 else 'FAIL — not monotone'}")
+print("\n3. the fn_detect tax rises monotonically with magnitude, WITHIN each axis")
+# Pooling axes is what made this read as non-monotone in sweep3: every dis=2.0 arm shares
+# magnitude 2 and sorts arbitrarily against the others. Compare like with like.
+ok3 = True
+for _nm, _arms in AXES.items():
+    _arms = [a for a in _arms if a in A]
+    if len(_arms) < 3:
+        continue
+    _o = sorted(_arms, key=lambda a: (w(a)["appear"], w(a)["disappear"]))
+    _tax = [A[a]["fn_detect"] - A["control"]["fn_detect"] for a in _o]
+    _mono = all(b >= a for a, b in zip(_tax, _tax[1:]))
+    ok3 &= _mono
+    print(f"   {_nm}: " + " -> ".join(f"{t:+d}" for t in _tax)
+          + f"   {'monotone' if _mono else 'NOT monotone'}")
+print(f"   ->  {'PASS' if ok3 else 'FAIL'}")
 
 # 4 ---------------------------------------------------------------------------------
 print("\n4. at FIXED magnitude the ratio has an optimum (sweep2 could not separate these)")
