@@ -104,6 +104,53 @@ PASS  and both mechanisms are present after composing
 Patching against the real source instead of a guess is the cheapest thing in this project
 that has ever prevented a failed launch, and it was available the whole time.
 
+### v1 died on two things, and the second one was the dangerous kind
+
+```
+official scorer clone rc=128
+  pack   /kaggle/input/datasets/pilkwang/biohub-temporal-unet3d-seed314159-v1
+```
+
+The first is mundane: the push copied `claude-submit-ratio`'s configuration, which has
+**internet off**. That kernel writes a submission file and never scores; this one scores
+against ground truth, and the ILP at 0.4/2.0 forks by design so `purescore` is not exact
+and the official scorer has to be cloned. `kernel_push_like` was built to stop exactly this
+class of mistake and it worked as designed — it copied a *consistent* configuration, just
+of the wrong kernel. `claude-config-sweep2` is the right reference: internet on, and it
+carries the candidate cache too.
+
+The second did not crash, and would not have. **The secondary model resolved as the pack.**
+Both datasets ship the same `repo/ + weights/` layout, the lifted predicate matches both,
+and `find_dir` walks `/kaggle/input` alphabetically — `biohub-temporal-…` sorts before
+`biohub-tracking-…`. Had the scorer clone succeeded, the primary would have loaded the
+secondary's weights, `SEC_PATH` would have found the same file, and every arm would have
+blended a model **with itself**. Every weight returns the control. Prediction 4 reports no
+gain. The notebook prints *"this closes the last identified lever"* and it would be wrong,
+about a mechanism it never once executed.
+
+This is the third time this project has been bitten by **alphabetical order deciding
+something that was never meant to be alphabetical** — `notes/34`'s `names[:12]` inverting
+the embryo split, `claude_bidirectional` v2 repeating it, and now this. The fix is not a
+better predicate; it is refusing to infer identity from a search at all where a cheap
+direct check exists. The pack is now identified by something only the pack has, and the
+worker then hashes both checkpoints and exits loudly if the bytes match:
+
+```
+if _dp == _ds_:
+    raise SystemExit("primary and secondary are the SAME WEIGHTS. An ensemble of a model
+                      with itself returns the control at every weight and would be
+                      reported as 'the mechanism does not pay'.")
+```
+
+Comparing the two *paths* would not have been enough — two paths can name identical bytes.
+The invariant that matters is that the ensemble contains two different models, so that is
+what gets asserted.
+
+The rebuild then failed the dry run's static f-string check: the worker is rendered with
+`.format()`, so the braces in the new diagnostic prints were being eaten as template
+fields — `unfilled '_dp'`. That check exists because of `NameError: N_DATASETS`, and it
+has now caught the same class of bug twice without a GPU minute spent.
+
 ### What it varies, and what it holds fixed
 
 Everything located so far is frozen — det 0.975, gap 2, min-track 6, ILP 0.4/2.0,

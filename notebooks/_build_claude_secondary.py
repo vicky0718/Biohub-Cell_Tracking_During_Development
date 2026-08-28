@@ -129,6 +129,18 @@ _setup = _s[_a + len('code(r"""'):_b - 3]
 # candidate cache only to read WHICH datasets notes/35 measured.
 _setup = _setup.replace('and any((p / "test").glob("*.zarr")), ["/kaggle/input"])',
                         'and any((p / "train").glob("*.zarr")), ["/kaggle/input"])')
+# The pack and the secondary model ship the SAME layout -- repo/ + weights/ -- so the
+# lifted predicate matches both, and find_dir walks /kaggle/input alphabetically:
+# "biohub-temporal-..." sorts before "biohub-tracking-...". v1 resolved the secondary as
+# the pack. That does not crash. The primary loads the secondary's weights, every arm
+# blends a model with itself, and prediction 4 closes the last lever on a null result that
+# looks clean. So identify the pack by something only the pack has: the wheels it installs.
+_setup = _setup.replace(
+    'PACK = find_dir(lambda p: (p / "repo").is_dir() and (p / "weights").is_dir(),\n'
+    '                ["/kaggle/input"])',
+    'PACK = find_dir(lambda p: (p / "repo").is_dir() and (p / "weights").is_dir()\n'
+    '                and (p / "wheels").is_dir() and "seed314159" not in str(p),\n'
+    '                ["/kaggle/input"])')
 _setup = _setup.replace(
     'TEST = COMP / "test"',
     'TRAIN = COMP / "train"\n'
@@ -275,17 +287,44 @@ def repair_at(g, sc, min_len, gap_max):
 
 
 SEC_PATH = None
-for _root in Path("/kaggle/input").glob("*"):
-    for _c in list(_root.rglob("*.pth")) + list(_root.rglob("*.pt")):
-        if "seed314159" in str(_c) or "temporal" in str(_c).lower():
-            SEC_PATH = _c
-            break
-    if SEC_PATH:
+for _root in sorted(Path("/kaggle/input").rglob("*seed314159*")):
+    _c = sorted(list(_root.rglob("*.pth")) + list(_root.rglob("*.pt"))) if _root.is_dir() \
+        else ([_root] if _root.suffix in (".pth", ".pt") else [])
+    if _c:
+        SEC_PATH = _c[0]
         break
 print("secondary weights:", SEC_PATH, flush=True)
 if SEC_PATH is None:
     raise SystemExit("secondary model not mounted — attach "
                      "pilkwang/biohub-temporal-unet3d-seed314159-v1")
+
+# The load-bearing check, and the reason v1 is being rerun. Both datasets ship the same
+# directory layout, so a mis-resolved PACK silently makes primary and secondary the SAME
+# FILE: the blend then mixes a model with itself, every arm equals the control, and the
+# run reports "no gain" for a mechanism it never actually tested. Comparing the resolved
+# paths is not enough -- two paths can point at identical bytes -- so compare the bytes.
+import hashlib
+def _digest(p):
+    h = hashlib.sha256()
+    with open(p, "rb") as fh:
+        while (b := fh.read(1 << 20)):
+            h.update(b)
+    return h.hexdigest()
+_dp, _ds_ = _digest(WPATH), _digest(SEC_PATH)
+# Concatenation, not an f-string: this worker is rendered with .format(), so a literal
+# brace here is eaten as a template field. The surrounding worker code avoids braces for
+# the same reason, and the static check in the dry run is what caught this.
+print("  primary   " + str(WPATH), flush=True)
+print("            " + _dp[:16] + "  " + str(WPATH.stat().st_size) + " B", flush=True)
+print("  secondary " + str(SEC_PATH), flush=True)
+print("            " + _ds_[:16] + "  " + str(SEC_PATH.stat().st_size) + " B", flush=True)
+if _dp == _ds_:
+    raise SystemExit(
+        "primary and secondary are the SAME WEIGHTS. An ensemble of a model with itself "
+        "returns the control at every weight and would be reported as 'the mechanism does "
+        "not pay'. Check which dataset resolved as PACK.")
+print("two distinct models confirmed", flush=True)
+
 SEC_MODEL, sec_w, sec_d = P.load_model(SEC_PATH, DEV)
 if (sec_w, sec_d) != (window_size, downsample):
     # Different inference grids means the two models index different feature maps, and the
