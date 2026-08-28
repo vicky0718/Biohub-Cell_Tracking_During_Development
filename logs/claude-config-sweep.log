@@ -1,0 +1,199 @@
+/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+
+  validate(nb)
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+Tesla P100-PCIE-16GB, 6.0
+
+  pack           /kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1
+
+  our repo       /kaggle/input/datasets/vigneshnehru/biohub-cell-tracking
+
+  competition    /kaggle/input/competitions/biohub-cell-tracking-during-development
+
+  torch wheels   /kaggle/input/notebooks/vigneshnehru/claude-torch-wheelhouse/wheels
+
+  cand cache     /kaggle/input/notebooks/vigneshnehru/claude-relink-sweep
+
+official scorer clone rc=0
+
+pack wheels ok (46s)
+
+torch wheels ok (137s)
+
+numpy 2.4.6 | torch 2.5.1+cu121 | gpu_ok True
+
+/usr/local/lib/python3.12/dist-packages/dask/array/image.py:7: FutureWarning: `find_available_plugins` is deprecated since version 0.25 and will be removed in version 0.27. The plugin infrastructure of `skimage.io` is deprecated. Instead, use `imageio` or other I/O packages directly.
+
+  from skimage.io import imread as sk_imread
+
+/usr/lib/python3.12/importlib/__init__.py:90: FutureWarning: `reset_plugins` is deprecated since version 0.25 and will be removed in version 0.27. The plugin infrastructure of `skimage.io` is deprecated. Instead, use `imageio` or other I/O packages directly.
+
+  return _bootstrap._gcd_import(name[level:], package, level)
+
+worker numpy 2.4.6 torch 2.5.1+cu121
+
+anchor matches 1 x in 8678 chars
+
+model params 2076706 window 2 downsample (1, 4, 4)
+
+12 datasets: 5 x 44b6, 7 x 6bba
+
+blend 0.15 | thresholds [0.99, 0.985, 0.975, 0.96875] | 6 post combos = 24 cells
+
+  44b6_144b256d  d0.99 1.0631  d0.985 1.0610  d0.975 1.0584  d0.96875 1.0577   241s
+
+  44b6_18ced818  d0.99 0.8737  d0.985 0.8854  d0.975 0.8922  d0.96875 0.8917   531s
+
+  44b6_1d530831  d0.99 0.8235  d0.985 0.8428  d0.975 0.8552  d0.96875 0.8549   296s
+
+  44b6_267148e4  d0.99 0.8172  d0.985 0.8354  d0.975 0.8409  d0.96875 0.8365   235s
+
+  44b6_3bb3690f  d0.99 0.9589  d0.985 0.9479  d0.975 0.9484  d0.96875 0.9431   205s
+
+  6bba_07e24132  d0.99 0.8949  d0.985 0.8905  d0.975 0.8868  d0.96875 0.8861   268s
+
+  6bba_13f19531  d0.99 0.9764  d0.985 0.9757  d0.975 0.9748  d0.96875 0.9747   161s
+
+  6bba_15403b9a  d0.99 0.9926  d0.985 0.9923  d0.975 0.9923  d0.96875 0.9919   162s
+
+  6bba_20852818  d0.99 0.9488  d0.985 0.9428  d0.975 0.9429  d0.96875 0.9428   187s
+
+  6bba_2540cd90  d0.99 1.0102  d0.985 1.0096  d0.975 1.0093  d0.96875 1.0094   152s
+
+  6bba_48816121  d0.99 0.9294  d0.985 0.9262  d0.975 0.9270  d0.96875 0.9257   284s
+
+  6bba_5dfe9ad1  d0.99 0.9577  d0.985 0.9573  d0.975 0.9572  d0.96875 0.9553   274s
+
+worker done in 3008 s
+
+worker exited 0 after 3010 s
+
+12 datasets, 4 thresholds x 6 post combos = 24 cells
+
+
+
+det             m0g1      m3g1      m6g1      m0g2      m6g2      m3g2      nodes       cand
+
+--------------------------------------------------------------------------------------------
+
+0.99          0.9499    0.9499    0.9490    0.9510    0.9519    0.9510    260,477    269,955
+
+0.985         0.9500    0.9500    0.9500    0.9508    0.9522    0.9508    266,912    276,944
+
+0.975         0.9514    0.9514    0.9519    0.9515    0.9535    0.9515    273,077    284,055
+
+0.96875       0.9503    0.9503    0.9502    0.9506    0.9526    0.9506    274,992    286,594
+
+
+
+============================================================================================
+
+PREDICTION GRADING
+
+============================================================================================
+
+
+
+1. det=0.99, min_len=0, gap=1 reproduces notes/38's 0.9499 (+-0.002)
+
+   d0.99_m0_g1 = 0.9499 vs 0.9499  ->  PASS
+
+
+
+2. a looser DET_THRESHOLD changes the node count by more than 2%
+
+   det=0.985     nodes   266,912  vs 260,477  (+2.47%)
+
+   det=0.975     nodes   273,077  vs 260,477  (+4.84%)
+
+   det=0.96875   nodes   274,992  vs 260,477  (+5.57%)
+
+   tightest -> loosest: +5.57%  ->  PASS
+
+
+
+3. short-track pruning improves the score at some min_len
+
+   det=0.99: m0 0.9499   m3 0.9499 (+0.0000)   m6 0.9490 (-0.0009)
+
+   det=0.985: m0 0.9500   m3 0.9500 (+0.0000)   m6 0.9500 (+0.0000)
+
+   det=0.975: m0 0.9514   m3 0.9514 (+0.0000)   m6 0.9519 (+0.0005)
+
+   det=0.96875: m0 0.9503   m3 0.9503 (+0.0000)   m6 0.9502 (-0.0001)
+
+   ->  PASS
+
+
+
+4. the best cell beats the current submission (0.9499) by more than 0.001
+
+   d0.975_m6_g2         0.9535  (+0.0036)
+
+   d0.96875_m6_g2       0.9526  (+0.0027)
+
+   d0.985_m6_g2         0.9522  (+0.0023)
+
+   d0.99_m6_g2          0.9519  (+0.0020)
+
+   d0.975_m6_g1         0.9519  (+0.0020)
+
+   d0.975_m3_g2         0.9515  (+0.0016)
+
+   best d0.975_m6_g2 at +0.0036  ->  PASS
+
+
+
+5. the best DET_THRESHOLD is not 0.99
+
+   det=0.99      best cell 0.9519
+
+   det=0.985     best cell 0.9522
+
+   det=0.975     best cell 0.9535
+
+   det=0.96875   best cell 0.9526
+
+   best threshold 0.975  ->  PASS
+
+
+
+============================================================================================
+
+BEST CELL: d0.975_m6_g2 at 0.9535   (+0.0036 vs the current submission)
+
+  nodes 267,338  edges 255,565  mislink 82  gap 16  detect 112
+
+============================================================================================
+
+/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+
+/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+
+[NbConvertApp] Writing 37993 bytes to __notebook__.ipynb
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+
+[NbConvertApp] Writing 364740 bytes to __results__.html
