@@ -1,0 +1,239 @@
+/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+
+  validate(nb)
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+
+0.00s - to python to disable frozen modules.
+
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+
+Tesla P100-PCIE-16GB, 6.0
+
+  pack           /kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1
+
+  our repo       /kaggle/input/datasets/vigneshnehru/biohub-cell-tracking
+
+  competition    /kaggle/input/competitions/biohub-cell-tracking-during-development
+
+  torch wheels   /kaggle/input/notebooks/vigneshnehru/claude-torch-wheelhouse/wheels
+
+  cand cache     /kaggle/input/notebooks/vigneshnehru/claude-relink-sweep
+
+official scorer clone rc=0
+
+pack wheels ok (53s)
+
+torch wheels ok (192s)
+
+numpy 2.4.6 | torch 2.5.1+cu121 | gpu_ok True
+
+/usr/local/lib/python3.12/dist-packages/dask/array/image.py:7: FutureWarning: `find_available_plugins` is deprecated since version 0.25 and will be removed in version 0.27. The plugin infrastructure of `skimage.io` is deprecated. Instead, use `imageio` or other I/O packages directly.
+
+  from skimage.io import imread as sk_imread
+
+/usr/lib/python3.12/importlib/__init__.py:90: FutureWarning: `reset_plugins` is deprecated since version 0.25 and will be removed in version 0.27. The plugin infrastructure of `skimage.io` is deprecated. Instead, use `imageio` or other I/O packages directly.
+
+  return _bootstrap._gcd_import(name[level:], package, level)
+
+worker numpy 2.4.6 torch 2.5.1+cu121
+
+anchor matches 1 x in 8678 chars
+
+model params 2076706 window 2 downsample (1, 4, 4)
+
+12 datasets: 5 x 44b6, 7 x 6bba
+
+blend weight 0.4 | ILP settings 8
+
+  44b6_144b256d  d2.0 1.0608  d3.0 1.0635  d4.0 1.0660  d6.0 1.0692  d3.0 1.0640  d4.0 1.0669  d2.0 1.0693  d1.4 1.0592   pred 41s total 185s
+
+  44b6_18ced818  d2.0 0.8674  d3.0 0.8289  d4.0 0.7857  d6.0 0.7924  d3.0 0.8374  d4.0 0.7869  d2.0 0.8668  d1.4 0.8914   pred 59s total 634s
+
+  44b6_1d530831  d2.0 0.8127  d3.0 0.7887  d4.0 0.7974  d6.0 0.7997  d3.0 0.7927  d4.0 0.7579  d2.0 0.8144  d1.4 0.8177   pred 44s total 295s
+
+  44b6_267148e4  d2.0 0.8619  d3.0 0.8664  d4.0 0.8560  d6.0 0.7745  d3.0 0.8710  d4.0 0.8616  d2.0 0.8644  d1.4 0.8603   pred 41s total 195s
+
+  44b6_3bb3690f  d2.0 0.9613  d3.0 0.9583  d4.0 0.9325  d6.0 0.9250  d3.0 0.9519  d4.0 0.9429  d2.0 0.9634  d1.4 0.9599   pred 43s total 149s
+
+  6bba_07e24132  d2.0 0.8920  d3.0 0.8894  d4.0 0.8946  d6.0 0.9020  d3.0 0.8879  d4.0 0.8934  d2.0 0.8912  d1.4 0.8707   pred 43s total 241s
+
+  6bba_13f19531  d2.0 0.9751  d3.0 0.9832  d4.0 0.9854  d6.0 0.9893  d3.0 0.9823  d4.0 0.9853  d2.0 0.9749  d1.4 0.9672   pred 40s total 83s
+
+  6bba_15403b9a  d2.0 0.9749  d3.0 0.9767  d4.0 0.9744  d6.0 0.9848  d3.0 0.9772  d4.0 0.9752  d2.0 0.9748  d1.4 0.9726   pred 38s total 83s
+
+  6bba_20852818  d2.0 0.9450  d3.0 0.9374  d4.0 0.9258  d6.0 0.9322  d3.0 0.9329  d4.0 0.9266  d2.0 0.9455  d1.4 0.9421   pred 37s total 116s
+
+  6bba_2540cd90  d2.0 1.0101  d3.0 1.0103  d4.0 1.0105  d6.0 1.0113  d3.0 1.0104  d4.0 1.0108  d2.0 1.0101  d1.4 1.0096   pred 36s total 65s
+
+  6bba_48816121  d2.0 0.9367  d3.0 0.9302  d4.0 0.9230  d6.0 0.9260  d3.0 0.9221  d4.0 0.9236  d2.0 0.9345  d1.4 0.9318   pred 42s total 265s
+
+  6bba_5dfe9ad1  d2.0 0.9526  d3.0 0.9568  d4.0 0.9557  d6.0 0.9313  d3.0 0.9558  d4.0 0.9549  d2.0 0.9530  d1.4 0.9518   pred 43s total 266s
+
+worker done in 2590 s
+
+worker exited 0 after 2592 s
+
+12 datasets, 8 ILP settings, blend weight 0.4
+
+
+
+arm                     score   vs n38   edge_J   div_J   forks  mislink    gap  detect     edges
+
+--------------------------------------------------------------------------------------------
+
+a0.4_d2.0              0.9433  -0.0000   0.9383  0.0263   1,541       96     22     116   244,742
+
+a0.4_d3.0              0.9415  -0.0018   0.9341  0.0278   1,229       89     16     161   235,462
+
+a0.4_d4.0              0.9368  -0.0065   0.9269  0.0323     992       83     13     223   226,139
+
+a0.4_d6.0              0.9344  -0.0089   0.9199  0.0400     714       64      8     312   209,403
+
+a0.6_d3.0              0.9400  -0.0033   0.9310  0.0400   1,891       82     15     179   234,527
+
+a0.8_d4.0              0.9386  -0.0047   0.9266  0.0465   1,517       75     13     230   223,602
+
+a0.25_d2.0             0.9435  +0.0002   0.9377  0.0370     669      103     22     115   244,905
+
+a0.4_d1.4              0.9378  -0.0055   0.9345  0.0227   1,872      111     23     104   250,011
+
+a0.4_d2.0+repair       0.9492  +0.0000   0.9444  0.0263   1,541       79     21     117   247,182
+
+a0.4_d3.0+repair       0.9478  -0.0014   0.9405  0.0278   1,229       76     16     158   237,096
+
+a0.4_d4.0+repair       0.9435  -0.0057   0.9337  0.0323     992       69     13     220   227,311
+
+a0.4_d6.0+repair       0.9387  -0.0105   0.9241  0.0400     714       55      8     313   210,067
+
+a0.6_d3.0+repair       0.9472  -0.0020   0.9381  0.0408   1,891       67     15     177   235,907
+
+a0.8_d4.0+repair       0.9441  -0.0051   0.9320  0.0465   1,517       64     13     227   224,562
+
+a0.25_d2.0+repair      0.9506  +0.0014   0.9450  0.0370     669       84     21     114   247,599
+
+a0.4_d1.4+repair       0.9458  -0.0034   0.9427  0.0227   1,872       86     21     108   253,165
+
+
+
+============================================================================================
+
+PREDICTION GRADING
+
+============================================================================================
+
+
+
+1. the cached blended candidates re-solve to notes/38's w0.4 numbers
+
+   div_J  0.0263 vs 0.0263   PASS
+
+   edge_J 0.9444 vs 0.9444   PASS
+
+
+
+2. raising the disappearance penalty raises the fork count
+
+   dis=1.4:1,872  dis=2:1,541  dis=3:1,229  dis=4:992  dis=6:714
+
+   ->  FAIL — forks do not track the penalty
+
+
+
+3. some setting recovers div_J above 0.05 (the unblended control had 0.069)
+
+   a0.8_d4.0+repair     div_J 0.0465   forks 1,517
+
+   a0.8_d4.0            div_J 0.0465   forks 1,517
+
+   a0.6_d3.0+repair     div_J 0.0408   forks 1,891
+
+   a0.6_d3.0            div_J 0.0400   forks 1,891
+
+   a0.4_d6.0+repair     div_J 0.0400   forks 714
+
+   best a0.8_d4.0+repair at 0.0465  ->  FAIL
+
+   The blend removed the EVIDENCE for divisions, not just the incentive: no
+
+   termination penalty in this grid brings them back. That closes the
+
+   'trade them back' idea and makes w=0.15 the operating point notes/38
+
+   already found, not a compromise to be improved on.
+
+
+
+4. the best blended arm beats notes/38's best (0.9499) by more than 0.001
+
+   a0.25_d2.0+repair    0.9506  (+0.0007 vs notes/38 best)
+
+   a0.4_d2.0+repair     0.9492  (-0.0007 vs notes/38 best)
+
+   a0.4_d3.0+repair     0.9478  (-0.0021 vs notes/38 best)
+
+   a0.6_d3.0+repair     0.9472  (-0.0027 vs notes/38 best)
+
+   a0.4_d1.4+repair     0.9458  (-0.0041 vs notes/38 best)
+
+   best a0.25_d2.0+repair at +0.0007  ->  FAIL
+
+   Re-locating the ILP with the blend on does not beat simply using a smaller
+
+   blend weight. The two levers are substitutes, not complements, and w=0.15
+
+   at the notes/36 weights stands.
+
+
+
+5. the optimum is interior to the disappearance grid
+
+   dis=1.4:0.9458  dis=2:0.9492  dis=3:0.9478  dis=4:0.9435  dis=6:0.9387
+
+   best dis=2  ->  PASS — interior
+
+
+
+============================================================================================
+
+BEST ARM: a0.25_d2.0+repair at 0.9506
+
+  vs notes/38 no-blend control (0.9462):  +0.0044
+
+  vs notes/38 best w0.15      (0.9499):  +0.0007   <- the delta that matters
+
+  div_J 0.0370  edge_J 0.9450  forks 669
+
+  INSIDE NOISE vs notes/38. The blend at w=0.15 with the notes/36 weights
+
+  stands; re-locating the ILP does not add. Submit that, or move on to the
+
+  temporal linker (notes/33 §1), which is still untouched.
+
+============================================================================================
+
+/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+
+/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+
+[NbConvertApp] Writing 40638 bytes to __notebook__.ipynb
+
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+
+[NbConvertApp] Writing 369256 bytes to __results__.html
