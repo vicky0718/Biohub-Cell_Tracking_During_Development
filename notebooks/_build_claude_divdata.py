@@ -171,7 +171,21 @@ if r.returncode != 0:
 
 sys.path.insert(0, str(REPO))
 import numpy as np
-from harness.tracks import read_geff, read_scale, read_estimated_nodes
+
+# Load harness/tracks.py DIRECTLY, bypassing harness/__init__.py.
+#
+# v1 died here. The pack wheels replace numpy underneath an interpreter that has already
+# imported it, so the image's scipy no longer matches -- and `import harness.tracks` runs
+# `harness/__init__.py`, which imports `purescore`, which imports `scipy.sparse`. Every
+# other notebook in this project dodges that by doing its work in a subprocess with a
+# fresh interpreter. This one does not need to: it never scores anything, so it never
+# needs scipy. Loading the one module by path is the smaller, more precise fix, and it
+# keeps the notebook free of the .format() brace hazard a worker template carries.
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location("_tracks", Path(REPO) / "harness" / "tracks.py")
+_tracks = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_tracks)
+read_geff, read_estimated_nodes = _tracks.read_geff, _tracks.read_estimated_nodes
 print("ready", flush=True)
 """)
 
