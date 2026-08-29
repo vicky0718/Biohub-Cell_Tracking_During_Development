@@ -55,7 +55,7 @@ from pathlib import Path
 OUT = Path("/workspace/biohub-cell_tracking_during_development/notebooks/claude_zhpilot.ipynb")
 N_EVAL = 12          # competition datasets for the transfer test
 N_VAL_CLIPS = 12     # zh001r clips held out of training
-EPOCHS = 8
+EPOCHS = 16
 CELLS = []
 Q3 = chr(39) * 3
 
@@ -296,14 +296,33 @@ def batch_of(idx):
     y = torch.from_numpy(ys).unsqueeze(1).to(DEV)
     return x, y
 
+def augment(x, y):
+    # v1's val loss bottomed at epoch 1 and rose for six more. That is a diversity
+    # problem, not a label problem: zh001r is 1,440 volumes from ONE embryo against the
+    # competition's 19,900 from two, and dense labelling does not supply diversity.
+    # Flips and yx-rotations are EXACT symmetries of an isotropic cubic grid, so they add
+    # views without inventing structure. Image and target get the identical transform.
+    dims = list()
+    for d in (2, 3, 4):
+        if int(rng.integers(0, 2)):
+            dims.append(d)
+    if dims:
+        x = torch.flip(x, dims=dims); y = torch.flip(y, dims=dims)
+    k = int(rng.integers(0, 4))
+    if k:
+        x = torch.rot90(x, k, dims=(3, 4)); y = torch.rot90(y, k, dims=(3, 4))
+    return x, y
+
 HIST = list()
+BEST = dict(val=float("inf"), epoch=-1)
+CKPT = WORK / "zh_detector.pth"
 for ep in range(EPOCHS):
     model.train()
     order = rng.permutation(len(pairs))
     tot, nb = 0.0, 0
     for i in range(0, len(order) - BATCH + 1, BATCH):
         idx = [pairs[j] for j in order[i:i + BATCH]]
-        x, y = batch_of(idx)
+        x, y = augment(*batch_of(idx))
         # naive BCE: dense labels make the positive-unlabelled machinery unnecessary,
         # and using it here would reintroduce the very assumption this run is testing.
         loss = naive_loss(model(x), y)
@@ -312,20 +331,37 @@ for ep in range(EPOCHS):
     model.eval()
     vtot, vnb = 0.0, 0
     with torch.no_grad():
+        # No augmentation on validation -- the val number has to mean the same thing
+        # every epoch or best-on-val selects on noise.
         for c in val_clips[:4]:
             for f in range(0, N_FR, 5):
                 x, y = batch_of([(c, f)])
                 vtot += float(naive_loss(model(x), y).item()); vnb += 1
-    HIST.append(dict(epoch=ep, train=tot / max(nb, 1), val=vtot / max(vnb, 1)))
+    v = vtot / max(vnb, 1)
+    HIST.append(dict(epoch=ep, train=tot / max(nb, 1), val=v))
+    if v < BEST["val"]:
+        BEST = dict(val=v, epoch=ep)
+        torch.save(model.state_dict(), CKPT)
     print("epoch " + str(ep) + "  train " + format(tot / max(nb, 1), ".5f")
-          + "  val " + format(vtot / max(vnb, 1), ".5f")
-          + "  " + str(int(time.time() - T0)) + "s", flush=True)
+          + "  val " + format(v, ".5f") + "  " + str(int(time.time() - T0)) + "s"
+          + ("  *best" if BEST["epoch"] == ep else ""), flush=True)
 
-torch.save(model.state_dict(), WORK / "zh_detector.pth")
+# Evaluate the BEST checkpoint, not the last. v1 would have scored its epoch-7 model,
+# which its own val curve showed was the worst of the eight.
+if BEST["epoch"] < 0:
+    raise SystemExit("no checkpoint was ever better than inf; training did not run")
+model.load_state_dict(torch.load(CKPT, map_location=DEV))
+model.eval()
+print("evaluating epoch " + str(BEST["epoch"]) + " (val "
+      + format(BEST["val"], ".5f") + ")", flush=True)
 
 # ---------------------------------------------------------------- held-out zh001r
-def peaks_of(prob, sep_um=4.0):
-    return peaks_from_prob(prob, ISO_UM, sep_um)
+def peaks_of(prob, sep_um=4.0, cap=800):
+    # peaks_from_prob returns (coords, scores). v1 indexed the tuple and died after 370 s
+    # of training, so the unpack lives here and no call site can repeat it. The cap is
+    # what the docstring says does the real work of bounding a node budget.
+    coords, _scores = peaks_from_prob(prob, ISO_UM, sep_um, cap=cap)
+    return coords
 
 zh_rec = list()
 for c in val_clips:
@@ -408,7 +444,7 @@ for name in names:
           + " rec=" + format(row.get("dog_recall", float("nan")), ".4f")
           + "  " + str(int(time.time() - t0)) + "s", flush=True)
     (WORK / "zhpilot.json").write_text(json.dumps(
-        dict(history=HIST, zh_recall=ZH_RECALL, zh_per_clip=zh_rec,
+        dict(history=HIST, best=BEST, zh_recall=ZH_RECALL, zh_per_clip=zh_rec,
              rows=ROWS, datasets=[r["name"] for r in ROWS]), default=float))
 
 print("worker done in " + str(int(time.time() - T0)) + " s", flush=True)
@@ -439,9 +475,16 @@ D = json.loads((WORK / "zhpilot.json").read_text())
 H, ROWS = D["history"], D["rows"]
 ZH_RECALL = D["zh_recall"]
 
-print("training")
+B = D.get("best") or {}
+print("training  (evaluated at epoch "
+      + str(B.get("epoch", "?")) + ", the val minimum)")
 for h in H:
-    print(f"  epoch {h['epoch']:>2}  train {h['train']:.5f}  val {h['val']:.5f}")
+    star = "  *" if h["epoch"] == B.get("epoch") else ""
+    print(f"  epoch {h['epoch']:>2}  train {h['train']:.5f}  val {h['val']:.5f}{star}")
+vals = [h["val"] for h in H]
+if vals and B.get("epoch", 0) < len(vals) - 1:
+    print(f"  val rose {vals[-1] - min(vals):+.5f} after epoch {B.get('epoch')} — "
+          "1,440 volumes from one embryo is the binding constraint, not labels")
 
 def col(k):
     v = [r[k] for r in ROWS if k in r and r[k] == r[k]]
