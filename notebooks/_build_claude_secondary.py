@@ -325,7 +325,63 @@ if _dp == _ds_:
         "not pay'. Check which dataset resolved as PACK.")
 print("two distinct models confirmed", flush=True)
 
-SEC_MODEL, sec_w, sec_d = P.load_model(SEC_PATH, DEV)
+# checkpoint_last.pth is a FULL TRAINING checkpoint: model_state_dict alongside
+# optimizer_state_dict, epoch, model_config, training_config. The size gap the digest
+# check printed -- 25 MB against the primary's 8 MB, same architecture -- was the tell.
+# P.load_model wants a bare state dict and reads config.json from the weights' own parent,
+# so normalise into that layout and call the pack's loader UNCHANGED rather than
+# reconstructing the architecture here. deepcenter's first load failed by reconstructing.
+import torch as _t
+try:
+    _ck = _t.load(SEC_PATH, map_location="cpu", weights_only=True)
+except Exception as _e:
+    # This should not fire. The checkpoint's pickle stream was disassembled locally
+    # (pickletools.genops, which walks opcodes without executing them) and references
+    # exactly four globals -- collections.OrderedDict, torch._utils._rebuild_tensor_v2,
+    # torch.FloatStorage, torch.LongStorage -- all on the weights_only allowlist. No
+    # numpy, no custom classes. The branch stays because a future dataset version could
+    # differ, and an unrestricted load would then be a real escalation: it executes
+    # whatever the pickle names.
+    print("weights_only load refused (" + type(_e).__name__ + "), retrying unrestricted",
+          flush=True)
+    _ck = _t.load(SEC_PATH, map_location="cpu", weights_only=False)
+_keys = sorted(str(k) for k in _ck.keys())
+print("checkpoint keys: " + ", ".join(_keys)[:400], flush=True)
+if "model_state_dict" not in _ck:
+    raise SystemExit("secondary checkpoint has no model_state_dict; keys were "
+                     + ", ".join(_keys))
+
+# Config precedence, loosest to tightest: the pack's defaults (applied inside load_model),
+# then any config.json shipped beside the secondary, then the checkpoint's own record of
+# what was actually built. The last is authoritative -- it was written by the code that
+# constructed the weights.
+# dict(), not an empty brace pair -- and a loop below, not a dict comprehension. This
+# worker is rendered with .format(), so a literal brace is read as a template field: an
+# empty pair becomes positional field 0 and blows up before a dataset is read. The comment
+# saying so cannot contain one either, which is how this line got written twice.
+_cfg = dict()
+_own = SEC_PATH.parent / "config.json"
+if _own.is_file():
+    _cfg.update(json.loads(_own.read_text()))
+    print("secondary config.json: " + json.dumps(_cfg)[:400], flush=True)
+_ARCH = ("unet_out_channels", "unet_layers", "window_size", "downsample",
+         "downsample_factor")
+for _k in ("model_config", "training_config"):
+    _v = _ck.get(_k)
+    if isinstance(_v, dict):
+        print(_k + ": " + json.dumps(_v, default=str)[:500], flush=True)
+        for _kk in _ARCH:
+            if _kk in _v:
+                _cfg[_kk] = _v[_kk]
+_norm = Path("/kaggle/working/sec_model")
+_norm.mkdir(parents=True, exist_ok=True)
+_t.save(_ck["model_state_dict"], _norm / "edge_predictor_best.pth")
+(_norm / "config.json").write_text(json.dumps(_cfg))
+print("normalised secondary config: " + json.dumps(_cfg, default=str)[:400], flush=True)
+del _ck
+
+SEC_MODEL, sec_w, sec_d = P.load_model(_norm / "edge_predictor_best.pth", DEV)
+print("secondary params " + str(sum(p.numel() for p in SEC_MODEL.parameters())), flush=True)
 if (sec_w, sec_d) != (window_size, downsample):
     # Different inference grids means the two models index different feature maps, and the
     # blend would pair unrelated cells while still producing plausible numbers.
