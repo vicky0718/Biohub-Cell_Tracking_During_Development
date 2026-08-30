@@ -466,7 +466,8 @@ for r in R:
 
 SN, PN = col("n_spot"), col("n_pack")
 SR, PR = col("spot_recall"), col("pack_recall")
-SK, PK = col("spot_per_k"), col("pack_per_k")
+SK, PK = col("spot_per_k"), col("pack_per_k")   # per-dataset means: NOT comparable
+PK_RM = 1000.0 * PR / max(PN, 1)                # ratio of means: the honest one
 print(f"\n{'':<18}{'spotiflow':>14}{'pack':>14}")
 for lbl, s, p in (("nodes", SN, PN), ("node recall", SR, PR),
                   ("recall / 1k nodes", SK, PK),
@@ -527,10 +528,26 @@ if not ok3:
     print("   Sparse, not selective. No budget trim rescues a detector that has already")
     print("   lost the annotated cells.")
 
-print("\n4. recall per 1,000 nodes is at least 3x ours  <- the crux")
-ok4 = SK == SK and PK == PK and PK > 0 and SK > 3.0 * PK
-print(f"   spotiflow {SK:.4f} vs pack {PK:.4f}  ({SK/max(PK,1e-9):.1f}x)"
-      f"  ->  {'PASS' if ok4 else 'FAIL'}")
+print("\n4. spotiflow beats the pack at MATCHED node count  <- the crux")
+# NOT recall-per-node at each detector's own operating point. That metric rises
+# mechanically as nodes fall, so comparing 3,299 nodes against 24,605 measures the
+# node count, not selectivity -- and averaging per-dataset ratios whose denominators
+# span 149..10,174 lets one small-n dataset carry the mean. Both errors made v5 report
+# a 3.4x PASS that the curve then reversed. Compare at a fixed denominator instead.
+if len(CURVE) >= 2:
+    xs = [c[1] for c in CURVE]; ys = [c[2] for c in CURVE]
+    o = sorted(range(len(xs)), key=lambda i: xs[i])
+    xs = [xs[i] for i in o]; ys = [ys[i] for i in o]
+    at_pack = float(np.interp(PN, xs, ys))
+    ok4 = at_pack > PR
+    print(f"   spotiflow at the pack's {PN:,.0f} nodes: {at_pack:.4f} vs pack {PR:.4f}"
+          f"  ->  {'PASS' if ok4 else 'FAIL'}")
+    sm = 1000 * max(ys) / max(max(xs), 1)
+    print(f"   (ratio-of-means rec/1k at that point {sm:.4f} vs pack {PK_RM:.4f};"
+          f" the per-dataset mean-of-ratios, {SK:.4f}, is NOT comparable)")
+else:
+    ok4 = False
+    print("   NOT GRADED — need at least two curve points")
 if not ok4:
     print("   Predictions 2 and 3 can both pass while this fails, and that is precisely")
     print("   the case where a trim looks attractive and is worthless: fewer nodes, but")
