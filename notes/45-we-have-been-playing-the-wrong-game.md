@@ -21,6 +21,31 @@ max_cells_per_frame: int = 25     sparse_max_cap: int = 8
 
 **They predict 1–25 cells per frame. We predict about 220.**
 
+> **Correction (same day).** That sentence is wrong, and it is wrong in the way this note
+> itself warns about: I read defaults off a config dataclass and reported them as pipeline
+> behaviour. r35's detector docstring says the opposite — *"By default **no**
+> density-model cap: Spotiflow emits hundreds of candidates per frame, and TinyUNet sparse
+> hybrid (6–10/frame) ranked by intensity yields **0 recall** even with correct axes."*
+>
+> The budget is applied **after** detection, and only on the sparse embryo, in
+> `predict_total_node_budget`:
+>
+> ```python
+> budget = cells_per_frame · n_frames · 1.26,  clipped to [50, n_frames · 7]
+> # cells_per_frame estimates the ANNOTATION density: gt.n_nodes / n_unique_frames
+> ```
+>
+> So 50–700 nodes on a 100-frame `44b6` sample, against `N_total ≈ 24,000` — multiplier
+> ≈ 1.097. The mechanism in §1 and §2 below is unchanged and is if anything sharper: the
+> target is the **annotation** count, not the true cell count, and it is applied
+> adaptively where the annotation is sparse enough to survive the trim. Our own logs agree
+> that it is: `44b6` datasets carry 50–170 ground-truth nodes over 100 frames.
+>
+> What this changes downstream: **a trim alone is not the recipe.** It needs a detector
+> selective enough that the kept nodes are the annotated ones — r35's docstring records
+> zero recall when a weak detector was capped hard. `claude_spotiflow` tests exactly that,
+> and `claude_budget`'s uniform NMS thinning is the blunt version of the same idea.
+
 ---
 
 ## 1. The scorer, read rather than assumed
