@@ -217,16 +217,43 @@ print(f"torch wheels {'ok' if ok2 else 'FAILED'} ({time.time()-t0:.0f}s)")
 
 t0 = time.time()
 R35_WH = R35 / "wheels"
-ok3 = pip_install(["spotiflow"], extra=("--no-index", f"--find-links={R35_WH}",
-                                        f"--find-links={TORCH_WH}"))
-print(f"spotiflow {'ok' if ok3 else 'FAILED'} ({time.time()-t0:.0f}s)")
-if not ok3:
-    # --no-deps as a fallback: a resolver conflict on a transitive pin should not end the
-    # run before we have learned whether the model loads at all.
-    print("retrying spotiflow with --no-deps")
-    ok3 = pip_install(["spotiflow"], extra=("--no-index", "--no-deps",
-                                            f"--find-links={R35_WH}"))
-    print(f"spotiflow --no-deps {'ok' if ok3 else 'FAILED'}")
+# v1 asked pip to RESOLVE spotiflow and got ResolutionImpossible: the image ships
+# torchvision 0.25.0+cu128 and spotiflow pins an incompatible one. Falling back to
+# --no-deps on spotiflow ALONE then installed it and left `lightning` missing, so the
+# import died one line later.
+#
+# r35's wheel set is a complete offline closure — 45 wheels — so pass every one
+# explicitly with --no-deps and let pip INSTALL rather than resolve. Checked against the
+# pack's stack: zarr is the only overlap (no numpy, scipy, torch or torchvision), and it
+# is excluded because the pack's copy already works and every zarr read here uses the
+# pack's convention.
+_wheels = [str(p) for p in sorted(R35_WH.glob("*.whl")) if not p.name.startswith("zarr-")]
+print(f"installing {len(_wheels)} r35 wheels with --no-deps (zarr excluded)")
+ok3 = pip_install(_wheels, extra=("--no-index", "--no-deps", f"--find-links={R35_WH}"))
+print(f"spotiflow stack {'ok' if ok3 else 'FAILED'} ({time.time()-t0:.0f}s)")
+
+# v2 got the wheels in and then died importing them. The image ships torchvision
+# 0.25.0+cu128, built against a different torch than the 2.5.1+cu121 the P100 needs, so
+# its C extension will not load:
+#
+#   AttributeError: partially initialized module 'torchvision' has no attribute
+#   'extension' (most likely due to a circular import)
+#
+# and the chain that hits it is spotiflow -> lightning -> torchmetrics ->
+# functional.image.arniqa -> torchvision. Nothing in either wheel set carries a matching
+# torchvision, so install the one that PAIRS with torch 2.5.1. Internet is on for this
+# probe; a submission notebook would need this wheel published to a wheelhouse first,
+# exactly as torch itself was.
+t0 = time.time()
+ok4 = pip_install(["torchvision==0.20.1"],
+                  extra=("--index-url", "https://download.pytorch.org/whl/cu121"))
+print(f"torchvision 0.20.1 {'ok' if ok4 else 'FAILED'} ({time.time()-t0:.0f}s)")
+_tv = sh(sys.executable, "-c",
+         "import torch, torchvision; from torchvision import transforms; "
+         "print('torch', torch.__version__, '| torchvision', torchvision.__version__)")
+print(_tv.stdout.strip() or _tv.stderr.strip()[-800:])
+if _tv.returncode != 0:
+    print("!! torchvision still broken — spotiflow cannot import, prediction 1 fails")
 
 probe = sh(sys.executable, "-c",
            "import numpy, torch, zarr, scipy; ok=False\n"
@@ -270,10 +297,26 @@ from harness.tracks import read_geff, read_scale, read_estimated_nodes
 from pipeline.detector import recall_at_budget
 from pipeline.spotiflow import load as spot_load, detect_volume, node_budget
 
+# BOTH paths. `repo/src` holds the `biohub_tracking` package that the entry script
+# imports; `repo/scripts` holds the script itself. v3 added only the second and died on
+# `ModuleNotFoundError: No module named 'biohub_tracking'` seven seconds in, because I
+# wrote this block from memory instead of copying the one that already works in
+# _build_claude_widecv.py.
+sys.path.insert(0, str(PACK / "repo" / "src"))
 sys.path.insert(0, str(PACK / "repo" / "scripts"))
 import types
+# The pack's entry point is a SCRIPT, not a package, and it imports a `dataspec` module
+# that exists only in its authors' environment, so a synthetic one has to be injected.
+#
+# This block is copied VERBATIM from _build_claude_widecv.py, which works. Three launches
+# of this notebook died here because I retyped it from memory instead: first the missing
+# `repo/src` path, then WEIGHTS_PATH/DATASET_PATH without USERNAME and INTERACTIVE. The
+# working copy even carries a comment saying to copy rather than retype. Fixing a
+# known-good preamble one attribute per launch is the expensive way to rediscover it.
 _ds = types.ModuleType("dataspec")
+_ds.USERNAME = "claude"; _ds.INTERACTIVE = False
 _ds.WEIGHTS_PATH = PACK / "weights"; _ds.DATASET_PATH = TRAIN
+_ds.PREDICTIONS_PATH = WORK / "predictions"
 sys.modules["dataspec"] = _ds
 import predict_unet_transformer as P
 
