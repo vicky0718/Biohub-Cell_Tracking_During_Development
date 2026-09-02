@@ -400,7 +400,11 @@ import numpy as np, json, math
 D = json.loads((WORK / "topk.json").read_text())
 S, N, E, C = D["summary"], D["nodes"], D["edges"], D["candidates"]
 ARMS, DS, PER = D["arms"], D["datasets"], D["per_dataset"]
-POOLS, POST = D["pool_grid"], [tuple(g) for g in D["post_grid"]]
+# The writer renames this key to "det_grid"; v1 renamed the writer and not the
+# reader, so the worker finished all 7,771 s of real work and the analysis cell
+# died on a KeyError. Accept either, so a rename can never throw away a run.
+POOLS = D.get("det_grid") or D["pool_grid"]
+POST = [tuple(g) for g in D["post_grid"]]
 ANCHOR = "p0.975_m6_g2"        # det 0.975 at the default kernel: what we run today
 WIDECV = 0.9356                 # claude_budget's p3.0_m6_g2, same chain, n=36
 NN = len(PER)
