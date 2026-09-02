@@ -1,4 +1,14 @@
-# det_threshold 0.999: the largest measured effect this project has produced
+# ~~det_threshold 0.999: the largest measured effect this project has produced~~
+
+> **❌ REFUTED by `notes/49`. `claude_submit_topk` scored 0.863 against the 0.901 incumbent
+> — a −0.038 miss on a predicted +0.006 to +0.010.** The train numbers below are correct;
+> the inference from them is not. `p = 0.0006` pools 36 crops of **two** embryos, and the
+> test set shares no embryo_id with train (`notes/07` §3), so the honest sample is §2's two
+> embryo means (+0.0028, +0.0085) — n=2, with a spread as large as the effect. Section 3's
+> claim that 0.999 is "genuinely interior" is also wrong: its neighbour at 0.9999 costs
+> −0.18, so it is a shoulder, and detector logits are not calibrated across embryos.
+> **`DET_THRESHOLD` stays at 0.975.** Read this note as the record of a well-powered test of
+> the wrong population.
 
 `claude_topk` swept `det_threshold` past 0.99 for the first time. **0.999 beats the
 submitted 0.975 on 28 of 36 datasets, sign test p = 0.0006.**

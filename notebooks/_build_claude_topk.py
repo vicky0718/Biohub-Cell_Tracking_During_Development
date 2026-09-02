@@ -459,17 +459,42 @@ def paired(a, b):
     se = sd / math.sqrt(n) if sd > 0 else 0.0
     return m, sd, se, (m / se if se else float("inf")), n
 
+
+def by_embryo(a, b):
+    """Per-embryo mean differences. THIS is the sample size, not len(PER).
+
+    notes/49: `claude_submit_topk` scored 0.863 against a predicted 0.903-0.911 because
+    n=36 was read as 36 independent draws. It is 36 crops of TWO embryos, and the host
+    confirmed the test set shares no embryo_id with train (notes/07 §3). A pooled p-value
+    over crops answers "does this hold on these two embryos", which is not the question.
+    Harness defaults to fold_by="embryo" for this reason; the pooled `paired` above
+    bypasses it, so both are printed and the embryo-level pair is the one that decides.
+    """
+    out = {}
+    for nm, r in PER.items():
+        x, y = r.get(a), r.get(b)
+        if x is not None and y is not None and x == x and y == y:
+            out.setdefault(nm.split("_")[0], []).append(x - y)
+    return {e: sum(v) / len(v) for e, v in sorted(out.items()) if v}
+
 best = max((a for a in ARMS if a in S), key=lambda a: S[a][key])
 inc = S.get(ANCHOR, {}).get(key, float("nan"))
 print(f"\nbest {best} = {S[best][key]:.4f}   incumbent {ANCHOR} = {inc:.4f}")
-print(f"\n{'arm':<16}{'mean d':>10}{'sd':>9}{'SE':>9}{'t':>8}   verdict")
+print(f"\n{'arm':<16}{'mean d':>10}{'sd':>9}{'SE':>9}{'t':>8}   verdict"
+      f"{'per-embryo means':>34}   holds?")
 for a in sorted((x for x in ARMS if x in S and x != ANCHOR), key=lambda x: -S[x][key])[:10]:
     r = paired(a, ANCHOR)
     if r is None:
         continue
     m, sd, se, t, n = r
+    em = by_embryo(a, ANCHOR)
+    # Agreement in SIGN across embryos is the minimum bar for expecting anything on a
+    # third embryo. A pooled t of 2+ with embryos disagreeing is notes/49's failure exactly.
+    agree = len(em) > 1 and (all(v > 0 for v in em.values()) or all(v < 0 for v in em.values()))
     print(f"{a:<16}{m:>+10.4f}{sd:>9.4f}{se:>9.4f}{t:>8.2f}   "
-          f"{'RESOLVED' if abs(t) > 2.0 else 'not resolved'}")
+          f"{'RESOLVED' if abs(t) > 2.0 else 'not resolved':<14}"
+          f"{'  '.join(f'{e} {v:+.4f}' for e, v in em.items()):>32}   "
+          f"{'yes' if agree else 'NO -- pooled t is pseudoreplicated'}")
 
 print("\n" + "=" * 92)
 print("PREDICTION GRADING")
