@@ -81,9 +81,12 @@ step is not the geometry they claim it is. That is worth knowing before porting 
 """)
 
 code(r"""
+# numpy is imported AFTER the wheel install, never before. v2 imported it at the top of
+# this cell; pip then replaced numpy on disk and the already-loaded module went
+# inconsistent -- `ImportError: cannot import name '_center' from numpy._core.umath` in a
+# later cell. Every other notebook in this repo installs first and imports after.
 import os, subprocess, sys, time, json
 from pathlib import Path
-import numpy as np
 
 def sh(*a, **kw):
     try:
@@ -131,11 +134,13 @@ if REPO is None or COMP is None or PACK is None:
 ok = pip_install([str(p) for p in sorted((PACK / "wheels").glob("*.whl"))],
                  extra=("--no-index", f"--find-links={PACK/'wheels'}"))
 print(f"pack wheels {'ok' if ok else 'FAILED'}")
-probe = sh(sys.executable, "-c", "import zarr, geff; print('geff ok')")
+probe = sh(sys.executable, "-c",
+           "import numpy, zarr, geff; print('geff ok, numpy', numpy.__version__)")
 print(probe.stdout.strip() or probe.stderr.strip()[-600:])
 if probe.returncode != 0:
     raise SystemExit("geff does not import in a fresh interpreter")
 
+import numpy as np      # first import in this process, and only now that pip has finished
 sys.path.insert(0, str(REPO))
 TRAIN = COMP / "train"
 
