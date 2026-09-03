@@ -1,8 +1,8 @@
 {
   "forumTopic": {
     "authorId": 23336356,
-    "authorThumbnailName": "23336356-kg.jpg?t=2026-08-25-20-05-47",
-    "authorUserDisplayName": "Jawad Ahmed",
+    "authorThumbnailName": "23336356-kg.jpeg?t=2026-09-01-09-43-05",
+    "authorUserDisplayName": "nusrati",
     "authorUserName": "nusrati",
     "comments": [
       {
@@ -18,8 +18,8 @@
             "content": "<p>Dont consider my current score for this post. What im doing is basically having 2 approaches. </p>\n<p>1) Going with public model and tuning it around to grab a pinch of score somehow.\n2) Training from scratch myself. I started doing so 2 days ago. As public one hits a final checkpoint. No further work induces it. So this post is about the scratch model im working on.</p>",
             "parent": {},
             "author": {
-              "displayName": "Jawad Ahmed",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+              "displayName": "nusrati",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
               "url": "/nusrati",
               "tier": "CONTRIBUTOR",
               "id": 23336356,
@@ -27,10 +27,11 @@
             },
             "authorType": "TOPIC",
             "votes": {
+              "totalVotes": -1,
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 299,
+            "competitionRanking": 80,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -44,8 +45,8 @@
             ],
             "teamUpInfo": {
               "teamLeader": {
-                "displayName": "Jawad Ahmed",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+                "displayName": "nusrati",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
                 "url": "/nusrati",
                 "userName": "nusrati",
                 "tier": "CONTRIBUTOR",
@@ -73,7 +74,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1819,
+        "competitionRanking": 2040,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -101,8 +102,8 @@
       "content": "<p>For me division_jaccard never rises above 0.0004, at any weight tested. Even at 0.5, where the ILP does find 1 real division (div_tp=1), it does so alongside 3260 false ones. div_j = tp/(tp+fp+fn) \u2248 1/3260 - swamped to near-zero by the FP volume.</p>\n<p>This means weight-tuning cannot produce a real division_jaccard contribution. It can only choose between \"suppress everything, div_j=0\" (weight 1.0) or \"let a few real ones through, buried under thousands of fake ones, div_j still \u22480\" (weight 0.5\u20130.65). Neither path gets me a meaningful positive division score.</p>\n<p>I highely need help with thisl</p>",
       "parent": {},
       "author": {
-        "displayName": "Jawad Ahmed",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+        "displayName": "nusrati",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
         "url": "/nusrati",
         "tier": "CONTRIBUTOR",
         "id": 23336356,
@@ -115,13 +116,13 @@
         "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 299,
+      "competitionRanking": 80,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
         "teamLeader": {
-          "displayName": "Jawad Ahmed",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+          "displayName": "nusrati",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
           "url": "/nusrati",
           "userName": "nusrati",
           "tier": "CONTRIBUTOR",

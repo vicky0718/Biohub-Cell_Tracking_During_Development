@@ -1,0 +1,255 @@
+{
+  "forumTopic": {
+    "authorId": 217906,
+    "authorThumbnailName": "217906-kg.jpg",
+    "authorUserDisplayName": "Rishabh Roy",
+    "authorUserName": "rishabhr0y",
+    "comments": [
+      {
+        "id": 3520191,
+        "postDate": "2026-09-02T23:41:57.577Z",
+        "rawMarkdown": "i suggest you go through ultra api. there are many track post processing tools. try to \n1) use some opensource cell instance segmentation to get instance labels\n2) use it as input to ultrack\n3) then use ultrack to link\n4) use post processing tools to correct /TrackEdit\n\nmake some manual annotations to appreciate the problems of ultrack and what can be solved by post processing.\nDo it a few rounds and i think you can discover improvement points and how to get more data",
+        "content": "<p>i suggest you go through ultra api. there are many track post processing tools. try to \n1) use some opensource cell instance segmentation to get instance labels\n2) use it as input to ultrack\n3) then use ultrack to link\n4) use post processing tools to correct /TrackEdit</p>\n<p>make some manual annotations to appreciate the problems of ultrack and what can be solved by post processing.\nDo it a few rounds and i think you can discover improvement points and how to get more data</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 182,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3519339,
+        "postDate": "2026-09-01T15:05:12.047Z",
+        "rawMarkdown": "Hello. I don\u2019t really understand what\u2019s going on here and how it works; I\u2019d like to know whether you focus on PROXY_SCORE when submitting work for review? I\u2019m just playing around with the parameters, and sometimes LB improves when PROXY_SCORE increases, and sometimes the opposite happens\u00a0\u2014\u00a0it\u2019s unclear what to go by. There was a moment when PROXY_SCORE was 0.943+.",
+        "content": "<p>Hello. I don\u2019t really understand what\u2019s going on here and how it works; I\u2019d like to know whether you focus on PROXY_SCORE when submitting work for review? I\u2019m just playing around with the parameters, and sometimes LB improves when PROXY_SCORE increases, and sometimes the opposite happens&nbsp;\u2014&nbsp;it\u2019s unclear what to go by. There was a moment when PROXY_SCORE was 0.943+.</p>",
+        "replies": [
+          {
+            "id": 3519474,
+            "postDate": "2026-09-01T19:25:05.637Z",
+            "rawMarkdown": "The local proxy is scored against sparse ground truth (only a fraction of cells/frames are annotated), while the LB is scored against dense labels. The key consequence: the proxy barely penalizes over-detection. So any change that adds volume \u2014 more candidate detections, looser linking, recall-oriented tweaks \u2014 can push PROXY_SCORE up while quietly adding false positives that the dense LB does punish. But a proxy gain does not guarantee an LB gain, so don't chase proxy peaks. \n\n",
+            "content": "<p>The local proxy is scored against sparse ground truth (only a fraction of cells/frames are annotated), while the LB is scored against dense labels. The key consequence: the proxy barely penalizes over-detection. So any change that adds volume \u2014 more candidate detections, looser linking, recall-oriented tweaks \u2014 can push PROXY_SCORE up while quietly adding false positives that the dense LB does punish. But a proxy gain does not guarantee an LB gain, so don't chase proxy peaks. </p>",
+            "replies": [
+              {
+                "id": 3520194,
+                "postDate": "2026-09-02T23:44:50.487Z",
+                "rawMarkdown": "Thanks for the reply. I checked the forum and competition webpage, but where is it mentioned that \" LB is scored against dense labels. \" I think all are using sparse labels like the downloaded train?",
+                "content": "<p>Thanks for the reply. I checked the forum and competition webpage, but where is it mentioned that \" LB is scored against dense labels. \" I think all are using sparse labels like the downloaded train?</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 182,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Rishabh Roy",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+              "url": "/rishabhr0y",
+              "tier": "EXPERT",
+              "id": 217906,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 51,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "THANK_YOU",
+                "featuredUserNames": [
+                  "evgendvorkin"
+                ],
+                "userCount": 1
+              }
+            ],
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Rishabh Roy",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                "url": "/rishabhr0y",
+                "userName": "rishabhr0y",
+                "tier": "EXPERT",
+                "id": 217906,
+                "profileUrl": "/rishabhr0y",
+                "performanceTier": "EXPERT",
+                "userId": 217906,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "\u0414\u0432\u043e\u0440\u043a\u0438\u043d \u0415\u0432\u0433\u0435\u043d\u0438\u0439 \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440\u043e\u0432\u0438\u0447",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15194873-kg.jpg?t=2025-12-28-12-13-14",
+          "url": "/evgendvorkin",
+          "tier": "EXPERT",
+          "id": 15194873,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 368,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "\u0414\u0432\u043e\u0440\u043a\u0438\u043d \u0415\u0432\u0433\u0435\u043d\u0438\u0439 \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440\u043e\u0432\u0438\u0447",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15194873-kg.jpg?t=2025-12-28-12-13-14",
+            "url": "/evgendvorkin",
+            "userName": "evgendvorkin",
+            "tier": "EXPERT",
+            "id": 15194873,
+            "profileUrl": "/evgendvorkin",
+            "performanceTier": "EXPERT",
+            "userId": 15194873,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3518704,
+        "postDate": "2026-08-31T15:02:43.280Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3518452,
+      "postDate": "2026-08-31T00:29:58.710Z",
+      "rawMarkdown": " did you move to something else (instance seg, a different backbone)? Trying to figure out if the jump is a detection-layer change or all in the linker/divisions. Thanks!",
+      "content": "<p>did you move to something else (instance seg, a different backbone)? Trying to figure out if the jump is a detection-layer change or all in the linker/divisions. Thanks!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Rishabh Roy",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+        "url": "/rishabhr0y",
+        "tier": "EXPERT",
+        "id": 217906,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 4,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 51,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "Rishabh Roy",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+          "url": "/rishabhr0y",
+          "userName": "rishabhr0y",
+          "tier": "EXPERT",
+          "id": 217906,
+          "profileUrl": "/rishabhr0y",
+          "performanceTier": "EXPERT",
+          "userId": 217906,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3518452,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 738276,
+    "name": " Quick question for anyone above the 0.94 line \u2014 is the detector still a 3D UNet heatmap for you, or did you move to something else ? ",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-31T00:29:58.711370700Z",
+    "totalVotes": 4,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/738276",
+    "totalMessages": 5,
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

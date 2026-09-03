@@ -1,0 +1,154 @@
+{
+  "forumTopic": {
+    "authorId": 26001373,
+    "authorThumbnailName": "26001373-kg.png?t=2026-05-08-12-04-23",
+    "authorUserDisplayName": "Michael Hernandez",
+    "authorUserName": "michaelhernandez4",
+    "comments": [
+      {
+        "id": 3519949,
+        "postDate": "2026-09-02T14:56:29.057Z",
+        "rawMarkdown": "We noticed the same issue while reviewing the released evaluator after the metric patch. We found three possible inconsistencies using synthetic graphs only:\n\nSigned node adjustment: with edge TP/FP/FN fixed at 90/5/5, reducing predicted nodes from 100 to 50 changed adjusted-edge Jaccard from 0.900 to 0.945. In a complete synthetic graph test, it increased from 1.000 to 1.050 while node recall fell to 0.500.\n\nDifferent graph normalization between edge and division scoring: nonconsecutive edges were excluded from edge scoring, but the original graph could still reach division evaluation. Our synthetic result was edge TP/FP/FN = 0/0/5 while division TP/FP/FN = 1/0/0.\n\nMissing-dataset handling: the released directory evaluator appeared to aggregate only datasets present in both prediction and GT, meaning an omitted dataset did not receive an explicit zero or all-FN penalty.\nThese are local synthetic observations only. We have not confirmed that the private scoring server behaves the same way; its outer wrapper may already reject or correct these cases. We avoided using any of them in our competition pipeline.",
+        "content": "<p>We noticed the same issue while reviewing the released evaluator after the metric patch. We found three possible inconsistencies using synthetic graphs only:</p>\n<p>Signed node adjustment: with edge TP/FP/FN fixed at 90/5/5, reducing predicted nodes from 100 to 50 changed adjusted-edge Jaccard from 0.900 to 0.945. In a complete synthetic graph test, it increased from 1.000 to 1.050 while node recall fell to 0.500.</p>\n<p>Different graph normalization between edge and division scoring: nonconsecutive edges were excluded from edge scoring, but the original graph could still reach division evaluation. Our synthetic result was edge TP/FP/FN = 0/0/5 while division TP/FP/FN = 1/0/0.</p>\n<p>Missing-dataset handling: the released directory evaluator appeared to aggregate only datasets present in both prediction and GT, meaning an omitted dataset did not receive an explicit zero or all-FN penalty.\nThese are local synthetic observations only. We have not confirmed that the private scoring server behaves the same way; its outer wrapper may already reject or correct these cases. We avoided using any of them in our competition pipeline.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "TWEAK",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+          "url": "/tweakai",
+          "tier": "EXPERT",
+          "id": 28207655,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 6,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "TWEAK",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+            "url": "/tweakai",
+            "userName": "tweakai",
+            "tier": "EXPERT",
+            "id": 28207655,
+            "profileUrl": "/tweakai",
+            "performanceTier": "EXPERT",
+            "userId": 28207655,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3519929,
+        "postDate": "2026-09-02T14:14:33.800Z",
+        "rawMarkdown": "yes. N_pred is a metric hack. From competition point of view: \"it is better to detect just enough annotated nodes (up to N_est or less)\" rather than all nodes\". This change the way on how you treated unlablled data, apart from sparse labelled.\n\nObviously, the sparse annotation are not random tracks. they are difficult tracks (or tracks that are annotated by open source ultrack and hand corrected by host). you should expand sparse annotation to dense N_est annotation that is closest to sparse annotation. then train your model to detect N_est targets or less.\n\n---\n\nbut of course, you can focus on division track and pay less attention on N_est. that is another separate strategy",
+        "content": "<p>yes. N_pred is a metric hack. From competition point of view: \"it is better to detect just enough annotated nodes (up to N_est or less)\" rather than all nodes\". This change the way on how you treated unlablled data, apart from sparse labelled.</p>\n<p>Obviously, the sparse annotation are not random tracks. they are difficult tracks (or tracks that are annotated by open source ultrack and hand corrected by host). you should expand sparse annotation to dense N_est annotation that is closest to sparse annotation. then train your model to detect N_est targets or less.</p>\n<hr>\n<p>but of course, you can focus on division track and pay less attention on N_est. that is another separate strategy</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 175,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3519921,
+      "postDate": "2026-09-02T14:03:48.860Z",
+      "rawMarkdown": "Hi all, and thanks to the organizers for putting this competition together. The data has been a pleasure to work with.\n\nI've been reading the released scoring code fairly closely and wanted to flag something in case it's unintended. In tracking_cellmot/metrics.py, the adjusted edge Jaccard is computed as:\n\n```\nadj_edge_jaccard = max(0.0, edge_jaccard * (1 - 0.1 * total_node_ratio))\n```\n\nwhere `total_node_ratio = (N_pred - N_est) / N_est`.\n\nThe `max(0.0, ...)` puts a floor on it, but there's no corresponding ceiling. So when a submission predicts fewer nodes than estimated_number_of_nodes, the ratio goes negative and the multiplier ends up greater than 1.\n\nOn one of the training clips (44b6_0b24845f) I get an edge Jaccard of 0.98 and a node ratio of about -0.29, which comes out as an adjusted value of 1.0102, a Jaccard above 1. The inline comment in the source describes the coefficient as a penalty, which is what made me think the symmetric bonus on the other side might not be what was intended.\n\nI genuinely don't know whether this matters in practice, and I haven't been able to determine whether the scoring server behaves the same way as the released reference implementation. The difference between the two possibilities is smaller than the leaderboard's displayed precision, so I couldn't tell from the outside.\n\nEntirely possible I'm misreading the intent here, in which case please ignore me. But it seemed better to ask than to sit on it. Happy to share the exact clip and numbers if that's useful.\n\nThanks again.",
+      "content": "<p>Hi all, and thanks to the organizers for putting this competition together. The data has been a pleasure to work with.</p>\n<p>I've been reading the released scoring code fairly closely and wanted to flag something in case it's unintended. In tracking_cellmot/metrics.py, the adjusted edge Jaccard is computed as:</p>\n<pre><code>adj_edge_jaccard = max(0.0, edge_jaccard * (1 - 0.1 * total_node_ratio))\n</code></pre>\n<p>where <code>total_node_ratio = (N_pred - N_est) / N_est</code>.</p>\n<p>The <code>max(0.0, ...)</code> puts a floor on it, but there's no corresponding ceiling. So when a submission predicts fewer nodes than estimated_number_of_nodes, the ratio goes negative and the multiplier ends up greater than 1.</p>\n<p>On one of the training clips (44b6_0b24845f) I get an edge Jaccard of 0.98 and a node ratio of about -0.29, which comes out as an adjusted value of 1.0102, a Jaccard above 1. The inline comment in the source describes the coefficient as a penalty, which is what made me think the symmetric bonus on the other side might not be what was intended.</p>\n<p>I genuinely don't know whether this matters in practice, and I haven't been able to determine whether the scoring server behaves the same way as the released reference implementation. The difference between the two possibilities is smaller than the leaderboard's displayed precision, so I couldn't tell from the outside.</p>\n<p>Entirely possible I'm misreading the intent here, in which case please ignore me. But it seemed better to ask than to sit on it. Happy to share the exact clip and numbers if that's useful.</p>\n<p>Thanks again.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Michael Hernandez",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26001373-kg.png?t=2026-05-08-12-04-23",
+        "url": "/michaelhernandez4",
+        "tier": "CONTRIBUTOR",
+        "id": 26001373,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 12,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Michael Hernandez",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26001373-kg.png?t=2026-05-08-12-04-23",
+          "url": "/michaelhernandez4",
+          "userName": "michaelhernandez4",
+          "tier": "CONTRIBUTOR",
+          "id": 26001373,
+          "profileUrl": "/michaelhernandez4",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 26001373,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3519921,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 739018,
+    "name": "Question about the node-count adjustment in the metric (adj_edge_jaccard can exceed 1)",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-02T14:03:48.861263500Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/739018",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

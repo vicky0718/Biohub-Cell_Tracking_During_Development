@@ -4,6 +4,49 @@
     "authorThumbnailName": "13484631-kg.jpeg?t=2025-02-19-17-18-43",
     "authorUserDisplayName": "Yunus G\u00fcm\u00fc\u015fsoy",
     "authorUserName": "yunusgmsoy",
+    "comments": [
+      {
+        "id": 3518316,
+        "postDate": "2026-08-30T12:06:39.967Z",
+        "rawMarkdown": "The rebase lining should occur in all competitions to keep the community progressing optimally. Kaggle should make it easy for everyone to progress the field of study together without these barriers and challenges, it\u2019s a win win for all and easy solutions",
+        "content": "<p>The rebase lining should occur in all competitions to keep the community progressing optimally. Kaggle should make it easy for everyone to progress the field of study together without these barriers and challenges, it\u2019s a win win for all and easy solutions</p>",
+        "parent": {},
+        "author": {
+          "displayName": "jazivxt",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2363297-kg.png",
+          "url": "/jazivxt",
+          "tier": "GRANDMASTER",
+          "id": 2363297,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 98,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Apoorva Ajay",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/524447-gp.jpg",
+            "url": "/apoorvada",
+            "userName": "apoorvada",
+            "tier": "CONTRIBUTOR",
+            "id": 524447,
+            "profileUrl": "/apoorvada",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 524447,
+            "progressionOptOut": false
+          },
+          "intro": "Reliable, timeout-proof pipeline with steady execution at ~0.895, targeting the association + division plateau. Looking to team with someone who's pushed past the ~0.91 score, ideally on confidence-adaptive / selective edge fusion or division modeling or who has a strong, diverse seed to add. "
+        }
+      }
+    ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
     "firstMessage": {
       "id": 3515901,
@@ -21,14 +64,23 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 2,
+        "totalVotes": 5,
         "canUpvote": true,
-        "totalUpvotes": 4
+        "totalUpvotes": 7
       },
       "kernelVersion": 0,
-      "competitionRanking": 36,
+      "competitionRanking": 66,
       "feedbackTrackingData": {},
       "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "KAGGLE",
+          "featuredUserNames": [
+            "jazivxt"
+          ],
+          "userCount": 1
+        }
+      ],
       "teamUpInfo": {
         "teamLeader": {
           "displayName": "Yunus G\u00fcm\u00fc\u015fsoy",
@@ -53,8 +105,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-22T14:50:45.065018400Z",
-    "totalVotes": 2,
+    "totalVotes": 5,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/736937",
+    "totalMessages": 1,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

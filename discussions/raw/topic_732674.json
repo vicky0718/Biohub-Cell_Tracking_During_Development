@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2756,
+        "competitionRanking": 2998,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -62,7 +62,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1758,
+        "competitionRanking": 1974,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -100,8 +100,24 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
+        "competitionRanking": 1290,
         "feedbackTrackingData": {},
-        "isThankYou": true
+        "isThankYou": true,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Surya Bhattiprol",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/suryabhattiprol01",
+            "userName": "suryabhattiprol01",
+            "tier": "CONTRIBUTOR",
+            "id": 35987845,
+            "profileUrl": "/suryabhattiprol01",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 35987845,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
       }
     ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -126,7 +142,7 @@
         "totalUpvotes": 2
       },
       "kernelVersion": 0,
-      "competitionRanking": 2756,
+      "competitionRanking": 2998,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

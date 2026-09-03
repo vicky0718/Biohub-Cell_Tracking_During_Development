@@ -1,6 +1,31 @@
 [
   {
     "authorUser": {
+      "displayName": "Jord\u00e3o Bragantini",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "url": "/jookuma",
+      "tier": "CONTRIBUTOR",
+      "id": 1417736,
+      "progressionOptOut": false
+    },
+    "authorType": "HOST",
+    "commentCount": 1,
+    "firstForumMessageId": 3519530,
+    "id": 738833,
+    "isSticky": true,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "Antonoof",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738833#3519864",
+    "lastCommentPostDate": "2026-09-02T11:27:05.366666700Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-09-01T21:31:36.602074500Z",
+    "title": "Cell Tracking In-Person Workshop",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738833",
+    "votes": 4
+  },
+  {
+    "authorUser": {
       "displayName": "Mar\u00eda Cruz",
       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/19579895-kg.jpg?t=2025-01-23-22-51-30",
       "url": "/macruzbar",
@@ -9,20 +34,19 @@
       "progressionOptOut": false
     },
     "authorType": "ADMIN",
-    "commentCount": 7,
+    "commentCount": 8,
     "firstForumMessageId": 3481139,
     "id": 714101,
     "isSticky": true,
     "lastCommenterType": "COMMENT",
-    "lastCommenterName": "axorina",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/714101#3515635",
-    "lastCommentPostDate": "2026-08-22T07:38:14.340Z",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/714101#3518615",
+    "lastCommentPostDate": "2026-08-31T11:28:33.580Z",
     "parentName": "Biohub - Cell Tracking During Development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
     "postDate": "2026-06-25T16:44:43.592999100Z",
     "title": "How to get started + Competition's Official Discord",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/714101",
-    "votes": 24,
+    "votes": 27,
     "teamUpInfo": {
       "teamLeader": {
         "displayName": "Mar\u00eda Cruz",
@@ -62,7 +86,7 @@
     "postDate": "2026-06-30T02:16:18.647926700Z",
     "title": "Welcome to the Biohub - Cell Tracking During Development Challenge",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/716062",
-    "votes": 72,
+    "votes": 75,
     "teamUpInfo": {
       "teamLeader": {
         "displayName": "Thibgolds",
@@ -81,6 +105,356 @@
   },
   {
     "authorUser": {
+      "displayName": "hengck23",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+      "url": "/hengck23",
+      "tier": "GRANDMASTER",
+      "id": 113660,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 15,
+    "firstForumMessageId": 3518355,
+    "id": 738217,
+    "lastCommenterType": "TOPIC",
+    "lastCommenterName": "hengck23",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738217#3519903",
+    "lastCommentPostDate": "2026-09-02T12:51:42.613333300Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-08-30T15:24:33.907558500Z",
+    "title": "focus3d : one of the best 3d cell segmentation",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738217",
+    "votes": 17,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "hengck23",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+        "url": "/hengck23",
+        "userName": "hengck23",
+        "tier": "GRANDMASTER",
+        "id": 113660,
+        "profileUrl": "/hengck23",
+        "performanceTier": "GRANDMASTER",
+        "userId": 113660,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Michael Hernandez",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26001373-kg.png?t=2026-05-08-12-04-23",
+      "url": "/michaelhernandez4",
+      "tier": "CONTRIBUTOR",
+      "id": 26001373,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 2,
+    "firstForumMessageId": 3519921,
+    "id": 739018,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "TWEAK",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/739018#3519949",
+    "lastCommentPostDate": "2026-09-02T14:56:29.056666700Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-09-02T14:03:48.861263500Z",
+    "title": "Question about the node-count adjustment in the metric (adj_edge_jaccard can exceed 1)",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/739018",
+    "votes": 3,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "Michael Hernandez",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26001373-kg.png?t=2026-05-08-12-04-23",
+        "url": "/michaelhernandez4",
+        "userName": "michaelhernandez4",
+        "tier": "CONTRIBUTOR",
+        "id": 26001373,
+        "profileUrl": "/michaelhernandez4",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 26001373,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Rishabh Roy",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+      "url": "/rishabhr0y",
+      "tier": "EXPERT",
+      "id": 217906,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 5,
+    "firstForumMessageId": 3518452,
+    "id": 738276,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "hengck23",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738276#3520194",
+    "lastCommentPostDate": "2026-09-02T23:44:50.486666700Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-08-31T00:29:58.711370700Z",
+    "title": " Quick question for anyone above the 0.94 line \u2014 is the detector still a 3D UNet heatmap for you, or did you move to something else ? ",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738276",
+    "votes": 4,
+    "teamUpInfo": {
+      "enabled": true,
+      "teamLeader": {
+        "displayName": "Rishabh Roy",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+        "url": "/rishabhr0y",
+        "userName": "rishabhr0y",
+        "tier": "EXPERT",
+        "id": 217906,
+        "profileUrl": "/rishabhr0y",
+        "performanceTier": "EXPERT",
+        "userId": 217906,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Abhirup Choudhury",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "url": "/abhirupchoudhury073",
+      "tier": "CONTRIBUTOR",
+      "id": 18047723,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 5,
+    "firstForumMessageId": 3520354,
+    "id": 739220,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "Yassine Alouini",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/739220#3520403",
+    "lastCommentPostDate": "2026-09-03T10:06:45.710Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-09-03T07:55:55.088140100Z",
+    "title": "How can i reach a 0.9 score at least?",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/739220",
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "Abhirup Choudhury",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/abhirupchoudhury073",
+        "userName": "abhirupchoudhury073",
+        "tier": "CONTRIBUTOR",
+        "id": 18047723,
+        "profileUrl": "/abhirupchoudhury073",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 18047723,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "nusrati",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+      "url": "/nusrati",
+      "tier": "CONTRIBUTOR",
+      "id": 23336356,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 2,
+    "firstForumMessageId": 3519413,
+    "id": 738773,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "hengck23",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738773#3520039",
+    "lastCommentPostDate": "2026-09-02T18:01:07.553333300Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-09-01T16:49:55.211798600Z",
+    "title": "Detector overfits past ~epoch 10 on fixed sparse-GT frames -- anyone else see this?",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738773",
+    "votes": 2,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "nusrati",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+        "url": "/nusrati",
+        "userName": "nusrati",
+        "tier": "CONTRIBUTOR",
+        "id": 23336356,
+        "profileUrl": "/nusrati",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 23336356,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Abhirup Choudhury",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "url": "/abhirupchoudhury073",
+      "tier": "CONTRIBUTOR",
+      "id": 18047723,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "firstForumMessageId": 3520355,
+    "id": 739221,
+    "lastCommenterType": "TOPIC",
+    "lastCommenterName": "Abhirup Choudhury",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/739221#3520355",
+    "lastCommentPostDate": "2026-09-03T07:57:36.856666700Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-09-03T07:57:36.855792200Z",
+    "title": "Tried training on a 3DTemporalUnet + deterministic linking, loss starts climbing up after 10 epochs",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/739221",
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "Abhirup Choudhury",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/abhirupchoudhury073",
+        "userName": "abhirupchoudhury073",
+        "tier": "CONTRIBUTOR",
+        "id": 18047723,
+        "profileUrl": "/abhirupchoudhury073",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 18047723,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Tim Krige",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+      "url": "/timkrige",
+      "tier": "EXPERT",
+      "id": 3326547,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 6,
+    "firstForumMessageId": 3516155,
+    "id": 737103,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "Muhammad Haseeb Ahmad",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737103#3519940",
+    "lastCommentPostDate": "2026-09-02T14:44:16.143333300Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-08-23T09:59:31.382203600Z",
+    "title": "Hand labeling - is it external data?",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737103",
+    "votes": 10,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "Tim Krige",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
+        "url": "/timkrige",
+        "userName": "timkrige",
+        "tier": "EXPERT",
+        "id": 3326547,
+        "profileUrl": "/timkrige",
+        "performanceTier": "EXPERT",
+        "userId": 3326547,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Zenpai1977",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35334426-kg.jpg?t=2026-07-14-11-14-52",
+      "url": "/zenpai1977",
+      "tier": "CONTRIBUTOR",
+      "id": 35334426,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 2,
+    "firstForumMessageId": 3519423,
+    "id": 738778,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "Shrey Gandhi",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738778#3519833",
+    "lastCommentPostDate": "2026-09-02T10:00:14.880Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-09-01T17:11:59.119447700Z",
+    "title": "I think we should use GNN for higher scores",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738778",
+    "votes": 1,
+    "teamUpInfo": {
+      "enabled": true,
+      "teamLeader": {
+        "displayName": "Zenpai1977",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35334426-kg.jpg?t=2026-07-14-11-14-52",
+        "url": "/zenpai1977",
+        "userName": "zenpai1977",
+        "tier": "CONTRIBUTOR",
+        "id": 35334426,
+        "profileUrl": "/zenpai1977",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 35334426,
+        "progressionOptOut": false
+      },
+      "intro": "Want someone with a 60GB VRAM GPU or even more i have code for 0.940+ score"
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Rustam Bazarbayev",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+      "url": "/rustambazarbayev",
+      "tier": "CONTRIBUTOR",
+      "id": 5591682,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 1,
+    "firstForumMessageId": 3519828,
+    "id": 738970,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "\u0e2d\u0e18\u0e34\u0e04\u0e21 \u0e2b\u0e27\u0e31\u0e07\u0e40\u0e08\u0e23\u0e34\u0e0d\u0e27\u0e07\u0e28\u0e4c",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738970#3519870",
+    "lastCommentPostDate": "2026-09-02T11:39:58.083333300Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-09-02T09:54:54.425434900Z",
+    "title": "Any advice for starters?",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738970",
+    "votes": 1,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "Rustam Bazarbayev",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+        "url": "/rustambazarbayev",
+        "userName": "rustambazarbayev",
+        "tier": "CONTRIBUTOR",
+        "id": 5591682,
+        "profileUrl": "/rustambazarbayev",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 5591682,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
       "displayName": "mikelou1",
       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
       "url": "/mikelou1",
@@ -89,19 +463,19 @@
       "progressionOptOut": false
     },
     "authorType": "TOPIC",
-    "commentCount": 4,
+    "commentCount": 5,
     "firstForumMessageId": 3516150,
     "id": 737101,
     "lastCommenterType": "COMMENT",
-    "lastCommenterName": "Jawad Ahmed",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737101#3517545",
-    "lastCommentPostDate": "2026-08-27T12:34:34.316666700Z",
+    "lastCommenterName": "Abhirup Choudhury",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737101#3518337",
+    "lastCommentPostDate": "2026-08-30T13:48:02.516666700Z",
     "parentName": "Biohub - Cell Tracking During Development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
     "postDate": "2026-08-23T09:12:21.220220100Z",
     "title": "Stuck at 0.928",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737101",
-    "votes": 7,
+    "votes": 9,
     "teamUpInfo": {
       "enabled": true,
       "teamLeader": {
@@ -121,45 +495,6 @@
   },
   {
     "authorUser": {
-      "displayName": "Tim Krige",
-      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
-      "url": "/timkrige",
-      "tier": "EXPERT",
-      "id": 3326547,
-      "progressionOptOut": false
-    },
-    "authorType": "TOPIC",
-    "commentCount": 5,
-    "firstForumMessageId": 3516155,
-    "id": 737103,
-    "lastCommenterType": "COMMENT",
-    "lastCommenterName": "Theo Viel",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737103#3516762",
-    "lastCommentPostDate": "2026-08-25T07:17:41.126666700Z",
-    "parentName": "Biohub - Cell Tracking During Development",
-    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
-    "postDate": "2026-08-23T09:59:31.382203600Z",
-    "title": "Hand labeling - is it external data?",
-    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737103",
-    "votes": 7,
-    "teamUpInfo": {
-      "teamLeader": {
-        "displayName": "Tim Krige",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3326547-kg.png?t=2025-11-07-16-37-02",
-        "url": "/timkrige",
-        "userName": "timkrige",
-        "tier": "EXPERT",
-        "id": 3326547,
-        "profileUrl": "/timkrige",
-        "performanceTier": "EXPERT",
-        "userId": 3326547,
-        "progressionOptOut": false
-      },
-      "intro": ""
-    }
-  },
-  {
-    "authorUser": {
       "displayName": "kevin park",
       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
       "url": "/k3v1npark",
@@ -168,30 +503,147 @@
       "progressionOptOut": false
     },
     "authorType": "TOPIC",
-    "commentCount": 2,
+    "commentCount": 9,
     "firstForumMessageId": 3517057,
     "id": 737543,
     "lastCommenterType": "COMMENT",
-    "lastCommenterName": "abcbcbc",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737543#3517441",
-    "lastCommentPostDate": "2026-08-27T07:10:52.763333300Z",
+    "lastCommenterName": "Rishabh Roy",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737543#3518541",
+    "lastCommentPostDate": "2026-08-31T08:05:40.273333300Z",
     "parentName": "Biohub - Cell Tracking During Development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
     "postDate": "2026-08-26T03:10:45.084626300Z",
     "title": "what layer did ur gains actually come from",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737543",
+    "votes": 3,
+    "teamUpInfo": {
+      "enabled": true,
+      "teamLeader": {
+        "displayName": "Lime1123",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18255050-kg.png?t=2025-03-27-10-33-27",
+        "url": "/lime1123",
+        "userName": "lime1123",
+        "tier": "EXPERT",
+        "id": 18255050,
+        "profileUrl": "/lime1123",
+        "performanceTier": "EXPERT",
+        "userId": 18255050,
+        "progressionOptOut": false
+      },
+      "intro": "I have a relatively strong approach for division Jaccard, scoring around 0.35 on the LB.\nLooking to team up with someone who has a strong adjusted edge Jaccard score, ideally above 0.92, backed by a solid and reliable CV setup \u2014 i.e., without using any model trained on the full competition dataset."
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "weke",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "url": "/cjpal18",
+      "tier": "EXPERT",
+      "id": 4090870,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 3,
+    "firstForumMessageId": 3517729,
+    "id": 737896,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "hengck23",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737896#3518456",
+    "lastCommentPostDate": "2026-08-31T00:39:19.730Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-08-28T01:13:05.783744900Z",
+    "title": "Very dim nodes?",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737896",
+    "votes": 3,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "weke",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/cjpal18",
+        "userName": "cjpal18",
+        "tier": "EXPERT",
+        "id": 4090870,
+        "profileUrl": "/cjpal18",
+        "performanceTier": "EXPERT",
+        "userId": 4090870,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Abhirup Choudhury",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "url": "/abhirupchoudhury073",
+      "tier": "CONTRIBUTOR",
+      "id": 18047723,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "firstForumMessageId": 3518336,
+    "id": 738210,
+    "lastCommenterType": "TOPIC",
+    "lastCommenterName": "Abhirup Choudhury",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738210#3518336",
+    "lastCommentPostDate": "2026-08-30T13:43:26.896666700Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-08-30T13:43:26.896920300Z",
+    "title": "Cannot find any good notebook which shows the training method",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/738210",
     "votes": 1,
     "teamUpInfo": {
       "teamLeader": {
-        "displayName": "kevin park",
+        "displayName": "Abhirup Choudhury",
         "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
-        "url": "/k3v1npark",
-        "userName": "k3v1npark",
+        "url": "/abhirupchoudhury073",
+        "userName": "abhirupchoudhury073",
         "tier": "CONTRIBUTOR",
-        "id": 35874797,
-        "profileUrl": "/k3v1npark",
+        "id": 18047723,
+        "profileUrl": "/abhirupchoudhury073",
         "performanceTier": "CONTRIBUTOR",
-        "userId": 35874797,
+        "userId": 18047723,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "Yunus G\u00fcm\u00fc\u015fsoy",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13484631-kg.jpeg?t=2025-02-19-17-18-43",
+      "url": "/yunusgmsoy",
+      "tier": "CONTRIBUTOR",
+      "id": 13484631,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 1,
+    "firstForumMessageId": 3515901,
+    "id": 736937,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "jazivxt",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/736937#3518316",
+    "lastCommentPostDate": "2026-08-30T12:06:39.966666700Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-08-22T14:50:45.065018400Z",
+    "title": "Public Notebook Rankings Need a Metric Refresh",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/736937",
+    "votes": 5,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "Yunus G\u00fcm\u00fc\u015fsoy",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13484631-kg.jpeg?t=2025-02-19-17-18-43",
+        "url": "/yunusgmsoy",
+        "userName": "yunusgmsoy",
+        "tier": "CONTRIBUTOR",
+        "id": 13484631,
+        "profileUrl": "/yunusgmsoy",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 13484631,
         "progressionOptOut": false
       },
       "intro": ""
@@ -207,13 +659,13 @@
       "progressionOptOut": false
     },
     "authorType": "TOPIC",
-    "commentCount": 4,
+    "commentCount": 5,
     "firstForumMessageId": 3517277,
     "id": 737659,
-    "lastCommenterType": "TOPIC",
-    "lastCommenterName": "Alex Amirkhanyan",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737659#3517340",
-    "lastCommentPostDate": "2026-08-26T22:07:29.190Z",
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "X.X",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737659#3519055",
+    "lastCommentPostDate": "2026-09-01T02:18:54.326666700Z",
     "parentName": "Biohub - Cell Tracking During Development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
     "postDate": "2026-08-26T16:27:51.320257Z",
@@ -230,45 +682,6 @@
         "profileUrl": "/aleksamirkhanyan",
         "performanceTier": "CONTRIBUTOR",
         "userId": 36253059,
-        "progressionOptOut": false
-      },
-      "intro": ""
-    }
-  },
-  {
-    "authorUser": {
-      "displayName": "Jawad Ahmed",
-      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
-      "url": "/nusrati",
-      "tier": "CONTRIBUTOR",
-      "id": 23336356,
-      "progressionOptOut": false
-    },
-    "authorType": "TOPIC",
-    "commentCount": 2,
-    "firstForumMessageId": 3517118,
-    "id": 737577,
-    "lastCommenterType": "TOPIC",
-    "lastCommenterName": "Jawad Ahmed",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737577#3517206",
-    "lastCommentPostDate": "2026-08-26T12:56:28.023333300Z",
-    "parentName": "Biohub - Cell Tracking During Development",
-    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
-    "postDate": "2026-08-26T08:00:08.592129900Z",
-    "title": "division jaccard",
-    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737577",
-    "votes": 1,
-    "teamUpInfo": {
-      "teamLeader": {
-        "displayName": "Jawad Ahmed",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
-        "url": "/nusrati",
-        "userName": "nusrati",
-        "tier": "CONTRIBUTOR",
-        "id": 23336356,
-        "profileUrl": "/nusrati",
-        "performanceTier": "CONTRIBUTOR",
-        "userId": 23336356,
         "progressionOptOut": false
       },
       "intro": ""
@@ -295,56 +708,58 @@
     "postDate": "2026-08-25T14:20:22.701260400Z",
     "title": "does anyone have a different design for divisions",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737438",
-    "votes": 1,
+    "votes": 4,
     "teamUpInfo": {
+      "enabled": true,
       "teamLeader": {
-        "displayName": "kevin park",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
-        "url": "/k3v1npark",
-        "userName": "k3v1npark",
-        "tier": "CONTRIBUTOR",
-        "id": 35874797,
-        "profileUrl": "/k3v1npark",
-        "performanceTier": "CONTRIBUTOR",
-        "userId": 35874797,
+        "displayName": "Lime1123",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18255050-kg.png?t=2025-03-27-10-33-27",
+        "url": "/lime1123",
+        "userName": "lime1123",
+        "tier": "EXPERT",
+        "id": 18255050,
+        "profileUrl": "/lime1123",
+        "performanceTier": "EXPERT",
+        "userId": 18255050,
         "progressionOptOut": false
       },
-      "intro": ""
+      "intro": "I have a relatively strong approach for division Jaccard, scoring around 0.35 on the LB.\nLooking to team up with someone who has a strong adjusted edge Jaccard score, ideally above 0.92, backed by a solid and reliable CV setup \u2014 i.e., without using any model trained on the full competition dataset."
     }
   },
   {
     "authorUser": {
-      "displayName": "Yunus G\u00fcm\u00fc\u015fsoy",
-      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13484631-kg.jpeg?t=2025-02-19-17-18-43",
-      "url": "/yunusgmsoy",
+      "displayName": "nusrati",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+      "url": "/nusrati",
       "tier": "CONTRIBUTOR",
-      "id": 13484631,
+      "id": 23336356,
       "progressionOptOut": false
     },
     "authorType": "TOPIC",
-    "firstForumMessageId": 3515901,
-    "id": 736937,
+    "commentCount": 2,
+    "firstForumMessageId": 3517118,
+    "id": 737577,
     "lastCommenterType": "TOPIC",
-    "lastCommenterName": "Yunus G\u00fcm\u00fc\u015fsoy",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/736937#3515901",
-    "lastCommentPostDate": "2026-08-22T14:50:45.066666700Z",
+    "lastCommenterName": "nusrati",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737577#3517206",
+    "lastCommentPostDate": "2026-08-26T12:56:28.023333300Z",
     "parentName": "Biohub - Cell Tracking During Development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
-    "postDate": "2026-08-22T14:50:45.065018400Z",
-    "title": "Public Notebook Rankings Need a Metric Refresh",
-    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/736937",
-    "votes": 2,
+    "postDate": "2026-08-26T08:00:08.592129900Z",
+    "title": "division jaccard",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/737577",
+    "votes": 1,
     "teamUpInfo": {
       "teamLeader": {
-        "displayName": "Yunus G\u00fcm\u00fc\u015fsoy",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13484631-kg.jpeg?t=2025-02-19-17-18-43",
-        "url": "/yunusgmsoy",
-        "userName": "yunusgmsoy",
+        "displayName": "nusrati",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+        "url": "/nusrati",
+        "userName": "nusrati",
         "tier": "CONTRIBUTOR",
-        "id": 13484631,
-        "profileUrl": "/yunusgmsoy",
+        "id": 23336356,
+        "profileUrl": "/nusrati",
         "performanceTier": "CONTRIBUTOR",
-        "userId": 13484631,
+        "userId": 23336356,
         "progressionOptOut": false
       },
       "intro": ""
@@ -412,7 +827,7 @@
     "postDate": "2026-08-12T05:01:34.624924500Z",
     "title": "What is the best model for this domain so far?",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/734604",
-    "votes": 2,
+    "votes": 3,
     "teamUpInfo": {
       "teamLeader": {
         "displayName": "Moawiz",
@@ -529,7 +944,7 @@
     "postDate": "2026-08-11T00:18:51.970829200Z",
     "title": "Is public Zebrahub data allowed as external training data?",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/734330",
-    "votes": 15,
+    "votes": 16,
     "teamUpInfo": {
       "teamLeader": {
         "displayName": "marumarukun",
@@ -560,7 +975,7 @@
     "firstForumMessageId": 3513467,
     "id": 735531,
     "lastCommenterType": "COMMENT",
-    "lastCommenterName": "Jawad Ahmed",
+    "lastCommenterName": "nusrati",
     "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/735531#3513866",
     "lastCommentPostDate": "2026-08-17T20:03:21.593333300Z",
     "parentName": "Biohub - Cell Tracking During Development",
@@ -646,7 +1061,7 @@
     "postDate": "2026-07-09T16:55:59.111354100Z",
     "title": "Share a custom napari visualizer",
     "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/724130",
-    "votes": 43,
+    "votes": 44,
     "teamUpInfo": {
       "teamLeader": {
         "displayName": "Tom",
@@ -660,7 +1075,7 @@
         "userId": 4310004,
         "progressionOptOut": false
       },
-      "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
+      "intro": "pursue champion position. welcome to reach out if you have interesting idea."
     }
   },
   {
@@ -668,7 +1083,7 @@
       "displayName": "Jos\u00e9 Freitas",
       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
       "url": "/josefreitasalvesneto",
-      "tier": "CONTRIBUTOR",
+      "tier": "EXPERT",
       "id": 15974520,
       "progressionOptOut": false
     },
@@ -692,10 +1107,10 @@
         "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
         "url": "/josefreitasalvesneto",
         "userName": "josefreitasalvesneto",
-        "tier": "CONTRIBUTOR",
+        "tier": "EXPERT",
         "id": 15974520,
         "profileUrl": "/josefreitasalvesneto",
-        "performanceTier": "CONTRIBUTOR",
+        "performanceTier": "EXPERT",
         "userId": 15974520,
         "progressionOptOut": false
       },
@@ -1284,6 +1699,45 @@
   },
   {
     "authorUser": {
+      "displayName": "g john rao",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+      "url": "/jaejohn",
+      "tier": "MASTER",
+      "id": 14464632,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 1,
+    "firstForumMessageId": 3502949,
+    "id": 729082,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "Bharat",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/729082#3504428",
+    "lastCommentPostDate": "2026-07-28T02:47:18.860Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-07-25T06:28:39.784938600Z",
+    "title": "Exact duplicate volumes, but GT edge moves 8.9 \u00b5m",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/729082",
+    "votes": 10,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "g john rao",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
+        "url": "/jaejohn",
+        "userName": "jaejohn",
+        "tier": "MASTER",
+        "id": 14464632,
+        "profileUrl": "/jaejohn",
+        "performanceTier": "MASTER",
+        "userId": 14464632,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
       "displayName": "Diana Daher",
       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
       "url": "/dianadaher",
@@ -1355,45 +1809,6 @@
         "profileUrl": "/hengck23",
         "performanceTier": "GRANDMASTER",
         "userId": 113660,
-        "progressionOptOut": false
-      },
-      "intro": ""
-    }
-  },
-  {
-    "authorUser": {
-      "displayName": "g john rao",
-      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
-      "url": "/jaejohn",
-      "tier": "MASTER",
-      "id": 14464632,
-      "progressionOptOut": false
-    },
-    "authorType": "TOPIC",
-    "commentCount": 1,
-    "firstForumMessageId": 3502949,
-    "id": 729082,
-    "lastCommenterType": "COMMENT",
-    "lastCommenterName": "Bharat",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/729082#3504428",
-    "lastCommentPostDate": "2026-07-28T02:47:18.860Z",
-    "parentName": "Biohub - Cell Tracking During Development",
-    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
-    "postDate": "2026-07-25T06:28:39.784938600Z",
-    "title": "Exact duplicate volumes, but GT edge moves 8.9 \u00b5m",
-    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/729082",
-    "votes": 9,
-    "teamUpInfo": {
-      "teamLeader": {
-        "displayName": "g john rao",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14464632-kg.jpg?t=2025-04-02-06-53-25",
-        "url": "/jaejohn",
-        "userName": "jaejohn",
-        "tier": "MASTER",
-        "id": 14464632,
-        "profileUrl": "/jaejohn",
-        "performanceTier": "MASTER",
-        "userId": 14464632,
         "progressionOptOut": false
       },
       "intro": ""
@@ -1749,9 +2164,9 @@
   {
     "authorUser": {
       "displayName": "Busya PRIME",
-      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpg?t=2026-08-28-12-58-00",
       "url": "/busyaprime",
-      "tier": "CONTRIBUTOR",
+      "tier": "EXPERT",
       "id": 35123354,
       "progressionOptOut": false
     },
@@ -1771,13 +2186,13 @@
     "teamUpInfo": {
       "teamLeader": {
         "displayName": "Busya PRIME",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpg?t=2026-08-28-12-58-00",
         "url": "/busyaprime",
         "userName": "busyaprime",
-        "tier": "CONTRIBUTOR",
+        "tier": "EXPERT",
         "id": 35123354,
         "profileUrl": "/busyaprime",
-        "performanceTier": "CONTRIBUTOR",
+        "performanceTier": "EXPERT",
         "userId": 35123354,
         "progressionOptOut": false
       },
@@ -2006,6 +2421,30 @@
   },
   {
     "authorUser": {
+      "displayName": "Jord\u00e3o Bragantini",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "url": "/jookuma",
+      "tier": "CONTRIBUTOR",
+      "id": 1417736,
+      "progressionOptOut": false
+    },
+    "authorType": "HOST",
+    "commentCount": 1,
+    "firstForumMessageId": 3498498,
+    "id": 726521,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "Issac \u201cIzreal\u201d Davis",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/726521#3498817",
+    "lastCommentPostDate": "2026-07-16T01:05:05.560Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-07-15T16:24:16.968400700Z",
+    "title": "Higher-order cell tracking",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/726521",
+    "votes": 12
+  },
+  {
+    "authorUser": {
       "displayName": "hengck23",
       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
       "url": "/hengck23",
@@ -2080,30 +2519,6 @@
       },
       "intro": ""
     }
-  },
-  {
-    "authorUser": {
-      "displayName": "Jord\u00e3o Bragantini",
-      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
-      "url": "/jookuma",
-      "tier": "CONTRIBUTOR",
-      "id": 1417736,
-      "progressionOptOut": false
-    },
-    "authorType": "HOST",
-    "commentCount": 1,
-    "firstForumMessageId": 3498498,
-    "id": 726521,
-    "lastCommenterType": "COMMENT",
-    "lastCommenterName": "Issac \u201cIzreal\u201d Davis",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/726521#3498817",
-    "lastCommentPostDate": "2026-07-16T01:05:05.560Z",
-    "parentName": "Biohub - Cell Tracking During Development",
-    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
-    "postDate": "2026-07-15T16:24:16.968400700Z",
-    "title": "Higher-order cell tracking",
-    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/726521",
-    "votes": 10
   },
   {
     "authorUser": {
@@ -2530,7 +2945,7 @@
         "userId": 4310004,
         "progressionOptOut": false
       },
-      "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
+      "intro": "pursue champion position. welcome to reach out if you have interesting idea."
     }
   },
   {
@@ -2566,59 +2981,6 @@
         "profileUrl": "/harshulgupta77",
         "performanceTier": "CONTRIBUTOR",
         "userId": 34422127,
-        "progressionOptOut": false
-      },
-      "intro": ""
-    }
-  },
-  {
-    "authorUser": {
-      "displayName": "LeeWhieldon",
-      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
-      "url": "/leewhieldon",
-      "tier": "CONTRIBUTOR",
-      "id": 1715297,
-      "progressionOptOut": false
-    },
-    "authorType": "TOPIC",
-    "commentCount": 10,
-    "firstForumMessageId": 3493934,
-    "id": 723921,
-    "lastCommenterType": "COMMENT",
-    "lastCommenterName": "fnands",
-    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/723921#3495610",
-    "lastCommentPostDate": "2026-07-12T15:07:04.890Z",
-    "parentName": "Biohub - Cell Tracking During Development",
-    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
-    "postDate": "2026-07-08T19:09:04.758917200Z",
-    "tags": [
-      {
-        "id": 7100,
-        "name": "biology",
-        "listingUrl": "/tags/biology",
-        "displayName": "Biology"
-      },
-      {
-        "id": 14102,
-        "name": "image",
-        "listingUrl": "/tags/image-data",
-        "displayName": "Image"
-      }
-    ],
-    "title": "Ground truth for all 4 test clips appears to be present in the train split",
-    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/723921",
-    "votes": -7,
-    "teamUpInfo": {
-      "teamLeader": {
-        "displayName": "LeeWhieldon",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
-        "url": "/leewhieldon",
-        "userName": "leewhieldon",
-        "tier": "CONTRIBUTOR",
-        "id": 1715297,
-        "profileUrl": "/leewhieldon",
-        "performanceTier": "CONTRIBUTOR",
-        "userId": 1715297,
         "progressionOptOut": false
       },
       "intro": ""
@@ -2696,6 +3058,59 @@
         "profileUrl": "/uthmankareemtunde",
         "performanceTier": "CONTRIBUTOR",
         "userId": 34038359,
+        "progressionOptOut": false
+      },
+      "intro": ""
+    }
+  },
+  {
+    "authorUser": {
+      "displayName": "LeeWhieldon",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
+      "url": "/leewhieldon",
+      "tier": "CONTRIBUTOR",
+      "id": 1715297,
+      "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "commentCount": 10,
+    "firstForumMessageId": 3493934,
+    "id": 723921,
+    "lastCommenterType": "COMMENT",
+    "lastCommenterName": "fnands",
+    "lastCommenterUrl": "/competitions/biohub-cell-tracking-during-development/discussion/723921#3495610",
+    "lastCommentPostDate": "2026-07-12T15:07:04.890Z",
+    "parentName": "Biohub - Cell Tracking During Development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development/discussion",
+    "postDate": "2026-07-08T19:09:04.758917200Z",
+    "tags": [
+      {
+        "id": 7100,
+        "name": "biology",
+        "listingUrl": "/tags/biology",
+        "displayName": "Biology"
+      },
+      {
+        "id": 14102,
+        "name": "image",
+        "listingUrl": "/tags/image-data",
+        "displayName": "Image"
+      }
+    ],
+    "title": "Ground truth for all 4 test clips appears to be present in the train split",
+    "topicUrl": "/competitions/biohub-cell-tracking-during-development/discussion/723921",
+    "votes": -8,
+    "teamUpInfo": {
+      "teamLeader": {
+        "displayName": "LeeWhieldon",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1715297-fb.jpg",
+        "url": "/leewhieldon",
+        "userName": "leewhieldon",
+        "tier": "CONTRIBUTOR",
+        "id": 1715297,
+        "profileUrl": "/leewhieldon",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 1715297,
         "progressionOptOut": false
       },
       "intro": ""

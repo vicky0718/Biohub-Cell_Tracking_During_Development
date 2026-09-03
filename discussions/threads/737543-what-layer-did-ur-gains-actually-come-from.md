@@ -4,8 +4,8 @@
 - **Topic id**: 737543
 - **Author**: kevin park (CONTRIBUTOR)
 - **Posted**: 2026-08-26T03:10:45.084626300Z
-- **Votes**: 1
-- **Comments**: 2
+- **Votes**: 3
+- **Comments**: 9
 
 ---
 
@@ -35,16 +35,64 @@ even js which one mattered most for u would help. thanks
 
 ---
 
-## Comments (2)
+## Comments (9)
 
 
-### Tang (MASTER) — 2026-08-27T00:36:00.903Z — 2 votes
+### Tang (MASTER) — 2026-08-27T00:36:00.903Z — 3 votes
 
 improvements com from all of them.
 it's hard to say which one matter most, but i think there's a "correct" order to work on them:
 detection -> linking -> division.
 detection should come first, once detection is solid, it's easier to improve others.
 
+#### ↳ kevin park (CONTRIBUTOR) — 2026-08-28T06:38:46.290Z — 1 votes
+
+> thanks for replying
+> 
+> sry i didnt put this in the main post my detection recall is already 0.9945 so i dont think theres much left there for me
+> 
+> my real problem is divisions my divJ is 0.1176 and my adjJ is 0.9212 so basically all my score is edges
+> 
+> did fixing detection actually move ur divisions or did u need something else for that
+
+#### ↳ ↳ Lime1123 (EXPERT) — 2026-08-28T06:59:04Z — -1 votes
+
+> > I think some division-specific handling is needed for divisions beyond just improving detection recall. Recall still matters, especially at shorter distances, but a high overall detection recall by itself doesn't seem to translate directly into a good divJ.
+> > 
+> > In my validation, divisions seemed much more sensitive to spatial accuracy, roughly within 3 um, even though the competition metric uses 7 um. For reference, in LB, I got about 0.28 divJ with an adjJ around 0.89...
+
+#### ↳ ↳ kevin park (CONTRIBUTOR) — 2026-08-28T07:34:38.537Z — -1 votes
+
+> > tysm this helps so much
+> > 
+> > i went and checked mine and my division nodes really do localize worse than everything else 39 percent of them are outside 3um even tho all of them pass the 7um metric
+> > 
+> > gonna give it a try
+
+#### ↳ ↳ kevin park (CONTRIBUTOR) — 2026-08-28T10:28:48.563Z
+
+> > also is that handling a model thing or something after the graph
+> > 
+> > no worries if u dont wanna say. this already helped a lot
+
+#### ↳ ↳ Tang (MASTER) — 2026-08-29T11:18:26.907Z
+
+> > glad to help.
+> > in my case, most of the gains come from model improvements.
+
+#### ↳ Rishabh Roy (EXPERT) — 2026-08-31T08:05:40.273Z
+
+> > improvements com from all of them.
+> > it's hard to say which one matter most, but i think there's a "correct" order to work on them:
+> > detection -> linking -> division.
+> > detection should come first, once detection is solid, it's easier to improve others.
+> 
+> @hirotetsu Can you help how you improved the detection beyond the normal unet 3d detector . any suggestion would be great .
+
 ### abcbcbc (CONTRIBUTOR) — 2026-08-27T07:10:52.763Z
 
 Could it be because the training data isn't good enough? The training data is too sparsely labeled, and I feel like that makes it very difficult to train a detection model.
+
+### unknown — 2026-08-28T06:35:48.187Z
+
+*(empty)*

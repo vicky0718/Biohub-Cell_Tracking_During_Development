@@ -36,6 +36,6 @@ Yes, it does appear that the Hacking score has decreased. Thank you for looking 
 
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F25515343%2F072d7fb14582463dccb4d660bd1b8456%2F2026-07-23_09h09_22.png?generation=1784765431009865&alt=media)
 
-### Zejun_ (EXPERT) — 2026-07-23T03:46:29.983Z — 1 votes
+### Zejun_ (EXPERT) — 2026-07-23T03:46:29.983Z — 2 votes
 
 Yes and can we fix score on public notebook also？It might make some new participants confused.

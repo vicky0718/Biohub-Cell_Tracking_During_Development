@@ -20,7 +20,7 @@ Wanted to know if anyone tried them?
 ## Comments (11)
 
 
-### Jawad Ahmed (CONTRIBUTOR) — 2026-08-06T10:07:20.853Z — 1 votes
+### nusrati (CONTRIBUTOR) — 2026-08-06T10:07:20.853Z — 1 votes
 
 One thing worth checking before investing in a 3D adaptation: how much of your score is actually lost to linking versus detection? I measured the failure split on a per-movie basis and the answer surprised me. Once node recall is high, nearest-neighbour on physical distance alone already resolves the large majority of links, and the residual errors concentrate in a small subset where two candidates sit within roughly one cell radius of each other.
 

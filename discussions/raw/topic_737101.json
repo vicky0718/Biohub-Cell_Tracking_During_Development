@@ -21,9 +21,9 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 12,
+          "totalVotes": 18,
           "canUpvote": true,
-          "totalUpvotes": 12
+          "totalUpvotes": 18
         },
         "kernelVersion": 0,
         "competitionRanking": 1,
@@ -46,14 +46,52 @@
         }
       },
       {
+        "id": 3518337,
+        "postDate": "2026-08-30T13:48:02.517Z",
+        "rawMarkdown": "hi can you please share how you are training. i have note been able to train a single model yet, really confused right now. I am trying using only the TemporalUnet3D model but the loss for detections keep bouncing around",
+        "content": "<p>hi can you please share how you are training. i have note been able to train a single model yet, really confused right now. I am trying using only the TemporalUnet3D model but the loss for detections keep bouncing around</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Abhirup Choudhury",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/abhirupchoudhury073",
+          "tier": "CONTRIBUTOR",
+          "id": 18047723,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2031,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Abhirup Choudhury",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/abhirupchoudhury073",
+            "userName": "abhirupchoudhury073",
+            "tier": "CONTRIBUTOR",
+            "id": 18047723,
+            "profileUrl": "/abhirupchoudhury073",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 18047723,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3517545,
         "postDate": "2026-08-27T12:34:34.317Z",
         "rawMarkdown": "how did you get the breakthrough now?\n",
         "content": "<p>how did you get the breakthrough now?</p>",
         "parent": {},
         "author": {
-          "displayName": "Jawad Ahmed",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+          "displayName": "nusrati",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
           "url": "/nusrati",
           "tier": "CONTRIBUTOR",
           "id": 23336356,
@@ -64,13 +102,13 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 301,
+        "competitionRanking": 80,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "Jawad Ahmed",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+            "displayName": "nusrati",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
             "url": "/nusrati",
             "userName": "nusrati",
             "tier": "CONTRIBUTOR",
@@ -108,9 +146,10 @@
           {
             "emoji": "FUNNY",
             "featuredUserNames": [
+              "aliozanmemetoglu",
               "antonoof"
             ],
-            "userCount": 1
+            "userCount": 2
           }
         ]
       },
@@ -133,7 +172,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 96,
+        "competitionRanking": 330,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -170,12 +209,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 7,
+        "totalVotes": 9,
         "canUpvote": true,
-        "totalUpvotes": 7
+        "totalUpvotes": 9
       },
       "kernelVersion": 0,
-      "competitionRanking": 39,
+      "competitionRanking": 127,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -203,9 +242,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-23T09:12:21.220220100Z",
-    "totalVotes": 7,
+    "totalVotes": 9,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/737101",
-    "totalMessages": 4,
+    "totalMessages": 5,
     "authorPerformanceTier": "EXPERT",
     "authorProgressionOptOut": false
   }

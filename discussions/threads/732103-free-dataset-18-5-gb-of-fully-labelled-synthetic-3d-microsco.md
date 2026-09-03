@@ -2,7 +2,7 @@
 
 - **URL**: https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/732103
 - **Topic id**: 732103
-- **Author**: José Freitas (CONTRIBUTOR)
+- **Author**: José Freitas (EXPERT)
 - **Posted**: 2026-08-01T21:12:10.502460400Z
 - **Votes**: 40
 - **Comments**: 4
@@ -53,7 +53,7 @@ Happy to answer anything about the generator. If you try it and it breaks, or it
 
 This is a great effort, thanks for releasing it. One thing I haven't seen raised yet: our real training set turns out to come from only 2 actual embryos, and they differ a lot  annotation sparsity of roughly 1% vs 9%, and division counts of 26 vs 125 across their samples. Given that real embryo-to-embryo heterogeneity, I'm curious whether the synthetic generation process models that kind of variation (density, noise, crowding) across its volumes, or whether it's drawn from one more canonical/idealized regime.
 
-#### ↳ José Freitas (CONTRIBUTOR) — 2026-08-09T14:02:08.883Z — 1 votes
+#### ↳ José Freitas (EXPERT) — 2026-08-09T14:02:08.883Z — 1 votes
 
 > Hello, I'm happy to help! I understand your doubt, the divisions were generated inspired by real movement, we might not have total accuracy, but we can use my data to pretrain a model and then fine-tune it with the real data, that helps it converge faster!
 
@@ -63,6 +63,6 @@ First and foremost, thank you for your effort Jose and for sharing.
 
 I just started in this competition, so I'm not sure if I will use your data yet, but If I do, I will let you know.
 
-#### ↳ José Freitas (CONTRIBUTOR) — 2026-08-06T12:03:18.437Z — 1 votes
+#### ↳ José Freitas (EXPERT) — 2026-08-06T12:03:18.437Z — 1 votes
 
 > Thank you very much! I'm happy to help! If you have any questions, I'm available!

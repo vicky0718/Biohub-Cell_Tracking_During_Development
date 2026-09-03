@@ -38,7 +38,7 @@
                   "totalUpvotes": 4
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1688,
+                "competitionRanking": 1894,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -103,7 +103,7 @@
           "totalUpvotes": 7
         },
         "kernelVersion": 0,
-        "competitionRanking": 94,
+        "competitionRanking": 544,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -159,7 +159,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 988,
+            "competitionRanking": 1180,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -204,7 +204,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 2573,
+        "competitionRanking": 2804,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -289,6 +289,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
+        "competitionRanking": 2792,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -307,6 +308,24 @@
           },
           "intro": ""
         }
+      },
+      {
+        "id": 3518615,
+        "postDate": "2026-08-31T11:28:33.580Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
       }
     ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -326,9 +345,9 @@
       },
       "authorType": "ADMIN",
       "votes": {
-        "totalVotes": 24,
+        "totalVotes": 27,
         "canUpvote": true,
-        "totalUpvotes": 24
+        "totalUpvotes": 27
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -340,10 +359,11 @@
             "ramarlina",
             "iglovikov",
             "ssenyonga",
+            "josluizlunaxavier",
             "mah20050",
             "asogwasamson"
           ],
-          "userCount": 5
+          "userCount": 6
         },
         {
           "emoji": "LOVE",
@@ -355,13 +375,14 @@
             "mukhtiar21",
             "yizreelschwartz",
             "ouedraogosomkieta",
+            "josluizlunaxavier",
             "dhananjaysharma8950",
             "kiarabernardo",
             "kypdenis",
             "adoleedache",
             "uthmankareemtunde"
           ],
-          "userCount": 12
+          "userCount": 13
         }
       ],
       "teamUpInfo": {
@@ -389,9 +410,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-06-25T16:44:43.592999100Z",
-    "totalVotes": 24,
+    "totalVotes": 27,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/714101",
-    "totalMessages": 7,
+    "totalMessages": 8,
     "authorPerformanceTier": "STAFF",
     "authorProgressionOptOut": false
   }

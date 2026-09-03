@@ -73,7 +73,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1786,
+                "competitionRanking": 1991,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -144,7 +144,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1786,
+            "competitionRanking": 1991,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -180,7 +180,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 220,
+        "competitionRanking": 309,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -231,7 +231,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 803,
+                "competitionRanking": 901,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -269,7 +269,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1786,
+                "competitionRanking": 1991,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -303,7 +303,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1786,
+            "competitionRanking": 1991,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -339,7 +339,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 803,
+        "competitionRanking": 901,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -394,12 +394,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": -7,
+        "totalVotes": -8,
         "canUpvote": true,
         "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 1786,
+      "competitionRanking": 1991,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -442,7 +442,7 @@
         "displayName": "Image"
       }
     ],
-    "totalVotes": -7,
+    "totalVotes": -8,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/723921",
     "totalMessages": 10,
     "authorPerformanceTier": "CONTRIBUTOR",

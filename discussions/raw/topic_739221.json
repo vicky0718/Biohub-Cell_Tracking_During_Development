@@ -1,0 +1,58 @@
+{
+  "forumTopic": {
+    "authorId": 18047723,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Abhirup Choudhury",
+    "authorUserName": "abhirupchoudhury073",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3520355,
+      "postDate": "2026-09-03T07:57:36.857Z",
+      "rawMarkdown": "So both validation and train loss took a U turn upwards half the way, why is this happening? Any tips to stablise training on sparse annotations?\n\nWhat kind of loss function should be used?",
+      "content": "<p>So both validation and train loss took a U turn upwards half the way, why is this happening? Any tips to stablise training on sparse annotations?</p>\n<p>What kind of loss function should be used?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Abhirup Choudhury",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/abhirupchoudhury073",
+        "tier": "CONTRIBUTOR",
+        "id": 18047723,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2023,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Abhirup Choudhury",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/abhirupchoudhury073",
+          "userName": "abhirupchoudhury073",
+          "tier": "CONTRIBUTOR",
+          "id": 18047723,
+          "profileUrl": "/abhirupchoudhury073",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 18047723,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3520355,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 739221,
+    "name": "Tried training on a 3DTemporalUnet + deterministic linking, loss starts climbing up after 10 epochs",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-03T07:57:36.855792200Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/739221",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

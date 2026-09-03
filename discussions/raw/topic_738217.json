@@ -1,0 +1,754 @@
+{
+  "forumTopic": {
+    "authorId": 113660,
+    "authorThumbnailName": "113660-fb.jpg",
+    "authorUserDisplayName": "hengck23",
+    "authorUserName": "hengck23",
+    "comments": [
+      {
+        "id": 3519195,
+        "postDate": "2026-09-01T09:19:47.130Z",
+        "rawMarkdown": "An idea that is too much for the competition but could be feasible in long term cell tracking research. I have been looking at video generation deep net. You can have a depth map as prompt then generate anime or life movie.\n\nSo it is easy to create 3d virtual cell in blender and add motion. Then you can style it to create fluorescent microscopy volume.    \n\nIn fact with infinite data you can simply convert 4d to 4d end to end. From volume back to bender model.\n",
+        "content": "<p>An idea that is too much for the competition but could be feasible in long term cell tracking research. I have been looking at video generation deep net. You can have a depth map as prompt then generate anime or life movie.</p>\n<p>So it is easy to create 3d virtual cell in blender and add motion. Then you can style it to create fluorescent microscopy volume.    </p>\n<p>In fact with infinite data you can simply convert 4d to 4d end to end. From volume back to bender model.</p>",
+        "replies": [
+          {
+            "id": 3519199,
+            "postDate": "2026-09-01T09:42:06.583Z",
+            "rawMarkdown": "yup super idea, but for an undergrad, thats not manageable in our routine. But I surely would like to contribute to it if someones upto it.",
+            "content": "<p>yup super idea, but for an undergrad, thats not manageable in our routine. But I surely would like to contribute to it if someones upto it.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "nusrati",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+              "url": "/nusrati",
+              "tier": "CONTRIBUTOR",
+              "id": 23336356,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 71,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "nusrati",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+                "url": "/nusrati",
+                "userName": "nusrati",
+                "tier": "CONTRIBUTOR",
+                "id": 23336356,
+                "profileUrl": "/nusrati",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 23336356,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 161,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3518742,
+        "postDate": "2026-08-31T15:45:28.467Z",
+        "rawMarkdown": "elastic augmentation  \nso actually you have dense data for training  \n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F936529f234ae0f09dcafc7f0960ecc77%2FPeek%202026-08-31%2023-44.gif?generation=1788191083712245&alt=media)",
+        "content": "<p>elastic augmentation<br>\nso actually you have dense data for training  </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F936529f234ae0f09dcafc7f0960ecc77%2FPeek%202026-08-31%2023-44.gif?generation=1788191083712245&amp;alt=media\" alt=\"\"></p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 161,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3518582,
+        "postDate": "2026-08-31T10:05:52.303Z",
+        "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F27681700%2F61aba3aa541a88660eb267eb7c12608a%2FScreenshot%20from%202026-08-31%2006-00-18.png?generation=1788170628363876&alt=media)\n\n\n<--i want to share pictures too :D \n",
+        "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F27681700%2F61aba3aa541a88660eb267eb7c12608a%2FScreenshot%20from%202026-08-31%2006-00-18.png?generation=1788170628363876&amp;alt=media\" alt=\"\"></p>\n<p>&lt;--i want to share pictures too :D </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Russell Kirk",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27681700-kg.jpg?t=2026-08-14-05-30-41",
+          "url": "/russcore",
+          "tier": "EXPERT",
+          "id": 27681700,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 333,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "KAGGLE",
+            "featuredUserNames": [
+              "yunusgmsoy"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Russell Kirk",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27681700-kg.jpg?t=2026-08-14-05-30-41",
+            "url": "/russcore",
+            "userName": "russcore",
+            "tier": "EXPERT",
+            "id": 27681700,
+            "profileUrl": "/russcore",
+            "performanceTier": "EXPERT",
+            "userId": 27681700,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3518534,
+        "postDate": "2026-08-31T07:41:29.500Z",
+        "rawMarkdown": "https://www.biorxiv.org/content/10.1101/2025.07.23.666425v1  \nASCENT: Annotation-free Self-supervised Contrastive Embeddings for 3D Neuron Tracking in Fluorescence Microscopy  \n\nanother shortcut is :  \nFOCUS3d --> label -->augmentation (e.g. affine, elastic deform) to create window of T=2 pairs.  \nthen you can train link transformer etc..",
+        "content": "<p><a href=\"https://www.biorxiv.org/content/10.1101/2025.07.23.666425v1\" target=\"_blank\">https://www.biorxiv.org/content/10.1101/2025.07.23.666425v1</a><br>\nASCENT: Annotation-free Self-supervised Contrastive Embeddings for 3D Neuron Tracking in Fluorescence Microscopy  </p>\n<p>another shortcut is :<br>\nFOCUS3d --&gt; label --&gt;augmentation (e.g. affine, elastic deform) to create window of T=2 pairs.<br>\nthen you can train link transformer etc..</p>",
+        "replies": [
+          {
+            "id": 3518571,
+            "postDate": "2026-08-31T09:44:45.063Z",
+            "rawMarkdown": "@hengck23  It looks like there are even more great ideas to me now",
+            "content": "<p><a href=\"https://www.kaggle.com/hengck23\" target=\"_blank\">@hengck23</a>  It looks like there are even more great ideas to me now</p>",
+            "replies": [
+              {
+                "id": 3518591,
+                "postDate": "2026-08-31T10:34:59.190Z",
+                "rawMarkdown": "you can just randomly make some grid points that are non-background, then \"track/link them\" in next \"augmented frame\" as pretraining or aux loss",
+                "content": "<p>you can just randomly make some grid points that are non-background, then \"track/link them\" in next \"augmented frame\" as pretraining or aux loss</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 161,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Tom",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+              "url": "/tom99763",
+              "tier": "MASTER",
+              "id": 4310004,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 9,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Tom",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+                "url": "/tom99763",
+                "userName": "tom99763",
+                "tier": "MASTER",
+                "id": 4310004,
+                "profileUrl": "/tom99763",
+                "performanceTier": "MASTER",
+                "userId": 4310004,
+                "progressionOptOut": false
+              },
+              "intro": "pursue champion position. welcome to reach out if you have interesting idea."
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 161,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "aliozanmemetoglu",
+              "mikeintokyo"
+            ],
+            "userCount": 2
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3518488,
+        "postDate": "2026-08-31T04:04:38.893Z",
+        "rawMarkdown": "FOCUS-3D (instance segmentation) --> HOCT (tracking)    \nhttps://github.com/royerlab/hoct/tree/main  \nhttps://arxiv.org/abs/2607.11754  \nHigher-Order Cell Tracking Transformer  \n\n\n---\n\n\nTHICK BLUE: kaggle annotation  \nOTHER THIN: nearest track from HOCT  \n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F335a3eeb48ab9d2b799e6bf2c0ed973a%2FSelection_4733.png?generation=1788148939168370&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F6ae538c0de22bd26ba2f5bc2c8a2f1d7%2FSelection_4734.png?generation=1788148953830155&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F07a0f1d2c25bad1d915b127224cf6e71%2FSelection_4735.png?generation=1788148976594585&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F13a5e112eb312200b3bc018e42c7e078%2FSelection_4736.png?generation=1788149017218352&alt=media)",
+        "content": "<p>FOCUS-3D (instance segmentation) --&gt; HOCT (tracking)<br>\n<a href=\"https://github.com/royerlab/hoct/tree/main\" target=\"_blank\">https://github.com/royerlab/hoct/tree/main</a><br>\n<a href=\"https://arxiv.org/abs/2607.11754\" target=\"_blank\">https://arxiv.org/abs/2607.11754</a><br>\nHigher-Order Cell Tracking Transformer  </p>\n<hr>\n<p>THICK BLUE: kaggle annotation<br>\nOTHER THIN: nearest track from HOCT  </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F335a3eeb48ab9d2b799e6bf2c0ed973a%2FSelection_4733.png?generation=1788148939168370&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F6ae538c0de22bd26ba2f5bc2c8a2f1d7%2FSelection_4734.png?generation=1788148953830155&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F07a0f1d2c25bad1d915b127224cf6e71%2FSelection_4735.png?generation=1788148976594585&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F13a5e112eb312200b3bc018e42c7e078%2FSelection_4736.png?generation=1788149017218352&amp;alt=media\" alt=\"\"></p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 161,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "YAY",
+            "featuredUserNames": [
+              "hikarukai"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3518454,
+        "postDate": "2026-08-31T00:34:08.573Z",
+        "rawMarkdown": "Once you have dense segmentation label, you can use many opensource tracker like hoct, itec, trackastra to make dense tracks for better training.\n\nThen you can do longer range tracking over window of 5 or 8 (instead of 2)",
+        "content": "<p>Once you have dense segmentation label, you can use many opensource tracker like hoct, itec, trackastra to make dense tracks for better training.</p>\n<p>Then you can do longer range tracking over window of 5 or 8 (instead of 2)</p>",
+        "replies": [
+          {
+            "id": 3518559,
+            "postDate": "2026-08-31T09:05:24.563Z",
+            "rawMarkdown": "Are you able to use this segmentation in your code ? @hengck23 ",
+            "content": "<p>Are you able to use this segmentation in your code ? <a href=\"https://www.kaggle.com/hengck23\" target=\"_blank\">@hengck23</a> </p>",
+            "replies": [
+              {
+                "id": 3518577,
+                "postDate": "2026-08-31T09:50:37.440Z",
+                "rawMarkdown": "You can download hf spaces gradio code and modify from there. It is self contained ",
+                "content": "<p>You can download hf spaces gradio code and modify from there. It is self contained </p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 161,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3518592,
+                "postDate": "2026-08-31T10:37:22.100Z",
+                "rawMarkdown": "would love to see this work ",
+                "content": "<p>would love to see this work </p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Rishabh Roy",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                  "url": "/rishabhr0y",
+                  "tier": "EXPERT",
+                  "id": 217906,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 51,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Rishabh Roy",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                    "url": "/rishabhr0y",
+                    "userName": "rishabhr0y",
+                    "tier": "EXPERT",
+                    "id": 217906,
+                    "profileUrl": "/rishabhr0y",
+                    "performanceTier": "EXPERT",
+                    "userId": 217906,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Rishabh Roy",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+              "url": "/rishabhr0y",
+              "tier": "EXPERT",
+              "id": 217906,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 51,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Rishabh Roy",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                "url": "/rishabhr0y",
+                "userName": "rishabhr0y",
+                "tier": "EXPERT",
+                "id": 217906,
+                "profileUrl": "/rishabhr0y",
+                "performanceTier": "EXPERT",
+                "userId": 217906,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 161,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3519829,
+        "postDate": "2026-09-02T09:56:12.787Z",
+        "rawMarkdown": "This is a draft version, where FOCUS\u20113D is only used as a detector directly\uff1a\nhttps://www.kaggle.com/code/qiweiyin/focus3d-nuclei-physical-pp-submit?scriptVersionId=346624807",
+        "content": "<p>This is a draft version, where FOCUS\u20113D is only used as a detector directly\uff1a\n<a href=\"https://www.kaggle.com/code/qiweiyin/focus3d-nuclei-physical-pp-submit?scriptVersionId=346624807\" target=\"_blank\">https://www.kaggle.com/code/qiweiyin/focus3d-nuclei-physical-pp-submit?scriptVersionId=346624807</a></p>",
+        "replies": [
+          {
+            "id": 3519902,
+            "postDate": "2026-09-02T12:49:19.523Z",
+            "rawMarkdown": "You should use focus3d, then measure\n1. Hitrate of sparse annotation ( also distance error)\n2. Compare num of detected nodes with estimated number of nodes\n\n```\n    geff_meta = GeffMetadata.read(\n        zarr_file.replace(\".zarr\", \".geff\")\n    )\n\n    est_num_nodes = float(\n        geff_meta.extra[\"estimated_number_of_nodes\"]\n    )\n\n```\n\u2014-\n\nAlso you should evaluate link transformer or other link model given gt location + other location and compared detected location + other location.\n\n",
+            "content": "<p>You should use focus3d, then measure</p>\n<ol>\n<li>Hitrate of sparse annotation ( also distance error)</li>\n<li>Compare num of detected nodes with estimated number of nodes</li>\n</ol>\n<pre><code>    geff_meta = GeffMetadata.read(\n        zarr_file.replace(\".zarr\", \".geff\")\n    )\n\n    est_num_nodes = float(\n        geff_meta.extra[\"estimated_number_of_nodes\"]\n    )\n</code></pre>\n<p>\u2014-</p>\n<p>Also you should evaluate link transformer or other link model given gt location + other location and compared detected location + other location.</p>",
+            "replies": [
+              {
+                "id": 3519903,
+                "postDate": "2026-09-02T12:51:42.613Z",
+                "rawMarkdown": "Further, i think gt annotation must have used some open source cell instance detector. I suspect it it cellpose3d or stardist3d with manual collection.",
+                "content": "<p>Further, i think gt annotation must have used some open source cell instance detector. I suspect it it cellpose3d or stardist3d with manual collection.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 161,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "reactions": [
+                  {
+                    "emoji": "THANK_YOU",
+                    "featuredUserNames": [
+                      "qiweiyin"
+                    ],
+                    "userCount": 1
+                  },
+                  {
+                    "emoji": "KAGGLE",
+                    "featuredUserNames": [
+                      "yunusgmsoy"
+                    ],
+                    "userCount": 1
+                  }
+                ],
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 161,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "THANK_YOU",
+                "featuredUserNames": [
+                  "qiweiyin"
+                ],
+                "userCount": 1
+              },
+              {
+                "emoji": "KAGGLE",
+                "featuredUserNames": [
+                  "yunusgmsoy"
+                ],
+                "userCount": 1
+              }
+            ],
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Qiwei",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/11244075-kg.png?t=2025-12-19-09-11-34",
+          "url": "/qiweiyin",
+          "tier": "MASTER",
+          "id": 11244075,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 111,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Qiwei",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/11244075-kg.png?t=2025-12-19-09-11-34",
+            "url": "/qiweiyin",
+            "userName": "qiweiyin",
+            "tier": "MASTER",
+            "id": 11244075,
+            "profileUrl": "/qiweiyin",
+            "performanceTier": "MASTER",
+            "userId": 11244075,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3518355,
+      "postDate": "2026-08-30T15:24:33.907Z",
+      "rawMarkdown": "Here are the results i tried on one of the kaggle train dataset\n\nhttps://huggingface.co/spaces/Qinghua-thu/FOCUS-3D\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Ff26b419d2743cbd3570314408b10e3f8%2FSelection_4730.png?generation=1788103458247804&alt=media)",
+      "content": "<p>Here are the results i tried on one of the kaggle train dataset</p>\n<p><a href=\"https://huggingface.co/spaces/Qinghua-thu/FOCUS-3D\" target=\"_blank\">https://huggingface.co/spaces/Qinghua-thu/FOCUS-3D</a></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Ff26b419d2743cbd3570314408b10e3f8%2FSelection_4730.png?generation=1788103458247804&amp;alt=media\" alt=\"\"></p>",
+      "parent": {},
+      "author": {
+        "displayName": "hengck23",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+        "url": "/hengck23",
+        "tier": "GRANDMASTER",
+        "id": 113660,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 16,
+        "canUpvote": true,
+        "totalUpvotes": 16
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 161,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "KAGGLE",
+          "featuredUserNames": [
+            "yunusgmsoy",
+            "adaluvu"
+          ],
+          "userCount": 2
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "userName": "hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "profileUrl": "/hengck23",
+          "performanceTier": "GRANDMASTER",
+          "userId": 113660,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3518355,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 738217,
+    "name": "focus3d : one of the best 3d cell segmentation",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-30T15:24:33.907558500Z",
+    "totalVotes": 16,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/738217",
+    "totalMessages": 15,
+    "authorPerformanceTier": "GRANDMASTER",
+    "authorProgressionOptOut": false
+  }
+}

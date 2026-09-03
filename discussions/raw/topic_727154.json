@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 1017,
+            "competitionRanking": 1210,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +68,7 @@
           "totalUpvotes": 9
         },
         "kernelVersion": 0,
-        "competitionRanking": 1033,
+        "competitionRanking": 1223,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -125,7 +125,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1017,
+            "competitionRanking": 1210,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -163,7 +163,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 256,
+            "competitionRanking": 237,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -240,7 +240,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 803,
+        "competitionRanking": 901,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -291,7 +291,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 313,
+        "competitionRanking": 536,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -351,7 +351,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 313,
+        "competitionRanking": 536,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -377,7 +377,7 @@
         "content": "<p>Thanks for update, we are waiting for this results.</p>",
         "parent": {},
         "author": {
-          "displayName": "Official Biohub",
+          "displayName": "OfficialBiohubs",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
           "url": "/officialbiohub",
           "tier": "CONTRIBUTOR",
@@ -402,7 +402,7 @@
           "displayName": "Maria Aqdas",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27715053-kg.png?t=2026-06-24-02-14-48",
           "url": "/mariaaqdas",
-          "tier": "CONTRIBUTOR",
+          "tier": "EXPERT",
           "id": 27715053,
           "progressionOptOut": false
         },
@@ -433,7 +433,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 614,
+        "competitionRanking": 239,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -479,7 +479,7 @@
               "displayName": "codebeforework",
               "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
               "url": "/codebeforework",
-              "tier": "CONTRIBUTOR",
+              "tier": "EXPERT",
               "id": 11146907,
               "progressionOptOut": false
             },
@@ -490,7 +490,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 567,
+            "competitionRanking": 380,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -499,10 +499,10 @@
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
                 "url": "/codebeforework",
                 "userName": "codebeforework",
-                "tier": "CONTRIBUTOR",
+                "tier": "EXPERT",
                 "id": 11146907,
                 "profileUrl": "/codebeforework",
-                "performanceTier": "CONTRIBUTOR",
+                "performanceTier": "EXPERT",
                 "userId": 11146907,
                 "progressionOptOut": false
               },
@@ -524,7 +524,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 686,
+        "competitionRanking": 931,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {

@@ -22,14 +22,14 @@ im stuck tbh and all my post proc efforts gone to waste , i need a direction , i
 
 Damn even i wanna know
 
-### Jawad Ahmed (CONTRIBUTOR) — 2026-08-17T20:00:15.697Z
+### nusrati (CONTRIBUTOR) — 2026-08-17T20:00:15.697Z
 
 Bruh how did you pass .925
 Im stuck with public data starting @ .907 with tuned upto .916 but cant make it cross nor touch .92
 Tried multiple algos but score remains the same. 
 Not in the position to train my own model from scratch.
 
-#### ↳ Jawad Ahmed (CONTRIBUTOR) — 2026-08-17T20:03:21.593Z
+#### ↳ nusrati (CONTRIBUTOR) — 2026-08-17T20:03:21.593Z
 
 > lmao I went from 58th to 187th in no time.
 > am busy rn will look into this stuff from tmr.

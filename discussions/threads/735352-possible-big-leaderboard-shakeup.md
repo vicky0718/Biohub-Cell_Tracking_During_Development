@@ -48,7 +48,7 @@ I guess what we can do is:
 - Build a reliable CV, and trust it.
 - Use external datasets or synthetic data to make our model more robust on division cells prediction.
 
-#### ↳ Jawad Ahmed (CONTRIBUTOR) — 2026-08-17T20:06:00.097Z — -1 votes
+#### ↳ nusrati (CONTRIBUTOR) — 2026-08-17T20:06:00.097Z — -1 votes
 
 > did you train your very own model uptil now or used the publicly available one and did u take the public notebook detections and apply your own tracking method on top
 
@@ -56,7 +56,7 @@ I guess what we can do is:
 
 yea ig so too , because training past ep 400 has diminishing returns , so maybe yea we wait fro the private shake
 
-### Jawad Ahmed (CONTRIBUTOR) — 2026-08-17T20:04:44.877Z
+### nusrati (CONTRIBUTOR) — 2026-08-17T20:04:44.877Z
 
 you dont mind me asking you, did you train your very own model from scratch or rather you fine tuned public model?
 

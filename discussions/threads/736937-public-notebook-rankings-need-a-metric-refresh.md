@@ -4,8 +4,8 @@
 - **Topic id**: 736937
 - **Author**: Yunus Gümüşsoy (CONTRIBUTOR)
 - **Posted**: 2026-08-22T14:50:45.065018400Z
-- **Votes**: 2
-- **Comments**: 0
+- **Votes**: 5
+- **Comments**: 1
 
 ---
 
@@ -20,6 +20,9 @@ Could we consider updating or flagging those old notebook scores? Otherwise, we 
 
 ---
 
-## Comments (0)
+## Comments (1)
 
-*(none)*
+
+### jazivxt (GRANDMASTER) — 2026-08-30T12:06:39.967Z — 1 votes
+
+The rebase lining should occur in all competitions to keep the community progressing optimally. Kaggle should make it easy for everyone to progress the field of study together without these barriers and challenges, it’s a win win for all and easy solutions

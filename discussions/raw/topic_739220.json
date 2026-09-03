@@ -1,0 +1,58 @@
+{
+  "forumTopic": {
+    "authorId": 18047723,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Abhirup Choudhury",
+    "authorUserName": "abhirupchoudhury073",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3520354,
+      "postDate": "2026-09-03T07:55:55.087Z",
+      "rawMarkdown": "Is everyone using the 3DTemporalUnet + CrossAttention with SImpleNodeTransformer? what is the training method and lose used here? same as the internal repo?\n\nI am stuck on fixing paramters in the post processing part, in ilp and NMS",
+      "content": "<p>Is everyone using the 3DTemporalUnet + CrossAttention with SImpleNodeTransformer? what is the training method and lose used here? same as the internal repo?</p>\n<p>I am stuck on fixing paramters in the post processing part, in ilp and NMS</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Abhirup Choudhury",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/abhirupchoudhury073",
+        "tier": "CONTRIBUTOR",
+        "id": 18047723,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2021,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Abhirup Choudhury",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/abhirupchoudhury073",
+          "userName": "abhirupchoudhury073",
+          "tier": "CONTRIBUTOR",
+          "id": 18047723,
+          "profileUrl": "/abhirupchoudhury073",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 18047723,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3520354,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 739220,
+    "name": "How can i reach a 0.9 score at least?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-03T07:55:55.088140100Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/739220",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

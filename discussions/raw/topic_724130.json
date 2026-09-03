@@ -22,24 +22,28 @@
         "authorType": "TOPIC",
         "votes": {
           "totalVotes": -1,
-          "canUpvote": true
+          "canUpvote": true,
+          "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 11,
+        "competitionRanking": 9,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
           {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "arunodhayan",
+              "mccocoful",
+              "shanzhong8",
+              "bharath111l"
+            ],
+            "userCount": 4
+          },
+          {
             "emoji": "FUNNY",
             "featuredUserNames": [
               "nataliajakowska"
-            ],
-            "userCount": 1
-          },
-          {
-            "emoji": "LOVE",
-            "featuredUserNames": [
-              "bharath111l"
             ],
             "userCount": 1
           }
@@ -57,7 +61,7 @@
             "userId": 4310004,
             "progressionOptOut": false
           },
-          "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
+          "intro": "pursue champion position. welcome to reach out if you have interesting idea."
         }
       },
       {
@@ -88,10 +92,11 @@
                 },
                 "authorType": "TOPIC",
                 "votes": {
-                  "canUpvote": true
+                  "canUpvote": true,
+                  "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 11,
+                "competitionRanking": 9,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -107,7 +112,7 @@
                     "userId": 4310004,
                     "progressionOptOut": false
                   },
-                  "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
+                  "intro": "pursue champion position. welcome to reach out if you have interesting idea."
                 }
               }
             ],
@@ -147,7 +152,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 239,
+        "competitionRanking": 184,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -229,7 +234,7 @@
         "parent": {},
         "author": {
           "displayName": "Joseph Adamski",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-gr.jpg",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-kg.jpg?t=2026-09-02-13-53-56",
           "url": "/josephadamski91",
           "tier": "CONTRIBUTOR",
           "id": 33210778,
@@ -240,13 +245,13 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 240,
+        "competitionRanking": 164,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "Joseph Adamski",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-gr.jpg",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-kg.jpg?t=2026-09-02-13-53-56",
             "url": "/josephadamski91",
             "userName": "josephadamski91",
             "tier": "CONTRIBUTOR",
@@ -287,7 +292,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 515,
+        "competitionRanking": 820,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -324,12 +329,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 43,
+        "totalVotes": 44,
         "canUpvote": true,
-        "totalUpvotes": 44
+        "totalUpvotes": 46
       },
       "kernelVersion": 0,
-      "competitionRanking": 11,
+      "competitionRanking": 9,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -357,7 +362,7 @@
           "userId": 4310004,
           "progressionOptOut": false
         },
-        "intro": "Wecome to reach out. We are still hiring 1 additional teammate. Require div jaccard>=0.03 & improvement on host's baseline"
+        "intro": "pursue champion position. welcome to reach out if you have interesting idea."
       }
     },
     "firstMessageId": 3494317,
@@ -368,7 +373,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-09T16:55:59.111354100Z",
-    "totalVotes": 43,
+    "totalVotes": 44,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/724130",
     "totalMessages": 8,
     "authorPerformanceTier": "MASTER",

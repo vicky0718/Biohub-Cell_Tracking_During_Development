@@ -30,7 +30,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 793,
+            "competitionRanking": 1021,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -66,7 +66,7 @@
           "totalUpvotes": 10
         },
         "kernelVersion": 0,
-        "competitionRanking": 2623,
+        "competitionRanking": 2864,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -120,7 +120,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 467,
+        "competitionRanking": 298,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -155,12 +155,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 1,
+          "totalVotes": 2,
           "canUpvote": true,
-          "totalUpvotes": 1
+          "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 1023,
+        "competitionRanking": 175,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -187,7 +187,7 @@
             "userId": 26336666,
             "progressionOptOut": false
           },
-          "intro": ""
+          "intro": "need gpu & crazy idea"
         }
       }
     ],
@@ -213,7 +213,7 @@
         "totalUpvotes": 20
       },
       "kernelVersion": 0,
-      "competitionRanking": 2623,
+      "competitionRanking": 2864,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [

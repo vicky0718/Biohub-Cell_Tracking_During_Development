@@ -1,7 +1,7 @@
 {
   "forumTopic": {
     "authorId": 35123354,
-    "authorThumbnailName": "default-thumb.png",
+    "authorThumbnailName": "35123354-kg.jpg?t=2026-08-28-12-58-00",
     "authorUserDisplayName": "Busya PRIME",
     "authorUserName": "busyaprime",
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -13,9 +13,9 @@
       "parent": {},
       "author": {
         "displayName": "Busya PRIME",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpg?t=2026-08-28-12-58-00",
         "url": "/busyaprime",
-        "tier": "CONTRIBUTOR",
+        "tier": "EXPERT",
         "id": 35123354,
         "progressionOptOut": false
       },
@@ -31,13 +31,13 @@
       "teamUpInfo": {
         "teamLeader": {
           "displayName": "Busya PRIME",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpg?t=2026-08-28-12-58-00",
           "url": "/busyaprime",
           "userName": "busyaprime",
-          "tier": "CONTRIBUTOR",
+          "tier": "EXPERT",
           "id": 35123354,
           "profileUrl": "/busyaprime",
-          "performanceTier": "CONTRIBUTOR",
+          "performanceTier": "EXPERT",
           "userId": 35123354,
           "progressionOptOut": false
         },
@@ -54,7 +54,7 @@
     "postDate": "2026-07-22T19:26:45.587719500Z",
     "totalVotes": 7,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/728300",
-    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorPerformanceTier": "EXPERT",
     "authorProgressionOptOut": false
   }
 }

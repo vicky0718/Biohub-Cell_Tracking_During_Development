@@ -5,7 +5,7 @@
 - **Author**: Alex Amirkhanyan (CONTRIBUTOR)
 - **Posted**: 2026-08-26T16:27:51.320257Z
 - **Votes**: 0
-- **Comments**: 4
+- **Comments**: 5
 
 ---
 
@@ -15,10 +15,14 @@ The scoring has been active for nearly 6 hours, is it normal?
 
 ---
 
-## Comments (4)
+## Comments (5)
 
 
-### Jawad Ahmed (CONTRIBUTOR) — 2026-08-26T18:27:33.700Z
+### X.X (CONTRIBUTOR) — 2026-09-01T02:18:54.327Z
+
+Yes. It could be longer
+
+### nusrati (CONTRIBUTOR) — 2026-08-26T18:27:33.700Z
 
 yes, it can exceed to 7 hrs as well
 

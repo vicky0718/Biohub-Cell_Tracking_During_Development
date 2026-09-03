@@ -21,7 +21,7 @@
               "displayName": "Jos\u00e9 Freitas",
               "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
               "url": "/josefreitasalvesneto",
-              "tier": "CONTRIBUTOR",
+              "tier": "EXPERT",
               "id": 15974520,
               "progressionOptOut": false
             },
@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 748,
+            "competitionRanking": 995,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -41,10 +41,10 @@
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
                 "url": "/josefreitasalvesneto",
                 "userName": "josefreitasalvesneto",
-                "tier": "CONTRIBUTOR",
+                "tier": "EXPERT",
                 "id": 15974520,
                 "profileUrl": "/josefreitasalvesneto",
-                "performanceTier": "CONTRIBUTOR",
+                "performanceTier": "EXPERT",
                 "userId": 15974520,
                 "progressionOptOut": false
               },
@@ -68,7 +68,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 219,
+        "competitionRanking": 167,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -103,7 +103,7 @@
               "displayName": "Jos\u00e9 Freitas",
               "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
               "url": "/josefreitasalvesneto",
-              "tier": "CONTRIBUTOR",
+              "tier": "EXPERT",
               "id": 15974520,
               "progressionOptOut": false
             },
@@ -114,7 +114,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 748,
+            "competitionRanking": 995,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -123,10 +123,10 @@
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
                 "url": "/josefreitasalvesneto",
                 "userName": "josefreitasalvesneto",
-                "tier": "CONTRIBUTOR",
+                "tier": "EXPERT",
                 "id": 15974520,
                 "profileUrl": "/josefreitasalvesneto",
-                "performanceTier": "CONTRIBUTOR",
+                "performanceTier": "EXPERT",
                 "userId": 15974520,
                 "progressionOptOut": false
               },
@@ -150,7 +150,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 1040,
+        "competitionRanking": 1240,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -181,7 +181,7 @@
         "displayName": "Jos\u00e9 Freitas",
         "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
         "url": "/josefreitasalvesneto",
-        "tier": "CONTRIBUTOR",
+        "tier": "EXPERT",
         "id": 15974520,
         "progressionOptOut": false
       },
@@ -192,7 +192,7 @@
         "totalUpvotes": 40
       },
       "kernelVersion": 0,
-      "competitionRanking": 748,
+      "competitionRanking": 995,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -213,10 +213,10 @@
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
           "url": "/josefreitasalvesneto",
           "userName": "josefreitasalvesneto",
-          "tier": "CONTRIBUTOR",
+          "tier": "EXPERT",
           "id": 15974520,
           "profileUrl": "/josefreitasalvesneto",
-          "performanceTier": "CONTRIBUTOR",
+          "performanceTier": "EXPERT",
           "userId": 15974520,
           "progressionOptOut": false
         },
@@ -234,7 +234,7 @@
     "totalVotes": 40,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/732103",
     "totalMessages": 4,
-    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorPerformanceTier": "EXPERT",
     "authorProgressionOptOut": false
   }
 }

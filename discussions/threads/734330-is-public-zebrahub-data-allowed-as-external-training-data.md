@@ -4,7 +4,7 @@
 - **Topic id**: 734330
 - **Author**: marumarukun (EXPERT)
 - **Posted**: 2026-08-11T00:18:51.970829200Z
-- **Votes**: 15
+- **Votes**: 16
 - **Comments**: 3
 
 ---
@@ -35,6 +35,6 @@ Hi! Yes you are free to use the data and all resources in Zebrahub for this comp
 
 ZebraHub data allowed as external training data? @marumarukun
 
-### Maria Aqdas (CONTRIBUTOR) — 2026-08-13T02:12:42.163Z
+### Maria Aqdas (EXPERT) — 2026-08-13T02:12:42.163Z
 
 Following this thread. Clarification on external Zebrahub datasets (*_tracks.csv) would be very helpful!

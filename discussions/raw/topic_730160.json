@@ -32,7 +32,7 @@
               "totalUpvotes": 4
             },
             "kernelVersion": 0,
-            "competitionRanking": 664,
+            "competitionRanking": 911,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +68,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 220,
+        "competitionRanking": 309,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -121,7 +121,7 @@
                   "totalUpvotes": 2
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 104,
+                "competitionRanking": 46,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -155,21 +155,21 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 545,
+            "competitionRanking": 370,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
               "enabled": true,
               "teamLeader": {
-                "displayName": "Shyla Nie",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
-                "url": "/shylanie",
-                "userName": "shylanie",
-                "tier": "CONTRIBUTOR",
-                "id": 26276454,
-                "profileUrl": "/shylanie",
-                "performanceTier": "CONTRIBUTOR",
-                "userId": 26276454,
+                "displayName": "william.wu",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3563032-kg.png?t=2024-10-16-03-06-20",
+                "url": "/wuwenmin",
+                "userName": "wuwenmin",
+                "tier": "MASTER",
+                "id": 3563032,
+                "profileUrl": "/wuwenmin",
+                "performanceTier": "MASTER",
+                "userId": 3563032,
                 "progressionOptOut": false
               },
               "intro": ""
@@ -192,7 +192,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 104,
+        "competitionRanking": 46,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {

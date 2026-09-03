@@ -4,8 +4,8 @@
 - **Topic id**: 737103
 - **Author**: Tim Krige (EXPERT)
 - **Posted**: 2026-08-23T09:59:31.382203600Z
-- **Votes**: 7
-- **Comments**: 5
+- **Votes**: 10
+- **Comments**: 6
 
 ---
 
@@ -17,10 +17,10 @@ I am not sure what the general rules interpretation is here, and there is a mass
 
 ---
 
-## Comments (5)
+## Comments (6)
 
 
-### Jawad Ahmed (CONTRIBUTOR) — 2026-08-24T14:25:12.757Z — -4 votes
+### nusrati (CONTRIBUTOR) — 2026-08-24T14:25:12.757Z — -5 votes
 
 no thats not allowed clearly mentioned in rules.
 
@@ -37,6 +37,10 @@ no thats not allowed clearly mentioned in rules.
 > > Hand labeling data has usually been allowed in previous competition.
 > > What you cannot do is label the test data but we don't have access to it.
 > > I can't 100% confirm it's allowed for this competition but unless the hosts state otherwise I think you can go ahead.
+
+### Muhammad Haseeb Ahmad (CONTRIBUTOR) — 2026-09-02T14:44:16.143Z
+
+Hosts, can you please answer this?
 
 ### unknown — 2026-08-24T13:49:44.010Z
 

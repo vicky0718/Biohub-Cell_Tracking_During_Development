@@ -1,0 +1,141 @@
+{
+  "forumTopic": {
+    "authorId": 4090870,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "weke",
+    "authorUserName": "cjpal18",
+    "comments": [
+      {
+        "id": 3518456,
+        "postDate": "2026-08-31T00:39:19.730Z",
+        "rawMarkdown": "It can be false positive or results of interpolation. Eg annotation label frame t=1 and t=3 and interpolate for t=2",
+        "content": "<p>It can be false positive or results of interpolation. Eg annotation label frame t=1 and t=3 and interpolate for t=2</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 158,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3517749,
+        "postDate": "2026-08-28T04:05:31.593Z",
+        "rawMarkdown": "Thank you for sharing your false negatives. @cjpal18 ",
+        "content": "<p>Thank you for sharing your false negatives. <a href=\"https://www.kaggle.com/cjpal18\" target=\"_blank\">@cjpal18</a> </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Navneet",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15692441-kg.jpg?t=2025-05-18-07-58-06",
+          "url": "/navneetbende",
+          "tier": "CONTRIBUTOR",
+          "id": 15692441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
+        "id": 3517747,
+        "postDate": "2026-08-28T03:55:59.157Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3517729,
+      "postDate": "2026-08-28T01:13:05.783Z",
+      "rawMarkdown": "Hello,\nI was looking though my false negatives and realised that some of the nodes cannot be seen properly and i was wondering whether thsoe where annotation artifacts or cells can actually be this dim.\nI am looking at the track for node `53000565`. This node is specifically at slice 31 of frame 52 of the video `6bba_3a1849c2` and is supposed to be at the red dot in the following picture:\n\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4090870%2Ffa1d164dfc3ad63e2260eb90d996b038%2FScreenshot%20from%202026-08-28%2003-06-45.png?generation=1787879525897274&alt=media)\n\nIts whole track looks like this. Can this be an artifact, or can cells actually look like this?\n\nRegards",
+      "content": "<p>Hello,\nI was looking though my false negatives and realised that some of the nodes cannot be seen properly and i was wondering whether thsoe where annotation artifacts or cells can actually be this dim.\nI am looking at the track for node <code>53000565</code>. This node is specifically at slice 31 of frame 52 of the video <code>6bba_3a1849c2</code> and is supposed to be at the red dot in the following picture:</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4090870%2Ffa1d164dfc3ad63e2260eb90d996b038%2FScreenshot%20from%202026-08-28%2003-06-45.png?generation=1787879525897274&amp;alt=media\" alt=\"\"></p>\n<p>Its whole track looks like this. Can this be an artifact, or can cells actually look like this?</p>\n<p>Regards</p>",
+      "parent": {},
+      "author": {
+        "displayName": "weke",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/cjpal18",
+        "tier": "EXPERT",
+        "id": 4090870,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 3,
+        "canUpvote": true,
+        "totalUpvotes": 3
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "weke",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/cjpal18",
+          "userName": "cjpal18",
+          "tier": "EXPERT",
+          "id": 4090870,
+          "profileUrl": "/cjpal18",
+          "performanceTier": "EXPERT",
+          "userId": 4090870,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3517729,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 737896,
+    "name": "Very dim nodes?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-08-28T01:13:05.783744900Z",
+    "totalVotes": 3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/737896",
+    "totalMessages": 3,
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

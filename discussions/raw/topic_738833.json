@@ -1,0 +1,100 @@
+{
+  "forumTopic": {
+    "authorId": 1417736,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Jord\u00e3o Bragantini",
+    "authorUserName": "jookuma",
+    "comments": [
+      {
+        "id": 3519864,
+        "postDate": "2026-09-02T11:27:05.367Z",
+        "rawMarkdown": "I am ready to work in the biohub team =)",
+        "content": "<p>I am ready to work in the biohub team =)</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Antonoof",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/17954496-kg.jpg?t=2025-01-08-20-35-47",
+          "url": "/antonoof",
+          "tier": "GRANDMASTER",
+          "id": 17954496,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 6,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "TWEAK",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+            "url": "/tweakai",
+            "userName": "tweakai",
+            "tier": "EXPERT",
+            "id": 28207655,
+            "profileUrl": "/tweakai",
+            "performanceTier": "EXPERT",
+            "userId": 28207655,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3519530,
+      "postDate": "2026-09-01T21:31:36.603Z",
+      "rawMarkdown": "Thank you all for the incredible effort and creativity you've brought to this competition! \n\nBiohub will be hosting an in-person Cell Tracking Workshop in Redwood City, California, from November 30 to December 3, 2026. This event will bring together the tracking and bioimaging community to discuss learnings from this competition, align on future directions, and explore next steps for the field.\n\nUpon conclusion of the challenge, we'd like to invite eligible prize winners (per the competition's official eligibility rules) to join us for this workshop. We're grateful for everyone's participation and look forward to continuing the conversation beyond the leaderboard!\n\nThe Biohub Team\n",
+      "content": "<p>Thank you all for the incredible effort and creativity you've brought to this competition! </p>\n<p>Biohub will be hosting an in-person Cell Tracking Workshop in Redwood City, California, from November 30 to December 3, 2026. This event will bring together the tracking and bioimaging community to discuss learnings from this competition, align on future directions, and explore next steps for the field.</p>\n<p>Upon conclusion of the challenge, we'd like to invite eligible prize winners (per the competition's official eligibility rules) to join us for this workshop. We're grateful for everyone's participation and look forward to continuing the conversation beyond the leaderboard!</p>\n<p>The Biohub Team</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Jord\u00e3o Bragantini",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/jookuma",
+        "tier": "CONTRIBUTOR",
+        "id": 1417736,
+        "progressionOptOut": false
+      },
+      "authorType": "HOST",
+      "votes": {
+        "totalVotes": 4,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "YAY",
+          "featuredUserNames": [
+            "adammohammedi",
+            "yunusgmsoy",
+            "antonoof"
+          ],
+          "userCount": 3
+        }
+      ]
+    },
+    "firstMessageId": 3519530,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 738833,
+    "isStickied": true,
+    "name": "Cell Tracking In-Person Workshop",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-01T21:31:36.602074500Z",
+    "totalVotes": 4,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/738833",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

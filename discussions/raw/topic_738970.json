@@ -1,0 +1,111 @@
+{
+  "forumTopic": {
+    "authorId": 5591682,
+    "authorThumbnailName": "5591682-kg.jpg?t=2025-09-12-06-50-17",
+    "authorUserDisplayName": "Rustam Bazarbayev",
+    "authorUserName": "rustambazarbayev",
+    "comments": [
+      {
+        "id": 3519870,
+        "postDate": "2026-09-02T11:39:58.083Z",
+        "rawMarkdown": "Regarding image or language-based tasks: Currently, the publicly available code relies on fairly well-defined metrics; everyone is using the same base files but fine-tuning the parameters. Personally, I think that if you want to win a medal, you should try creating new variable axes (such as lighting, angles, intensity, etc.). If you simply compete by tuning the existing baseline, winning a medal will be difficult, as people are likely tuning and sharing their configurations\u2014effectively allowing everyone to copy the best approaches\u2014given the current trends in this competition.",
+        "content": "<p>Regarding image or language-based tasks: Currently, the publicly available code relies on fairly well-defined metrics; everyone is using the same base files but fine-tuning the parameters. Personally, I think that if you want to win a medal, you should try creating new variable axes (such as lighting, angles, intensity, etc.). If you simply compete by tuning the existing baseline, winning a medal will be difficult, as people are likely tuning and sharing their configurations\u2014effectively allowing everyone to copy the best approaches\u2014given the current trends in this competition.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "\u0e2d\u0e18\u0e34\u0e04\u0e21 \u0e2b\u0e27\u0e31\u0e07\u0e40\u0e08\u0e23\u0e34\u0e0d\u0e27\u0e07\u0e28\u0e4c",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27065348-kg.jpg?t=2025-10-20-12-50-53",
+          "url": "/newwang12",
+          "tier": "CONTRIBUTOR",
+          "id": 27065348,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 431,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "rustambazarbayev"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "\u0e2d\u0e18\u0e34\u0e04\u0e21 \u0e2b\u0e27\u0e31\u0e07\u0e40\u0e08\u0e23\u0e34\u0e0d\u0e27\u0e07\u0e28\u0e4c",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27065348-kg.jpg?t=2025-10-20-12-50-53",
+            "url": "/newwang12",
+            "userName": "newwang12",
+            "tier": "CONTRIBUTOR",
+            "id": 27065348,
+            "profileUrl": "/newwang12",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 27065348,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3519828,
+      "postDate": "2026-09-02T09:54:54.427Z",
+      "rawMarkdown": "Can someone give me some advice on how to start working toward earning my first medal?",
+      "content": "<p>Can someone give me some advice on how to start working toward earning my first medal?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Rustam Bazarbayev",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+        "url": "/rustambazarbayev",
+        "tier": "CONTRIBUTOR",
+        "id": 5591682,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1322,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Rustam Bazarbayev",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+          "url": "/rustambazarbayev",
+          "userName": "rustambazarbayev",
+          "tier": "CONTRIBUTOR",
+          "id": 5591682,
+          "profileUrl": "/rustambazarbayev",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 5591682,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3519828,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 738970,
+    "name": "Any advice for starters?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-02T09:54:54.425434900Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/738970",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

@@ -6,6 +6,44 @@
     "authorUserName": "aleksamirkhanyan",
     "comments": [
       {
+        "id": 3519055,
+        "postDate": "2026-09-01T02:18:54.327Z",
+        "rawMarkdown": "Yes. It could be longer",
+        "content": "<p>Yes. It could be longer</p>",
+        "parent": {},
+        "author": {
+          "displayName": "X.X",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13367663-kg.JPG?t=2023-10-09-14-43-07",
+          "url": "/mikeintokyo",
+          "tier": "CONTRIBUTOR",
+          "id": 13367663,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 579,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "X.X",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13367663-kg.JPG?t=2023-10-09-14-43-07",
+            "url": "/mikeintokyo",
+            "userName": "mikeintokyo",
+            "tier": "CONTRIBUTOR",
+            "id": 13367663,
+            "profileUrl": "/mikeintokyo",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 13367663,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3517312,
         "postDate": "2026-08-26T18:27:33.700Z",
         "rawMarkdown": "yes, it can exceed to 7 hrs as well ",
@@ -36,7 +74,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 51,
+                "competitionRanking": 228,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -74,7 +112,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 2004,
+                "competitionRanking": 2220,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -108,7 +146,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 2004,
+            "competitionRanking": 2220,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -130,8 +168,8 @@
         ],
         "parent": {},
         "author": {
-          "displayName": "Jawad Ahmed",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+          "displayName": "nusrati",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
           "url": "/nusrati",
           "tier": "CONTRIBUTOR",
           "id": 23336356,
@@ -142,13 +180,13 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 301,
+        "competitionRanking": 70,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
-            "displayName": "Jawad Ahmed",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-08-25-20-05-47",
+            "displayName": "nusrati",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
             "url": "/nusrati",
             "userName": "nusrati",
             "tier": "CONTRIBUTOR",
@@ -182,7 +220,7 @@
         "canUpvote": true
       },
       "kernelVersion": 0,
-      "competitionRanking": 2004,
+      "competitionRanking": 2220,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -210,7 +248,7 @@
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-26T16:27:51.320257Z",
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/737659",
-    "totalMessages": 4,
+    "totalMessages": 5,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }
