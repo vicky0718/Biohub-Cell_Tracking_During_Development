@@ -160,8 +160,16 @@ def dataset_list(user: str | None = None) -> list:
     return get_json("/datasets/list", user=user or username())
 
 
-def _upload_one(path: Path) -> dict:
-    """Two-step blob upload: reserve a slot, then PUT the bytes to the signed URL."""
+def _upload_one(path: Path, name: str | None = None) -> dict:
+    """Two-step blob upload: reserve a slot, then PUT the bytes to the signed URL.
+
+    ``name`` is the path the file takes INSIDE the dataset and defaults to the bare
+    basename. A caller uploading a TREE must pass the path relative to the tree root, or
+    every file lands flat at the dataset root and the directories cease to exist. Not
+    hypothetical: uploading with `path.name` published `biohub-cell-tracking` v51 with
+    `harness/` and `pipeline/` flattened away, and `claude_budget2` died 61 s in on
+    ``our repo  None`` because `find_dir` looks for those two directories side by side.
+    """
     size = path.stat().st_size
     last_mod = int(path.stat().st_mtime)
     # The MODERN blob endpoint, not the legacy /datasets/upload/file/{size}/{mtime}.
@@ -169,7 +177,7 @@ def _upload_one(path: Path) -> dict:
     # path, and /datasets/create/version then rejects it with "Path must be non-null".
     res = post_json("/blobs/upload", {
         "type": "dataset",
-        "name": path.name,
+        "name": name or path.name,
         "contentLength": size,
         "contentType": mimetypes.guess_type(path.name)[0] or "application/octet-stream",
         "lastModifiedEpochSeconds": last_mod,
@@ -218,7 +226,8 @@ def dataset_new_version(owner: str, slug: str, folder: Path | str, notes: str,
     folder = Path(folder)
     before = dataset_version_number(owner, slug)
     files = sorted(p for p in folder.rglob("*") if p.is_file())
-    tokens = [_upload_one(p) for p in files]
+    # as_posix() relative to the tree root -- NOT the basename. See _upload_one.
+    tokens = [_upload_one(p, p.relative_to(folder).as_posix()) for p in files]
     res = post_json(
         f"/datasets/create/version/{owner}/{slug}",
         {"versionNotes": notes, "files": tokens, "subtitle": None, "description": None,
