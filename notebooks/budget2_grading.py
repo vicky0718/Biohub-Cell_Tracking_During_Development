@@ -120,8 +120,14 @@ else:
 
 # ---- 5. notes/49's rule ----------------------------------------------------------
 print(f"\n5. the best arm holds in sign on BOTH embryos (n is {len(EMB)}, not {len(DS)})")
-if best == NONE:
-    ok5 = False; print("   NOT GRADED — no arm beat the control")
+# An arm tied with the control has nothing to transfer, and reporting that as "wins on one
+# embryo, loses on the other" borrows notes/49's language for a run that had no effect at
+# all. claude_budget2 hit exactly this: `isolated` was byte-identical to `none`, every
+# per-embryo delta was +0.0000, and `all(x > 0)` rejected the zeros as a sign disagreement.
+if best == NONE or abs(total(best) - total(NONE)) < 1e-9:
+    ok5 = False
+    print("   NOT GRADED — no arm differs from the control"
+          + ("" if best == NONE else f" ({best} is tied with it)"))
 else:
     per = {}
     for e in EMB:
