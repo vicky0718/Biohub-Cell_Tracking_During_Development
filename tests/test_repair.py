@@ -20,8 +20,10 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from pipeline.repair import _components  # noqa: E402
 from pipeline.repair import (  # noqa: E402
-    cap_edge_length, close_gaps, linefit_smooth, prune_isolated, single_parent_repair,
+    cap_edge_length, close_gaps, linefit_smooth, prune_isolated, rank_budget_prune,
+    single_parent_repair,
 )
 
 ISO = (1.0, 1.0, 1.0)
@@ -58,6 +60,72 @@ def build(tracks):
 def edge_set(t, zyx, edges):
     """Edges as coordinate pairs, so they survive an index remap and can be compared."""
     return {(tuple(np.round(zyx[a], 6)), tuple(np.round(zyx[b], 6))) for a, b in edges}
+
+
+
+def rank_budget_section() -> None:
+    """`rank_budget_prune` — notes/51's third selection rule, cutting AFTER linking."""
+    print("=" * 62)
+    print("rank_budget_prune")
+    print("=" * 62)
+
+    # A long tight track and a short erratic one, disjoint.
+    t = np.array([0, 1, 2, 3, 4, 5, 0, 1], np.int64)
+    zyx = np.array([[0, 0, 0], [0, 0, 1], [0, 0, 2], [0, 0, 3], [0, 0, 4], [0, 0, 5],
+                    [0, 50, 0], [0, 90, 0]], float)
+    e = np.array([[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [6, 7]], np.int64)
+
+    nt, nz, ne = rank_budget_prune(t, zyx, e, n_target=6, mode="geometry", scale=ISO)
+    check("the long tight track survives the budget", len(nt) == 6, f"{len(nt)} nodes")
+    check("the erratic track is the one dropped", nz[:, 1].max() == 0)
+    check("edges are remapped with the nodes", len(ne) == 5 and ne.max() < len(nt),
+          f"{len(ne)} edges, max index {ne.max() if len(ne) else -1}")
+
+    r = rank_budget_prune(t, zyx, e, n_target=100, mode="geometry", scale=ISO)
+    check("already under budget is an exact no-op",
+          len(r[0]) == len(t) and len(r[2]) == len(e))
+
+    # isolated mode: an edgeless node is pure budget cost and cannot ever be a TP edge.
+    it = np.array([0, 1, 0], np.int64)
+    iz = np.array([[0, 0, 0], [0, 0, 1], [0, 9, 9]], float)
+    ie = np.array([[0, 1]], np.int64)
+    r = rank_budget_prune(it, iz, ie, n_target=float("nan"), mode="isolated", scale=ISO)
+    check("isolated mode drops only the edgeless node", len(r[0]) == 2, f"{len(r[0])} left")
+    check("isolated mode keeps the real edge intact",
+          len(r[2]) == 1 and r[2][0].tolist() == [0, 1])
+
+    # A fork must outrank a longer plain track when the budget cannot hold both.
+    ft = np.array([0, 1, 1, 0, 1, 2, 3], np.int64)
+    fz = np.array([[0, 0, 0], [0, 1, 0], [0, -1, 0],
+                   [0, 20, 0], [0, 20, 1], [0, 20, 2], [0, 20, 3]], float)
+    fe = np.array([[0, 1], [0, 2], [3, 4], [4, 5], [5, 6]], np.int64)
+    r = rank_budget_prune(ft, fz, fe, n_target=3, mode="geometry",
+                          keep_division_components=True, scale=ISO)
+    check("a fork component outranks a longer plain track",
+          any(np.allclose(q, [0, 0, 0]) for q in r[1]))
+
+    # An empty prediction scores edge_J 0; an over-budget one only shrinks the multiplier
+    # (1 - 0.1*ratio, floored at 0). So when even the best single track busts the budget it
+    # is still kept -- the invariant is "under target, OR exactly one track survives".
+    for target, n_tracks in ((2, 1), (6, 1), (7, 1), (8, 2)):
+        r = rank_budget_prune(t, zyx, e, n_target=target, mode="geometry", scale=ISO)
+        comps = len(np.unique(_components(r[0], r[2], len(r[0])))) if len(r[0]) else 0
+        check(f"target {target}: under budget or a single kept track",
+              len(r[0]) <= target or comps == 1, f"{len(r[0])} nodes in {comps} track(s)")
+        check(f"target {target} keeps {n_tracks} track(s)", comps == n_tracks, f"got {comps}")
+
+    # Equal spans: geometry must break the tie on tightness, length must not see it.
+    qt = np.array([0, 1, 2, 0, 1, 2], np.int64)
+    qz = np.array([[0, 0, 0], [0, 0, 1], [0, 0, 2],
+                   [0, 50, 0], [0, 90, 0], [0, 50, 0]], float)
+    qe = np.array([[0, 1], [1, 2], [3, 4], [4, 5]], np.int64)
+    g = rank_budget_prune(qt, qz, qe, n_target=3, mode="geometry", scale=ISO)
+    check("geometry breaks an equal-span tie on tightness", g[1][:, 1].max() == 0)
+
+    r = rank_budget_prune(np.zeros(0, np.int64), np.zeros((0, 3)),
+                          np.zeros((0, 2), np.int64), n_target=5, scale=ISO)
+    check("an empty graph is handled", len(r[0]) == 0)
+    print()
 
 
 def main() -> int:
@@ -263,6 +331,8 @@ def main() -> int:
           ce.size == 0 or (ce.min() >= 0 and ce.max() < len(ct)))
 
     print()
+    rank_budget_section()
+
     print("=" * 62)
     if FAILURES:
         print(f"{len(FAILURES)} FAILURE(S): {FAILURES}")
