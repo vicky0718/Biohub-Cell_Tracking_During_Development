@@ -72,7 +72,16 @@ nothing about it. A pre-registered prediction with a threshold below the measure
 resolution is not a test; it is a coin flip with a paper trail. Every prediction in this
 project that read "beats the control by more than 0.001" was one.
 
-## 3. The headroom is in divisions, and we traded it away
+## 3. ~~The headroom is in divisions, and we traded it away~~
+
+> **❌ WITHDRAWN by `notes/50`.** Nothing was traded away. `claude_divsweep` measured
+> `div_J` on one dataset sample across eight post-processing chains and it is **0.1154 on
+> every one** (1,443 forks on every one) — the config makes no difference to the division
+> term at all. The 0.1154-vs-0.0645 gap below compares n=24 against n=12, and `notes/44`
+> measured that n=12 sample as easy by +0.0116. `notes/43` had already cut this section's
+> +0.0935 to +0.016 on the 151-event count; `notes/50` removes the remaining premise.
+> The reasoning about what `div_J` *would* be worth is still arithmetically correct — it is
+> the claim that we once had it and lost it that does not survive.
 
 ```
 score = adjusted_edge_jaccard + 0.1 · division_jaccard        (max 1.1)
