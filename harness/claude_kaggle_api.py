@@ -22,7 +22,9 @@ import base64
 import json
 import mimetypes
 import os
+import tempfile
 import time
+import zipfile
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -163,12 +165,14 @@ def dataset_list(user: str | None = None) -> list:
 def _upload_one(path: Path, name: str | None = None) -> dict:
     """Two-step blob upload: reserve a slot, then PUT the bytes to the signed URL.
 
-    ``name`` is the path the file takes INSIDE the dataset and defaults to the bare
-    basename. A caller uploading a TREE must pass the path relative to the tree root, or
-    every file lands flat at the dataset root and the directories cease to exist. Not
-    hypothetical: uploading with `path.name` published `biohub-cell-tracking` v51 with
-    `harness/` and `pipeline/` flattened away, and `claude_budget2` died 61 s in on
-    ``our repo  None`` because `find_dir` looks for those two directories side by side.
+    **This endpoint cannot create directories.** ``name`` is passed through, but Kaggle
+    strips any path from it and the file lands at the dataset root either way — measured,
+    not assumed: v51 uploaded with `path.name` and v52 with `p.relative_to(folder)`, and a
+    probe kernel listing the mount showed both as 19 flat files with no `harness/` or
+    `pipeline/`. `claude_budget2` died 61 s in on ``our repo  None`` against both.
+
+    A directory tree therefore has to go up as a **zip**, which Kaggle extracts on ingest.
+    `dataset_new_version` does that automatically; see its docstring.
     """
     size = path.stat().st_size
     last_mod = int(path.stat().st_mtime)
@@ -222,12 +226,29 @@ def dataset_new_version(owner: str, slug: str, folder: Path | str, notes: str,
     on a guard for a Config field that was in the upload but not yet in the attached
     version. The guard turned a silent wrong answer into a loud fast failure; this makes
     the failure not happen.
+
+    **A folder containing subdirectories is uploaded as a single zip**, because the blob
+    endpoint cannot create directories (see `_upload_one`) and Kaggle extracts zips on
+    ingest. Uploading such a tree file-by-file flattens it, which silently breaks every
+    consumer that looks for a package directory: it published `biohub-cell-tracking` v51
+    and v52 with `harness/` and `pipeline/` gone, and `find_dir` in four notebooks looks
+    for exactly those. v53 went up as a zip and a probe kernel confirmed the tree. A flat
+    folder is still uploaded file-by-file, so existing single-directory callers are
+    unchanged.
     """
     folder = Path(folder)
     before = dataset_version_number(owner, slug)
     files = sorted(p for p in folder.rglob("*") if p.is_file())
-    # as_posix() relative to the tree root -- NOT the basename. See _upload_one.
-    tokens = [_upload_one(p, p.relative_to(folder).as_posix()) for p in files]
+    has_tree = any(p.parent != folder for p in files)
+    if has_tree:
+        with tempfile.TemporaryDirectory() as td:
+            zpath = Path(td) / f"{slug}.zip"
+            with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as zf:
+                for p in files:
+                    zf.write(p, p.relative_to(folder).as_posix())
+            tokens = [_upload_one(zpath)]
+    else:
+        tokens = [_upload_one(p) for p in files]
     res = post_json(
         f"/datasets/create/version/{owner}/{slug}",
         {"versionNotes": notes, "files": tokens, "subtitle": None, "description": None,
