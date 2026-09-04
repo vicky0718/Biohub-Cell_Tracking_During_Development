@@ -14,7 +14,15 @@ euclidean                          1.82   4.14   5.34   8.38   60.76
 
 ---
 
-## 1. `close_gaps max_um = 5.75` rejects roughly a quarter of real two-frame spans
+## 1. ~~`close_gaps max_um = 5.75` rejects roughly a quarter of real two-frame spans~~
+
+> **❌ WITHDRAWN by `notes/60`.** `claude_gapum` swept the radius on cached instances and
+> read the metric: **5.75 is the best value in the grid**, and 8.0 / 10.7 / 14.0 / 20.0 are
+> monotonically worse (0.9188 → 0.9097), with both embryos agreeing on the sign. The caveat
+> attached below turned out to be the whole story — doubling a single-frame step to stand in
+> for a two-frame span assumes straight-line motion, and real cells wander. The insertion
+> caps were *not* the reason either: the radius genuinely inserted +233 to +532 nodes and
+> still lost. §2's zero-displacement finding is unaffected and stands.
 
 ```
 gate                                        rejects     pct
