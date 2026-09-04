@@ -228,7 +228,12 @@ def shipped(g, sc, static_um):
 # The median single-frame GT step is 1.82um (notes/59), so 0.3-1.0 catches near-frozen
 # chains and 1.8 treats most slow chains as static -- past anything defensible, to find
 # where it turns.
-POST = [("s" + str(_u), _u) for _u in (0.0, 0.3, 0.6, 1.0, 1.8)]
+# v1 peaked at its TOP value (s1.8, +0.0010), which its own prediction 4 said means the
+# grid stopped too early. 1.8um is ~the median single-frame step (notes/59), so beyond it
+# most chains are treated as static and the arm approaches "use the window mean, never the
+# line". mean_only (1e9) tests that endpoint directly -- notes/26/27 credited smoothing
+# with +0.0086 and never compared the line fit against a plain moving average.
+POST = [("s" + str(_u), _u) for _u in (0.0, 1.8, 2.5, 3.5, 5.0)] + [("mean_only", 1e9)]
 
 def apply_post(g, sc, static_um):
     g = shipped(g, sc, static_um)
@@ -296,8 +301,16 @@ for name in names:
     for lbl, ew, ap, dis, dv in ARMS:
         g_td = solve(base_td, ew, ap, dis, dv)
         tr = Tracks.from_tracksdata(g_td)
+        anchor_zyx = None
         for key, static_um in POST:
             g = apply_post((tr.t, tr.zyx, tr.edges), sc, static_um)
+            if anchor_zyx is None:
+                anchor_zyx = np.asarray(g[1], float).copy()
+                moved_frac, moved_um = 0.0, 0.0
+            else:
+                _d = (np.asarray(g[1], float) - anchor_zyx) * np.asarray(sc, float)
+                _n = np.linalg.norm(_d, axis=1)
+                moved_frac = float((_n > 1e-9).mean()); moved_um = float(_n.mean())
             ROWS[key].append(h.score_graph(name, Tracks(g[0], g[1], g[2])))
             EDGES[key] += int(len(g[2]))
             nf = int((np.bincount(g[2][:, 0], minlength=len(g[0])) >= 2).sum()) if len(g[2]) else 0
@@ -318,6 +331,10 @@ for name in names:
                 "dfn": float(r.get("division_fn", 0.0)),
                 # the budget itself -- reported even on a clean failure, because no run
                 # so far has measured where we actually sit against N_est.
+                # v1's prediction 2 compared node COUNTS, which static_um cannot
+                # change -- it only MOVES nodes -- so the check was blind by construction
+                # and wrongly reported "the fallback never fires". Record displacement.
+                "moved_frac": moved_frac, "moved_um": moved_um,
                 "nodes": float(r.get("num_pred_nodes", len(g[0]))),
                 "ratio": float(r.get("total_node_ratio", float("nan"))),
                 "n_est": float(n_est)}}
@@ -418,11 +435,14 @@ print(f"   {BASE}: total {total(BASE):.4f} (want {REF_TOTAL})  div_J {divJ(BASE)
 if not ok1:
     print("   The chain has moved. Nothing below is comparable.")
 
-print("\n2. the fallback actually fires (node positions move on >1% of nodes at s0.6)")
-adds = [(a, mean(a, "nodes") - b_nodes) for a in ARMS if a != BASE]
-for a, d in adds:
-    print(f"   {a:<10}{d:>+10,.0f} nodes vs {BASE}")
-ok2 = any(d > 50 for _, d in adds)
+print("\n2. the fallback actually fires (positions move on >1% of nodes)")
+# v1 compared node COUNTS here, which static_um cannot change -- it only MOVES nodes --
+# so the check was blind by construction and wrongly reported "never fires" while the
+# score column was visibly moving. Measure displacement against the s0.0 anchor instead.
+adds = [(a, mean(a, "moved_frac"), mean(a, "moved_um")) for a in ARMS if a != BASE]
+for a, f, u in adds:
+    print(f"   {a:<11}{f:>8.2%} of nodes moved, mean {u:.3f} um")
+ok2 = any(f > 0.01 for _, f, _ in adds)
 print(f"   ->  {'PASS' if ok2 else 'FAIL'}")
 if not ok2:
     print("   Fitted speeds are all above the threshold, so the frozen chains notes/59")
@@ -474,7 +494,7 @@ elif ok1 and ok2 and not ok3:
     print("CLOSED: acting on the frozen-GT finding does not pay. The 8.4% measurement")
     print("stands; this particular way of exploiting it does not.")
 elif ok1 and not ok2:
-    print("CLOSED: the fallback never fires at these thresholds.")
+    print("CLOSED: the fallback never fires -- positions do not move at any threshold.")
 else:
     print("NOT COMPARABLE: reproduction failed; fix that first.")
 print("=" * 78)

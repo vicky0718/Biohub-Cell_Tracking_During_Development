@@ -82,7 +82,12 @@ POST = [("g" + str(_u), _u) for _u in (5.75, 8.0, 10.7, 14.0, 20.0)]""",
 # The median single-frame GT step is 1.82um (notes/59), so 0.3-1.0 catches near-frozen
 # chains and 1.8 treats most slow chains as static -- past anything defensible, to find
 # where it turns.
-POST = [("s" + str(_u), _u) for _u in (0.0, 0.3, 0.6, 1.0, 1.8)]""")
+# v1 peaked at its TOP value (s1.8, +0.0010), which its own prediction 4 said means the
+# grid stopped too early. 1.8um is ~the median single-frame step (notes/59), so beyond it
+# most chains are treated as static and the arm approaches "use the window mean, never the
+# line". mean_only (1e9) tests that endpoint directly -- notes/26/27 credited smoothing
+# with +0.0086 and never compared the line fit against a plain moving average.
+POST = [("s" + str(_u), _u) for _u in (0.0, 1.8, 2.5, 3.5, 5.0)] + [("mean_only", 1e9)]""")
 
 edit("apply_post passes static_um",
      """def apply_post(g, sc, max_um):
@@ -98,11 +103,27 @@ edit("the arm count line", 'print(f"{{len(POST)}} gap radii on one solve", flush
 edit("the loop passes static_um",
      """        for key, max_um in POST:
             g = apply_post((tr.t, tr.zyx, tr.edges), sc, max_um)""",
-     """        for key, static_um in POST:
-            g = apply_post((tr.t, tr.zyx, tr.edges), sc, static_um)""")
+     """        anchor_zyx = None
+        for key, static_um in POST:
+            g = apply_post((tr.t, tr.zyx, tr.edges), sc, static_um)
+            if anchor_zyx is None:
+                anchor_zyx = np.asarray(g[1], float).copy()
+                moved_frac, moved_um = 0.0, 0.0
+            else:
+                _d = (np.asarray(g[1], float) - anchor_zyx) * np.asarray(sc, float)
+                _n = np.linalg.norm(_d, axis=1)
+                moved_frac = float((_n > 1e-9).mean()); moved_um = float(_n.mean())""")
 
 edit("the per-dataset log line names the anchor",
      """    base = PER[name]["g5.75"]""", """    base = PER[name]["s0.0"]""")
+
+edit("record how far positions actually moved",
+     """                "nodes": float(r.get("num_pred_nodes", len(g[0]))),""",
+     """                # v1's prediction 2 compared node COUNTS, which static_um cannot
+                # change -- it only MOVES nodes -- so the check was blind by construction
+                # and wrongly reported "the fallback never fires". Record displacement.
+                "moved_frac": moved_frac, "moved_um": moved_um,
+                "nodes": float(r.get("num_pred_nodes", len(g[0]))),""")
 
 edit("the grid record describes static_um",
      '"post": [{{"label": p[0], "max_um": p[1]}} for p in POST],',

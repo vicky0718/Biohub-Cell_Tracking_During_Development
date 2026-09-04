@@ -63,11 +63,14 @@ print(f"   {BASE}: total {total(BASE):.4f} (want {REF_TOTAL})  div_J {divJ(BASE)
 if not ok1:
     print("   The chain has moved. Nothing below is comparable.")
 
-print("\n2. the fallback actually fires (node positions move on >1% of nodes at s0.6)")
-adds = [(a, mean(a, "nodes") - b_nodes) for a in ARMS if a != BASE]
-for a, d in adds:
-    print(f"   {a:<10}{d:>+10,.0f} nodes vs {BASE}")
-ok2 = any(d > 50 for _, d in adds)
+print("\n2. the fallback actually fires (positions move on >1% of nodes)")
+# v1 compared node COUNTS here, which static_um cannot change -- it only MOVES nodes --
+# so the check was blind by construction and wrongly reported "never fires" while the
+# score column was visibly moving. Measure displacement against the s0.0 anchor instead.
+adds = [(a, mean(a, "moved_frac"), mean(a, "moved_um")) for a in ARMS if a != BASE]
+for a, f, u in adds:
+    print(f"   {a:<11}{f:>8.2%} of nodes moved, mean {u:.3f} um")
+ok2 = any(f > 0.01 for _, f, _ in adds)
 print(f"   ->  {'PASS' if ok2 else 'FAIL'}")
 if not ok2:
     print("   Fitted speeds are all above the threshold, so the frozen chains notes/59")
@@ -119,7 +122,7 @@ elif ok1 and ok2 and not ok3:
     print("CLOSED: acting on the frozen-GT finding does not pay. The 8.4% measurement")
     print("stands; this particular way of exploiting it does not.")
 elif ok1 and not ok2:
-    print("CLOSED: the fallback never fires at these thresholds.")
+    print("CLOSED: the fallback never fires -- positions do not move at any threshold.")
 else:
     print("NOT COMPARABLE: reproduction failed; fix that first.")
 print("=" * 78)
