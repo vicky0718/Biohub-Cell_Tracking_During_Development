@@ -108,7 +108,8 @@ def single_parent_repair(t, zyx, edges, scale=(1.625, 0.40625, 0.40625)):
 
 
 def linefit_smooth(t, zyx, edges, window=2, weight=0.76,
-                   scale=(1.625, 0.40625, 0.40625), max_shift_um=3.2):
+                   scale=(1.625, 0.40625, 0.40625), max_shift_um=3.2,
+                   static_um=0.0):
     """Pull each node toward a local straight-line fit of its own track.
 
     Cells move smoothly over a frame, so the jitter in a detected centroid is largely
@@ -122,6 +123,16 @@ def linefit_smooth(t, zyx, edges, window=2, weight=0.76,
 
     `max_shift_um` bounds the move so a bad fit cannot push a node out of its own match
     radius — the failure this repair exists to prevent.
+
+    `static_um` treats a slow-enough chain as **stationary** and falls back to the window
+    mean instead of the line. `notes/59` measured **8.4% of ground-truth links at exactly
+    0.0 µm displacement** (10,772 of 128,883) — frozen frames, because the volumes are
+    crops of one master acquisition, plus annotations interpolated between labelled
+    frames. Where the truth is static our detections still jitter, a line fit through that
+    jitter has a spurious slope, and smoothing then drags the node *along* it, away from
+    the fixed position it should sit at. Zeroing the slope pulls toward the window mean,
+    which is the right estimator for a static point. Default 0.0 leaves behaviour exactly
+    as it was.
     """
     t, zyx, edges = _as_arrays(t, zyx, edges)
     n = len(t)
@@ -174,6 +185,12 @@ def linefit_smooth(t, zyx, edges, window=2, weight=0.76,
     slope = np.zeros_like(mean_y)
     fit_ok = (cnt >= 3) & (var_x > 0)
     slope[fit_ok] = (dx[:, :, None] * dy).sum(1)[fit_ok] / var_x[fit_ok, None]
+    if static_um > 0:
+        # `slope` is voxels per frame; scale it to µm per frame to compare against a
+        # physical threshold. Below it the chain is not moving and the slope is fitted
+        # noise (notes/59), so fall back to the window mean by zeroing it.
+        speed_um = np.linalg.norm(slope * s[None, :], axis=1)
+        slope[speed_um < static_um] = 0.0
     target = mean_y + slope * (t.astype(float) - mean_x)[:, None]
 
     delta = (target - zyx) * weight

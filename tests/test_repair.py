@@ -63,6 +63,43 @@ def edge_set(t, zyx, edges):
 
 
 
+
+def static_smooth_section() -> None:
+    """`linefit_smooth(static_um=...)` — notes/59's frozen-GT fallback."""
+    print("=" * 62)
+    print("linefit_smooth static_um")
+    print("=" * 62)
+    t = np.arange(7, dtype=np.int64)
+    e = np.array([[i, i + 1] for i in range(6)], np.int64)
+    # A STATIC track whose jitter a line fit reads as a trend.
+    jit = np.array([-0.5, -0.3, -0.1, 0.1, 0.2, 0.4, 0.5])
+    zyx = np.stack([np.zeros(7), np.zeros(7), 10.0 + jit], 1)
+    err = lambda a: float(np.abs(a[:, 2] - 10.0).mean())
+    off = linefit_smooth(t, zyx, e, window=2, weight=1.0, scale=ISO, static_um=0.0)[1]
+    on = linefit_smooth(t, zyx, e, window=2, weight=1.0, scale=ISO, static_um=0.5)[1]
+    check("a static track ends closer to its true fixed position",
+          err(on) < err(off), f"{err(off):.4f} -> {err(on):.4f}")
+
+    # A genuinely MOVING track must be untouched by the fallback.
+    mv = np.stack([np.zeros(7), np.zeros(7), 2.0 * t], 1)
+    m_off = linefit_smooth(t, mv, e, window=2, weight=1.0, scale=ISO, static_um=0.0)[1]
+    m_on = linefit_smooth(t, mv, e, window=2, weight=1.0, scale=ISO, static_um=0.5)[1]
+    check("a moving track (v=2.0/frame) is unaffected", np.allclose(m_off, m_on))
+
+    # The threshold is in um, so scale must be honoured, not voxels.
+    aniso = (4.0, 1.0, 1.0)
+    slow = np.stack([0.3 * t, np.zeros(7), np.zeros(7)], 1)   # 0.3 vox/frame in z = 1.2 um
+    a_lo = linefit_smooth(t, slow, e, window=2, weight=1.0, scale=aniso, static_um=0.5)[1]
+    a_hi = linefit_smooth(t, slow, e, window=2, weight=1.0, scale=aniso, static_um=2.0)[1]
+    check("the threshold is applied in um, not voxels",
+          not np.allclose(a_lo, a_hi), "0.5um leaves it alone, 2.0um zeroes it")
+
+    d0 = linefit_smooth(t, zyx, e, window=2, weight=0.76, scale=ISO)[1]
+    d1 = linefit_smooth(t, zyx, e, window=2, weight=0.76, scale=ISO, static_um=0.0)[1]
+    check("static_um=0.0 is an exact no-op", np.array_equal(d0, d1))
+    print()
+
+
 def rank_budget_section() -> None:
     """`rank_budget_prune` — notes/51's third selection rule, cutting AFTER linking."""
     print("=" * 62)
@@ -332,6 +369,7 @@ def main() -> int:
 
     print()
     rank_budget_section()
+    static_smooth_section()
 
     print("=" * 62)
     if FAILURES:
