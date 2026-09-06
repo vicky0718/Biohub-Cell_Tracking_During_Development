@@ -18,7 +18,7 @@ direction, never what it scores.
 | `dse52` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.52` | **−1,829** | −1,778 | −3 | complete |
 | `det960` | lb941 | `DET_THRESHOLD 0.965 → 0.960` | +404 | +384 | 0 | complete |
 | `dcgap40` | lb941 | `DC_GAP 0.25 → 0.40` | — | — | — | running |
-| `gap44` | lb941 | `GAP_CLOSE_UM 5.0 → 4.4` | — | — | — | queued (guard fix applied) |
+| `gap44` | lb941 | `GAP_CLOSE_UM 5.0 → 4.4` | −42 | −42 | +1 | complete — **not worth a slot** |
 | `sew948` | rishabhr0y 0.948 | none | — | — | — | **dead** — self-inconsistent checksum guard (`notes/70` §3) |
 
 ## What `adaptive` adds to the picture
@@ -92,3 +92,28 @@ Three outcomes and what each means:
 
 `det960` moves the same direction as `dse44` by a quarter as much (+404 nodes), so it is a
 weak second vote on the same axis rather than an independent question.
+
+## `gap44` is effectively a no-op — the gap radius has bottomed out
+
+The guard fix worked (`resolved 4.4 OK`), and then the arm did almost nothing:
+
+```
+gap_candidates          856 -> 739      -117   the pool shrinks as expected
+gap_pairs_selected      623 -> 615        -8   the SELECTION barely moves
+gap_added_nodes         623 -> 615        -8
+nodes               119,279 -> 119,237    -42   0.035% of the node set
+```
+
+Narrowing the radius removes 117 candidates and 8 selected pairs, so **selection was not
+radius-limited at 5.0**. Something downstream — the density-adaptive step, the DeepCenter
+gap veto, or the motion bypass — is choosing which gaps to close well inside 5.0 µm, and the
+radius is no longer the binding constraint.
+
+That is `notes/60`'s trap in its honest form: not a cap silently binding, but a parameter
+that has simply run out of room. The public 5.8 → 5.0 step was claimed worth +0.001; 5.0 →
+4.4 cannot be worth much of anything, because there is almost no output to change.
+
+**Not submitting it.** A 0.035% output change cannot separate itself from run-to-run noise
+on the leaderboard, and a slot spent on it buys a number we could not interpret. This is
+the first arm the verifier has taken *off* the list rather than confirmed onto it, which is
+what it was built for.
