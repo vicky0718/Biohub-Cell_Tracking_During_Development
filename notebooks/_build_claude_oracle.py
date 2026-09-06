@@ -108,9 +108,17 @@ for q in sorted(g.rglob("zarr.json"))[:24]:
 """)
 
 code(r"""
-# GEFF is a zarr store; read the arrays straight off disk. zarr is in the Kaggle image,
-# `geff` may not be, and a missing import here would look identical to missing data.
-import zarr
+# GEFF is a zarr v3 store. `zarr` is NOT in the Kaggle image -- v1 of this notebook died
+# on ModuleNotFoundError -- and this run has no submission to make, so internet is on and
+# we install it. Nothing here writes a submission.csv, so the competition's offline rule
+# does not apply to this notebook.
+import subprocess, sys
+try:
+    import zarr
+except ModuleNotFoundError:
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "zarr>=3"], check=True)
+    import zarr
+print("zarr", zarr.__version__)
 
 def _arr(root, *names):
     for n in names:
@@ -195,9 +203,11 @@ def read_submission(path):
     return out
 
 subs = {}
-for p in sorted(Path("/kaggle/input").glob("*/submission.csv")):
+# Kernel outputs mount under /kaggle/input/notebooks/<user>/<slug>/, not
+# /kaggle/input/<slug>/ -- v1 globbed one level and found nothing.
+for p in sorted(Path("/kaggle/input").rglob("submission.csv")):
     subs[p.parent.name] = read_submission(p)
-    print(f"{p.parent.name:<24} {len(subs[p.parent.name])} datasets")
+    print(f"{p.parent.name:<24} {len(subs[p.parent.name])} datasets  <- {p.parent}")
 if not subs:
     print("NO submission.csv MOUNTED — attach the arm kernels as kernel sources")
 """)
