@@ -317,10 +317,46 @@ the deficit** — the first time in this project a measured ceiling covered it. 
 
 ## Infrastructure facts (measured, save re-discovery)
 
+- 🚨 **The four clips in `test/` are PLACEHOLDERS.** They are byte-identical copies of
+  training clips, ground truth included, and they are *not* what the leaderboard scores —
+  submission mode swaps in a hidden set (forum topic 723921, host-confirmed; `notes/66`).
+  So: no local validation is possible, the `submission.csv` you can download is verification
+  output, and a local score against `test/` is not a leaderboard estimate and cannot be made
+  into one. `claude_oracle` built one anyway and it inverted the one A/B it could be checked
+  against. **Search `discussions/` before building on anything found in the data.**
+- **This is a kernels-only competition** (`isKernelsSubmissionsOnly: True`), so submission
+  cannot be automated: `/blobs/upload` with `type: "competition"` returns 500, an inbox
+  token is refused, and the submit endpoint reads no `scriptVersionId`. Runs are autonomous,
+  scoring is not — a human presses Submit, five a day (`notes/65` §2).
+- **Graded set ≈ 17× the verification set** (~60-70 clips), read off each submission's
+  `totalBytes` against the 12.1 MB verification `submission.csv`. A P100 verification run of
+  the public fork is ~39 min, so the graded rerun is roughly **11 h against a 12 h limit** —
+  which is why test-time augmentation is out (`notes/69` §3).
+- **Kernel outputs mount at `/kaggle/input/notebooks/<user>/<slug>/`**, and dataset sources
+  at `/kaggle/input/datasets/<owner>/<slug>/` — *not* `/kaggle/input/<slug>/`. Any env var
+  holding an absolute `/kaggle/input/<slug>/...` path silently misses and the notebook falls
+  back to a default; that is how the public "0.948" kernel's one change turned out to be
+  inert (`notes/68`). Verify every edit against the run's own resolved-config dump.
+- **`zarr` is not in the Kaggle image.** `pip install zarr>=3` works in a non-submission
+  notebook (internet on); submission mode has no internet.
+- Download a finished run's files with **`/kernels/output/download/{user}/{slug}`** (a zip,
+  served by `www.kaggle.com`). The signed URLs inside `/kernels/output` point at
+  `www.kaggleusercontent.com`, which this container's proxy denies with the same 403 that
+  forced this module off `api.kaggle.com`.
+- **`run_stats.csv` in every run's output is the mechanism record**: ~60 counters per dataset
+  for every gate, cap and repair stage. Read it before choosing which parameter to move —
+  `notes/69` withdrew an arm whose premise it disproved in one line.
 - Free Kaggle GPU is a **P100 (sm_60)**; the image torch builds sm_70+ only. `claude_torch_wheelhouse`
   ships torch 2.5.1+cu121. `machineShape` is **accepted by `kernels/push` and silently ignored** —
-  the accelerator can only be chosen in the UI. T4 reproduces P100's ILP counts exactly.
-  **This has now cost two runs.** `torch.cuda.is_available()` returns True on a P100 and
+  the accelerator can only be chosen in the UI (re-measured 2026-09-06 with both
+  `nvidiaTeslaT4` and `gpuT4x2`: still ignored). T4 reproduces P100's ILP counts exactly.
+  **This has now cost six runs.** Kaggle handed this account eight consecutive P100s on
+  2026-09-06, so re-rolling the draw is not a strategy — mount the wheelhouse as a
+  `kernelDataSources` entry and install torch from it when `nvidia-smi` says P100.
+  `notebooks/_mk_claude_arm.py::WHEELHOUSE` is that prologue and it is measured working
+  (`notes/68` §1): find the wheel by globbing `/kaggle/input` rather than hardcoding a
+  mount path, install with deps (the image ships cu128 runtimes 2.5.1 cannot use), and
+  target `/usr/bin/python3` because prediction runs as a subprocess under it. `torch.cuda.is_available()` returns True on a P100 and
   then every launch dies with `no kernel image is available for execution on the device`.
   Never branch on that flag — use `pipeline.deepcenter.usable_device()`, which decides by
   running an actual forward pass and falls back to CPU. For a small model prefer
