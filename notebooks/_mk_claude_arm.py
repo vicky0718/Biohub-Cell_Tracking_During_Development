@@ -201,6 +201,43 @@ ARMS = {
                 "#               this one is 0.25 in every public notebook we mined -- moved by\n"
                 "#               nobody, ever, and it gates a far larger population."),
     },
+    # ------------------------------------------------- knobs no public notebook has moved
+    # The config matrix over 56 top kernels has two columns: values that vary between
+    # notebooks, and values that are identical in every single one. The second column is
+    # `notes/65` §3's best category -- not swept, not even stepped, just inherited from
+    # whoever wrote the first notebook. Ranked by the size of the population each gates:
+    #
+    #   DUAL_SEED_EDGE_THRESHOLD    0.48   every candidate edge, in every frame pair
+    #   DEEPCENTER_GAP_THRESHOLD    0.25   every gap-closure proposal   (-> dcgap40)
+    #   ILP_DISAPPEARANCE_WEIGHT    2      every track termination
+    #   OUTPUT_MIN_TRACK_LEN        6      every short track
+    #
+    # DUAL_SEED_EDGE_THRESHOLD is the largest of those by a wide margin, and it is the one
+    # place the two detector seeds' disagreement is resolved. Both directions, because
+    # nothing about 0.48 says which side of it is better -- `notes/56` closed OUR detection
+    # threshold in both directions and that is a different parameter in a different pipeline.
+    "dse44": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("DUAL_SEED_EDGE_THRESHOLD", "0.48"),
+                   env("DUAL_SEED_EDGE_THRESHOLD", "0.44"))],
+        "why": ("dual-seed edge acceptance threshold 0.48 -> 0.44 (more permissive).\n"
+                "#               Identical in all 56 public kernels mined -- inherited, never\n"
+                "#               moved -- and it gates every candidate edge in every frame pair."),
+    },
+    "dse52": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("DUAL_SEED_EDGE_THRESHOLD", "0.48"),
+                   env("DUAL_SEED_EDGE_THRESHOLD", "0.52"))],
+        "why": ("dual-seed edge acceptance threshold 0.48 -> 0.52 (stricter). The other side\n"
+                "#               of dse44; nothing about the inherited 0.48 says which way is\n"
+                "#               better, so both are run before either is believed."),
+    },
+    "det960": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.960"))],
+        "why": ("detection threshold one step past the public step. 0.97 -> 0.965 was part of\n"
+                "#               the 0.938 -> 0.940 move; below 0.965 is unpublished."),
+    },
     # The combination nobody has run. rishabhr0y reaches 0.941 through SECONDARY_LINK_MODE
     # `adaptive` and does NOT set the deepcenter threshold or the narrow gap radius;
     # analyticaobscura reaches the same 0.941 through those two and keeps the default link
