@@ -93,14 +93,40 @@ That is the third train-side screen to point the wrong way, after `notes/49`'s p
 (0.901 → 0.863) and `notes/64`'s PROXY (+0.0017 predicted, −0.005 delivered) — and the first
 whose failure has a mechanism rather than a suspicion.
 
-## 4. A risk this turned up: the 12-hour rerun on ~199 datasets
+## 3b. The graded set is ~17× the placeholders, and its node counts ARE observable
 
-The graded rerun processes a test set "approximately the same size as the training dataset"
-— about 199 clips against the 4 in verification, roughly 50×. `claude_fork` and
-`claude_forkw085` both drew **T4s** and completed. Every draw today has been a **P100**, and
-the arms now carry a wheelhouse prologue that installs torch 2.5.1+cu121 before running
-(`notes/65` §1). A P100 is slower than a T4 on this workload and the install itself costs
-minutes.
+Every submission record carries `totalBytes` — the size of the `submission.csv` that
+submission mode produced. Against the 12,127,461 bytes verification mode writes for four
+clips:
+
+```
+date        score   graded bytes    ratio   ~clips   notebook
+2026-08-28  0.897    200,605,027    16.5x      66     claude_submit_ratio
+2026-08-29  0.901    204,296,141    16.8x      67     claude_submit_config
+2026-09-02  0.863    173,848,827    14.3x      57     claude_submit_topk
+2026-09-04  0.937    204,192,768    16.8x      67     claude fork
+2026-09-05  0.932    203,859,527    16.8x      67     claude forkw085
+```
+
+The graded test set is **roughly 17× the verification set, about 60-70 clips** — not the
+~199 the Overview's "approximately the same size as the training dataset" implies. That
+matters for §4's runtime worry, and it turns file size into a free, graded-set-side readout
+of how many nodes an arm emitted.
+
+**And it prices pruning with real evidence rather than inference.** `claude_submit_topk`
+wrote **14.9% fewer rows** than the configuration it was derived from and scored **0.863
+against 0.901** (`notes/49`). Under the metric, dropping 14.9% of nodes buys at most
+`0.1 × 0.149 ≈ +1.5%` relative on `edge_J` — about +0.014 — so `edge_J` itself must have
+fallen by roughly 0.05 to produce that. Pruning does not pay on the graded set, and this is
+the first statement about the node budget in this repo resting on graded data rather than
+on placeholders.
+
+## 4. A risk this turned up: the 12-hour rerun
+
+The graded rerun is ~17× the verification work (§3b). `claude_fork` and `claude_forkw085`
+both drew **T4s** and completed. Every draw today has been a **P100**, and the arms now
+carry a wheelhouse prologue that installs torch 2.5.1+cu121 before running (`notes/65` §1).
+A P100 is slower than a T4 on this workload and the install itself costs minutes.
 
 **So an arm can pass verification and still time out in submission mode.** Nothing measured
 yet; flagging it because the failure would appear only after a submission slot is spent.
