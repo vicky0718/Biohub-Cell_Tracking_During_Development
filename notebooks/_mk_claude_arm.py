@@ -54,14 +54,26 @@ WHEELHOUSE = """\
 # Installs torch 2.5.1+cu121 from a mounted wheelhouse when this session drew a
 # Tesla P100 (sm_60), which the image torch cannot run. No-op on a T4.
 import subprocess as _sp, sys as _sys, pathlib as _pl
-_wheels = _pl.Path("/kaggle/input/claude-torch-wheelhouse/wheels")
+# Found by globbing, not by a hardcoded mount path. v1 hardcoded
+# /kaggle/input/claude-torch-wheelhouse/wheels, the directory was not there, and the
+# `is_dir()` guard turned that into a silent skip -- MEMORY.md's recurring bug class,
+# silent-pass-on-missing-input, reproduced exactly. Now a P100 with no wheel is loud.
+_wheels = next((p.parent for p in
+                _pl.Path("/kaggle/input").glob("*/**/torch-*.whl")), None)
 try:
     _name = _sp.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
                     capture_output=True, text=True, timeout=60).stdout
 except Exception:
     _name = ""
-if "P100" in _name and _wheels.is_dir():
-    print("P100 detected -- installing torch 2.5.1+cu121 from the wheelhouse", flush=True)
+if "P100" not in _name:
+    print(f"GPU {_name.strip()!r} -- no torch replacement needed", flush=True)
+elif _wheels is None:
+    print("P100 AND NO WHEELHOUSE -- this run will die in the first forward pass.",
+          flush=True)
+    for _p in sorted(_pl.Path("/kaggle/input").glob("*")):
+        print("   mounted:", _p.name, flush=True)
+else:
+    print(f"P100 detected -- installing torch 2.5.1+cu121 from {_wheels}", flush=True)
     # No --no-deps: torch 2.5.1 needs the cu121 nvidia-* runtimes, and the image ships
     # cu128 ones. The wheelhouse carries the full closure (cublas, cudnn, nccl, triton,
     # sympy ...), so let pip resolve it there. torchvision is NOT in the wheelhouse and
@@ -72,8 +84,6 @@ if "P100" in _name and _wheels.is_dir():
     print(f"wheelhouse install rc={_r.returncode}", flush=True)
     if _r.returncode:
         print(_r.stdout[-2000:], _r.stderr[-2000:], flush=True)
-else:
-    print(f"GPU {_name.strip()!r} -- no torch replacement needed", flush=True)
 # ------------------------------------------------------------------------------
 """
 
@@ -208,6 +218,7 @@ def build(name: str, refresh: bool = False) -> int:
         md = blob.get("metadata", {})
         rec = {"user": user, "slug": slug,
                "datasetDataSources": md.get("datasetDataSources") or [],
+               "competitionDataSources": md.get("competitionDataSources") or [],
                "kernelDataSources": md.get("kernelDataSources"),
                "enableGpu": md.get("enableGpu"),
                "enableInternet": md.get("enableInternet"),
@@ -268,6 +279,7 @@ def build(name: str, refresh: bool = False) -> int:
     (HERE / f"claude_arm_{name}_push.json").write_text(json.dumps({
         "slug": f"claude-arm-{name}", "title": f"Claude arm {name}",
         "notebook": str(out), "dataset_sources": sources,
+        "competition_sources": rec.get("competitionDataSources") or [],
         "kernel_sources": kernels, "enable_gpu": True, "enable_internet": False,
     }, indent=1))
 

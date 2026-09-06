@@ -6,6 +6,9 @@
   "pilkwang/biohub-temporal-unet3d-seed314159-v1",
   "pilkwang/biohub-tracking-support-pack-50ep-v1"
  ],
+ "competitionDataSources": [
+  "biohub-cell-tracking-during-development"
+ ],
  "kernelDataSources": [],
  "enableGpu": true,
  "enableInternet": false,

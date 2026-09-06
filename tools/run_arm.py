@@ -60,6 +60,7 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
                           enable_gpu=cfg.get("enable_gpu", True),
                           enable_internet=cfg.get("enable_internet", False),
                           dataset_sources=cfg["dataset_sources"],
+                          competition_sources=cfg.get("competition_sources") or [],
                           kernel_sources=cfg.get("kernel_sources") or [],
                           machine_shape=machine_shape)
         print(f"[{time.strftime('%H:%M:%S')}] {slug} attempt {attempt}: "
