@@ -14,7 +14,7 @@ direction, never what it scores.
 | `div15` | lb941 | `DIVERGE_UM 2.25 → 1.5` | +30 | +71 | **+48** | complete |
 | `dc40` | lb941 | `DC_SAFE_DIV 0.25 → 0.40` | −4 | −65 | **−62** | complete |
 | `ckpt948` | zhuzhenghao 0.948 | none (change inert) | +147 | +256 | — | complete, not submitted |
-| `dse44` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.44` | — | — | — | running |
+| `dse44` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.44` | **+1,433** | +1,441 | +9 | complete |
 | `dse52` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.52` | — | — | — | running |
 | `det960` | lb941 | `DET_THRESHOLD 0.965 → 0.960` | — | — | — | queued |
 | `dcgap40` | lb941 | `DC_GAP 0.25 → 0.40` | — | — | — | queued |
@@ -43,3 +43,27 @@ part of why the second 0.941 exists at all.
 **Not spending a slot on `adaptive` itself.** It claims the same 0.941 as `lb941`, so
 `lb941`'s measured score is the control `union` needs, and a slot spent confirming a second
 route to a number we already have buys nothing. Revisit only if `union` surprises.
+
+## `dse44`: a large effect from a constant nobody has moved
+
+`DUAL_SEED_EDGE_THRESHOLD` is `0.48` in **all 56** public kernels mined — not swept, not
+stepped, inherited. Loosening it to 0.44 moves more than any arm except the two that change
+the link mode outright:
+
+```
+raw_edges          114,840 -> 116,531   +1,691
+edges              115,009 -> 116,450   +1,441
+nodes              119,279 -> 120,712   +1,433
+```
+
+So `notes/65` §3's "never moved" category is not empty of consequence: the single largest
+untouched knob does 1.2% of the node set. Whether that is worth score is a different
+question, and `dse52` — the same constant moved the same distance the other way — is running
+to answer whether 0.48 is an optimum somebody found and never wrote down.
+
+**Evidence ranking is unchanged by this.** `dse44` has a large mechanical effect and *no*
+external support, where `union` has two independently-scored 0.941 halves and `sew20` has
+three kernels naming its parameter. It slots below both. It goes above `dc40` on the one
+piece of graded evidence available (`notes/66` §3b: cutting nodes cost 0.038), which is a
+tie-break between two arms of equal external standing, not the node-count screen `notes/71`
+refuses to build.
