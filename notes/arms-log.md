@@ -17,7 +17,7 @@ direction, never what it scores.
 | `dse44` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.44` | **+1,433** | +1,441 | +9 | complete |
 | `dse52` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.52` | **−1,829** | −1,778 | −3 | complete |
 | `det960` | lb941 | `DET_THRESHOLD 0.965 → 0.960` | +404 | +384 | 0 | complete |
-| `dcgap40` | lb941 | `DC_GAP 0.25 → 0.40` | — | — | — | running |
+| `dcgap40` | lb941 | `DC_GAP 0.25 → 0.40` | −48 | −54 | +2 | complete — **not worth a slot** |
 | `gap44` | lb941 | `GAP_CLOSE_UM 5.0 → 4.4` | −42 | −42 | +1 | complete — **not worth a slot** |
 | `sew948` | rishabhr0y 0.948 | none | — | — | — | **dead** — self-inconsistent checksum guard (`notes/70` §3) |
 
@@ -117,3 +117,49 @@ that has simply run out of room. The public 5.8 → 5.0 step was claimed worth +
 on the leaderboard, and a slot spent on it buys a number we could not interpret. This is
 the first arm the verifier has taken *off* the list rather than confirmed onto it, which is
 what it was built for.
+
+## `dcgap40` confirms its own demotion, and the queue is exhausted
+
+`notes/69` §2 demoted this arm on the counters before running it, arguing the DeepCenter gap
+gate sees too little traffic to matter. Run, it says exactly that:
+
+```
+deepcenter_gap_checked                94 ->  94     the population, unchanged
+deepcenter_gap_accepted               17 ->   1     -16   everything it could remove
+deepcenter_gap_bypassed_strong_motion 606 -> 606    never reaches the gate at all
+nodes                            119,279 -> 119,231  -48   0.04% of the node set
+```
+
+Sixteen gap closures across four clips. The prediction and the measurement agree, which is
+the useful part — `notes/69`'s reading of `run_stats.csv` was load-bearing and it held.
+
+## Final tally
+
+**Worth a submission slot, ranked:**
+
+```
+1  lb941     the public 0.941 reproduced             floor, +0.004 over our 0.937
+2  union     LINK_MODE -> adaptive                   +3,333 nodes; crosses two proven 0.941s
+3  sew20     SEW 0.15 -> 0.20                        +101; three kernels name this parameter
+4  div15     DIVERGE_UM 2.25 -> 1.5                  +48 divisions; the dominant gate
+5  dc40      DC_SAFE_DIV 0.25 -> 0.40                -62 divisions; author's own f1 peak
+6  dse44     DUAL_SEED_EDGE 0.48 -> 0.44             +1,433; a constant nobody has moved
+7  dse52     DUAL_SEED_EDGE 0.48 -> 0.52             -1,829; the mirror of 6
+8  det960    DET_THRESHOLD 0.965 -> 0.960            +404; one step past the public step
+```
+
+**Rejected, with the measurement that rejected each:**
+
+```
+gap44     -42 nodes (0.035%)   selection was never radius-limited at 5.0
+dcgap40   -48 nodes (0.04%)    the gate admits 17 of 94 checks; 16 is the whole ceiling
+adaptive  a second route to the same claimed 0.941; lb941 is the control
+ckpt948   its distinguishing change is inert (notes/68 §2)
+sew948    dies in its own checksum guard; the config contradicts itself (notes/70 §3)
+```
+
+**The queue is empty.** Eleven arms built, nine ran, two failed for reasons now understood.
+Nothing further is worth building without a leaderboard result: the ranking above is by
+external evidence and mechanism, and the first score — `lb941`'s especially, which calibrates
+our reproduction offset against its claim — is what would tell us which axis to spend the
+next runs on.
