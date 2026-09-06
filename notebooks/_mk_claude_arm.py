@@ -1,7 +1,7 @@
 """Generic arm builder: fork a public kernel, optionally with verified env-var edits.
 
     python notebooks/_mk_claude_arm.py                 # build every arm in ARMS
-    python notebooks/_mk_claude_arm.py ckpt948 lb941last
+    python notebooks/_mk_claude_arm.py dc40 dcgap40
 
 `notes/64` set the working mode for the rest of the competition: the leaderboard is the only
 instrument we trust (PROXY misled once, pooled training folds misled once), submission slots
@@ -109,40 +109,28 @@ ARMS = {
                 "#               `adaptive`, WITHOUT the deepcenter threshold or the narrower\n"
                 "#               gap radius that lb941 uses to reach the same score."),
     },
-    # ---------------------------------------------------------------- checkpoint_last
-    # Mining all 56 top public kernels for their BIOHUB_* config turned up a branch nobody
-    # in the 0.938->0.941 lineage has touched: nine kernels point DEEPCENTER_CHECKPOINT at
-    # `checkpoint_last.pt` instead of `best.pt`, and one of them claims **0.948** — rank ~20
-    # on today's board against rank ~115 for a clean 0.941. Posted 2026-09-01, after the
-    # 2026-08-22 metric fix (topic 736937), so it is not a pre-fix ghost score.
-    #
-    # It is a WEIGHTS change, not a hyperparameter, which is why it is worth two arms: the
-    # 0.948 kernel also reverts the division config to the old narrow 7.0/12.0, so forking it
-    # alone confounds the checkpoint with that revert.
+    # ---------------------------------------------------------------- checkpoint_last: RAN
+    # Nine of the 56 mined kernels point DEEPCENTER_CHECKPOINT at `checkpoint_last.pt`
+    # instead of `best.pt`, and one claims LB 0.948. It ran, and `notes/68` §2 is the result:
+    # the variable names a path, the resolved mount is /kaggle/input/datasets/<owner>/<slug>/,
+    # the path in the value does not exist, and the notebook falls back to its default --
+    # best.pt, epoch 2. Its own log says so. **The whole branch loads the same weights as
+    # everyone else.** With that inert, ckpt948 is DET_THRESHOLD 0.965 on an otherwise
+    # 0.934-era config (SAFE_DIV_MAX_UM 7.0, SISTER 12.0, no divergence or symmetry gate,
+    # deepcenter threshold 0.12) -- strictly worse than lb941, published with a better number.
+    # Kept in the registry as the record; not a submission candidate.
     "ckpt948": {
         "base": ("zhuzhenghaomax", "biohub-0-948-reproduction-20260901"),
         "edits": [],
-        "why": ("claimed LB 0.948 -- the checkpoint_last.pt branch, unmodified.\n"
-                "#               Differs from the 0.941 line in TWO ways at once: the DeepCenter\n"
-                "#               checkpoint AND a revert to the narrow division config\n"
-                "#               (SAFE_DIV_MAX_UM 7.0, SISTER_MAX_UM 12.0, no divergence or\n"
-                "#               symmetry gate). This arm tests the claim; lb941last separates it."),
+        "why": ("claimed LB 0.948, unmodified. RAN -- its checkpoint change is inert\n"
+                "#               (notes/68 §2) and what remains is a 0.934-era config."),
     },
-    # The same lever placed on the base we trust. If checkpoint_last is what buys the 0.948
-    # then it should also pay on top of the corroborated 0.941 config; if instead it only
-    # works with the narrow division settings, these two arms disagree and that is the finding.
-    "lb941last": {
-        "base": ("analyticaobscura", "biohub-lb-941"),
-        "edits": [(env("DEEPCENTER_CHECKPOINT", f"{DC}/best.pt"),
-                   env("DEEPCENTER_CHECKPOINT", f"{DC}/checkpoint_last.pt"))],
-        "why": ("the 0.941 config with ONE change: DeepCenter best.pt -> checkpoint_last.pt.\n"
-                "#               DEPRIORITISED -- history.csv inside the artifact shows val_loss\n"
-                "#               bottoming at EPOCH 2 (0.0450) and climbing monotonically to\n"
-                "#               0.3167 by epoch 500. best.pt is epoch 2; checkpoint_last.pt is\n"
-                "#               epoch 500, seven times worse and badly overfit to sparse labels.\n"
-                "#               The config also asserts DEEPCENTER_EXPECTED_EPOCH=2 while\n"
-                "#               loading it. Run it only to see whether that guard fires."),
-    },
+    # `lb941last` lived here: the 0.941 config with DeepCenter best.pt -> checkpoint_last.pt.
+    # REMOVED, not deprioritised. `notes/68` §2: the variable names a path, the resolved mount
+    # is /kaggle/input/datasets/<owner>/<slug>/..., so the path in the env value does not
+    # exist and the notebook silently falls back to its own default -- which is best.pt.
+    # Measured in ckpt948's own run log: "Loaded ... best.pt", "DeepCenter checkpoint epoch: 2".
+    # The edit cannot take effect, so the arm cannot measure anything.
     # -------------------------------------------------------- gradient continuation
     # `notes/64` §1 cost us 0.005 by treating a SWEPT constant as an unexplored one. The
     # distinction it should have drawn, and the one these arms rest on:
