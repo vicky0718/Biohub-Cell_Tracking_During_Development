@@ -181,13 +181,36 @@ ARMS = {
     # public notebook in the matrix sets DEEPCENTER_GAP_THRESHOLD to 0.25 -- it was in the
     # identical column, not the varying one. Gap-closing is a much larger population than
     # divisions, so if the calibration argument is right at all it should show here first.
+    # DEMOTED. `notes/69`: the run-stats counters say the gap gate is already rejecting
+    # 79% at 0.25 (checked 230, accepted 48, rejected 182) and a further 596 proposals
+    # bypass it entirely on strong motion. Raising it to 0.40 can only remove the 48 that
+    # survive. My "it gates a far larger population" was wrong -- 230 gap checks against
+    # 356 safe-div checks, and most of the gap traffic never reaches the gate.
     "dcgap40": {
         "base": ("analyticaobscura", "biohub-lb-941"),
         "edits": [(env("DEEPCENTER_GAP_THRESHOLD", "0.25"),
                    env("DEEPCENTER_GAP_THRESHOLD", "0.40"))],
-        "why": ("DeepCenter GAP veto at the same f1 maximum. Unlike the safe-div threshold\n"
-                "#               this one is 0.25 in every public notebook we mined -- moved by\n"
-                "#               nobody, ever, and it gates a far larger population."),
+        "why": ("DeepCenter GAP veto to the author's f1 maximum. DEMOTED -- at 0.25 the gate\n"
+                "#               already rejects 79% of what reaches it and only 48 proposals\n"
+                "#               survive across the four clips, so the ceiling here is small."),
+    },
+    # The dominant division filter, and the one the counters point at. Across the four
+    # verification clips the safe-division stage sees ~1,960 geometric candidates and
+    # `safe_division_divergence_rejected` alone throws out **1,604 of them** -- 82% -- against
+    # 104 for the mutual-NN gate and 111 for the DeepCenter veto. `safe_division_skipped_cap`
+    # is 0, so `notes/60`'s volume-cap trap is not active and the gate really is the binding
+    # constraint.
+    #
+    # `SAFE_DIV_DIVERGE_UM` is also stepped and stopped: nusrati/0-938 ran 4.5, 0-940 moved it
+    # to 2.25 as part of a +0.002, and every 0.941 inherited 2.25. Larger is stricter, so the
+    # step that paid was toward MORE divisions, and nothing below 2.25 has been published.
+    "div15": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("SAFE_DIV_DIVERGE_UM", "2.25"), env("SAFE_DIV_DIVERGE_UM", "1.5"))],
+        "why": ("forward-divergence gate 2.25 -> 1.5, one step further in the direction that\n"
+                "#               paid (4.5 -> 2.25). It rejects 82% of all division candidates,\n"
+                "#               more than every other division gate combined, and the volume\n"
+                "#               caps are not binding behind it (skipped_cap = 0)."),
     },
     # ------------------------------------------------- knobs no public notebook has moved
     # The config matrix over 56 top kernels has two columns: values that vary between
