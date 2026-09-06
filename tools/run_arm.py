@@ -44,6 +44,44 @@ def fetch_log(slug: str) -> str:
     return log
 
 
+def busy_slots(prefix: str = "claude-arm-") -> int:
+    """How many of our arm kernels Kaggle currently has running.
+
+    Kaggle allows two concurrent GPU sessions and **refuses a third silently**: the push
+    succeeds, returns ``versionNumber: 0``, creates the kernel, and starts no run. Nine
+    arms launched that way in five seconds and every one reported success. Counting first
+    is the only way to tell a queued arm from a discarded one.
+    """
+    n = 0
+    for p in sorted(Path(__file__).resolve().parent.parent
+                    .glob("notebooks/claude_arm_*_push.json")):
+        slug = json.loads(p.read_text())["slug"]
+        try:
+            if (K.kernel_status(slug).get("status") or "").lower() in ("running", "queued"):
+                n += 1
+        except Exception:
+            pass                                  # 404 = never run; not occupying a slot
+    return n
+
+
+def wait_for_run(slug: str, grace: int = 900, poll: int = 30) -> dict | None:
+    """Block until the kernel reports a status, or None if no run ever appeared.
+
+    ``/kernels/status`` answers 404 *"No runs found for this kernel"* between a push and
+    the run actually starting, and `kernel_wait` raised straight through it. Treated as
+    "not started yet" for ``grace`` seconds, then as "the push did not start a run".
+    """
+    t0 = time.time()
+    while time.time() - t0 < grace:
+        try:
+            return K.kernel_wait(slug, poll=poll)
+        except K.KaggleError as e:
+            if e.status != 404:
+                raise
+            time.sleep(poll)
+    return None
+
+
 def run(push_config: str, attempts: int = 6, poll: int = 90,
         machine_shape: str | None = "gpuT4x2") -> int:
     """Run the arm described by a `claude_arm_<name>_push.json` written by _mk_claude_arm.
@@ -56,6 +94,12 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
     cfg = json.loads(Path(push_config).read_text())
     slug, notebook, title = cfg["slug"], cfg["notebook"], cfg["title"]
     for attempt in range(1, attempts + 1):
+        # Wait for a free session before pushing. Kaggle silently discards the run
+        # otherwise (see busy_slots), and a discarded push is indistinguishable from a
+        # successful one in the response.
+        while busy_slots() >= 2:
+            time.sleep(180)
+
         r = K.kernel_push(slug, notebook, title=title, is_private=True,
                           enable_gpu=cfg.get("enable_gpu", True),
                           enable_internet=cfg.get("enable_internet", False),
@@ -66,7 +110,11 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
         print(f"[{time.strftime('%H:%M:%S')}] {slug} attempt {attempt}: "
               f"pushed v{r.get('versionNumber')}", flush=True)
 
-        st = K.kernel_wait(slug, poll=poll)
+        st = wait_for_run(slug, poll=poll)
+        if st is None:
+            print(f"   push started no run (v{r.get('versionNumber')}) — retrying"
+                  f" ({attempt}/{attempts})", flush=True)
+            continue
         status = (st.get("status") or "").lower()
         log = fetch_log(slug)
         gpu = ", ".join(sorted(set(re.findall(r"Tesla [A-Z0-9\-]+", log)))) or "?"
