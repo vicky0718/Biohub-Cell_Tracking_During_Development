@@ -278,6 +278,70 @@ def submissions_list(competition: str) -> list:
     return get_json(f"/competitions/submissions/list/{competition}")
 
 
+def kernel_output_file(slug: str, dest: Path | str,
+                       filename: str = "submission.csv",
+                       user: str | None = None) -> Path | None:
+    """Extract one file a kernel produced, or None if the run did not write it.
+
+    **Not the signed URLs in ``kernel_output``.** Those point at
+    ``www.kaggleusercontent.com``, which this container's egress proxy denies with
+    ``connect_rejected ... gateway answered 403 to CONNECT`` -- the same policy that
+    forced this module off ``api.kaggle.com`` in the first place.
+    ``/kernels/output/download/{user}/{slug}`` is served from ``www.kaggle.com`` and
+    returns every output file as one zip, so it is the only route that works here.
+
+    The zip carries the whole run (43 MB for a fork: detector coordinates, retention
+    guards, weight snapshots), so it is streamed to a temporary file and thrown away
+    rather than kept.
+    """
+    path = f"/kernels/output/download/{user or username()}/{slug}"
+    status, body = _request("GET", path)
+    if status != 200:
+        raise KaggleError(status, body[:400].decode("utf-8", "replace"), path)
+    with tempfile.TemporaryDirectory() as td:
+        zpath = Path(td) / "output.zip"
+        zpath.write_bytes(body)
+        with zipfile.ZipFile(zpath) as zf:
+            match = next((n for n in zf.namelist()
+                          if n.rsplit("/", 1)[-1] == filename), None)
+            if match is None:
+                return None
+            dest = Path(dest)
+            dest.write_bytes(zf.read(match))
+    return dest
+
+
+def submit_file(competition: str, path: Path | str, description: str) -> dict:
+    """Upload a submission file and enter it in the competition. Costs a daily slot.
+
+    Same two-step blob upload as datasets, with ``type="competition"``; the token that
+    comes back is then handed to the submit endpoint. This exists so an arm can be
+    measured without a human in the loop -- `notes/64` established that the leaderboard
+    is the only instrument we trust, and 5 slots a day are not the scarce resource.
+    """
+    path = Path(path)
+    res = post_json("/blobs/upload", {
+        "type": "competition",
+        "name": path.name,
+        "contentLength": path.stat().st_size,
+        "contentType": "text/csv",
+        "lastModifiedEpochSeconds": int(path.stat().st_mtime),
+    })
+    create_url = res.get("createUrl") or res.get("CreateUrl")
+    token = res.get("token") or res.get("Token")
+    if not create_url or not token:
+        raise KaggleError(0, json.dumps(res), "blobs/upload")
+    body = path.read_bytes()
+    req = urllib.request.Request(create_url, data=body, method="PUT",
+                                 headers={"Content-Type": "text/csv",
+                                          "Content-Length": str(len(body))})
+    with urllib.request.urlopen(req, timeout=1800) as f:
+        if f.status not in (200, 201):
+            raise KaggleError(f.status, f.read().decode("utf-8", "replace"), create_url)
+    return post_json(f"/competitions/submissions/submit/{competition}",
+                     {"blobFileTokens": token, "submissionDescription": description})
+
+
 def leaderboard(competition: str) -> dict:
     return get_json(f"/competitions/{competition}/leaderboard/view")
 
@@ -285,7 +349,8 @@ def leaderboard(competition: str) -> dict:
 __all__ = ["KaggleError", "username", "get_json", "post_json", "kernel_push",
            "dataset_version_number",
            "kernel_status", "kernel_output", "kernel_wait", "dataset_status",
-           "dataset_list", "dataset_new_version", "submissions_list", "leaderboard"]
+           "dataset_list", "dataset_new_version", "submissions_list", "leaderboard",
+           "kernel_output_file", "submit_file"]
 
 
 def kernel_push_like(slug: str, notebook_path: str | Path, *, title: str,

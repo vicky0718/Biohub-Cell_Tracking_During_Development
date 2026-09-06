@@ -40,7 +40,65 @@ def env(key: str, val: str) -> str:
     return f'os.environ["BIOHUB_{key}"] = "{val}"'
 
 
+# The P100 escape hatch. Kaggle handed this account eight consecutive Tesla P100s on
+# 2026-09-06 and `machineShape` is ignored on push, so re-rolling the draw (tools/run_arm.py)
+# may not terminate. A P100 is sm_60 and the image's torch builds sm_70+, so the fix is the
+# torch our own runs have always used: 2.5.1+cu121 out of `claude-torch-wheelhouse`, which
+# does ship sm_60 kernels. MEMORY.md: "the only thing that makes a P100 run".
+#
+# It goes at the very top of the config cell so it lands before ANY torch import, and it
+# targets `/usr/bin/python3` explicitly because the fork runs its detector as a subprocess
+# under that interpreter, not under the notebook's `sys.executable`.
+WHEELHOUSE = """\
+# --- P100 escape hatch (ours) -------------------------------------------------
+# Installs torch 2.5.1+cu121 from a mounted wheelhouse when this session drew a
+# Tesla P100 (sm_60), which the image torch cannot run. No-op on a T4.
+import subprocess as _sp, sys as _sys, pathlib as _pl
+_wheels = _pl.Path("/kaggle/input/claude-torch-wheelhouse/wheels")
+try:
+    _name = _sp.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+                    capture_output=True, text=True, timeout=60).stdout
+except Exception:
+    _name = ""
+if "P100" in _name and _wheels.is_dir():
+    print("P100 detected -- installing torch 2.5.1+cu121 from the wheelhouse", flush=True)
+    # No --no-deps: torch 2.5.1 needs the cu121 nvidia-* runtimes, and the image ships
+    # cu128 ones. The wheelhouse carries the full closure (cublas, cudnn, nccl, triton,
+    # sympy ...), so let pip resolve it there. torchvision is NOT in the wheelhouse and
+    # is not requested -- the fork's detector is a custom UNet3D that does not import it.
+    _r = _sp.run(["/usr/bin/python3", "-m", "pip", "install", "--no-index",
+                  "--find-links", str(_wheels), "--force-reinstall", "torch==2.5.1+cu121"],
+                 capture_output=True, text=True, timeout=3600)
+    print(f"wheelhouse install rc={_r.returncode}", flush=True)
+    if _r.returncode:
+        print(_r.stdout[-2000:], _r.stderr[-2000:], flush=True)
+else:
+    print(f"GPU {_name.strip()!r} -- no torch replacement needed", flush=True)
+# ------------------------------------------------------------------------------
+"""
+
+
 ARMS = {
+    # ------------------------------------------------------------------- the 0.941 floor
+    # We are at 0.937, which was rank ~330 on 2026-09-04 and rank 466 on 2026-09-06 without
+    # our score changing. These two are the public frontier reproduced unmodified: the
+    # baseline every arm below is measured against, and on their own worth +0.004 and about
+    # 350 places. Two disjoint routes to the same 0.941 (see `union`).
+    "lb941": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [],
+        "why": ("claimed LB 0.941, unmodified -- 77 votes, and its own BIOHUB_SCORE_AXIS\n"
+                "#               reads `public 0.940 base + {DEEPCENTER_SAFE_DIV_THRESHOLD:\n"
+                "#               0.25, GAP_CLOSE_UM: 5.0}`. reyhanksatria's independent 0.941\n"
+                "#               publishes the identical two-step table. Corroborated twice."),
+    },
+    "adaptive": {
+        "base": ("rishabhr0y", "941-biohub-fresh-adaptive-assoc"),
+        "edits": [],
+        "why": ("claimed LB 0.941, unmodified -- the other route, via SECONDARY_LINK_MODE\n"
+                "#               `adaptive`, WITHOUT the deepcenter threshold or the narrower\n"
+                "#               gap radius that lb941 uses to reach the same score."),
+    },
     # ---------------------------------------------------------------- checkpoint_last
     # Mining all 56 top public kernels for their BIOHUB_* config turned up a branch nobody
     # in the 0.938->0.941 lineage has touched: nine kernels point DEEPCENTER_CHECKPOINT at
@@ -70,6 +128,49 @@ ARMS = {
         "why": ("the 0.941 config with ONE change: DeepCenter best.pt -> checkpoint_last.pt.\n"
                 "#               Isolates the checkpoint from the narrow-division revert that\n"
                 "#               ships alongside it in the 0.948 kernel."),
+    },
+    # -------------------------------------------------------- gradient continuation
+    # `notes/64` §1 cost us 0.005 by treating a SWEPT constant as an unexplored one. The
+    # distinction it should have drawn, and the one these arms rest on:
+    #
+    #   SWEPT  -- the author says they explored both sides and this is the peak.
+    #             SECONDARY_DETECTION_WEIGHT 0.80 was that, and 0.85 lost.
+    #   STEPPED -- the author moved it once, the move paid, and they published and moved on.
+    #             Nothing has ever been measured on the far side of the new value.
+    #
+    # The 0.934 -> 0.941 progression is a chain of single accepted steps: gap-close 5.8 ->
+    # 5.0 (+0.001) and the DeepCenter safe-div threshold 0.12 -> 0.25 (+0.001), both
+    # published as steps, neither as a sweep. Taking one more step in the same direction is
+    # the cheapest unexplored move on the board, and it is unexplored precisely because
+    # everyone else is forking the published value rather than continuing past it.
+    "gap44": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("GAP_CLOSE_UM", "5.0"), env("GAP_CLOSE_UM", "4.4"))],
+        "why": ("gap-close radius one step further down the gradient that just paid.\n"
+                "#               5.8 -> 5.0 was worth +0.001 to reyhanksatria and to the lb-941\n"
+                "#               base; nobody has published anything below 5.0. Note our own\n"
+                "#               notes/60 swept this radius four times and only ever WIDENED it."),
+    },
+    "dc40": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.25"),
+                   env("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.40"))],
+        "why": ("DeepCenter safe-division veto threshold past its published step.\n"
+                "#               reyhanksatria's table: 0.12 -> 0.25 was half of the 0.939 ->\n"
+                "#               0.941 move. Higher = the veto rejects more proposed divisions."),
+    },
+    # The combination nobody has run. rishabhr0y reaches 0.941 through SECONDARY_LINK_MODE
+    # `adaptive` and does NOT set the deepcenter threshold or the narrow gap radius;
+    # analyticaobscura reaches the same 0.941 through those two and keeps the default link
+    # mode. Two disjoint routes to one score is exactly the shape that is worth crossing --
+    # and doing it as a one-token edit on the lb-941 base keeps everything else identical.
+    "union": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("SECONDARY_LINK_MODE", "low_margin_consensus"),
+                   env("SECONDARY_LINK_MODE", "adaptive"))],
+        "why": ("cross the two independent 0.941 routes: analyticaobscura's deepcenter 0.25\n"
+                "#               + gap 5.0, with rishabhr0y's adaptive link mode on top. Neither\n"
+                "#               author has the other's change."),
     },
 }
 
@@ -153,11 +254,26 @@ def build(name: str, refresh: bool = False) -> int:
     else:
         lines = "#     none -- run unmodified"
     head = ATTRIBUTION.format(user=user, slug=slug, why=arm["why"], edits=lines)
-    cells[idx]["source"] = (head + "".join(cells[idx]["source"])).splitlines(keepends=True)
+    prologue = WHEELHOUSE if arm.get("wheelhouse", True) else ""
+    cells[idx]["source"] = (head + prologue
+                            + "".join(cells[idx]["source"])).splitlines(keepends=True)
 
     out.write_text(json.dumps(nb, indent=1))
+
+    # The push configuration travels with the arm rather than being retyped at launch --
+    # MEMORY.md's loudest rule, after a retyped source list cost `claude_submit_ratio` v1.
+    kernels = list(rec.get("kernelDataSources") or [])
+    if arm.get("wheelhouse", True):
+        kernels.append(f"{K.username()}/claude-torch-wheelhouse")
+    (HERE / f"claude_arm_{name}_push.json").write_text(json.dumps({
+        "slug": f"claude-arm-{name}", "title": f"Claude arm {name}",
+        "notebook": str(out), "dataset_sources": sources,
+        "kernel_sources": kernels, "enable_gpu": True, "enable_internet": False,
+    }, indent=1))
+
     print(f"wrote {out.name}: {len(cells)} cells from {user}/{slug} "
-          f"v{rec['currentVersionNumber']}, {len(applied)} edit(s), header on cell {idx}")
+          f"v{rec['currentVersionNumber']}, {len(applied)} edit(s), header on cell {idx}"
+          f"{', wheelhouse prologue' if arm.get('wheelhouse') else ''}")
     for o, n in applied:
         print(f"  {o}\n    -> {n}")
     return 0

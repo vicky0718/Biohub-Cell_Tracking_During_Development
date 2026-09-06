@@ -1,7 +1,6 @@
 """Push a fork notebook and keep re-pushing until Kaggle hands us a GPU it can run on.
 
-    python tools/run_arm.py claude-fork941-lb941 notebooks/claude_fork941_lb941.ipynb \
-        notebooks/claude_fork941_lb941_source.json "Claude fork941 lb941"
+    python tools/run_arm.py notebooks/claude_arm_lb941last_push.json
 
 **The P100 lottery.** `MEMORY.md` records it and it has now cost four runs. A free Kaggle
 GPU session draws either a Tesla T4 (sm_75) or a Tesla P100 (sm_60); the image's torch ships
@@ -45,14 +44,24 @@ def fetch_log(slug: str) -> str:
     return log
 
 
-def run(slug: str, notebook: str, prov_path: str, title: str,
-        attempts: int = 6, poll: int = 90) -> int:
-    prov = json.loads(Path(prov_path).read_text())
+def run(push_config: str, attempts: int = 6, poll: int = 90,
+        machine_shape: str | None = "gpuT4x2") -> int:
+    """Run the arm described by a `claude_arm_<name>_push.json` written by _mk_claude_arm.
+
+    ``machine_shape`` is sent even though `notes/24` measured it as silently ignored --
+    that measurement is from August, `nvidiaTeslaT4` is still ignored today, and
+    `gpuT4x2` is the value the current UI uses. Sending it costs nothing and the log's
+    GPU line says whether it took.
+    """
+    cfg = json.loads(Path(push_config).read_text())
+    slug, notebook, title = cfg["slug"], cfg["notebook"], cfg["title"]
     for attempt in range(1, attempts + 1):
         r = K.kernel_push(slug, notebook, title=title, is_private=True,
-                          enable_gpu=True, enable_internet=False,
-                          dataset_sources=prov["datasetDataSources"],
-                          kernel_sources=prov.get("kernelDataSources") or [])
+                          enable_gpu=cfg.get("enable_gpu", True),
+                          enable_internet=cfg.get("enable_internet", False),
+                          dataset_sources=cfg["dataset_sources"],
+                          kernel_sources=cfg.get("kernel_sources") or [],
+                          machine_shape=machine_shape)
         print(f"[{time.strftime('%H:%M:%S')}] {slug} attempt {attempt}: "
               f"pushed v{r.get('versionNumber')}", flush=True)
 
@@ -86,6 +95,6 @@ def run(slug: str, notebook: str, prov_path: str, title: str,
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 2:
         raise SystemExit(__doc__)
-    raise SystemExit(run(*sys.argv[1:5]))
+    raise SystemExit(run(sys.argv[1]))

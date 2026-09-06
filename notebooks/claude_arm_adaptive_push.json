@@ -1,0 +1,15 @@
+{
+ "slug": "claude-arm-adaptive",
+ "title": "Claude arm adaptive",
+ "notebook": "/workspace/biohub-cell_tracking_during_development/notebooks/claude_arm_adaptive.ipynb",
+ "dataset_sources": [
+  "pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+  "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+  "pilkwang/biohub-tracking-support-pack-50ep-v1"
+ ],
+ "kernel_sources": [
+  "vigneshnehru/claude-torch-wheelhouse"
+ ],
+ "enable_gpu": true,
+ "enable_internet": false
+}
