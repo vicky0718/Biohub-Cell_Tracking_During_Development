@@ -212,6 +212,38 @@ ARMS = {
                 "#               more than every other division gate combined, and the volume\n"
                 "#               caps are not binding behind it (skipped_cap = 0)."),
     },
+    # ------------------------------------------------------ the 0.948 claim, second look
+    # `ckpt948` (zhuzhenghaomax) ran and its checkpoint change turned out inert (`notes/68`),
+    # leaving a 0.934-era config. Re-scraping the public kernels turned up THREE more 0.948
+    # claims -- rishabhr0y/biohub-948-sew20 (21 votes), cloudssdut (15), tomako4390 (2) --
+    # whose configs are byte-for-byte identical to each other and differ from the arm we ran
+    # in exactly ONE value:
+    #
+    #     SECONDARY_EDGE_WEIGHT   0.15  ->  0.20
+    #
+    # The author says so in the title: "sew20". So `claude-arm-ckpt948`, which we already
+    # ran and do not intend to submit, is the CONTROL for this comparison, and the claim is
+    # that one parameter is worth +0.007 -- rank ~20 against rank ~120 for a clean 0.941.
+    #
+    # rishabhr0y is the same author whose 0.941 carries 27 votes, so this is not an unknown
+    # making an unsupported claim. Both arms run: the published configuration as-is, and the
+    # same parameter on the base we trust, because those answer different questions.
+    "sew948": {
+        "base": ("rishabhr0y", "biohub-948-sew20"),
+        "edits": [],
+        "why": ("claimed LB 0.948, unmodified -- the published configuration. Three\n"
+                "#               independent kernels carry it identically, and it differs from\n"
+                "#               our already-run ckpt948 only in SECONDARY_EDGE_WEIGHT 0.15 ->\n"
+                "#               0.20, which makes ckpt948 the control."),
+    },
+    "sew20": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("SECONDARY_EDGE_WEIGHT", "0.15"), env("SECONDARY_EDGE_WEIGHT", "0.20"))],
+        "why": ("SECONDARY_EDGE_WEIGHT 0.15 -> 0.20 on the corroborated 0.941 base. The 0.948\n"
+                "#               kernels carry it alongside a REVERT to the narrow division\n"
+                "#               config; this asks whether the parameter stacks with the 0.941\n"
+                "#               division work instead of replacing it."),
+    },
     # ------------------------------------------------- knobs no public notebook has moved
     # The config matrix over 56 top kernels has two columns: values that vary between
     # notebooks, and values that are identical in every single one. The second column is
