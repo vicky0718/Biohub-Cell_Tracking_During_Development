@@ -6,6 +6,45 @@
     "authorUserName": "jookuma",
     "comments": [
       {
+        "id": 3521225,
+        "postDate": "2026-09-05T08:34:24.590Z",
+        "rawMarkdown": "It would be great to be part of the Biohub team",
+        "content": "<p>It would be great to be part of the Biohub team</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Vinayak Pathak",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3178627-gr.jpg",
+          "url": "/vinayapathak",
+          "tier": "CONTRIBUTOR",
+          "id": 3178627,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 282,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Vinayak Pathak",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3178627-gr.jpg",
+            "url": "/vinayapathak",
+            "userName": "vinayapathak",
+            "tier": "CONTRIBUTOR",
+            "id": 3178627,
+            "profileUrl": "/vinayapathak",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 3178627,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3519864,
         "postDate": "2026-09-02T11:27:05.367Z",
         "rawMarkdown": "I am ready to work in the biohub team =)",
@@ -74,11 +113,15 @@
         {
           "emoji": "YAY",
           "featuredUserNames": [
+            "ortimusprime",
+            "sersasj",
+            "vinayapathak",
             "adammohammedi",
             "yunusgmsoy",
-            "antonoof"
+            "antonoof",
+            "josephadamski91"
           ],
-          "userCount": 3
+          "userCount": 7
         }
       ]
     },
@@ -93,7 +136,7 @@
     "postDate": "2026-09-01T21:31:36.602074500Z",
     "totalVotes": 4,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/738833",
-    "totalMessages": 1,
+    "totalMessages": 2,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

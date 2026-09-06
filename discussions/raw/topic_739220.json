@@ -4,6 +4,444 @@
     "authorThumbnailName": "default-thumb.png",
     "authorUserDisplayName": "Abhirup Choudhury",
     "authorUserName": "abhirupchoudhury073",
+    "comments": [
+      {
+        "id": 3521119,
+        "postDate": "2026-09-04T22:51:57.370Z",
+        "rawMarkdown": "Abhirup, sua pergunta \u00e9 a \u00fanica coisa concreta neste fio inteiro, e vale a pena isol\u00e1-la do resto: qual \u00e9 a fun\u00e7\u00e3o de perda, o m\u00e9todo de treinamento, e como calibrar ILP/NMS no p\u00f3s-processamento. Isso n\u00e3o tem resposta em \"pratique mais\" ou \"n\u00e3o se preocupe com a pontua\u00e7\u00e3o p\u00fablica\" \u2014 s\u00e3o conselhos que soam s\u00e1bios mas s\u00e3o, tecnicamente, vazios: n\u00e3o reduzem em nada seu espa\u00e7o de busca de hiperpar\u00e2metros.\n\nAgora, reparem no que o hengck23 trouxe: \"aumentar a taxa de quadros, um bom detector, e atribui\u00e7\u00e3o por vizinho mais pr\u00f3ximo resolve 95% do problema.\" Isso \u00e9 provavelmente verdade \u2014 e \u00e9 exatamente por isso que ele est\u00e1 em 72\u00ba e n\u00e3o em 2102\u00ba. Mas note a armadilha que isso monta para quem est\u00e1 tentando alcan\u00e7ar 0,9+: se o vizinho-mais-pr\u00f3ximo linear resolve 95%, ent\u00e3o todo o esfor\u00e7o de engenharia que separa 0,85 de 0,90 est\u00e1 concentrado nos 5% restantes \u2014 que s\u00e3o, por defini\u00e7\u00e3o, os casos onde o vizinho mais pr\u00f3ximo falha: mitoses, cruzamentos de trajet\u00f3ria, oclus\u00f5es, e re-identifica\u00e7\u00e3o ap\u00f3s desaparecimento moment\u00e2neo do foco. \u00c9 exatamente a\u00ed que entram ILP (para resolver associa\u00e7\u00e3o global em vez de gulosa) e NMS (para n\u00e3o duplicar detec\u00e7\u00f5es em divis\u00f5es celulares). Aqui ''moram os problemas''.\nAbhirup, e ele \u00e9 ''genuinamente um problema'' com a informa\u00e7\u00e3o dispon\u00edvel publicamente: para calibrar bem o ILP, voc\u00ea precisa de uma fun\u00e7\u00e3o de custo bem calibrada \u2014 o que exige saber qu\u00e3o confi\u00e1vel \u00e9 o seu detector em cada regi\u00e3o do espa\u00e7o-tempo. Mas essa calibra\u00e7\u00e3o de confian\u00e7a s\u00f3 emerge de forma confi\u00e1vel durante o treinamento, n\u00e3o durante a infer\u00eancia. E, como voc\u00ea mesmo notou, todos os notebooks p\u00fablicos compartilhados s\u00e3o notebooks de infer\u00eancia \u2014 o pipeline de treinamento (a pe\u00e7a que geraria a calibra\u00e7\u00e3o necess\u00e1ria para o ILP funcionar bem) \u00e9 exatamente a pe\u00e7a que ningu\u00e9m est\u00e1 compartilhando.\n\nOu seja: o gargalo que separa 0,85 de 0,90 n\u00e3o \u00e9 falta de pr\u00e1tica, nem falta de teste, nem \"n\u00e3o se preocupar com o LB\" \u2014 \u00e9 um gap de informa\u00e7\u00e3o estrutural. A comunidade p\u00fablica resolveu os 95% f\u00e1ceis (detec\u00e7\u00e3o + associa\u00e7\u00e3o gulosa) e est\u00e1, coletiva e silenciosamente, retendo a parte que resolve os 5% dif\u00edceis, porque \u00e9 exatamente essa parte que determina quem sobe no ranking. Perguntar \"qual \u00e9 o m\u00e9todo de treinamento\" numa competi\u00e7\u00e3o de c\u00f3digo de pesquisa, onde a pontua\u00e7\u00e3o depende justamente disso, \u00e9 perguntar pela \u00fanica coisa que ningu\u00e9m tem incentivo real para responder publicamente antes do prazo final.\n\nAbed tem raz\u00e3o ao questionar o hengck23 \u2014 a suposi\u00e7\u00e3o de \"velocidade semelhante entre c\u00e9lulas\" quebra exatamente nos casos de divis\u00e3o celular (mitose), que \u00e9 onde uma c\u00e9lula \"se torna duas\" com trajet\u00f3rias divergentes instantaneamente. E \u00e9 precisamente a\u00ed, na fronteira entre associa\u00e7\u00e3o simples e associa\u00e7\u00e3o combinatorial, que ILP para de ser um luxo e vira necessidade \u2014 o que devolve a pergunta original ao ponto de partida: n\u00e3o existe atalho de \"pr\u00e1tica\" para isso, existe apenas a escolha entre reconstruir a calibra\u00e7\u00e3o de confian\u00e7a do zero (treinando voc\u00ea mesmo) ou aceitar o teto de ~0,85-0,88 que a associa\u00e7\u00e3o forte naturalmente imp\u00f5e. Atenciosamente: EMDST, abra\u00e7o!",
+        "content": "<p>Abhirup, sua pergunta \u00e9 a \u00fanica coisa concreta neste fio inteiro, e vale a pena isol\u00e1-la do resto: qual \u00e9 a fun\u00e7\u00e3o de perda, o m\u00e9todo de treinamento, e como calibrar ILP/NMS no p\u00f3s-processamento. Isso n\u00e3o tem resposta em \"pratique mais\" ou \"n\u00e3o se preocupe com a pontua\u00e7\u00e3o p\u00fablica\" \u2014 s\u00e3o conselhos que soam s\u00e1bios mas s\u00e3o, tecnicamente, vazios: n\u00e3o reduzem em nada seu espa\u00e7o de busca de hiperpar\u00e2metros.</p>\n<p>Agora, reparem no que o hengck23 trouxe: \"aumentar a taxa de quadros, um bom detector, e atribui\u00e7\u00e3o por vizinho mais pr\u00f3ximo resolve 95% do problema.\" Isso \u00e9 provavelmente verdade \u2014 e \u00e9 exatamente por isso que ele est\u00e1 em 72\u00ba e n\u00e3o em 2102\u00ba. Mas note a armadilha que isso monta para quem est\u00e1 tentando alcan\u00e7ar 0,9+: se o vizinho-mais-pr\u00f3ximo linear resolve 95%, ent\u00e3o todo o esfor\u00e7o de engenharia que separa 0,85 de 0,90 est\u00e1 concentrado nos 5% restantes \u2014 que s\u00e3o, por defini\u00e7\u00e3o, os casos onde o vizinho mais pr\u00f3ximo falha: mitoses, cruzamentos de trajet\u00f3ria, oclus\u00f5es, e re-identifica\u00e7\u00e3o ap\u00f3s desaparecimento moment\u00e2neo do foco. \u00c9 exatamente a\u00ed que entram ILP (para resolver associa\u00e7\u00e3o global em vez de gulosa) e NMS (para n\u00e3o duplicar detec\u00e7\u00f5es em divis\u00f5es celulares). Aqui ''moram os problemas''.\nAbhirup, e ele \u00e9 ''genuinamente um problema'' com a informa\u00e7\u00e3o dispon\u00edvel publicamente: para calibrar bem o ILP, voc\u00ea precisa de uma fun\u00e7\u00e3o de custo bem calibrada \u2014 o que exige saber qu\u00e3o confi\u00e1vel \u00e9 o seu detector em cada regi\u00e3o do espa\u00e7o-tempo. Mas essa calibra\u00e7\u00e3o de confian\u00e7a s\u00f3 emerge de forma confi\u00e1vel durante o treinamento, n\u00e3o durante a infer\u00eancia. E, como voc\u00ea mesmo notou, todos os notebooks p\u00fablicos compartilhados s\u00e3o notebooks de infer\u00eancia \u2014 o pipeline de treinamento (a pe\u00e7a que geraria a calibra\u00e7\u00e3o necess\u00e1ria para o ILP funcionar bem) \u00e9 exatamente a pe\u00e7a que ningu\u00e9m est\u00e1 compartilhando.</p>\n<p>Ou seja: o gargalo que separa 0,85 de 0,90 n\u00e3o \u00e9 falta de pr\u00e1tica, nem falta de teste, nem \"n\u00e3o se preocupar com o LB\" \u2014 \u00e9 um gap de informa\u00e7\u00e3o estrutural. A comunidade p\u00fablica resolveu os 95% f\u00e1ceis (detec\u00e7\u00e3o + associa\u00e7\u00e3o gulosa) e est\u00e1, coletiva e silenciosamente, retendo a parte que resolve os 5% dif\u00edceis, porque \u00e9 exatamente essa parte que determina quem sobe no ranking. Perguntar \"qual \u00e9 o m\u00e9todo de treinamento\" numa competi\u00e7\u00e3o de c\u00f3digo de pesquisa, onde a pontua\u00e7\u00e3o depende justamente disso, \u00e9 perguntar pela \u00fanica coisa que ningu\u00e9m tem incentivo real para responder publicamente antes do prazo final.</p>\n<p>Abed tem raz\u00e3o ao questionar o hengck23 \u2014 a suposi\u00e7\u00e3o de \"velocidade semelhante entre c\u00e9lulas\" quebra exatamente nos casos de divis\u00e3o celular (mitose), que \u00e9 onde uma c\u00e9lula \"se torna duas\" com trajet\u00f3rias divergentes instantaneamente. E \u00e9 precisamente a\u00ed, na fronteira entre associa\u00e7\u00e3o simples e associa\u00e7\u00e3o combinatorial, que ILP para de ser um luxo e vira necessidade \u2014 o que devolve a pergunta original ao ponto de partida: n\u00e3o existe atalho de \"pr\u00e1tica\" para isso, existe apenas a escolha entre reconstruir a calibra\u00e7\u00e3o de confian\u00e7a do zero (treinando voc\u00ea mesmo) ou aceitar o teto de ~0,85-0,88 que a associa\u00e7\u00e3o forte naturalmente imp\u00f5e. Atenciosamente: EMDST, abra\u00e7o!</p>",
+        "replies": [
+          {
+            "id": 3521386,
+            "postDate": "2026-09-05T17:16:43.437Z",
+            "rawMarkdown": "thank you, this really puts things into perspective",
+            "content": "<p>thank you, this really puts things into perspective</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Abhirup Choudhury",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/abhirupchoudhury073",
+              "tier": "CONTRIBUTOR",
+              "id": 18047723,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 2156,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Abhirup Choudhury",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/abhirupchoudhury073",
+                "userName": "abhirupchoudhury073",
+                "tier": "CONTRIBUTOR",
+                "id": 18047723,
+                "profileUrl": "/abhirupchoudhury073",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 18047723,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "EMDST  rohT",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36430634-kg.jpg?t=2026-09-02-06-59-12",
+          "url": "/diegodasilvateixeira",
+          "tier": "CONTRIBUTOR",
+          "id": 36430634,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "diegodasilvateixeira"
+            ],
+            "userCount": 1
+          }
+        ]
+      },
+      {
+        "id": 3520854,
+        "postDate": "2026-09-04T10:08:29.180Z",
+        "rawMarkdown": "if we are talking about a general solution for cell tracking (not restricted to the kaggle competition), to improve tracking, just increase the frame rate of the captured volume. Then you just need to have a good detector and nearest neighbour + linear assignment would have solved 95% of the problem. ",
+        "content": "<p>if we are talking about a general solution for cell tracking (not restricted to the kaggle competition), to improve tracking, just increase the frame rate of the captured volume. Then you just need to have a good detector and nearest neighbour + linear assignment would have solved 95% of the problem. </p>",
+        "replies": [
+          {
+            "id": 3521082,
+            "postDate": "2026-09-04T19:52:17.620Z",
+            "rawMarkdown": "This would work assuming most cells have similar velocity, unless I'm missing something.",
+            "content": "<p>This would work assuming most cells have similar velocity, unless I'm missing something.</p>",
+            "replies": [
+              {
+                "id": 3521134,
+                "postDate": "2026-09-04T23:34:02.753Z",
+                "rawMarkdown": "Imagine if you can improve the camera and capture image at say 100 fps instead of 10 fps. Then the cell move very little between each frame and in-fact they may just overlap a lot. So you can track them by nearest cell association. The trick is to capture faster than the cell moves or changes(division). This is hardware solution, which of course may be just a fancy solution ( eg due to limitation or cost. High speed camera are incredibly expensive)",
+                "content": "<p>Imagine if you can improve the camera and capture image at say 100 fps instead of 10 fps. Then the cell move very little between each frame and in-fact they may just overlap a lot. So you can track them by nearest cell association. The trick is to capture faster than the cell moves or changes(division). This is hardware solution, which of course may be just a fancy solution ( eg due to limitation or cost. High speed camera are incredibly expensive)</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 130,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Abed Merii",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4101651-kg.jpg?t=2026-09-01-15-12-46",
+              "url": "/amerii",
+              "tier": "EXPERT",
+              "id": 4101651,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 563,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Abed Merii",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4101651-kg.jpg?t=2026-09-01-15-12-46",
+                "url": "/amerii",
+                "userName": "amerii",
+                "tier": "EXPERT",
+                "id": 4101651,
+                "profileUrl": "/amerii",
+                "performanceTier": "EXPERT",
+                "userId": 4101651,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 130,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3520466,
+        "postDate": "2026-09-03T13:03:05.090Z",
+        "rawMarkdown": "the more you hands on the more you understand and only then its high chance you hit .9\n\nthere are many models on hugging face + already shared here publicly too. The one approach you mentioned is what evey LLM suggests upon given prompt.\n\nunderstand problem first \ngothrough public notebooks second\nbroaden your exposure third\napply test, apply test, apply test, finally",
+        "content": "<p>the more you hands on the more you understand and only then its high chance you hit .9</p>\n<p>there are many models on hugging face + already shared here publicly too. The one approach you mentioned is what evey LLM suggests upon given prompt.</p>\n<p>understand problem first \ngothrough public notebooks second\nbroaden your exposure third\napply test, apply test, apply test, finally</p>",
+        "parent": {},
+        "author": {
+          "displayName": "nusrati",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+          "url": "/nusrati",
+          "tier": "CONTRIBUTOR",
+          "id": 23336356,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 244,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "nusrati",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+            "url": "/nusrati",
+            "userName": "nusrati",
+            "tier": "CONTRIBUTOR",
+            "id": 23336356,
+            "profileUrl": "/nusrati",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23336356,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3520375,
+        "postDate": "2026-09-03T08:36:32Z",
+        "rawMarkdown": "Try to take advantage of this competition to learn new things (detection, tracking, post processing, 3D viz, etc) and have fun most importantly. Don't chase public score for now as suggested @rustambazarbayev. Good luck and enjoy!",
+        "content": "<p>Try to take advantage of this competition to learn new things (detection, tracking, post processing, 3D viz, etc) and have fun most importantly. Don't chase public score for now as suggested <a href=\"https://www.kaggle.com/rustambazarbayev\" target=\"_blank\">@rustambazarbayev</a>. Good luck and enjoy!</p>",
+        "replies": [
+          {
+            "id": 3520383,
+            "postDate": "2026-09-03T09:07:31.017Z",
+            "rawMarkdown": "Yeah i get that but i am genuinely lost. All the notebooks publicly shared are just inference notebooks at this point. I want to look into the training methods too",
+            "content": "<p>Yeah i get that but i am genuinely lost. All the notebooks publicly shared are just inference notebooks at this point. I want to look into the training methods too</p>",
+            "replies": [
+              {
+                "id": 3520398,
+                "postDate": "2026-09-03T10:00:51.667Z",
+                "rawMarkdown": "Try model separate into several parts like object detection linkage...etc",
+                "content": "<p>Try model separate into several parts like object detection linkage\u2026etc</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Rustam Bazarbayev",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+                  "url": "/rustambazarbayev",
+                  "tier": "CONTRIBUTOR",
+                  "id": 5591682,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 1448,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Rustam Bazarbayev",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+                    "url": "/rustambazarbayev",
+                    "userName": "rustambazarbayev",
+                    "tier": "CONTRIBUTOR",
+                    "id": 5591682,
+                    "profileUrl": "/rustambazarbayev",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 5591682,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3520403,
+                "postDate": "2026-09-03T10:06:45.710Z",
+                "rawMarkdown": "if you have access to an LLM, ask it to explain one training notebook. From there, keep digging until you understand what the notebook does. Then, ask the LLM again for ways to improve. Keep iterating, explore the data, and be creative.",
+                "content": "<p>if you have access to an LLM, ask it to explain one training notebook. From there, keep digging until you understand what the notebook does. Then, ask the LLM again for ways to improve. Keep iterating, explore the data, and be creative.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Yassine Alouini",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+                  "url": "/yassinealouini",
+                  "tier": "GRANDMASTER",
+                  "id": 172860,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 550,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Yassine Alouini",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+                    "url": "/yassinealouini",
+                    "userName": "yassinealouini",
+                    "tier": "GRANDMASTER",
+                    "id": 172860,
+                    "profileUrl": "/yassinealouini",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 172860,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Abhirup Choudhury",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/abhirupchoudhury073",
+              "tier": "CONTRIBUTOR",
+              "id": 18047723,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 2156,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Abhirup Choudhury",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/abhirupchoudhury073",
+                "userName": "abhirupchoudhury073",
+                "tier": "CONTRIBUTOR",
+                "id": 18047723,
+                "profileUrl": "/abhirupchoudhury073",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 18047723,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Yassine Alouini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+          "url": "/yassinealouini",
+          "tier": "GRANDMASTER",
+          "id": 172860,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 550,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Yassine Alouini",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+            "url": "/yassinealouini",
+            "userName": "yassinealouini",
+            "tier": "GRANDMASTER",
+            "id": 172860,
+            "profileUrl": "/yassinealouini",
+            "performanceTier": "GRANDMASTER",
+            "userId": 172860,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3520366,
+        "postDate": "2026-09-03T08:14:07.053Z",
+        "rawMarkdown": "Don't chase public score",
+        "content": "<p>Don't chase public score</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Rustam Bazarbayev",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+          "url": "/rustambazarbayev",
+          "tier": "CONTRIBUTOR",
+          "id": 5591682,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1448,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Rustam Bazarbayev",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/5591682-kg.jpg?t=2025-09-12-06-50-17",
+            "url": "/rustambazarbayev",
+            "userName": "rustambazarbayev",
+            "tier": "CONTRIBUTOR",
+            "id": 5591682,
+            "profileUrl": "/rustambazarbayev",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 5591682,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
     "firstMessage": {
       "id": 3520354,
@@ -21,10 +459,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "canUpvote": true
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 2021,
+      "competitionRanking": 2156,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -51,7 +491,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-03T07:55:55.088140100Z",
+    "totalVotes": 1,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/739220",
+    "totalMessages": 11,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

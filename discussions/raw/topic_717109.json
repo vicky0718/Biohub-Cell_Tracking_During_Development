@@ -10,6 +10,47 @@
         "postDate": "2026-07-04T05:45:46.917Z",
         "rawMarkdown": "Finally division got learning signal!\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4310004%2F8f869234903a7d25d2b54ecad8a04d66%2F123.png?generation=1783143916774683&alt=media)",
         "content": "<p>Finally division got learning signal!</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4310004%2F8f869234903a7d25d2b54ecad8a04d66%2F123.png?generation=1783143916774683&amp;alt=media\" alt=\"\"></p>",
+        "replies": [
+          {
+            "id": 3520467,
+            "postDate": "2026-09-03T13:03:24.960Z",
+            "rawMarkdown": "> Finally division got learning signal!\n> \n> ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4310004%2F8f869234903a7d25d2b54ecad8a04d66%2F123.png?generation=1783143916774683&alt=media)\n\nthats awesome how did you improve on the divisions ",
+            "content": "<blockquote>\n  <p>Finally division got learning signal!</p>\n  <p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4310004%2F8f869234903a7d25d2b54ecad8a04d66%2F123.png?generation=1783143916774683&amp;alt=media\" alt=\"\"></p>\n</blockquote>\n<p>thats awesome how did you improve on the divisions </p>",
+            "parent": {},
+            "author": {
+              "displayName": "Rishabh Roy",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+              "url": "/rishabhr0y",
+              "tier": "EXPERT",
+              "id": 217906,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 187,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Rishabh Roy",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                "url": "/rishabhr0y",
+                "userName": "rishabhr0y",
+                "tier": "EXPERT",
+                "id": 217906,
+                "profileUrl": "/rishabhr0y",
+                "performanceTier": "EXPERT",
+                "userId": 217906,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
         "parent": {},
         "author": {
           "displayName": "Tom",
@@ -26,19 +67,20 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 9,
+        "competitionRanking": 8,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
           {
             "emoji": "YAY",
             "featuredUserNames": [
+              "rishabhr0y",
               "coderrkj",
               "beckpro",
               "yunusgmsoy",
               "caramelite"
             ],
-            "userCount": 4
+            "userCount": 5
           }
         ],
         "teamUpInfo": {
@@ -76,7 +118,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2890,
+        "competitionRanking": 3028,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -150,12 +192,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 39,
+        "totalVotes": 42,
         "canUpvote": true,
-        "totalUpvotes": 39
+        "totalUpvotes": 42
       },
       "kernelVersion": 0,
-      "competitionRanking": 9,
+      "competitionRanking": 8,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -225,9 +267,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-01T14:00:25.871499400Z",
-    "totalVotes": 39,
+    "totalVotes": 42,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/717109",
-    "totalMessages": 2,
+    "totalMessages": 3,
     "authorPerformanceTier": "MASTER",
     "authorProgressionOptOut": false
   }

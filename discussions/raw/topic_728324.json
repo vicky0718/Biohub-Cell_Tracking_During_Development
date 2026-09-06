@@ -30,20 +30,20 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1021,
+            "competitionRanking": 415,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
               "teamLeader": {
-                "displayName": "KevinYongxin",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/24236431-kg.jpg?t=2025-08-04-03-33-42",
-                "url": "/yongxinkwan",
-                "userName": "yongxinkwan",
-                "tier": "EXPERT",
-                "id": 24236431,
-                "profileUrl": "/yongxinkwan",
-                "performanceTier": "EXPERT",
-                "userId": 24236431,
+                "displayName": "Qiushuo Geng",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/qiushuogeng",
+                "userName": "qiushuogeng",
+                "tier": "CONTRIBUTOR",
+                "id": 36463449,
+                "profileUrl": "/qiushuogeng",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 36463449,
                 "progressionOptOut": false
               },
               "intro": ""
@@ -66,7 +66,7 @@
           "totalUpvotes": 10
         },
         "kernelVersion": 0,
-        "competitionRanking": 2864,
+        "competitionRanking": 3003,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -120,7 +120,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 298,
+        "competitionRanking": 492,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -160,7 +160,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 175,
+        "competitionRanking": 324,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -213,7 +213,7 @@
         "totalUpvotes": 20
       },
       "kernelVersion": 0,
-      "competitionRanking": 2864,
+      "competitionRanking": 3003,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [

@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 15306749,
+    "authorThumbnailName": "15306749-kg.png?t=2025-12-27-02-08-57",
+    "authorUserDisplayName": "hikaggler",
+    "authorUserName": "hikarukai",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3520922,
+      "postDate": "2026-09-04T12:23:52.430Z",
+      "rawMarkdown": "The score is adj_edge_jaccard + 0.1 \u00d7 division_jaccard, but I had no idea what my division part was, so I spent one submission to find out.\n\nI submitted the same pipeline with the division-creating step turned off \u2014 two division-related settings\nchanged, everything else identical.\n\n - normal: LB 0.929\n - divisions off: LB 0.907\n - difference 0.022 = 0.1 \u00d7 division_jaccard\n - so my division_jaccard \u2248 0.22\n\nWhat surprised me is that two people on the same 0.948 can be in completely different situations:\n\n - if your division_jaccard is 0.30, you only need adj_edge_jaccard 0.918\n - if it is 0.15, you need adj_edge_jaccard 0.933\nThose two people should be working on opposite things, and the leaderboard shows them the same number.\n\nMy question: for anyone at 0.945 or above \u2014 roughly what is your division_jaccard?\nA rough number is fine, and \"I ignore divisions\" is just as useful an answer.",
+      "content": "<p>The score is adj_edge_jaccard + 0.1 \u00d7 division_jaccard, but I had no idea what my division part was, so I spent one submission to find out.</p>\n<p>I submitted the same pipeline with the division-creating step turned off \u2014 two division-related settings\nchanged, everything else identical.</p>\n<ul>\n<li>normal: LB 0.929</li>\n<li>divisions off: LB 0.907</li>\n<li>difference 0.022 = 0.1 \u00d7 division_jaccard</li>\n<li>so my division_jaccard \u2248 0.22</li>\n</ul>\n<p>What surprised me is that two people on the same 0.948 can be in completely different situations:</p>\n<ul>\n<li>if your division_jaccard is 0.30, you only need adj_edge_jaccard 0.918</li>\n<li>if it is 0.15, you need adj_edge_jaccard 0.933\nThose two people should be working on opposite things, and the leaderboard shows them the same number.</li>\n</ul>\n<p>My question: for anyone at 0.945 or above \u2014 roughly what is your division_jaccard?\nA rough number is fine, and \"I ignore divisions\" is just as useful an answer.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "hikaggler",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15306749-kg.png?t=2025-12-27-02-08-57",
+        "url": "/hikarukai",
+        "tier": "EXPERT",
+        "id": 15306749,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 4,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 133,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "hikaggler",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15306749-kg.png?t=2025-12-27-02-08-57",
+          "url": "/hikarukai",
+          "userName": "hikarukai",
+          "tier": "EXPERT",
+          "id": 15306749,
+          "profileUrl": "/hikarukai",
+          "performanceTier": "EXPERT",
+          "userId": 15306749,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3520922,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 739516,
+    "name": "I measured my own division_jaccard (0.22). What's yours?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-04T12:23:52.430593200Z",
+    "totalVotes": 4,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/739516",
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

@@ -4,8 +4,8 @@
 - **Topic id**: 738217
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-08-30T15:24:33.907558500Z
-- **Votes**: 17
-- **Comments**: 15
+- **Votes**: 21
+- **Comments**: 26
 
 ---
 
@@ -19,8 +19,82 @@ https://huggingface.co/spaces/Qinghua-thu/FOCUS-3D
 
 ---
 
-## Comments (15)
+## Comments (24)
 
+
+### hengck23 (GRANDMASTER) — 2026-09-05T19:41:24.460Z — 1 votes
+
+The trick to transforming Focus3D annotation to Kaggle-like annotation  
+1) Just pretrain with Focus3D annotation   
+2) find matches (hit) of Focus3D and Kaggle zyx to compute diff dzyx  
+3) have two heads: one to predict Focus3D zyx, another head dzyx, then Kagge zyx = Focus3D +dzyx  
+
+hint: might as well let diff head predict values in um (instead of quantized 64x64x64 coord) 
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fe52d3a2127e86cfcfcf93c3c78f9cf1d%2FSelection_4791.png?generation=1788637476144738&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F69f74bce646bd3f4c2ff78d45bb4e4e4%2FSelection_4792.png?generation=1788637813426997&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7c169ccb2d1d5567e7fc500bdf120d1c%2FSelection_4793.png?generation=1788637823261833&alt=media)
+
+-- 
+
+This is a classical trick for OOD adaptation with few data. We have a prior model, then we shift to a new domain using A*ptior + B
+
+keywords: domain calibration, domain adaptation
+
+#### ↳ Rishabh Roy (EXPERT) — 2026-09-05T21:54:49.850Z — 1 votes
+
+> why not use ultratrack directly ?
+
+### hengck23 (GRANDMASTER) — 2026-09-05T02:07:51.003Z
+
+i basically solved the cell detection problem. During development, chatgpt offers some interesting solutions: 2d to 3d:  
+paper:  
+1.  u-Segment3D — “Universal consensus 3D segmentation of cells from 2D segmented stacks”.  
+https://github.com/DanuserLab/u-Segment3D   
+https://www.biorxiv.org/content/10.1101/2024.05.03.592249v3  
+
+2. Seg2Link: an efficient and versatile solution for semi-automatic cell segmentation in 3D image stacks
+https://github.com/WenChentao/Seg2Link
+
+### hengck23 (GRANDMASTER) — 2026-09-04T13:26:45.227Z — 1 votes
+
+experiment on training a unet3d with dense cell centroids from focus3d + kaggle annotation:  
+https://www.kaggle.com/code/hengck23/cell-point-detector  
+(6 sec per volume on one T4 gpu) 
+
+
+here is recall rate on kaggle node annotations:  
+input 64x64x64 (one volume)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Facdf250b20a9f3efcc3328dbdcbe14e4%2FSelection_4771.png?generation=1788528152996386&alt=media)
+
+plan:
+- (1) train on external data (there are many opensource 3d zebrafish embryo cells, especially those from biohub) 
+- (2) i haven't apply tricks like augmentation, SWA weight averaging, etc ...
+- (3) another ranker head to push probability upwards so that i can have less predicted nodes
+- (4) maybe a head to predict node density so that i can predict kaggle estimate node count (metric hack)  
+
+
+(3),(4) may not be necessary, because tracking can recover missing cells (or adaptively adjust prob threshold)
+
+---
+
+i divide the problems into steps:
+1) train a good cell detector first  
+2) then get cell detector feature (+ modify vector) to make link transformer  
+3) if you analyse post-processing, you will find that they use heuristics to join cells if the broken gap interval is   small. This means that if we train link transformer with window >2 (eg like 5) results is better. i.e. learn the "joining" instead of heuristics. but the risk is that data lis limited and maybe heuristics is better?
+
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-04T13:39:53.937Z
+
+> ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F2d7f3d5429dda866877f5b1331afb2c6%2FSelection_4773.png?generation=1788529191797128&alt=media)
+> 
+> ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F834de770caf26c33624489fbcef64537%2FSelection_4774.png?generation=1788529381336076&alt=media)
+
+#### ↳ ↳ Rishabh Roy (EXPERT) — 2026-09-04T16:15:45.133Z
+
+> > This is awesome . Thanks for sharing your findings . Would love to implement this . Will try if this fits under kaggle 12 hour window run
 
 ### hengck23 (GRANDMASTER) — 2026-09-01T09:19:47.130Z — 1 votes
 
@@ -105,6 +179,19 @@ Then you can do longer range tracking over window of 5 or 8 (instead of 2)
 
 > > would love to see this work
 
+### YanngYT (CONTRIBUTOR) — 2026-09-04T04:39:39.543Z
+
+I tried to use focus-3d to segment cells, but it timed out when submitting. Are you doing dense segmentation first when tracking? Or is it just using focus-3d to generate a dense annotation set for training tracking?
+
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-04T04:58:02.320Z
+
+> First verify the recall error of focus3d on kaggle nodes after trying several parameters search. If you are satisfied, train link/track transformer on focus3d zyx(eg centroid of instance label)
+> 
+> Finally train a point predictor using simple unet to distill focus3d results.
+> 
+> 
+> Getting the point is usually not the issue.  But we want to minimise no of predicted nodes with near 100% recall rate
+
 ### Qiwei (MASTER) — 2026-09-02T09:56:12.787Z
 
 This is a draft version, where FOCUS‑3D is only used as a detector directly：
@@ -133,3 +220,7 @@ https://www.kaggle.com/code/qiweiyin/focus3d-nuclei-physical-pp-submit?scriptVer
 #### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-02T12:51:42.613Z — 1 votes
 
 > > Further, i think gt annotation must have used some open source cell instance detector. I suspect it it cellpose3d or stardist3d with manual collection.
+
+### unknown — 2026-09-03T13:38:57.213Z
+
+*(empty)*

@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 645,
+        "competitionRanking": 360,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -61,12 +61,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 29,
+        "totalVotes": 30,
         "canUpvote": true,
-        "totalUpvotes": 29
+        "totalUpvotes": 30
       },
       "kernelVersion": 0,
-      "competitionRanking": 184,
+      "competitionRanking": 116,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -113,7 +113,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-06T22:04:40.576799500Z",
-    "totalVotes": 29,
+    "totalVotes": 30,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/722668",
     "totalMessages": 1,
     "authorPerformanceTier": "GRANDMASTER",

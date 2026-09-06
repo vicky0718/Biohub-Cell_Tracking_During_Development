@@ -32,7 +32,7 @@
               "totalUpvotes": 4
             },
             "kernelVersion": 0,
-            "competitionRanking": 911,
+            "competitionRanking": 1064,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +68,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 309,
+        "competitionRanking": 163,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -121,7 +121,7 @@
                   "totalUpvotes": 2
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 46,
+                "competitionRanking": 30,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -155,7 +155,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 370,
+            "competitionRanking": 638,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -192,7 +192,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 46,
+        "competitionRanking": 30,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -229,9 +229,9 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 5,
+        "totalVotes": 6,
         "canUpvote": true,
-        "totalUpvotes": 6
+        "totalUpvotes": 7
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -260,7 +260,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-28T09:30:03.094942400Z",
-    "totalVotes": 5,
+    "totalVotes": 6,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/730160",
     "totalMessages": 5,
     "authorPerformanceTier": "EXPERT",

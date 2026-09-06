@@ -1,0 +1,146 @@
+{
+  "forumTopic": {
+    "authorId": 21752725,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Rishavendra Sharma",
+    "authorUserName": "rishavendrasharma",
+    "comments": [
+      {
+        "id": 3521192,
+        "postDate": "2026-09-05T05:23:27.347Z",
+        "rawMarkdown": "A lot of us, myself included are for sure overfitting the LB. Trust you local CV, good principles still apply.",
+        "content": "<p>A lot of us, myself included are for sure overfitting the LB. Trust you local CV, good principles still apply.</p>",
+        "replies": [
+          {
+            "id": 3521217,
+            "postDate": "2026-09-05T08:08:30.167Z",
+            "rawMarkdown": "The 50ep heuristics are great for a quick public score, but sticking to solid local CV principles is definitely the only way to survive the remaining 79% of the private data. Good luck in the final stretch!",
+            "content": "<p>The 50ep heuristics are great for a quick public score, but sticking to solid local CV principles is definitely the only way to survive the remaining 79% of the private data. Good luck in the final stretch!</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Rishavendra Sharma",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/rishavendrasharma",
+              "tier": "CONTRIBUTOR",
+              "id": 21752725,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 469,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Rishavendra Sharma",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/rishavendrasharma",
+                "userName": "rishavendrasharma",
+                "tier": "CONTRIBUTOR",
+                "id": 21752725,
+                "profileUrl": "/rishavendrasharma",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 21752725,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Mendrika Ramarlina",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36054-fb.jpg",
+          "url": "/ramarlina",
+          "tier": "MASTER",
+          "id": 36054,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 29,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Mendrika Ramarlina",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36054-fb.jpg",
+            "url": "/ramarlina",
+            "userName": "ramarlina",
+            "tier": "MASTER",
+            "id": 36054,
+            "profileUrl": "/ramarlina",
+            "performanceTier": "MASTER",
+            "userId": 36054,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3521052,
+      "postDate": "2026-09-04T17:45:43.777Z",
+      "rawMarkdown": "Hey everyone! As we get closer to the end of the competition, I\u2019ve been doing a deep dive into the architecture of the public 0.940+ notebooks. I wanted to share some observations and spark a discussion about the current meta and where we are heading.\n\n\n1. The Public Baseline \"Trap\" (Are we all overfitting?) If you look closely at the top-scoring public scripts, they are heavily reliant on the biohub-tracking-support-pack datasets. Rather than running lightweight inference natively, these notebooks often shell out to a zipped GitHub repo to run heavy ILP solvers, or they just run post-processing on pre-computed .geff tracks. Because a massive portion of the leaderboard is essentially post-processing the exact same set of baseline detections, doesn't this guarantee a massive Private LB shake-up?\n\nQuestion 1: Are you guys actually training your own 3D UNets from scratch for your final submissions, or is the current meta purely focused on ensembling and pruning these public ILP graphs?\n\n2. Fast-Motion Occlusions vs. Static ILP I noticed that the public ILP gap-closers (which heavily rely on static XYZ distance or bidirectional harmonic distance) tend to drop tracks when cells move rapidly and occlude each other. To combat this, I\u2019ve been experimenting with Velocity-Projected Gap Closing. Instead of measuring the distance from where a cell disappeared, I calculate its EMA (Exponential Moving Average) velocity and project its position forward by velocity * gap_frames. Connecting the projected position to the target target drastically improves recovery on fast-moving occlusions.\n\nQuestion 2: How is everyone else handling these fast-motion occlusions? Are you incorporating explicit motion prediction into your cost matrices, or are you relying entirely on the ILP solver's spatial tolerance?\n\n3. The DeepCenter Veto The DeepCenter veto logic in the public scripts is a brilliant heuristic for rejecting spurious wide divisions. However, by aggressively pruning these graphs, it feels like we might be discarding genuine biological outliers that will be present in the Private test set.\n\nQuestion 3: Has anyone found a sweet spot for tuning the DeepCenter gap threshold, or found a better architectural way to validate tricky divisions without just blindly pruning them?\n\nWould love to hear your thoughts. Good luck to everyone in the final stretch!",
+      "content": "<p>Hey everyone! As we get closer to the end of the competition, I\u2019ve been doing a deep dive into the architecture of the public 0.940+ notebooks. I wanted to share some observations and spark a discussion about the current meta and where we are heading.</p>\n<ol>\n<li>The Public Baseline \"Trap\" (Are we all overfitting?) If you look closely at the top-scoring public scripts, they are heavily reliant on the biohub-tracking-support-pack datasets. Rather than running lightweight inference natively, these notebooks often shell out to a zipped GitHub repo to run heavy ILP solvers, or they just run post-processing on pre-computed .geff tracks. Because a massive portion of the leaderboard is essentially post-processing the exact same set of baseline detections, doesn't this guarantee a massive Private LB shake-up?</li>\n</ol>\n<p>Question 1: Are you guys actually training your own 3D UNets from scratch for your final submissions, or is the current meta purely focused on ensembling and pruning these public ILP graphs?</p>\n<ol>\n<li>Fast-Motion Occlusions vs. Static ILP I noticed that the public ILP gap-closers (which heavily rely on static XYZ distance or bidirectional harmonic distance) tend to drop tracks when cells move rapidly and occlude each other. To combat this, I\u2019ve been experimenting with Velocity-Projected Gap Closing. Instead of measuring the distance from where a cell disappeared, I calculate its EMA (Exponential Moving Average) velocity and project its position forward by velocity * gap_frames. Connecting the projected position to the target target drastically improves recovery on fast-moving occlusions.</li>\n</ol>\n<p>Question 2: How is everyone else handling these fast-motion occlusions? Are you incorporating explicit motion prediction into your cost matrices, or are you relying entirely on the ILP solver's spatial tolerance?</p>\n<ol>\n<li>The DeepCenter Veto The DeepCenter veto logic in the public scripts is a brilliant heuristic for rejecting spurious wide divisions. However, by aggressively pruning these graphs, it feels like we might be discarding genuine biological outliers that will be present in the Private test set.</li>\n</ol>\n<p>Question 3: Has anyone found a sweet spot for tuning the DeepCenter gap threshold, or found a better architectural way to validate tricky divisions without just blindly pruning them?</p>\n<p>Would love to hear your thoughts. Good luck to everyone in the final stretch!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Rishavendra Sharma",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/rishavendrasharma",
+        "tier": "CONTRIBUTOR",
+        "id": 21752725,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 3
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 469,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Rishavendra Sharma",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/rishavendrasharma",
+          "userName": "rishavendrasharma",
+          "tier": "CONTRIBUTOR",
+          "id": 21752725,
+          "profileUrl": "/rishavendrasharma",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 21752725,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3521052,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 739570,
+    "name": "Meta Trap, Private LB Shake-ups, and Velocity-Projected Tracking \ud83d\ude80",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-04T17:45:43.778331300Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/739570",
+    "totalMessages": 2,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

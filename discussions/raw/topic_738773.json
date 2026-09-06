@@ -21,12 +21,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 1,
+          "totalVotes": 2,
           "canUpvote": true,
-          "totalUpvotes": 1
+          "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 158,
+        "competitionRanking": 129,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -70,10 +70,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "canUpvote": true
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 158,
+        "competitionRanking": 129,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -119,12 +121,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 1,
+        "totalVotes": 4,
         "canUpvote": true,
-        "totalUpvotes": 1
+        "totalUpvotes": 4
       },
       "kernelVersion": 0,
-      "competitionRanking": 70,
+      "competitionRanking": 244,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -151,7 +153,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-01T16:49:55.211798600Z",
-    "totalVotes": 1,
+    "totalVotes": 4,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/738773",
     "totalMessages": 2,
     "authorPerformanceTier": "CONTRIBUTOR",

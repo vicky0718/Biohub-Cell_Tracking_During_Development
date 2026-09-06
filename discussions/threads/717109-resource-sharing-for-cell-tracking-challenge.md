@@ -4,8 +4,8 @@
 - **Topic id**: 717109
 - **Author**: Tom (MASTER)
 - **Posted**: 2026-07-01T14:00:25.871499400Z
-- **Votes**: 39
-- **Comments**: 2
+- **Votes**: 42
+- **Comments**: 3
 
 ---
 
@@ -15,7 +15,7 @@ in the attachments.
 
 ---
 
-## Comments (2)
+## Comments (3)
 
 
 ### Tom (MASTER) — 2026-07-04T05:45:46.917Z — 3 votes
@@ -23,6 +23,14 @@ in the attachments.
 Finally division got learning signal!
 
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4310004%2F8f869234903a7d25d2b54ecad8a04d66%2F123.png?generation=1783143916774683&alt=media)
+
+#### ↳ Rishabh Roy (EXPERT) — 2026-09-03T13:03:24.960Z
+
+> > Finally division got learning signal!
+> > 
+> > ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4310004%2F8f869234903a7d25d2b54ecad8a04d66%2F123.png?generation=1783143916774683&alt=media)
+> 
+> thats awesome how did you improve on the divisions
 
 ### NevilleAndrade (CONTRIBUTOR) — 2026-07-07T20:46:03.703Z
 

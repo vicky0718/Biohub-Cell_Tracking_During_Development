@@ -1,0 +1,282 @@
+{
+  "forumTopic": {
+    "authorId": 4379128,
+    "authorThumbnailName": "4379128-kg.jpeg?t=2026-08-07-22-38-39",
+    "authorUserDisplayName": "Gunjan Haldar",
+    "authorUserName": "gunhcolab",
+    "comments": [
+      {
+        "id": 3520875,
+        "postDate": "2026-09-04T10:33:46.103Z",
+        "rawMarkdown": "I have an edge weight model which gives boost around 0.02-0.04 on each of 5 folds, with similar scores hold up when trained on one embryo and tested on another.\n\nIt gives approx +0.000 on LB though.",
+        "content": "<p>I have an edge weight model which gives boost around 0.02-0.04 on each of 5 folds, with similar scores hold up when trained on one embryo and tested on another.</p>\n<p>It gives approx +0.000 on LB though.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Pavel",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/pavelsavchenkov",
+          "tier": "MASTER",
+          "id": 172360,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 525,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Pavel",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/pavelsavchenkov",
+            "userName": "pavelsavchenkov",
+            "tier": "MASTER",
+            "id": 172360,
+            "profileUrl": "/pavelsavchenkov",
+            "performanceTier": "MASTER",
+            "userId": 172360,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3520694,
+        "postDate": "2026-09-04T00:02:43.187Z",
+        "rawMarkdown": "I have like 0.96 CV and 0.93 LB for some reason",
+        "content": "<p>I have like 0.96 CV and 0.93 LB for some reason</p>",
+        "replies": [
+          {
+            "id": 3520713,
+            "postDate": "2026-09-04T00:56:03.757Z",
+            "rawMarkdown": "it is not useful to state/anayse \" 0.96 CV \"\nyou should break it down:\n```\nedge_jaccard = ???\nadjusted_edge_jaccard = ???\n\nnode recall = ...\nestimated no of nodes = ...\ndivision = ...\n\nbreaks in tracks ....\nlink to wrong trajectory ....\n\n```\n\nif you do this you will know if there is overfitting etc\n\n",
+            "content": "<p>it is not useful to state/anayse \" 0.96 CV \"\nyou should break it down:</p>\n<pre><code>edge_jaccard = ???\nadjusted_edge_jaccard = ???\n\nnode recall = ...\nestimated no of nodes = ...\ndivision = ...\n\nbreaks in tracks ....\nlink to wrong trajectory ....\n</code></pre>\n<p>if you do this you will know if there is overfitting etc</p>",
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 6,
+              "canUpvote": true,
+              "totalUpvotes": 6
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 129,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3521195,
+            "postDate": "2026-09-05T05:38:43.977Z",
+            "rawMarkdown": "How did you evaluate your CV? Wouldn't evaluating CV using the data we trained with be prone to overfitting?",
+            "content": "<p>How did you evaluate your CV? Wouldn't evaluating CV using the data we trained with be prone to overfitting?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Kim Jinseo",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18554226-kg.jpg?t=2026-07-15-05-49-13",
+              "url": "/kimjinseo1",
+              "tier": "CONTRIBUTOR",
+              "id": 18554226,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 1073,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Kim Jinseo",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18554226-kg.jpg?t=2026-07-15-05-49-13",
+                "url": "/kimjinseo1",
+                "userName": "kimjinseo1",
+                "tier": "CONTRIBUTOR",
+                "id": 18554226,
+                "profileUrl": "/kimjinseo1",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 18554226,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 63,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "mikelou1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/mikelou1",
+            "userName": "mikelou1",
+            "tier": "EXPERT",
+            "id": 32181963,
+            "profileUrl": "/mikelou1",
+            "performanceTier": "EXPERT",
+            "userId": 32181963,
+            "progressionOptOut": false
+          },
+          "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
+        }
+      },
+      {
+        "id": 3521471,
+        "postDate": "2026-09-06T03:12:03.350Z",
+        "rawMarkdown": "Somehow, I observed a CV\u2011LB shift in my exps; nearly all my local CV scores are more pessimistic than the public LB by about ~0.013\u20110.02 (\u30fb\u2200\u30fb*). (Edge Jaccard only; haven\u2019t specifically developed division J yet.)",
+        "content": "<p>Somehow, I observed a CV\u2011LB shift in my exps; nearly all my local CV scores are more pessimistic than the public LB by about ~0.013\u20110.02 (\u30fb\u2200\u30fb*). (Edge Jaccard only; haven\u2019t specifically developed division J yet.)</p>",
+        "parent": {},
+        "author": {
+          "displayName": "sghwr",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29779493-kg.png?t=2026-06-02-17-57-25",
+          "url": "/songhow",
+          "tier": "CONTRIBUTOR",
+          "id": 29779493,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 43,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "sghwr",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29779493-kg.png?t=2026-06-02-17-57-25",
+            "url": "/songhow",
+            "userName": "songhow",
+            "tier": "CONTRIBUTOR",
+            "id": 29779493,
+            "profileUrl": "/songhow",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 29779493,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3521470,
+        "postDate": "2026-09-06T03:09:50.730Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3520615,
+      "postDate": "2026-09-03T18:36:29.897Z",
+      "rawMarkdown": "Can we expect a huge shakeup? if so, what are your thoughts/opinions.",
+      "content": "<p>Can we expect a huge shakeup? if so, what are your thoughts/opinions.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Gunjan Haldar",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4379128-kg.jpeg?t=2026-08-07-22-38-39",
+        "url": "/gunhcolab",
+        "tier": "EXPERT",
+        "id": 4379128,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 3,
+        "canUpvote": true,
+        "totalUpvotes": 3
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 211,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Gunjan Haldar",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4379128-kg.jpeg?t=2026-08-07-22-38-39",
+          "url": "/gunhcolab",
+          "userName": "gunhcolab",
+          "tier": "EXPERT",
+          "id": 4379128,
+          "profileUrl": "/gunhcolab",
+          "performanceTier": "EXPERT",
+          "userId": 4379128,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3520615,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 739352,
+    "name": "How are your local CVs like? It feels like a huge gap, atleast for me.",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-03T18:36:29.896847600Z",
+    "totalVotes": 3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/739352",
+    "totalMessages": 6,
+    "authorPerformanceTier": "EXPERT",
+    "authorProgressionOptOut": false
+  }
+}

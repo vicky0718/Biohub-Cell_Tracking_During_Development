@@ -5,7 +5,7 @@
 - **Author**: Jordão Bragantini (CONTRIBUTOR)
 - **Posted**: 2026-09-01T21:31:36.602074500Z
 - **Votes**: 4
-- **Comments**: 1
+- **Comments**: 2
 - **Pinned**: yes
 
 ---
@@ -22,8 +22,12 @@ The Biohub Team
 
 ---
 
-## Comments (1)
+## Comments (2)
 
+
+### Vinayak Pathak (CONTRIBUTOR) — 2026-09-05T08:34:24.590Z
+
+It would be great to be part of the Biohub team
 
 ### Antonoof (GRANDMASTER) — 2026-09-02T11:27:05.367Z
 

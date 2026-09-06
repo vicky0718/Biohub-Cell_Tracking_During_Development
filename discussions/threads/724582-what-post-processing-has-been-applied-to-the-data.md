@@ -18,7 +18,7 @@ Is the data raw intensity values at each z layer, or has there been some normali
 ## Comments (3)
 
 
-### Jordão Bragantini (CONTRIBUTOR) — 2026-07-13T14:57:44.790Z — 1 votes
+### Jordão Bragantini (CONTRIBUTOR) — 2026-07-13T14:57:44.790Z — 2 votes
 
 The microscope acquired multiple views of each volume, which were then fused.
 There may be small intensity deviations between views, so they were linearly scaled to match a reference view.

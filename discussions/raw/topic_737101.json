@@ -21,12 +21,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 18,
+          "totalVotes": 19,
           "canUpvote": true,
-          "totalUpvotes": 18
+          "totalUpvotes": 19
         },
         "kernelVersion": 0,
-        "competitionRanking": 1,
+        "competitionRanking": 2,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -64,7 +64,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2031,
+        "competitionRanking": 2153,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -102,7 +102,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 80,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -172,7 +172,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 330,
+        "competitionRanking": 392,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -209,12 +209,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 9,
+        "totalVotes": 10,
         "canUpvote": true,
-        "totalUpvotes": 9
+        "totalUpvotes": 10
       },
       "kernelVersion": 0,
-      "competitionRanking": 127,
+      "competitionRanking": 61,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -242,7 +242,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-23T09:12:21.220220100Z",
-    "totalVotes": 9,
+    "totalVotes": 10,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/737101",
     "totalMessages": 5,
     "authorPerformanceTier": "EXPERT",

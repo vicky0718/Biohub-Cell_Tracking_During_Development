@@ -38,7 +38,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 901,
+                "competitionRanking": 1042,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -78,7 +78,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 901,
+                "competitionRanking": 1042,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -192,7 +192,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 162,
+            "competitionRanking": 116,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -228,47 +228,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 162,
-        "feedbackTrackingData": {},
-        "isThankYou": false,
-        "teamUpInfo": {
-          "teamLeader": {
-            "displayName": "hengck23",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-            "url": "/hengck23",
-            "userName": "hengck23",
-            "tier": "GRANDMASTER",
-            "id": 113660,
-            "profileUrl": "/hengck23",
-            "performanceTier": "GRANDMASTER",
-            "userId": 113660,
-            "progressionOptOut": false
-          },
-          "intro": ""
-        }
-      },
-      {
-        "id": 3499372,
-        "postDate": "2026-07-17T04:35:11.853Z",
-        "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&alt=media)\n\n\ncenter fig: red is t=0, green is t=1   \n\nVisualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  \n- long links are almost wrong (easy to filter such results)\n\n\nlooking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment \"center of motion = line connecting zyx0 and zyx1.\"",
-        "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&amp;alt=media\" alt=\"\"></p>\n<p>center fig: red is t=0, green is t=1   </p>\n<p>Visualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  </p>\n<ul>\n<li>long links are almost wrong (easy to filter such results)</li>\n</ul>\n<p>looking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment \"center of motion = line connecting zyx0 and zyx1.\"</p>",
-        "parent": {},
-        "author": {
-          "displayName": "hengck23",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-          "url": "/hengck23",
-          "tier": "GRANDMASTER",
-          "id": 113660,
-          "progressionOptOut": false
-        },
-        "authorType": "TOPIC",
-        "votes": {
-          "totalVotes": 2,
-          "canUpvote": true,
-          "totalUpvotes": 2
-        },
-        "kernelVersion": 0,
-        "competitionRanking": 162,
+        "competitionRanking": 116,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -320,7 +280,7 @@
                   "totalUpvotes": 2
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 162,
+                "competitionRanking": 116,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -366,7 +326,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 162,
+            "competitionRanking": 116,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -402,7 +362,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 9,
+        "competitionRanking": 8,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -419,6 +379,46 @@
             "progressionOptOut": false
           },
           "intro": "pursue champion position. welcome to reach out if you have interesting idea."
+        }
+      },
+      {
+        "id": 3499372,
+        "postDate": "2026-07-17T04:35:11.853Z",
+        "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&alt=media)\n\n\ncenter fig: red is t=0, green is t=1   \n\nVisualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  \n- long links are almost wrong (easy to filter such results)\n\n\nlooking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment \"center of motion = line connecting zyx0 and zyx1.\"",
+        "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&amp;alt=media\" alt=\"\"></p>\n<p>center fig: red is t=0, green is t=1   </p>\n<p>Visualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  </p>\n<ul>\n<li>long links are almost wrong (easy to filter such results)</li>\n</ul>\n<p>looking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment \"center of motion = line connecting zyx0 and zyx1.\"</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 116,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
         }
       },
       {
@@ -442,7 +442,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 162,
+        "competitionRanking": 116,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -491,7 +491,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 162,
+        "competitionRanking": 116,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -552,7 +552,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 162,
+                "competitionRanking": 116,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -592,7 +592,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 9,
+                "competitionRanking": 8,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -632,7 +632,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 162,
+                "competitionRanking": 116,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -668,7 +668,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 162,
+            "competitionRanking": 116,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -704,7 +704,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 162,
+        "competitionRanking": 116,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -744,7 +744,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 162,
+        "competitionRanking": 116,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -784,7 +784,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 162,
+        "competitionRanking": 116,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -830,12 +830,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 23,
+        "totalVotes": 24,
         "canUpvote": true,
-        "totalUpvotes": 23
+        "totalUpvotes": 24
       },
       "kernelVersion": 0,
-      "competitionRanking": 162,
+      "competitionRanking": 116,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -862,7 +862,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-07T17:37:36.697254400Z",
-    "totalVotes": 23,
+    "totalVotes": 24,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/723655",
     "totalMessages": 19,
     "authorPerformanceTier": "GRANDMASTER",

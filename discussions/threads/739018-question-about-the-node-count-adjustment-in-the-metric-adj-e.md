@@ -36,17 +36,6 @@ Thanks again.
 ## Comments (2)
 
 
-### TWEAK (EXPERT) — 2026-09-02T14:56:29.057Z — 1 votes
-
-We noticed the same issue while reviewing the released evaluator after the metric patch. We found three possible inconsistencies using synthetic graphs only:
-
-Signed node adjustment: with edge TP/FP/FN fixed at 90/5/5, reducing predicted nodes from 100 to 50 changed adjusted-edge Jaccard from 0.900 to 0.945. In a complete synthetic graph test, it increased from 1.000 to 1.050 while node recall fell to 0.500.
-
-Different graph normalization between edge and division scoring: nonconsecutive edges were excluded from edge scoring, but the original graph could still reach division evaluation. Our synthetic result was edge TP/FP/FN = 0/0/5 while division TP/FP/FN = 1/0/0.
-
-Missing-dataset handling: the released directory evaluator appeared to aggregate only datasets present in both prediction and GT, meaning an omitted dataset did not receive an explicit zero or all-FN penalty.
-These are local synthetic observations only. We have not confirmed that the private scoring server behaves the same way; its outer wrapper may already reject or correct these cases. We avoided using any of them in our competition pipeline.
-
 ### hengck23 (GRANDMASTER) — 2026-09-02T14:14:33.800Z — 2 votes
 
 yes. N_pred is a metric hack. From competition point of view: "it is better to detect just enough annotated nodes (up to N_est or less)" rather than all nodes". This change the way on how you treated unlablled data, apart from sparse labelled.
@@ -56,3 +45,7 @@ Obviously, the sparse annotation are not random tracks. they are difficult track
 ---
 
 but of course, you can focus on division track and pay less attention on N_est. that is another separate strategy
+
+### unknown — 2026-09-02T14:56:29.057Z — 1 votes
+
+*(empty)*

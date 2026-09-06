@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 164,
+            "competitionRanking": 492,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -78,7 +78,7 @@
                   "totalUpvotes": 3
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1980,
+                "competitionRanking": 2100,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -122,7 +122,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1065,
+            "competitionRanking": 1193,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -157,7 +157,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 80,
+        "competitionRanking": 241,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -184,7 +184,7 @@
         "parent": {},
         "author": {
           "displayName": "Muhammad Haseeb Ahmad",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13770143-kg.jpg?t=2026-09-03-18-28-08",
           "url": "/mhahmad",
           "tier": "CONTRIBUTOR",
           "id": 13770143,
@@ -200,7 +200,7 @@
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "Muhammad Haseeb Ahmad",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13770143-kg.jpg?t=2026-09-03-18-28-08",
             "url": "/mhahmad",
             "userName": "mhahmad",
             "tier": "CONTRIBUTOR",
@@ -254,7 +254,7 @@
         "totalUpvotes": 10
       },
       "kernelVersion": 0,
-      "competitionRanking": 1065,
+      "competitionRanking": 1193,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

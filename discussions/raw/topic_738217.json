@@ -6,6 +6,249 @@
     "authorUserName": "hengck23",
     "comments": [
       {
+        "id": 3521418,
+        "postDate": "2026-09-05T19:41:24.460Z",
+        "rawMarkdown": "The trick to transforming Focus3D annotation to Kaggle-like annotation  \n1) Just pretrain with Focus3D annotation   \n2) find matches (hit) of Focus3D and Kaggle zyx to compute diff dzyx  \n3) have two heads: one to predict Focus3D zyx, another head dzyx, then Kagge zyx = Focus3D +dzyx  \n\nhint: might as well let diff head predict values in um (instead of quantized 64x64x64 coord) \n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fe52d3a2127e86cfcfcf93c3c78f9cf1d%2FSelection_4791.png?generation=1788637476144738&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F69f74bce646bd3f4c2ff78d45bb4e4e4%2FSelection_4792.png?generation=1788637813426997&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7c169ccb2d1d5567e7fc500bdf120d1c%2FSelection_4793.png?generation=1788637823261833&alt=media)\n\n-- \n\nThis is a classical trick for OOD adaptation with few data. We have a prior model, then we shift to a new domain using A*ptior + B\n\nkeywords: domain calibration, domain adaptation ",
+        "content": "<p>The trick to transforming Focus3D annotation to Kaggle-like annotation<br>\n1) Just pretrain with Focus3D annotation<br>\n2) find matches (hit) of Focus3D and Kaggle zyx to compute diff dzyx<br>\n3) have two heads: one to predict Focus3D zyx, another head dzyx, then Kagge zyx = Focus3D +dzyx  </p>\n<p>hint: might as well let diff head predict values in um (instead of quantized 64x64x64 coord) </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fe52d3a2127e86cfcfcf93c3c78f9cf1d%2FSelection_4791.png?generation=1788637476144738&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F69f74bce646bd3f4c2ff78d45bb4e4e4%2FSelection_4792.png?generation=1788637813426997&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7c169ccb2d1d5567e7fc500bdf120d1c%2FSelection_4793.png?generation=1788637823261833&amp;alt=media\" alt=\"\"></p>\n<p>-- </p>\n<p>This is a classical trick for OOD adaptation with few data. We have a prior model, then we shift to a new domain using A*ptior + B</p>\n<p>keywords: domain calibration, domain adaptation </p>",
+        "replies": [
+          {
+            "id": 3521430,
+            "postDate": "2026-09-05T21:54:49.850Z",
+            "rawMarkdown": "why not use ultratrack directly ?",
+            "content": "<p>why not use ultratrack directly ?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Rishabh Roy",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+              "url": "/rishabhr0y",
+              "tier": "EXPERT",
+              "id": 217906,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 185,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Rishabh Roy",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                "url": "/rishabhr0y",
+                "userName": "rishabhr0y",
+                "tier": "EXPERT",
+                "id": 217906,
+                "profileUrl": "/rishabhr0y",
+                "performanceTier": "EXPERT",
+                "userId": 217906,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 127,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3521158,
+        "postDate": "2026-09-05T02:07:51.003Z",
+        "rawMarkdown": "i basically solved the cell detection problem. During development, chatgpt offers some interesting solutions: 2d to 3d:  \npaper:  \n1.  u-Segment3D \u2014 \u201cUniversal consensus 3D segmentation of cells from 2D segmented stacks\u201d.  \nhttps://github.com/DanuserLab/u-Segment3D   \nhttps://www.biorxiv.org/content/10.1101/2024.05.03.592249v3  \n\n2. Seg2Link: an efficient and versatile solution for semi-automatic cell segmentation in 3D image stacks\nhttps://github.com/WenChentao/Seg2Link\n  \n",
+        "content": "<p>i basically solved the cell detection problem. During development, chatgpt offers some interesting solutions: 2d to 3d:<br>\npaper:  </p>\n<ol>\n<li><p>u-Segment3D \u2014 \u201cUniversal consensus 3D segmentation of cells from 2D segmented stacks\u201d.<br>\n<a href=\"https://github.com/DanuserLab/u-Segment3D\" target=\"_blank\">https://github.com/DanuserLab/u-Segment3D</a><br>\n<a href=\"https://www.biorxiv.org/content/10.1101/2024.05.03.592249v3\" target=\"_blank\">https://www.biorxiv.org/content/10.1101/2024.05.03.592249v3</a>  </p></li>\n<li><p>Seg2Link: an efficient and versatile solution for semi-automatic cell segmentation in 3D image stacks\n<a href=\"https://github.com/WenChentao/Seg2Link\" target=\"_blank\">https://github.com/WenChentao/Seg2Link</a></p></li>\n</ol>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 127,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3520950,
+        "postDate": "2026-09-04T13:26:45.227Z",
+        "rawMarkdown": "experiment on training a unet3d with dense cell centroids from focus3d + kaggle annotation:  \nhttps://www.kaggle.com/code/hengck23/cell-point-detector  \n(6 sec per volume on one T4 gpu) \n\n\nhere is recall rate on kaggle node annotations:  \ninput 64x64x64 (one volume)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Facdf250b20a9f3efcc3328dbdcbe14e4%2FSelection_4771.png?generation=1788528152996386&alt=media)\n\nplan:\n- (1) train on external data (there are many opensource 3d zebrafish embryo cells, especially those from biohub) \n- (2) i haven't apply tricks like augmentation, SWA weight averaging, etc ...\n- (3) another ranker head to push probability upwards so that i can have less predicted nodes\n- (4) maybe a head to predict node density so that i can predict kaggle estimate node count (metric hack)  \n\n\n(3),(4) may not be necessary, because tracking can recover missing cells (or adaptively adjust prob threshold)\n\n---\n\ni divide the problems into steps:\n1) train a good cell detector first  \n2) then get cell detector feature (+ modify vector) to make link transformer  \n3) if you analyse post-processing, you will find that they use heuristics to join cells if the broken gap interval is   small. This means that if we train link transformer with window >2 (eg like 5) results is better. i.e. learn the \"joining\" instead of heuristics. but the risk is that data lis limited and maybe heuristics is better?  ",
+        "content": "<p>experiment on training a unet3d with dense cell centroids from focus3d + kaggle annotation:<br>\n<a href=\"https://www.kaggle.com/code/hengck23/cell-point-detector\" target=\"_blank\">https://www.kaggle.com/code/hengck23/cell-point-detector</a><br>\n(6 sec per volume on one T4 gpu) </p>\n<p>here is recall rate on kaggle node annotations:<br>\ninput 64x64x64 (one volume)</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Facdf250b20a9f3efcc3328dbdcbe14e4%2FSelection_4771.png?generation=1788528152996386&amp;alt=media\" alt=\"\"></p>\n<p>plan:</p>\n<ul>\n<li>(1) train on external data (there are many opensource 3d zebrafish embryo cells, especially those from biohub) </li>\n<li>(2) i haven't apply tricks like augmentation, SWA weight averaging, etc \u2026</li>\n<li>(3) another ranker head to push probability upwards so that i can have less predicted nodes</li>\n<li>(4) maybe a head to predict node density so that i can predict kaggle estimate node count (metric hack)  </li>\n</ul>\n<p>(3),(4) may not be necessary, because tracking can recover missing cells (or adaptively adjust prob threshold)</p>\n<hr>\n<p>i divide the problems into steps:\n1) train a good cell detector first<br>\n2) then get cell detector feature (+ modify vector) to make link transformer<br>\n3) if you analyse post-processing, you will find that they use heuristics to join cells if the broken gap interval is   small. This means that if we train link transformer with window &gt;2 (eg like 5) results is better. i.e. learn the \"joining\" instead of heuristics. but the risk is that data lis limited and maybe heuristics is better?  </p>",
+        "replies": [
+          {
+            "id": 3520955,
+            "postDate": "2026-09-04T13:39:53.937Z",
+            "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F2d7f3d5429dda866877f5b1331afb2c6%2FSelection_4773.png?generation=1788529191797128&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F834de770caf26c33624489fbcef64537%2FSelection_4774.png?generation=1788529381336076&alt=media)",
+            "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F2d7f3d5429dda866877f5b1331afb2c6%2FSelection_4773.png?generation=1788529191797128&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F834de770caf26c33624489fbcef64537%2FSelection_4774.png?generation=1788529381336076&amp;alt=media\" alt=\"\"></p>",
+            "replies": [
+              {
+                "id": 3521023,
+                "postDate": "2026-09-04T16:15:45.133Z",
+                "rawMarkdown": "This is awesome . Thanks for sharing your findings . Would love to implement this . Will try if this fits under kaggle 12 hour window run ",
+                "content": "<p>This is awesome . Thanks for sharing your findings . Would love to implement this . Will try if this fits under kaggle 12 hour window run </p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Rishabh Roy",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                  "url": "/rishabhr0y",
+                  "tier": "EXPERT",
+                  "id": 217906,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 185,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Rishabh Roy",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                    "url": "/rishabhr0y",
+                    "userName": "rishabhr0y",
+                    "tier": "EXPERT",
+                    "id": 217906,
+                    "profileUrl": "/rishabhr0y",
+                    "performanceTier": "EXPERT",
+                    "userId": 217906,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 127,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 127,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3519195,
         "postDate": "2026-09-01T09:19:47.130Z",
         "rawMarkdown": "An idea that is too much for the competition but could be feasible in long term cell tracking research. I have been looking at video generation deep net. You can have a depth map as prompt then generate anime or life movie.\n\nSo it is easy to create 3d virtual cell in blender and add motion. Then you can style it to create fluorescent microscopy volume.    \n\nIn fact with infinite data you can simply convert 4d to 4d end to end. From volume back to bender model.\n",
@@ -30,7 +273,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 71,
+            "competitionRanking": 244,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -66,7 +309,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 161,
+        "competitionRanking": 127,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -115,7 +358,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 161,
+        "competitionRanking": 127,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -164,7 +407,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 333,
+        "competitionRanking": 603,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -223,7 +466,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 161,
+                "competitionRanking": 127,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -257,7 +500,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 9,
+            "competitionRanking": 8,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -293,7 +536,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 161,
+        "competitionRanking": 127,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -343,7 +586,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 161,
+        "competitionRanking": 127,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -402,7 +645,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 161,
+                "competitionRanking": 127,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -440,7 +683,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 51,
+                "competitionRanking": 185,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -475,7 +718,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 51,
+            "competitionRanking": 185,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -512,7 +755,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 161,
+        "competitionRanking": 127,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -526,6 +769,83 @@
             "profileUrl": "/hengck23",
             "performanceTier": "GRANDMASTER",
             "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3520752,
+        "postDate": "2026-09-04T04:39:39.543Z",
+        "rawMarkdown": "I tried to use focus-3d to segment cells, but it timed out when submitting. Are you doing dense segmentation first when tracking? Or is it just using focus-3d to generate a dense annotation set for training tracking?",
+        "content": "<p>I tried to use focus-3d to segment cells, but it timed out when submitting. Are you doing dense segmentation first when tracking? Or is it just using focus-3d to generate a dense annotation set for training tracking?</p>",
+        "replies": [
+          {
+            "id": 3520759,
+            "postDate": "2026-09-04T04:58:02.320Z",
+            "rawMarkdown": "First verify the recall error of focus3d on kaggle nodes after trying several parameters search. If you are satisfied, train link/track transformer on focus3d zyx(eg centroid of instance label)\n\nFinally train a point predictor using simple unet to distill focus3d results.\n\n\nGetting the point is usually not the issue.  But we want to minimise no of predicted nodes with near 100% recall rate",
+            "content": "<p>First verify the recall error of focus3d on kaggle nodes after trying several parameters search. If you are satisfied, train link/track transformer on focus3d zyx(eg centroid of instance label)</p>\n<p>Finally train a point predictor using simple unet to distill focus3d results.</p>\n<p>Getting the point is usually not the issue.  But we want to minimise no of predicted nodes with near 100% recall rate</p>",
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 127,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "YanngYT",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/yanngyt",
+          "tier": "CONTRIBUTOR",
+          "id": 22813807,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "YanngYT",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/yanngyt",
+            "userName": "yanngyt",
+            "tier": "CONTRIBUTOR",
+            "id": 22813807,
+            "profileUrl": "/yanngyt",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 22813807,
             "progressionOptOut": false
           },
           "intro": ""
@@ -564,7 +884,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 161,
+                "competitionRanking": 127,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -616,7 +936,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 161,
+            "competitionRanking": 127,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -666,7 +986,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 111,
+        "competitionRanking": 162,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -684,6 +1004,24 @@
           },
           "intro": ""
         }
+      },
+      {
+        "id": 3520479,
+        "postDate": "2026-09-03T13:38:57.213Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
       }
     ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -703,12 +1041,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 16,
+        "totalVotes": 21,
         "canUpvote": true,
-        "totalUpvotes": 16
+        "totalUpvotes": 21
       },
       "kernelVersion": 0,
-      "competitionRanking": 161,
+      "competitionRanking": 127,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -745,9 +1083,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-30T15:24:33.907558500Z",
-    "totalVotes": 16,
+    "totalVotes": 21,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/738217",
-    "totalMessages": 15,
+    "totalMessages": 24,
     "authorPerformanceTier": "GRANDMASTER",
     "authorProgressionOptOut": false
   }

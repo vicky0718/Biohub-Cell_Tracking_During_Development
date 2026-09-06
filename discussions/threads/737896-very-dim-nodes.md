@@ -4,7 +4,7 @@
 - **Topic id**: 737896
 - **Author**: weke (EXPERT)
 - **Posted**: 2026-08-28T01:13:05.783744900Z
-- **Votes**: 3
+- **Votes**: 4
 - **Comments**: 3
 
 ---
@@ -27,7 +27,7 @@ Regards
 ## Comments (3)
 
 
-### hengck23 (GRANDMASTER) — 2026-08-31T00:39:19.730Z
+### hengck23 (GRANDMASTER) — 2026-08-31T00:39:19.730Z — 1 votes
 
 It can be false positive or results of interpolation. Eg annotation label frame t=1 and t=3 and interpolate for t=2
 

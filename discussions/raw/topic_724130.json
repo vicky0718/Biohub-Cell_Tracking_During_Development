@@ -26,7 +26,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 9,
+        "competitionRanking": 8,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -96,7 +96,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 9,
+                "competitionRanking": 8,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -152,7 +152,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 184,
+        "competitionRanking": 120,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -245,7 +245,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 164,
+        "competitionRanking": 492,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -292,7 +292,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 820,
+        "competitionRanking": 965,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -329,12 +329,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 44,
+        "totalVotes": 46,
         "canUpvote": true,
-        "totalUpvotes": 46
+        "totalUpvotes": 48
       },
       "kernelVersion": 0,
-      "competitionRanking": 9,
+      "competitionRanking": 8,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -373,7 +373,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-09T16:55:59.111354100Z",
-    "totalVotes": 44,
+    "totalVotes": 46,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/724130",
     "totalMessages": 8,
     "authorPerformanceTier": "MASTER",

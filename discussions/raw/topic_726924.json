@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 158,
+            "competitionRanking": 129,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +68,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 70,
+        "competitionRanking": 244,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -118,7 +118,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 47,
+                "competitionRanking": 294,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -156,7 +156,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 47,
+                "competitionRanking": 294,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -192,7 +192,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 158,
+            "competitionRanking": 129,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -236,7 +236,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 158,
+                "competitionRanking": 129,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -283,7 +283,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1965,
+                "competitionRanking": 2099,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -317,7 +317,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1965,
+            "competitionRanking": 2099,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -351,7 +351,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 47,
+        "competitionRanking": 294,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -389,7 +389,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 158,
+        "competitionRanking": 129,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -436,7 +436,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 158,
+        "competitionRanking": 129,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -483,12 +483,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 5,
+        "totalVotes": 6,
         "canUpvote": true,
-        "totalUpvotes": 5
+        "totalUpvotes": 6
       },
       "kernelVersion": 0,
-      "competitionRanking": 1965,
+      "competitionRanking": 2099,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -524,7 +524,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-17T04:31:05.227909200Z",
-    "totalVotes": 5,
+    "totalVotes": 6,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/726924",
     "totalMessages": 11,
     "authorPerformanceTier": "CONTRIBUTOR",

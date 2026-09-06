@@ -4,7 +4,7 @@
 - **Topic id**: 723655
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-07-07T17:37:36.697254400Z
-- **Votes**: 23
+- **Votes**: 24
 - **Comments**: 19
 
 ---
@@ -63,21 +63,6 @@ you make a graph. if your just repeat your tracks (giving new id) your edge\_jac
 
 > I think the node correction can both increase and decrease original edge jacard score?
 
-### hengck23 (GRANDMASTER) — 2026-07-17T04:35:11.853Z — 2 votes
-
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&alt=media)
-
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&alt=media)
-
-
-center fig: red is t=0, green is t=1   
-
-Visualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  
-- long links are almost wrong (easy to filter such results)
-
-
-looking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment "center of motion = line connecting zyx0 and zyx1."
-
 ### Tom (MASTER) — 2026-07-08T06:01:56.357Z — 3 votes
 
 I just start to develop flow approach then seeing your post. Welcome back @hengck23
@@ -108,6 +93,21 @@ I just start to develop flow approach then seeing your post. Welcome back @hengc
 > > tricks:
 > > - cellpose etc to provide dense 3d tzyx
 > > - use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input
+
+### hengck23 (GRANDMASTER) — 2026-07-17T04:35:11.853Z — 2 votes
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F20e5cb2adbba2365f79bbb79b5b5024e%2FSelection_4384.png?generation=1784262681228749&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1ed4a3ecc2a5dedc98fcdc44ba8ef0bd%2FSelection_4385.png?generation=1784263063174669&alt=media)
+
+
+center fig: red is t=0, green is t=1   
+
+Visualisation results from host repo baseline code (temporal unet + link transformer). i show max prob link.  
+- long links are almost wrong (easy to filter such results)
+
+
+looking at the results, link are short. maybe a conv  3d CNN (T as channel) unet to detection motion object is good? i.e. rather than detect zxy center, we segment "center of motion = line connecting zyx0 and zyx1."
 
 ### hengck23 (GRANDMASTER) — 2026-07-10T13:29:32.203Z — 1 votes
 
