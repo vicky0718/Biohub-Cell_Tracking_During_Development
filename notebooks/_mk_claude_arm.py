@@ -25,6 +25,7 @@ Registry entries carry `base` (the public kernel), `edits`, and `why` (what the 
 which is what gets written into the header and read back when the score lands).
 """
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -38,6 +39,28 @@ DC = "/kaggle/input/biohub-deepcenter-unet3d-center-prior-v1/weights/full_frame_
 
 def env(key: str, val: str) -> str:
     return f'os.environ["BIOHUB_{key}"] = "{val}"'
+
+
+def guard(key: str, val: str) -> str:
+    """A line of the notebook's own `_EXPECTED_NUMERIC` configuration-drift guard.
+
+    `claude-arm-gap44` died two minutes in on
+    ``RuntimeError: Configuration drift detected: {"BIOHUB_GAP_CLOSE_UM":
+    {"actual": 4.4, "expected": 5.0}}``. The lb-941 notebook carries a guard cell that
+    re-reads six numeric and two text env vars and refuses to run if any differs from a
+    hardcoded expectation -- the author protecting their "single intended model-level
+    change" from exactly the kind of edit we are making.
+
+    Guarded numerics: DET_THRESHOLD, ILP_APPEARANCE_WEIGHT, ILP_DISAPPEARANCE_WEIGHT,
+    GAP_CLOSE_UM, OUTPUT_MIN_TRACK_LEN, BIDIRECTIONAL_EDGE_WEIGHT. Guarded text:
+    BIDIRECTIONAL_FUSION_MODE, DUAL_SEED_MIN_CANDIDATE_RETENTION. Everything else --
+    including the deepcenter thresholds, the divergence gate, the link mode and both
+    secondary weights -- is unguarded, which is why dc40, div15, sew20 and union all ran.
+
+    An arm touching a guarded key must move the guard with it, as a second verified
+    replacement, or the run dies before the detector loads.
+    """
+    return f'    "BIOHUB_{key}": {val},'
 
 
 # The P100 escape hatch. Kaggle handed this account eight consecutive Tesla P100s on
@@ -147,7 +170,8 @@ ARMS = {
     # everyone else is forking the published value rather than continuing past it.
     "gap44": {
         "base": ("analyticaobscura", "biohub-lb-941"),
-        "edits": [(env("GAP_CLOSE_UM", "5.0"), env("GAP_CLOSE_UM", "4.4"))],
+        "edits": [(env("GAP_CLOSE_UM", "5.0"), env("GAP_CLOSE_UM", "4.4")),
+                  (guard("GAP_CLOSE_UM", "5.0"), guard("GAP_CLOSE_UM", "4.4"))],
         "why": ("gap-close radius one step further down the gradient that just paid.\n"
                 "#               5.8 -> 5.0 was worth +0.001 to reyhanksatria and to the lb-941\n"
                 "#               base; nobody has published anything below 5.0. Note our own\n"
@@ -277,7 +301,8 @@ ARMS = {
     },
     "det960": {
         "base": ("analyticaobscura", "biohub-lb-941"),
-        "edits": [(env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.960"))],
+        "edits": [(env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.960")),
+                  (guard("DET_THRESHOLD", "0.965"), guard("DET_THRESHOLD", "0.960"))],
         "why": ("detection threshold one step past the public step. 0.97 -> 0.965 was part of\n"
                 "#               the 0.938 -> 0.940 move; below 0.965 is unpublished."),
     },
@@ -371,9 +396,17 @@ def build(name: str, refresh: bool = False) -> int:
         return 1
 
     if applied:
-        lines = "\n".join(f"#     {o.split('=')[-1].strip()} -> {n.split('=')[-1].strip()}"
-                          f"   ({o.split('[')[1].split(']')[0].strip(chr(34))})"
-                          for o, n in applied)
+        # Edits come in two shapes now: `os.environ["BIOHUB_X"] = "v"` and a line of the
+        # notebook's own guard dict, `    "BIOHUB_X": v,`. v1 assumed the first and split
+        # on "[", which raised IndexError on the second.
+        def describe(o, n):
+            m = re.search(r'BIOHUB_([A-Z0-9_]+)', o)
+            key = m.group(1) if m else "?"
+            val = lambda t: t.rstrip(",").split(":")[-1].split("=")[-1].strip().strip('"')
+            kind = "guard" if o.lstrip().startswith('"') else "env"
+            return f"#     {key:<32} {val(o)} -> {val(n)}   ({kind})"
+
+        lines = "\n".join(describe(o, n) for o, n in applied)
     else:
         lines = "#     none -- run unmodified"
     head = ATTRIBUTION.format(user=user, slug=slug, why=arm["why"], edits=lines)
