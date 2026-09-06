@@ -136,8 +136,12 @@ ARMS = {
         "edits": [(env("DEEPCENTER_CHECKPOINT", f"{DC}/best.pt"),
                    env("DEEPCENTER_CHECKPOINT", f"{DC}/checkpoint_last.pt"))],
         "why": ("the 0.941 config with ONE change: DeepCenter best.pt -> checkpoint_last.pt.\n"
-                "#               Isolates the checkpoint from the narrow-division revert that\n"
-                "#               ships alongside it in the 0.948 kernel."),
+                "#               DEPRIORITISED -- history.csv inside the artifact shows val_loss\n"
+                "#               bottoming at EPOCH 2 (0.0450) and climbing monotonically to\n"
+                "#               0.3167 by epoch 500. best.pt is epoch 2; checkpoint_last.pt is\n"
+                "#               epoch 500, seven times worse and badly overfit to sparse labels.\n"
+                "#               The config also asserts DEEPCENTER_EXPECTED_EPOCH=2 while\n"
+                "#               loading it. Run it only to see whether that guard fires."),
     },
     # -------------------------------------------------------- gradient continuation
     # `notes/64` §1 cost us 0.005 by treating a SWEPT constant as an unexplored one. The
@@ -161,13 +165,41 @@ ARMS = {
                 "#               base; nobody has published anything below 5.0. Note our own\n"
                 "#               notes/60 swept this radius four times and only ever WIDENED it."),
     },
+    # --------------------------------------------------- the author's own gate calibration
+    # `claude_packcsv` read gate_threshold_metrics.csv out of the DeepCenter artifact -- a
+    # threshold sweep its author ran, published inside the dataset, and which nobody in the
+    # 0.934 -> 0.941 lineage cites:
+    #
+    #   thr    n_pred  recall  precision      f1
+    #   0.10   38,272   0.900     0.0486  0.0922
+    #   0.25   24,029   0.756     0.0650  0.1197   <- where the public lineage stopped
+    #   0.30   18,944   0.675     0.0737  0.1329
+    #   0.40    9,133   0.392     0.0888  0.1448   <- f1 maximum
+    #   0.50    1,337   0.055     0.0845  0.0664   <- gate collapses
+    #
+    # and gate_summary.json's own note: "Use high precision thresholds as conservative
+    # node-rescue gates." The public step 0.12 -> 0.25 paid; 0.40 is where the author's
+    # calibration says the gate is best, and 0.50 is where it dies. This is `notes/65` §3's
+    # stepped category with the author's data pointing at the next step.
     "dc40": {
         "base": ("analyticaobscura", "biohub-lb-941"),
         "edits": [(env("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.25"),
                    env("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.40"))],
-        "why": ("DeepCenter safe-division veto threshold past its published step.\n"
-                "#               reyhanksatria's table: 0.12 -> 0.25 was half of the 0.939 ->\n"
-                "#               0.941 move. Higher = the veto rejects more proposed divisions."),
+        "why": ("DeepCenter safe-division veto at the f1 maximum of the author's own\n"
+                "#               published sweep (0.40), one step past where the public\n"
+                "#               lineage stopped (0.25). Higher = stricter veto on divisions."),
+    },
+    # The SAME gate, read by a different consumer, and this one has never moved: every
+    # public notebook in the matrix sets DEEPCENTER_GAP_THRESHOLD to 0.25 -- it was in the
+    # identical column, not the varying one. Gap-closing is a much larger population than
+    # divisions, so if the calibration argument is right at all it should show here first.
+    "dcgap40": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("DEEPCENTER_GAP_THRESHOLD", "0.25"),
+                   env("DEEPCENTER_GAP_THRESHOLD", "0.40"))],
+        "why": ("DeepCenter GAP veto at the same f1 maximum. Unlike the safe-div threshold\n"
+                "#               this one is 0.25 in every public notebook we mined -- moved by\n"
+                "#               nobody, ever, and it gates a far larger population."),
     },
     # The combination nobody has run. rishabhr0y reaches 0.941 through SECONDARY_LINK_MODE
     # `adaptive` and does NOT set the deepcenter threshold or the narrow gap radius;
