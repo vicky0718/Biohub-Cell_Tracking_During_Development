@@ -163,3 +163,30 @@ Nothing further is worth building without a leaderboard result: the ranking abov
 external evidence and mechanism, and the first score — `lb941`'s especially, which calibrates
 our reproduction offset against its claim — is what would tell us which axis to spend the
 next runs on.
+
+## Runtime is homogeneous across arms — no arm is individually at risk
+
+Wall-clock from push to complete, every arm on a P100 with the wheelhouse install included:
+
+```
+ckpt948  39   div15   38   dse44  39   gap44   39
+dc40     42   adaptive 41   dse52  41   det960  41
+lb941    51   dcgap40  50
+```
+
+38-51 minutes, no outliers — `union`'s extra 2.8% of nodes does not show up as extra time,
+and neither does `div15`'s 51% more divisions. So `notes/66` §4's timeout worry, if it
+bites, bites every arm equally and cannot be used to rank them.
+
+Bounding the graded rerun is less clean than it looks. `run_stats.csv` reports
+`predict_minutes_total = 10.1` for the four clips, and the graded set is ~17× (`notes/66`
+§3b). If only prediction scales, the rerun is ~3.3 h. If everything scales, it is
+40 × 17 ≈ 11.3 h — the pessimistic figure already recorded. The truth is between, because
+setup (wheelhouse install, model loading, repo staging) is fixed while the ILP and the
+repair chain are per-clip and are not separately timed.
+
+**The reassurance is empirical, not arithmetic:** `claude_fork` and `claude_forkw085` both
+completed graded reruns and returned scores. Both drew T4s, and every arm here drew a P100,
+which is slower — so the risk is real but bounded by two successful reruns of the same
+pipeline shape. Nothing to do about it in advance; it would show up as a failed submission
+rather than a wrong number.
