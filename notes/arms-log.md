@@ -15,10 +15,10 @@ direction, never what it scores.
 | `dc40` | lb941 | `DC_SAFE_DIV 0.25 → 0.40` | −4 | −65 | **−62** | complete |
 | `ckpt948` | zhuzhenghao 0.948 | none (change inert) | +147 | +256 | — | complete, not submitted |
 | `dse44` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.44` | **+1,433** | +1,441 | +9 | complete |
-| `dse52` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.52` | — | — | — | running |
-| `det960` | lb941 | `DET_THRESHOLD 0.965 → 0.960` | — | — | — | queued |
-| `dcgap40` | lb941 | `DC_GAP 0.25 → 0.40` | — | — | — | queued |
-| `gap44` | lb941 | `GAP_CLOSE_UM 5.0 → 4.4` | — | — | — | re-queue (guard fix) |
+| `dse52` | lb941 | `DUAL_SEED_EDGE 0.48 → 0.52` | **−1,829** | −1,778 | −3 | complete |
+| `det960` | lb941 | `DET_THRESHOLD 0.965 → 0.960` | +404 | +384 | 0 | complete |
+| `dcgap40` | lb941 | `DC_GAP 0.25 → 0.40` | — | — | — | running |
+| `gap44` | lb941 | `GAP_CLOSE_UM 5.0 → 4.4` | — | — | — | queued (guard fix applied) |
 | `sew948` | rishabhr0y 0.948 | none | — | — | — | **dead** — self-inconsistent checksum guard (`notes/70` §3) |
 
 ## What `adaptive` adds to the picture
@@ -67,3 +67,28 @@ three kernels naming its parameter. It slots below both. It goes above `dc40` on
 piece of graded evidence available (`notes/66` §3b: cutting nodes cost 0.038), which is a
 tie-break between two arms of equal external standing, not the node-count screen `notes/71`
 refuses to build.
+
+## The `dse` pair straddles 0.48, symmetrically and largely
+
+```
+dse44   DUAL_SEED_EDGE 0.48 -> 0.44    nodes +1,433   edges +1,441   raw_edges +1,691
+lb941                       0.48       nodes       0   edges       0
+dse52   DUAL_SEED_EDGE 0.48 -> 0.52    nodes -1,829   edges -1,778   raw_edges -2,072
+```
+
+A constant identical in all 56 mined kernels, moved ±0.04, moves ±1.5% of the node set in
+each direction. Whatever the leaderboard says about this pair is the cleanest single result
+available from the whole queue: it tests `notes/71`'s node-count hypothesis *and*
+`notes/65` §3's never-moved category at once, with a symmetric control.
+
+Three outcomes and what each means:
+
+* **`dse44` up, `dse52` down** — node count is the axis, and the remaining search should go
+  to whatever else adds nodes.
+* **Both down** — 0.48 is a real optimum somebody found and did not write down, and the
+  never-moved category is worth much less than `notes/65` §3 argued.
+* **`dse52` up, `dse44` down** — the node-count hypothesis is backwards, and `notes/66`
+  §3b's reading of `claude_submit_topk` needs revisiting.
+
+`det960` moves the same direction as `dse44` by a quarter as much (+404 nodes), so it is a
+weak second vote on the same axis rather than an independent question.
