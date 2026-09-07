@@ -6,7 +6,9 @@
 arm      LB       vs lb941   what it says
 lb941    0.941     baseline  reproduced its public claim EXACTLY -- no offset, unlike
                              claude_fork's -0.001 against a claimed 0.938
-sew20    0.942      +0.001   the only gain. SECONDARY_EDGE_WEIGHT 0.15 -> 0.20
+sew20    0.942      +0.001   SECONDARY_EDGE_WEIGHT 0.15 -> 0.20
+sew25    0.942      +0.001   0.25 -- identical
+sew30    0.942      +0.001   0.30 -- identical. The axis is a PLATEAU, not a slope.
 union    0.941       0.000   +3,333 nodes bought nothing
 div15    0.938      -0.003   +48 divisions cost real score
 dc40     0.933      -0.008   -62 divisions. The BIGGEST loss of any arm.
@@ -22,10 +24,38 @@ count as an axis.
 That demotes `dse44` (+1,433), `dse52` (−1,829) and `det960` (+404) together: all three are
 node-count arms, and node count has now been measured as not the axis.
 
-**The axis that works is the secondary model's weighting.** `sew20` is the only arm that
-gained, and it is the parameter three 0.948-claiming kernels carry. Nobody publishes a value
-above 0.20 — stepped and stopped, `notes/65` §3, on the one knob this project has measured a
-gain from. `sew25` and `sew30` are running.
+**The SEW axis is a plateau and it is exhausted.**
+
+```
+SEW 0.15   0.941        SEW 0.25   0.942
+SEW 0.20   0.942        SEW 0.30   0.942
+```
+
+It saturates at the first step. Not "more secondary weight is better" — "the secondary model
+needs to be on at some minimum level, and 0.20 already is". `sew25` and `sew30` bought
+nothing over `sew20`, so there is nothing further along this axis and the pre-registered
+"run two so it shows a slope rather than a single point" did its job: the slope is flat.
+
+**The public frontier reached 0.942 — and one of the two notebooks that got there is our own
+shelved arm.** `busyaprime/biohub-0-942-lb-one-knob-past-the-public-line` is `lb941` with
+`DET_THRESHOLD 0.965 -> 0.96`: byte-for-byte what `det960` does. We built it, verified it
+(+404 nodes), and shelved it when `union` falsified the node-count hypothesis. Somebody else
+submitted it and scored 0.942.
+
+That is a real cost of the demotion, and the lesson is narrow rather than "should have
+submitted everything": `det960` was demoted for belonging to a *hypothesis class* that had
+just been falsified, when what the falsification actually showed was that node count does not
+predict score — it said nothing about whether the detection threshold does.
+
+**So there are now two independently-confirmed +0.001 knobs on different stages, and nobody
+has combined them.** `sewdet` (SEW 0.20 + DET 0.96) is running. If the mechanisms are
+independent it is worth +0.002 and lands on 0.943, which is rank 100. If it stays at 0.942
+the plateau belongs to the pipeline rather than to either knob.
+
+The other public 0.942, `analyticaobscura/biohub-lb-942`, is a different animal: it adds
+`PPSWEEP_MAX_ADJ_LOSS`, `PPSWEEP_SELECT_MARGIN` and `VALIDATOR_N_PER_TYPE`, and its axis
+reads *"holdout-selected post-process configuration"* — an automated post-processing sweep
+inside the notebook, not a knob.
 
 **Divisions do NOT have a sign — they have a sharp optimum, and `lb941` is sitting on it.**
 

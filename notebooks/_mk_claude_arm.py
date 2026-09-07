@@ -293,6 +293,46 @@ ARMS = {
                 "#               the pair shows a slope rather than a single point -- notes/41,\n"
                 "#               42 and 44 each recorded a one-sample optimum that was noise."),
     },
+    # ------------------------------------------------ combining two confirmed +0.001 knobs
+    # SCORED 2026-09-07. The SEW gradient is a PLATEAU, not a slope:
+    #
+    #     SEW 0.15  0.941      0.20  0.942      0.25  0.942      0.30  0.942
+    #
+    # It saturates at the first step and every value above 0.20 gives the same 0.942. So
+    # there is nothing further to extract along that axis.
+    #
+    # Meanwhile the public frontier reached 0.942 twice, and one of them is OUR OWN
+    # DEPRIORITISED ARM: `busyaprime/biohub-0-942-lb-one-knob-past-the-public-line` is
+    # lb941 with DET_THRESHOLD 0.965 -> 0.96, byte-for-byte what `det960` does. We built it,
+    # verified it (+404 nodes), and shelved it when `union` falsified the node-count
+    # hypothesis. Somebody else submitted it and scored 0.942.
+    #
+    # So there are now TWO independently-confirmed +0.001 knobs from the same 0.941 base,
+    # acting on different stages: detection threshold, and the secondary model's edge
+    # weight. **Nobody has combined them.** If the mechanisms are independent the pair is
+    # worth +0.002 and lands on 0.943, which is rank 100. If they saturate the same
+    # plateau it stays 0.942 and the plateau is a property of the pipeline, not of either
+    # knob -- which is worth knowing too.
+    #
+    # DET_THRESHOLD is guarded, so both arms carry the paired guard edit.
+    "sewdet": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("SECONDARY_EDGE_WEIGHT", "0.15"), env("SECONDARY_EDGE_WEIGHT", "0.20")),
+                  (env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.960")),
+                  (guard("DET_THRESHOLD", "0.965"), guard("DET_THRESHOLD", "0.960"))],
+        "why": ("the two knobs that have each independently scored 0.942 from this base,\n"
+                "#               together for the first time: SEW 0.20 (ours) and DET 0.96\n"
+                "#               (busyaprime's, identical to our shelved det960). Different\n"
+                "#               stages, so additivity is plausible and 0.943 is rank 100."),
+    },
+    "det955": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.955")),
+                  (guard("DET_THRESHOLD", "0.965"), guard("DET_THRESHOLD", "0.955"))],
+        "why": ("detection threshold one step past the new public line. 0.965 -> 0.96 is\n"
+                "#               now published at 0.942; below 0.96 is unexplored, and the SEW\n"
+                "#               plateau is a warning that this one may saturate too."),
+    },
     # ------------------------------------------------- knobs no public notebook has moved
     # The config matrix over 56 top kernels has two columns: values that vary between
     # notebooks, and values that are identical in every single one. The second column is
