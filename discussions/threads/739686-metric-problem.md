@@ -4,8 +4,8 @@
 - **Topic id**: 739686
 - **Author**: Antonoof (GRANDMASTER)
 - **Posted**: 2026-09-05T13:05:50.482469100Z
-- **Votes**: 0
-- **Comments**: 2
+- **Votes**: 1
+- **Comments**: 4
 
 ---
 
@@ -43,7 +43,7 @@ Has anyone encountered this problem? We have achieved (in our opinion) good resu
 
 ---
 
-## Comments (2)
+## Comments (4)
 
 
 ### Sergio Alvarez (MASTER) — 2026-09-05T17:48:40.707Z
@@ -54,3 +54,11 @@ About the unbounded score, the hosts are aware. They've commented in other posts
 #### ↳ Antonoof (GRANDMASTER) — 2026-09-05T18:48:28.507Z
 
 > I deleted the ones that metric ignores by its own definition. And there is an experiment that shows this without a single controversial point: remove only edges, do not touch nodes — then the node counter and multiplier do not change at all, and any shift would be purely edge-based.
+
+#### ↳ ↳ Ogurtsov (MASTER) — 2026-09-06T14:11:59.200Z
+
+> > Did you delete non-ground-truth nodes/edges from predictions? It's easy to implement for training data, but how should it work on LB? Removing of random half of nodes/edges will reduce score a lot.
+
+#### ↳ ↳ Antonoof (GRANDMASTER) — 2026-09-06T14:40:34.393Z
+
+> > maybe I was mistaken. I tried deleting edges, deleted them more than 1/2, the metric did not change, deleted 2/3, the metric did not change. Okay, I think it's just me, I'll share the results after the competition.

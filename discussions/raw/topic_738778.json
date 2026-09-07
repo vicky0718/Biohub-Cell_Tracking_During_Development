@@ -21,12 +21,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 1,
+          "totalVotes": 2,
           "canUpvote": true,
-          "totalUpvotes": 1
+          "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 129,
+        "competitionRanking": 199,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -106,7 +106,7 @@
         "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 155,
+      "competitionRanking": 239,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

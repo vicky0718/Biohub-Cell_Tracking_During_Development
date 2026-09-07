@@ -38,7 +38,7 @@
                   "totalUpvotes": 4
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 2019,
+                "competitionRanking": 2061,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -103,7 +103,7 @@
           "totalUpvotes": 7
         },
         "kernelVersion": 0,
-        "competitionRanking": 750,
+        "competitionRanking": 810,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -159,7 +159,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 1306,
+            "competitionRanking": 1345,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -204,7 +204,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 2939,
+        "competitionRanking": 2977,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -253,6 +253,15 @@
         "kernelVersion": 0,
         "feedbackTrackingData": {},
         "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "shah0110"
+            ],
+            "userCount": 1
+          }
+        ],
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
@@ -289,7 +298,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2928,
+        "competitionRanking": 2965,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {

@@ -33,7 +33,7 @@ Would love to hear your thoughts. Good luck to everyone in the final stretch!
 ## Comments (2)
 
 
-### Mendrika Ramarlina (MASTER) — 2026-09-05T05:23:27.347Z — 2 votes
+### Mendrika Ramarlina (MASTER) — 2026-09-05T05:23:27.347Z — 1 votes
 
 A lot of us, myself included are for sure overfitting the LB. Trust you local CV, good principles still apply.
 

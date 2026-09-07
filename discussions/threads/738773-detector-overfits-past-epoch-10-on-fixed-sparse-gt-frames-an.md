@@ -37,6 +37,6 @@ cyan is kaggle ground truth annotation. A lot of such nodes in faint intensity a
 ![
 ](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F88e15383975f28ac477b2c7276ffe2ce%2FSelection_4745.png?generation=1788372031229506&alt=media)
 
-### hengck23 (GRANDMASTER) — 2026-09-02T01:35:36.987Z — 1 votes
+### hengck23 (GRANDMASTER) — 2026-09-02T01:35:36.987Z — 2 votes
 
 this is the effect of sparse annotations. the unlabelled nodes "changes from noisy targets to negative targets after 10 epoches".

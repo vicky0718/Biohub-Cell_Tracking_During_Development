@@ -30,7 +30,45 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 124,
+            "competitionRanking": 217,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3521482,
+            "postDate": "2026-09-06T04:12:28.723Z",
+            "rawMarkdown": "I have some bold idea. At inference you run your model. You have rough estimate of motion. Then you can do augmentation of hiddent test data with appropriate motion and perform online test finetuning or adaptation at selected frames etc",
+            "content": "<p>I have some bold idea. At inference you run your model. You have rough estimate of motion. Then you can do augmentation of hiddent test data with appropriate motion and perform online test finetuning or adaptation at selected frames etc</p>",
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 217,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -61,9 +99,9 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 1,
+          "totalVotes": 4,
           "canUpvote": true,
-          "totalUpvotes": 2
+          "totalUpvotes": 5
         },
         "kernelVersion": 0,
         "competitionRanking": 1,
@@ -101,10 +139,11 @@
         },
         "authorType": "TOPIC",
         "votes": {
+          "totalVotes": -2,
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 124,
+        "competitionRanking": 217,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -128,6 +167,47 @@
         "postDate": "2026-09-05T19:27:55.870Z",
         "rawMarkdown": "differentiable render\nhttps://github.com/VirtualEmbryo/deltaMic?utm_source=chatgpt.com\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4ca457bf73e3526165ae8d2e1a59bbd6%2FSelection_4789.png?generation=1788636465458910&alt=media)",
         "content": "<p>differentiable render\n<a href=\"https://github.com/VirtualEmbryo/deltaMic?utm_source=chatgpt.com\" target=\"_blank\">https://github.com/VirtualEmbryo/deltaMic?utm_source=chatgpt.com</a></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4ca457bf73e3526165ae8d2e1a59bbd6%2FSelection_4789.png?generation=1788636465458910&amp;alt=media\" alt=\"\"></p>",
+        "replies": [
+          {
+            "id": 3521533,
+            "postDate": "2026-09-06T08:44:54.313Z",
+            "rawMarkdown": "https://arxiv.org/abs/2002.10749\n",
+            "content": "<p><a href=\"https://arxiv.org/abs/2002.10749\" target=\"_blank\">https://arxiv.org/abs/2002.10749</a></p>",
+            "parent": {},
+            "author": {
+              "displayName": "Rishabh Roy",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+              "url": "/rishabhr0y",
+              "tier": "EXPERT",
+              "id": 217906,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 85,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Rishabh Roy",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                "url": "/rishabhr0y",
+                "userName": "rishabhr0y",
+                "tier": "EXPERT",
+                "id": 217906,
+                "profileUrl": "/rishabhr0y",
+                "performanceTier": "EXPERT",
+                "userId": 217906,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
         "parent": {},
         "author": {
           "displayName": "hengck23",
@@ -139,10 +219,11 @@
         },
         "authorType": "TOPIC",
         "votes": {
+          "totalVotes": -1,
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 124,
+        "competitionRanking": 217,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -179,12 +260,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 2,
+        "totalVotes": 5,
         "canUpvote": true,
-        "totalUpvotes": 2
+        "totalUpvotes": 5
       },
       "kernelVersion": 0,
-      "competitionRanking": 124,
+      "competitionRanking": 217,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -211,9 +292,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-05T19:21:43.157971200Z",
-    "totalVotes": 2,
+    "totalVotes": 5,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/739731",
-    "totalMessages": 4,
+    "totalMessages": 6,
     "authorPerformanceTier": "GRANDMASTER",
     "authorProgressionOptOut": false
   }

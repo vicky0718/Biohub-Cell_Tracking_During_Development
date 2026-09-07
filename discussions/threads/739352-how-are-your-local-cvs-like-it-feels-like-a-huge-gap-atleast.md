@@ -28,7 +28,7 @@ It gives approx +0.000 on LB though.
 
 I have like 0.96 CV and 0.93 LB for some reason
 
-#### ↳ hengck23 (GRANDMASTER) — 2026-09-04T00:56:03.757Z — 6 votes
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-04T00:56:03.757Z — 7 votes
 
 > it is not useful to state/anayse " 0.96 CV "
 > you should break it down:

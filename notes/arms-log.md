@@ -31,8 +31,11 @@ gain from. `sew25` and `sew30` are running.
 mirror experiment. If it gains, the division count wants to go *down* from `lb941`'s 94, and
 the next arm after that is a stricter gate still.
 
-Board 2026-09-07: 3,200 teams, rank 100 needs **0.943** (up from 0.942 yesterday). Our 0.942
-is rank 112. 0.943 → 78.
+Board 2026-09-07 08:05: 3,201 teams, rank 100 needs **0.943**. **Our 0.942 is rank 156**,
+not 112 — I reported the optimistic end of a tie band and that was wrong. 0.942 spans ranks
+112-218 and Kaggle breaks the tie by submission time, so a late submitter lands at the
+bottom of the band. **Read the `Rank` column from the leaderboard CSV; never compute rank as
+`count(score > ours) + 1`.**
 
 
 Counters are `run_stats.csv` summed over the four verification clips, against `claude-arm-lb941`

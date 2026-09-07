@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 469,
+            "competitionRanking": 551,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -63,12 +63,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 2,
+          "totalVotes": 1,
           "canUpvote": true,
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 29,
+        "competitionRanking": 33,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -110,7 +110,7 @@
         "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 469,
+      "competitionRanking": 551,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

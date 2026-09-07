@@ -4,8 +4,8 @@
 - **Topic id**: 738217
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-08-30T15:24:33.907558500Z
-- **Votes**: 21
-- **Comments**: 26
+- **Votes**: 23
+- **Comments**: 31
 
 ---
 
@@ -19,10 +19,28 @@ https://huggingface.co/spaces/Qinghua-thu/FOCUS-3D
 
 ---
 
-## Comments (24)
+## Comments (31)
 
 
-### hengck23 (GRANDMASTER) — 2026-09-05T19:41:24.460Z — 1 votes
+### hengck23 (GRANDMASTER) — 2026-09-06T08:51:47.800Z — 2 votes
+
+updated results
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9e8d5f4c47591d7e21251755f284fcb8%2FSelection_4806.png?generation=1788684703562892&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F54fceef06b3911402346a7f5ebd371f6%2FSelection_4805.png?generation=1788684641113578&alt=media)
+
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-06T09:18:04.263Z — 1 votes
+
+> ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F65e9183d4ded303e8bd71201170f37ad%2FSelection_4809.png?generation=1788686281728622&alt=media)
+> 
+> still feel that it is not good enough (does not help if gap is more than one missing frame) ... need to dream about it
+
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-06T10:48:52.160Z
+
+> ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1fc32a4c8e74689f84192fd6b1dd5e9d%2FSelection_4810.png?generation=1788691729613470&alt=media)
+
+### hengck23 (GRANDMASTER) — 2026-09-05T19:41:24.460Z — 2 votes
 
 The trick to transforming Focus3D annotation to Kaggle-like annotation  
 1) Just pretrain with Focus3D annotation   
@@ -178,6 +196,47 @@ Then you can do longer range tracking over window of 5 or 8 (instead of 2)
 #### ↳ ↳ Rishabh Roy (EXPERT) — 2026-08-31T10:37:22.100Z
 
 > > would love to see this work
+
+### hengck23 (GRANDMASTER) — 2026-09-07T03:00:29.040Z
+
+another idea
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F17a1759af0e5e5ef2acfad20a57f84c7%2FSelection_4813.png?generation=1788750027595991&alt=media)
+
+### hengck23 (GRANDMASTER) — 2026-09-06T11:46:51.953Z
+
+Another trick, but maybe will overfit if you don't have sufficient data. Kaggle annotations may not be best for tracking. Let gt be the Kaggle annotation; you can refine ground truth to gt+dzxy so that it is still within the 7um error limit but drastically improves link probability. Also coord could be subpixel and use F.graid sample to sample feature.
+
+### hengck23 (GRANDMASTER) — 2026-09-06T03:42:42.483Z
+
+training usually dense FOCUS3d annotation + frame/augmented frame actually works.  
+with dense node and edge (pairing) annotation, i can train up to 200 epochs without overfitting.
+
+I design my own transformer following the SuperGlue framework for keypoint matching: alternating self-frame attention and cross-frame attention.
+
+validation: unseen sample_id + kaggle annotation:
+
+```
+6bba_337b1b3a
+division excluded in this test
+
+{'num_gt_nodes': 1272, 'num_matched_nodes': 1272, 'node_recall': 1.0, 
+'num_gt_edges': 1209, 'num_edges_both_nodes_matched': 1209, 'num_correct_edges': 1166, 
+'edge_recall_end_to_end': 0.9644334160463193, 
+'edge_recall_given_nodes': 0.9644334160463193, 
+'mean_edge_rank': 0.060891938250428816, # e.g. top1, top2 ... 
+'mean_edge_prob': 0.9515399047913187}
+```
+
+I have chatgpt to do all the coding, while i check. i think this can be automatic once i get new external data. 
+
+
+
+more visualisation and code coming up. !!!!
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fb8ffc8ecd5ee733ab8d0144baaca33d0%2FSelection_4796.png?generation=1788669728505646&alt=media)
+
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-06T03:59:31.693Z
+
+> The implication is that you do not need kaggle annotation to train. So you can do online training on hidden data in theory
 
 ### YanngYT (CONTRIBUTOR) — 2026-09-04T04:39:39.543Z
 

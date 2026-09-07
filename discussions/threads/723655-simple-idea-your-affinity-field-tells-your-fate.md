@@ -201,16 +201,6 @@ The visualisation is messy. anyone has a better suggestion?
 > > 
 > > if you use feature from temporal unet e.g. 32, then you create 1+32 channel (one is for time, and you copy 32 values from temporal to ordinary unet) in the tracking ordinary unet
 
-### hengck23 (GRANDMASTER) — 2026-07-10T17:35:26.270Z — 2 votes
-
-solving the sparse annotation for cell center detection.     
-1) observation : DoG peak detection somehow work. i.e., microscopy cell are blobs.    
-2) instead of classification binary problem, we reformulate it as learnable peak detection. at each pixel location after unet logit head, loss = softmax of pixel over his neighbour.  those pixel without annotation are not computed in loss at all     
-
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7a94ffe3bbada2de65d720c1fead0bd7%2FSelection_4369.png?generation=1783705181623495&alt=media)
-
-hint: ask chatgpt make a margin loss version: peak is at least T greater than neighbour
-
 ### hengck23 (GRANDMASTER) — 2026-07-07T19:39:53.660Z — 1 votes
 
 feasibility study:
@@ -257,3 +247,13 @@ max       35.000000     12.500000      5.750000 ###???
 ```
 
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F30872efbdb6d455fabf83b8dcbe210ea%2FSelection_4333.png?generation=1783453191851967&alt=media)
+
+### hengck23 (GRANDMASTER) — 2026-07-10T17:35:26.270Z — 2 votes
+
+solving the sparse annotation for cell center detection.     
+1) observation : DoG peak detection somehow work. i.e., microscopy cell are blobs.    
+2) instead of classification binary problem, we reformulate it as learnable peak detection. at each pixel location after unet logit head, loss = softmax of pixel over his neighbour.  those pixel without annotation are not computed in loss at all     
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F7a94ffe3bbada2de65d720c1fead0bd7%2FSelection_4369.png?generation=1783705181623495&alt=media)
+
+hint: ask chatgpt make a margin loss version: peak is at least T greater than neighbour

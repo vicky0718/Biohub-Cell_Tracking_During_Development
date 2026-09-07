@@ -4,8 +4,8 @@
 - **Topic id**: 739731
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-09-05T19:21:43.157971200Z
-- **Votes**: 4
-- **Comments**: 5
+- **Votes**: 6
+- **Comments**: 6
 
 ---
 
@@ -20,10 +20,10 @@ this is just psf generator
 
 ---
 
-## Comments (4)
+## Comments (6)
 
 
-### Sergio Alvarez (MASTER) — 2026-09-05T20:48:27.127Z — 1 votes
+### Sergio Alvarez (MASTER) — 2026-09-05T20:48:27.127Z — 4 votes
 
 I've tried the synthetic volume idea for ~2 weeks with no clear improvement in my scores, so I dropped it. Still, it would be cool to see this strategy work here, as it helped improve a little in the CZII competition. (Polnet was used there: https://github.com/anmartinezs/polnet)
 
@@ -37,7 +37,11 @@ Here is one example of synthetic volume I tried to use:
 
 > Your synthetic data quality is good! I will check the DaXi paper. Thanks!
 
-### hengck23 (GRANDMASTER) — 2026-09-05T19:29:22.643Z
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-06T04:12:28.723Z
+
+> I have some bold idea. At inference you run your model. You have rough estimate of motion. Then you can do augmentation of hiddent test data with appropriate motion and perform online test finetuning or adaptation at selected frames etc
+
+### hengck23 (GRANDMASTER) — 2026-09-05T19:29:22.643Z — -2 votes
 
 close to my idea  
 https://arxiv.org/pdf/2107.10180  
@@ -48,9 +52,13 @@ NISNet3D: Three-Dimensional Nuclear Synthesis and Instance Segmentation for Fluo
 
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fda81e458e6ac40760f6bd444de79eb82%2FSelection_4788.png?generation=1788636533698104&alt=media)
 
-### hengck23 (GRANDMASTER) — 2026-09-05T19:27:55.870Z
+### hengck23 (GRANDMASTER) — 2026-09-05T19:27:55.870Z — -1 votes
 
 differentiable render
 https://github.com/VirtualEmbryo/deltaMic?utm_source=chatgpt.com
 
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4ca457bf73e3526165ae8d2e1a59bbd6%2FSelection_4789.png?generation=1788636465458910&alt=media)
+
+#### ↳ Rishabh Roy (EXPERT) — 2026-09-06T08:44:54.313Z
+
+> https://arxiv.org/abs/2002.10749

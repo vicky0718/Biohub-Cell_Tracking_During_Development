@@ -20,21 +20,6 @@ I am stuck on fixing paramters in the post processing part, in ilp and NMS
 ## Comments (11)
 
 
-### EMDST  rohT (CONTRIBUTOR) — 2026-09-04T22:51:57.370Z
-
-Abhirup, sua pergunta é a única coisa concreta neste fio inteiro, e vale a pena isolá-la do resto: qual é a função de perda, o método de treinamento, e como calibrar ILP/NMS no pós-processamento. Isso não tem resposta em "pratique mais" ou "não se preocupe com a pontuação pública" — são conselhos que soam sábios mas são, tecnicamente, vazios: não reduzem em nada seu espaço de busca de hiperparâmetros.
-
-Agora, reparem no que o hengck23 trouxe: "aumentar a taxa de quadros, um bom detector, e atribuição por vizinho mais próximo resolve 95% do problema." Isso é provavelmente verdade — e é exatamente por isso que ele está em 72º e não em 2102º. Mas note a armadilha que isso monta para quem está tentando alcançar 0,9+: se o vizinho-mais-próximo linear resolve 95%, então todo o esforço de engenharia que separa 0,85 de 0,90 está concentrado nos 5% restantes — que são, por definição, os casos onde o vizinho mais próximo falha: mitoses, cruzamentos de trajetória, oclusões, e re-identificação após desaparecimento momentâneo do foco. É exatamente aí que entram ILP (para resolver associação global em vez de gulosa) e NMS (para não duplicar detecções em divisões celulares). Aqui ''moram os problemas''.
-Abhirup, e ele é ''genuinamente um problema'' com a informação disponível publicamente: para calibrar bem o ILP, você precisa de uma função de custo bem calibrada — o que exige saber quão confiável é o seu detector em cada região do espaço-tempo. Mas essa calibração de confiança só emerge de forma confiável durante o treinamento, não durante a inferência. E, como você mesmo notou, todos os notebooks públicos compartilhados são notebooks de inferência — o pipeline de treinamento (a peça que geraria a calibração necessária para o ILP funcionar bem) é exatamente a peça que ninguém está compartilhando.
-
-Ou seja: o gargalo que separa 0,85 de 0,90 não é falta de prática, nem falta de teste, nem "não se preocupar com o LB" — é um gap de informação estrutural. A comunidade pública resolveu os 95% fáceis (detecção + associação gulosa) e está, coletiva e silenciosamente, retendo a parte que resolve os 5% difíceis, porque é exatamente essa parte que determina quem sobe no ranking. Perguntar "qual é o método de treinamento" numa competição de código de pesquisa, onde a pontuação depende justamente disso, é perguntar pela única coisa que ninguém tem incentivo real para responder publicamente antes do prazo final.
-
-Abed tem razão ao questionar o hengck23 — a suposição de "velocidade semelhante entre células" quebra exatamente nos casos de divisão celular (mitose), que é onde uma célula "se torna duas" com trajetórias divergentes instantaneamente. E é precisamente aí, na fronteira entre associação simples e associação combinatorial, que ILP para de ser um luxo e vira necessidade — o que devolve a pergunta original ao ponto de partida: não existe atalho de "prática" para isso, existe apenas a escolha entre reconstruir a calibração de confiança do zero (treinando você mesmo) ou aceitar o teto de ~0,85-0,88 que a associação forte naturalmente impõe. Atenciosamente: EMDST, abraço!
-
-#### ↳ Abhirup Choudhury (CONTRIBUTOR) — 2026-09-05T17:16:43.437Z
-
-> thank you, this really puts things into perspective
-
 ### hengck23 (GRANDMASTER) — 2026-09-04T10:08:29.180Z — 1 votes
 
 if we are talking about a general solution for cell tracking (not restricted to the kaggle competition), to improve tracking, just increase the frame rate of the captured volume. Then you just need to have a good detector and nearest neighbour + linear assignment would have solved 95% of the problem.
@@ -77,3 +62,11 @@ Try to take advantage of this competition to learn new things (detection, tracki
 ### Rustam Bazarbayev (CONTRIBUTOR) — 2026-09-03T08:14:07.053Z
 
 Don't chase public score
+
+### unknown — 2026-09-04T22:51:57.370Z
+
+*(empty)*
+
+#### ↳ Abhirup Choudhury (CONTRIBUTOR) — 2026-09-05T17:16:43.437Z
+
+> thank you, this really puts things into perspective

@@ -16,6 +16,85 @@
             "postDate": "2026-09-05T18:48:28.507Z",
             "rawMarkdown": "I deleted the ones that metric ignores by its own definition. And there is an experiment that shows this without a single controversial point: remove only edges, do not touch nodes \u2014 then the node counter and multiplier do not change at all, and any shift would be purely edge-based.",
             "content": "<p>I deleted the ones that metric ignores by its own definition. And there is an experiment that shows this without a single controversial point: remove only edges, do not touch nodes \u2014 then the node counter and multiplier do not change at all, and any shift would be purely edge-based.</p>",
+            "replies": [
+              {
+                "id": 3521611,
+                "postDate": "2026-09-06T14:11:59.200Z",
+                "rawMarkdown": "Did you delete non-ground-truth nodes/edges from predictions? It's easy to implement for training data, but how should it work on LB? Removing of random half of nodes/edges will reduce score a lot.\n",
+                "content": "<p>Did you delete non-ground-truth nodes/edges from predictions? It's easy to implement for training data, but how should it work on LB? Removing of random half of nodes/edges will reduce score a lot.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Ogurtsov",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/682731-kg.jpg?t=2024-04-01-08-44-00",
+                  "url": "/ogurtsov",
+                  "tier": "MASTER",
+                  "id": 682731,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 665,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Ogurtsov",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/682731-kg.jpg?t=2024-04-01-08-44-00",
+                    "url": "/ogurtsov",
+                    "userName": "ogurtsov",
+                    "tier": "MASTER",
+                    "id": 682731,
+                    "profileUrl": "/ogurtsov",
+                    "performanceTier": "MASTER",
+                    "userId": 682731,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3521619,
+                "postDate": "2026-09-06T14:40:34.393Z",
+                "rawMarkdown": "maybe I was mistaken. I tried deleting edges, deleted them more than 1/2, the metric did not change, deleted 2/3, the metric did not change. Okay, I think it's just me, I'll share the results after the competition.",
+                "content": "<p>maybe I was mistaken. I tried deleting edges, deleted them more than 1/2, the metric did not change, deleted 2/3, the metric did not change. Okay, I think it's just me, I'll share the results after the competition.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Antonoof",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/17954496-kg.jpg?t=2025-01-08-20-35-47",
+                  "url": "/antonoof",
+                  "tier": "GRANDMASTER",
+                  "id": 17954496,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 6,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "TWEAK",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+                    "url": "/tweakai",
+                    "userName": "tweakai",
+                    "tier": "EXPERT",
+                    "id": 28207655,
+                    "profileUrl": "/tweakai",
+                    "performanceTier": "EXPERT",
+                    "userId": 28207655,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
             "parent": {},
             "author": {
               "displayName": "Antonoof",
@@ -102,8 +181,9 @@
       },
       "authorType": "TOPIC",
       "votes": {
+        "totalVotes": 1,
         "canUpvote": true,
-        "totalUpvotes": 4
+        "totalUpvotes": 5
       },
       "kernelVersion": 0,
       "competitionRanking": 6,
@@ -134,8 +214,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-05T13:05:50.482469100Z",
+    "totalVotes": 1,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/739686",
-    "totalMessages": 2,
+    "totalMessages": 4,
     "authorPerformanceTier": "GRANDMASTER",
     "authorProgressionOptOut": false
   }
