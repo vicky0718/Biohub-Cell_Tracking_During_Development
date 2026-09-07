@@ -9,7 +9,7 @@ lb941    0.941     baseline  reproduced its public claim EXACTLY -- no offset, u
 sew20    0.942      +0.001   the only gain. SECONDARY_EDGE_WEIGHT 0.15 -> 0.20
 union    0.941       0.000   +3,333 nodes bought nothing
 div15    0.938      -0.003   +48 divisions cost real score
-dc40     pending             -62 divisions: the mirror of div15, now the promising one
+dc40     0.933      -0.008   -62 divisions. The BIGGEST loss of any arm.
 ```
 
 **`notes/71`'s node-count hypothesis is falsified.** `union` made the largest output change
@@ -27,9 +27,34 @@ gained, and it is the parameter three 0.948-claiming kernels carry. Nobody publi
 above 0.20 — stepped and stopped, `notes/65` §3, on the one knob this project has measured a
 gain from. `sew25` and `sew30` are running.
 
-**Divisions have a sign.** `div15` added 48 and lost 0.003; `dc40` removes 62 and is the
-mirror experiment. If it gains, the division count wants to go *down* from `lb941`'s 94, and
-the next arm after that is a stricter gate still.
+**Divisions do NOT have a sign — they have a sharp optimum, and `lb941` is sitting on it.**
+
+```
+div15   +48 divisions   0.938   -0.003
+lb941    94 divisions   0.941    ----
+dc40    -62 divisions   0.933   -0.008
+```
+
+Both directions lose, and *removing* them loses more than twice as much as adding them. The
+pre-registered reading was "if `dc40` gains, division count wants to go down". It did not
+gain; it lost harder than anything else we have run. **Stop moving divisions.**
+
+Two things follow, and the second is more important than the first.
+
+**The cost cannot be the division term.** `division_jaccard` contributes at most `0.1 × 1.0`
+and realistically about 0.006 at the fork's `div_J ≈ 0.0625`. An 0.008 loss therefore has to
+be landing on `edge_J`: removing a fork does not just delete the fork, it orphans a branch
+and fragments a track, and fragmentation costs edges everywhere downstream.
+
+**The verification clips do not predict graded magnitude.** `dc40`'s counters on the four
+clips were −4 nodes and −65 edges — 0.06% of the output — and the graded score moved 0.008.
+`notes/66` §1 established the clips are placeholders; this quantifies how badly they
+under-report. `tools/verify_arm.py` remains valid for its actual job, which is *did the edit
+land and in which direction*, and must never be read as *how big will this be*.
+
+This also retires my own tie-break: `dc40` was ranked above `dse44` partly because
+`notes/66` §3b said cutting nodes costs score. `dc40` cut almost no nodes and lost 0.008
+anyway, so that reasoning was wrong about the mechanism as well as the size.
 
 Board 2026-09-07 08:05: 3,201 teams, rank 100 needs **0.943**. **Our 0.942 is rank 156**,
 not 112 — I reported the optimistic end of a tie band and that was wrong. 0.942 spans ranks
