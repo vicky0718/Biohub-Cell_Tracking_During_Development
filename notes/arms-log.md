@@ -114,6 +114,8 @@ direction, never what it scores.
 | `gap44` | lb941 | `GAP_CLOSE_UM 5.0 → 4.4` | −42 | −42 | +1 | complete — **not worth a slot** |
 | `sew25` | lb941 | `SEW 0.15 → 0.25` | +300 | +283 | +1 | complete |
 | `sew30` | lb941 | `SEW 0.15 → 0.30` | +474 | +453 | +1 | complete |
+| `sewdet` | lb941 | `SEW 0.20` **+** `DET 0.96` | **+505** | +477 | +1 | complete |
+| `det955` | lb941 | `DET_THRESHOLD 0.965 → 0.955` | **+697** | +665 | 0 | complete |
 | `sew948` | rishabhr0y 0.948 | none | — | — | — | **dead** — self-inconsistent checksum guard (`notes/70` §3) |
 
 ## What `adaptive` adds to the picture
@@ -304,3 +306,23 @@ Note the node counts are small: `sew30` adds 474 nodes, an eighth of what `union
 zero gain. So whatever `sew20`'s +0.001 came from, it was not volume — which is consistent
 with `notes/71` being falsified and makes this axis interesting for a different reason than
 the one the arms were originally sorted by.
+
+## `sewdet`'s node count is exactly additive
+
+```
+sew20    SEW 0.20              +101 nodes
+det960   DET 0.96              +404 nodes
+sewdet   SEW 0.20 + DET 0.96   +505 nodes      = 101 + 404, exactly
+```
+
+Both edits landed (`DET_THRESHOLD` resolves to 0.96 in the dump; `SECONDARY_EDGE_WEIGHT` is
+one of the keys the resolved block omits, so the arithmetic is the evidence). And the two
+knobs do not interact *at the output level* — they touch disjoint sets of nodes.
+
+That is encouraging but not decisive for the score. Disjoint outputs make additive score
+plausible; they do not guarantee it, because both arms scored 0.942 alone and 0.942 may be a
+plateau of the scoring surface rather than a sum of two independent contributions. `union`
+already showed a big output change buying nothing.
+
+`det955` continues the detection gradient one step past the newly-public 0.96: +697 nodes
+against `det960`'s +404, monotone.
