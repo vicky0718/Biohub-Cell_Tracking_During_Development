@@ -268,6 +268,31 @@ ARMS = {
                 "#               config; this asks whether the parameter stacks with the 0.941\n"
                 "#               division work instead of replacing it."),
     },
+    # ------------------------------------------------- SEW: the gradient that actually paid
+    # SCORED 2026-09-06/07. lb941 reproduced its claimed 0.941 EXACTLY (no reproduction
+    # offset, unlike claude_fork at -0.001), and against that baseline:
+    #
+    #     sew20   SEW 0.15 -> 0.20    0.942   +0.001   <- the only arm that gained
+    #     union   LINK_MODE adaptive  0.941    0.000
+    #     div15   DIVERGE_UM -> 1.5   0.938   -0.003
+    #
+    # So the axis is the secondary model's edge weighting, and the step 0.15 -> 0.20 that
+    # three 0.948-claiming kernels carry is worth exactly what they implied. Nobody has
+    # published anything above 0.20 -- `notes/65` §3's stepped-and-stopped shape again, on
+    # the one parameter this project has now measured a gain from.
+    "sew25": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("SECONDARY_EDGE_WEIGHT", "0.15"), env("SECONDARY_EDGE_WEIGHT", "0.25"))],
+        "why": ("SECONDARY_EDGE_WEIGHT 0.15 -> 0.25, one step past the value that scored\n"
+                "#               0.942. 0.20 is where every published notebook stops."),
+    },
+    "sew30": {
+        "base": ("analyticaobscura", "biohub-lb-941"),
+        "edits": [(env("SECONDARY_EDGE_WEIGHT", "0.15"), env("SECONDARY_EDGE_WEIGHT", "0.30"))],
+        "why": ("SECONDARY_EDGE_WEIGHT 0.15 -> 0.30, two steps past. Run alongside sew25 so\n"
+                "#               the pair shows a slope rather than a single point -- notes/41,\n"
+                "#               42 and 44 each recorded a one-sample optimum that was noise."),
+    },
     # ------------------------------------------------- knobs no public notebook has moved
     # The config matrix over 56 top kernels has two columns: values that vary between
     # notebooks, and values that are identical in every single one. The second column is

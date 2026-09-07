@@ -1,5 +1,40 @@
 # Arm log — running record, updated as each run lands
 
+## SCORES (2026-09-06/07)
+
+```
+arm      LB       vs lb941   what it says
+lb941    0.941     baseline  reproduced its public claim EXACTLY -- no offset, unlike
+                             claude_fork's -0.001 against a claimed 0.938
+sew20    0.942      +0.001   the only gain. SECONDARY_EDGE_WEIGHT 0.15 -> 0.20
+union    0.941       0.000   +3,333 nodes bought nothing
+div15    0.938      -0.003   +48 divisions cost real score
+dc40     pending             -62 divisions: the mirror of div15, now the promising one
+```
+
+**`notes/71`'s node-count hypothesis is falsified.** `union` made the largest output change
+of any arm — 2.8% more nodes, 3.1% more edges — and moved the score by exactly zero. The
+pre-registered reading was "if the hypothesis holds, the UP arms cluster above `lb941` and
+`union` moves most". It moved least. `notes/66` §3b's `claude_submit_topk` result (−14.9%
+nodes, −0.038) therefore says something about *that* prune specifically, not about node
+count as an axis.
+
+That demotes `dse44` (+1,433), `dse52` (−1,829) and `det960` (+404) together: all three are
+node-count arms, and node count has now been measured as not the axis.
+
+**The axis that works is the secondary model's weighting.** `sew20` is the only arm that
+gained, and it is the parameter three 0.948-claiming kernels carry. Nobody publishes a value
+above 0.20 — stepped and stopped, `notes/65` §3, on the one knob this project has measured a
+gain from. `sew25` and `sew30` are running.
+
+**Divisions have a sign.** `div15` added 48 and lost 0.003; `dc40` removes 62 and is the
+mirror experiment. If it gains, the division count wants to go *down* from `lb941`'s 94, and
+the next arm after that is a stricter gate still.
+
+Board 2026-09-07: 3,200 teams, rank 100 needs **0.943** (up from 0.942 yesterday). Our 0.942
+is rank 112. 0.943 → 78.
+
+
 Counters are `run_stats.csv` summed over the four verification clips, against `claude-arm-lb941`
 (119,279 nodes / 115,009 edges / 94 divisions). **Verification-mode output, not graded
 output** (`notes/66` §1) — it says whether an edit reached the pipeline and in which
