@@ -57,6 +57,8 @@ direction, never what it scores.
 | `det960` | lb941 | `DET_THRESHOLD 0.965 → 0.960` | +404 | +384 | 0 | complete |
 | `dcgap40` | lb941 | `DC_GAP 0.25 → 0.40` | −48 | −54 | +2 | complete — **not worth a slot** |
 | `gap44` | lb941 | `GAP_CLOSE_UM 5.0 → 4.4` | −42 | −42 | +1 | complete — **not worth a slot** |
+| `sew25` | lb941 | `SEW 0.15 → 0.25` | +300 | +283 | +1 | complete |
+| `sew30` | lb941 | `SEW 0.15 → 0.30` | +474 | +453 | +1 | complete |
 | `sew948` | rishabhr0y 0.948 | none | — | — | — | **dead** — self-inconsistent checksum guard (`notes/70` §3) |
 
 ## What `adaptive` adds to the picture
@@ -228,3 +230,22 @@ completed graded reruns and returned scores. Both drew T4s, and every arm here d
 which is slower — so the risk is real but bounded by two successful reruns of the same
 pipeline shape. Nothing to do about it in advance; it would show up as a failed submission
 rather than a wrong number.
+
+## The SEW ramp is clean and monotone
+
+```
+SEW     nodes    edges   raw_edges     LB
+0.15        0        0           0   0.941   (lb941)
+0.20     +101      +95        +135   0.942   +0.001
+0.25     +300     +283        +308   ?
+0.30     +474     +453        +496   ?
+```
+
+Each step admits more secondary-model edges, monotonically, with no cap intervening — the
+parameter behaves exactly as its name says and the effect size grows smoothly. That is the
+shape a real gradient has, and 0.20 is where every public notebook stops.
+
+Note the node counts are small: `sew30` adds 474 nodes, an eighth of what `union` added for
+zero gain. So whatever `sew20`'s +0.001 came from, it was not volume — which is consistent
+with `notes/71` being falsified and makes this axis interesting for a different reason than
+the one the arms were originally sorted by.
