@@ -502,3 +502,59 @@ ttasec     extend the edge-feature TTA to the secondary model   pushed 11:30, ru
 pp942n8    VALIDATOR_N_PER_TYPE 4 -> 8                          running since 09:56
 ttasew20   SEW 0.15 -> 0.20 on the 0.946 base                   built, waiting for a slot
 ```
+
+## `ttasec` fired, and it re-routed 1% of the graph
+
+`claude-arm-ttasec` completed 2026-09-08 13:11 (P100, wheelhouse). The patch is live on every
+frame pair:
+
+```
+EDGE_TTA_ACTIVE      views = 8  mean_abs_feat_delta = 0.323   (primary, the author's)
+SEC_EDGE_TTA_ACTIVE  views = 8  mean_abs_feat_delta = 0.231   (secondary, ours)   x792
+```
+
+The secondary model's features moved by 71% of what the primary's did. Against `tta946`:
+
+```
+                nodes      edges     forks
+tta946        122,791    118,491    28,600
+ttasec        122,735    118,435    28,582
+net               -56        -56       -18
+
+churn:   nodes  542 dropped / 486 added      edges  1,234 dropped / 1,178 added
+```
+
+**The net counts are the wrong number to read.** A 56-row delta looks like a rounding error;
+the actual change is **1,234 edges out and 1,178 in — ~1% of the edge set re-routed** — with
+the churn nearly cancelling. This is exactly the case `diff_arms` reports added and dropped
+separately for, and `notes/60`'s no-op trap read from the other side: an arm can look inert
+in the totals while having changed a percent of the answer.
+
+`run_stats` agrees, loudly: **101 of 284 counters changed**, across every stage —
+`raw_nodes` (detection), `motion_relink_*`, `gap_density_*`, `deepcenter_safe_div_*`,
+`short_track_*`. Not a cosmetic change confined to one gate.
+
+**Submit it.** Real change, right theory, unknown sign — and the sign is not knowable here,
+because `notes/66` closed local scoring and `notes/72` §3 closed local CV.
+
+*One correction to what I claimed when building it:* I said the patch was free at runtime.
+The eight forward passes were already happening, but the feature-map arithmetic is not free —
+`predict_minutes_total` went 9.30 -> 10.67 (+15%). On the graded set that is ~158 -> ~181
+minutes against a 720-minute limit, so it does not threaten anything, but "free" was wrong.
+
+## `ttasecw20` follows from the result
+
+The secondary's features improved by 0.231 against the primary's 0.323, and bought a much
+smaller downstream change — because the secondary enters at `SECONDARY_EDGE_WEIGHT 0.15`
+behind the low-margin consensus gate. **A weight tuned for single-view features is the wrong
+weight for eight-view ones.** `ttasecw20` is `ttasec` + SEW 0.20, pushed.
+
+Unlike `sewdet` — two changes with no separate score for either half — this one decomposes:
+`ttasec` is being scored on its own, so `ttasecw20 - ttasec` isolates the weight.
+
+```
+ttasec      pushed, complete, SUBMIT       0.946 base + secondary edge-feature TTA
+ttasecw20   pushed, running                the same, plus SEW 0.20
+pp942n8     running since 09:56            VALIDATOR_N_PER_TYPE 4 -> 8
+ttasew20    built, spare                   SEW 0.20 on tta946 without ttasec
+```

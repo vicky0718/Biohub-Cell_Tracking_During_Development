@@ -553,6 +553,32 @@ ARMS = {
                 "#               runtime (the passes already happen) and it raises the run if\n"
                 "#               the features do not move, so it cannot be silently inert."),
     },
+    # --------------------------------- the mechanism and the knob that should follow it
+    # RAN 2026-09-08. `ttasec` fired -- `SEC_EDGE_TTA_ACTIVE views = 8 mean_abs_feat_delta =
+    # 0.231` on every frame pair, against the primary's 0.323 -- and it moved the pipeline
+    # end to end: **101 of 284 run_stats counters changed**, 1,234 edges dropped and 1,178
+    # added (~1% of the edge set re-routed), raw detection included. Net counts barely move
+    # (-56 nodes, -56 edges) because the churn nearly cancels, which is exactly why
+    # `diff_arms` reports added/dropped separately rather than a delta.
+    #
+    # So the secondary model's features improved by almost as much as the primary's did, and
+    # bought a much smaller downstream change -- because the secondary enters at
+    # SECONDARY_EDGE_WEIGHT 0.15 plus the low-margin consensus gate. **If the features are
+    # better, the weight on them is now too small.** That is the argument `ttasew20` makes
+    # blind; this arm makes it on top of the improved features, where it is actually implied.
+    #
+    # It decomposes cleanly despite being two changes, because `ttasec` is being scored on
+    # its own: `ttasecw20 - ttasec` isolates the weight, exactly as `sewdet` was meant to
+    # decompose and could not, having no separate score for either half.
+    "ttasecw20": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "edits": sec_tta_edits() + [("os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.15'",
+                                     "os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.20'")],
+        "why": ("ttasec plus SECONDARY_EDGE_WEIGHT 0.15 -> 0.20. The secondary model's edge\n"
+                "#               features are now eight-view averaged like the primary's, so\n"
+                "#               the weight tuned for single-view features is the wrong one."),
+    },
     # ----------------------------------------- the two confirmed knobs, on the new base
     # `sewdet` closed SEW and DET *on lb941*: 0.942 each, 0.942 together, node counts exactly
     # additive. The conclusion recorded then was "two ways onto one shelf" -- and the shelf
@@ -710,13 +736,26 @@ def build(name: str, refresh: bool = False) -> int:
         # notebook's own guard dict, `    "BIOHUB_X": v,`. v1 assumed the first and split
         # on "[", which raised IndexError on the second.
         def describe(o, n):
+            # v2 assumed every edit was one line and formatted `old -> new` from its tail.
+            # `ttasec`'s edits span code blocks, so the embedded newlines walked straight
+            # out of the comment and Kaggle raised `IndentationError: unexpected indent`
+            # on `del secondary_imgs_flip, secondary_det_flip -> _su_flip.flip(dims)`.
+            # A header is documentation; it must never be able to produce executable text.
             m = re.search(r'BIOHUB_([A-Z0-9_]+)', o)
             key = m.group(1) if m else "?"
+            if "\n" in o or "\n" in n:
+                a, b = o.count("\n") + 1, n.count("\n") + 1
+                first = o.strip().split("\n")[0][:52]
+                return f"#     {'code':<32} {a} lines -> {b} lines   at `{first}`"
             val = lambda t: t.rstrip(",").split(":")[-1].split("=")[-1].strip().strip('"')
             kind = "guard" if o.lstrip().startswith('"') else "env"
             return f"#     {key:<32} {val(o)} -> {val(n)}   ({kind})"
 
         lines = "\n".join(describe(o, n) for o, n in applied)
+        # Belt and braces: whatever `describe` returns, every line of the header is a
+        # comment by the time it reaches the notebook.
+        lines = "\n".join(ln if ln.lstrip().startswith("#") else "#     " + ln.strip()
+                          for ln in lines.split("\n"))
     else:
         lines = "#     none -- run unmodified"
     head = ATTRIBUTION.format(user=user, slug=slug, why=arm["why"], edits=lines)
