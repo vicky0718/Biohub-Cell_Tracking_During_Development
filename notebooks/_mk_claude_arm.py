@@ -577,29 +577,46 @@ ARMS = {
                 "#               runtime (the passes already happen) and it raises the run if\n"
                 "#               the features do not move, so it cannot be silently inert."),
     },
-    # ------------------------------------------ the fusion is switched off and nobody noticed
-    # `tta946`'s own log carries 65 `BIOHUB_RETENTION_GUARD` records, every one of them
-    # ending `"use_primary": true` -- the dual-seed detection fusion computed, then thrown
-    # away, and the primary detector used alone:
+    # -------------------------------------- one movie loses the fusion; the other three do not
+    # **Read the corrected version of this. The first one was wrong.**
     #
-    #     44b6_0b24845f   64 frames rejected   median retention 0.842
-    #     6bba_05b6850b    1 frame  rejected                    0.892
-    #     retention  min 0.453   median 0.842   MAX 0.899   threshold 0.90
+    # `tta946`'s stdout carries 65 `BIOHUB_RETENTION_GUARD` lines and every one ends
+    # `"use_primary": true`, which I read as "the guard has never once passed". It prints
+    # only when it *rejects*. Reading a filtered stream as the population is `notes/68`'s
+    # config-dump trap and `notes/71`'s rank arithmetic in a third costume.
     #
-    # **The maximum retention ever observed is 0.899 against a floor of 0.90.** That is not a
-    # gate occasionally binding; on the frames it evaluates it has never once passed. So
-    # `SECONDARY_DETECTION_WEIGHT 0.80` -- the parameter the whole 0.936 cluster is built on,
-    # and the one `notes/64` watched regress at 0.85 -- is silently inert on those frames.
+    # The kernel also writes `retention_guard_*.jsonl`, one record per frame, and that is the
+    # population -- 400 frames, 100 per movie:
     #
-    # 0.85 rather than something lower, deliberately: it flips the rejections nearest to
-    # passing (0.85-0.899), where the blend discards least, and leaves the guard in place for
-    # the frames where retention collapses to 0.45. Soheil (rank 2) named missing endpoint
-    # nodes as his dominant error, so letting 20% of candidates go on a bad frame is a real
-    # risk and this arm does not take it.
+    #     44b6_0113de3b   100 frames    0 rejected   median retention 1.012
+    #     44b6_0b24845f   100 frames   64 rejected                    0.864
+    #     6bba_05b6850b   100 frames    1 rejected                    1.014
+    #     6bba_05db0fb1   100 frames    0 rejected                    1.011
+    #     all 400: 65 rejected (16%),  median 1.004,  max 1.185
     #
-    # Three edits: the env var is assigned TWICE (config cell, then again after the
-    # calibrated dual-seed patch installs) and the later one wins, so both move -- and the
-    # value is guarded as TEXT, so `_EXPECTED_TEXT` moves with them.
+    # So the dual-seed fusion applies on **335 of 400 frames**, and the median blend *adds*
+    # candidates rather than losing them (retention > 1). `SECONDARY_DETECTION_WEIGHT` is not
+    # inert. What is true is narrower and still interesting: on `44b6_0b24845f` alone the
+    # fusion is discarded on 64% of frames, and that movie's median retention is 0.864 while
+    # every other movie sits above 1.00. One embryo where the two detectors disagree.
+    #
+    # 0.85 flips **26 frames** -- those in [0.85, 0.90), where the blend discards least -- and
+    # leaves 39 vetoed where retention collapses toward 0.45. Soheil (rank 2) named missing
+    # endpoint nodes as his dominant error, so letting 20% of candidates go on a bad frame is
+    # a risk this arm declines. A narrow test, priced honestly, on an axis nobody has moved.
+    #
+    # SIX edits, because the notebook defends this number in three separate places and the
+    # first attempt found only one of them. v1 moved the two env assignments and
+    # `_EXPECTED_TEXT`, ran the whole pipeline, and died at the very end on a *second*
+    # hardcoded expectation in the post-run verification block:
+    #
+    #     RuntimeError: Frame-retention diagnostic contract changed
+    #
+    # -- `if float(_guard_record['minimum_retention']) != 0.9`, plus a recomputation of the
+    # decision as `retention < 0.9`. `notes/70`'s lesson, repeated: grep for the *value*, not
+    # for the guard idiom you already know. The report dict's hardcoded 0.9 moves too; it
+    # raises nothing, but a receipt that states a threshold the run did not use is the exact
+    # thing this project keeps being misled by.
     "ttaret85": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
         "sources": TTA946_SOURCES,
@@ -614,10 +631,16 @@ ARMS = {
              "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.85'"),
             ("'BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION': '0.90'",
              "'BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION': '0.85'"),
+            ("if float(_guard_record['minimum_retention']) != 0.9 or",
+             "if float(_guard_record['minimum_retention']) != 0.85 or"),
+            ("and float(_guard_record['retention']) < 0.9)",
+             "and float(_guard_record['retention']) < 0.85)"),
+            ("'configuration': {'minimum_candidate_retention': 0.9,",
+             "'configuration': {'minimum_candidate_retention': 0.85,"),
         ],
-        "why": ("the dual-seed retention floor 0.90 -> 0.85. tta946's log shows the fusion\n"
-                "#               rejected on 65 of 65 logged frames, max retention 0.899 against\n"
-                "#               a 0.90 floor -- SECONDARY_DETECTION_WEIGHT is inert there."),
+        "why": ("the dual-seed retention floor 0.90 -> 0.85, which flips 26 of 400 frames --\n"
+                "#               all in 44b6_0b24845f, the one movie where the two detectors\n"
+                "#               disagree (median retention 0.864 against >1.00 elsewhere)."),
     },
     # --------------------------------- the mechanism and the knob that should follow it
     # RAN 2026-09-08. `ttasec` fired -- `SEC_EDGE_TTA_ACTIVE views = 8 mean_abs_feat_delta =

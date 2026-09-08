@@ -664,3 +664,71 @@ property of the method.
 base"), and 0.942 is rank 415 while the three arms waiting on the 0.946 base are rank ~181 or
 better. Worth recording because it reopens the family: the mechanism is a holdout-selected
 post-process sweep, and nothing about it is specific to the 0.939 base it currently sits on.
+
+## Correction: the retention guard passes 84% of the time
+
+I read `tta946`'s stdout, found 65 `BIOHUB_RETENTION_GUARD` lines all ending
+`"use_primary": true`, and concluded the dual-seed fusion had *never once passed*. **That was
+wrong.** The line is printed only when the guard rejects, so every printed record failing is
+a tautology, not a finding. Reading a filtered stream as if it were the population is
+`notes/68`'s config-dump trap and `notes/71`'s rank arithmetic in a third costume.
+
+The kernel also writes `retention_guard_*.jsonl` — one record per frame, which *is* the
+population. Pulled from `tta946`'s output zip, 400 records, 100 per movie:
+
+```
+44b6_0113de3b   100 frames    0 rejected   median retention 1.012
+44b6_0b24845f   100 frames   64 rejected                    0.864
+6bba_05b6850b   100 frames    1 rejected                    1.014
+6bba_05db0fb1   100 frames    0 rejected                    1.011
+
+all 400: 65 rejected (16%)   min 0.453   median 1.004   max 1.185
+```
+
+**The fusion applies on 335 of 400 frames**, and the median blend *adds* candidates rather
+than losing them (retention > 1). `SECONDARY_DETECTION_WEIGHT` is not inert, and the claim
+that it was is withdrawn.
+
+What survives is narrower and still worth one measurement: on `44b6_0b24845f` alone the
+fusion is discarded on 64% of frames, and that movie's median retention is 0.864 while the
+other three sit above 1.00. One embryo where the two detectors disagree. `ttaret85` flips the
+**26** frames in [0.85, 0.90) and leaves 39 vetoed below that. A narrow test, priced honestly.
+
+## `ttaret85` v1 died on a guard I did not find
+
+```
+RuntimeError: Frame-retention diagnostic contract changed
+```
+
+The notebook defends this number in **three** places, not one. `_EXPECTED_NUMERIC` /
+`_EXPECTED_TEXT` was the one I knew about (`gap44` taught it). At the very end of the run
+there is a second, separate contract check over the guard records:
+
+```python
+if float(_guard_record['minimum_retention']) != 0.9 or ...:
+    raise RuntimeError('Frame-retention diagnostic contract changed')
+_guard_expected_use_primary = bool(primary_candidates > 0 and float(record['retention']) < 0.9)
+```
+
+and a third hardcoded `0.9` written into the receipt JSON, which raises nothing but would
+have stated a threshold the run did not use. The arm ran the entire pipeline and died on the
+verification. **Grep for the value, not for the guard idiom you already know** — that is the
+generalisation of `notes/70` and it has now cost two runs.
+
+`ttaret85` is six edits and rebuilt. The only `0.9` left is the fallback default inside
+`os.environ.get(..., '0.90')`, which is unreachable while the variable is set.
+
+## Kaggle keeps dataset sources a re-push does not name
+
+Re-pushing with the three-entry list gave different results on different kernels:
+
+```
+claude-arm-ttasec      v4   3 sources   clean
+claude-arm-tta946      v2   6 sources   the three empties survived a 3-entry push
+claude-arm-ttasecw20   v1   6 sources   never re-pushed (the queue dropped it)
+```
+
+Same `_push.json` shape, same builder, different outcome — so a shorter list does not reliably
+remove what a kernel already carries. Not yet explained; `tta946` is being pushed again to see
+whether it converges. If the empties persist, the only certain fix is a fresh kernel slug,
+which costs the URL.
