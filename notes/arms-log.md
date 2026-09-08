@@ -418,3 +418,30 @@ nor contradicts it.
 The 0.942 band is now **138 teams wide** (ranks 269-406). Rank 100 moved +0.003 in a day
 while we moved 0. The gap is no longer one thousandth — it is **four**, and no knob on this
 checkpoint produces that.
+
+## The PPSWEEP arms produce identical output — not worth a slot
+
+```
+pp942     vs lb941   nodes +0   edges +0   divisions +0   short_track +0   IDENTICAL
+pp942sew  vs lb941   nodes +101 edges +95  raw_edges +135                  = sew20 exactly
+```
+
+`pp942` is byte-identical to `lb941` on every counter, and `pp942sew`'s deltas are exactly
+`sew20`'s. So the holdout-selected post-processing sweep **changed nothing** on the four
+verification clips, and `pp942sew` is `sew20` wearing a different notebook.
+
+It did not fail to run: both arms took **~80 minutes** against 38-51 for every knob arm, so
+the search executed. The reading that fits is that the sweep evaluated its candidates on
+these clips and **selected the default configuration** — which is what an adaptive method
+does when the base config is already the best available for that data.
+
+That is not evidence it would select the same way on the graded set, and per-dataset
+adaptation is precisely the thing that cannot be checked from placeholder clips. But it is
+also not evidence that it would do anything, and the author's own public score with this
+mechanism is **0.942** — which we already hold from `sew20`.
+
+**Neither arm is worth a slot.** Same score class as what we have, no measurable difference
+on anything visible, and the ~80-minute verification runtime is a warning on top: the graded
+rerun is ~17x that work against a 12 h ceiling, and a search loop scales with it.
+
+That leaves `tta946` (running) as the only thing on the table that spans the gap to 0.946.
