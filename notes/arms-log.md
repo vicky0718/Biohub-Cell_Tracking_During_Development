@@ -616,3 +616,51 @@ ttasecw20   complete   SUBMIT    + SEW 0.20 on top of that
 ttaret85    pushed               retention floor 0.90 -> 0.85
 pp942n8     running              VALIDATOR_N_PER_TYPE 4 -> 8
 ```
+
+## The phantom mounts are gone
+
+Every arm on the 0.946 base was pushed with six dataset sources: pilkwang's three, plus
+reyhanksatria's three re-hosted copies. `/kernels/pull` on our own kernel shows what Kaggle
+did with them:
+
+```
+datasetDataSources  ['', '', '',
+                     'pilkwang/biohub-deepcenter-unet3d-center-prior-v1',
+                     'pilkwang/biohub-temporal-unet3d-seed314159-v1',
+                     'pilkwang/biohub-tracking-support-pack-50ep-v1']
+```
+
+The author's three resolve to empty strings — they are not public, so nothing ever attached —
+and every artifact path in the runtime log resolves under `pilkwang/`. The three that do mount
+are public, CC0 Public Domain, and have 14,888 / 4,933 / 4,493 downloads between them.
+
+I added the author's copies as insurance, on the reasoning that `/kernels/pull` returned
+`['', '', '']` for the source kernel so the right copies could not be identified from
+provenance, and that a spare mount costs nothing while a missing one is fatal. The first half
+was right and the second half was insurance against nothing: they were never resolvable, so
+they were never a fallback. What they *did* do is make the notebook page look like it depends
+on data nobody can see.
+
+`TTA946_SOURCES` is now pilkwang's three and nothing else, used by all five arms on this base.
+The `.ipynb` files are byte-identical before and after — only the mount list in `_push.json`
+changed — so re-pushing runs exactly the same code. Kaggle has no metadata-only update, so
+the three completed arms are being re-pushed to pick it up; their existing versions stay
+available and submittable either way.
+
+## `pp942n8`: the sweep was under-validated, not inert
+
+```
+VALIDATOR: selected 16 held-out TRAIN samples (8 per embryo-type prefix, 2 prefixes found)
+Re-writing submission.csv with the selected post-process configuration: tight55
+nodes 119,279 -> 119,349   edges 115,009 -> 115,097
+```
+
+At `VALIDATOR_N_PER_TYPE 4` the sweep selected the default and `pp942` came out byte-identical
+to `lb941`. At 8 it selects **`tight55`** and rewrites the output. So the earlier reading —
+"the search ran and chose to change nothing" — was an artifact of eight samples, not a
+property of the method.
+
+**Still not worth a slot.** It is a 0.942-class arm (its own axis line says "public 0.939
+base"), and 0.942 is rank 415 while the three arms waiting on the 0.946 base are rank ~181 or
+better. Worth recording because it reopens the family: the mechanism is a holdout-selected
+post-process sweep, and nothing about it is specific to the 0.939 base it currently sits on.

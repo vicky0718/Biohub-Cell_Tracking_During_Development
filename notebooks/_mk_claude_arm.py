@@ -36,6 +36,30 @@ HERE = Path(__file__).resolve().parent
 
 DC = "/kaggle/input/biohub-deepcenter-unet3d-center-prior-v1/weights/full_frame_center"
 
+# The three mounts every arm on reyhanksatria's 0.946 base needs, and only those.
+#
+# v1 of this list also named the author's own re-hosted copies --
+# `reyhanksatria/biohub-tracking-support-pack` and two siblings -- because
+# `/kernels/pull` returns their `datasetDataSources` as `['', '', '']` and there was no way
+# to tell from provenance which copies they had used. Listing both was meant as insurance:
+# an extra mount costs nothing, a missing one is fatal.
+#
+# It was insurance against nothing. `/kernels/pull` on our own pushed kernel shows Kaggle
+# resolved the author's three straight back to `['', '', '']` -- they are not public, so
+# nothing attached -- and every artifact path in the runtime log resolves under `pilkwang/`:
+#
+#     ARTIFACTS:          /kaggle/input/datasets/pilkwang/biohub-tracking-support-pack-50ep-v1
+#     Secondary artifact: /kaggle/input/datasets/pilkwang/biohub-temporal-unet3d-seed314159-v1
+#
+# So the arms have always run on pilkwang's public CC0 datasets alone. Three phantom entries
+# on the notebook page suggested it depended on data nobody can see, which is worse than
+# useless, and they are gone.
+TTA946_SOURCES = [
+    "pilkwang/biohub-tracking-support-pack-50ep-v1",
+    "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+    "pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+]
+
 
 def env(key: str, val: str) -> str:
     return f'os.environ["BIOHUB_{key}"] = "{val}"'
@@ -512,14 +536,14 @@ ARMS = {
     # be this notebook.
     #
     # Two hazards, both known. Its `datasetDataSources` come back as ['', '', ''], so the
-    # mounts are named here instead -- the author's re-hosted copies AND pilkwang's
-    # originals, because it resolves artifacts by slug under ALLOW_ARTIFACT_FALLBACK.
+    # mounts are named here instead -- `TTA946_SOURCES`, which is pilkwang's three public
+    # CC0 datasets and nothing else; the runtime log confirms every artifact resolves there.
     # And `notes/69` §3 priced TTA out on runtime at ~11 h against a 12 h limit; that was
     # DETECTION TTA doubling the 3D UNet. Edge-feature TTA re-runs the much cheaper edge
     # model, and the author is publishing a graded 0.946, so it evidently fits for them.
     "tta946": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
-        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "sources": TTA946_SOURCES,
         "edits": [],
         "why": ("claimed LB 0.946, unmodified -- BIOHUB_EDGE_FEATURE_TTA=1, the single\n"
                 "#               largest published step in this lineage (+0.005) and exactly\n"
@@ -546,7 +570,7 @@ ARMS = {
     # one in reach that costs no extra GPU time.
     "ttasec": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
-        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "sources": TTA946_SOURCES,
         "edits": sec_tta_edits(),
         "why": ("extend the 0.946 edge-feature TTA to the SECONDARY model, whose eight D4\n"
                 "#               encodes still throw away all eight feature maps. Free at\n"
@@ -578,7 +602,7 @@ ARMS = {
     # value is guarded as TEXT, so `_EXPECTED_TEXT` moves with them.
     "ttaret85": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
-        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "sources": TTA946_SOURCES,
         "edits": [
             ("os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
              "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.90'",
@@ -614,7 +638,7 @@ ARMS = {
     # decompose and could not, having no separate score for either half.
     "ttasecw20": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
-        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "sources": TTA946_SOURCES,
         "edits": sec_tta_edits() + [("os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.15'",
                                      "os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.20'")],
         "why": ("ttasec plus SECONDARY_EDGE_WEIGHT 0.15 -> 0.20. The secondary model's edge\n"
@@ -633,7 +657,7 @@ ARMS = {
     # weight on them should want to be larger, and the two arms read each other.
     "ttasew20": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
-        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "sources": TTA946_SOURCES,
         "edits": [("os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.15'",
                    "os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.20'")],
         "why": ("SECONDARY_EDGE_WEIGHT 0.15 -> 0.20 on the 0.946 base. It is the only knob\n"
