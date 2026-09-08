@@ -390,6 +390,35 @@ ARMS = {
                 "#               different families, unlike sewdet which crossed two members\n"
                 "#               of the same saturated one."),
     },
+    # ------------------------------------------------------------- EDGE-FEATURE TTA (0.946)
+    # `reyhanksatria/biohub-cell-tracking-0-946-lb`, 11 votes, and its axis is a complete
+    # provenance chain: "0.933 baseline -> 0.934 harmonic fusion -> 0.939 wider divisions /
+    # calmer fusion -> 0.941 repair adaptation -> **0.946 edge-feature TTA**". Same author
+    # whose independent 0.941 corroborated the lb941 config in the first place.
+    #
+    # **+0.005 from one flag**, `BIOHUB_EDGE_FEATURE_TTA=1`, and 0.946 is exactly what rank
+    # 100 costs today. That is four times any gain this project has measured.
+    #
+    # It cannot be ported to our lb941 base: `EDGE_FEATURE_TTA` appears **zero times** in
+    # lb941's source and twice in this one, whose EXPERIMENT_TAG is `edge_feature_tta_0946`.
+    # Setting the variable on lb941 would be inert -- `notes/68` exactly. So the arm has to
+    # be this notebook.
+    #
+    # Two hazards, both known. Its `datasetDataSources` come back as ['', '', ''], so the
+    # mounts are named here instead -- the author's re-hosted copies AND pilkwang's
+    # originals, because it resolves artifacts by slug under ALLOW_ARTIFACT_FALLBACK.
+    # And `notes/69` §3 priced TTA out on runtime at ~11 h against a 12 h limit; that was
+    # DETECTION TTA doubling the 3D UNet. Edge-feature TTA re-runs the much cheaper edge
+    # model, and the author is publishing a graded 0.946, so it evidently fits for them.
+    "tta946": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "edits": [],
+        "why": ("claimed LB 0.946, unmodified -- BIOHUB_EDGE_FEATURE_TTA=1, the single\n"
+                "#               largest published step in this lineage (+0.005) and exactly\n"
+                "#               the score rank 100 costs. Cannot be ported to lb941: the flag\n"
+                "#               appears zero times there (notes/68's inert-edit trap)."),
+    },
     # ------------------------------------------------- knobs no public notebook has moved
     # The config matrix over 56 top kernels has two columns: values that vary between
     # notebooks, and values that are identical in every single one. The second column is
@@ -485,7 +514,12 @@ def build(name: str, refresh: bool = False) -> int:
                "source": blob["blob"]["source"]}
         prov.write_text(json.dumps(rec, indent=1))
 
-    sources = rec["datasetDataSources"]
+    # Some kernels come back from /kernels/pull with datasetDataSources = ['', '', ''] --
+    # reyhanksatria's 0.946 does. The mounts are then unreconstructable from provenance, so
+    # the registry entry names them itself. Passing BOTH the author's re-hosted copies and
+    # pilkwang's originals is deliberate: the notebook resolves artifacts by slug with
+    # ALLOW_ARTIFACT_FALLBACK, and an extra mount costs nothing while a missing one is fatal.
+    sources = arm.get("sources") or rec["datasetDataSources"]
     need = ("tracking-support-pack", "temporal-unet3d-seed314159",
             "deepcenter-unet3d-center-prior")
     missing = [n for n in need if not any(n in s for s in sources)]
