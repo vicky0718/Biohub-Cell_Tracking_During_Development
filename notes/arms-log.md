@@ -445,3 +445,60 @@ on anything visible, and the ~80-minute verification runtime is a warning on top
 rerun is ~17x that work against a 12 h ceiling, and a search loop scales with it.
 
 That leaves `tta946` (running) as the only thing on the table that spans the gap to 0.946.
+
+## `tta946` lands: the 0.946 reproduces, and the gain is code
+
+`claude-arm-tta946` completed 2026-09-08 11:18 on a P100 (wheelhouse fired, `rc=0`).
+Unmodified fork of `reyhanksatria/biohub-cell-tracking-0-946-lb`.
+
+```
+experiment_tag       edge_feature_tta_0946
+EDGE_TTA_ACTIVE      views = 8   mean_abs_feat_delta = 0.323
+submission.csv       241,282 rows
+nodes / edges        122,791 / 118,491      (lb941: 119,279 / 115,009 — +3,512 / +3,482)
+```
+
+**Submit it.** It is +0.004 over everything we hold and the mechanism is confirmed active in
+the log rather than inferred from a config dump.
+
+Two things came out of reading it, both in `notes/74`:
+
+1. **The "400-epoch snapshot" in its header is nothing.** `lb941`, `ckpt948` and `tta946` all
+   materialise the same primary SHA `12f6881e…` from the same `-50ep-v1` mount; the
+   `400ep-snapshot` string is the `name` field inside pilkwang's manifest. The dataset is
+   misnamed. Everyone in this lineage runs the same weights, so **the +0.005 is code**.
+2. **The mechanism is half-finished.** The eight-view D4 ensemble discards seven of its eight
+   *association feature* maps; the 0.946 keeps them for the primary model. The secondary
+   model — which runs the same eight encodes at `SECONDARY_DETECTION_WEIGHT 0.80` — still
+   discards all eight. `ttasec` finishes it. Free at runtime, and it raises rather than
+   silently reproducing 0.946 if the features do not move.
+
+## The rank arithmetic, corrected again
+
+`notes/71` said read the `Rank` column. There is a second half: **the column tells you where
+the teams already there sit, not where you would land.** Ties break by submission time, so a
+new entrant joins at the *bottom* of its band.
+
+```
+2026-09-08 11:23Z, 3,244 teams
+score    better   tied      band      we would land at
+0.947        31      9     32-40                    41
+0.946        40    140    41-180                   181
+0.945       180     20   181-200                   201
+0.942       279    135   280-414                   415   <- where we are
+```
+
+So `tta946` at 0.946 buys **~rank 181**, not rank 100 — a real +106 places, and I had told
+you 0.946 *was* rank 100, which is what the column says and not what we would get.
+
+**The top 100 costs 0.947.** And 0.947 is nearly empty (9 teams) precisely because 0.946 is
+where the public notebook lives. One thousandth, from something the public notebook does not
+already do.
+
+## In flight
+
+```
+ttasec     extend the edge-feature TTA to the secondary model   pushed 11:30, running
+pp942n8    VALIDATOR_N_PER_TYPE 4 -> 8                          running since 09:56
+ttasew20   SEW 0.15 -> 0.20 on the 0.946 base                   built, waiting for a slot
+```

@@ -63,6 +63,113 @@ def guard(key: str, val: str) -> str:
     return f'    "BIOHUB_{key}": {val},'
 
 
+def sec_tta_edits() -> list[tuple[str, str]]:
+    """Mirror reyhanksatria's +0.005 edge-feature TTA onto the SECONDARY model.
+
+    Every arm so far has edited a value. This one edits the pipeline, and it is the only
+    mechanism-level change this project has had a concrete reason to believe in, so the
+    reasoning is written out here rather than in a note.
+
+    The 0.946 notebook runs an eight-view D4 ensemble over the detector. `model.encode`
+    returns *two* things -- association features and detection logits -- and the published
+    0.933 -> 0.941 lineage averaged only the second, throwing away seven of eight feature
+    maps and then pairing an eight-view detection map with a one-view feature map. The
+    0.946 change is one line of bookkeeping: keep the features too. `+0.005`, no extra
+    compute, because the eight forward passes were already happening.
+
+    **The secondary model still has the bug.** Its D4 loop reads
+
+        _, secondary_det_flip = secondary_model.encode(secondary_imgs_flip)
+
+    -- eight encodes, eight feature maps discarded, `secondary_unet_out` left at the single
+    canonical view and fed straight into `_index_features` -> `predict_edges`, whose output
+    is blended at SECONDARY_EDGE_WEIGHT and decides `low_margin_consensus`. Same
+    inconsistency, same free compute, on a surface no public notebook touches.
+
+    Six replacements, each matched exactly once (validated before this was written): the
+    accumulator, the four view groups, and the average. The finalizer copies the author's
+    own two guards -- shape equality and a nonzero mean delta -- so an inert patch **kills
+    the run** instead of quietly reproducing 0.946. `notes/68` is the whole reason that
+    matters: ckpt948 spent a slot proving an env var that named a nonexistent path had been
+    silently ignored.
+    """
+    def view(tag: str, det: str, imgs: str, acc: str,
+             ind: int) -> tuple[str, str, str, str]:
+        """One D4 view: capture the feature map, accumulate it, free it."""
+        pad = " " * ind
+        old = (f"_, {det} = secondary_model.encode({imgs})\n\n"
+               f"{pad}for f in range(W):\n{pad}    ")
+        new = (f"_su_{tag}, {det} = secondary_model.encode({imgs})\n\n"
+               f"{pad}for f in range(W):\n{pad}    ")
+        tail_old = f"\n{pad}del {imgs}, {det}\n"
+        # `+=`, not the author's `x = x + y`. Their version allocates a second accumulator
+        # every view; ours does not, and this block runs on top of the primary TTA's peak
+        # on a 16 GB P100. One feature map either way is the difference between a run and
+        # an OOM four hours in.
+        tail_new = (f"\n\n{pad}if _sec_edge_tta:\n{pad}    _sec_unet_acc += {acc}"
+                    f"\n{pad}del {imgs}, {det}, _su_{tag}\n")
+        return old, new, tail_old, tail_new
+
+    # The four view groups, in source order. `body` is the detection-accumulation line that
+    # sits between the encode and the `del`; it is quoted verbatim so the match is exact.
+    groups = [
+        ("flip", "secondary_det_flip", "secondary_imgs_flip", "_su_flip.flip(dims)", 16,
+         "secondary_det_logits[f] = (secondary_det_logits[f] + secondary_det_flip[f]"
+         ".flip(dims))"),
+        ("rot", "secondary_det_rot", "secondary_imgs_rot",
+         "torch.rot90(_su_rot, -_k, dims = (-2, -1))", 16,
+         "secondary_det_logits[f] = secondary_det_logits[f] + torch.rot90("
+         "secondary_det_rot[f], -_k, dims = (-2, -1))"),
+        ("t", "secondary_det_t", "secondary_imgs_t", "_su_t.transpose(-1, -2)", 12,
+         "secondary_det_logits[f] = (secondary_det_logits[f] + secondary_det_t[f]"
+         ".transpose(-1, -2))"),
+        ("at", "secondary_det_at", "secondary_imgs_at",
+         "torch.rot90(_su_at.transpose(-1, -2), -1, dims = (-2, -1))", 12,
+         "secondary_det_logits[f] = secondary_det_logits[f] + torch.rot90("
+         "secondary_det_at[f].transpose(-1, -2), -1, dims = (-2, -1),)"),
+    ]
+
+    edits = [(
+        # The accumulator, cloned before the first extra view is added to it.
+        "if cfg.det_tta:\n            _secondary_nv = 1\n",
+        "if cfg.det_tta:\n            _secondary_nv = 1\n"
+        "            _sec_edge_tta = os.environ.get("
+        "'BIOHUB_SECONDARY_EDGE_FEATURE_TTA', '0') != '0'\n"
+        "            _sec_unet_acc = secondary_unet_out.clone() if _sec_edge_tta else None\n",
+    )]
+    for tag, det, imgs, acc, ind, body in groups:
+        o, n, to, tn = view(tag, det, imgs, acc, ind)
+        edits.append((o + body + to, n + body + tn))
+
+    edits.append((
+        "            for f in range(W):\n"
+        "                secondary_det_logits[f] = secondary_det_logits[f] / _secondary_nv\n",
+        "            for f in range(W):\n"
+        "                secondary_det_logits[f] = secondary_det_logits[f] / _secondary_nv\n"
+        "\n            if _sec_edge_tta:\n"
+        "                if _sec_unet_acc.shape != secondary_unet_out.shape:\n"
+        "                    raise RuntimeError('Secondary edge-feature TTA shape mismatch: '"
+        " + str(tuple(_sec_unet_acc.shape)) + ' vs ' + str(tuple(secondary_unet_out.shape)))\n"
+        "                _sec_delta = float((_sec_unet_acc / _secondary_nv"
+        " - secondary_unet_out).abs().mean())\n"
+        "\n                if _sec_delta == 0.0:\n"
+        "                    raise RuntimeError('Secondary edge-feature TTA produced no"
+        " feature change')\n"
+        "                secondary_unet_out = _sec_unet_acc / _secondary_nv\n"
+        "                print('SEC_EDGE_TTA_ACTIVE views =', _secondary_nv,"
+        " 'mean_abs_feat_delta =', round(_sec_delta, 6), flush = True)\n"
+        "                del _sec_unet_acc\n",
+    ))
+    # The flag itself. This notebook quotes with ', so `env()` (which quotes with ") would
+    # not match -- the builder would refuse, correctly, rather than write a dead arm.
+    edits.append((
+        "os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'",
+        "os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
+        "os.environ['BIOHUB_SECONDARY_EDGE_FEATURE_TTA'] = '1'",
+    ))
+    return edits
+
+
 # The P100 escape hatch. Kaggle handed this account eight consecutive Tesla P100s on
 # 2026-09-06 and `machineShape` is ignored on push, so re-rolling the draw (tools/run_arm.py)
 # may not terminate. A P100 is sm_60 and the image's torch builds sm_70+, so the fix is the
@@ -418,6 +525,53 @@ ARMS = {
                 "#               largest published step in this lineage (+0.005) and exactly\n"
                 "#               the score rank 100 costs. Cannot be ported to lb941: the flag\n"
                 "#               appears zero times there (notes/68's inert-edit trap)."),
+    },
+    # ------------------------------------------- the same bug, one model further along
+    # RAN 2026-09-08, and it reproduced: `EDGE_TTA_ACTIVE views = 8 mean_abs_feat_delta =
+    # 0.323` in the log, 122,791 nodes against lb941's 119,279. The 400-epoch artifact name
+    # in its header turned out to be nothing -- lb941, ckpt948 and tta946 all materialise
+    # the same primary SHA `12f6881e`, so pilkwang's `-50ep-v1` dataset simply contains a
+    # snapshot whose manifest calls itself 400ep. **The +0.005 is code, not weights**, which
+    # is the good outcome: code we can read, and extend.
+    #
+    # Reading it showed the author fixed the primary model and left the secondary one
+    # untouched -- eight encodes, eight feature maps discarded (`sec_tta_edits` documents
+    # the exact lines). So this is not a knob at a new value; it is the mechanism that just
+    # paid +0.005, applied to the one place it has not been applied.
+    #
+    # Why it matters more than another sweep: 0.946 is a **140-team pile-up** (ranks 41-180
+    # on the 2026-09-08 board) because everybody forks this notebook. One thousandth above
+    # it is rank 41. The knobs are saturated -- `sewdet` proved SEW and DET are two ways
+    # onto one shelf -- so the thousandth has to come from a mechanism, and this is the only
+    # one in reach that costs no extra GPU time.
+    "ttasec": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "edits": sec_tta_edits(),
+        "why": ("extend the 0.946 edge-feature TTA to the SECONDARY model, whose eight D4\n"
+                "#               encodes still throw away all eight feature maps. Free at\n"
+                "#               runtime (the passes already happen) and it raises the run if\n"
+                "#               the features do not move, so it cannot be silently inert."),
+    },
+    # ----------------------------------------- the two confirmed knobs, on the new base
+    # `sewdet` closed SEW and DET *on lb941*: 0.942 each, 0.942 together, node counts exactly
+    # additive. The conclusion recorded then was "two ways onto one shelf" -- and the shelf
+    # is a property of what the association head can see, which is precisely what
+    # edge-feature TTA changes. So the saturation argument does not carry over unexamined,
+    # and re-testing the one knob that ever paid us costs a single unguarded edit.
+    #
+    # SEW is the right one to move first: it weights the secondary model's edge logits, the
+    # same pathway `ttasec` improves. If better secondary features are worth anything, the
+    # weight on them should want to be larger, and the two arms read each other.
+    "ttasew20": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "edits": [("os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.15'",
+                   "os.environ['BIOHUB_SECONDARY_EDGE_WEIGHT'] = '0.20'")],
+        "why": ("SECONDARY_EDGE_WEIGHT 0.15 -> 0.20 on the 0.946 base. It is the only knob\n"
+                "#               that has ever gained us a thousandth, and it saturated on a\n"
+                "#               base whose association features were single-view; this one's\n"
+                "#               are eight-view. Unguarded here, so one edit."),
     },
     # ------------------------------------------------- knobs no public notebook has moved
     # The config matrix over 56 top kernels has two columns: values that vary between
