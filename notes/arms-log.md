@@ -732,3 +732,54 @@ Same `_push.json` shape, same builder, different outcome — so a shorter list d
 remove what a kernel already carries. Not yet explained; `tta946` is being pushed again to see
 whether it converges. If the empties persist, the only certain fix is a fresh kernel slug,
 which costs the URL.
+
+## `ttaret85` ran, and it says the guard was right — no slot
+
+The rebuilt six-edit version went through cleanly: `Configuration guard: PASS`,
+`Frozen frame retention guard applied at 0.85`, no exception at the contract check.
+
+```
+                 nodes      edges
+tta946         122,791    118,491
+ttaret85       121,459    117,228
+                -1,332     -1,263
+
+44b6_0113de3b   25,621 ->  25,621     0        0
+44b6_0b24845f   20,744 ->  19,413  -1,331   -1,263
+6bba_05b6850b    6,150 ->   6,149      -1        0
+6bba_05db0fb1   70,276 ->  70,276       0        0
+```
+
+**Entirely confined to `44b6_0b24845f`**, exactly as the per-frame retention data predicted —
+that is the one movie where the two detectors disagree, and the only one with frames in
+[0.85, 0.90). Letting the blend through on those 26 frames costs **6.4% of that movie's nodes
+and 6.5% of its edges**.
+
+Price it against the metric. `adj = edge_J x (1 - 0.1 x ratio)`, so removing 1,332 of 122,791
+nodes is worth about **+0.1%** through the ratio term. Removing 1,263 of 118,491 edges is
+**-1.1%** on `edge_jaccard` unless those edges were wrong. The magnitudes are 10:1 apart, so
+better than **90% of the removed edges would have to be false positives** for this to break
+even.
+
+That is not a score prediction — `diff_arms` never makes one — but it is an asymmetry worth
+acting on, and it agrees with the mechanism: `44b6_0b24845f` has median retention 0.864 while
+every other movie sits above 1.00, so the secondary detector is simply unreliable on that
+embryo and the 0.90 floor is the thing that notices. **The guard is not a missed opportunity;
+it is load-bearing.**
+
+**Axis closed, no slot spent.** Which is what the diff tool exists for: three arms of evidence
+(the stdout misreading, the per-frame jsonl, and now the output diff) resolved without a
+submission.
+
+## Mount lists are clean
+
+```
+claude-arm-tta946      v3   3 sources   0 empty
+claude-arm-ttasec      v4   3 sources   0 empty
+claude-arm-ttasecw20   v2   3 sources   0 empty
+claude-arm-ttaret85    v2   3 sources   0 empty
+```
+
+The `run_arm` version check earned itself immediately: the queue logged **four** discarded
+`v0` pushes across those re-pushes, every one of which the old code would have reported as a
+successful run.
