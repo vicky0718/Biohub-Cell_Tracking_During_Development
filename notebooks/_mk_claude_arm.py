@@ -553,6 +553,48 @@ ARMS = {
                 "#               runtime (the passes already happen) and it raises the run if\n"
                 "#               the features do not move, so it cannot be silently inert."),
     },
+    # ------------------------------------------ the fusion is switched off and nobody noticed
+    # `tta946`'s own log carries 65 `BIOHUB_RETENTION_GUARD` records, every one of them
+    # ending `"use_primary": true` -- the dual-seed detection fusion computed, then thrown
+    # away, and the primary detector used alone:
+    #
+    #     44b6_0b24845f   64 frames rejected   median retention 0.842
+    #     6bba_05b6850b    1 frame  rejected                    0.892
+    #     retention  min 0.453   median 0.842   MAX 0.899   threshold 0.90
+    #
+    # **The maximum retention ever observed is 0.899 against a floor of 0.90.** That is not a
+    # gate occasionally binding; on the frames it evaluates it has never once passed. So
+    # `SECONDARY_DETECTION_WEIGHT 0.80` -- the parameter the whole 0.936 cluster is built on,
+    # and the one `notes/64` watched regress at 0.85 -- is silently inert on those frames.
+    #
+    # 0.85 rather than something lower, deliberately: it flips the rejections nearest to
+    # passing (0.85-0.899), where the blend discards least, and leaves the guard in place for
+    # the frames where retention collapses to 0.45. Soheil (rank 2) named missing endpoint
+    # nodes as his dominant error, so letting 20% of candidates go on a bad frame is a real
+    # risk and this arm does not take it.
+    #
+    # Three edits: the env var is assigned TWICE (config cell, then again after the
+    # calibrated dual-seed patch installs) and the later one wins, so both move -- and the
+    # value is guarded as TEXT, so `_EXPECTED_TEXT` moves with them.
+    "ttaret85": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": ['reyhanksatria/biohub-tracking-support-pack', 'reyhanksatria/biohub-temporalunet3d-seed-314159-v1', 'reyhanksatria/biohub-deepcenterunet3d-center-prior-v1', 'pilkwang/biohub-tracking-support-pack-50ep-v1', 'pilkwang/biohub-temporal-unet3d-seed314159-v1', 'pilkwang/biohub-deepcenter-unet3d-center-prior-v1'],
+        "edits": [
+            ("os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
+             "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.90'",
+             "os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
+             "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.85'"),
+            ("print('Calibrated dual-seed runtime patch applied')\n"
+             "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.90'",
+             "print('Calibrated dual-seed runtime patch applied')\n"
+             "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.85'"),
+            ("'BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION': '0.90'",
+             "'BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION': '0.85'"),
+        ],
+        "why": ("the dual-seed retention floor 0.90 -> 0.85. tta946's log shows the fusion\n"
+                "#               rejected on 65 of 65 logged frames, max retention 0.899 against\n"
+                "#               a 0.90 floor -- SECONDARY_DETECTION_WEIGHT is inert there."),
+    },
     # --------------------------------- the mechanism and the knob that should follow it
     # RAN 2026-09-08. `ttasec` fired -- `SEC_EDGE_TTA_ACTIVE views = 8 mean_abs_feat_delta =
     # 0.231` on every frame pair, against the primary's 0.323 -- and it moved the pipeline

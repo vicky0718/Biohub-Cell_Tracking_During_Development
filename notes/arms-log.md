@@ -558,3 +558,61 @@ ttasecw20   pushed, running                the same, plus SEW 0.20
 pp942n8     running since 09:56            VALIDATOR_N_PER_TYPE 4 -> 8
 ttasew20    built, spare                   SEW 0.20 on tta946 without ttasec
 ```
+
+## `ttasecw20` lands, and the two changes are not independent
+
+Both edits verified in the log: `edge weight = 0.200` and `SEC_EDGE_TTA_ACTIVE` ×792.
+
+```
+                nodes      edges     forks
+tta946        122,791    118,491    28,600
+ttasec        122,735    118,435    28,582
+ttasecw20     122,825    118,522    28,610
+
+tta946    -> ttasec       edges  -1,234  +1,178
+ttasec    -> ttasecw20    edges  -1,175  +1,262
+tta946    -> ttasecw20    edges  -1,633  +1,664
+```
+
+If the two changes were independent the last line would show ~2,400 edges dropped. It shows
+1,633 — **about 776 of the edges `ttasec` removed are put back by the weight increase.**
+
+So the "different families" reasoning that justified pairing them was wrong. `SECONDARY_EDGE_WEIGHT`
+is the *gain* on exactly the pathway the secondary TTA changes the *signal* of; they are one
+axis, not two. That does not spoil the experiment — `ttasec` has its own score, so
+`ttasecw20 - ttasec` still reads as "raise the gain on the improved signal" — but it is not
+the orthogonal stack `sewdet` was, and it should not be described as one.
+
+## The fusion is switched off, and nobody noticed
+
+Reading `tta946`'s log for something else turned up 65 `BIOHUB_RETENTION_GUARD` records.
+Every one ends `"use_primary": true` — the dual-seed detection fusion computed, then discarded:
+
+```
+44b6_0b24845f   64 frames rejected   median retention 0.842
+6bba_05b6850b    1 frame  rejected                    0.892
+retention   min 0.453   median 0.842   MAX 0.899   floor 0.90
+```
+
+**The highest retention ever observed is 0.899 against a floor of 0.90.** On the frames the
+guard evaluates it has never once passed, so `SECONDARY_DETECTION_WEIGHT = 0.80` — the
+parameter the entire 0.936 cluster is built on, and the one `notes/64` watched regress when
+pushed to 0.85 — is *inert* on those frames. Nobody in the public lineage has looked at this
+counter; the guard only writes a line when it rejects, which is why it reads as silence.
+
+`ttaret85` drops the floor to 0.85: it flips the rejections nearest to passing (0.85-0.899),
+where the blend discards least, and leaves the guard standing for the frames where retention
+collapses to 0.45. Soheil (rank 2) named missing endpoint nodes as his dominant error, so
+letting 20% of candidates go on a bad frame is a real risk this arm declines to take.
+
+Three edits — the env var is assigned twice and the later one wins, and the value is guarded
+as text, so `_EXPECTED_TEXT` moves too. The run prints
+`Frozen frame retention guard applied at 0.85`, so it cannot be silently inert.
+
+```
+tta946      complete   SUBMIT    the public 0.946, reproduced
+ttasec      complete   SUBMIT    + secondary edge-feature TTA
+ttasecw20   complete   SUBMIT    + SEW 0.20 on top of that
+ttaret85    pushed               retention floor 0.90 -> 0.85
+pp942n8     running              VALIDATOR_N_PER_TYPE 4 -> 8
+```
