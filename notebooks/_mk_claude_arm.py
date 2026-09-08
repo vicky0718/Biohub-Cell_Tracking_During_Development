@@ -333,6 +333,63 @@ ARMS = {
                 "#               now published at 0.942; below 0.96 is unexplored, and the SEW\n"
                 "#               plateau is a warning that this one may saturate too."),
     },
+    # ---------------------------------------- 0.942 is a ceiling; switch from knobs to search
+    # SCORED 2026-09-07/08. Five arms now sit on exactly 0.942 and nothing goes past it:
+    #
+    #     sew20 / sew25 / sew30   0.942     the SEW axis, saturated at its first step
+    #     det960 (busyaprime)     0.942     the detection threshold
+    #     sewdet  (SEW + DET)     0.942     BOTH TOGETHER -- still 0.942, not additive
+    #     det955                  0.941     one step further loses
+    #
+    # `sewdet` is the decisive one. Its node count was exactly `sew20 + det960` (+505 =
+    # 101 + 404), so both edits landed and they touch disjoint nodes -- and the score still
+    # did not move. Two independent +0.001 knobs that do not add are not two contributions;
+    # they are two ways onto the same shelf. **Parameter tuning on this checkpoint is done**,
+    # which is what Tang (rank 5, 0.961) said on 2026-08-16: *"the current ckpt has kind of
+    # hit a wall, it's hard to get more gain from post-processing alone."*
+    #
+    # The way off a plateau is a different KIND of change. `analyticaobscura/biohub-lb-942`
+    # is one: its axis reads "public 0.939 base + holdout-selected post-process
+    # configuration", and it turns on three variables no other notebook sets --
+    # VALIDATOR_N_PER_TYPE, PPSWEEP_SELECT_MARGIN, PPSWEEP_MAX_ADJ_LOSS. Those appear only
+    # in its config cell, so the sweep itself lives inside the shipped pipeline: the support
+    # pack already implements a post-processing search with holdout selection, and nobody
+    # except this author has switched it on.
+    #
+    # That is categorically different from every arm above. A fixed knob applies one value to
+    # every movie; a holdout-selected sweep picks a DIFFERENT post-processing configuration
+    # per dataset. A plateau in the fixed-knob family says nothing about the adaptive one.
+    "pp942": {
+        "base": ("analyticaobscura", "biohub-lb-942"),
+        "edits": [],
+        "why": ("the public 0.942, unmodified -- and a MECHANISM rather than a knob. Turns on\n"
+                "#               the pipeline's own holdout-selected post-processing sweep\n"
+                "#               (VALIDATOR_N_PER_TYPE, PPSWEEP_SELECT_MARGIN,\n"
+                "#               PPSWEEP_MAX_ADJ_LOSS), which no other public notebook sets."),
+    },
+    # Widen the search. VALIDATOR_N_PER_TYPE is how many movies the sweep validates each
+    # candidate configuration on; at 4 the selection is being made on very little evidence,
+    # and this project has spent a week learning what small validation samples do (notes/64,
+    # notes/66). Doubling it costs runtime, which is the real risk -- notes/69 §3 put the
+    # graded rerun at roughly 11 h against a 12 h limit.
+    "pp942n8": {
+        "base": ("analyticaobscura", "biohub-lb-942"),
+        "edits": [(env("VALIDATOR_N_PER_TYPE", "4"), env("VALIDATOR_N_PER_TYPE", "8"))],
+        "why": ("the 0.942 sweep, validated on twice as many movies per type. At 4 the\n"
+                "#               selection rests on very little evidence. RUNTIME RISK: the\n"
+                "#               graded rerun is already ~11 h against a 12 h limit."),
+    },
+    # The mechanism crossed with the knob. lb-942 does NOT set SECONDARY_EDGE_WEIGHT, so
+    # this is the sweep plus the one fixed knob we have confirmed at +0.001 -- and unlike
+    # `sewdet`, the two are not both fixed-knob members of the same saturated family.
+    "pp942sew": {
+        "base": ("analyticaobscura", "biohub-lb-942"),
+        "edits": [(env("SECONDARY_EDGE_WEIGHT", "0.15"), env("SECONDARY_EDGE_WEIGHT", "0.20"))],
+        "why": ("the 0.942 sweep plus SEW 0.20. lb-942 leaves SECONDARY_EDGE_WEIGHT at 0.15,\n"
+                "#               so this crosses the adaptive mechanism with the fixed knob --\n"
+                "#               different families, unlike sewdet which crossed two members\n"
+                "#               of the same saturated one."),
+    },
     # ------------------------------------------------- knobs no public notebook has moved
     # The config matrix over 56 top kernels has two columns: values that vary between
     # notebooks, and values that are identical in every single one. The second column is

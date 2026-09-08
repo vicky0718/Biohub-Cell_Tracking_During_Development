@@ -12,6 +12,9 @@ sew30    0.942      +0.001   0.30 -- identical. The axis is a PLATEAU, not a slo
 union    0.941       0.000   +3,333 nodes bought nothing
 div15    0.938      -0.003   +48 divisions cost real score
 dc40     0.933      -0.008   -62 divisions. The BIGGEST loss of any arm.
+det960   0.942      +0.001   DET_THRESHOLD 0.96 (scored by busyaprime, not by us)
+sewdet   0.942      +0.001   SEW 0.20 AND DET 0.96 together -- NOT additive
+det955   0.941       0.000   DET 0.955, one step further, gives the gain back
 ```
 
 **`notes/71`'s node-count hypothesis is falsified.** `union` made the largest output change
@@ -326,3 +329,42 @@ already showed a big output change buying nothing.
 
 `det955` continues the detection gradient one step past the newly-public 0.96: +697 nodes
 against `det960`'s +404, monotone.
+
+## 0.942 is a ceiling, and `sewdet` is what proves it
+
+```
+lb941    0.941
+sew20    0.942   sew25 0.942   sew30 0.942     the SEW axis, saturated at step one
+det960   0.942                                 the detection threshold
+sewdet   0.942   SEW 0.20 + DET 0.96           both together, still 0.942
+det955   0.941   DET 0.955                     one step further loses the gain
+```
+
+`sewdet` is decisive. Its node count was exactly `sew20 + det960` (+505 = 101 + 404), so both
+edits landed and they move disjoint nodes — and the score did not budge. **Two independent
++0.001 knobs that do not add are not two contributions; they are two ways onto the same
+shelf.** `det955` hands the gain straight back, so the detection threshold has an *optimum* at
+0.96 rather than a direction.
+
+Eleven arms, four distinct axes, one shelf at 0.942 with cliffs below it. That is Tang's
+(rank 5, 0.961) statement measured: *"the current ckpt has kind of hit a wall, it's hard to
+get more gain from post-processing alone."* Parameter tuning on this checkpoint is finished.
+
+## The way off a plateau is a different kind of change
+
+`analyticaobscura/biohub-lb-942` is one, and it was hiding in plain sight. Its axis reads
+*"public 0.939 base + holdout-selected post-process configuration"* and it sets three
+variables no other public notebook touches — `VALIDATOR_N_PER_TYPE`, `PPSWEEP_SELECT_MARGIN`,
+`PPSWEEP_MAX_ADJ_LOSS`. Those strings appear **only in its config cell**, so the sweep itself
+lives inside the shipped pipeline: the support pack already implements a post-processing
+search with holdout selection, and nobody except this author has switched it on.
+
+That is categorically different from every arm above. A fixed knob applies one value to every
+movie; a holdout-selected sweep chooses a **different post-processing configuration per
+dataset**. A plateau in the fixed-knob family says nothing about the adaptive one.
+
+Three arms running: `pp942` (unmodified, to establish the mechanism's score for us),
+`pp942sew` (the sweep crossed with our confirmed knob — different families, unlike `sewdet`),
+and `pp942n8` (`VALIDATOR_N_PER_TYPE` 4 → 8, widening the evidence the selection rests on).
+`pp942n8` carries a runtime risk: `notes/69` §3 puts the graded rerun near 11 h against a
+12 h limit, and doubling the validation set adds to it.
