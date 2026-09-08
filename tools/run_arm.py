@@ -107,8 +107,22 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
                           competition_sources=cfg.get("competition_sources") or [],
                           kernel_sources=cfg.get("kernel_sources") or [],
                           machine_shape=machine_shape)
+        version = r.get("versionNumber")
         print(f"[{time.strftime('%H:%M:%S')}] {slug} attempt {attempt}: "
-              f"pushed v{r.get('versionNumber')}", flush=True)
+              f"pushed v{version}", flush=True)
+
+        # `versionNumber: 0` IS the discard, and it is the only reliable signal of one.
+        # `wait_for_run` catches a discard by way of /kernels/status 404ing -- which only
+        # happens on a kernel that has never run. Re-push a kernel that HAS run, get a
+        # discarded v0, and status still answers `complete` from the previous run: the
+        # discard reports success in one second, reads the old log, and prints DONE. That
+        # is exactly how a clean re-push of `claude-arm-tta946` was recorded as having
+        # happened when Kaggle had thrown it away. Check the version, not the aftermath.
+        if not version:
+            print(f"   push discarded (v{version}) — no run started, retrying"
+                  f" ({attempt}/{attempts})", flush=True)
+            time.sleep(180)
+            continue
 
         st = wait_for_run(slug, poll=poll)
         if st is None:
