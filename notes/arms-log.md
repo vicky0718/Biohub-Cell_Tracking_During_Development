@@ -368,3 +368,53 @@ Three arms running: `pp942` (unmodified, to establish the mechanism's score for 
 and `pp942n8` (`VALIDATOR_N_PER_TYPE` 4 → 8, widening the evidence the selection rests on).
 `pp942n8` carries a runtime risk: `notes/69` §3 puts the graded rerun near 11 h against a
 12 h limit, and doubling the validation set adds to it.
+
+## Which of four tied 0.942 arms to select
+
+`sew20`, `sew25`, `sew30` and `sewdet` all score **exactly 0.942**. Kaggle reports three
+decimals and `privateScore` is empty until the competition closes, so there is no finer
+resolution available — none of them is "slightly lower" than another. Anything that looks
+like a difference is tie ordering on the leaderboard, not score.
+
+The public leaderboard is **29% of the test data** (`MEMORY.md`), so the final standing is
+decided on a different ~71%. Four arms tied on the public slice will not be tied on the
+private one, and selection is a bet on which generalises.
+
+**The shape of the surface around each choice is the argument.**
+
+```
+SEW   0.20 -> 0.942   0.25 -> 0.942   0.30 -> 0.942      a PLATEAU, three points wide
+DET  0.965 -> 0.941   0.96 -> 0.942  0.955 -> 0.941      a PEAK, one point wide
+```
+
+A plateau means the score is insensitive to the exact value; a peak means it is sensitive.
+When the evaluation data changes, a peak is far more likely to slide off its optimum than a
+flat region is to fall off its edge. **`sewdet` inherits the peak** — it is `SEW 0.20` *and*
+`DET 0.96`, and the DET half is the fragile one. It also makes two changes for the same
+measured score as one, which is more surface to be accidentally fitted to the public 29%.
+
+**The fair counter-argument:** `sewdet`'s two halves are each corroborated by other people's
+public scores — `SEW 0.20` by three 0.948-claiming kernels, `DET 0.96` by `busyaprime`'s
+public 0.942. It is not two guesses stacked. If the private split happens to reward detection
+recall more than the public one does, `sewdet` could edge ahead. This is a preference between
+indistinguishable options, not a demonstration.
+
+**Selection: `sew25`** — the centre of the measured plateau, furthest from the 0.15 edge where
+the score drops to 0.941, and a single change from the base. If more than one final submission
+is allowed, pair it with `sewdet` to hedge across the two families.
+
+*Not asserted:* that Kaggle's tie ordering favours the earlier submission. It is the
+documented behaviour, but `LastSubmissionDate` in the leaderboard CSV is the team's last
+submission rather than the one that produced their best score, so this data neither confirms
+nor contradicts it.
+
+## The board is moving much faster than we are
+
+```
+2026-09-07 08:05   rank 100 needs 0.943   our 0.942 = rank 156
+2026-09-08 06:30   rank 100 needs 0.946   our 0.942 = rank 287
+```
+
+The 0.942 band is now **138 teams wide** (ranks 269-406). Rank 100 moved +0.003 in a day
+while we moved 0. The gap is no longer one thousandth — it is **four**, and no knob on this
+checkpoint produces that.
