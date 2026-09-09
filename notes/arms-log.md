@@ -926,3 +926,58 @@ translation, not copy — their notebook uses double quotes and carries a
 
 **The arithmetic to the target:** 0.945 + dominance (+0.002) = 0.947, plus either of the other
 two = 0.948, which is rank 37.
+
+## `ttaz16` is the largest change this project has made, and it fits the runtime
+
+```
+EDGE_TTA_ACTIVE views = 16   mean_abs_feat_delta 0.323 -> 0.342
+Prediction completed in 14.08 minutes            (ttasec: 10.74)
+Node rows 122,432 | edge rows 118,125            (ttasec: 122,735 / 118,435)
+```
+
+**Diffs must be keyed by coordinates, not `node_id`.** Node IDs renumber whenever the node
+set changes, so an id-keyed diff reports enormous churn that is pure bookkeeping — which is
+what made `ttasec -> ttaz16` first read as "115,038 edges replaced". Re-keying nodes by
+`(dataset, t, z, y, x)` and edges by the coordinate pair:
+
+```
+tta946  -> ttasec     nodes -599    +543      edges -644    +588       0.5%
+ttasec  -> ttasecw20  nodes -218    +308      edges -242    +329       0.3%
+ttasec  -> ttadse44   nodes -3,017  +4,476    edges -3,406  +4,832     4%
+ttasec  -> ttaz16     nodes -22,363 +22,060   edges -26,454 +26,144   22%
+```
+
+(That also revises `ttasec`'s own churn down: 644 edges moved, not 1,234. The +0.001 came
+from half a percent of the graph.)
+
+**And 73% of `ttaz16`'s moved nodes land within 2 um of the node they replaced.** One voxel is
+1.625 um in z and 0.406 in y/x, so the bulk of that 22% is the detector *localising better* —
+exactly what averaging over a symmetry the model was trained on should do — while the 15%
+beyond 5 um are genuinely different detections. `notes/04` measured detection as "essentially
+the whole contest", and this is the first arm that has moved it.
+
+**Runtime measured, not guessed:** predict 10.74 -> 14.08 min on four clips. The graded set is
+~17x, so ~510 min against the 720 ceiling. It fits, with room.
+
+## `ttadse44` is a node-count bet, and this project has lost that bet before
+
+```
+nodes 122,735 -> 124,194   (+1,459, +1.2%)     edges +1,426     forks +340
+```
+
+The metric charges for that: `adj = edge_J x (1 - 0.1 x ratio)`, so +1.2% on `N_pred` costs
+about **-0.0012** through the ratio term, which the extra edges have to win back before the
+arm breaks even. `union` is the precedent — +3,333 nodes, score unchanged at 0.941. Keep it,
+rank it last.
+
+## Submission order, most to least likely
+
+```
+1  ttaz16      22% of the graph, 73% of it better localisation, runtime fits
+2  ttadom      running -- rishabhr0y's mechanism, priced 0.941 -> 0.943 by their own naming
+3  ttasecw20   0.3% change; cheap, and it decomposes against ttasec's own score
+4  ttadse44    +1.2% nodes; pays -0.0012 in the ratio term before it earns anything
+```
+
+`ttaz16dom` — both top levers stacked, acting at disjoint stages — is pushed and is the arm
+that would have to carry 0.948 on its own if the two are additive.

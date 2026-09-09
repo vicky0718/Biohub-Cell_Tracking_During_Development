@@ -854,6 +854,37 @@ ARMS = {
                 "#               a raw edge that strictly beats every conflicting motion edge.\n"
                 "#               Their own naming prices it at 0.941 -> 0.943."),
     },
+    # ----------------------------------------------- the two biggest levers, stacked
+    # RAN 2026-09-09. `ttaz16` is the largest change this project has produced, and the
+    # coordinate-keyed diff is what shows it -- keying edges by `node_id` reports churn that
+    # is mostly renumbering, so every diff here re-keys nodes by `(dataset, t, z, y, x)` and
+    # edges by the coordinate pair:
+    #
+    #     tta946  -> ttasec     nodes -599    +543      edges -644    +588      0.5%
+    #     ttasec  -> ttasecw20  nodes -218    +308      edges -242    +329      0.3%
+    #     ttasec  -> ttadse44   nodes -3,017  +4,476    edges -3,406  +4,832    4%
+    #     ttasec  -> ttaz16     nodes -22,363 +22,060   edges -26,454 +26,144   22%
+    #
+    # And 73% of `ttaz16`'s moved nodes land within 2 um of the node they replaced -- one
+    # voxel is 1.625 um in z and 0.406 in y/x -- so most of that 22% is the detector
+    # *localising better*, not finding different cells. The remaining 15% beyond 5 um are
+    # genuinely different detections. `notes/04` measured detection as "essentially the whole
+    # contest", and this is the first arm that moves it.
+    #
+    # Runtime measured rather than guessed: predict 10.74 -> 14.08 min on four clips, so the
+    # graded set lands near 510 min against the 720 ceiling. It fits.
+    #
+    # This arm stacks it with `ttadom`, which acts nowhere near it -- Z-flip averaging changes
+    # what the detector sees; confidence dominance changes which edges survive the motion
+    # model's overwrite. If each is worth what it looks worth, this is the 0.948 arm.
+    "ttaz16dom": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + dominance_edits() + [z_tta_edit()],
+        "why": ("the two largest levers together: sixteen-view TTA over the Z symmetry the\n"
+                "#               model was trained on, and rishabhr0y's confidence dominance over\n"
+                "#               the motion model's wholesale edge replacement. Disjoint stages."),
+    },
     # ---------------------------------------- the threshold every notebook inherited at 0.48
     # `notes/65` §3's best category: a value identical in all 56 kernels mined, never swept,
     # just carried forward from whoever wrote the first notebook -- and this one gates **every
