@@ -1138,3 +1138,74 @@ of 720 min.
 4  ttadse44    +0.0040 local
 5  ttasecw20   below its own base locally
 ```
+
+## `ttaz16dom` scored 0.942. The local proxy is retired, and my port was defective.
+
+```
+ttasec       0.945
+ttaz16dom    0.942     -0.003
+```
+
+Local said +0.0287. Two separate failures, and the first one is mine.
+
+### 1. I ranked by an instrument I had just declared unusable for ranking
+
+`notes/60` and `notes/64` both end with the same rule: a train-side number is *reported*,
+never used to decide. I restated that rule in the same note where I put `ttaz16dom` first
+**because of its local number**, and recommended it as "the arm the whole plan rests on".
+Labelling an instrument untrustworthy and then ranking with it is not a caveat, it is the
+error the caveat was supposed to prevent.
+
+The proxy is now **0-for-3** (`notes/60` geometry, `notes/64` PROXY_SCORE, this) and worse:
+it is *structurally* inverted for this class of mechanism. The local GT is from movies the
+checkpoint trained on (`notes/72` §3), and confidence dominance decides by asking *"is the
+learned edge probability higher than the motion prior?"* — the one quantity that is inflated
+on training movies. A mechanism keyed to an overfit signal, scored on the data it overfits,
+was always going to look excellent locally and fail on held-out clips.
+
+**Rule, strengthened: the visible clips may be used to prove a mechanism FIRED. They may not
+be used to rank arms against each other. Ever.**
+
+### 2. The port was missing a third of the mechanism
+
+`rishabhr0y` sets three variables. I read two of them and defaulted the third:
+
+```
+BIOHUB_MOTION_RELINK_CONFIDENCE_DOMINANCE    = "1"     ported
+BIOHUB_MOTION_RELINK_DOMINANCE_MIN_PER_FRAME = "2.0"   left at the 1.0 default
+BIOHUB_DOMINANCE_DIVISION_SOURCE_INVARIANT   = "1"     NOT PORTED AT ALL
+```
+
+The third is not a knob. It re-runs the **entire downstream repair chain** —
+`close_single_frame_gaps`, `recover_strict_gap2`, `add_safe_divisions_postlink` — on a
+reference copy built from the *un-reconciled* motion edges, collects
+`allowed_division_sources`, and pins the real pipeline's divisions to that set. **The author
+built the mechanism so that dominance changes edges but does not change which nodes divide.**
+They evidently found the same thing the leaderboard just told us.
+
+Its input is `division_reference_motion_edges = [dict(edge) for edge in motion_edges]` — the
+line I saw in their notebook, called out as "a line ours does not have", and dismissed as a
+variant difference. It is the guard's input.
+
+The fork counts show the damage the guard exists to prevent:
+
+```
+ttasec      28,582
+ttadom      28,445    -137
+ttaz16      28,281    -301   (detection change, not a port defect)
+ttaz16dom   28,110    -472
+```
+
+Divisions carry 10% of the metric. This is the fourth time in three days that lifting code
+from another notebook has failed on something outside the block — the guard, the second
+contract check, the counters, and now a companion mechanism the block silently depends on.
+
+### What to submit next
+
+**`ttaz16` alone**, which is complete and unsubmitted. It isolates the half that has no
+porting defect and *cannot* overfit — TTA is inference-time averaging with no learned
+parameters and no dependence on edge probabilities, so the mechanism that inverted the proxy
+does not apply to it. It answers the only question that matters now: was any of the +0.003
+real, or was all of it dominance?
+
+Dominance itself is not dead, but it is not resubmittable in its current form.
