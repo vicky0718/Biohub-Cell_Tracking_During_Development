@@ -1064,3 +1064,77 @@ the first minute after a push it still answers with the previous run's terminal 
 v1 had ended in `error`. The version check added this morning catches the discard case; this
 is its mirror on the failure branch. Fixed by waiting for the status to reach `running` or
 `queued` before believing anything it says.
+
+## `ttadom` and `ttaz16dom` land, and the mechanism is the largest thing we have
+
+Both ran clean with the counter initialiser. The dominance mechanism fires and its guard works:
+
+```
+                  candidates  restored  displaced   minimum
+44b6_0113de3b            469       315        391        99
+44b6_0b24845f            201       171        190        99
+6bba_05b6850b             35         0          0        99   <- sparse group SKIPPED
+6bba_05db0fb1          1,570     1,202      1,615        99
+```
+
+**~1,688 raw ILP edges restored** over the motion model's wholesale replacement, and on the
+one clip with too few dominant candidates the sparsity guard correctly abandons the whole
+reconciliation.
+
+Local scores, all seven arms:
+
+```
+arm           edge_J  adj_edge_J   recall    ratio   vs ttasec
+tta946       0.89198     0.89365   0.9908  -0.0172
+ttasec       0.89198     0.89367   0.9908  -0.0174    +0.00000     LB 0.945
+ttasecw20    0.89198     0.89355   0.9908  -0.0161    -0.00012
+ttadse44     0.89699     0.89771   0.9922  -0.0066    +0.00404
+ttaz16       0.89991     0.90187   0.9922  -0.0208    +0.00820
+ttadom       0.91382     0.91567   0.9891  -0.0189    +0.02200
+ttaz16dom    0.92023     0.92235   0.9904  -0.0221    +0.02868
+```
+
+`z16` + `dom` predicted additively is +0.0302; measured together it is +0.0287, so **the two
+stack at ~95%** — which is what disjoint stages should do, and the reason the pair was built.
+
+### The number is inflated, and here is by how much
+
+Per-dataset, with the weight `metrics.summarise` actually uses (`TP+FP+FN`):
+
+```
+dataset          weight   ttasec -> ttadom            tp        fp        fn
+44b6_0113de3b        53   0.868 -> 0.960   +0.092    46->48    3->0      4->2
+44b6_0b24845f        51   0.941 -> 0.980   +0.039    48->49    2->1      1->0
+6bba_05b6850b       863   0.959 -> 0.959    0.000   828->828  18->18   17->17
+6bba_05db0fb1     1,301   0.846 -> 0.878   +0.032  1101->1111 118->82  82->72
+```
+
+The two eye-catching jumps are on clips with **53 and 51 annotated edges** — three edges each
+decide them, and `notes/73` already established these are near-empty. One heavyweight clip is
+**unchanged** because the guard skipped it. So the whole result rests on `6bba_05db0fb1`:
+**36 false positives removed and 10 true edges recovered.** That is a genuine precision gain
+rather than a threshold trade, and it is still an effective sample of one clip —
+`notes/49`'s "the p-value was measuring two embryos", now measuring one.
+
+**What makes it credible anyway is external, not local:** `rishabhr0y` holds rank 108 at
+0.946 running this mechanism, and their own notebook naming (`...-on-0943`, built on the
+0.941 base) prices it at **+0.002**. Believe that number, not ours.
+
+### The route to 0.948
+
+```
+ttasec                      0.945   measured
+  + dominance   (+0.002)    0.947   priced by its author's own naming
+  + z16         (+0.001)    0.948   local +0.0082, stacks at 95% with dominance
+```
+
+`ttaz16dom` is that arm and it is the one to submit. Runtime 14.14 min predict, graded ~435
+of 720 min.
+
+```
+1  ttaz16dom   both mechanisms; the arm the whole plan rests on
+2  ttadom      dominance alone -- decomposes the pair if ttaz16dom moves
+3  ttaz16      detection alone
+4  ttadse44    +0.0040 local
+5  ttasecw20   below its own base locally
+```

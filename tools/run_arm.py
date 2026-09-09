@@ -131,8 +131,14 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
         # reading the same day: `claude-arm-ttadom` v2 pushed fine and was recorded as
         # `failed` eight seconds later, because v1 had ended in `error` and that is what
         # status still said. Both arms were running normally at the time.
+        # Every call here is wrapped: a 429 from polling too eagerly is a rate limit, not a
+        # verdict on the arm, and letting it propagate took `ttadom` out of a queue whose
+        # run was proceeding normally on Kaggle at that moment.
         for _ in range(20):
-            cur = (K.kernel_status(slug).get("status") or "").lower()
+            try:
+                cur = (K.kernel_status(slug).get("status") or "").lower()
+            except Exception:
+                cur = ""
             if cur in ("running", "queued"):
                 break
             time.sleep(30)
