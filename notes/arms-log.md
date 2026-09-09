@@ -783,3 +783,63 @@ claude-arm-ttaret85    v2   3 sources   0 empty
 The `run_arm` version check earned itself immediately: the queue logged **four** discarded
 `v0` pushes across those re-pushes, every one of which the old code would have reported as a
 successful run.
+
+## Both graded: 0.945, rank 272 — and our own patch is the reason
+
+```
+ttasec   (v3)   0.945     the 0.946 base + our secondary edge-feature TTA
+tta946   (v2)   0.944     the same base, unmodified
+```
+
+**Rank 272 of 3,281**, up from 287 at 0.942. Two things fall out, one good and one that is
+worth more than the good one.
+
+### 1. The patch works
+
+`ttasec` beat `tta946` by **+0.001** — same base, one change, ours. That is the first
+mechanism this project has invented that has scored, as against reproducing someone else's.
+It also makes `ttasecw20` (the same patch plus SEW 0.20) the most valuable untested arm we
+hold, since it is the only thing built on a change now known to pay.
+
+**With one caveat I cannot yet remove.** The two submissions did not run on the same hardware.
+`tta946` v2 ran on **dual T4** (`Tesla T4\nTesla T4`, 94,420 log chars, the multi-GPU sharding
+branch); `ttasec` v3's accelerator is unrecoverable — Kaggle exposes no per-version metadata
+and `/kernels/output` only serves the latest. So +0.001 is *consistent with* the patch working
+and also consistent with a hardware difference. It needs a same-GPU pair before it is a
+measurement.
+
+### 2. The public 0.946 reproduces at 0.944 for us, and that gap is the real prize
+
+198 teams sit on exactly 0.946. We ran that notebook unmodified and got **0.944**. Today's
+board:
+
+```
+score    better   tied      band      we land at
+0.948        29      7     30-36              37
+0.947        36     16     37-52              53
+0.946        52    198    53-250             251
+0.945       250     34    251-284            285   <- us, rank 272
+0.944       284     69    285-353            354
+```
+
+The 0.946 plateau grew from 140 teams to 198 in a day, and the cliff above it got sharper:
+**0.947 lands at rank 53.** So the -0.002 we cannot account for is worth more than every knob
+left on the board. Closing it puts `ttasec` at 0.947.
+
+The suspect is ours: `run_arm` requests `machine_shape="gpuT4x2"`, so our T4 draws are
+**two** GPUs and take the notebook's sharded-prediction branch, while the public runs almost
+certainly take the single-device one. Nobody else is running this configuration.
+
+### What to submit next, and from which version
+
+All three arms' current versions are P100, single-process, and byte-for-byte identical to the
+outputs analysed here (verified by sha256), so the versions below are the ones already read:
+
+```
+ttasecw20   Version 2    the untested arm: ttasec + SEW 0.20
+tta946      Version 3    P100 single-process control -- does the public 0.946 reproduce?
+ttasec      Version 4    P100 reading of our best arm, same hardware as the control
+```
+
+Two and three are the confound killer: a same-GPU pair prices the patch honestly, and
+`tta946` v3 answers whether the missing 0.002 is hardware or the claim.
