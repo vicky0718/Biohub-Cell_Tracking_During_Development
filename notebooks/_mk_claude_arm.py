@@ -122,6 +122,18 @@ def dominance_edits() -> list[tuple[str, str]]:
     rather than a copy -- which is the whole reason it is quoted in full here instead of
     lifted by reference.
     """
+    # v1 of this port died on `KeyError: 'motion_relink_confidence_restored'` after a full
+    # prediction pass. `filter_output_graph` builds `stats` as a PLAIN dict with an explicit
+    # key list -- not a Counter, not a defaultdict -- so the two counters the block increments
+    # with `+=` have to exist first. rishabhr0y's notebook initialises them in its own
+    # version of that dict; ours does not, and the block alone is not the whole port.
+    # The other three counters here are plain assignments and need no initialiser.
+    stats_old = "stats = {'raw_edges': len(raw_edges), 'dropped_nonconsecutive_edges': 0,"
+    stats_new = ("stats = {'raw_edges': len(raw_edges), "
+                 "'motion_relink_confidence_restored': 0, "
+                 "'motion_relink_confidence_displaced': 0, "
+                 "'dropped_nonconsecutive_edges': 0,")
+
     const_old = ("MOTION_RELINK_LEARNED_BONUS = float(os.environ.get("
                  "'BIOHUB_MOTION_RELINK_LEARNED_BONUS', '0.75'))")
     const_new = (const_old + "\n"
@@ -215,7 +227,7 @@ def dominance_edits() -> list[tuple[str, str]]:
 
     enable = ("os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
               "os.environ['BIOHUB_SECONDARY_EDGE_FEATURE_TTA'] = '1'")
-    return [(const_old, const_new), (block_old, block_new),
+    return [(stats_old, stats_new), (const_old, const_new), (block_old, block_new),
             (enable, enable + "\nos.environ['BIOHUB_MOTION_RELINK_CONFIDENCE_DOMINANCE'] = '1'")]
 
 

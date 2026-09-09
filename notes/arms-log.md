@@ -981,3 +981,26 @@ rank it last.
 
 `ttaz16dom` — both top levers stacked, acting at disjoint stages — is pushed and is the arm
 that would have to carry 0.948 on its own if the two are additive.
+
+## `ttadom` v1: a ported block needs the state it writes into
+
+```
+KeyError: 'motion_relink_confidence_restored'
+```
+
+after a full prediction pass. `filter_output_graph` builds `stats` as a **plain dict with an
+explicit key list** — not a Counter, not a defaultdict — so the two counters the dominance
+block increments with `+=` have to be declared before it runs. rishabhr0y initialises them in
+their own copy of that dict; I ported the block and the constants and the flag, and not the
+four words of state the block writes into.
+
+The generalisation, which is the third variant of the same lesson this week
+(`gap44`'s guard, `ttaret85`'s second contract check, now this): **when you lift code from
+another notebook, the block is not the unit. Its declarations, its guards and its counters
+are part of it.** Three of the five counters here are plain assignments and needed nothing;
+only the two `+=` ones bite, which is exactly the kind of asymmetry that survives a careful
+read of the block itself.
+
+Both `ttadom` and `ttaz16dom` are rebuilt with the initialiser and re-queued. `ttaz16dom`'s
+first run was already in flight with the broken version and will die the same way — one
+wasted run, no slot.
