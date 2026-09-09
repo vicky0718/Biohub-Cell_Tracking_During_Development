@@ -1004,3 +1004,63 @@ read of the block itself.
 Both `ttadom` and `ttaz16dom` are rebuilt with the initialiser and re-queued. `ttaz16dom`'s
 first run was already in flight with the broken version and will die the same way — one
 wasted run, no slot.
+
+## The local scorer, run properly, reorders the queue
+
+`notes/60` and `notes/64` set the rule after PROXY_SCORE pointed the wrong way once: a
+train-side number is reported, never used to decide. This is reported. It is also the only
+free instrument we have, and it is worth more when the differences are large.
+
+Scoring every arm's **edge term** against `data/test_gt.json` with `harness/purescore`, weight
+-averaged per dataset by `TP+FP+FN` exactly as `metrics.summarise` does:
+
+```
+arm           edge_J  adj_edge_J  node_recall    ratio     LB
+tta946       0.89198     0.89365       0.9908  -0.0172   0.944
+ttasec       0.89198     0.89367       0.9908  -0.0174   0.945
+ttasecw20    0.89198     0.89355       0.9908  -0.0161      —
+ttaz16       0.89991     0.90187       0.9922  -0.0208      —
+ttadse44     0.89699     0.89771       0.9922  -0.0066      —
+```
+
+**`ttaz16` is +0.0082 on `adj_edge_jaccard` over `ttasec`**, and it gets there the right way:
+node recall rises (0.9908 -> 0.9922, so more GT nodes are actually found) *while* the node
+ratio falls (-0.0174 -> -0.0208, so fewer nodes are predicted in total, which the metric pays
+a bonus for). Recall up and count down at the same time is the shape of a genuine detection
+improvement rather than a threshold trade.
+
+**And it corrects my ranking.** I put `ttadse44` last on the argument that +1.2% nodes costs
+~0.0012 through the ratio term. The local scorer computes that term explicitly, and
+`ttadse44` still comes out **+0.0040** ahead of `ttasec`. The ratio penalty is real and it is
+outweighed. Second, not last.
+
+`ttasecw20` is the only arm that scores *below* its own base here (-0.00012), which is
+consistent with its being a 0.3% change in the noise.
+
+**What this is not.** The four clips are placeholders with sparse annotations (`notes/66`),
+the GT is from movies the checkpoint trained on (`notes/72` §3), and the instrument resolved
+the real `tta946 -> ttasec` difference as +0.00002 against a leaderboard +0.001 — so its
+resolution at the thousandth level is poor. `ttaz16`'s margin is 400x that difference, which
+is why it is worth reporting at all.
+
+An earlier nearest-neighbour distance test showed all four arms identical (median 1.817 um).
+That instrument was simply wrong for the question: distance to the *nearest* prediction is
+dominated by dense regions and cannot see a one-to-one matching change. `match_nodes` can.
+
+### Submission order, revised
+
+```
+1  ttaz16      +0.0082 local, recall up and node count down, graded runtime 433/720 min
+2  ttadse44    +0.0040 local, after paying the ratio penalty the metric charges it
+3  ttadom      running -- rishabhr0y's mechanism, priced 0.941 -> 0.943 by their own naming
+4  ttasecw20   the only arm below its own base locally
+```
+
+## `run_arm`: the mirror of the discard bug
+
+`ttadom` was recorded `failed` eight seconds after a clean push. Both dominance arms were in
+fact running normally at v2. `/kernels/status` reports **the kernel, not the version**, so for
+the first minute after a push it still answers with the previous run's terminal state — and
+v1 had ended in `error`. The version check added this morning catches the discard case; this
+is its mirror on the failure branch. Fixed by waiting for the status to reach `running` or
+`queued` before believing anything it says.

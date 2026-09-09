@@ -124,6 +124,19 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
             time.sleep(180)
             continue
 
+        # Then wait for the NEW run to actually start before believing any status.
+        # `/kernels/status` reports the kernel, not the version, so for the first minute
+        # after a push it still answers with the previous run's terminal state. The version
+        # check above catches the discard case; this catches its mirror, which cost a real
+        # reading the same day: `claude-arm-ttadom` v2 pushed fine and was recorded as
+        # `failed` eight seconds later, because v1 had ended in `error` and that is what
+        # status still said. Both arms were running normally at the time.
+        for _ in range(20):
+            cur = (K.kernel_status(slug).get("status") or "").lower()
+            if cur in ("running", "queued"):
+                break
+            time.sleep(30)
+
         st = wait_for_run(slug, poll=poll)
         if st is None:
             print(f"   push started no run (v{r.get('versionNumber')}) — retrying"
