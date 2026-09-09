@@ -843,3 +843,86 @@ ttasec      Version 4    P100 reading of our best arm, same hardware as the cont
 
 Two and three are the confound killer: a same-GPU pair prices the patch honestly, and
 `tta946` v3 answers whether the missing 0.002 is hardware or the claim.
+
+## The titles lie. Look up the author on the leaderboard.
+
+```
+reyhanksatria     rank 293   0.944    <- author of "biohub-cell-tracking-0-946-lb"
+analyticaobscura  rank 100   0.946    <- author of "biohub-lb-941" and "biohub-lb-942"
+rishabhr0y        rank 108   0.946
+pilkwang          rank  56   0.946    <- the model author
+```
+
+**`reyhanksatria` scores 0.944** — exactly what our unmodified fork of their notebook scored.
+There is no reproduction gap. The title is aspirational, and the notebook's own
+`Verified score progression ... 0.946` is a claim, not a graded result. Yesterday's "-0.002 we
+cannot account for, worth more than every knob left on the board" was a phantom, and the
+`gpuT4x2` sharding theory built on top of it is withdrawn too — `--slice i::n` partitions the
+*video list*, so each movie runs through identical code whether it is sharded or not.
+
+Two things follow, one of them good.
+
+**`ttasec` is +0.001, measured.** Base 0.944 (two independent accounts agree — theirs and
+ours), ours 0.945. No hardware confound, because the confound was invented to explain a gap
+that does not exist. Our secondary edge-feature TTA is the first thing this project invented
+that has scored.
+
+**And we are already past the verifiable public frontier.** Every public notebook whose score
+we can check tops out at 0.944. We are at 0.945, rank 272. There is nothing left to fork:
+a scan of 906 kernels finds the only titles above 0.946 are July's metric-hack notebooks and
+the August `948` branch `notes/68` proved inert. **0.948 has to be built.**
+
+## Three arms toward it, and where each came from
+
+### `ttaz16` — the symmetry the model was trained on and nobody averages over
+
+The support pack ships its own training code. `scripts/augmentations.py`:
+
+> *"Random spatial flip: samples uniformly from all 8 axis-aligned symmetries. Each of Z, Y, X
+> is independently flipped with probability 0.5."*
+
+Two augmentations were used, brightness and flip, and the flip group is the full {Z, Y, X}
+product. Every transform in the public eight-view TTA acts on `(-2, -1)` — Y and X. **Z is
+never averaged over, and Z is the axis the model was explicitly trained to be invariant to.**
+The rot90 and transpose views that *are* used are not in the training set at all; they work on
+Y/X isotropy, not on anything the model was taught.
+
+So this is the lever that produced both gains in this lineage — more of the ensemble the model
+already supports — pointed at the one direction nobody has tried. `temporal_unet.py` gives the
+layout as `(B, T, C_out, Z, Y, X)`, so `-3` is Z. Sixteen views, `_nv` prints 16, primary
+predict time doubles — which is why it is being measured for RUNTIME on the visible clips
+before it is ever proposed for a slot.
+
+### `ttadse44` — the threshold identical in all 56 public kernels
+
+`DUAL_SEED_EDGE_THRESHOLD` 0.48, never swept by anyone, gating every candidate edge in every
+frame pair. Downward first, on Soheil's diagnosis (rank 2): *"many 'linking' issues actually
+originated earlier during node selection."*
+
+### `ttadom` — ported from someone actually at 0.946
+
+Every notebook in this lineage ends its edge stage with
+
+```python
+motion_edges = motion_relink_edges(nodes_by_id, stats, learned_edge_probs)
+if motion_edges:
+    stats['motion_relink_replaced_raw_edges'] = len(edges)
+    edges = motion_edges          # the entire ILP edge set, discarded
+```
+
+and our own `run_stats` prices it: `motion_relink_replaced_raw_edges` is **67,249** on
+`6bba_05db0fb1`. The motion model overwrites essentially every edge the ILP produced.
+
+`rishabhr0y` (rank 108, 0.946) replaces that with a reconciliation — a raw ILP edge survives
+if it **strictly beats every conflicting motion edge at both endpoints**, relative confidence
+only, strongest first so the graph stays one-parent/one-child, with a sparsity guard. Their
+sibling notebook is named `biohub-edge-density-adaptive-on-0943` and is built on this one from
+the same 0.941 base, which prices it: **0.941 -> 0.943**.
+
+It is orthogonal to everything we have measured. `ttasec` changes what the association model
+*sees*; this changes what happens to its output when the motion model disagrees. Ported by
+translation, not copy — their notebook uses double quotes and carries a
+`division_reference_motion_edges` line ours does not.
+
+**The arithmetic to the target:** 0.945 + dominance (+0.002) = 0.947, plus either of the other
+two = 0.948, which is rank 37.

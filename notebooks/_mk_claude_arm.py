@@ -87,6 +87,217 @@ def guard(key: str, val: str) -> str:
     return f'    "BIOHUB_{key}": {val},'
 
 
+def dominance_edits() -> list[tuple[str, str]]:
+    """Port rishabhr0y's motion-relink confidence dominance onto our base.
+
+    Every notebook in this lineage ends its edge stage with
+
+        motion_edges = motion_relink_edges(nodes_by_id, stats, learned_edge_probs)
+        if motion_edges:
+            stats['motion_relink_replaced_raw_edges'] = len(edges)
+            edges = motion_edges          # <- the entire ILP edge set, discarded
+
+    and our own `run_stats` shows what that costs: `motion_relink_replaced_raw_edges` is
+    67,249 on `6bba_05db0fb1`, i.e. **the motion model overwrites essentially every edge the
+    ILP produced.** Not some. All of them.
+
+    `rishabhr0y` -- rank 108 at 0.946, four ranks above `analyticaobscura`, whose published
+    notebooks we have been forking all week -- replaces that with a reconciliation: a raw ILP
+    edge survives if it *strictly beats every conflicting motion edge at both of its
+    endpoints*. Relative confidence only, no absolute threshold, strongest first so the graph
+    stays one-parent/one-child, and a sparsity guard that abandons the whole reconciliation on
+    a frame group with too few dominant candidates.
+
+    Their own naming prices it: the sibling notebook is
+    `biohub-edge-density-adaptive-on-0943`, built *on* the result of this one, and the base
+    both share is the 0.941 config. **0.941 -> 0.943.**
+
+    Why this and not another knob: it is orthogonal to everything we have measured. `ttasec`
+    changes what the association model *sees*; this changes what happens to the association
+    model's output when the motion model disagrees with it. Nothing in the TTA family touches
+    the ILP-versus-motion arbitration, and nothing in the 0.946 lineage does either.
+
+    Three edits. Their notebook is written with double quotes and ours with single, and it
+    carries a `division_reference_motion_edges` line ours does not, so this is a translation
+    rather than a copy -- which is the whole reason it is quoted in full here instead of
+    lifted by reference.
+    """
+    const_old = ("MOTION_RELINK_LEARNED_BONUS = float(os.environ.get("
+                 "'BIOHUB_MOTION_RELINK_LEARNED_BONUS', '0.75'))")
+    const_new = (const_old + "\n"
+                 "MOTION_RELINK_CONFIDENCE_DOMINANCE = (\n"
+                 "    os.environ.get('BIOHUB_MOTION_RELINK_CONFIDENCE_DOMINANCE', '0') != '0'\n"
+                 ")\n"
+                 "MOTION_RELINK_DOMINANCE_MIN_PER_FRAME = float(\n"
+                 "    os.environ.get('BIOHUB_MOTION_RELINK_DOMINANCE_MIN_PER_FRAME', '1.0')\n"
+                 ")")
+
+    block_old = (
+        "        if motion_edges:\n"
+        "            stats['motion_relink_replaced_raw_edges'] = len(edges)\n"
+        "            edges = motion_edges\n"
+        "        else:\n"
+        "            stats['motion_relink_fallback_raw'] = 1\n")
+    block_new = (
+        "        if motion_edges:\n"
+        "            stats['motion_relink_replaced_raw_edges'] = len(edges)\n"
+        "\n"
+        "            if MOTION_RELINK_CONFIDENCE_DOMINANCE:\n"
+        "                motion_by_source: dict[int, list[dict[str, object]]] = {}\n"
+        "                motion_by_target: dict[int, list[dict[str, object]]] = {}\n"
+        "\n"
+        "                for motion_edge in motion_edges:\n"
+        "                    motion_by_source.setdefault("
+        "int(motion_edge['source_id']), []).append(motion_edge)\n"
+        "                    motion_by_target.setdefault("
+        "int(motion_edge['target_id']), []).append(motion_edge)\n"
+        "\n"
+        "                def _finite_prob(edge: dict[str, object]) -> float:\n"
+        "                    try:\n"
+        "                        value = float(edge.get('edge_prob', 0.0))\n"
+        "                    except (TypeError, ValueError):\n"
+        "                        return 0.0\n"
+        "                    return value if np.isfinite(value) else 0.0\n"
+        "\n"
+        "                dominance_candidates: list[dict[str, object]] = []\n"
+        "\n"
+        "                for raw_edge in edges:\n"
+        "                    source_id = int(raw_edge['source_id'])\n"
+        "                    target_id = int(raw_edge['target_id'])\n"
+        "                    conflicts = [edge for edge in (motion_by_source.get(source_id, [])"
+        " + motion_by_target.get(target_id, []))"
+        " if (int(edge['source_id']), int(edge['target_id'])) != (source_id, target_id)]\n"
+        "\n"
+        "                    if not conflicts:\n"
+        "                        continue\n"
+        "                    raw_prob = _finite_prob(raw_edge)\n"
+        "\n"
+        "                    if raw_prob > max(_finite_prob(edge) for edge in conflicts):\n"
+        "                        dominance_candidates.append(raw_edge)\n"
+        "                stats['motion_relink_confidence_candidates'] = len(dominance_candidates)\n"
+        "                dominance_minimum = int(math.ceil("
+        "stats['motion_relink_frames'] * MOTION_RELINK_DOMINANCE_MIN_PER_FRAME))\n"
+        "                stats['motion_relink_confidence_minimum'] = dominance_minimum\n"
+        "\n"
+        "                if len(dominance_candidates) < dominance_minimum:\n"
+        "                    stats['motion_relink_confidence_sparse_group_skipped'] = 1\n"
+        "                    dominance_candidates = []\n"
+        "                reconciled = list(motion_edges)\n"
+        "\n"
+        "                for raw_edge in sorted("
+        "dominance_candidates, key = _finite_prob, reverse = True):\n"
+        "                    source_id = int(raw_edge['source_id'])\n"
+        "                    target_id = int(raw_edge['target_id'])\n"
+        "                    live_conflicts = [edge for edge in reconciled"
+        " if (int(edge['source_id']) == source_id"
+        " or int(edge['target_id']) == target_id)"
+        " and (int(edge['source_id']), int(edge['target_id'])) != (source_id, target_id)]\n"
+        "\n"
+        "                    if not live_conflicts:\n"
+        "                        continue\n"
+        "                    raw_prob = _finite_prob(raw_edge)\n"
+        "\n"
+        "                    if raw_prob <= max(_finite_prob(edge) for edge in live_conflicts):\n"
+        "                        continue\n"
+        "                    reconciled = [edge for edge in reconciled"
+        " if edge not in live_conflicts]\n"
+        "\n"
+        "                    if not any(int(edge['source_id']) == source_id"
+        " and int(edge['target_id']) == target_id for edge in reconciled):\n"
+        "                        reconciled.append(dict(raw_edge, confidence_dominance = 1))\n"
+        "                    stats['motion_relink_confidence_restored'] += 1\n"
+        "                    stats['motion_relink_confidence_displaced'] += len(live_conflicts)\n"
+        "                edges = reconciled\n"
+        "            else:\n"
+        "                edges = motion_edges\n"
+        "        else:\n"
+        "            stats['motion_relink_fallback_raw'] = 1\n")
+
+    enable = ("os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
+              "os.environ['BIOHUB_SECONDARY_EDGE_FEATURE_TTA'] = '1'")
+    return [(const_old, const_new), (block_old, block_new),
+            (enable, enable + "\nos.environ['BIOHUB_MOTION_RELINK_CONFIDENCE_DOMINANCE'] = '1'")]
+
+
+def z_tta_edit() -> tuple[str, str]:
+    """Average the primary model over the Z-flip as well: eight views become sixteen.
+
+    The whole public lineage runs an "eight-view D4" TTA, and every one of those eight
+    transforms acts on dims (-2, -1) alone -- Y and X. Flips of Y, X and YX, two in-plane
+    rot90s, a transpose, an anti-transpose. **Z is never touched.**
+
+    The training code is in the support pack, and `scripts/augmentations.py` says what the
+    model actually saw:
+
+        def flip_augment(...):
+            \"\"\"Random spatial flip: samples uniformly from all 8 axis-aligned symmetries.
+            Each of Z, Y, X is independently flipped with probability 0.5.\"\"\"
+
+    So Z-flip is a symmetry this model was **explicitly trained to be invariant to**, and it
+    is the one symmetry no public notebook averages over. The reverse is also worth noting:
+    the rot90 and transpose views the public TTA does use are *not* in the training set at
+    all -- they work because Y and X are isotropic, not because the model learned them.
+    Z-flip is the better-justified transform of the two kinds, and it is missing.
+
+    `temporal_unet.py` states the layout as `(B, T, C_out, Z, Y, X)`, so `-3` is Z, which is
+    why `.flip(-3)` is the right un-transform and why the author's `(-2, -1)` is Y and X.
+
+    Z-flip commutes with every in-plane transform, so the sixteen-view average is the eight
+    existing views plus each of them applied to `imgs.flip(-3)` and mapped back the same way
+    with a trailing `.flip(-3)`. `_nv` reaches 16 and the run prints it, so an inert version
+    announces itself. Cost is one extra encode per existing view -- the primary predict pass
+    doubles, which is why this arm is measured on the visible clips for RUNTIME before it is
+    ever proposed for a slot: the graded set is ~17x and the ceiling is 720 minutes.
+    """
+    old = ("    del imgs_at, det_at, _u_at\n    _nv += 1\n\n"
+           "    for f in range(W):\n        det_logits[f] = det_logits[f] / _nv\n")
+    new = ("    del imgs_at, det_at, _u_at\n    _nv += 1\n\n"
+           "    _zbase = imgs.flip(-3)\n"
+           "    _u_z, _d_z = model.encode(_zbase)\n\n"
+           "    for f in range(W):\n"
+           "        det_logits[f] = det_logits[f] + _d_z[f].flip(-3)\n\n"
+           "    if _edge_tta:\n"
+           "        _unet_acc += _u_z.flip(-3)\n"
+           "    del _u_z, _d_z\n"
+           "    _nv += 1\n\n"
+           "    for _zd in [(-1,), (-2,), (-2, -1)]:\n"
+           "        _u_z, _d_z = model.encode(_zbase.flip(_zd))\n\n"
+           "        for f in range(W):\n"
+           "            det_logits[f] = det_logits[f] + _d_z[f].flip(_zd).flip(-3)\n\n"
+           "        if _edge_tta:\n"
+           "            _unet_acc += _u_z.flip(_zd).flip(-3)\n"
+           "        del _u_z, _d_z\n"
+           "        _nv += 1\n\n"
+           "    for _zk in (1, 3):\n"
+           "        _u_z, _d_z = model.encode(torch.rot90(_zbase, _zk, dims = (-2, -1)))\n\n"
+           "        for f in range(W):\n"
+           "            det_logits[f] = det_logits[f] + torch.rot90(_d_z[f], -_zk,"
+           " dims = (-2, -1)).flip(-3)\n\n"
+           "        if _edge_tta:\n"
+           "            _unet_acc += torch.rot90(_u_z, -_zk, dims = (-2, -1)).flip(-3)\n"
+           "        del _u_z, _d_z\n"
+           "        _nv += 1\n"
+           "    _u_z, _d_z = model.encode(_zbase.transpose(-1, -2))\n\n"
+           "    for f in range(W):\n"
+           "        det_logits[f] = det_logits[f] + _d_z[f].transpose(-1, -2).flip(-3)\n\n"
+           "    if _edge_tta:\n"
+           "        _unet_acc += _u_z.transpose(-1, -2).flip(-3)\n"
+           "    del _u_z, _d_z\n"
+           "    _nv += 1\n"
+           "    _u_z, _d_z = model.encode(torch.rot90(_zbase, 1,"
+           " dims = (-2, -1)).transpose(-1, -2))\n\n"
+           "    for f in range(W):\n"
+           "        det_logits[f] = det_logits[f] + torch.rot90(_d_z[f].transpose(-1, -2),"
+           " -1, dims = (-2, -1)).flip(-3)\n\n"
+           "    if _edge_tta:\n"
+           "        _unet_acc += torch.rot90(_u_z.transpose(-1, -2), -1,"
+           " dims = (-2, -1)).flip(-3)\n"
+           "    del _u_z, _d_z, _zbase\n"
+           "    _nv += 1\n\n"
+           "    for f in range(W):\n        det_logits[f] = det_logits[f] / _nv\n")
+    return old, new
+
+
 def sec_tta_edits() -> list[tuple[str, str]]:
     """Mirror reyhanksatria's +0.005 edge-feature TTA onto the SECONDARY model.
 
@@ -576,6 +787,98 @@ ARMS = {
                 "#               encodes still throw away all eight feature maps. Free at\n"
                 "#               runtime (the passes already happen) and it raises the run if\n"
                 "#               the features do not move, so it cannot be silently inert."),
+    },
+    # ------------------------------------------- the symmetry the model learned and nobody uses
+    # GRADED 2026-09-09: `ttasec` 0.945, `tta946` 0.944, rank 272 of 3,281. The public
+    # frontier is 0.946 and there is nothing above it to fork -- a scan of 906 kernels finds
+    # the only >=0.947 titles are the July metric-hack notebooks and the Aug-30 `948` branch
+    # `notes/68` proved inert. **0.948 is rank 37 and has to be built, not copied.**
+    #
+    # The support pack ships its training code, and `scripts/augmentations.py` is the find:
+    #
+    #     def flip_augment(...):
+    #         """Random spatial flip: samples uniformly from all 8 axis-aligned symmetries.
+    #         Each of Z, Y, X is independently flipped with probability 0.5."""
+    #
+    # Two augmentations were used, brightness and flip, and the flip group is the full
+    # {Z, Y, X} product. Meanwhile every transform in the public eight-view TTA acts on
+    # `(-2, -1)` -- Y and X. **Z is never averaged over, and it is the axis the model was
+    # trained to be invariant to.** The rot90 and transpose views that ARE used are not in
+    # the training set at all; they work on isotropy, not on anything the model was taught.
+    #
+    # So this is the same lever that produced the two gains in this lineage -- more of the
+    # ensemble the model already supports -- pointed at the one direction nobody has tried.
+    # It sits on `ttasec` because that is our best measured arm and the changes are disjoint:
+    # `ttasec` averages the SECONDARY model's features over its existing views, `z16` widens
+    # the PRIMARY model's view set.
+    #
+    # RUNTIME IS THE RISK, not correctness. The primary predict pass doubles. `tta946` took
+    # 27 min on four clips against a ~17x graded set and a 720 min ceiling, so this arm is
+    # run to MEASURE `predict_minutes_total` first and is not proposed for a slot until that
+    # number is in. If it does not fit, the fallback is the same edit with only the single
+    # pure Z-flip view added (nine views, +12%).
+    "ttaz16": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [z_tta_edit()],
+        "why": ("sixteen-view TTA: the public eight are all in-plane (Y, X), and the model\n"
+                "#               was trained with flips over Z as well. Adds the Z-flip of every\n"
+                "#               existing view, on top of ttasec. Primary predict time doubles."),
+    },
+    # ------------------------------- the notebook titles lie, and the board says who to copy
+    # The decisive check, and it should have been the first one: **look up the author on the
+    # leaderboard**, not at the title of their notebook.
+    #
+    #     reyhanksatria    rank 293   0.944     <- author of "biohub-cell-tracking-0-946-lb"
+    #     analyticaobscura rank 100   0.946     <- author of "biohub-lb-941" and "biohub-lb-942"
+    #     rishabhr0y       rank 108   0.946
+    #     pilkwang         rank  56   0.946     <- the model author
+    #
+    # `reyhanksatria` scores **0.944**, exactly what our unmodified fork of their notebook
+    # scored. There is no reproduction gap; the title is aspirational and the notebook's own
+    # "Verified score progression ... 0.946" is a claim, not a graded result. My "-0.002 we
+    # cannot account for, worth more than every knob on the board" was chasing a phantom.
+    #
+    # It also settles `ttasec` cleanly. Base 0.944 -> ours 0.945 with two independent runs
+    # agreeing on the base, so **the secondary edge-feature TTA is +0.001, measured**.
+    #
+    # And it redirects the copying. `analyticaobscura` publishes at 0.941/0.942 while sitting
+    # at 0.946, so their public work is not their best. `rishabhr0y` publishes mechanisms, and
+    # this is the one worth having.
+    "ttadom": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + dominance_edits(),
+        "why": ("ttasec + rishabhr0y's motion-relink confidence dominance. Today the motion\n"
+                "#               model overwrites EVERY ILP edge (67,249 on one clip); this keeps\n"
+                "#               a raw edge that strictly beats every conflicting motion edge.\n"
+                "#               Their own naming prices it at 0.941 -> 0.943."),
+    },
+    # ---------------------------------------- the threshold every notebook inherited at 0.48
+    # `notes/65` §3's best category: a value identical in all 56 kernels mined, never swept,
+    # just carried forward from whoever wrote the first notebook -- and this one gates **every
+    # candidate edge in every frame pair**, which makes it the largest untouched population in
+    # the pipeline. `dse44` was built for the lb941 base and never ran; the base has moved on
+    # twice since, and the argument is stronger now, not weaker: `ttasec` changed the very
+    # logits this threshold cuts, so a cut tuned for the old ones is the wrong cut.
+    #
+    # Downward first, on Soheil's diagnosis (rank 2, 0.966): *"many 'linking' issues actually
+    # originated earlier during node selection"* -- missing endpoints, not bad associations.
+    # A more permissive edge threshold is the direction that addresses that.
+    #
+    # Unguarded, so one env edit; the receipt's hardcoded `edge_candidate_threshold` moves
+    # with it so the artifact does not claim a value the run did not use.
+    "ttadse44": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            ("os.environ['BIOHUB_DUAL_SEED_EDGE_THRESHOLD'] = '0.48'",
+             "os.environ['BIOHUB_DUAL_SEED_EDGE_THRESHOLD'] = '0.44'"),
+            ("'edge_candidate_threshold': 0.48,", "'edge_candidate_threshold': 0.44,"),
+        ],
+        "why": ("ttasec + DUAL_SEED_EDGE_THRESHOLD 0.48 -> 0.44. Identical in all 56 public\n"
+                "#               kernels and never swept, and it gates every candidate edge in\n"
+                "#               every frame pair -- the largest untouched population there is."),
     },
     # -------------------------------------- one movie loses the fusion; the other three do not
     # **Read the corrected version of this. The first one was wrong.**
