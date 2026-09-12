@@ -100,6 +100,48 @@ _edits = [
      'from dataspec import WEIGHTS_PATH  # noqa: F401\\n'
      'WEIGHTS_PATH = Path("/kaggle/working/claude_weights")\\n'
      'WEIGHTS_PATH.mkdir(parents=True, exist_ok=True)\\n'),
+    # `--unet-weights` restores the BACKBONE ONLY, and from this checkpoint it restores
+    # nothing at all. The trainer does
+    #
+    #     unet = TemporalUNet3D(...)
+    #     unet.load_state_dict(torch.load(unet_weights), strict=False)
+    #
+    # while `edge_predictor_best.pth` was saved from the whole `UNetNodeTransformer`, so its
+    # keys are `unet.enc...`, `node_transformer...`, `edge_head...`. Loaded into a bare
+    # TemporalUNet3D every one of those is "unexpected" and every backbone parameter is
+    # "missing": strict=False turns a total mismatch into a silent no-op, and the run becomes
+    # a from-scratch training that looks exactly like a fine-tune. The flag is not wrong --
+    # it is for a UNet-only pretrain -- it is the wrong flag for this file.
+    #
+    # Restore the FULL model instead, association head included, and refuse to continue if
+    # the restore did not actually take.
+    ("""    model = UNetNodeTransformer(
+        unet=unet,
+        unet_out_channels=unet_out_channels,
+        pos_feat_dim=pos_feat_dim,
+    ).to(device)
+""",
+     """    model = UNetNodeTransformer(
+        unet=unet,
+        unet_out_channels=unet_out_channels,
+        pos_feat_dim=pos_feat_dim,
+    ).to(device)
+
+    if unet_weights is not None:
+        _full = torch.load(unet_weights, map_location="cpu", weights_only=True)
+        _missing, _unexpected = model.load_state_dict(_full, strict=False)
+        _restored = len(_full) - len(_unexpected)
+        print(f"  FULL restore from {unet_weights}: {_restored}/{len(_full)} tensors "
+              f"loaded, {len(_missing)} left at init, {len(_unexpected)} unused",
+              flush=True)
+
+        if _restored < len(_full) // 2 and os.environ.get(
+                "BIOHUB_TRAIN_ALLOW_SCRATCH", "0") == "0":
+            raise RuntimeError(
+                f"only {_restored} of {len(_full)} checkpoint tensors matched the model -- "
+                "this would train from scratch while looking like a fine-tune"
+            )
+"""),
     # The most valuable line in the run: score the checkpoint we are about to fine-tune on
     # the holdout BEFORE touching it, so every epoch after is measured against it.
     ('    for epoch in pbar:\\n        t0 = time.monotonic()\\n',
@@ -173,8 +215,19 @@ _cmd = [
     '--batch-size', os.environ.get('BIOHUB_TRAIN_BATCH', '2'),
     '--max-iters', os.environ.get('BIOHUB_TRAIN_MAX_ITERS', '300'),
     '--num-workers', os.environ.get('BIOHUB_TRAIN_WORKERS', '2'),
-    '--unet-out-channels', '32', '--unet-layers', '32,64,128',
-    '--downsample', '1,4,4', '--window-size', '2', '--pool-kernel-um', '5.0',
+    # Capacity. The defaults are the pretrained shapes, and they are the defaults for a
+    # reason: change either one and the checkpoint's tensors stop matching, the full restore
+    # refuses (BIOHUB_TRAIN_ALLOW_SCRATCH overrides), and the run becomes a from-scratch
+    # training that has to beat a 400-epoch model inside what is left of the quota.
+    #
+    # BIOHUB_TRAIN_DOWNSAMPLE is the one capacity knob that costs nothing: convolutions do
+    # not care about spatial extent, so '1,2,2' keeps every pretrained weight and gives the
+    # detector 4x the resolution in Y and X. notes/04 measured detection as essentially the
+    # whole contest. It costs ~4x the compute and memory, not parameters.
+    '--unet-out-channels', os.environ.get('BIOHUB_TRAIN_OUT_CH', '32'),
+    '--unet-layers', os.environ.get('BIOHUB_TRAIN_LAYERS', '32,64,128'),
+    '--downsample', os.environ.get('BIOHUB_TRAIN_DOWNSAMPLE', '1,4,4'),
+    '--window-size', '2', '--pool-kernel-um', '5.0',
     '--single-gpu',
 ]
 print(' '.join(_cmd), flush=True)

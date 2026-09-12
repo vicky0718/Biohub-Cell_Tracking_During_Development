@@ -206,3 +206,58 @@ memory as well. The P100 guard is now informational.
 
 Five failures, every one caught in under four minutes, and the run now gets: mount ->
 holdout -> augmentation -> trainer patches -> model load -> forward pass.
+
+## The fine-tune was not fine-tuning anything
+
+Looking at the trainer to answer "can we add parameters" turned up something worse.
+`--unet-weights` is loaded like this:
+
+```python
+unet = TemporalUNet3D(...)
+state = torch.load(unet_weights, map_location="cpu", weights_only=True)
+missing, unexpected = unet.load_state_dict(state, strict=False)
+```
+
+into the **bare backbone**. But `edge_predictor_best.pth` was saved from the whole
+`UNetNodeTransformer`, so its keys are `unet.enc...`, `node_transformer...`, `edge_head...`.
+Loaded into a `TemporalUNet3D` every one of those is *unexpected* and every backbone
+parameter is *missing* — and `strict=False` turns a total mismatch into a silent no-op.
+
+**The run would have trained from scratch while printing everything a fine-tune prints.**
+The flag is not broken; it is for a UNet-only pretrain, and it is the wrong flag for this
+file. This is `notes/68`'s trap — an argument that names something real, resolves to nothing,
+and falls back quietly — in the one place where it would have cost days rather than a run.
+
+Fixed by restoring the **full** model after construction, association head included, with a
+guard that refuses to continue if fewer than half the checkpoint's tensors matched. The
+number is printed either way:
+
+```
+FULL restore from ...: N/M tensors loaded, K left at init, U unused
+```
+
+## Adding parameters: what it costs
+
+```
+layers              out_ch   approx params  vs default   restore
+[32, 64, 128]           32       1,388,544       1.00x   full
+[48, 96, 192]           32       3,101,168       2.23x   NONE - from scratch
+[64, 128, 256]          32       5,492,704       3.96x   NONE - from scratch
+[32, 64, 128]           64       1,416,224       1.02x   NONE - from scratch
+```
+
+(ratios only; the real model is 2,076,706 parameters.)
+
+Every widening changes tensor shapes, so the checkpoint stops matching and the restore guard
+refuses — correctly, because a wider model started from random has to beat a **400-epoch**
+checkpoint inside what is left of a 30 h/week quota, on a P100 that is slower than the T4 the
+333 h estimate in `notes/33` was based on. The knobs exist (`BIOHUB_TRAIN_LAYERS`,
+`BIOHUB_TRAIN_OUT_CH`, and `BIOHUB_TRAIN_ALLOW_SCRATCH` to override the guard) but that is a
+different project, not a fine-tune.
+
+**The capacity knob that keeps the weights is resolution.** `BIOHUB_TRAIN_DOWNSAMPLE` from
+`1,4,4` to `1,2,2`: convolutions do not care about spatial extent, so every pretrained tensor
+still loads, and the detector sees **4x the resolution in Y and X**. It costs ~4x compute and
+memory and **zero** parameters. `notes/04` measured detection as essentially the whole
+contest, and `ttaz16` — the only arm whose local numbers moved node recall and node count in
+the right directions together — was also a detection change.
