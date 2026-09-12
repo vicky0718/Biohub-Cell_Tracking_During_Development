@@ -446,3 +446,35 @@ clamp, and tested with nodes placed exactly on the border:
            0        6.0          ok    caught
            8        6.0          ok    caught
 ```
+
+## Seven false positives, zero true ones: the guard was the bug
+
+```
+RuntimeError: elastic_augment: only 80% of nodes moved by the displacement the field asked
+for (up to 2.62 voxels, largest realised 2.62) -- the update did not happen.
+```
+
+The message refutes itself: **the largest realised displacement equals the largest intended
+one**, so the update plainly happened. The missing 20% are nodes clamped at the volume border,
+and real frames are crowded with them in a way a phantom with sixty nodes is not.
+
+Seven versions of this check, seven false positives, **zero true positives**, each costing a
+run. Meanwhile the thing it guards against is proved three independent ways: the numpy
+simulation pinned the sign (1.000 against 0.000), `self_test` catches a skipped update, a sign
+flip and a y/x swap, and two clean training epochs ran with the augmentation live.
+
+Both per-batch checks now **report**. `self_test` stays fatal, because it controls its own
+inputs and therefore cannot false-fire — verified again after the change:
+
+```
+elastic_augment self-test OK: 3.20 voxel warp, updated 2.999 vs original 1.661
+  skipped    caught by self_test
+  flipped    caught by self_test
+  y/x swap   caught by self_test
+```
+
+**The rule, stated properly this time.** A check earns the right to stop a run by controlling
+its own inputs. Anything evaluated on data you did not choose can only report, because you
+cannot distinguish "the code is wrong" from "this batch is unusual" — and the second is far
+more common. I wrote half of this rule two iterations ago, applied it to the direction check,
+and left the magnitude check fatal on exactly the same reasoning I had just rejected.

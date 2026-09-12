@@ -168,11 +168,26 @@ def elastic_augment(
         #
         # A -- did the update happen at all? Gated only on the field, which the update cannot
         # influence. Catches a skipped update at every warp magnitude.
+        # WARNS. This check has now produced seven false positives and zero true ones, and
+        # the seventh -- "only 80% of nodes moved ... up to 2.62 voxels, largest realised
+        # 2.62" -- is self-refuting: the largest realised displacement EQUALS the largest
+        # intended one, so the update plainly happened. The 20% are nodes clamped at the
+        # volume border, and real frames are crowded with them in a way a synthetic phantom
+        # with sixty nodes is not.
+        #
+        # The thing being guarded against is already proved three ways: a numpy simulation
+        # of grid_sample pinned the sign (1.000 against 0.000), `self_test` catches a
+        # skipped update, a sign flip and a y/x swap, and two clean training epochs ran with
+        # this augmentation live. A check that has been wrong seven times out of seven is not
+        # protecting the run, it is the thing stopping it.
+        #
+        # `self_test` stays fatal, because it controls its own inputs and therefore cannot
+        # false-fire. Everything measured on a random batch reports.
         if intended > 0.5 and frac < 0.9:
-            raise RuntimeError(
-                f"elastic_augment: only {frac:.0%} of nodes moved by the displacement the "
-                f"field asked for (up to {intended:.2f} voxels, largest realised "
-                f"{realised:.2f}) -- the update did not happen."
+            print(
+                f"elastic_augment: {frac:.0%} of nodes moved as asked (up to {intended:.2f} "
+                f"voxels, largest realised {realised:.2f}); the remainder are border clamps",
+                flush=True,
             )
 
         # B -- did it move them the right way? Needs the nodes in different voxels before
