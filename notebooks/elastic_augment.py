@@ -48,7 +48,7 @@ def elastic_augment(
     max_shift_vox: float = 3.0,
     control: int = 4,
     prob: float = 0.5,
-    check_drop: float = 0.35,
+    check_margin: float = 0.05,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """Deform Y and X by a smooth random field, carrying the node coordinates with it.
 
@@ -73,9 +73,9 @@ def elastic_augment(
         rather than regularise it.
     prob : float
         Probability of applying the deformation at all.
-    check_drop : float
-        Maximum tolerated fall in mean intensity at the node coordinates. The check exists to
-        catch a coordinate update that did not follow the image; see the module docstring.
+    check_margin : float
+        How much better the updated coordinates must score than the un-updated ones on the
+        warped image. A skipped update scores exactly the same; a correct one is far ahead.
     """
     if rng.random() >= prob:
         return imgs, coords, masks
@@ -125,23 +125,40 @@ def elastic_augment(
         out_coords[..., 1].clamp_(0, Y - 1)
         out_coords[..., 2].clamp_(0, X - 1)
 
-        # Did the coordinates follow the image? Node positions are cell centres and therefore
-        # bright; if the update had the wrong sign, or the wrong axis order, or was skipped,
-        # intensity at the new coordinates collapses. A crash here is the point of the file.
-        # Measured as CONTRAST -- node intensity over mean image intensity -- not as raw
-        # intensity. A unit test on isolated blobs (background 0) separates a correct update
-        # from a disabled one by 0.89x against 0.49x, but real frames are quantile-normalised
-        # with a bright background, which pulls both ratios toward 1 and closes that gap.
-        # Contrast does not have that problem: if the coordinates stop tracking the image the
-        # nodes land on background and the ratio collapses toward 1 whatever the background is.
-        before = _contrast(imgs, coords, m)
-        after = _contrast(out_imgs, out_coords, m)
-        if before > 1.0 + 1e-6 and (after - 1.0) < (before - 1.0) * (1.0 - check_drop):
-            raise RuntimeError(
-                "elastic_augment: node-to-background contrast fell from "
-                f"{before:.4f} to {after:.4f} after warping -- the coordinates did not "
-                "follow the image."
-            )
+        # Did the coordinates follow the image? Compare the warped image sampled at the
+        # UPDATED coordinates against the same warped image sampled at the ORIGINAL ones.
+        #
+        # The first version compared before-warp against after-warp and fired on real data at
+        # contrast 108.3 -> 63.1, a false positive: at downsample (1, 4, 4) a cell is barely
+        # a voxel across in Y and X, and bilinear resampling of a one-voxel peak loses ~40%
+        # of its amplitude no matter how right the coordinates are. My synthetic test used
+        # sigma=2 blobs and lost only 13%, which is exactly why it passed.
+        #
+        # Measuring both terms on the SAME warped image removes interpolation loss from the
+        # comparison entirely. A skipped update makes the two identical by construction; a
+        # wrong-signed one makes the updated coordinates worse than the originals. Only a
+        # correct update is clearly better, and only when the field actually moved something,
+        # which is why the check is gated on a real displacement.
+        # Gated on the displacement the field INTENDED at the nodes, not on the one the
+        # coordinates actually moved. Gating on the realised shift is circular: an update
+        # that never happened leaves the shift at zero, the gate never opens, and the check
+        # passes -- which is what the first rewrite did, silently, in six of six test cases.
+        intended = float(torch.maximum(dy[m].abs().amax(), dx[m].abs().amax()))
+        realised = float((out_coords - coords).abs().amax())
+        if intended > 0.5:
+            if realised < intended * 0.5:
+                raise RuntimeError(
+                    f"elastic_augment: the field moves nodes by up to {intended:.2f} voxels "
+                    f"but the coordinates moved {realised:.2f} -- the update did not happen."
+                )
+            good = _contrast(out_imgs, out_coords, m)
+            stale = _contrast(out_imgs, coords, m)
+            if good < stale * (1.0 + check_margin):
+                raise RuntimeError(
+                    f"elastic_augment: after a {realised:.2f} voxel warp the updated "
+                    f"coordinates score {good:.3f} against {stale:.3f} for the original "
+                    "ones -- the coordinates did not follow the image."
+                )
     return out_imgs, out_coords, masks
 
 

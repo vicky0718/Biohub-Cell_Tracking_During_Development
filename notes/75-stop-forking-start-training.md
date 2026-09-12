@@ -261,3 +261,54 @@ still loads, and the detector sees **4x the resolution in Y and X**. It costs ~4
 memory and **zero** parameters. `notes/04` measured detection as essentially the whole
 contest, and `ttaz16` — the only arm whose local numbers moved node recall and node count in
 the right directions together — was also a detection change.
+
+## The baseline line did its job on its first run
+
+```
+UNet weights: 64 missing, 136 unexpected
+Model parameters: 2,076,706
+BASELINE epoch -1 (public checkpoint, no training) | acc=0.0000 | recall=0.0000 | score=0.0000
+```
+
+**Every one of the 64 backbone parameters missing and all 136 checkpoint tensors unused** —
+the prediction above, confirmed in the wild. The "public checkpoint" scored **zero** on the
+holdout because nothing was loaded into it.
+
+That is the entire argument for the baseline eval. Without it, an epoch reaching acc 0.6
+would have read as a triumphant fine-tune, and we would have shipped a from-scratch model
+trained for 30 short epochs believing it was a 400-epoch checkpoint plus elastic. The full
+restore is now in place with a hard floor at half the tensors.
+
+## The augmentation guard fired — and it was the guard that was wrong, twice
+
+```
+RuntimeError: elastic_augment: node-to-background contrast fell from 108.3021 to 63.1416
+```
+
+Contrast 108 means a near-black background, and the drop was 42% against a 35% threshold.
+Not a coordinate bug: at `downsample = (1, 4, 4)` a cell is barely a voxel across in Y and X,
+and bilinear resampling of a one-voxel peak loses ~40% of its amplitude however right the
+coordinates are. My synthetic test used sigma=2 blobs and lost 13%, which is precisely why it
+passed. **The test was easier than the data.**
+
+Rewritten to compare the warped image at the **updated** coordinates against the same warped
+image at the **original** ones. Both terms sit on the same interpolated image, so resampling
+loss cancels and only the coordinate update is measured.
+
+That rewrite was also wrong, and the test caught it: gating on the *realised* shift is
+circular — an update that never happens leaves the shift at zero, the gate never opens, and
+the check passes. Six of six cases silently missed. Gated on the displacement the field
+**intended** at the nodes instead:
+
+```
+ sigma    bg    correct    skipped   sign-flipped
+   0.7   0.0         ok     caught         caught
+   0.7   0.3         ok     caught         caught
+   1.2   0.0         ok     caught         caught
+   1.2   0.3         ok     caught         caught
+   2.0   0.0         ok     caught         caught
+   2.0   0.3         ok     caught         caught
+```
+
+sigma 0.7 is the real regime. No false positives, both failure modes caught, at every
+sharpness and background tested.
