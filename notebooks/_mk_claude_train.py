@@ -39,6 +39,15 @@ CUT = "_deepcenter_candidate_strings"
 
 ELASTIC = (HERE / "elastic_augment.py").read_text()
 
+# The augmentation is APPENDED to the pack's `scripts/augmentations.py`, so anything in it
+# that must come first in a file breaks the concatenation. A `from __future__` import there
+# killed a run ninety seconds in, an hour after the identical rule broke the notebook
+# assembly below. Checked here so it cannot happen a third time.
+for _line in ELASTIC.splitlines():
+    if _line.startswith("from __future__"):
+        raise SystemExit("REFUSING TO BUILD — elastic_augment.py opens with a __future__ "
+                         "import; it is appended to another file and cannot.")
+
 TRAIN = '''
 
 # ==========================================================================

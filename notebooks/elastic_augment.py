@@ -28,8 +28,12 @@ Design choices, each for a reason:
   field this smooth and this small the first-order update is accurate to well under a voxel,
   and the intensity check at the end is what proves it.
 """
-from __future__ import annotations
-
+# this file is APPENDED to the pack's scripts/augmentations.py, so it must not open with
+# anything that has to come first in a file. `from __future__ import annotations` did, and
+# landed at line 98 of the concatenation: SyntaxError, run dead in ninety seconds. The same
+# rule bit the notebook builder an hour earlier and I did not carry the lesson across the
+# two places the same text is used. Nothing here needs it -- the annotations are all
+# builtin generics, valid at runtime since 3.9.
 import numpy as np
 import torch
 import torch.nn.functional as F
