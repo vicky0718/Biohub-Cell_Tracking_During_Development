@@ -149,6 +149,16 @@ def elastic_augment(
         # scored 2.234 against 2.218, a 0.7% difference against a 5% margin, and the guard
         # failed the run. Below about a voxel this instrument is blind, and a blind check
         # must abstain rather than accuse.
+        # Per node, not max against max. `out_coords` is clamped to the volume, so a node on
+        # the border does not move the full distance the field asks for -- and if that node
+        # happens to carry the largest displacement, `max(realised)` falls well below
+        # `max(intended)` with nothing wrong. That false-fired at "2.37 voxels asked, 1.02
+        # moved", after two clean epochs. My test put every node 8-10 voxels from the edge,
+        # so it could not see it: the test was easier than the data, for the second time.
+        want = torch.stack([dy.abs(), dx.abs()], -1)
+        got = (out_coords[..., 1:] - coords[..., 1:]).abs()
+        agree = (torch.isclose(got, want, atol=1e-3) | (want < 1e-6))[m].all(-1)
+        frac = float(agree.to(torch.float32).mean())
         intended = float(torch.maximum(dy[m].abs().amax(), dx[m].abs().amax()))
         realised = float((out_coords - coords).abs().amax())
         moved = float((out_coords.round() != coords.round()).any(-1)[m].to(torch.float32).mean())
@@ -158,10 +168,11 @@ def elastic_augment(
         #
         # A -- did the update happen at all? Gated only on the field, which the update cannot
         # influence. Catches a skipped update at every warp magnitude.
-        if intended > 0.5 and realised < intended * 0.5:
+        if intended > 0.5 and frac < 0.9:
             raise RuntimeError(
-                f"elastic_augment: the field moves nodes by up to {intended:.2f} voxels "
-                f"but the coordinates moved {realised:.2f} -- the update did not happen."
+                f"elastic_augment: only {frac:.0%} of nodes moved by the displacement the "
+                f"field asked for (up to {intended:.2f} voxels, largest realised "
+                f"{realised:.2f}) -- the update did not happen."
             )
 
         # B -- did it move them the right way? Needs the nodes in different voxels before

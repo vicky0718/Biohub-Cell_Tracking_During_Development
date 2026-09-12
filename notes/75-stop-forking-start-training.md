@@ -395,3 +395,54 @@ comparison stays, and warns.
 
 The rule this leaves: **a check that is blind by construction must not be able to stop the
 run.** Prove what can be proved where it can be proved, and let the rest report.
+
+## It trained, and the result is a finding rather than a model
+
+```
+BASELINE epoch -1 (public checkpoint, no training) | acc=0.9998 | recall=0.9692 | score=0.9690
+Epoch   0/30 | edge=0.0002 | det=0.0310 | acc=0.9998 | recall=0.9670 | best=0.9690 | train=253s test=227s
+Epoch   1/30 | edge=0.0002 | det=0.0066 | acc=0.9998 | recall=0.9665 | best=0.9690 | train=254s test=229s
+```
+
+Self-test passed, 136/136 restored, the augmentation ran, two epochs completed at ~8 min each
+(30 epochs is ~4 h, comfortably inside the ceiling). And:
+
+**Fine-tuning makes the edge head slightly worse.** Recall 0.9692 -> 0.9670 -> 0.9665, and
+`best` never moves off the baseline, so the seeded `best_score` did its job and nothing worse
+than the public checkpoint was ever saved.
+
+That is not a surprise once the baseline is in hand: at `acc = 0.9998` the edge classifier has
+nothing left to learn, so low-LR fine-tuning can only perturb it. **But look at the detection
+loss: 0.0310 -> 0.0066, a five-fold drop in two epochs.** The detector *is* adapting to the
+elastic augmentation, fast. The selection metric simply cannot see it, because
+`score = acc * recall` is computed on the **edge head alone**.
+
+So the run optimises one thing and measures another, and the thing it measures is the one we
+now know is saturated. `notes/04` said detection is essentially the whole contest; the
+baseline says the edge head is finished; the detection loss says the detector is moving.
+**The next run needs a detection metric on the holdout, not `acc * recall`** — otherwise a
+genuinely better detector is discarded every epoch for failing to improve a number that
+cannot improve.
+
+## The sixth guard failure, same root cause as the fifth
+
+```
+RuntimeError: elastic_augment: the field moves nodes by up to 2.37 voxels but the
+coordinates moved 1.02 -- the update did not happen.
+```
+
+after two clean epochs. `out_coords` is clamped to the volume, so a node **on the border**
+cannot move the full distance the field asks for — and if that node carries the largest
+displacement, `max(realised)` falls below `max(intended)` with nothing wrong at all. Every
+node in my test sat 8-10 voxels from the edge, so the test could not see it.
+
+That is the second time the synthetic test has been easier than the data (the first was
+sigma=2 blobs against one-voxel cells). Now compared **per node**, tolerating the few that
+clamp, and tested with nodes placed exactly on the border:
+
+```
+ node margin  max_shift     correct   skipped
+           0        3.0          ok    caught
+           0        6.0          ok    caught
+           8        6.0          ok    caught
+```
