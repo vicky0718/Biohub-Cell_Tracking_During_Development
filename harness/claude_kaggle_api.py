@@ -43,14 +43,37 @@ class KaggleError(RuntimeError):
         super().__init__(f"{path} -> HTTP {status}: {body[:500]}")
 
 
+def _creds() -> tuple[str, str]:
+    """Kaggle username and key, from the environment first and the config file second.
+
+    `/root/.kaggle/kaggle.json` lives in the container, not the repo -- correctly, since it
+    is a credential. A container restart on 2026-09-12 therefore took it with it, and every
+    call in this module began failing with `FileNotFoundError` from inside `pathlib` while
+    the repo itself came back from git intact. Reading `KAGGLE_USERNAME` / `KAGGLE_KEY`
+    first means a restarted session is restored by setting two environment variables rather
+    than reconstructing a file, and a missing credential now says what to do about it.
+    """
+    user, key = os.environ.get("KAGGLE_USERNAME"), os.environ.get("KAGGLE_KEY")
+    if user and key:
+        return user, key
+    if CONFIG.exists():
+        c = json.loads(CONFIG.read_text())
+        return c["username"], c["key"]
+    raise KaggleError(
+        401,
+        f"no Kaggle credentials: {CONFIG} does not exist and KAGGLE_USERNAME/KAGGLE_KEY "
+        "are unset. Set both environment variables, or restore the file.",
+        "/auth",
+    )
+
+
 def _auth_header() -> str:
-    c = json.loads(CONFIG.read_text())
-    raw = f"{c['username']}:{c['key']}".encode()
+    raw = "{}:{}".format(*_creds()).encode()
     return "Basic " + base64.b64encode(raw).decode()
 
 
 def username() -> str:
-    return json.loads(CONFIG.read_text())["username"]
+    return _creds()[0]
 
 
 def _request(method: str, path: str, *, data: bytes | None = None,
