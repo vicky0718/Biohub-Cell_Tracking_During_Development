@@ -197,6 +197,18 @@ print('temporal attention chunked at', os.environ.get('BIOHUB_ATTN_CHUNK', '3276
 print('elastic_augment installed; baseline eval added; best_score seeded from the baseline '
       'so nothing worse than the public checkpoint can be saved', flush=True)
 
+# Settle the coordinate-update direction ONCE, in the interpreter the trainer will use, on a
+# phantom warped far enough for the answer to be unambiguous. Five runs died to a per-batch
+# version of this check, because the margin it needs depends on how far a random field
+# happens to move nodes on that batch. Here the warp is chosen, so it does not.
+_st = subprocess.run(
+    ['/usr/bin/python3', '-c',
+     'import sys; sys.path.insert(0, "scripts"); from augmentations import self_test; '
+     'self_test()'],
+    cwd=REPO_DIR, env={**os.environ, 'PYTHONPATH': 'src'})
+if _st.returncode != 0:
+    raise RuntimeError('elastic_augment self-test failed -- refusing to train')
+
 # ---- train ---------------------------------------------------------------
 _out_method = os.environ.get('BIOHUB_TRAIN_METHOD', 'unet_transformer_claude_elastic')
 _cmd = [

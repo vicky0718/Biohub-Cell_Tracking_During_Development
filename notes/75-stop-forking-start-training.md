@@ -366,3 +366,32 @@ you are checking for closes the gate on itself.** The fix is two checks with dif
 
 The one MISSED is stated rather than hidden: under a sub-voxel warp a sign error is
 undetectable by this instrument, and is bounded by A having already proved the update ran.
+
+## Five runs to a safety check: what was actually wrong
+
+The guard false-fired again — `after a 0.60 voxel warp the updated coordinates score 4.265
+against 4.174` — and that is the point at which the pattern is the finding rather than the
+bug. **The margin a per-batch direction check needs depends on how far a random field happens
+to move nodes on that batch**, and a field drawn from `N(0, 1)` and rescaled will often move
+them well under a voxel. No threshold satisfies both "fires on a real error" and "never fires
+on a 0.6-voxel warp", because at 0.6 voxels the two samples read the same voxels. The check
+was measuring something it cannot resolve, and I responded four times by adjusting the
+threshold instead of asking whether the measurement was possible.
+
+Direction is now settled **once**, by `self_test()`, on a phantom warped 6 voxels — a regime
+chosen rather than sampled, so the margin is guaranteed:
+
+```
+elastic_augment self-test OK: 3.20 voxel warp, updated 2.999 vs original 1.661
+  skipped   self-test caught it
+  flipped   self-test caught it
+  y/x swap  self-test caught it            <- a corruption no earlier version tested for
+```
+
+It runs in the trainer's own interpreter, before training starts, and refuses to train if it
+fails. Per batch, what stays **fatal** is check A — the field moved nodes by `d`, did the
+coordinates move by `d`? — which is exact, non-circular and cannot false-fire. The direction
+comparison stays, and warns.
+
+The rule this leaves: **a check that is blind by construction must not be able to stop the
+run.** Prove what can be proved where it can be proved, and let the rest report.

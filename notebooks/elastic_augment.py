@@ -172,10 +172,21 @@ def elastic_augment(
             good = _contrast(out_imgs, out_coords, m)
             stale = _contrast(out_imgs, coords, m)
             if good < stale * (1.0 + check_margin):
-                raise RuntimeError(
-                    f"elastic_augment: after a {realised:.2f} voxel warp the updated "
-                    f"coordinates score {good:.3f} against {stale:.3f} for the original "
-                    "ones -- the coordinates did not follow the image."
+                # WARNS, it does not raise -- and that is the fifth version of this check.
+                # Every batch-level attempt to police DIRECTION has false-fired, because the
+                # margin available depends on how far the warp happens to move nodes on that
+                # batch: a real 0.60-voxel warp separates 4.265 from 4.174, 2%, against any
+                # threshold big enough to mean something. Policing direction per batch is
+                # measuring a thing this instrument cannot resolve.
+                #
+                # Direction is instead settled ONCE, by `self_test()` below, on a phantom
+                # with a warp large enough to be unambiguous. What stays fatal here is check
+                # A, which is exact and cannot false-fire. A heuristic that is blind by
+                # construction must not be able to stop a twelve-hour run.
+                print(
+                    f"elastic_augment: weak direction signal -- {realised:.2f} voxel warp, "
+                    f"updated {good:.3f} vs original {stale:.3f}",
+                    flush=True,
                 )
     return out_imgs, out_coords, masks
 
@@ -194,3 +205,41 @@ def _contrast(imgs: torch.Tensor, coords: torch.Tensor, mask: torch.Tensor) -> f
     at_nodes = float(imgs[w_idx, cz, cy, cx].to(torch.float32).mean())
     overall = float(imgs.to(torch.float32).mean())
     return at_nodes / overall if abs(overall) > 1e-9 else 1.0
+
+
+def self_test(seed: int = 0) -> None:
+    """Prove the coordinate update tracks the image, once, where the answer is unambiguous.
+
+    Called at import time by the training notebook. A large warp on a synthetic phantom puts
+    the nodes several voxels from where they started, which is the regime the contrast
+    comparison can actually resolve -- unlike a random training batch, where the field may
+    move nothing far enough to measure. Raising here costs a second; raising per batch has
+    cost five runs.
+    """
+    rng = np.random.Generator(np.random.PCG64(seed))
+    W, Z, Y, X, M = 2, 8, 96, 96, 40
+    cz = rng.integers(1, Z - 1, M)
+    cy = rng.integers(10, Y - 10, M)
+    cx = rng.integers(10, X - 10, M)
+    zz, yy, xx = torch.meshgrid(
+        *[torch.arange(n, dtype=torch.float32) for n in (Z, Y, X)], indexing="ij")
+    base = sum(torch.exp(-(((zz - cz[i]) / 1.2) ** 2
+                           + ((yy - cy[i]) / 0.8) ** 2
+                           + ((xx - cx[i]) / 0.8) ** 2)) for i in range(M))
+    imgs = (base + 0.3)[None].repeat(W, 1, 1, 1)
+    coords = torch.tensor(np.stack([cz, cy, cx], -1), dtype=torch.float32)[None].repeat(W, 1, 1)
+    masks = torch.ones(W, M, dtype=torch.bool)
+
+    out_imgs, out_coords, _ = elastic_augment(
+        imgs, coords, masks, rng=np.random.Generator(np.random.PCG64(seed + 1)),
+        prob=1.0, max_shift_vox=6.0)
+    good = _contrast(out_imgs, out_coords, masks)
+    stale = _contrast(out_imgs, coords, masks)
+    shift = float((out_coords - coords).abs().amax())
+    if not (shift > 2.0 and good > stale * 1.25):
+        raise RuntimeError(
+            f"elastic_augment self-test FAILED: {shift:.2f} voxel warp, updated coordinates "
+            f"score {good:.3f} against {stale:.3f} for the originals"
+        )
+    print(f"elastic_augment self-test OK: {shift:.2f} voxel warp, updated {good:.3f} "
+          f"vs original {stale:.3f}", flush=True)
