@@ -91,6 +91,15 @@ _edits = [
      'from augmentations import brightness_augment, flip_augment, elastic_augment\\n'),
     ('DEFAULT_AUGMENTATIONS = [brightness_augment, flip_augment]',
      'DEFAULT_AUGMENTATIONS = [brightness_augment, flip_augment, elastic_augment]'),
+    # `WEIGHTS_PATH` comes from `dataspec` and lands inside the materialised repo, whose
+    # `weights/` is a link into the read-only `/kaggle/input` mount -- the pack's own
+    # checkpoints live there, so it never needed to be writable for inference. Training is
+    # the first thing that writes to it: "OSError: [Errno 30] Read-only file system", after
+    # the run had already loaded 169 movies. Redirect it somewhere we own.
+    ('from dataspec import WEIGHTS_PATH\\n',
+     'from dataspec import WEIGHTS_PATH  # noqa: F401\\n'
+     'WEIGHTS_PATH = Path("/kaggle/working/claude_weights")\\n'
+     'WEIGHTS_PATH.mkdir(parents=True, exist_ok=True)\\n'),
     # The most valuable line in the run: score the checkpoint we are about to fine-tune on
     # the holdout BEFORE touching it, so every epoch after is measured against it.
     ('    for epoch in pbar:\\n        t0 = time.monotonic()\\n',
@@ -137,7 +146,7 @@ if _rc.returncode != 0:
 # ---- collect --------------------------------------------------------------
 _weights_out = Path('/kaggle/working/claude_finetuned')
 _weights_out.mkdir(parents=True, exist_ok=True)
-_src_dir = REPO_DIR / 'weights' / _out_method / 'split_0'
+_src_dir = Path('/kaggle/working/claude_weights') / _out_method / 'split_0'
 for _f in sorted(_src_dir.iterdir()):
     shutil.copy2(_f, _weights_out / _f.name)
     print(f'  saved {_f.name} ({_f.stat().st_size:,} bytes)', flush=True)
