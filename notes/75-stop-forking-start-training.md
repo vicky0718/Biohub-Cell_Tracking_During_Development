@@ -78,3 +78,50 @@ silently wrong — the worst failure mode available, because training would simp
 nonsense. The augmentation must assert, after warping, that intensity at the warped
 coordinates is still consistent with a cell centre, and abort otherwise. Every lesson in
 `notes/68`, `70` and the `ttadom` port says: build the check into the thing, not around it.
+
+## The augmentation, verified before it was trusted
+
+`torch` installed locally, so the deformation was unit-tested rather than reasoned about.
+
+**Geometry, pinned first with a numpy simulation of `grid_sample`:**
+
+```
+blob in  at (y, x) = (12, 25)      constant field d = (3.0, -2.0)
+blob out at (y, x) = ( 9, 27)      = coords - d
+intensity at out[coords - d] = 1.000      at out[coords] = 0.000
+```
+
+`out(p) = in(p + d)`, so content at input `q` lands at output `q - d`: the coordinate update
+**subtracts**. Adding would have been silent and catastrophic.
+
+**Then the real thing, on synthetic movies with nodes at known coordinates:**
+
+```
+                        max shift   intensity at warped coords   at the ORIGINAL coords
+unwarped                        —                      1.0548                        —
+trial 0                   2.73 vox                     0.9425                   0.6773
+trial 1                   2.62 vox                     0.9380                   0.5177
+trial 3                   2.97 vox                     0.9343                   0.5434
+```
+
+and with the coordinate update deliberately disabled, the guard fires:
+*"node intensity fell from 1.0548 to 0.5177 -- the coordinates did not follow the image."*
+
+**The guard was wrong anyway, and the test showed why.** Raw intensity separates a correct
+update from a broken one only when the background is near zero. Real frames are
+quantile-normalised with a bright background, which pulls both ratios toward 1 and closes the
+gap. Rewritten to measure **contrast** — node intensity over mean image intensity — and
+re-tested across background levels:
+
+```
+background   correct: contrast before -> after    broken update
+       0.0          73.433 -> 63.829                guard fired
+       0.2           5.854 ->  5.301                guard fired
+       0.5           3.023 ->  2.794                guard fired
+       1.0           2.026 ->  1.910                guard fired
+```
+
+The correct update retains 87-93% of contrast at every background level and the broken one is
+caught at every background level, including the one where the first guard would have let it
+through. The run already in flight carries the first version; its geometry is verified, so
+the guard there is insurance rather than the thing being relied on.

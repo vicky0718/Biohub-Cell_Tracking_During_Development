@@ -124,22 +124,34 @@ def elastic_augment(
         # Did the coordinates follow the image? Node positions are cell centres and therefore
         # bright; if the update had the wrong sign, or the wrong axis order, or was skipped,
         # intensity at the new coordinates collapses. A crash here is the point of the file.
-        before = _sample(imgs, coords, m)
-        after = _sample(out_imgs, out_coords, m)
-        if before > 1e-6 and after < before * (1.0 - check_drop):
+        # Measured as CONTRAST -- node intensity over mean image intensity -- not as raw
+        # intensity. A unit test on isolated blobs (background 0) separates a correct update
+        # from a disabled one by 0.89x against 0.49x, but real frames are quantile-normalised
+        # with a bright background, which pulls both ratios toward 1 and closes that gap.
+        # Contrast does not have that problem: if the coordinates stop tracking the image the
+        # nodes land on background and the ratio collapses toward 1 whatever the background is.
+        before = _contrast(imgs, coords, m)
+        after = _contrast(out_imgs, out_coords, m)
+        if before > 1.0 + 1e-6 and (after - 1.0) < (before - 1.0) * (1.0 - check_drop):
             raise RuntimeError(
-                "elastic_augment: node intensity fell from "
+                "elastic_augment: node-to-background contrast fell from "
                 f"{before:.4f} to {after:.4f} after warping -- the coordinates did not "
                 "follow the image."
             )
     return out_imgs, out_coords, masks
 
 
-def _sample(imgs: torch.Tensor, coords: torch.Tensor, mask: torch.Tensor) -> float:
-    """Mean image intensity at the masked node coordinates, nearest voxel."""
+def _contrast(imgs: torch.Tensor, coords: torch.Tensor, mask: torch.Tensor) -> float:
+    """Mean intensity at the masked node coordinates, divided by mean image intensity.
+
+    Nodes are cell centres, so this is comfortably above 1 whenever the coordinates point at
+    cells and falls to about 1 when they point anywhere else.
+    """
     W, Z, Y, X = imgs.shape
     w_idx = torch.arange(W, device=imgs.device)[:, None].expand_as(mask)[mask]
     cz = coords[..., 0][mask].round().long().clamp_(0, Z - 1)
     cy = coords[..., 1][mask].round().long().clamp_(0, Y - 1)
     cx = coords[..., 2][mask].round().long().clamp_(0, X - 1)
-    return float(imgs[w_idx, cz, cy, cx].to(torch.float32).mean())
+    at_nodes = float(imgs[w_idx, cz, cy, cx].to(torch.float32).mean())
+    overall = float(imgs.to(torch.float32).mean())
+    return at_nodes / overall if abs(overall) > 1e-9 else 1.0
