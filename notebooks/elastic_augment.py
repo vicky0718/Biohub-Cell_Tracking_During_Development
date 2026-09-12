@@ -143,14 +143,32 @@ def elastic_augment(
         # coordinates actually moved. Gating on the realised shift is circular: an update
         # that never happened leaves the shift at zero, the gate never opens, and the check
         # passes -- which is what the first rewrite did, silently, in six of six test cases.
+        # Gated on whether the update actually moves nodes into DIFFERENT VOXELS. `_contrast`
+        # samples at the nearest voxel, so a sub-voxel warp leaves `good` and `stale` reading
+        # the same voxels and the comparison has nothing to measure: a real 0.78-voxel warp
+        # scored 2.234 against 2.218, a 0.7% difference against a 5% margin, and the guard
+        # failed the run. Below about a voxel this instrument is blind, and a blind check
+        # must abstain rather than accuse.
         intended = float(torch.maximum(dy[m].abs().amax(), dx[m].abs().amax()))
         realised = float((out_coords - coords).abs().amax())
-        if intended > 0.5:
-            if realised < intended * 0.5:
-                raise RuntimeError(
-                    f"elastic_augment: the field moves nodes by up to {intended:.2f} voxels "
-                    f"but the coordinates moved {realised:.2f} -- the update did not happen."
-                )
+        moved = float((out_coords.round() != coords.round()).any(-1)[m].to(torch.float32).mean())
+        # TWO checks, deliberately gated on different things. Nesting them under one gate is
+        # how this guard has been wrong three times: gate on any property of the OUTPUT and a
+        # skipped update closes the gate on itself.
+        #
+        # A -- did the update happen at all? Gated only on the field, which the update cannot
+        # influence. Catches a skipped update at every warp magnitude.
+        if intended > 0.5 and realised < intended * 0.5:
+            raise RuntimeError(
+                f"elastic_augment: the field moves nodes by up to {intended:.2f} voxels "
+                f"but the coordinates moved {realised:.2f} -- the update did not happen."
+            )
+
+        # B -- did it move them the right way? Needs the nodes in different voxels before
+        # `_contrast` can see anything, so below about a voxel this abstains. A wrong sign
+        # under a sub-voxel warp goes undetected, which is the honest limit of the check and
+        # is bounded by A having already proved the update ran.
+        if intended > 0.5 and moved > 0.25:
             good = _contrast(out_imgs, out_coords, m)
             stale = _contrast(out_imgs, coords, m)
             if good < stale * (1.0 + check_margin):

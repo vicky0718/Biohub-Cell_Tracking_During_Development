@@ -312,3 +312,57 @@ the check passes. Six of six cases silently missed. Gated on the displacement th
 
 sigma 0.7 is the real regime. No false positives, both failure modes caught, at every
 sharpness and background tested.
+
+## The first honest measurement this project has ever had
+
+```
+FULL restore from .../edge_predictor_best.pth: 136/136 tensors loaded
+BASELINE epoch -1 (public checkpoint, no training) | acc=0.9998 | recall=0.9692 | score=0.9690
+```
+
+136 of 136. And the number underneath it is worth more than the run: on **30 movies held out
+of the fine-tune**, the public checkpoint's edge head scores **accuracy 0.9998 and recall
+0.9692**.
+
+**The edge classifier is saturated.** Precision is essentially perfect and the only headroom
+is 3% of recall. Whatever separates 0.945 from 0.952 on the leaderboard, it is not the edge
+model's raw ability to say yes or no about a candidate pair — which reframes "most of the
+gains come from model improvements" as being about *detection*, not association. That agrees
+with everything we have measured independently: `ttaz16`, a detection change, was the only
+arm whose node recall and node count moved the right way together, and Soheil (rank 2) named
+missing endpoint nodes as his dominant error.
+
+It also prices the elastic fine-tune honestly. Three percent of recall is the whole target,
+and some of that 3% is unannotated rather than missed.
+
+## Three wrong guards, and the shape of the mistake
+
+```
+v1  before-warp vs after-warp          false positive: 108.3 -> 63.1, which is bilinear
+                                       resampling of a one-voxel peak, not a coordinate bug
+v2  warped@updated vs warped@original,
+    gated on the REALISED shift        circular: a skipped update leaves the shift at zero,
+                                       the gate never opens, six of six missed
+v3  same, gated on voxels MOVED        circular again, for the same reason, and it also
+                                       false-fired on a 0.78-voxel warp where both samples
+                                       round to the same voxel
+```
+
+Every version failed the same way: **gate a check on a property of the output and the failure
+you are checking for closes the gate on itself.** The fix is two checks with different gates.
+
+* **A — did the update happen?** Gated only on the *field*, which the update cannot
+  influence. Catches a skipped update at every warp magnitude.
+* **B — did it move them the right way?** Needs the nodes in different voxels before contrast
+  can see anything, so below about a voxel it abstains rather than accuses.
+
+```
+ max_shift  sigma    correct    skipped    flipped
+       0.8    0.7         ok     caught     MISSED
+       1.5    0.7         ok     caught     caught
+       3.0    0.7         ok     caught     caught
+       6.0    2.0         ok     caught     caught
+```
+
+The one MISSED is stated rather than hidden: under a sub-voxel warp a sign error is
+undetectable by this instrument, and is bounded by A having already proved the update ran.
