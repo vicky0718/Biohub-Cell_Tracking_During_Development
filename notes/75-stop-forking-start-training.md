@@ -125,3 +125,44 @@ The correct update retains 87-93% of contrast at every background level and the 
 caught at every background level, including the one where the first guard would have let it
 through. The run already in flight carries the first version; its geometry is verified, so
 the guard there is insurance rather than the thing being relied on.
+
+## The P100 cannot train this model, and the reason is not memory
+
+Fourth failure, and the first that is not mine. Everything up to the forward pass worked:
+
+```
+P100 detected -- installing torch 2.5.1+cu121 ... rc=0
+Training movies mounted: 199
+Fold 0: 169 train / 30 holdout
+elastic_augment installed; baseline eval added
+Model parameters: 2,076,706
+Loading train (169 datasets)...
+RuntimeError: CUDA error: invalid configuration argument
+```
+
+The traceback ends in `torch/nn/modules/activation.py` line 1308 — **`MultiheadAttention.forward`**,
+not the convolutions. `temporal_unet.py` reshapes to
+
+```python
+h = x.reshape(B, T, C, S).permute(0, 3, 1, 2).reshape(B * S, T, C)
+```
+
+where `S` is the entire downsampled volume, so the attention batch is `B * S` — tens of
+millions of sequences. On sm_60 that launch exceeds a CUDA grid limit. It is **not** an
+out-of-memory, which is why a smaller batch is a hope rather than a fix: the pack's authors
+trained this on sm_80-class cards, where the attention path is a different kernel.
+
+Two changes, both about making the lottery cheap rather than winning it:
+
+* **Batch 8 -> 2.** The conservative read of one data point. Inference on the same card runs
+  at `--unet-batch-size 4` and training holds activations for the backward pass as well.
+* **Refuse a P100 in the first seconds.** `machineShape` is accepted and ignored on push
+  (`notes/65`), so the accelerator can only be re-rolled — and a re-roll is cheap only if the
+  run dies before materialising the repo and loading 169 movies, which is where the three
+  minutes went. The guard raises `RuntimeError` (not `SystemExit`, which IPython swallows,
+  leaving the kernel reported complete — the silent-pass failure this project keeps
+  re-learning) with a message containing the phrase `run_arm.py` already retries on.
+
+Everything else in the run is verified working: the mount carries 199 movies, the holdout
+splits, the augmentation installs, the trainer patches apply, the model loads at 2,076,706
+parameters against the 8.4 MB checkpoint. What is left is drawing a T4.

@@ -130,7 +130,12 @@ _cmd = [
     '--unet-weights', str(REPO_DIR / WEIGHTS_RELATIVE),
     '--epochs', os.environ.get('BIOHUB_TRAIN_EPOCHS', '30'),
     '--lr', os.environ.get('BIOHUB_TRAIN_LR', '3e-5'),
-    '--batch-size', os.environ.get('BIOHUB_TRAIN_BATCH', '8'),
+    # 2, not the pack's 8. Their 8 died on a P100 in the first forward pass with
+    # `CUDA error: invalid configuration argument` -- a kernel launch whose grid exceeds
+    # what sm_60 accepts, not an out-of-memory. Inference on the same card runs at
+    # --unet-batch-size 4 and training holds activations for the backward pass on top, so
+    # 2 is the conservative read of the one data point we have.
+    '--batch-size', os.environ.get('BIOHUB_TRAIN_BATCH', '2'),
     '--max-iters', os.environ.get('BIOHUB_TRAIN_MAX_ITERS', '300'),
     '--num-workers', os.environ.get('BIOHUB_TRAIN_WORKERS', '2'),
     '--unet-out-channels', '32', '--unet-layers', '32,64,128',
@@ -187,7 +192,37 @@ def build() -> int:
     head = future if future in prefix else ""
     prefix = prefix.replace(future, "", 1)
 
-    source = (head + WHEELHOUSE
+    # Refuse a P100 in the first seconds rather than three minutes in.
+    #
+    # The traceback is `activation.py` line 1308 -- `MultiheadAttention.forward` -- not the
+    # convolutions. `temporal_unet.py` reshapes to `(B * S, T, C)` where S is the whole
+    # downsampled volume, so the attention batch is tens of millions of sequences, and on
+    # sm_60 that launch exceeds a CUDA grid limit: `invalid configuration argument`. It is
+    # not out-of-memory and a smaller batch may not be enough; the pack's authors trained
+    # this on sm_80-class cards where the attention path differs.
+    #
+    # `machineShape` is accepted and ignored on push (`notes/65`), so the accelerator can
+    # only be re-rolled. That is cheap if the run dies immediately and expensive if it dies
+    # after materialising the repo and loading 169 movies, which is what just happened.
+    # `run_arm.py` retries on this message.
+    guard = (
+        'import subprocess as _gsp\n'
+        'try:\n'
+        '    _gpu = _gsp.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],\n'
+        '                    capture_output=True, text=True, timeout=60).stdout.strip()\n'
+        'except Exception:\n'
+        '    _gpu = ""\n'
+        'print("accelerator:", _gpu, flush=True)\n'
+        'if "P100" in _gpu:\n'
+        # RuntimeError, not SystemExit: IPython swallows SystemExit and the cell would end
+        # quietly with the kernel reported complete, which is the silent-pass failure this
+        # project keeps re-learning. The message deliberately contains the phrase run_arm.py
+        # already retries on.
+        '    raise RuntimeError("Tesla P100 drawn -- no kernel image is available for '
+        'MultiheadAttention at this batch shape; re-rolling for a T4.")\n'
+    )
+
+    source = (head + WHEELHOUSE + guard
               + prefix
               + "\n# The elastic augmentation, verbatim from notebooks/elastic_augment.py\n"
               + "ELASTIC_SOURCE = " + repr(ELASTIC) + "\n"
