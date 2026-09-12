@@ -166,3 +166,43 @@ Two changes, both about making the lottery cheap rather than winning it:
 Everything else in the run is verified working: the mount carries 199 movies, the holdout
 splits, the augmentation installs, the trainer patches apply, the model loads at 2,076,706
 parameters against the 8.4 MB checkpoint. What is left is drawing a T4.
+
+## Six consecutive P100s, so the model was made trainable on a P100 instead
+
+The re-roll guard worked and the lottery did not:
+
+```
+attempt 1..6   error on Tesla P100-PCIE-16GB   (2,497 log chars each)
+GAVE UP claude-train-elastic: 6 consecutive P100 draws
+```
+
+`MEMORY.md` already recorded eight consecutive P100s on 2026-09-06. This account draws P100s,
+`machineShape` is ignored on push, and waiting for a T4 is not a plan.
+
+**So chunk the attention instead.** `_TemporalAttention.forward` is
+
+```python
+h = x.reshape(B, T, C, S).permute(0, 3, 1, 2).reshape(B * S, T, C)
+h = self.norm(h)
+h, _ = self.attn(h, h, h, need_weights=False)      # B*S sequences in one launch
+```
+
+with `S` the entire downsampled volume, so the attention batch is millions of sequences.
+cuBLAS batched GEMM takes its batch count as a CUDA grid dimension **capped at 65535**, and
+beyond that sm_60 answers `invalid configuration argument`. Slicing the batch is
+*mathematically identical* — every sequence attends only across its own `T` timesteps, so
+there is nothing between slices to lose — and that matters here because we are fine-tuning
+pretrained weights and cannot afford the maths to change.
+
+Verified rather than asserted, on 100,000 sequences:
+
+```
+sequences 100,000  chunks 4  max |full - chunked| = 0.000e+00      EQUIVALENT
+```
+
+and the patch itself was applied to the real `temporal_unet.py` locally before being pushed:
+one match, and the result parses. T is 2, so the loop costs seconds an epoch and lowers peak
+memory as well. The P100 guard is now informational.
+
+Five failures, every one caught in under four minutes, and the run now gets: mount ->
+holdout -> augmentation -> trainer patches -> model load -> forward pass.

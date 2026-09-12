@@ -117,6 +117,41 @@ for _old, _new in _edits:
     _t = _t.replace(_old, _new, 1)
 compile(_t, str(_T), 'exec')
 _T.write_text(_t)
+
+# ---- make the temporal attention launchable on an sm_60 card -------------
+# `_TemporalAttention.forward` flattens to (B * S, T, C) with S the whole downsampled
+# volume, so attention runs over millions of length-T sequences in ONE call. cuBLAS batched
+# GEMM takes its batch count as a CUDA grid dimension capped at 65535, and past that a P100
+# answers `invalid configuration argument` -- which is what killed the run after it had
+# already loaded all 169 movies. Slicing that batch is mathematically identical: every
+# sequence attends only across its own T timesteps, so there is nothing between slices to
+# lose. T is 2, so the loop costs seconds an epoch and lowers peak memory as well.
+_TU = REPO_DIR / 'src' / 'biohub_tracking' / 'models' / 'temporal_unet.py'
+_tu = _TU.read_text()
+_attn_old = ("        h = x.reshape(B, T, C, S).permute(0, 3, 1, 2).reshape(B * S, T, C)\\n"
+             "        h = self.norm(h)\\n"
+             "        h, _ = self.attn(h, h, h, need_weights=False)\\n")
+_attn_new = ("        h = x.reshape(B, T, C, S).permute(0, 3, 1, 2).reshape(B * S, T, C)\\n"
+             "        h = self.norm(h)\\n"
+             "        _chunk = int(os.environ.get('BIOHUB_ATTN_CHUNK', '32768'))\\n"
+             "\\n"
+             "        if _chunk <= 0 or h.shape[0] <= _chunk:\\n"
+             "            h, _ = self.attn(h, h, h, need_weights=False)\\n"
+             "        else:\\n"
+             "            _parts = []\\n"
+             "\\n"
+             "            for _i in range(0, h.shape[0], _chunk):\\n"
+             "                _p = h[_i:_i + _chunk]\\n"
+             "                _parts.append(self.attn(_p, _p, _p, need_weights=False)[0])\\n"
+             "            h = torch.cat(_parts, dim=0)\\n"
+             "            del _parts\\n")
+if _tu.count(_attn_old) != 1:
+    raise RuntimeError(f'attention patch matched {_tu.count(_attn_old)}x, expected 1')
+_tu = _tu.replace(_attn_old, _attn_new, 1).replace('import math\\n', 'import math\\nimport os\\n', 1)
+compile(_tu, str(_TU), 'exec')
+_TU.write_text(_tu)
+print('temporal attention chunked at', os.environ.get('BIOHUB_ATTN_CHUNK', '32768'),
+      'sequences per launch', flush=True)
 print('elastic_augment installed; baseline eval added; best_score seeded from the baseline '
       'so nothing worse than the public checkpoint can be saved', flush=True)
 
@@ -213,13 +248,11 @@ def build() -> int:
         'except Exception:\n'
         '    _gpu = ""\n'
         'print("accelerator:", _gpu, flush=True)\n'
+        # No longer fatal. Six consecutive P100 draws said the lottery is not winnable on
+        # this account, so the model is made trainable on the card we actually get instead.
         'if "P100" in _gpu:\n'
-        # RuntimeError, not SystemExit: IPython swallows SystemExit and the cell would end
-        # quietly with the kernel reported complete, which is the silent-pass failure this
-        # project keeps re-learning. The message deliberately contains the phrase run_arm.py
-        # already retries on.
-        '    raise RuntimeError("Tesla P100 drawn -- no kernel image is available for '
-        'MultiheadAttention at this batch shape; re-rolling for a T4.")\n'
+        '    print("P100 -- temporal attention will be chunked to stay inside the sm_60 "\n'
+        '          "batched-GEMM limit", flush=True)\n'
     )
 
     source = (head + WHEELHOUSE + guard
