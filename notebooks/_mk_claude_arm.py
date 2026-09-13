@@ -1042,6 +1042,55 @@ ARMS = {
                 "#               features are now eight-view averaged like the primary's, so\n"
                 "#               the weight tuned for single-view features is the wrong one."),
     },
+    # ------------------------------------ the two division gates, pushed the untested way
+    # `notes/76` read the division funnel the fork has been printing all along. Over the 12
+    # held-out movies of `claude-eval-ttasec`:
+    #
+    #     divergence_rejected       5,130      SAFE_DIV_DIVERGE_UM 2.25
+    #     geometric_candidates        975      SAFE_DIV_MAX_UM 9.0 / SISTER 14.0
+    #     deepcenter_rejected         752      77% of candidates, threshold 0.25
+    #     safe_divisions_added        194      == the fork count in submission.csv
+    #
+    # Two arms have already moved these gates, and **both moved them tighter, and both lost
+    # badly**: `dc40` (veto 0.25 -> 0.40) scored **0.933**, `div15` (divergence 2.25 -> 1.5)
+    # scored **0.938**, against a 0.941 base. Losses that size from removing ~150 edges out of
+    # ~25,000 are too large to be edge arithmetic alone; the division term is 0.1 x div_J and
+    # a collapse in div_J is the only thing on that scale. Read together they say the safe
+    # divisions being added are **mostly right**, and that the gradient at the current
+    # operating point is steep and points the other way.
+    #
+    # **Nobody has tried loosening either gate, in any public notebook or any arm here.** That
+    # is the whole argument for these two: same knobs, same base, opposite sign, and the two
+    # existing measurements are the control.
+    #
+    # Both sit on `ttasec`, our best measured arm, because the changes are disjoint --
+    # `ttasec` is an inference-time feature change, these are post-processing gates.
+    "dcloose": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        # Guarded by _EXPECTED_NUMERIC on this base, so the guard line moves with it or the
+        # run dies on `Configuration drift detected` before the detector loads -- gap44's death.
+        "edits": sec_tta_edits() + [
+            (env1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.25"),
+             env1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.15")),
+            (guard1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.25"),
+             guard1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.15"))],
+        "why": ("ttasec with the DeepCenter safe-division veto LOOSENED, 0.25 -> 0.15. That\n"
+                "#               veto kills 77% of geometric division candidates (752 of 975).\n"
+                "#               `dc40` tightened it to 0.40 and scored 0.933 -- the largest\n"
+                "#               single-knob loss recorded here. Nobody has tried the other way."),
+    },
+    "divloose": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        # Unguarded on this base, so one edit.
+        "edits": sec_tta_edits() + [(env1("SAFE_DIV_DIVERGE_UM", "2.25"),
+                                     env1("SAFE_DIV_DIVERGE_UM", "3.0"))],
+        "why": ("ttasec with the divergence gate LOOSENED, 2.25 -> 3.0um. It is the largest\n"
+                "#               division filter in the pipeline by volume -- 5,130 rejections\n"
+                "#               over 12 movies, five times the number that reach the geometric\n"
+                "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
+    },
     # ----------------------------------------- the two confirmed knobs, on the new base
     # `sewdet` closed SEW and DET *on lb941*: 0.942 each, 0.942 together, node counts exactly
     # additive. The conclusion recorded then was "two ways onto one shelf" -- and the shelf
