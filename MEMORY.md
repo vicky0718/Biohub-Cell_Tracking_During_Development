@@ -315,6 +315,36 @@ the deficit** — the first time in this project a measured ceiling covered it. 
    constructed, not inferred (`scratchpad/exec_*.py`). This has caught more real defects than
    any other practice here — including three where the *harness itself* was wrong.
 
+## Pipeline facts (measured 2026-09-13, `notes/77`–`notes/80`)
+
+- 🚨 **`OUTPUT_MOTION_RELINK` costs us on BOTH terms.** `filter_output_graph` opens with
+  `edges = motion_edges`, replacing the entire ILP edge set, and `motion_relink_edges` assigns
+  via `linear_sum_assignment` — one-to-one, so it is structurally incapable of emitting a
+  division. Turning it off (`norelink`): `edge_fp` 324→211, `edge_fn` 324→283,
+  `div_J` 0.154→0.333, **12/12 held-out movies improve**, t=+2.66. It is on by default and
+  this lineage credits it with part of 0.941. Leave `ILP_DIVISION_WEIGHT` at 1.2 — dropping it
+  to 0.4 unleashes 1,306 ILP divisions and collapses `div_J` to 0.098.
+- **Every division in a stock submission is inserted after the fact.** `ttasec`: 194 forks,
+  194 added by `add_safe_divisions_postlink`, **zero** surviving the ILP — still zero at
+  `ILP_DIVISION_WEIGHT = 0.0`. That knob is inert while the relink is on.
+- **The post-link division gates cannot reach an already-linked daughter**: `candidate_ids`
+  requires `nid not in incoming`. Moved 90 divisions apart in both directions (`dcloose` +51,
+  `divloose` −39) and `division_tp` stayed at 2 every time.
+- **`SAFE_DIV_DIVERGE_UM` is a *minimum* divergence** (`if grandchild_dist - sister_dist <
+  X: reject`), so **raising** it is stricter. `div15` (2.25→1.5) was a *loosening*, and lost.
+- 🚨 **The training GT annotates ~4.7% of a movie** — 9,321 edges over 12 movies against
+  196,723 predicted nodes, density varying 37-fold (50 edges on one movie, 1,871 on another).
+  Both metric terms ignore everything outside it: `_compute_score` divides by
+  `n_valid_pred_edges`, and `count_matched_pred_divisions` excludes predicted divisions whose
+  matched GT node has no children. **Offline ranking of 0.003-scale arms is closed** — the
+  harness put `ttaz16` above `ttasec` on a 3-edge and 1-division difference. It still answers
+  direct-count questions (`notes/77` §8).
+- **`adj_edge_jaccard = max(0, J·(1 − 0.1·ratio))` has no upper clamp** and `ratio` is signed,
+  so under-predicting node count pays a bonus; one movie returned `adj = 1.0390`.
+- **`polars` ships its compiled extension in a separate distribution** (`polars-runtime-32`),
+  so `--no-deps` installs a binary-less polars and every later name vanishes as a `NameError`.
+  The extension module is `polars._plr`, not `polars.polars`.
+
 ## Infrastructure facts (measured, save re-discovery)
 
 - 🚨 **The four clips in `test/` are PLACEHOLDERS.** They are byte-identical copies of

@@ -149,3 +149,26 @@ is worse at linking (113 more false edges) and structurally incapable of a divis
 `claude-arm-norelink` is running as a full arm for the board. The harness is contaminated and
 0.98536 is **not** a leaderboard estimate; what transfers is the direction and the fact that
 every one of twelve movies agrees.
+
+## 7. The full arm is built and verified live
+
+`claude-arm-norelink` completed its verification run (24 min — the graded rerun happens on
+submit). The change is confirmed **not inert**, which `notes/68` requires before a slot is
+spent, by the notebook's own resolved-config dump:
+
+```
+claude-arm-ttasec     "motion_relink": true
+claude-arm-norelink   "motion_relink": false
+```
+
+and the pushed source carries `os.environ['BIOHUB_OUTPUT_MOTION_RELINK'] = '0'` for `norelink`
+and not for `ttasec`. Both TTA patches still fire (`EDGE_TTA_ACTIVE` and `SEC_EDGE_TTA_ACTIVE`
+792 times each), so this is `ttasec` plus one flag, as intended. Output: 4 datasets,
+238,976 rows, 121,948 nodes, 103 forks against `ttasec`'s 241,170 / 122,735 / 101.
+
+Note the absence of `motion_relink_replaced_raw_edges` from the log is **not** evidence — that
+stat is not printed in either arm. The config dump is the evidence.
+
+**Ready for a human to submit** (kernels-only competition, `MEMORY.md`): `claude-arm-norelink`,
+and alongside it the two arms that have been complete and unsubmitted since before this
+session, `claude-arm-ttasecw20` and `claude-arm-ttadse44`.
