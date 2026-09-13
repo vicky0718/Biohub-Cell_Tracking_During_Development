@@ -1091,6 +1091,46 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # -------------------------------- the other two division levers, measured-cost edition
+    # `notes/77` measured what the metric actually charges. Over 12 movies `ttasec` emits 194
+    # forks and is charged **two** division false positives, because
+    # `count_matched_pred_divisions` excludes any predicted division whose matched GT node has
+    # no children -- "marks the end of the annotation" -- and `_compute_score` divides by
+    # `n_valid_pred_edges`, which ignores edges outside the annotated region entirely.
+    # Against that, nine real divisions are missed. Emitting is ~free; missing is permanent.
+    #
+    # `dcloose` and `divloose` step each gate once. These two are the ends of the same two
+    # axes, built so the sweep is one decision rather than three rounds of rebuilding:
+    "divoff": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        # The veto flag itself, not its threshold: `'1' != '0'` is the enable test, so '0'
+        # disables it outright and every geometric candidate survives to the later gates.
+        # Over the 12 eval movies that is 975 candidates against the 223 the veto passes.
+        "edits": sec_tta_edits() + [(env1("DEEPCENTER_SAFE_DIV_VETO", "1"),
+                                     env1("DEEPCENTER_SAFE_DIV_VETO", "0"))],
+        "why": ("ttasec with the DeepCenter safe-division veto OFF. It is the single largest\n"
+                "#               division filter at the candidate stage -- 752 of 975 rejected --\n"
+                "#               and the arm that tightened it (dc40) posted the biggest\n"
+                "#               single-knob loss on record here, 0.933."),
+    },
+    "divp95": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        # Geometry to the p95 of the ground truth `notes/57` measured over all 199 movies:
+        # parent->daughter p95 = 11.78 (gate is 9.0, about p85), sister p95 = 15.34 (gate is
+        # 14.0, about p88). This is the SMALL lever -- the fork's geometry is already close to
+        # right, unlike our retired pipeline's 4.5/6.8 -- and it is here for completeness.
+        "edits": sec_tta_edits() + [
+            (env1("SAFE_DIV_MAX_UM", "9.0"), env1("SAFE_DIV_MAX_UM", "11.8")),
+            (guard1("SAFE_DIV_MAX_UM", "9.0"), guard1("SAFE_DIV_MAX_UM", "11.8")),
+            (env1("SAFE_DIV_SISTER_MAX_UM", "14.0"),
+             env1("SAFE_DIV_SISTER_MAX_UM", "15.4"))],
+        "why": ("ttasec with both division distance gates moved from ~p85/p88 of the measured\n"
+                "#               GT distribution to p95 (notes/57: parent->daughter p95 11.78,\n"
+                "#               sister p95 15.34). Smallest of the division levers, and the\n"
+                "#               only one whose target is a measured distribution."),
+    },
     # ----------------------------------------- the two confirmed knobs, on the new base
     # `sewdet` closed SEW and DET *on lb941*: 0.942 each, 0.942 together, node counts exactly
     # additive. The conclusion recorded then was "two ways onto one shelf" -- and the shelf
