@@ -108,3 +108,55 @@ higher*.
 * So a division arm that the funnel shows is live goes to the **board**, not to a bigger
   offline run. Paying 3.4 GPU-hours for a weak offline t-test, when 8.5 buys a real number,
   is the trade this note exists to refuse.
+
+## 6. Why divisions are cheap to emit — the metric says so in its own docstrings
+
+194 predicted forks over 12 movies produced **`fp` = 2**. That is a 1% charge rate, and it is
+not luck. `division_metrics.count_matched_pred_divisions`:
+
+> "A matched GT node with no children marks the end of the annotation — we can't tell whether
+> the cell actually divided there, so such predicted divisions are **excluded from the count
+> (and therefore from the FP tally)**."
+
+A predicted division is charged only when its parent matches a GT node **that still has a
+child**. 190 of our 194 forks sit on GT-terminal or unmatched nodes and are invisible.
+
+The edge term is gated the same way. `metrics._evaluate_matched_graph` builds `pred_valid`:
+
+```python
+edge_attrs.with_columns((pl.col("out_valid") | pl.col("in_valid")).alias("pred_valid"))
+```
+
+where `out_valid` means the edge's source matched a GT node with `out_degree > 0` and
+`in_valid` that its target matched one with `in_degree > 0`. `_compute_score` then uses
+`n_valid_pred_edges`, **not** the predicted edge count. A predicted edge whose endpoints fall
+outside the annotated region is neither TP nor FP — it does not exist to the metric.
+
+So the asymmetry that governs this whole direction:
+
+```
+missing a real division    costs a division FN, permanently  (we have 9)
+emitting a wrong division  costs ~0.01 division FP on average (we have 2 from 194)
+```
+
+**Emitting divisions is close to free; missing them is not.** That is the mechanism behind the
+board results — `dc40` and `div15` both cut divisions and lost 0.008 and 0.003 — and it is why
+`fn` 9 / `fp` 2 points one way only.
+
+One caveat kept honest: the extra edge each fork adds is *not* uniformly free. A daughter that
+matches a GT node with an incoming edge makes that edge `in_valid`, so it is charged. The 1%
+figure is the measured division-FP rate, not a proof that the edge cost is zero — which is
+exactly what `claude-eval-dcloose` measures, since it reports both terms.
+
+## 7. A second consequence, noted and not yet acted on
+
+`adj_edge_jaccard = max(0, J × (1 − 0.1 × ratio))` has **no upper clamp**, and `ratio` is
+signed. `44b6_66f9292d` came back at `adj = 1.0390` with `ratio = −0.5482`: under-predicting
+node count by 55% multiplied its edge Jaccard by 1.055. Our ratios are negative on 10 of 12
+movies, so we are already collecting a small bonus.
+
+This is a real property of the shipped metric, not an artifact of this harness — the formula
+is quoted verbatim from `metrics.per_sample_metrics`. It is recorded here rather than pursued:
+raising the detection threshold to chase the bonus also drops edge TPs, and `det955`/`det960`
+already probed that axis and landed at 0.941. Worth revisiting only with the division work
+settled.
