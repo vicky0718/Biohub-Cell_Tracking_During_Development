@@ -65,6 +65,34 @@ def env(key: str, val: str) -> str:
     return f'os.environ["BIOHUB_{key}"] = "{val}"'
 
 
+def env1(key: str, val: str) -> str:
+    """`env`, but single-quoted -- the form reyhanksatria's 0.946 base uses.
+
+    The two base families quote differently and neither builder anchor matches the other:
+    the lb941 family writes `os.environ["BIOHUB_X"] = "v"`, the 0.946 family writes
+    `os.environ['BIOHUB_X'] = 'v'`. Every arm on the 0.946 base -- which is now every arm
+    that matters, `ttasec` included -- needs this one. `build()`'s exactly-once anchor check
+    turns a wrong choice into a refusal rather than a silent no-op, but only after a build;
+    having both spellings named makes it a decision instead of a discovery.
+    """
+    return f"os.environ['BIOHUB_{key}'] = '{val}'"
+
+
+def guard1(key: str, val: str) -> str:
+    """`guard`, single-quoted, for the 0.946 base's `_EXPECTED_NUMERIC` drift guard.
+
+    That base guards eight keys, and two of them are the division knobs most worth moving:
+    **SAFE_DIV_MAX_UM (9.0)** and **DEEPCENTER_SAFE_DIV_THRESHOLD (0.25)**, alongside
+    DET_THRESHOLD, ILP_APPEARANCE_WEIGHT, ILP_DISAPPEARANCE_WEIGHT, GAP_CLOSE_UM,
+    OUTPUT_MIN_TRACK_LEN and BIDIRECTIONAL_EDGE_WEIGHT. An arm moving either division knob
+    must move its guard line too or die on `Configuration drift detected`, as gap44 did.
+
+    Unguarded on this base, and therefore free to edit alone: SAFE_DIV_SISTER_MAX_UM,
+    SAFE_DIV_DIVERGE_UM, SAFE_DIV_SISTER_SYMMETRY_TAU, ILP_DIVISION_WEIGHT.
+    """
+    return f"'BIOHUB_{key}': {val}"
+
+
 def guard(key: str, val: str) -> str:
     """A line of the notebook's own `_EXPECTED_NUMERIC` configuration-drift guard.
 
