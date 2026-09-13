@@ -90,3 +90,62 @@ It is also the first that clears the noise floor by a wide margin. It should sti
 board before anything is built on it, because this harness is contaminated (`notes/72` §3) and
 its absolute level is not a leaderboard estimate — `notes/77` §2 is not repealed by one large
 effect.
+
+## 5. `norelink` alone is far better than `norelinkdiv` — the penalty should stay at 1.2
+
+```
+arm            edge_tp  edge_fp  edge_fn |  div tp/fp/fn |   edge_J      adj   div_J    score
+ttasec            8997      324      324 |        2/2/9  |  0.93281  0.93623  0.1538  0.95161
+norelinkdiv       9047      252      274 |        6/50/5 |  0.94505  0.94870  0.0984  0.95854
+norelink          9038      211      283 |        4/1/7  |  0.94817  0.95202  0.3333  0.98536
+```
+
+**`norelink` — relink off, ILP division penalty left at the fork's 1.2 — scores 0.98536,
++0.0337 over `ttasec`.** Both terms improve at once, which nothing in this project has done:
+
+* `edge_fp` **324 → 211**, a 35% cut. `edge_fn` 324 → 283. `edge_tp` +41.
+* `div_J` **0.1538 → 0.3333**, from `tp` 2 → 4 and `fp` 2 → **1**.
+
+And the per-movie result is unambiguous:
+
+```
+paired mean +0.02378   sd 0.03094   se 0.00893   t = +2.66
+movies improved: 12 / 12
+```
+
+**All twelve.** A sign test alone gives p ≈ 0.0005. `notes/77` closed this harness for
+0.003-scale ranking; this is eleven times that with unanimous per-movie agreement, and the
+underlying counts (113 fewer false edges) are far outside the 3-edge noise floor that
+comparison established.
+
+Node ratios are unchanged in character (−0.004 to −0.10, same as `ttasec`), so this is not the
+unclamped `adj` bonus of `notes/77` §7 being gamed by predicting fewer nodes.
+
+### Why lowering the penalty *hurt*
+
+```
+                forks   from repair   surviving the ILP
+norelink          198           198                   0
+norelinkdiv     1,376            70               1,306
+```
+
+At the stock penalty 1.2 the ILP emits essentially **no** divisions of its own, so `norelink`'s
+198 forks are all repair-inserted — the same number as `ttasec`'s 194. Yet `division_tp` still
+rises 2 → 4. **The divisions did not get more numerous, they got better placed**, because
+without the relink's 1-to-1 reassignment the underlying linking is right more often and the
+repair step's candidates sit where the real divisions are.
+
+Dropping the penalty to 0.4 unleashed 1,306 ILP divisions, 50 of which landed on annotated
+tracks, and `div_J` collapsed to 0.098. So `notes/80` §3's plan — keep the low penalty and prune
+with the geometry filter — is unnecessary: **the right configuration is simply to leave the
+penalty alone.** The geometry-filter arm is not needed and will not be built.
+
+## 6. The finding, stated plainly
+
+`OUTPUT_MOTION_RELINK` — on by default, credited by this lineage with part of the 0.941 — is
+**costing** us on both terms. It replaces the ILP's edge set with a one-to-one assignment that
+is worse at linking (113 more false edges) and structurally incapable of a division.
+
+`claude-arm-norelink` is running as a full arm for the board. The harness is contaminated and
+0.98536 is **not** a leaderboard estimate; what transfers is the direction and the fact that
+every one of twelve movies agrees.
