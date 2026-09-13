@@ -160,3 +160,61 @@ is quoted verbatim from `metrics.per_sample_metrics`. It is recorded here rather
 raising the detection threshold to chase the bonus also drops edge TPs, and `det955`/`det960`
 already probed that axis and landed at 0.941. Worth revisiting only with the division work
 settled.
+
+## 8. Correction to §4 — the training ground truth is 5% dense, and §4 overstated the power
+
+`score_summary.json` carries the counts the log did not print, and they change the diagnosis:
+
+```
+ttasec, 12 movies:   edge tp/fp/fn  8997 / 324 / 324      GT edges  9,321
+                     division       2 / 2 / 9             GT divisions  11
+                     predicted nodes 196,723
+ttaz16, 12 movies:   edge tp/fp/fn  9000 / 320 / 321      GT edges  9,321
+                     division       3 / 5 / 8
+```
+
+**The training GT annotates ~4.7% of a movie** — 9,321 edges against 196,723 predicted nodes —
+and its density varies 37-fold between movies:
+
+```
+44b6_0113de3b     50 GT edges     25,622 predicted nodes     0 GT divisions
+6bba_09961292  1,871 GT edges     29,754 predicted nodes     4 GT divisions
+```
+
+So this harness was never scoring dense movies against dense truth. It is the same sparse
+placeholder annotation `notes/66` found on the four visible clips — it is simply *more* of it.
+That is why `harness/purescore.py` and this both fail at the same task.
+
+### What actually decided the ranking
+
+```
+edge term      ttasec 8997 TP   ttaz16 9000 TP    difference: 3 edges in 9,321
+division term  ttasec 2 TP      ttaz16 3 TP       difference: 1 event in 11
+```
+
+`0.1 × (3/16 − 2/13) = 0.0034` of the 0.0043 gap. **The harness ranked `ttaz16` above `ttasec`
+because of one division event out of eleven.** The edge term — the thing that genuinely
+separates these arms on the board — came out +0.0007 for `ttaz16` against a true −0.003, i.e.
+three edges out of nine thousand. Both terms are noise; the division term is just noisier per
+event, and carries a 0.1 multiplier.
+
+### §4 was wrong
+
+`notes/77` §4 argued the harness is "adequately powered for the effect now in view" because
+division headroom is ~0.020 against the 0.003 that defeated it. That reasoning used the
+between-movie sd from §2 and ignored that `div_J` rests on **11 events**. One division is
+±0.03 of `div_J` and ±0.003 of `score` — the same size as the gap that defeated it. The
+harness is **not** powered to rank arms on `score`, division arms included. §4 stands only as
+the observation that division effects are larger, not as a licence to rank.
+
+### What it can still do, stated tightly
+
+Loosening a gate is **nested**: every candidate `ttasec` admits, `dcloose` also admits. So
+
+* **"how many of the 11 does it recover"** is monotone under loosening and directly observed —
+  a count, with no aggregation and no pairing noise. If `dcloose` recovers 2, the knob is inert.
+* **"what does it cost"** — added division FPs, added charged edges — is also a direct count.
+
+Both are mechanism questions. Neither is a score. **No arm gets ranked here**, which is where
+the gate left things and where they stay; the board decides, and 28 of ~115 submissions are
+used with 16 days left.
