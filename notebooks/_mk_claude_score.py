@@ -44,19 +44,46 @@ if _wheels is None:
 
 # polars needs --force-reinstall: the image ships an older one, pip calls the requirement
 # satisfied and skips it, and tracksdata then raises `no attribute 'Float16'`.
-for _stage, _pkgs, _force in (
-        ("polars", ["polars"], True),
+# polars comes from PyPI, everything else from the pack's wheels.
+#
+# The pack's polars wheel installs but its compiled extension does not load in this image,
+# and polars hides that: `with contextlib.suppress(ImportError): from polars.polars import
+# PySeries` means a failed extension import silently deletes module-level names, surfacing
+# much later as `NameError: name 'PySeries' is not defined` and then
+# `NameError: name '_POLARS_TYPE_TO_CONSTRUCTOR' is not defined`.
+#
+# polars has no dependencies, so --no-deps from PyPI cannot disturb the image's numpy, which
+# is the only thing the earlier plain `pip install` got wrong. PyPI polars + the pack's
+# tracksdata is the combination verified in this container.
+for _stage, _pkgs, _force, _pypi in (
+        ("polars", ["polars"], True, True),
         # The arm notebooks' list, verbatim. tracksdata imports its solvers at package load,
         # so ilpy and pyscipopt are needed whether or not anything is solved here.
         ("graph stack", ["tracksdata", "zarr", "pyscipopt", "geff", "geff_spec", "ilpy",
                          "imagecodecs", "rustworkx", "numcodecs", "donfig", "bidict"],
-         False)):
-    _cmd = [sys.executable, "-m", "pip", "install", "-q", "--no-index", "--no-deps",
-            "--find-links", str(_wheels)] + (["--force-reinstall"] if _force else []) + _pkgs
+         False, False)):
+    _cmd = ([sys.executable, "-m", "pip", "install", "-q", "--no-deps"]
+            + ([] if _pypi else ["--no-index", "--find-links", str(_wheels)])
+            + (["--force-reinstall"] if _force else []) + _pkgs)
     _r = subprocess.run(_cmd, capture_output=True, text=True)
     print(f"pip [{_stage}] rc {_r.returncode}", flush=True)
     if _r.returncode:
         print(_r.stdout[-1200:], _r.stderr[-1200:], flush=True)
+
+# Check the compiled extension directly, in a fresh interpreter, because polars swallows its
+# own import failure and reports it only as a NameError somewhere else entirely -- two rounds
+# were spent chasing those NameErrors instead of the import that caused them.
+_chk = subprocess.run(
+    [sys.executable, "-c",
+     "import polars as pl, polars.polars as pp;"
+     "print('polars', pl.__version__, pl.__file__);"
+     "print('extension', pp.__file__);"
+     "print('Series dtype', pl.Series([1.0]).dtype, '| Float16', hasattr(pl, 'Float16'))"],
+    capture_output=True, text=True)
+print(_chk.stdout.strip(), flush=True)
+if _chk.returncode:
+    print("POLARS IS BROKEN:", _chk.stderr[-900:], flush=True)
+    raise RuntimeError("polars will not import cleanly -- scoring cannot run")
 
 # The official metric code, carried inline -- the same bytes the support pack ships at
 # src/biohub_tracking/{metrics,division_metrics}.py. `metrics` does a relative
