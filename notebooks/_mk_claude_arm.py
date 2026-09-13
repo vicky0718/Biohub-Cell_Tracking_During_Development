@@ -1091,6 +1091,48 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # ------------------------------------- the division lever that acts where the loss is
+    # `notes/78`: `divloose` moved 39 divisions and moved `div_J` by **zero**. The reason is
+    # structural, and it is in `add_safe_divisions_postlink`:
+    #
+    #     candidate_ids = [nid for nid in child_frame_ids
+    #                      if nid not in incoming and nid not in used_targets]
+    #
+    # **A division candidate must have no incoming edge.** The post-link repair can only
+    # rescue a division whose second daughter the linker left orphaned. Where the linker
+    # assigned that daughter to a neighbouring track instead -- which is what a missed
+    # division usually *is* -- no safe-division gate can reach it, at any threshold. That
+    # closes the whole post-processing family as a route to the 9 missed divisions.
+    #
+    # `ILP_DIVISION_WEIGHT` acts one stage earlier, inside the ILP, where every node is still
+    # in play and a fork can be chosen *against* a competing assignment. tracksdata's own
+    # solver tests settle the sign: `division_weight=1.0,  # Penalize divisions` and
+    # "penalization is too high, empty solution". It is a **penalty**, so the fork's 1.2 (up
+    # from the 1.0 default) penalizes divisions *more* than stock, and lowering it yields more.
+    #
+    # Unguarded by `_EXPECTED_NUMERIC`, so one edit -- but unlike the gates this changes the
+    # ILP for every edge, not just forks, so the eval must check `edge_jaccard` has not
+    # collapsed as well as whether `division_tp` rose above 2.
+    "ilpdiv04": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [(env1("ILP_DIVISION_WEIGHT", "1.2"),
+                                     env1("ILP_DIVISION_WEIGHT", "0.4"))],
+        "why": ("ttasec with the ILP's division PENALTY cut 1.2 -> 0.4. The post-link repair\n"
+                "#               cannot reach a division whose daughter is already linked\n"
+                "#               (candidates must have no incoming edge), so the ILP is the\n"
+                "#               only stage that can recover the 9 missed divisions."),
+    },
+    "ilpdiv00": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [(env1("ILP_DIVISION_WEIGHT", "1.2"),
+                                     env1("ILP_DIVISION_WEIGHT", "0.0"))],
+        "why": ("the same lever with the division penalty removed outright. Brackets\n"
+                "#               ilpdiv04 from the far side: if 0.0 does not raise division_tp\n"
+                "#               above 2 then the ILP is not withholding divisions either, and\n"
+                "#               the whole direction closes on measurement rather than guess."),
+    },
     # -------------------------------- the other two division levers, measured-cost edition
     # `notes/77` measured what the metric actually charges. Over 12 movies `ttasec` emits 194
     # forks and is charged **two** division false positives, because
