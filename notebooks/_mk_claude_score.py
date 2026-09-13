@@ -27,19 +27,12 @@ from harness import claude_kaggle_api as K          # noqa: E402
 HERE = Path(__file__).resolve().parent
 PACK = Path("/tmp/pack")
 
-NB = '''import json, subprocess, sys, traceback
+NB = '''import json, subprocess, sys
 from pathlib import Path
 
 # Install from the support pack's OFFLINE WHEELS, with --no-deps, which is what every arm
-# notebook does and what its own log explains:
-#
-#   "Dependency resolver is disabled with --no-deps to avoid replacing Kaggle numpy/scipy
-#    in a live kernel."
-#
-# A plain `pip install tracksdata geff` ignored that and pulled a numpy upgrade, and the
-# kernel died on `ImportError: cannot import name '_center' from 'numpy._core.umath'` --
-# the image's compiled extensions built against the numpy that was just replaced. The pack's
-# authors solved this before I arrived; the fix is to use their solution.
+# notebook does and what its own log explains: "Dependency resolver is disabled with
+# --no-deps to avoid replacing Kaggle numpy/scipy in a live kernel."
 _wheels = next((p.parent for p in Path("/kaggle/input").glob("*/**/tracksdata-*.whl")), None)
 if _wheels is None:
     _wheels = next((p for p in Path("/kaggle/input").glob("*/**/wheels") if p.is_dir()), None)
@@ -48,18 +41,13 @@ if _wheels is None:
     for _p in sorted(Path("/kaggle/input").glob("*/*")):
         print("   mounted:", _p, flush=True)
     raise RuntimeError("no offline wheels mounted -- add the support pack as a data source")
-# polars gets its OWN call with --force-reinstall. The image already ships a polars, so a
-# plain install sees the requirement satisfied and skips it -- which is why adding "polars"
-# to the list below changed nothing and the kernel died twice on the same
-# `AttributeError: module 'polars' has no attribute 'Float16'` that tracksdata raises
-# against the older one. The arm notebooks install polars in a separate call for this reason.
+
+# polars needs --force-reinstall: the image ships an older one, pip calls the requirement
+# satisfied and skips it, and tracksdata then raises `no attribute 'Float16'`.
 for _stage, _pkgs, _force in (
         ("polars", ["polars"], True),
-        # The arm notebooks' list, verbatim. I curated a subset of it and lost a round to
-        # `ModuleNotFoundError: No module named 'ilpy'` -- tracksdata imports its solvers at
-        # package load, and those need ilpy and pyscipopt whether or not this notebook
-        # solves anything. Three rounds of this have all been the same mistake: reaching
-        # past what the pack already does.
+        # The arm notebooks' list, verbatim. tracksdata imports its solvers at package load,
+        # so ilpy and pyscipopt are needed whether or not anything is solved here.
         ("graph stack", ["tracksdata", "zarr", "pyscipopt", "geff", "geff_spec", "ilpy",
                          "imagecodecs", "rustworkx", "numcodecs", "donfig", "bidict"],
          False)):
@@ -69,22 +57,40 @@ for _stage, _pkgs, _force in (
     print(f"pip [{_stage}] rc {_r.returncode}", flush=True)
     if _r.returncode:
         print(_r.stdout[-1200:], _r.stderr[-1200:], flush=True)
-import polars as _pl
-print("polars", _pl.__version__, "| has Float16:", hasattr(_pl, "Float16"), flush=True)
 
-# The official metric code, carried inline. Same bytes as the support pack ships at
-# src/biohub_tracking/{metrics,division_metrics}.py -- `metrics` does a relative
+# The official metric code, carried inline -- the same bytes the support pack ships at
+# src/biohub_tracking/{metrics,division_metrics}.py. `metrics` does a relative
 # `from .division_metrics import evaluate_divisions`, so both live in one package.
 _pkg = Path("/kaggle/working/bt")
 _pkg.mkdir(parents=True, exist_ok=True)
 (_pkg / "__init__.py").write_text("")
 (_pkg / "metrics.py").write_text(METRICS_SRC)
 (_pkg / "division_metrics.py").write_text(DIVISION_SRC)
-sys.path.insert(0, "/kaggle/working")
+Path("/kaggle/working/score_impl.py").write_text(IMPL_SRC)
+
+# Run the scoring in a FRESH INTERPRETER. Force-reinstalling polars under a process that has
+# already imported it leaves a half-replaced package: the version string comes back empty and
+# every dataset dies on `NameError: name 'PySeries' is not defined`. The arm notebooks never
+# see this because they install in the notebook and predict in a subprocess; so does this.
+_rc = subprocess.run([sys.executable, "/kaggle/working/score_impl.py",
+                      json.dumps(SUBMISSIONS)], cwd="/kaggle/working")
+print("scoring rc", _rc.returncode, flush=True)
+if _rc.returncode:
+    raise RuntimeError(f"scoring failed rc={_rc.returncode}")
+'''
+
+IMPL = '''"""Scoring, run in its own interpreter so the freshly installed polars loads clean."""
+import json, sys, traceback
+from pathlib import Path
 
 import pandas as pd
+import polars as pl
 import tracksdata as td
+
+sys.path.insert(0, "/kaggle/working")
 from bt import metrics as M
+
+print("polars", pl.__version__, "| tracksdata ok", flush=True)
 
 COMP = Path("/kaggle/input/competitions/biohub-cell-tracking-during-development")
 if not COMP.exists():
@@ -113,7 +119,8 @@ def graph_from_rows(nodes, edges):
     """Build a tracksdata graph from submission rows.
 
     Every attribute key must be declared before the first `add_node`; a fresh graph knows
-    only `t`, which is exactly what killed the previous attempt.
+    only `t`, which is what killed the first attempt. Verified locally against a real
+    submission: 25,622 nodes in 0.6s.
     """
     g = td.graph.IndexedRXGraph()
     for k in ("z", "y", "x"):
@@ -128,7 +135,7 @@ def graph_from_rows(nodes, edges):
 
 
 results = {}
-for name, csv_path in SUBMISSIONS.items():
+for name, csv_path in json.loads(sys.argv[1]).items():
     print("=" * 70, flush=True)
     print(name, csv_path, flush=True)
     if not Path(csv_path).exists():
@@ -161,13 +168,13 @@ for name, csv_path in SUBMISSIONS.items():
     if rows:
         s = M.summarise(rows)
         results[name] = {"summary": s, "per_dataset": rows}
-        print(f"\\n   SUMMARY {name}", flush=True)
+        print(f"\n   SUMMARY {name}", flush=True)
         for k in ("n", "edge_jaccard", "adj_edge_jaccard", "division_jaccard",
                   "division_tp", "division_fp", "division_fn", "node_recall", "score"):
             if k in s:
                 print(f"      {k:<20} {s[k]}", flush=True)
 
-print("\\n" + "=" * 70, flush=True)
+print("\n" + "=" * 70, flush=True)
 for name, r in results.items():
     print(f"FINAL {name:<24} score={r['summary'].get('score')} "
           f"adj_edge={r['summary'].get('adj_edge_jaccard')} "
@@ -176,12 +183,14 @@ Path("/kaggle/working/score_summary.json").write_text(json.dumps(results, indent
 '''
 
 
+
 def build(kernels: list[str]) -> int:
     subs = {k.replace("claude-eval-", ""):
             f"/kaggle/input/notebooks/{K.username()}/{k}/submission.csv" for k in kernels}
     src = ("METRICS_SRC = " + repr((PACK / "metrics.py").read_text()) + "\n"
            + "DIVISION_SRC = " + repr((PACK / "division_metrics.py").read_text()) + "\n"
            + "SUBMISSIONS = " + repr(subs) + "\n"
+           + "IMPL_SRC = " + repr(IMPL) + "\n"
            + NB)
     compile(src, "claude_score", "exec")
 
