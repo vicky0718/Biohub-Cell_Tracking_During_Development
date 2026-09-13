@@ -46,17 +46,21 @@ if _wheels is None:
 # satisfied and skips it, and tracksdata then raises `no attribute 'Float16'`.
 # polars comes from PyPI, everything else from the pack's wheels.
 #
-# The pack's polars wheel installs but its compiled extension does not load in this image,
-# and polars hides that: `with contextlib.suppress(ImportError): from polars.polars import
-# PySeries` means a failed extension import silently deletes module-level names, surfacing
-# much later as `NameError: name 'PySeries' is not defined` and then
-# `NameError: name '_POLARS_TYPE_TO_CONSTRUCTOR' is not defined`.
+# **`polars-runtime-32` is why three rounds failed.** Since 1.3x polars ships the compiled
+# extension in a SEPARATE distribution -- `polars` metadata reads
+# `Requires-Dist: polars-runtime-32==1.44.2` -- and installs a pure-Python package on its own.
+# `--no-deps`, copied from the arm notebooks where it exists to protect Kaggle's numpy/scipy,
+# therefore installed polars without its binary. `pip rc 0` was honest; the wheel really did
+# install. What followed looked like a contradiction only because polars hides the missing
+# extension: `with contextlib.suppress(ImportError): from polars._plr import PySeries` deletes
+# module-level names on failure, surfacing much later as `NameError: PySeries is not defined`
+# and `NameError: _POLARS_TYPE_TO_CONSTRUCTOR is not defined`. Rounds went to --force-reinstall
+# and --only-binary=:all: on the theory that pip was building an sdist. It never was.
 #
-# polars has no dependencies, so --no-deps from PyPI cannot disturb the image's numpy, which
-# is the only thing the earlier plain `pip install` got wrong. PyPI polars + the pack's
-# tracksdata is the combination verified in this container.
+# Naming the runtime explicitly keeps --no-deps: `polars-runtime-32` requires nothing itself,
+# so it cannot disturb the image's numpy, which is the only thing a plain install got wrong.
 for _stage, _pkgs, _force, _pypi in (
-        ("polars", ["polars==1.44.2"], True, True),
+        ("polars", ["polars==1.44.2", "polars-runtime-32==1.44.2"], True, True),
         # The arm notebooks' list, verbatim. tracksdata imports its solvers at package load,
         # so ilpy and pyscipopt are needed whether or not anything is solved here.
         ("graph stack", ["tracksdata", "zarr", "pyscipopt", "geff", "geff_spec", "ilpy",
@@ -66,23 +70,45 @@ for _stage, _pkgs, _force, _pypi in (
     # "succeeded" with rc 0, and left a package whose own warning was the giveaway:
     # "Polars binary is missing!" -- an install with no compiled extension, which is what
     # made every later name vanish. A missing wheel must be an error, not a silent build.
-    _cmd = ([sys.executable, "-m", "pip", "install", "-q", "--no-deps"]
+    _cmd = ([sys.executable, "-m", "pip", "install", "--no-deps"]
             + (["--only-binary=:all:"] if _pypi
                else ["--no-index", "--find-links", str(_wheels)])
             + (["--force-reinstall"] if _force else []) + _pkgs)
     _r = subprocess.run(_cmd, capture_output=True, text=True)
     print(f"pip [{_stage}] rc {_r.returncode}", flush=True)
+    # No backslash escapes anywhere in NB. NB is emitted verbatim while IMPL goes through
+    # `repr()`, so the two need different escaping depths for the same character -- and
+    # getting that wrong has now broken the build twice (once leaving `print(f"` unterminated,
+    # once here). `splitlines()` and a loop need no escape at either depth.
+    for _l in _r.stdout.splitlines():
+        if any(w in _l for w in ("Downloading", "Using cached", "Installing collected",
+                                 "Successfully", "Building", "error", "Saved")):
+            print("   " + _l, flush=True)
     if _r.returncode:
-        print(_r.stdout[-1200:], _r.stderr[-1200:], flush=True)
+        print(_r.stderr[-1200:], flush=True)
 
 # Check the compiled extension directly, in a fresh interpreter, because polars swallows its
 # own import failure and reports it only as a NameError somewhere else entirely -- two rounds
 # were spent chasing those NameErrors instead of the import that caused them.
+#
+# The extension is `polars._plr` on 1.44.2, NOT `polars.polars`; the old name is gone. This
+# check previously used the old name, so it failed on a perfectly good install and sent the
+# last round chasing pip. The fork's own guard reads `from polars._plr import PySeries`, which
+# was on screen the whole time. Both names are tried so the check cannot be the thing that is
+# wrong again, and it prints which one answered.
 _chk = subprocess.run(
     [sys.executable, "-c",
-     "import polars as pl, polars.polars as pp;"
+     "import importlib, polars as pl;"
+     "ext = next((m for m in ('polars._plr', 'polars.polars')"
+     "            if importlib.util.find_spec(m) is not None), None);"
+     "assert ext, 'no polars extension module (polars-runtime-32 not installed?)';"
+     "pp = importlib.import_module(ext);"
+     # `PySeries` is the symbol the fork's own readiness test imports, and the one whose
+     # absence produced every NameError this kernel has thrown. Read it off whichever
+     # module answered rather than hardcoding a path that a version bump can move again.
+     "assert hasattr(pp, 'PySeries'), ext + ' has no PySeries';"
      "print('polars', pl.__version__, pl.__file__);"
-     "print('extension', pp.__file__);"
+     "print('extension', ext, pp.__file__);"
      "print('Series dtype', pl.Series([1.0]).dtype, '| Float16', hasattr(pl, 'Float16'))"],
     capture_output=True, text=True)
 print(_chk.stdout.strip(), flush=True)

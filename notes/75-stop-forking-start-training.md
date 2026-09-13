@@ -542,3 +542,74 @@ claimed upside, and it is now closed with evidence rather than argument.
 
 Best arm remains `ttasec` at 0.945. Unsubmitted and complete: `ttasecw20` and `ttadse44` —
 both cheap, neither with evidence behind it now that the proxy is retired.
+
+## The polars round, and the debugging rule it cost
+
+The offline scorer (`notebooks/_mk_claude_score.py`) took **four rounds** to install polars.
+The symptom never changed:
+
+```
+pip [polars] rc 0
+POLARS IS BROKEN: .../polars/meta/build.py:5: UserWarning: Polars binary is missing!
+ModuleNotFoundError: No module named 'polars.polars'
+```
+
+I called this "contradictory" — pip reports success, the binary is absent — and spent three
+rounds on theories about pip: it must be skipping the package as already satisfied
+(`--force-reinstall`), it must be silently building the sdist (`--only-binary=:all:`), it must
+be installing under a different interpreter than the one importing (instrument `sys.executable`).
+None of them were true, and the last one is disproved by the arms themselves, which use
+`sys.executable` for exactly this install and work.
+
+**Two separate mistakes, both mine, stacked into one symptom.**
+
+1. Since ~1.3x, polars ships its compiled extension in a **separate distribution**:
+
+   ```
+   $ python -c "import importlib.metadata as md; print(md.requires('polars'))"
+   ['polars-runtime-32==1.44.2', ...]
+   ```
+
+   `--no-deps` — copied from the arm notebooks, where it exists to stop pip replacing Kaggle's
+   numpy/scipy mid-kernel — therefore installed the pure-Python half and nothing else.
+   **`pip rc 0` was honest.** The wheel really did install; the binary was in a package I had
+   explicitly told pip not to fetch. Naming `polars-runtime-32` alongside `polars` keeps
+   `--no-deps` intact, because that package requires nothing itself.
+
+2. The extension module is **`polars._plr`**. `polars.polars` has not existed for several
+   releases. My readiness check imported the old name, so it would have failed on a perfectly
+   good install — and did, which is what made round three look like round two.
+
+The second one is the embarrassing one. The fix was **in the fork's own source**, which this
+project has read repeatedly:
+
+```python
+def polars_runtime_ready() -> bool:
+    try:
+        import polars as _pl
+        from polars._plr import PySeries as _PySeries
+```
+
+`_plr`. On screen, in a file already quoted in these notes, through all four rounds.
+
+### The rule
+
+`notes/68` earned *a check earns the right to stop a run only by controlling its own inputs*.
+This earns its companion:
+
+> **When a tool reports success and the result looks impossible, the tool is usually right and
+> the belief about what it was asked to do is wrong.** Read the package metadata, not the pip
+> transcript. `Requires-Dist` would have answered this in one command, in round one.
+
+And a corollary specific to this repo: the fork is a **reference implementation of a working
+install** in this exact image. When an environment problem appears, diff against what the fork
+does before theorising about what pip does.
+
+### Escaping, again
+
+The same round also broke the build with an unescaped `\n` inside `NB`. `NB` is emitted
+verbatim while `IMPL` passes through `repr()`, so the identical character needs different
+escaping depths in two strings in one file — and that has now cost two builds. The permanent
+`compile(src)` guard caught it locally both times, which is the only reason it cost minutes
+rather than a kernel. The code now avoids backslash escapes in these templates entirely
+(`splitlines()` and a loop), because getting an escape right twice is worse than not needing it.
