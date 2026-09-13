@@ -185,7 +185,13 @@ def graph_from_geff(path):
 def graph_from_nodes(nodes, edges, label=""):
     g = td.graph.IndexedRXGraph()
     for k in ("z", "y", "x"):
-        g.add_node_attr_key(k, 0.0)
+        # add_node_attr_key(key, DTYPE, default) -- the second argument is the polars dtype,
+        # not the default. The error that sent us here names it `default_value`
+        # ("Initialize with `graph.add_node_attr_key(key, default_value)`"), so v1 passed 0.0
+        # positionally, which registered the float 0.0 AS the schema dtype. Construction
+        # succeeded and `match()` died much later on
+        # `TypeError: cannot parse input of type 'float' into Polars data type (given: 0.0)`.
+        g.add_node_attr_key(k, pl.Float64, 0.0)
     idx = {}
     for nid, d in nodes:
         missing = [k for k in ("t", "z", "y", "x") if k not in d]
@@ -222,6 +228,54 @@ def graph_from_rows(nodes, edges):
         [(int(r.source_id), int(r.target_id)) for r in edges.itertuples(index=False)],
         label="submission")
 
+
+def self_test():
+    """Score four hand-built graphs whose answers are known, before touching real data.
+
+    Every real dataset is scored inside a try/except, so a wiring bug does not fail the run --
+    it prints FAILED twenty-four times and produces no summary. That is exactly what the
+    dtype bug above would have done, after eleven minutes of graph building. This runs first,
+    controls its own inputs, and is fatal: `notes/68`'s rule, which the elastic guard learned
+    the hard way, is that a check earns the right to stop a run only by controlling its inputs.
+
+    The fourth case is the one that matters for reading `div_J`: a predicted fork placed far
+    from any GT node must NOT be charged as a false positive, because
+    `evaluate_divisions` computes `fp = max(0, matched_pred_divisions - tp)`. If that ever
+    stops holding, every division conclusion in notes/76 needs revisiting.
+    """
+    N = {0: (0, 10, 10, 10), 1: (1, 10, 10, 10), 2: (2, 10, 10, 10),
+         3: (3, 10, 8, 10), 4: (3, 10, 12, 10), 5: (4, 10, 7, 10), 6: (4, 10, 13, 10)}
+    E = [(0, 1), (1, 2), (2, 3), (2, 4), (3, 5), (4, 6)]
+
+    def mk(nodes, edges):
+        return graph_from_nodes([(k, {"t": v[0], "z": v[1], "y": v[2], "x": v[3]})
+                                 for k, v in nodes.items()], edges, label="selftest")
+
+    gt = mk(N, E)
+    far = dict(N)
+    far[8], far[9], far[10] = (0, 200, 200, 200), (1, 200, 198, 200), (1, 200, 202, 200)
+    extra = dict(N)
+    extra[7] = (1, 10, 13, 10)
+    cases = [
+        ("perfect",          mk(N, E),                              (1, 0, 0)),
+        ("missed division",  mk(N, [e for e in E if e != (2, 4)]),  (0, 1, 0)),
+        ("extra fork on GT", mk(extra, E + [(0, 7)]),               (1, 0, 1)),
+        ("extra fork far",   mk(far, E + [(8, 9), (8, 10)]),        (1, 0, 0)),
+    ]
+    bad = []
+    for label, pred, want in cases:
+        er = M.evaluate(pred, gt, VOXEL)
+        got = (er.division_tp, er.division_fn, er.division_fp)
+        print(f"   self-test {label:<18} tp/fn/fp={got}  want={want}"
+              f"  {'ok' if got == want else 'MISMATCH'}", flush=True)
+        if got != want:
+            bad.append((label, got, want))
+    if bad:
+        raise RuntimeError(f"scorer self-test failed: {bad}")
+    print("   self-test passed -- scorer wiring verified", flush=True)
+
+
+self_test()
 
 results = {}
 for name, csv_path in json.loads(sys.argv[1]).items():
