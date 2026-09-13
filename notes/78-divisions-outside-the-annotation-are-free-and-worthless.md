@@ -71,3 +71,53 @@ this harness can answer. If `dcloose` also returns 2/2/9, then the 9 misses are 
 rejections at all — the pipeline never proposes a fork at those sites — and the whole
 division direction closes on the post-processing knobs, leaving only the detector/linker that
 `notes/75` already measured as saturated.
+
+## 4. `dcloose` answers it: the post-link family is closed
+
+```
+arm         candidates  dc_rej  added |   edge_J      adj   div tp/fp/fn    div_J     score
+ttasec             975     752    194 |  0.93281  0.93623        2 / 2 / 9  0.15385  0.95161
+divloose           644     469    155 |  0.93281  0.93623        2 / 2 / 9  0.15385  0.95161
+dcloose            975     692    245 |  0.93262  0.93603        2 / 4 / 9  0.13333  0.94936
+```
+
+`notes/78` §3 pre-registered the test: *"the question for `dcloose` is not 'did the count go
+up' but did `division_tp` go above 2 … If `dcloose` also returns 2/2/9, then the 9 misses are
+not gate rejections at all."*
+
+**It returned 2/4/9.** Fifty-one additional divisions, **zero** additional GT divisions
+recovered, and two more false positives.
+
+The pair of results is as clean as this project has produced, because loosening a gate is
+**nested** — `dcloose`'s candidate set is a superset of `ttasec`'s, so `division_tp` could only
+stay or rise:
+
+```
+divloose   −39 divisions   division_tp  2  (unchanged)
+dcloose    +51 divisions   division_tp  2  (unchanged)
+```
+
+**Moved in both directions, ninety divisions apart, and not one of the nine missed GT
+divisions is recovered either way.** The 9 FNs are not gate rejections. That is the structural
+argument of §3 — candidates must have no incoming edge — confirmed empirically from both sides.
+
+**The post-link division family is closed.** `divoff` and `divp95` are built and will not be
+run: they are further moves of the same gates, on the stage that has now been shown twice not
+to contain the loss. That is ~1.5 GPU-hours not spent, which is the point of having measured it.
+
+One number worth keeping: `dcloose`'s 51 extra forks bought 2 extra charged FPs, a ~4% charge
+rate against the ~4.7% annotation density. So emitting divisions is *cheap*, as `notes/77` §6
+said — but not free, and `notes/77`'s "~0.01 FP on average" was the average over a set that is
+mostly unreachable. On reachable ground the rate is ~1 FP per 25 forks.
+
+## 5. What is still open
+
+Everything now rests on the stage where the daughter is still available: `ILP_DIVISION_WEIGHT`,
+a **penalty** the fork raised from the 1.0 default to 1.2. `claude-eval-ilpdiv04` (→ 0.4) is
+running; `ilpdiv00` (→ 0.0) brackets it. The test is the same one, and it is the last one:
+
+* does `division_tp` rise above 2, and
+* does `edge_jaccard` survive — this changes the ILP for every edge, not only forks.
+
+If 0.0 does not move `division_tp`, the pipeline does not withhold these divisions anywhere we
+can reach, and the division direction closes on measurement rather than argument.
