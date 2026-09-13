@@ -55,8 +55,14 @@ if _wheels is None:
 # against the older one. The arm notebooks install polars in a separate call for this reason.
 for _stage, _pkgs, _force in (
         ("polars", ["polars"], True),
-        ("graph stack", ["tracksdata", "geff", "geff_spec", "rustworkx",
-                         "numcodecs", "donfig", "bidict", "zarr"], False)):
+        # The arm notebooks' list, verbatim. I curated a subset of it and lost a round to
+        # `ModuleNotFoundError: No module named 'ilpy'` -- tracksdata imports its solvers at
+        # package load, and those need ilpy and pyscipopt whether or not this notebook
+        # solves anything. Three rounds of this have all been the same mistake: reaching
+        # past what the pack already does.
+        ("graph stack", ["tracksdata", "zarr", "pyscipopt", "geff", "geff_spec", "ilpy",
+                         "imagecodecs", "rustworkx", "numcodecs", "donfig", "bidict"],
+         False)):
     _cmd = [sys.executable, "-m", "pip", "install", "-q", "--no-index", "--no-deps",
             "--find-links", str(_wheels)] + (["--force-reinstall"] if _force else []) + _pkgs
     _r = subprocess.run(_cmd, capture_output=True, text=True)
