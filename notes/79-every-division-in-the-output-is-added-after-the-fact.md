@@ -81,3 +81,44 @@ Two arms: `norelink` (relink off alone, to price it) and `norelinkdiv` (relink o
 division penalty 1.2 → 0.4, so the ILP both makes divisions and keeps them). If
 `division_tp` does not move with the relink off and the penalty down, then nothing reachable
 in this pipeline produces the nine missing divisions, and the direction closes on measurement.
+
+## 4. `ilpdiv00`: prediction half right, claim confirmed on the harder test
+
+```
+arm          cands  added |   edge_J      adj   tp/fp/fn    div_J     score
+ttasec         975    194 |  0.93281  0.93623      2/2/9  0.15385  0.95161
+ilpdiv04       984    200 |  0.93242  0.93577      2/3/9  0.14286  0.95006
+ilpdiv00      1016    209 |  0.93253  0.93571      2/3/9  0.14286  0.95000
+```
+
+§1 predicted, before the run: *"no change in `division_tp` and no change in fork count. If it
+moves either, this section is wrong."*
+
+* `division_tp` — **unchanged at 2**, as predicted, now across penalties 1.2, 0.4 and 0.0.
+* fork count — **moved**, 194 → 209. So the prediction as written was wrong.
+
+The mechanism I missed is the node channel. The ILP decides which **nodes** are in the
+solution as well as which edges; the relink discards its edges but inherits its node set, and
+a different node set yields a different one-to-one assignment, different orphans, and
+therefore different safe-division candidates (975 → 1016). The edge decisions are thrown away.
+The node decisions are not. My "no change in fork count" quietly assumed the ILP touched only
+edges.
+
+**The claim itself survives the strongest available test.** At `ILP_DIVISION_WEIGHT = 0.0` the
+solver pays nothing for a division and is free to emit as many as it likes. Counting forks in
+its actual submission:
+
+```
+ilpdiv00 forks in submission.csv        209
+ilpdiv00 safe divisions added           209
+divisions surviving the ILP stage         0
+```
+
+**Zero.** With the penalty removed entirely, not one ILP division reaches the output. Motion
+relink discards all of them, exactly as `linear_sum_assignment` requires.
+
+So the ILP row of §2's table is confirmed, not merely inferred, and three settings of the
+penalty agree. `ILP_DIVISION_WEIGHT` cannot move `div_J` in this pipeline at any value.
+
+`claude-eval-norelinkdiv` — relink off, penalty 0.4 — is running. It is the first configuration
+in which an ILP division can physically reach the submission.
