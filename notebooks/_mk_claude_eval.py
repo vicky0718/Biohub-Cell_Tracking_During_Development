@@ -88,7 +88,6 @@ if EVAL_MOVIES:
     import traceback as _tb
 
     try:
-        import inspect as _insp
         import pandas as _pd
         import tracksdata as _td2
         sys.path.insert(0, str(REPO_DIR / 'src'))
@@ -105,34 +104,57 @@ if EVAL_MOVIES:
                 print('   node budget unavailable:', _e, flush = True)
                 return float('nan')
 
+        # Build BOTH graphs with the same function, verified in `_mk_claude_score.py` against
+        # real tracksdata. v1 called `_g.add_node(attrs)` on a fresh graph and died on
+        # `node attribute key 'z' not found in existing keys: '['t']'`; v2 declared the keys
+        # with `add_node_attr_key(k, 0.0)`, which registers the FLOAT 0.0 as the schema dtype
+        # -- the second positional argument is the dtype, not the default, whatever the error
+        # message calls it -- and died much later inside `match()` on
+        # `cannot parse input of type 'float' into Polars data type`.
+        import polars as _pl2
+
+        def _mkgraph(_nodes, _edges, _label = ''):
+            _g = _td2.graph.IndexedRXGraph()
+
+            for _k in ('z', 'y', 'x'):
+                _g.add_node_attr_key(_k, _pl2.Float64, 0.0)
+            _idx = {}
+
+            for _nid, _d in _nodes:
+                _idx[_nid] = _g.add_node({'t': int(_d['t']), 'z': float(_d['z']),
+                                          'y': float(_d['y']), 'x': float(_d['x'])})
+
+            for _u, _v in _edges:
+                _g.add_edge(source_id = _idx[_u], target_id = _idx[_v], attrs = {})
+            return _g
+
+        def _gt_graph(_path):
+            """Read GT via geff->networkx, NOT tracksdata's from_geff.
+
+            `IndexedRXGraph.from_geff` calls `pl.Series([value])` per default attribute and
+            lands in a polars branch referencing `PySeries`, raising NameError on these files.
+            Reading through networkx also means both sides of the comparison are built by
+            `_mkgraph`, which is the better property anyway.
+            """
+            import geff as _geff
+            _nxg, _ = _geff.read(str(_path), backend = 'networkx')
+            return _mkgraph([(_n, _dd) for _n, _dd in _nxg.nodes(data = True)],
+                            list(_nxg.edges()), str(_path.name))
+
         _sub = _pd.read_csv(SUBMISSION_PATH)
         _rows = []
-        _probe = True
 
         for _ds in sorted(_sub['dataset'].astype(str).unique()):
             _d = _sub[_sub['dataset'].astype(str) == _ds]
             _nrows = _d[_d['row_type'] == 'node']
             _erows = _d[_d['row_type'] == 'edge']
-            _g = _td2.graph.IndexedRXGraph()
-
-            if _probe:
-                print('   add_node signature:', _insp.signature(_g.add_node), flush = True)
-                _probe = False
-            _map = {}
-
-            for _r in _nrows.itertuples(index = False):
-                _attrs = {'t': int(_r.t), 'z': float(_r.z),
-                          'y': float(_r.y), 'x': float(_r.x)}
-                try:
-                    _map[int(_r.node_id)] = _g.add_node(_attrs)
-                except TypeError:
-                    _map[int(_r.node_id)] = _g.add_node(attrs = _attrs)
-
-            for _r in _erows.itertuples(index = False):
-                _g.add_edge(source_id = _map[int(_r.source_id)],
-                            target_id = _map[int(_r.target_id)], attrs = {})
+            _g = _mkgraph(
+                [(int(_r.node_id), {'t': _r.t, 'z': _r.z, 'y': _r.y, 'x': _r.x})
+                 for _r in _nrows.itertuples(index = False)],
+                [(int(_r.source_id), int(_r.target_id))
+                 for _r in _erows.itertuples(index = False)], _ds)
             _gt_path = COMP_DIR / 'train' / f'{_ds}.geff'
-            _gt = graph_from_geff(_gt_path)
+            _gt = _gt_graph(_gt_path)
             _er = _M.evaluate(_g, _gt, VOXEL_SCALE_UM)
             _row = _M.per_sample_metrics(_er, _node_budget(_gt_path),
                                          _M.node_recall(_g, _gt))
