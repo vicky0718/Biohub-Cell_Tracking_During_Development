@@ -1091,6 +1091,52 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # ----------------------------------------------- the only stage that can emit divisions
+    # `notes/79`. `filter_output_graph` opens with
+    #
+    #     motion_edges = motion_relink_edges(nodes_by_id, stats, learned_edge_probs)
+    #     if motion_edges:
+    #         edges = motion_edges          # the entire ILP edge set, discarded
+    #
+    # and `motion_relink_edges` assigns with `linear_sum_assignment` -- **one-to-one**, so it
+    # cannot emit a second child for any source. The arithmetic closes it: `ttasec`'s
+    # submission carries 194 forks and `add_safe_divisions_postlink` added exactly 194, so
+    # **zero** divisions survive the ILP stage. Every division in the output is inserted after
+    # the fact, under gates that `notes/78` measured as unable to reach an already-linked
+    # daughter. That is why `ilpdiv04` was inert, and why the gates were inert before it.
+    #
+    # `OUTPUT_MOTION_RELINK = 0` keeps the ILP's edges -- the only configuration in which a
+    # division the ILP chose can reach the submission. The flag is never assigned in the env
+    # block (it defaults to '1'), so this is an INSERTION anchored on a neighbouring line,
+    # not a replacement. Unguarded by `_EXPECTED_NUMERIC`.
+    #
+    # Not a small change: the relink is part of what this lineage credits for 0.941, so the
+    # edge term may pay for it. Both arms exist so the cost is priced separately from the gain.
+    "norelink": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            (env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1"),
+             env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1") + "\n"
+             + env1("OUTPUT_MOTION_RELINK", "0"))],
+        "why": ("ttasec with motion relink OFF, so the ILP's edges survive instead of being\n"
+                "#               replaced by a one-to-one assignment. Prices the relink on its\n"
+                "#               own: it is the stage that makes divisions structurally\n"
+                "#               impossible, and it is also credited with part of 0.941."),
+    },
+    "norelinkdiv": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            (env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1"),
+             env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1") + "\n"
+             + env1("OUTPUT_MOTION_RELINK", "0")),
+            (env1("ILP_DIVISION_WEIGHT", "1.2"), env1("ILP_DIVISION_WEIGHT", "0.4"))],
+        "why": ("relink off AND the ILP division penalty cut 1.2 -> 0.4, so the ILP both\n"
+                "#               makes divisions and keeps them. The last reachable\n"
+                "#               configuration: if division_tp does not move here, nothing in\n"
+                "#               this pipeline produces the nine missing divisions."),
+    },
     # ------------------------------------- the division lever that acts where the loss is
     # `notes/78`: `divloose` moved 39 divisions and moved `div_J` by **zero**. The reason is
     # structural, and it is in `add_safe_divisions_postlink`:
