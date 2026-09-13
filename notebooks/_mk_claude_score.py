@@ -56,14 +56,19 @@ if _wheels is None:
 # is the only thing the earlier plain `pip install` got wrong. PyPI polars + the pack's
 # tracksdata is the combination verified in this container.
 for _stage, _pkgs, _force, _pypi in (
-        ("polars", ["polars"], True, True),
+        ("polars", ["polars==1.44.2"], True, True),
         # The arm notebooks' list, verbatim. tracksdata imports its solvers at package load,
         # so ilpy and pyscipopt are needed whether or not anything is solved here.
         ("graph stack", ["tracksdata", "zarr", "pyscipopt", "geff", "geff_spec", "ilpy",
                          "imagecodecs", "rustworkx", "numcodecs", "donfig", "bidict"],
          False, False)):
+    # --only-binary=:all: on the PyPI leg. Without it pip fell back to polars' sdist,
+    # "succeeded" with rc 0, and left a package whose own warning was the giveaway:
+    # "Polars binary is missing!" -- an install with no compiled extension, which is what
+    # made every later name vanish. A missing wheel must be an error, not a silent build.
     _cmd = ([sys.executable, "-m", "pip", "install", "-q", "--no-deps"]
-            + ([] if _pypi else ["--no-index", "--find-links", str(_wheels)])
+            + (["--only-binary=:all:"] if _pypi
+               else ["--no-index", "--find-links", str(_wheels)])
             + (["--force-reinstall"] if _force else []) + _pkgs)
     _r = subprocess.run(_cmd, capture_output=True, text=True)
     print(f"pip [{_stage}] rc {_r.returncode}", flush=True)
