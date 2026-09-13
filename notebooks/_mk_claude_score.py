@@ -168,13 +168,13 @@ for name, csv_path in json.loads(sys.argv[1]).items():
     if rows:
         s = M.summarise(rows)
         results[name] = {"summary": s, "per_dataset": rows}
-        print(f"\n   SUMMARY {name}", flush=True)
+        print(f"\\n   SUMMARY {name}", flush=True)
         for k in ("n", "edge_jaccard", "adj_edge_jaccard", "division_jaccard",
                   "division_tp", "division_fp", "division_fn", "node_recall", "score"):
             if k in s:
                 print(f"      {k:<20} {s[k]}", flush=True)
 
-print("\n" + "=" * 70, flush=True)
+print("\\n" + "=" * 70, flush=True)
 for name, r in results.items():
     print(f"FINAL {name:<24} score={r['summary'].get('score')} "
           f"adj_edge={r['summary'].get('adj_edge_jaccard')} "
