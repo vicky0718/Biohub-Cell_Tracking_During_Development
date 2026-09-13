@@ -478,3 +478,67 @@ its own inputs. Anything evaluated on data you did not choose can only report, b
 cannot distinguish "the code is wrong" from "this batch is unusual" — and the second is far
 more common. I wrote half of this rule two iterations ago, applied it to the direction check,
 and left the magnitude check fatal on exactly the same reasoning I had just rejected.
+
+## Both answers are negative, and both are clean
+
+### `ttaz16` scored 0.942 — the Z-flip costs 0.003
+
+```
+ttasec      0.945    8-view primary TTA + our secondary edge-feature TTA
+ttaz16      0.942    the same, plus Z-flip -> 16 views                     -0.003
+ttaz16dom   0.942    Z-flip + confidence dominance                         -0.003
+```
+
+The pair decomposes exactly: `ttaz16dom` and `ttaz16` score **the same**, so the −0.003 I
+attributed to a defective dominance port was **entirely the Z-flip**. Dominance was neutral.
+The missing `DOMINANCE_DIVISION_SOURCE_INVARIANT` guard cost nothing measurable; the
+mechanism I was most confident in cost everything.
+
+**Why Z-flip TTA hurts, when the model was trained with Z-flips.** Training augmentation makes
+a model *tolerate* a transform; it does not make its response *symmetric* under it. Averaging
+detection logits over a transform the model answers slightly differently under adds variance
+rather than removing it — and `downsample = (1, 4, 4)` leaves Z at a different resolution from
+Y and X, so the flip is not the symmetry the in-plane views are. The 22% of nodes that moved,
+73% of them within 2 um, was blurring. I read it as refinement.
+
+**The local scorer is now 0-for-4** (`notes/60` geometry, `notes/64` PROXY_SCORE, `ttaz16dom`,
+`ttaz16`). It said `ttaz16` was +0.0082, its largest call, and the board said −0.003. Its
++0.0040 for `ttadse44` carries no information either. It is retired for ranking, permanently
+and without exception.
+
+### The fine-tune: 30 epochs, zero improvement
+
+```
+BASELINE epoch -1 (public checkpoint)  acc=0.9998  recall=0.9692  score=0.9690
+best over 30 epochs                                                     0.9690   (never moved)
+epochs above the baseline                                                 0/30
+holdout recall           first5  0.9651 0.9615 0.9653 0.9633 0.9649
+                          last5  0.9620 0.9629 0.9663 0.9624 0.9621
+detection loss           first5  0.0119 0.0160 0.0131 0.0102 0.0081
+                          last5  0.0056 0.0112 0.0089 0.0045 0.0085
+```
+
+Four hours, 169 movies, elastic augmentation live and self-tested. **Not one epoch of thirty
+beat the untouched checkpoint**, and the saved artifact is the baseline itself because
+`best_score` was seeded from it.
+
+And the detection loss does **not** trend. My "five-fold drop in two epochs" was two points of
+a series that bounces between 0.0045 and 0.0160 for thirty epochs with no slope. That
+observation was the entire argument for changing the selection metric, and it was noise. The
+metric change would not have helped, because there is no detection improvement to select.
+
+So the honest reading of `notes/75`: elastic fine-tuning of this checkpoint at lr 3e-5 does
+not improve it on held-out movies. The premise — that the public checkpoint has headroom a
+better augmentation can reach — is **measured and false**, for this augmentation and this
+learning rate. That is worth more than another arm: it was the last untested idea with a big
+claimed upside, and it is now closed with evidence rather than argument.
+
+### Where that leaves us
+
+```
+3,460 teams, 2026-09-13.  us: rank 648 at 0.945
+0.948 lands at   92     0.947 lands at 416     0.946 lands at 611
+```
+
+Best arm remains `ttasec` at 0.945. Unsubmitted and complete: `ttasecw20` and `ttadse44` —
+both cheap, neither with evidence behind it now that the proxy is retired.
