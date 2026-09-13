@@ -48,18 +48,23 @@ if _wheels is None:
     for _p in sorted(Path("/kaggle/input").glob("*/*")):
         print("   mounted:", _p, flush=True)
     raise RuntimeError("no offline wheels mounted -- add the support pack as a data source")
-_r = subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-index", "--no-deps",
-                     "--find-links", str(_wheels),
-                     # polars first and explicitly: tracksdata needs a newer one than the
-                     # Kaggle image ships, and leaving it out got as far as
-                     # `AttributeError: module 'polars' has no attribute 'Float16'`.
-                     # The arm notebooks install it in its own pip call before the rest.
-                     "polars", "tracksdata", "geff", "geff_spec", "rustworkx",
-                     "numcodecs", "donfig", "bidict", "zarr"],
-                    capture_output=True, text=True)
-print("pip rc", _r.returncode, flush=True)
-if _r.returncode:
-    print(_r.stdout[-1500:], _r.stderr[-1500:], flush=True)
+# polars gets its OWN call with --force-reinstall. The image already ships a polars, so a
+# plain install sees the requirement satisfied and skips it -- which is why adding "polars"
+# to the list below changed nothing and the kernel died twice on the same
+# `AttributeError: module 'polars' has no attribute 'Float16'` that tracksdata raises
+# against the older one. The arm notebooks install polars in a separate call for this reason.
+for _stage, _pkgs, _force in (
+        ("polars", ["polars"], True),
+        ("graph stack", ["tracksdata", "geff", "geff_spec", "rustworkx",
+                         "numcodecs", "donfig", "bidict", "zarr"], False)):
+    _cmd = [sys.executable, "-m", "pip", "install", "-q", "--no-index", "--no-deps",
+            "--find-links", str(_wheels)] + (["--force-reinstall"] if _force else []) + _pkgs
+    _r = subprocess.run(_cmd, capture_output=True, text=True)
+    print(f"pip [{_stage}] rc {_r.returncode}", flush=True)
+    if _r.returncode:
+        print(_r.stdout[-1200:], _r.stderr[-1200:], flush=True)
+import polars as _pl
+print("polars", _pl.__version__, "| has Float16:", hasattr(_pl, "Float16"), flush=True)
 
 # The official metric code, carried inline. Same bytes as the support pack ships at
 # src/biohub_tracking/{metrics,division_metrics}.py -- `metrics` does a relative
