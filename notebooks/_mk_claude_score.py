@@ -100,8 +100,44 @@ VOXEL = (1.625, 0.40625, 0.40625)
 
 
 def graph_from_geff(path):
-    g = td.graph.IndexedRXGraph.from_geff(str(path))
-    return g[0] if isinstance(g, tuple) else g
+    """Read the GT graph WITHOUT tracksdata's own geff loader.
+
+    `IndexedRXGraph.from_geff` calls `pl.Series([value])` on each default attribute, and on
+    these ground-truth files that lands in a polars branch referencing `PySeries`, which this
+    polars only imports under TYPE_CHECKING:
+
+        File "polars/_utils/construction/series.py", line 322, in sequence_to_pyseries
+            elif python_dtype == PySeries:
+        NameError: name 'PySeries' is not defined
+
+    The arm notebooks never hit it because they only ever load *prediction* geffs they wrote
+    themselves. Reading via `geff` into networkx and then building the graph with the same
+    code that builds the prediction graph sidesteps the incompatibility -- and has the better
+    property that both sides of the comparison are now constructed identically.
+    """
+    import geff
+    nxg, _meta = geff.read(str(path), backend="networkx")
+    return graph_from_nodes(
+        [(n, d) for n, d in nxg.nodes(data=True)],
+        list(nxg.edges()),
+        label=str(path.name),
+    )
+
+
+def graph_from_nodes(nodes, edges, label=""):
+    g = td.graph.IndexedRXGraph()
+    for k in ("z", "y", "x"):
+        g.add_node_attr_key(k, 0.0)
+    idx = {}
+    for nid, d in nodes:
+        missing = [k for k in ("t", "z", "y", "x") if k not in d]
+        if missing:
+            raise KeyError(f"{label}: node {nid} lacks {missing}; has {sorted(d)}")
+        idx[nid] = g.add_node({"t": int(d["t"]), "z": float(d["z"]),
+                               "y": float(d["y"]), "x": float(d["x"])})
+    for u, v in edges:
+        g.add_edge(source_id=idx[u], target_id=idx[v], attrs={})
+    return g
 
 
 def node_budget(geff_path):
@@ -122,16 +158,11 @@ def graph_from_rows(nodes, edges):
     only `t`, which is what killed the first attempt. Verified locally against a real
     submission: 25,622 nodes in 0.6s.
     """
-    g = td.graph.IndexedRXGraph()
-    for k in ("z", "y", "x"):
-        g.add_node_attr_key(k, 0.0)
-    idx = {}
-    for r in nodes.itertuples(index=False):
-        idx[int(r.node_id)] = g.add_node(
-            {"t": int(r.t), "z": float(r.z), "y": float(r.y), "x": float(r.x)})
-    for r in edges.itertuples(index=False):
-        g.add_edge(source_id=idx[int(r.source_id)], target_id=idx[int(r.target_id)], attrs={})
-    return g
+    return graph_from_nodes(
+        [(int(r.node_id), {"t": r.t, "z": r.z, "y": r.y, "x": r.x})
+         for r in nodes.itertuples(index=False)],
+        [(int(r.source_id), int(r.target_id)) for r in edges.itertuples(index=False)],
+        label="submission")
 
 
 results = {}
