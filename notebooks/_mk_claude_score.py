@@ -30,8 +30,28 @@ PACK = Path("/tmp/pack")
 NB = '''import json, subprocess, sys, traceback
 from pathlib import Path
 
-_r = subprocess.run([sys.executable, "-m", "pip", "install", "-q",
-                     "tracksdata", "geff", "polars", "pandas"],
+# Install from the support pack's OFFLINE WHEELS, with --no-deps, which is what every arm
+# notebook does and what its own log explains:
+#
+#   "Dependency resolver is disabled with --no-deps to avoid replacing Kaggle numpy/scipy
+#    in a live kernel."
+#
+# A plain `pip install tracksdata geff` ignored that and pulled a numpy upgrade, and the
+# kernel died on `ImportError: cannot import name '_center' from 'numpy._core.umath'` --
+# the image's compiled extensions built against the numpy that was just replaced. The pack's
+# authors solved this before I arrived; the fix is to use their solution.
+_wheels = next((p.parent for p in Path("/kaggle/input").glob("*/**/tracksdata-*.whl")), None)
+if _wheels is None:
+    _wheels = next((p for p in Path("/kaggle/input").glob("*/**/wheels") if p.is_dir()), None)
+print("wheel dir:", _wheels, flush=True)
+if _wheels is None:
+    for _p in sorted(Path("/kaggle/input").glob("*/*")):
+        print("   mounted:", _p, flush=True)
+    raise RuntimeError("no offline wheels mounted -- add the support pack as a data source")
+_r = subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-index", "--no-deps",
+                     "--find-links", str(_wheels),
+                     "tracksdata", "geff", "geff_spec", "rustworkx",
+                     "numcodecs", "donfig", "bidict", "zarr"],
                     capture_output=True, text=True)
 print("pip rc", _r.returncode, flush=True)
 if _r.returncode:
@@ -160,7 +180,8 @@ def build(kernels: list[str]) -> int:
     out.write_text(json.dumps(nb, indent=1))
     (HERE / "claude_score_push.json").write_text(json.dumps({
         "slug": "claude-score", "title": "Claude score",
-        "notebook": str(out), "dataset_sources": [],
+        "notebook": str(out),
+        "dataset_sources": ["pilkwang/biohub-tracking-support-pack-50ep-v1"],
         "competition_sources": ["biohub-cell-tracking-during-development"],
         "kernel_sources": kernels if all("/" in k for k in kernels)
                           else [f"{K.username()}/{k}" for k in kernels],
