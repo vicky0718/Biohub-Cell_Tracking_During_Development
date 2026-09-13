@@ -50,7 +50,11 @@ if _wheels is None:
     raise RuntimeError("no offline wheels mounted -- add the support pack as a data source")
 _r = subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-index", "--no-deps",
                      "--find-links", str(_wheels),
-                     "tracksdata", "geff", "geff_spec", "rustworkx",
+                     # polars first and explicitly: tracksdata needs a newer one than the
+                     # Kaggle image ships, and leaving it out got as far as
+                     # `AttributeError: module 'polars' has no attribute 'Float16'`.
+                     # The arm notebooks install it in its own pip call before the rest.
+                     "polars", "tracksdata", "geff", "geff_spec", "rustworkx",
                      "numcodecs", "donfig", "bidict", "zarr"],
                     capture_output=True, text=True)
 print("pip rc", _r.returncode, flush=True)
