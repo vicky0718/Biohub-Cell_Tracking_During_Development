@@ -45,19 +45,32 @@ def fetch_log(slug: str) -> str:
 
 
 def busy_slots(prefix: str = "claude-arm-") -> int:
-    """How many of our arm kernels Kaggle currently has running.
+    """How many of our GPU kernels Kaggle currently has running.
 
     Kaggle allows two concurrent GPU sessions and **refuses a third silently**: the push
     succeeds, returns ``versionNumber: 0``, creates the kernel, and starts no run. Nine
     arms launched that way in five seconds and every one reported success. Counting first
     is the only way to tell a queued arm from a discarded one.
+
+    v1 globbed ``claude_arm_*_push.json`` only, which was right when arms were the only
+    thing we ran. `claude_eval_*` kernels are GPU kernels too, and so is the **graded rerun
+    Kaggle starts when a human submits an arm** — that one occupies a slot for ~11 h under
+    the arm's own slug. With the eval kernels invisible to this count, `claude-eval-nrmtl3`
+    pushed six times against two busy slots, was discarded six times, and `run()` reported
+    *"6 consecutive P100 draws"* — a diagnosis it had no evidence for.
+
+    Now counts every ``claude_*_push.json`` that declares ``enable_gpu``. CPU kernels
+    (``claude-score``) do not consume a GPU session and are skipped.
     """
     n = 0
     for p in sorted(Path(__file__).resolve().parent.parent
-                    .glob("notebooks/claude_arm_*_push.json")):
-        slug = json.loads(p.read_text())["slug"]
+                    .glob("notebooks/claude_*_push.json")):
+        cfg = json.loads(p.read_text())
+        if not cfg.get("enable_gpu", True):
+            continue
         try:
-            if (K.kernel_status(slug).get("status") or "").lower() in ("running", "queued"):
+            if (K.kernel_status(cfg["slug"]).get("status") or "").lower() in ("running",
+                                                                             "queued"):
                 n += 1
         except Exception:
             pass                                  # 404 = never run; not occupying a slot
@@ -93,6 +106,7 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
     """
     cfg = json.loads(Path(push_config).read_text())
     slug, notebook, title = cfg["slug"], cfg["notebook"], cfg["title"]
+    discards = 0
     for attempt in range(1, attempts + 1):
         # Wait for a free session before pushing. Kaggle silently discards the run
         # otherwise (see busy_slots), and a discarded push is indistinguishable from a
@@ -119,6 +133,7 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
         # is exactly how a clean re-push of `claude-arm-tta946` was recorded as having
         # happened when Kaggle had thrown it away. Check the version, not the aftermath.
         if not version:
+            discards += 1
             print(f"   push discarded (v{version}) — no run started, retrying"
                   f" ({attempt}/{attempts})", flush=True)
             time.sleep(180)
@@ -172,7 +187,17 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
             print("\n".join(l.rstrip() for l in lines[hit:hit + 40]), flush=True)
         return 1
 
-    print(f"GAVE UP {slug}: {attempts} consecutive P100 draws", flush=True)
+    # Say which failure actually happened. v1 printed "consecutive P100 draws"
+    # unconditionally, so `claude-eval-nrmtl3` -- discarded six times because two GPU
+    # slots were busy -- was reported as a GPU-lottery problem it never had. A wrong
+    # diagnosis printed confidently is worse than none; it sent the next reader looking
+    # at accelerators instead of at concurrency.
+    if discards == attempts:
+        print(f"GAVE UP {slug}: {attempts} pushes all discarded (v0) — Kaggle had no\n   free GPU session. Nothing ran; this is NOT a P100 problem.", flush=True)
+    elif discards:
+        print(f"GAVE UP {slug}: {attempts} attempts — {discards} discarded for want of a\n   free GPU session, {attempts - discards} P100 draws.", flush=True)
+    else:
+        print(f"GAVE UP {slug}: {attempts} consecutive P100 draws", flush=True)
     return 1
 
 
