@@ -1131,14 +1131,35 @@ ARMS = {
     "bew10": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
         "sources": TTA946_SOURCES,
+        # FOUR edits, not two. Besides `_EXPECTED_NUMERIC`, this base carries a **second,
+        # standalone** hard pin on this one knob, which `gap44`'s lesson did not cover:
+        #
+        #     _bidirectional_weight_guard = float(os.environ.get(
+        #         'BIOHUB_BIDIRECTIONAL_EDGE_WEIGHT', '0'))
+        #     if not _bidirectional_math.isclose(_bidirectional_weight_guard, 0.15, ...):
+        #         raise ValueError({'expected_bidirectional_weight': 0.15, ...})
+        #
+        # v1 moved the env var and `_EXPECTED_NUMERIC` and died on it anyway:
+        # `ValueError: {'expected_bidirectional_weight': 0.15, 'actual...': 0.1}`. The author
+        # pinned this parameter twice -- the only one in the notebook they did -- which is
+        # itself a signal about how load-bearing they believed it to be.
         "edits": sec_tta_edits() + [
             (env1("BIDIRECTIONAL_EDGE_WEIGHT", "0.15"),
              env1("BIDIRECTIONAL_EDGE_WEIGHT", "0.10")),
             (guard1("BIDIRECTIONAL_EDGE_WEIGHT", "0.15"),
-             guard1("BIDIRECTIONAL_EDGE_WEIGHT", "0.10"))],
+             guard1("BIDIRECTIONAL_EDGE_WEIGHT", "0.10")),
+            ("_bidirectional_math.isclose(_bidirectional_weight_guard, 0.15, "
+             "rel_tol = 0.0, abs_tol = 1e-12)",
+             "_bidirectional_math.isclose(_bidirectional_weight_guard, 0.10, "
+             "rel_tol = 0.0, abs_tol = 1e-12)"),
+            ("{'expected_bidirectional_weight': 0.15, "
+             "'actual_bidirectional_weight': _bidirectional_weight_guard}",
+             "{'expected_bidirectional_weight': 0.10, "
+             "'actual_bidirectional_weight': _bidirectional_weight_guard}")],
         "why": ("reverse-direction vote 0.15 -> 0.10. The published 0.934 -> 0.939 step moved\n"
                 "#               this 0.30 -> 0.15, so DOWN is the direction that has already\n"
-                "#               paid once and was then simply stopped at. Guarded."),
+                "#               paid once and was then simply stopped at. Pinned TWICE by the\n"
+                "#               author, so it takes four edits to move."),
     },
     "sdw90": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
