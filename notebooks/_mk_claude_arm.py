@@ -1091,6 +1091,76 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # ---------------------------------------------- exploration batch, ranked on the BOARD
+    # `notes/81`: offline measurement on training movies is closed -- not underpowered,
+    # **biased**, because the checkpoint memorised the movies and the bias has a sign. So these
+    # six carry no offline score and are not meant to. They are single-knob arms on the
+    # `ttasec` base, each moved in a direction no public notebook and no arm here has tried,
+    # ranked only by the leaderboard. `ttasec` splits its errors evenly -- `edge_fp` 324,
+    # `edge_fn` 324 -- so both precision and recall knobs are in scope.
+    "gapdc15": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [(env1("DEEPCENTER_GAP_THRESHOLD", "0.25"),
+                                     env1("DEEPCENTER_GAP_THRESHOLD", "0.15"))],
+        "why": ("DeepCenter gap-closure acceptance 0.25 -> 0.15, i.e. LOOSER. `dcgap40` took\n"
+                "#               it to 0.40 and lost. It gates every gap-closure proposal and\n"
+                "#               nobody has tried the permissive side. Unguarded."),
+    },
+    "gap65": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            (env1("GAP_CLOSE_UM", "5.0"), env1("GAP_CLOSE_UM", "6.5")),
+            (guard1("GAP_CLOSE_UM", "5.0"), guard1("GAP_CLOSE_UM", "6.5"))],
+        "why": ("gap-closing radius 5.0 -> 6.5um. `gap44` tried 4.4 and died on the drift\n"
+                "#               guard before measuring anything. Wider radius closes more\n"
+                "#               gaps, which is the edge_fn side. Guarded, so paired edit."),
+    },
+    "mtl4": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            ("os.environ['BIOHUB_OUTPUT_MIN_TRACK_LEN'] = '6'",
+             "os.environ['BIOHUB_OUTPUT_MIN_TRACK_LEN'] = '4'"),
+            (guard1("OUTPUT_MIN_TRACK_LEN", "6.0"), guard1("OUTPUT_MIN_TRACK_LEN", "4.0"))],
+        "why": ("short-track filter 6 -> 4 frames. It deletes ~99 components and ~317 edges\n"
+                "#               per movie and has never been moved in either direction by\n"
+                "#               anyone. Straight recall/precision trade. Guarded."),
+    },
+    "bew10": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            (env1("BIDIRECTIONAL_EDGE_WEIGHT", "0.15"),
+             env1("BIDIRECTIONAL_EDGE_WEIGHT", "0.10")),
+            (guard1("BIDIRECTIONAL_EDGE_WEIGHT", "0.15"),
+             guard1("BIDIRECTIONAL_EDGE_WEIGHT", "0.10"))],
+        "why": ("reverse-direction vote 0.15 -> 0.10. The published 0.934 -> 0.939 step moved\n"
+                "#               this 0.30 -> 0.15, so DOWN is the direction that has already\n"
+                "#               paid once and was then simply stopped at. Guarded."),
+    },
+    "sdw90": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [(env1("SECONDARY_DETECTION_WEIGHT", "0.80"),
+                                     env1("SECONDARY_DETECTION_WEIGHT", "0.90"))],
+        "why": ("secondary model's detection weight 0.80 -> 0.90. It blends a whole second\n"
+                "#               UNet's detections into every frame and no notebook in the\n"
+                "#               56-kernel matrix moves it. Unguarded."),
+    },
+    "mrr12": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        # No env assignment exists for this one, so it is an insertion.
+        "edits": sec_tta_edits() + [
+            (env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1"),
+             env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1") + "\n"
+             + env1("MOTION_RELINK_RELAXED_UM", "12.0"))],
+        "why": ("motion-relink relaxed radius 10.0 -> 12.0um. `notes/81` measured the relink\n"
+                "#               as worth +0.001 on real data, so it should be TUNED, not\n"
+                "#               removed -- and its radii have never been moved. Insertion."),
+    },
     # ------------------------------------------------------ re-tuning on the norelink base
     # `notes/80`: turning the relink off removed 113 false edges and moved 12/12 movies. Every
     # other knob in this pipeline was tuned by its authors against the relink's output, so the
