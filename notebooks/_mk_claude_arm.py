@@ -1091,6 +1091,56 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # ------------------------------------------------------ re-tuning on the norelink base
+    # `notes/80`: turning the relink off removed 113 false edges and moved 12/12 movies. Every
+    # other knob in this pipeline was tuned by its authors against the relink's output, so the
+    # settings that plateaued on the old base are not necessarily at their optimum on this one.
+    # These three re-open the knobs most likely to have moved, each as `norelink` plus one edit.
+    "nrdc": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            (env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1"),
+             env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1") + "\n"
+             + env1("OUTPUT_MOTION_RELINK", "0")),
+            (env1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.25"),
+             env1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.15")),
+            (guard1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.25"),
+             guard1("DEEPCENTER_SAFE_DIV_THRESHOLD", "0.15"))],
+        "why": ("norelink plus the DeepCenter division veto loosened. On the OLD base this was\n"
+                "#               `dcloose` and it was a null -- 51 more divisions, division_tp\n"
+                "#               stuck at 2. The reason was that the linking put the repair's\n"
+                "#               candidates in the wrong places; norelink fixes the linking and\n"
+                "#               division_tp moved 2 -> 4 on its own. Worth one re-test."),
+    },
+    "nrmtl3": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            (env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1"),
+             env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1") + "\n"
+             + env1("OUTPUT_MOTION_RELINK", "0")),
+            ("os.environ['BIOHUB_OUTPUT_MIN_TRACK_LEN'] = '6'",
+             "os.environ['BIOHUB_OUTPUT_MIN_TRACK_LEN'] = '3'"),
+            (guard1("OUTPUT_MIN_TRACK_LEN", "6.0"), guard1("OUTPUT_MIN_TRACK_LEN", "3.0"))],
+        "why": ("norelink plus the short-track filter relaxed 6 -> 3 frames. That filter drops\n"
+                "#               ~99 components and ~317 edges per movie, and its threshold was\n"
+                "#               chosen to clean up the relink's fragments. With better linking\n"
+                "#               the fragments it was built to remove should be rarer."),
+    },
+    "nrsew20": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            (env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1"),
+             env1("OUTPUT_KEEP_DIVISION_COMPONENTS", "1") + "\n"
+             + env1("OUTPUT_MOTION_RELINK", "0")),
+            (env1("SECONDARY_EDGE_WEIGHT", "0.15"), env1("SECONDARY_EDGE_WEIGHT", "0.20"))],
+        "why": ("norelink plus SECONDARY_EDGE_WEIGHT 0.15 -> 0.20, i.e. `ttasecw20` on the new\n"
+                "#               base. It is the only knob that ever gained this project a\n"
+                "#               thousandth, and the edge weights matter more now that the ILP's\n"
+                "#               edges survive to the output instead of being overwritten."),
+    },
     # ----------------------------------------------- the only stage that can emit divisions
     # `notes/79`. `filter_output_graph` opens with
     #
