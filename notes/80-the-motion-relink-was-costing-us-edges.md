@@ -172,3 +172,32 @@ stat is not printed in either arm. The config dump is the evidence.
 **Ready for a human to submit** (kernels-only competition, `MEMORY.md`): `claude-arm-norelink`,
 and alongside it the two arms that have been complete and unsubmitted since before this
 session, `claude-arm-ttasecw20` and `claude-arm-ttadse44`.
+
+## 8. `nrdc`: the DeepCenter veto is closed on a second, independent base
+
+Re-testing the division veto at 0.15 on the `norelink` base, because `notes/78`'s null had a
+candidate explanation — the old base's linking put the repair's candidates in the wrong places,
+and `norelink` demonstrably fixes the linking (`division_tp` 2 → 4 unaided).
+
+```
+arm          e_tp  e_fp  e_fn | div tp/fp/fn |   edge_J      adj   div_J    score
+ttasec       8997   324   324 |        2/2/9 |  0.93281  0.93623  0.1538  0.95161
+norelink     9038   211   283 |        4/1/7 |  0.94817  0.95202  0.3333  0.98536
+nrdc         9040   211   281 |        4/3/7 |  0.94838  0.95222  0.2857  0.98079
+```
+
+**Same answer, second base.** `division_tp` stays at 4, `division_fp` goes 1 → 3, `div_J` falls
+0.3333 → 0.2857, score −0.0046. The edge term moves by 2 TPs and 2 FNs out of 9,321 — the
+literal noise floor `notes/77` established.
+
+`dcloose` on the old base: 0 new TPs, +2 FPs. `nrdc` on the new base: 0 new TPs, +2 FPs. The
+veto at 0.25 is correctly tuned, and **loosening it only ever buys false positives**. Closed.
+
+The more useful reading is what it says about the remaining 7 FNs. With the linking fixed,
+`division_tp` rose 2 → 4 *on its own*, and no amount of gate loosening adds a fifth. So the
+missing divisions are still a **linking** problem, not a gating one — consistent with
+`notes/78` §3 and now demonstrated on a base where the linking is measurably better.
+
+**Holding here.** `nrmtl3` and `nrsew20` are built but not run: both are `norelink` plus a knob,
+and `norelink` itself is still `pending` on the leaderboard. Spending GPU stacking knobs on an
+unconfirmed base is what `notes/77` §2 was written to stop.
