@@ -493,6 +493,30 @@ else:
 """
 
 
+# The retention floor 0.90 -> 0.85, as six verified replacements. `ttaret85` measured this at
+# **+0.001** on the tta946 base (0.944 -> 0.945), the only gain in the ten-arm board batch.
+# Hoisted out of that arm so `ttasecret85` stacks the identical edits on `ttasec` rather than
+# a retyped copy -- MEMORY.md: "never retype a kernel's source list, clone it."
+RETENTION85_EDITS = [
+    ("os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
+     "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.90'",
+     "os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
+     "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.85'"),
+    ("print('Calibrated dual-seed runtime patch applied')\n"
+     "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.90'",
+     "print('Calibrated dual-seed runtime patch applied')\n"
+     "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.85'"),
+    ("'BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION': '0.90'",
+     "'BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION': '0.85'"),
+    ("if float(_guard_record['minimum_retention']) != 0.9 or",
+     "if float(_guard_record['minimum_retention']) != 0.85 or"),
+    ("and float(_guard_record['retention']) < 0.9)",
+     "and float(_guard_record['retention']) < 0.85)"),
+    ("'configuration': {'minimum_candidate_retention': 0.9,",
+     "'configuration': {'minimum_candidate_retention': 0.85,"),
+]
+
+
 ARMS = {
     # ------------------------------------------------------------------- the 0.941 floor
     # We are at 0.937, which was rank ~330 on 2026-09-04 and rank 466 on 2026-09-06 without
@@ -994,7 +1018,8 @@ ARMS = {
     "ttaret85": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
         "sources": TTA946_SOURCES,
-        "edits": [
+        "edits": RETENTION85_EDITS,
+        "_unused": [
             ("os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
              "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.90'",
              "os.environ['BIOHUB_EDGE_FEATURE_TTA'] = '1'\n"
@@ -1090,6 +1115,57 @@ ARMS = {
                 "#               division filter in the pipeline by volume -- 5,130 rejections\n"
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
+    },
+    # ------------------------------------------- what the ten-arm batch actually measured
+    # `notes/84`. Ten arms, every one scored on the board. Nine tied or lost. **One gained**:
+    # `ttaret85` returned 0.945 from the `tta946` base of 0.944 -- it carries no secondary-TTA
+    # patch -- so the retention floor 0.90 -> 0.85 is worth **+0.001**, and it is disjoint from
+    # the +0.001 the secondary-TTA patch gives. Nobody has run the two together.
+    #
+    # The losses are information too: each brackets a knob whose opposite direction is untested.
+    # `mtl4` (6 -> 4) cost -0.002 and `ttadse44` (0.48 -> 0.44) cost -0.002, so both knobs want
+    # to go the OTHER way, and neither has been tried there on any base.
+    "ttasecret85": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        # `ttaret85`'s six edits verbatim, stacked on `ttasec`. The retention floor is assigned
+        # twice in the notebook and guarded four ways, hence six.
+        # NOT `RETENTION85_EDITS` verbatim. `sec_tta_edits()` runs first and INSERTS
+        # `os.environ['BIOHUB_SECONDARY_EDGE_FEATURE_TTA'] = '1'` directly after the
+        # `EDGE_FEATURE_TTA` line -- which is the very line `RETENTION85_EDITS[0]` uses as
+        # context to tell the two retention assignments apart. Stacking them unmodified
+        # matched 0 times and `build()` refused, which is the anchor check doing its job.
+        # The first edit re-anchors on the inserted line; the other five are untouched.
+        "edits": sec_tta_edits() + [
+            ("os.environ['BIOHUB_SECONDARY_EDGE_FEATURE_TTA'] = '1'\n"
+             "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.90'",
+             "os.environ['BIOHUB_SECONDARY_EDGE_FEATURE_TTA'] = '1'\n"
+             "os.environ['BIOHUB_DUAL_SEED_MIN_CANDIDATE_RETENTION'] = '0.85'"),
+        ] + RETENTION85_EDITS[1:],
+        "why": ("the batch's only gain stacked on our best arm: secondary-TTA (+0.001 over\n"
+                "#               tta946) AND the retention floor 0.90 -> 0.85 (+0.001 over the\n"
+                "#               same base, measured by ttaret85). Disjoint stages -- one is an\n"
+                "#               inference-time feature average, the other a dual-seed floor."),
+    },
+    "mtl8": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [
+            ("os.environ['BIOHUB_OUTPUT_MIN_TRACK_LEN'] = '6'",
+             "os.environ['BIOHUB_OUTPUT_MIN_TRACK_LEN'] = '8'"),
+            (guard1("OUTPUT_MIN_TRACK_LEN", "6.0"), guard1("OUTPUT_MIN_TRACK_LEN", "8.0"))],
+        "why": ("short-track filter 6 -> 8, the direction `mtl4` says is right. Keeping MORE\n"
+                "#               short tracks cost -0.002, the joint-largest loss in the batch,\n"
+                "#               so the filter is under-aggressive and the untested side is up."),
+    },
+    "dse52t": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "edits": sec_tta_edits() + [(env1("DUAL_SEED_EDGE_THRESHOLD", "0.48"),
+                                     env1("DUAL_SEED_EDGE_THRESHOLD", "0.52"))],
+        "why": ("dual-seed edge threshold 0.48 -> 0.52, the direction `ttadse44` says is right.\n"
+                "#               Lowering it cost -0.002. `dse52` exists on the retired lb941\n"
+                "#               base and was never submitted; this is it on ttasec."),
     },
     # ---------------------------------------------- exploration batch, ranked on the BOARD
     # `notes/81`: offline measurement on training movies is closed -- not underpowered,
