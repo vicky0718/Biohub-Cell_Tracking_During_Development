@@ -72,3 +72,35 @@ two fine-tunes of the same base, where it does not between a memoriser and its r
 ~4 GPU-hours, one slot, blind submission. It is the only untested direction with a plausible
 +0.003 rather than +0.001, and it can equally return 0.93. With 11 days left it is this or
 nothing.
+
+## 5. The fine-tune ran, and this time it produced a model
+
+`claude-train-elastic` v16, Tesla T4, 6 h 22 m, 30 epochs on 169 movies.
+
+```
+BASELINE (public checkpoint, untouched)   acc=0.9998  recall=0.9692  score=0.9690
+best fine-tuned epoch                     acc=0.9999  recall=0.9616  score=0.9682
+FULL restore: 136/136 tensors loaded
+```
+
+**The `-1.0` seeding worked.** `notes/75`'s run saved the baseline because the bar was seeded
+from it; this one saved a genuinely fine-tuned checkpoint to `/kaggle/working/claude_finetuned`.
+That is the fix doing what it was meant to do, independent of whether the model is any good.
+
+Training was healthy — edge loss 0.0001, detection loss 0.0069 at epoch 29, no divergence.
+
+### The shape of the change, stated before the board rules on it
+
+The fine-tune **raised accuracy** (0.9998 → 0.9999) and **lowered recall** (0.9692 → 0.9616).
+It moved along the precision/recall tradeoff toward conservatism: fewer detections, fewer
+nodes. Every measurement in this project says lost edge true-positives dominate the small
+`adj` bonus that a more negative node ratio buys (`notes/77` §7, and `det955`'s neutral
+result). **So the expectation on record is that `ftune` scores at or below 0.945.**
+
+The one argument on the other side, and the reason it is still worth a slot: that recall gap
+is measured on movies the 400-epoch baseline **trained on**. Its 0.9692 there is inflated; the
+fine-tune's 0.9616 is less so. The true gap may be smaller, or reversed. That is precisely the
+bias `notes/81` identified, and precisely why this has to be settled blind on the leaderboard
+rather than on the holdout — the holdout cannot answer it, in either direction.
+
+`claude-arm-ftune` is running the verification pass now.
