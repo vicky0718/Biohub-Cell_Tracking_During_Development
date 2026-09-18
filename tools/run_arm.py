@@ -134,8 +134,20 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
         # happened when Kaggle had thrown it away. Check the version, not the aftermath.
         if not version:
             discards += 1
-            print(f"   push discarded (v{version}) — no run started, retrying"
-                  f" ({attempt}/{attempts})", flush=True)
+            # Kaggle SAYS why, in the push response, and v1 never looked. Six pushes of
+            # `claude-arm-ftune` were reported as "no free GPU session" while every response
+            # carried `"error": "Maximum weekly GPU quota of 30.00 hours reached."`. A
+            # discard has at least two causes and they need opposite responses: a busy slot
+            # clears in minutes, an exhausted quota does not clear for days, and retrying it
+            # five more times is pure noise. Read the field.
+            why = (r.get("error") or r.get("errorNullable") or "").strip()
+            print(f"   push discarded (v{version}) — "
+                  f"{why or 'no reason given by Kaggle'}", flush=True)
+            if "quota" in why.lower():
+                print(f"GAVE UP {slug}: weekly GPU quota is exhausted. Retrying cannot help "
+                      f"until it resets; nothing ran.", flush=True)
+                return 1
+            print(f"   retrying ({attempt}/{attempts})", flush=True)
             time.sleep(180)
             continue
 

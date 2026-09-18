@@ -104,3 +104,42 @@ bias `notes/81` identified, and precisely why this has to be settled blind on th
 rather than on the holdout — the holdout cannot answer it, in either direction.
 
 `claude-arm-ftune` is running the verification pass now.
+
+## 6. GPU quota exhausted — and the tool was hiding Kaggle's own explanation
+
+`claude-arm-ftune` was pushed six times and discarded six times. `busy_slots()` reported
+**none** running, so the "no free GPU session" diagnosis `run_arm.py` printed was wrong. The
+real reason was in every push response, in a field the tool never read:
+
+```json
+{"versionNumber": 0, "error": "Maximum weekly GPU quota of 30.00 hours reached."}
+```
+
+**Kaggle said exactly what was wrong, six times, and we printed a guess instead.** This is the
+third instance of the same bug class in one week — "6 consecutive P100 draws" for a
+concurrency discard, a 429 reported as a failed run, and now a quota wall reported as a busy
+slot. Each time a transport- or policy-level signal was rendered as a claim about the work.
+`run_arm.py` now reads `error`/`errorNullable` and, on a quota message, **stops instead of
+retrying**: a busy slot clears in minutes, an exhausted quota does not clear for days, and
+five more pushes are pure noise.
+
+I also told the user the first discard was "transient and self-healing" before checking. It
+was neither.
+
+### Where the 30 hours went
+
+```
+claude-train-elastic   6 h 22 m   the fine-tune
+~7 eval kernels        ~5 h       12-movie offline runs (notes/77-80)
+~16 arm verifications  ~6 h 30 m  25 min each
+graded reruns          the rest   one per submission, under the arm's own slug
+```
+
+The fine-tune alone took a fifth of the week's budget. Nothing is broken; the resource is
+simply spent until the weekly reset.
+
+### What still works
+
+Submissions of **already-built** arms are unaffected — those notebooks exist on Kaggle and
+their graded reruns are Kaggle's business, not a fresh push from us. `ftune` is the one thing
+blocked, because its verification pass has never run.
