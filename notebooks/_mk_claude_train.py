@@ -142,15 +142,31 @@ _edits = [
                 "this would train from scratch while looking like a fine-tune"
             )
 """),
-    # The most valuable line in the run: score the checkpoint we are about to fine-tune on
-    # the holdout BEFORE touching it, so every epoch after is measured against it.
+    # Score the checkpoint we are about to fine-tune on the holdout BEFORE touching it, so
+    # every epoch after is measured against it. The print stays; the SEEDING does not.
+    #
+    # v1 seeded `best_score` from that baseline, "so nothing worse than the public checkpoint
+    # can be saved". That guard is what made `notes/75`'s run useless: the 400-epoch
+    # checkpoint trained on all 199 movies, so on a holdout drawn from them it is a
+    # memoriser being asked to beat itself. No epoch cleared the bar, the saved artifact was
+    # the baseline, and the conclusion recorded was "fine-tuning does not work" when what was
+    # measured was "contaminated selection prefers the contaminated model" -- the same bias
+    # that made `norelink` look like +0.0337 offline against -0.001 on the board (`notes/81`).
+    #
+    # Seeding -1.0 saves the best FINE-TUNED epoch instead. Still selected on contaminated
+    # data -- there is no uncontaminated holdout, every movie is in the checkpoint's training
+    # set -- but the bias largely cancels between two fine-tunes of the same base, where it
+    # does not between a memoriser and its replacement. The artifact is then a real model and
+    # the leaderboard, not this holdout, decides whether it is better.
     ('    for epoch in pbar:\\n        t0 = time.monotonic()\\n',
      '    _b_loss, _b_acc, _b_recall = evaluate(model, test_loader, device,'
      ' pool_kernel_um=pool_kernel_um)\\n'
      '    print(f"  BASELINE epoch -1 (public checkpoint, no training) | "\\n'
      '          f"acc={_b_acc:.4f} | recall={_b_recall:.4f} | score={_b_acc * _b_recall:.4f}",\\n'
      '          flush=True)\\n'
-     '    best_score = _b_acc * _b_recall\\n'
+     '    best_score = -1.0\\n'
+     '    print("  selection bar seeded at -1.0: the saved artifact will be the best "\\n'
+     '          "FINE-TUNED epoch, not the untouched checkpoint", flush=True)\\n'
      '    for epoch in pbar:\\n        t0 = time.monotonic()\\n'),
 ]
 for _old, _new in _edits:
@@ -194,8 +210,8 @@ compile(_tu, str(_TU), 'exec')
 _TU.write_text(_tu)
 print('temporal attention chunked at', os.environ.get('BIOHUB_ATTN_CHUNK', '32768'),
       'sequences per launch', flush=True)
-print('elastic_augment installed; baseline eval added; best_score seeded from the baseline '
-      'so nothing worse than the public checkpoint can be saved', flush=True)
+print('elastic_augment installed; baseline eval added; best_score seeded at -1.0 so the '
+      'artifact is the best FINE-TUNED epoch, not the untouched checkpoint', flush=True)
 
 # Settle the coordinate-update direction ONCE, in the interpreter the trainer will use, on a
 # phantom warped far enough for the answer to be unambiguous. Five runs died to a per-batch
