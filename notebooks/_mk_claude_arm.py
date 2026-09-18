@@ -517,6 +517,36 @@ RETENTION85_EDITS = [
 ]
 
 
+# Installing fine-tuned weights over the public checkpoint, anchored on the last statement
+# before they are read. It must come AFTER the notebook's own sha256 integrity check, which
+# verifies the PUBLIC checkpoint and would fail on a file we had already replaced.
+FTUNE_ANCHOR = "predict_cmd = [sys.executable, 'scripts/predict_unet_transformer.py'"
+FTUNE_SWAP = """# --- fine-tuned checkpoint (ours) --------------------------------------------
+import hashlib as _fthash
+import shutil as _ftsh
+_ft_all = sorted(_pl.Path('/kaggle/input').glob('*/**/claude_finetuned/*.pth'))
+
+if not _ft_all:
+    for _p in sorted(_pl.Path('/kaggle/input').glob('*/*')):
+        print('   mounted:', _p, flush = True)
+    raise RuntimeError('fine-tuned weights not mounted -- add claude-train-elastic as a kernel source')
+_ft = next((_p for _p in _ft_all if _p.name == 'edge_predictor_best.pth'), _ft_all[0])
+_ft_dst = REPO_DIR / WEIGHTS_RELATIVE
+_ft_before = _fthash.sha256(_ft_dst.read_bytes()).hexdigest()
+_ftsh.copy2(_ft, _ft_dst)
+_ft_after = _fthash.sha256(_ft_dst.read_bytes()).hexdigest()
+
+# An inert arm is indistinguishable from a working one unless you check -- notes/68. If the
+# installed file hashes the same as the public checkpoint, this arm is just ttasec and would
+# quietly spend a submission slot saying so.
+if _ft_before == _ft_after:
+    raise RuntimeError('fine-tuned weights are byte-identical to the public checkpoint')
+print('FINETUNED WEIGHTS INSTALLED from', _ft, flush = True)
+print('   sha256', _ft_before[:12], '->', _ft_after[:12], flush = True)
+# -----------------------------------------------------------------------------
+"""
+
+
 ARMS = {
     # ------------------------------------------------------------------- the 0.941 floor
     # We are at 0.937, which was rank ~330 on 2026-09-04 and rank 466 on 2026-09-06 without
@@ -1116,6 +1146,26 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # -------------------------------------------------- the fine-tuned checkpoint, on ttasec
+    # `notes/85`: thirteen knob arms, zero gains, post-processing at a local optimum. The only
+    # untested direction left is the model itself, and `notes/75`'s "fine-tuning does not work"
+    # was measured with the selection bar seeded from the memorising baseline, so no epoch
+    # could clear it and the saved artifact WAS the baseline. `claude-train-elastic` now seeds
+    # at -1.0 and saves the best fine-tuned epoch.
+    #
+    # The swap has to land AFTER the notebook's own weight integrity check, which verifies the
+    # public checkpoint's sha256 and would fail on a replaced file. Anchored on `predict_cmd`,
+    # the last statement before the weights are used.
+    "ftune": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "extra_kernels": ["claude-train-elastic"],
+        "edits": sec_tta_edits() + [(FTUNE_ANCHOR, FTUNE_SWAP + FTUNE_ANCHOR)],
+        "why": ("ttasec running OUR fine-tuned checkpoint instead of the public one. Raises\n"
+                "#               the run if the installed weights hash equal to the public\n"
+                "#               checkpoint, so it cannot silently reproduce ttasec -- which is\n"
+                "#               exactly how the public '0.948' turned out to be inert."),
+    },
     # ------------------------------------------- what the ten-arm batch actually measured
     # `notes/84`. Ten arms, every one scored on the board. Nine tied or lost. **One gained**:
     # `ttaret85` returned 0.945 from the `tta946` base of 0.944 -- it carries no secondary-TTA
@@ -1627,6 +1677,10 @@ def build(name: str, refresh: bool = False) -> int:
     kernels = list(rec.get("kernelDataSources") or [])
     if arm.get("wheelhouse", True):
         kernels.append(f"{K.username()}/claude-torch-wheelhouse")
+    # An arm can mount another kernel's OUTPUT -- how fine-tuned weights reach inference,
+    # since a kernel cannot write to the dataset its own base mounts read-only.
+    kernels += [f"{K.username()}/{k}" if "/" not in k else k
+                for k in arm.get("extra_kernels", [])]
     (HERE / f"claude_arm_{name}_push.json").write_text(json.dumps({
         "slug": f"claude-arm-{name}", "title": f"Claude arm {name}",
         "notebook": str(out), "dataset_sources": sources,
