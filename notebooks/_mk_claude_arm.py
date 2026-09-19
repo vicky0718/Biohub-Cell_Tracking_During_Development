@@ -531,18 +531,30 @@ if not _ft_all:
         print('   mounted:', _p, flush = True)
     raise RuntimeError('fine-tuned weights not mounted -- add claude-train-elastic as a kernel source')
 _ft = next((_p for _p in _ft_all if _p.name == 'edge_predictor_best.pth'), _ft_all[0])
-_ft_dst = REPO_DIR / WEIGHTS_RELATIVE
-_ft_before = _fthash.sha256(_ft_dst.read_bytes()).hexdigest()
-_ftsh.copy2(_ft, _ft_dst)
-_ft_after = _fthash.sha256(_ft_dst.read_bytes()).hexdigest()
 
-# An inert arm is indistinguishable from a working one unless you check -- notes/68. If the
-# installed file hashes the same as the public checkpoint, this arm is just ttasec and would
-# quietly spend a submission slot saying so.
-if _ft_before == _ft_after:
+# Do NOT overwrite REPO_DIR / WEIGHTS_RELATIVE. That path sits under writable /kaggle/working
+# but the weights FILE is a symlink into the read-only /kaggle/input mount, so opening it for
+# write follows the link and dies with OSError [Errno 30] Read-only file system -- which is
+# exactly how v1 of this arm failed. Materialise the checkpoint in a fresh directory and
+# repoint WEIGHTS_RELATIVE, which `predict_cmd` reads a few lines below.
+_ft_pub_sha = _fthash.sha256((REPO_DIR / WEIGHTS_RELATIVE).read_bytes()).hexdigest()
+_ft_new_sha = _fthash.sha256(_ft.read_bytes()).hexdigest()
+
+# An inert arm is indistinguishable from a working one unless you check -- notes/68. Compare
+# BEFORE copying: if the fine-tune is byte-identical to the public checkpoint this arm is just
+# ttasec and would quietly spend a submission slot saying so.
+if _ft_pub_sha == _ft_new_sha:
     raise RuntimeError('fine-tuned weights are byte-identical to the public checkpoint')
+_ft_dir = REPO_DIR / 'weights_finetuned'
+_ft_dir.mkdir(parents = True, exist_ok = True)
+_ftsh.copy2(_ft, _ft_dir / 'edge_predictor_best.pth')
+WEIGHTS_RELATIVE = 'weights_finetuned/edge_predictor_best.pth'
+
+if not (REPO_DIR / WEIGHTS_RELATIVE).exists():
+    raise RuntimeError('fine-tuned checkpoint did not materialise at ' + WEIGHTS_RELATIVE)
 print('FINETUNED WEIGHTS INSTALLED from', _ft, flush = True)
-print('   sha256', _ft_before[:12], '->', _ft_after[:12], flush = True)
+print('   public sha256', _ft_pub_sha[:12], '-> finetuned', _ft_new_sha[:12], flush = True)
+print('   WEIGHTS_RELATIVE repointed to', WEIGHTS_RELATIVE, flush = True)
 # -----------------------------------------------------------------------------
 """
 
