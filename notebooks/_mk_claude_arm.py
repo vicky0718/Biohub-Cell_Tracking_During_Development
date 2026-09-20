@@ -1173,6 +1173,22 @@ ARMS = {
     #
     # 0.975 is a first step, not a tuned value. The public run reports the node count directly,
     # so the target -- back near 122,735 -- is measurable for 25 minutes of GPU per attempt.
+    # 0.975 removed 416 nodes of 9,895 -- 0.3%. The fine-tune's extra detections are not
+    # marginal ones sitting just above the old bar; they are confident. Detection scores
+    # cluster near 1.0, so the distribution may still be steep between 0.975 and 0.999 even
+    # though it is flat below. One measurement settles it, and node count is printed directly.
+    "ftdet99": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "extra_kernels": ["claude-train-elastic"],
+        "edits": sec_tta_edits() + [
+            (env1("DET_THRESHOLD", "0.965"), env1("DET_THRESHOLD", "0.99")),
+            (guard1("DET_THRESHOLD", "0.965"), guard1("DET_THRESHOLD", "0.99")),
+            (FTUNE_ANCHOR, FTUNE_SWAP + FTUNE_ANCHOR)],
+        "why": ("the same trim at 0.99. If this also fails to move the node count, the\n"
+                "#               fine-tuned detector cannot be brought back to ttasec's scale\n"
+                "#               by thresholding at all, and ftune is unsubmittable as built."),
+    },
     "ftdet975": {
         "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
         "sources": TTA946_SOURCES,
