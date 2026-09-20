@@ -1158,6 +1158,34 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # ------------------------------------------ the fine-tune, trimmed to fit the time box
+    # `ftune` ran clean on the 4 public clips and **failed the graded rerun**: "your notebook
+    # hit an unhandled error while rerunning your code". Kaggle does not expose that run's
+    # log, so this is an inference, not a diagnosis -- but it is a quantitative one.
+    # `MEMORY.md`: the graded set is ~17x the verification set and the rerun is already
+    # **~11 h against a 12 h limit**. `ftune` emits **+8% nodes** (132,630 vs `ttasec`'s
+    # 122,735) and +8% edges, which inflates exactly the stages that consume that budget.
+    #
+    # Raising the detection threshold trims the node count back, and it is motivated twice
+    # over: those extra 9,895 nodes also push `total_node_ratio` from about -0.037 to +0.04,
+    # and `adj = J * (1 - 0.1 * ratio)` charges roughly 0.007 for that swing before the extra
+    # detections buy anything. Shorter AND cheaper on the metric.
+    #
+    # 0.975 is a first step, not a tuned value. The public run reports the node count directly,
+    # so the target -- back near 122,735 -- is measurable for 25 minutes of GPU per attempt.
+    "ftdet975": {
+        "base": ("reyhanksatria", "biohub-cell-tracking-0-946-lb"),
+        "sources": TTA946_SOURCES,
+        "extra_kernels": ["claude-train-elastic"],
+        "edits": sec_tta_edits() + [
+            (env1("DET_THRESHOLD", "0.965"), env1("DET_THRESHOLD", "0.975")),
+            (guard1("DET_THRESHOLD", "0.965"), guard1("DET_THRESHOLD", "0.975")),
+            (FTUNE_ANCHOR, FTUNE_SWAP + FTUNE_ANCHOR)],
+        "why": ("ftune plus DET_THRESHOLD 0.965 -> 0.975, to bring the fine-tuned model's\n"
+                "#               +8% node count back toward ttasec's. Addresses the likely\n"
+                "#               cause of the graded-rerun failure (11h of a 12h box, plus 8%)\n"
+                "#               and the ~0.007 the node ratio costs at the same time."),
+    },
     # -------------------------------------------------- the fine-tuned checkpoint, on ttasec
     # `notes/85`: thirteen knob arms, zero gains, post-processing at a local optimum. The only
     # untested direction left is the model itself, and `notes/75`'s "fine-tuning does not work"
