@@ -97,3 +97,37 @@ scored (secondary-TTA, +0.001, and disjoint from a HOCT veto). 0.947 alone is ra
 Against it: additivity has failed three times here (`notes/85`), so +0.001 on top of 0.947 is
 a hope, not a plan. And `haideptry`'s 22-minute variant matters more than its score — our
 graded reruns are running at ~11 h of a 12 h box, which is what killed `ftune`.
+
+## 5. Correction: the "+0.012 to +0.018 synthetic pretraining" number does not mean what I said
+
+I reported hikaggler's synthetic-pretraining gain as *"the one lever anyone reports working"*
+and the largest number in any thread. Checked against the board, that framing is wrong.
+
+```
+author                  rank   score   what they published
+hikaggler                258   0.947   reported +0.012-0.018 from synthetic pretraining
+josefreitasalvesneto     968   0.946   CREATED the synthetic dataset
+daifanhao                271   0.947   published synthetic-detector-pretrain-public-v1
+hitoshisaito             155   0.948   published synthetic16-cc0-subset
+bhpepper                 118   0.950   published synthetic-5fold-ensemble-v1
+```
+
+**Nobody using synthetic pretraining is demonstrably above the public plateau.** The dataset's
+own creator sits at 0.946 — *below* 0.947. And hikaggler says so plainly in their own thread,
+in a reply I read and did not weigh:
+
+> "the 0.947 next to my name is a public notebook score, not mine. My own pipeline, run end to
+> end by me, is at 0.939."
+
+So the +0.012-0.018 took **their own pipeline from ~0.92 to 0.939**. It is a real gain inside a
+weaker stack, and it still lands **0.008 below** the public notebook. It is not a lever over
+the public frontier, and I presented it as one.
+
+The only name in that group above the plateau is `bhpepper` at 0.950, whose dataset is
+`synthetic-5fold-**ensemble**-v1` — the ensembling, not the synthetic data, is the part that is
+not already in the public stack.
+
+**Practical consequence.** I was one step from proposing an 8-day, 18 GB training build on the
+strength of that number. It would have been the `norelink` mistake again in a more expensive
+form: a figure measured in one context, carried into another where it does not hold. The
+build is off.
