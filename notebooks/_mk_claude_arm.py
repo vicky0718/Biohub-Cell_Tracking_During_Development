@@ -1177,6 +1177,25 @@ ARMS = {
     # the board, checked against the leaderboard rather than the title (`notes/74`) -- which
     # mattered again here: `andnyu`'s "0.948 Reproduction" and `haideptry`'s "0.948"/"0.949"
     # titles all belong to authors sitting at 0.947.
+    # The one knob the 0.947 leaves on the table, and we have our own evidence for it.
+    # The public stack blends the secondary TTA features rather than replacing them:
+    #
+    #     secondary_unet_out = (1 - w) * secondary_unet_out + w * tta_mean     # w = 0.75
+    #
+    # At w = 1.0 that is **exactly** our `ttasec` patch, which measured +0.001 on the 0.944
+    # base. Confirmed to be the same mechanism, not merely a similar one: this notebook prints
+    # `mean_abs_feat_delta = 0.230737` and so did ours, to six decimal places.
+    #
+    # This base double-quotes its env assignments, so it takes `env()` and not `env1()`.
+    "pub947w10": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("SECONDARY_EDGE_FEATURE_TTA_WEIGHT", "0.75"),
+                   env("SECONDARY_EDGE_FEATURE_TTA_WEIGHT", "1.0"))],
+        "why": ("the public 0.947 with the secondary edge-feature TTA at full strength\n"
+                "#               instead of a 0.75 blend. w=1.0 is the setting our own ttasec\n"
+                "#               used, and the only configuration of ours that ever scored.\n"
+                "#               The notebook raises on a bad weight, so it cannot go silent."),
+    },
     "pub947bera": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "edits": [],
