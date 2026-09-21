@@ -6,6 +6,46 @@
     "authorUserName": "hengck23",
     "comments": [
       {
+        "id": 3522384,
+        "postDate": "2026-09-08T18:58:40.797Z",
+        "rawMarkdown": "external data  \nhttps://zebrahub.sf.czbiohub.org/imaging  \nhttps://public.czbiohub.org/royerlab/zebrahub/imaging/single-objective/  \nhttps://public.czbiohub.org/royerlab/zoo/\nhttps://public.czbiohub.org/royerlab/ultrack/\n\nit is dense track! i think it is by ultrack\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9d50c08c33cebcbbd8bf3f5060b4e9a1%2FSelection_4841.png?generation=1788898795365771&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4fb513a47380d4ac853d9b8f3a9e0432%2FSelection_4842.png?generation=1788898817410763&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F59efe6edfb20a773e0338379a946c1e0%2FSelection_4845.png?generation=1788911392662598&alt=media)\n\nwe do have \"unlimited external data\"",
+        "content": "<p>external data<br>\n<a href=\"https://zebrahub.sf.czbiohub.org/imaging\" target=\"_blank\">https://zebrahub.sf.czbiohub.org/imaging</a><br>\n<a href=\"https://public.czbiohub.org/royerlab/zebrahub/imaging/single-objective/\" target=\"_blank\">https://public.czbiohub.org/royerlab/zebrahub/imaging/single-objective/</a><br>\n<a href=\"https://public.czbiohub.org/royerlab/zoo/\" target=\"_blank\">https://public.czbiohub.org/royerlab/zoo/</a>\n<a href=\"https://public.czbiohub.org/royerlab/ultrack/\" target=\"_blank\">https://public.czbiohub.org/royerlab/ultrack/</a></p>\n<p>it is dense track! i think it is by ultrack</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9d50c08c33cebcbbd8bf3f5060b4e9a1%2FSelection_4841.png?generation=1788898795365771&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4fb513a47380d4ac853d9b8f3a9e0432%2FSelection_4842.png?generation=1788898817410763&amp;alt=media\" alt=\"\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F59efe6edfb20a773e0338379a946c1e0%2FSelection_4845.png?generation=1788911392662598&amp;alt=media\" alt=\"\"></p>\n<p>we do have \"unlimited external data\"</p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 988,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3521427,
         "postDate": "2026-09-05T20:48:27.127Z",
         "rawMarkdown": "I've tried the synthetic volume idea for ~2 weeks with no clear improvement in my scores, so I dropped it. Still, it would be cool to see this strategy work here, as it helped improve a little in the CZII competition. (Polnet was used there: https://github.com/anmartinezs/polnet)\n\nI suggest to send DaXi microscope paper as reference (https://www.nature.com/articles/s41592-022-01417-2)\n\nHere is one example of synthetic volume I tried to use:\n\n ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F2221915%2F508c44ad1c064184a3a589b7de41f5dd%2Fsynthetic_z_stack_optimized.gif?generation=1788641223173538&alt=media)",
@@ -30,7 +70,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 217,
+            "competitionRanking": 988,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +108,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 217,
+            "competitionRanking": 988,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -99,9 +139,9 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 4,
+          "totalVotes": 5,
           "canUpvote": true,
-          "totalUpvotes": 5
+          "totalUpvotes": 6
         },
         "kernelVersion": 0,
         "competitionRanking": 1,
@@ -143,7 +183,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 217,
+        "competitionRanking": 988,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -187,7 +227,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 85,
+            "competitionRanking": 743,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -223,7 +263,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 217,
+        "competitionRanking": 988,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -260,12 +300,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 5,
+        "totalVotes": 8,
         "canUpvote": true,
-        "totalUpvotes": 5
+        "totalUpvotes": 8
       },
       "kernelVersion": 0,
-      "competitionRanking": 217,
+      "competitionRanking": 988,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -292,9 +332,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-05T19:21:43.157971200Z",
-    "totalVotes": 5,
+    "totalVotes": 8,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/739731",
-    "totalMessages": 6,
+    "totalMessages": 7,
     "authorPerformanceTier": "GRANDMASTER",
     "authorProgressionOptOut": false
   }

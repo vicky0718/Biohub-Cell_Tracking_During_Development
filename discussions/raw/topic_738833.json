@@ -6,6 +6,44 @@
     "authorUserName": "jookuma",
     "comments": [
       {
+        "id": 3524977,
+        "postDate": "2026-09-16T12:44:30.623Z",
+        "rawMarkdown": "it would be great to be part of such team. let me know what i have to do",
+        "content": "<p>it would be great to be part of such team. let me know what i have to do</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Aashutosh Kumar Bhardwaj",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26971445-kg.jpeg?t=2026-02-20-17-29-29",
+          "url": "/aashutoshbhardwaj5",
+          "tier": "CONTRIBUTOR",
+          "id": 26971445,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -2,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Aashutosh Kumar Bhardwaj",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/26971445-kg.jpeg?t=2026-02-20-17-29-29",
+            "url": "/aashutoshbhardwaj5",
+            "userName": "aashutoshbhardwaj5",
+            "tier": "CONTRIBUTOR",
+            "id": 26971445,
+            "profileUrl": "/aashutoshbhardwaj5",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 26971445,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3521225,
         "postDate": "2026-09-05T08:34:24.590Z",
         "rawMarkdown": "It would be great to be part of the Biohub team",
@@ -21,11 +59,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
+          "totalVotes": -1,
           "canUpvote": true,
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 398,
+        "competitionRanking": 276,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -64,7 +103,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 6,
+        "competitionRanking": 21,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -102,9 +141,9 @@
       },
       "authorType": "HOST",
       "votes": {
-        "totalVotes": 5,
+        "totalVotes": 10,
         "canUpvote": true,
-        "totalUpvotes": 5
+        "totalUpvotes": 10
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -119,9 +158,13 @@
             "adammohammedi",
             "yunusgmsoy",
             "antonoof",
-            "josephadamski91"
+            "swathidhanasekaran26",
+            "aashutoshbhardwaj5",
+            "pavithraradhe",
+            "josephadamski91",
+            "oluwaseyibamigbade"
           ],
-          "userCount": 7
+          "userCount": 11
         }
       ]
     },
@@ -134,9 +177,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-01T21:31:36.602074500Z",
-    "totalVotes": 5,
+    "totalVotes": 10,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/738833",
-    "totalMessages": 2,
+    "totalMessages": 3,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

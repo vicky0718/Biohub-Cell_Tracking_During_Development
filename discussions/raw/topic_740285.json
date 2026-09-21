@@ -1,0 +1,60 @@
+{
+  "forumTopic": {
+    "authorId": 21808370,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "JosephErikRibeiro",
+    "authorUserName": "josepherikribeiro",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3522448,
+      "postDate": "2026-09-08T22:26:22.873Z",
+      "rawMarkdown": "Aprezendo Ezo ... em breve Airis ... e ja ta tudo a caminho.\npreciso de parceiros ... nao pra competi\u00e7\u00e3o isso agora \u00e9 hobby.... \nPra mudar o planeta, fazer acontecer .... \n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F21808370%2F70b3eeaf0572ee36e78a0bf2a1018276%2Fnewplot.png?generation=1788906150935157&alt=media)  ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F21808370%2Fe10e0be2a0aca80d60518c830d33660f%2Fdefencerag.png?generation=1788906299278456&alt=media)",
+      "content": "<p>Aprezendo Ezo \u2026 em breve Airis \u2026 e ja ta tudo a caminho.\npreciso de parceiros \u2026 nao pra competi\u00e7\u00e3o isso agora \u00e9 hobby\u2026. \nPra mudar o planeta, fazer acontecer \u2026. </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F21808370%2F70b3eeaf0572ee36e78a0bf2a1018276%2Fnewplot.png?generation=1788906150935157&amp;alt=media\" alt=\"\">  <img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F21808370%2Fe10e0be2a0aca80d60518c830d33660f%2Fdefencerag.png?generation=1788906299278456&amp;alt=media\" alt=\"\"></p>",
+      "parent": {},
+      "author": {
+        "displayName": "JosephErikRibeiro",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/josepherikribeiro",
+        "tier": "CONTRIBUTOR",
+        "id": 21808370,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -9,
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2993,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "JosephErikRibeiro",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/josepherikribeiro",
+          "userName": "josepherikribeiro",
+          "tier": "CONTRIBUTOR",
+          "id": 21808370,
+          "profileUrl": "/josepherikribeiro",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 21808370,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3522448,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 740285,
+    "name": "Essa competi\u00e7\u00e3o ta sendo meu parque de divers\u00e3o.",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-08T22:26:22.872142700Z",
+    "totalVotes": -9,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/740285",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

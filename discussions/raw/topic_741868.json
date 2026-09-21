@@ -1,0 +1,358 @@
+{
+  "forumTopic": {
+    "authorId": 1723677,
+    "authorThumbnailName": "1723677-kg.jpg",
+    "authorUserDisplayName": "Chris Deotte",
+    "authorUserName": "cdeotte",
+    "comments": [
+      {
+        "id": 3526066,
+        "postDate": "2026-09-20T08:18:28.930Z",
+        "rawMarkdown": "3d visulisation is very difficult. LLM/Agent has been a great help to me. actually the NAPARI viewer has an MCP to talk to an AI agent it think",
+        "content": "<p>3d visulisation is very difficult. LLM/Agent has been a great help to me. actually the NAPARI viewer has an MCP to talk to an AI agent it think</p>",
+        "replies": [
+          {
+            "id": 3526070,
+            "postDate": "2026-09-20T08:34:21.717Z",
+            "rawMarkdown": "Yes. Back in my graduate post doc work, I helped write some web GUI 3D viewers using quaternions and WebGL. It tooks weeks to get working. We had to get both the math and code working. And now agents can write it in minutes. It is absolutely incredible!",
+            "content": "<p>Yes. Back in my graduate post doc work, I helped write some web GUI 3D viewers using quaternions and WebGL. It tooks weeks to get working. We had to get both the math and code working. And now agents can write it in minutes. It is absolutely incredible!</p>",
+            "replies": [
+              {
+                "id": 3526073,
+                "postDate": "2026-09-20T08:45:29.867Z",
+                "rawMarkdown": "i actually think rna/dna folding by ai agent will be interesting for a Kaggle competition.  Most of the top CASP results are handcrafted and selected by humans. But I think this will change.",
+                "content": "<p>i actually think rna/dna folding by ai agent will be interesting for a Kaggle competition.  Most of the top CASP results are handcrafted and selected by humans. But I think this will change.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 2,
+                  "canUpvote": true,
+                  "totalUpvotes": 2
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 985,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Chris Deotte",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+              "url": "/cdeotte",
+              "tier": "GRANDMASTER",
+              "id": 1723677,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 2631,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Chris Deotte",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+                "url": "/cdeotte",
+                "userName": "cdeotte",
+                "tier": "GRANDMASTER",
+                "id": 1723677,
+                "profileUrl": "/cdeotte",
+                "performanceTier": "GRANDMASTER",
+                "userId": 1723677,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 985,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3525869,
+        "postDate": "2026-09-19T08:39:20.743Z",
+        "rawMarkdown": "I would also like to point out that @tom99763 does a great job collaborating human and AI. He gives great suggestions [here][1]. Specifically he asks the agent to make materials to help him (the human) understand what the AI is doing. He posts some of his resources [here][2] (text explain) and [here][3] (code explain)\n\n(and he did similar things in Wellbore competition [here][4])\n\n[1]: https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/718110#3486814\n[2]: https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/717109\n[3]: https://www.kaggle.com/code/tom99763/tracksdata-tutorial-evaluation-mock-tests\n[4]: https://www.kaggle.com/competitions/rogii-wellbore-geology-prediction/discussion/700424",
+        "content": "<p>I would also like to point out that <a href=\"/tom99763\" target=\"_blank\">@tom99763</a> does a great job collaborating human and AI. He gives great suggestions <a href=\"https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/718110#3486814\" target=\"_blank\">here</a>. Specifically he asks the agent to make materials to help him (the human) understand what the AI is doing. He posts some of his resources <a href=\"https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/717109\" target=\"_blank\">here</a> (text explain) and <a href=\"https://www.kaggle.com/code/tom99763/tracksdata-tutorial-evaluation-mock-tests\" target=\"_blank\">here</a> (code explain)</p>\n<p>(and he did similar things in Wellbore competition <a href=\"https://www.kaggle.com/competitions/rogii-wellbore-geology-prediction/discussion/700424\" target=\"_blank\">here</a>)</p>",
+        "replies": [
+          {
+            "id": 3525897,
+            "postDate": "2026-09-19T12:00:27.247Z",
+            "rawMarkdown": "thanks for sharing this. appreciate it.",
+            "content": "<p>thanks for sharing this. appreciate it.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Vaibhav Nakrani",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14581223-kg.jpg",
+              "url": "/vaibhavnakrani",
+              "tier": "CONTRIBUTOR",
+              "id": 14581223,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 295,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Vaibhav Nakrani",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14581223-kg.jpg",
+                "url": "/vaibhavnakrani",
+                "userName": "vaibhavnakrani",
+                "tier": "CONTRIBUTOR",
+                "id": 14581223,
+                "profileUrl": "/vaibhavnakrani",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 14581223,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Chris Deotte",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+          "url": "/cdeotte",
+          "tier": "GRANDMASTER",
+          "id": 1723677,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2631,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Chris Deotte",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+            "url": "/cdeotte",
+            "userName": "cdeotte",
+            "tier": "GRANDMASTER",
+            "id": 1723677,
+            "profileUrl": "/cdeotte",
+            "performanceTier": "GRANDMASTER",
+            "userId": 1723677,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3525558,
+        "postDate": "2026-09-18T06:31:37.763Z",
+        "rawMarkdown": "definitely. the other day i was thinking a similar viz tool for models as well. so we ask these models to try some custom model families right, it would be great to see a forward pass visually -- how the features move through and then we humans can add to it.",
+        "content": "<p>definitely. the other day i was thinking a similar viz tool for models as well. so we ask these models to try some custom model families right, it would be great to see a forward pass visually -- how the features move through and then we humans can add to it.</p>",
+        "replies": [
+          {
+            "id": 3525621,
+            "postDate": "2026-09-18T12:14:44.647Z",
+            "rawMarkdown": "Absolutely. We could click a button and pop out a page showing visually the architecture and preprocess of each experiment pipeline",
+            "content": "<p>Absolutely. We could click a button and pop out a page showing visually the architecture and preprocess of each experiment pipeline</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Chris Deotte",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+              "url": "/cdeotte",
+              "tier": "GRANDMASTER",
+              "id": 1723677,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 2631,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Chris Deotte",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+                "url": "/cdeotte",
+                "userName": "cdeotte",
+                "tier": "GRANDMASTER",
+                "id": 1723677,
+                "profileUrl": "/cdeotte",
+                "performanceTier": "GRANDMASTER",
+                "userId": 1723677,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Vaibhav Nakrani",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14581223-kg.jpg",
+          "url": "/vaibhavnakrani",
+          "tier": "CONTRIBUTOR",
+          "id": 14581223,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 295,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Vaibhav Nakrani",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14581223-kg.jpg",
+            "url": "/vaibhavnakrani",
+            "userName": "vaibhavnakrani",
+            "tier": "CONTRIBUTOR",
+            "id": 14581223,
+            "profileUrl": "/vaibhavnakrani",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 14581223,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3525497,
+      "postDate": "2026-09-17T21:50:19.517Z",
+      "rawMarkdown": "We are entering a new era of humans collaborating with LLM agents. I think one of the most valuable techniques will be asking LLM agents to make dashboards to show humans visually what they are doing. Then we humans can review the visualizations and make suggestions to the LLM agents:\n\nBelow is a 3D movie visualization from a dashboard my LLM agent made for me to review its model's predictions. The 3D uses quaternions and allows me to rotate, zoom, and pan to see its predictions.\n\n![](https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Sep-2026/dashboard2.png)",
+      "content": "<p>We are entering a new era of humans collaborating with LLM agents. I think one of the most valuable techniques will be asking LLM agents to make dashboards to show humans visually what they are doing. Then we humans can review the visualizations and make suggestions to the LLM agents:</p>\n<p>Below is a 3D movie visualization from a dashboard my LLM agent made for me to review its model's predictions. The 3D uses quaternions and allows me to rotate, zoom, and pan to see its predictions.</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Sep-2026/dashboard2.png\" alt=\"\"></p>",
+      "parent": {},
+      "author": {
+        "displayName": "Chris Deotte",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+        "url": "/cdeotte",
+        "tier": "GRANDMASTER",
+        "id": 1723677,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 17,
+        "canUpvote": true,
+        "totalUpvotes": 18
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2631,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "KAGGLE",
+          "featuredUserNames": [
+            "yunusgmsoy"
+          ],
+          "userCount": 1
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Chris Deotte",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+          "url": "/cdeotte",
+          "userName": "cdeotte",
+          "tier": "GRANDMASTER",
+          "id": 1723677,
+          "profileUrl": "/cdeotte",
+          "performanceTier": "GRANDMASTER",
+          "userId": 1723677,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3525497,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 741868,
+    "name": "Agents collaborate with Humans - Dashboards are key!",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-17T21:50:19.517781600Z",
+    "totalVotes": 17,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/741868",
+    "totalMessages": 7,
+    "authorPerformanceTier": "GRANDMASTER",
+    "authorProgressionOptOut": false
+  }
+}

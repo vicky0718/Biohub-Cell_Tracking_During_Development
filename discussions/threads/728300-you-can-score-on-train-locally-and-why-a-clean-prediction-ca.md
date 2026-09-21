@@ -2,9 +2,9 @@
 
 - **URL**: https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/728300
 - **Topic id**: 728300
-- **Author**: Busya PRIME (EXPERT)
+- **Author**: Akmal Xodarev (Busya PRIME) (EXPERT)
 - **Posted**: 2026-07-22T19:26:45.587719500Z
-- **Votes**: 7
+- **Votes**: 8
 - **Comments**: 0
 
 ---

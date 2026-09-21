@@ -6,6 +6,30 @@
     "authorUserName": "mikelou1",
     "comments": [
       {
+        "id": 3525358,
+        "postDate": "2026-09-17T15:49:49.820Z",
+        "rawMarkdown": "I looked up how much boards like this one moved once the private part was scored: every medal-awarding microscopy or histopathology image competition since 2019 with 500 or more teams, a public/private split and two final picks, thirteen boards on cells, tissue and cryo-ET. Eleven were code competitions, Recursion 2019 and HPA 2019 took file submissions, and none is a tracking task. For each: how many of the public top 10 stayed in the top 10, how much of the public medal zone (every rank down to the last bronze, 100 to 216 teams on these boards) still held a medal, and how many teams took no medal while one of their own submissions would have earned one, counted in hindsight, one team at a time with everyone else left where they finished.\n\n| board | top 10 kept | medal zone kept | no medal, one in own submissions |\n|---|---|---|---|\n| Recursion 2019 | 9 | 97% | 0.1% |\n| CZII cryo-ET 2025 | 9 | 96% | 0.2% |\n| Sartorius 2021 | 7 | 95% | 0.2% |\n| HuBMAP organ 2022 | 7 | 94% | 0.3% |\n| HPA 2019 | 6 | 87% | 0.7% |\n| HPA single cell 2021 | 7 | 67% | 0.4% |\n| UBC-OCEAN 2024 | 5 | 63% | 2.9% |\n| BYU motors 2025 | 6 | 60% | 5.5% |\n| HuBMAP kidney 2021 | 0 | 50% | 5.4% |\n| PANDA 2020 | 3 | 46% | 5.6% |\n| HuBMAP vasculature 2023 | 3 | 44% | 18% |\n| SenNet vessels 2024 | 4 | 36% | 9.3% |\n| Mayo Clinic STRIP AI 2022 | 0 | 9% | 6.1% |\n\nOn the eight boards that kept 60% or more of the zone, at least 5 of the public top 10 stayed; on the five that kept half or less, the top ten fell to 0, 3, 3, 4 and 0. On four of those five, 5 to 18% of all teams went home without a medal they had already scored in a submission that did not count, against 0.1 to 5.5% on the other eight, 6 of them under 1%; the plain best-public pick would have caught 21 of those 413 teams. Mayo is the fifth: its bronze line fell inside 68 teams tied on a constant prediction, and 42 of its 99 medals went to that tie, so its row is as much a tie artefact as a reshuffle. The public share does not sort the table: SenNet showed 67% of the test and collapsed, CZII showed 26% and held; this competition shows 29%.\n\nNothing on the public board says which end of that table this competition lands on. One number that bears on that risk is @ramarlina's \u00b10.14 movie-to-movie spread on a leave-one-embryo-out hold-out in [the CV thread](https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/730160), where the public board runs about 10% above that hold-out.\n\nNumbers from my [dataset of public and private scores for past competitions](https://www.kaggle.com/datasets/georgymamarin/kaggle-submission-histories).",
+        "content": "<p>I looked up how much boards like this one moved once the private part was scored: every medal-awarding microscopy or histopathology image competition since 2019 with 500 or more teams, a public/private split and two final picks, thirteen boards on cells, tissue and cryo-ET. Eleven were code competitions, Recursion 2019 and HPA 2019 took file submissions, and none is a tracking task. For each: how many of the public top 10 stayed in the top 10, how much of the public medal zone (every rank down to the last bronze, 100 to 216 teams on these boards) still held a medal, and how many teams took no medal while one of their own submissions would have earned one, counted in hindsight, one team at a time with everyone else left where they finished.</p>\n<table>\n<thead>\n<tr>\n<th>board</th>\n<th>top 10 kept</th>\n<th>medal zone kept</th>\n<th>no medal, one in own submissions</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Recursion 2019</td>\n<td>9</td>\n<td>97%</td>\n<td>0.1%</td>\n</tr>\n<tr>\n<td>CZII cryo-ET 2025</td>\n<td>9</td>\n<td>96%</td>\n<td>0.2%</td>\n</tr>\n<tr>\n<td>Sartorius 2021</td>\n<td>7</td>\n<td>95%</td>\n<td>0.2%</td>\n</tr>\n<tr>\n<td>HuBMAP organ 2022</td>\n<td>7</td>\n<td>94%</td>\n<td>0.3%</td>\n</tr>\n<tr>\n<td>HPA 2019</td>\n<td>6</td>\n<td>87%</td>\n<td>0.7%</td>\n</tr>\n<tr>\n<td>HPA single cell 2021</td>\n<td>7</td>\n<td>67%</td>\n<td>0.4%</td>\n</tr>\n<tr>\n<td>UBC-OCEAN 2024</td>\n<td>5</td>\n<td>63%</td>\n<td>2.9%</td>\n</tr>\n<tr>\n<td>BYU motors 2025</td>\n<td>6</td>\n<td>60%</td>\n<td>5.5%</td>\n</tr>\n<tr>\n<td>HuBMAP kidney 2021</td>\n<td>0</td>\n<td>50%</td>\n<td>5.4%</td>\n</tr>\n<tr>\n<td>PANDA 2020</td>\n<td>3</td>\n<td>46%</td>\n<td>5.6%</td>\n</tr>\n<tr>\n<td>HuBMAP vasculature 2023</td>\n<td>3</td>\n<td>44%</td>\n<td>18%</td>\n</tr>\n<tr>\n<td>SenNet vessels 2024</td>\n<td>4</td>\n<td>36%</td>\n<td>9.3%</td>\n</tr>\n<tr>\n<td>Mayo Clinic STRIP AI 2022</td>\n<td>0</td>\n<td>9%</td>\n<td>6.1%</td>\n</tr>\n</tbody>\n</table>\n<p>On the eight boards that kept 60% or more of the zone, at least 5 of the public top 10 stayed; on the five that kept half or less, the top ten fell to 0, 3, 3, 4 and 0. On four of those five, 5 to 18% of all teams went home without a medal they had already scored in a submission that did not count, against 0.1 to 5.5% on the other eight, 6 of them under 1%; the plain best-public pick would have caught 21 of those 413 teams. Mayo is the fifth: its bronze line fell inside 68 teams tied on a constant prediction, and 42 of its 99 medals went to that tie, so its row is as much a tie artefact as a reshuffle. The public share does not sort the table: SenNet showed 67% of the test and collapsed, CZII showed 26% and held; this competition shows 29%.</p>\n<p>Nothing on the public board says which end of that table this competition lands on. One number that bears on that risk is <a href=\"/ramarlina\" target=\"_blank\">@ramarlina</a>'s \u00b10.14 movie-to-movie spread on a leave-one-embryo-out hold-out in <a href=\"https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/730160\" target=\"_blank\">the CV thread</a>, where the public board runs about 10% above that hold-out.</p>\n<p>Numbers from my <a href=\"https://www.kaggle.com/datasets/georgymamarin/kaggle-submission-histories\" target=\"_blank\">dataset of public and private scores for past competitions</a>.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Georgy Mamarin",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/9407128-kg.jpg?t=2026-04-01-15-02-02",
+          "url": "/georgymamarin",
+          "tier": "MASTER",
+          "id": 9407128,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
         "id": 3513174,
         "postDate": "2026-08-15T13:23:10.347Z",
         "rawMarkdown": "I can see why it may appear that way. I can't speak as to what others in the top 10 are doing, but we are not focused on 0.0001 or Division J; we are working on a universal plugin that the bio cell team can plug into their current pipeline with minimal changes. We have tested our plugin with every available unique public notebook and model, with gains ranging from 0.030, 0.040, to 0.050 instantly just attaching our plugin. We've seen gains from a single public model reach a score of 0.940 untuned. We are not focused on the 0.0001 or tuning to the hidden.",
@@ -30,11 +54,10 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 84,
+            "competitionRanking": 105,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
-              "enabled": true,
               "teamLeader": {
                 "displayName": "mikelou1",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -75,7 +98,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1169,
+                "competitionRanking": 1785,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -147,7 +170,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 170,
+            "competitionRanking": 360,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -192,7 +215,7 @@
           "totalUpvotes": 7
         },
         "kernelVersion": 0,
-        "competitionRanking": 6,
+        "competitionRanking": 27,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -238,7 +261,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 313,
+            "competitionRanking": 723,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -274,7 +297,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 5,
+        "competitionRanking": 3,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -314,7 +337,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 490,
+        "competitionRanking": 769,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -360,11 +383,10 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 84,
+            "competitionRanking": 105,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
-              "enabled": true,
               "teamLeader": {
                 "displayName": "mikelou1",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -401,7 +423,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 576,
+            "competitionRanking": 245,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -435,7 +457,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 313,
+        "competitionRanking": 723,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -477,11 +499,10 @@
         "totalUpvotes": 9
       },
       "kernelVersion": 0,
-      "competitionRanking": 84,
+      "competitionRanking": 105,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
-        "enabled": true,
         "teamLeader": {
           "displayName": "mikelou1",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -507,7 +528,7 @@
     "postDate": "2026-08-15T08:25:14.079757100Z",
     "totalVotes": 9,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/735352",
-    "totalMessages": 11,
+    "totalMessages": 12,
     "authorPerformanceTier": "EXPERT",
     "authorProgressionOptOut": false
   }

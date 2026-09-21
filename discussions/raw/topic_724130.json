@@ -26,7 +26,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 8,
+        "competitionRanking": 19,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -96,7 +96,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 8,
+                "competitionRanking": 19,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -152,7 +152,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 210,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -236,7 +236,7 @@
           "displayName": "Joseph Adamski",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-kg.jpg?t=2026-09-02-13-53-56",
           "url": "/josephadamski91",
-          "tier": "CONTRIBUTOR",
+          "tier": "EXPERT",
           "id": 33210778,
           "progressionOptOut": false
         },
@@ -245,7 +245,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 568,
+        "competitionRanking": 87,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -254,10 +254,10 @@
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-kg.jpg?t=2026-09-02-13-53-56",
             "url": "/josephadamski91",
             "userName": "josephadamski91",
-            "tier": "CONTRIBUTOR",
+            "tier": "EXPERT",
             "id": 33210778,
             "profileUrl": "/josephadamski91",
-            "performanceTier": "CONTRIBUTOR",
+            "performanceTier": "EXPERT",
             "userId": 33210778,
             "progressionOptOut": false
           },
@@ -292,7 +292,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1003,
+        "competitionRanking": 844,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -329,24 +329,25 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 46,
+        "totalVotes": 48,
         "canUpvote": true,
-        "totalUpvotes": 48
+        "totalUpvotes": 50
       },
       "kernelVersion": 0,
-      "competitionRanking": 8,
+      "competitionRanking": 19,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
         {
           "emoji": "THANK_YOU",
           "featuredUserNames": [
+            "aimixo",
             "zinutag",
             "afraazsyed",
             "nklskyoy",
             "lingyu07"
           ],
-          "userCount": 4
+          "userCount": 5
         }
       ],
       "teamUpInfo": {
@@ -373,7 +374,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-09T16:55:59.111354100Z",
-    "totalVotes": 46,
+    "totalVotes": 48,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/724130",
     "totalMessages": 8,
     "authorPerformanceTier": "MASTER",

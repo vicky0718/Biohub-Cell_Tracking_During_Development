@@ -33,11 +33,11 @@
                 },
                 "authorType": "COMMENT",
                 "votes": {
-                  "totalVotes": -1,
-                  "canUpvote": true
+                  "canUpvote": true,
+                  "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 39,
+                "competitionRanking": 483,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -54,7 +54,7 @@
                     "userId": 18255050,
                     "progressionOptOut": false
                   },
-                  "intro": "I have a relatively strong approach for division Jaccard, scoring around 0.35 on the LB.\nLooking to team up with someone who has a strong adjusted edge Jaccard score, ideally above 0.92, backed by a solid and reliable CV setup \u2014 i.e., without using any model trained on the full competition dataset."
+                  "intro": "We've developed our pipeline using a clean CV strategy, and it currently scores around 0.908 adjJ and 0.32 divJ. Also we have another approach that scores 0.38 divJ with public models. We're looking for teams with an original approach, ideally with similarly clean CV.\n"
                 }
               },
               {
@@ -77,7 +77,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 39,
+                "competitionRanking": 483,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -95,7 +95,7 @@
                     "userId": 18255050,
                     "progressionOptOut": false
                   },
-                  "intro": "I have a relatively strong approach for division Jaccard, scoring around 0.35 on the LB.\nLooking to team up with someone who has a strong adjusted edge Jaccard score, ideally above 0.92, backed by a solid and reliable CV setup \u2014 i.e., without using any model trained on the full competition dataset."
+                  "intro": "We've developed our pipeline using a clean CV strategy, and it currently scores around 0.908 adjJ and 0.32 divJ. Also we have another approach that scores 0.38 divJ with public models. We're looking for teams with an original approach, ideally with similarly clean CV.\n"
                 }
               },
               {
@@ -117,7 +117,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 39,
+                "competitionRanking": 483,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -144,7 +144,7 @@
                     "userId": 18255050,
                     "progressionOptOut": false
                   },
-                  "intro": "I have a relatively strong approach for division Jaccard, scoring around 0.35 on the LB.\nLooking to team up with someone who has a strong adjusted edge Jaccard score, ideally above 0.92, backed by a solid and reliable CV setup \u2014 i.e., without using any model trained on the full competition dataset."
+                  "intro": "We've developed our pipeline using a clean CV strategy, and it currently scores around 0.908 adjJ and 0.32 divJ. Also we have another approach that scores 0.38 divJ with public models. We're looking for teams with an original approach, ideally with similarly clean CV.\n"
                 }
               },
               {
@@ -166,7 +166,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 5,
+                "competitionRanking": 3,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -207,12 +207,12 @@
             },
             "authorType": "TOPIC",
             "votes": {
-              "totalVotes": 1,
+              "totalVotes": 2,
               "canUpvote": true,
-              "totalUpvotes": 2
+              "totalUpvotes": 3
             },
             "kernelVersion": 0,
-            "competitionRanking": 39,
+            "competitionRanking": 483,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -229,7 +229,7 @@
                 "userId": 18255050,
                 "progressionOptOut": false
               },
-              "intro": "I have a relatively strong approach for division Jaccard, scoring around 0.35 on the LB.\nLooking to team up with someone who has a strong adjusted edge Jaccard score, ideally above 0.92, backed by a solid and reliable CV setup \u2014 i.e., without using any model trained on the full competition dataset."
+              "intro": "We've developed our pipeline using a clean CV strategy, and it currently scores around 0.908 adjJ and 0.32 divJ. Also we have another approach that scores 0.38 divJ with public models. We're looking for teams with an original approach, ideally with similarly clean CV.\n"
             }
           },
           {
@@ -251,7 +251,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 86,
+            "competitionRanking": 743,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -288,7 +288,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 5,
+        "competitionRanking": 3,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -326,7 +326,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2536,
+        "competitionRanking": 3082,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -381,12 +381,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 4,
+        "totalVotes": 5,
         "canUpvote": true,
-        "totalUpvotes": 7
+        "totalUpvotes": 8
       },
       "kernelVersion": 0,
-      "competitionRanking": 39,
+      "competitionRanking": 483,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -403,7 +403,7 @@
           "userId": 18255050,
           "progressionOptOut": false
         },
-        "intro": "I have a relatively strong approach for division Jaccard, scoring around 0.35 on the LB.\nLooking to team up with someone who has a strong adjusted edge Jaccard score, ideally above 0.92, backed by a solid and reliable CV setup \u2014 i.e., without using any model trained on the full competition dataset."
+        "intro": "We've developed our pipeline using a clean CV strategy, and it currently scores around 0.908 adjJ and 0.32 divJ. Also we have another approach that scores 0.38 divJ with public models. We're looking for teams with an original approach, ideally with similarly clean CV.\n"
       }
     },
     "firstMessageId": 3517057,
@@ -414,7 +414,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-26T03:10:45.084626300Z",
-    "totalVotes": 4,
+    "totalVotes": 5,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/737543",
     "totalMessages": 9,
     "authorPerformanceTier": "CONTRIBUTOR",

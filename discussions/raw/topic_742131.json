@@ -1,0 +1,103 @@
+{
+  "forumTopic": {
+    "authorId": 29779493,
+    "authorThumbnailName": "29779493-kg.png?t=2026-06-02-17-57-25",
+    "authorUserDisplayName": "sghwr",
+    "authorUserName": "songhow",
+    "comments": [
+      {
+        "id": 3526062,
+        "postDate": "2026-09-20T07:33:21.217Z",
+        "rawMarkdown": "\u5361\u4e86\u5144\u5f1f\ud83d\ude2d  \u6211\u611f\u89c9\u5f00\u6e90\u7684\u4ee3\u7801\u5df2\u7ecf\u5dee\u4e0d\u591a\u4f18\u5316\u5230\u6781\u9650\u4e86",
+        "content": "<p>\u5361\u4e86\u5144\u5f1f\ud83d\ude2d  \u6211\u611f\u89c9\u5f00\u6e90\u7684\u4ee3\u7801\u5df2\u7ecf\u5dee\u4e0d\u591a\u4f18\u5316\u5230\u6781\u9650\u4e86</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Yunk-S",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28088331-kg.jpg?t=2026-04-23-11-54-37",
+          "url": "/yunkuns",
+          "tier": "CONTRIBUTOR",
+          "id": 28088331,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 298,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Yunk-S",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28088331-kg.jpg?t=2026-04-23-11-54-37",
+            "url": "/yunkuns",
+            "userName": "yunkuns",
+            "tier": "CONTRIBUTOR",
+            "id": 28088331,
+            "profileUrl": "/yunkuns",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 28088331,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3526050,
+      "postDate": "2026-09-20T04:21:00.360Z",
+      "rawMarkdown": "its just ~10 days before competition ends,and we managed to have two private model structures that are slightly weaker than the current best public models on the leaderboard, with a gap of only around 0.015\u20130.020.\nWe have been experimenting with different blending and ensemble strategies, hoping that the private models could provide complementary signals to the stronger public pipeline. However, none of our attempts has improved the Public LB so far. we're stucked\ud83d\ude2d\nI'd be grateful if I could get some advice on two issues:\n\n1. Has anyone successfully improved their Public LB using model blending or ensembling in this competition?\n\n2. If so, would you be willing to share some general ideas about what worked, such as the blending stage, matching strategy, confidence calibration, or how you handled detection nodes, edges, and divisions?\nWe are not asking for private code or exact parameters. Even high-level observations about successful or unsuccessful approaches would be very helpful.\n\nThanks! \u2764",
+      "content": "<p>its just ~10 days before competition ends,and we managed to have two private model structures that are slightly weaker than the current best public models on the leaderboard, with a gap of only around 0.015\u20130.020.\nWe have been experimenting with different blending and ensemble strategies, hoping that the private models could provide complementary signals to the stronger public pipeline. However, none of our attempts has improved the Public LB so far. we're stucked\ud83d\ude2d\nI'd be grateful if I could get some advice on two issues:</p>\n<ol>\n<li><p>Has anyone successfully improved their Public LB using model blending or ensembling in this competition?</p></li>\n<li><p>If so, would you be willing to share some general ideas about what worked, such as the blending stage, matching strategy, confidence calibration, or how you handled detection nodes, edges, and divisions?\nWe are not asking for private code or exact parameters. Even high-level observations about successful or unsuccessful approaches would be very helpful.</p></li>\n</ol>\n<p>Thanks! \u2764</p>",
+      "parent": {},
+      "author": {
+        "displayName": "sghwr",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29779493-kg.png?t=2026-06-02-17-57-25",
+        "url": "/songhow",
+        "tier": "CONTRIBUTOR",
+        "id": 29779493,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 482,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "Lime1123",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18255050-kg.png?t=2025-03-27-10-33-27",
+          "url": "/lime1123",
+          "userName": "lime1123",
+          "tier": "EXPERT",
+          "id": 18255050,
+          "profileUrl": "/lime1123",
+          "performanceTier": "EXPERT",
+          "userId": 18255050,
+          "progressionOptOut": false
+        },
+        "intro": "We've developed our pipeline using a clean CV strategy, and it currently scores around 0.908 adjJ and 0.32 divJ. Also we have another approach that scores 0.38 divJ with public models. We're looking for teams with an original approach, ideally with similarly clean CV.\n"
+      }
+    },
+    "firstMessageId": 3526050,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 742131,
+    "name": "Any ideas or successful approaches for model blending?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-20T04:21:00.360209900Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/742131",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

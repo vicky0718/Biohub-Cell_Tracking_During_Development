@@ -6,6 +6,244 @@
     "authorUserName": "markdjadchenko",
     "comments": [
       {
+        "id": 3521828,
+        "postDate": "2026-09-07T09:08:18.460Z",
+        "rawMarkdown": "i believe that for me since i am using a point based detector it losing out on lot of features . If i would have used a cell segment based approach it would have al lot of features that we could ave used and identify the tracked cell ",
+        "content": "<p>i believe that for me since i am using a point based detector it losing out on lot of features . If i would have used a cell segment based approach it would have al lot of features that we could ave used and identify the tracked cell </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Rishabh Roy",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+          "url": "/rishabhr0y",
+          "tier": "EXPERT",
+          "id": 217906,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -1,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 740,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Rishabh Roy",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+            "url": "/rishabhr0y",
+            "userName": "rishabhr0y",
+            "tier": "EXPERT",
+            "id": 217906,
+            "profileUrl": "/rishabhr0y",
+            "performanceTier": "EXPERT",
+            "userId": 217906,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3522082,
+        "postDate": "2026-09-08T04:03:10.897Z",
+        "rawMarkdown": "I\u2019m seeing pretty much the same behavior.\n\nMy motion linker changes give around +0.012 on 5-fold CV on average, with no fold getting worse, but the LB gain is exactly +0.001. I also compared the public 0.946 LB notebook with my older private 0.942 LB notebook under the same 5-fold CV setup, and surprisingly the public one was about 0.015 worse locally. Given that some people have already pointed out possible test-set overfitting in public notebooks, I\u2019m starting to suspect there may also be a fairly large distribution shift between train, public test, and hidden test...?\n\nhttps://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739278",
+        "content": "<p>I\u2019m seeing pretty much the same behavior.</p>\n<p>My motion linker changes give around +0.012 on 5-fold CV on average, with no fold getting worse, but the LB gain is exactly +0.001. I also compared the public 0.946 LB notebook with my older private 0.942 LB notebook under the same 5-fold CV setup, and surprisingly the public one was about 0.015 worse locally. Given that some people have already pointed out possible test-set overfitting in public notebooks, I\u2019m starting to suspect there may also be a fairly large distribution shift between train, public test, and hidden test\u2026?</p>\n<p><a href=\"https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739278\" target=\"_blank\">https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739278</a></p>",
+        "replies": [
+          {
+            "id": 3522206,
+            "postDate": "2026-09-08T12:03:12.330Z",
+            "rawMarkdown": "ask chatgpt \"distribution shift between train, public test, and hidden test\u2026\" on how to probe or verify.\nYou definitely can do some online testing/training and send the results back by \"smart encoding your submission\"\n\nalso download more external data or augmentation etc to test locally.\nwhen you evaluate your model on local dataset, don't just look at the numbers. visualise the results and more importantly, explain why (especially statistically). is the error common or will be common? \n",
+            "content": "<p>ask chatgpt \"distribution shift between train, public test, and hidden test\u2026\" on how to probe or verify.\nYou definitely can do some online testing/training and send the results back by \"smart encoding your submission\"</p>\n<p>also download more external data or augmentation etc to test locally.\nwhen you evaluate your model on local dataset, don't just look at the numbers. visualise the results and more importantly, explain why (especially statistically). is the error common or will be common? </p>",
+            "replies": [
+              {
+                "id": 3522210,
+                "postDate": "2026-09-08T12:08:33.423Z",
+                "rawMarkdown": "I'm working on finding the cause you mentioned, which was also a problem I encountered when I hit a bottleneck with my ROGII. Thanks a lot\ud83e\udd72",
+                "content": "<p>I'm working on finding the cause you mentioned, which was also a problem I encountered when I hit a bottleneck with my ROGII. Thanks a lot\ud83e\udd72</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Yubo WANG",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25695513-kg.jpg?t=2026-08-07-13-45-02",
+                  "url": "/arksey",
+                  "tier": "EXPERT",
+                  "id": 25695513,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 1054,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Yubo WANG",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25695513-kg.jpg?t=2026-08-07-13-45-02",
+                    "url": "/arksey",
+                    "userName": "arksey",
+                    "tier": "EXPERT",
+                    "id": 25695513,
+                    "profileUrl": "/arksey",
+                    "performanceTier": "EXPERT",
+                    "userId": 25695513,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3522221,
+                "postDate": "2026-09-08T12:50:02.010Z",
+                "rawMarkdown": "Root cause not necessarily means why it happens. It can also means will it reliably happen. Eg you can make some smart error correction to repair local track. But will this error actually happens in hidden test ( not why it happens).\n\n\nAs a concept example, you find your gain in local lb is due to repair of gap = 5 missing frames. Then you find that of all broken tracks, 80% is gap1, 18% is gap2 \u2026 less than one percent is gap5",
+                "content": "<p>Root cause not necessarily means why it happens. It can also means will it reliably happen. Eg you can make some smart error correction to repair local track. But will this error actually happens in hidden test ( not why it happens).</p>\n<p>As a concept example, you find your gain in local lb is due to repair of gap = 5 missing frames. Then you find that of all broken tracks, 80% is gap1, 18% is gap2 \u2026 less than one percent is gap5</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 986,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3522271,
+                "postDate": "2026-09-08T14:49:59.107Z",
+                "rawMarkdown": "Truly brilliant probe design! Thank you for guiding a Kaggle newcomer like me.",
+                "content": "<p>Truly brilliant probe design! Thank you for guiding a Kaggle newcomer like me.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Yubo WANG",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25695513-kg.jpg?t=2026-08-07-13-45-02",
+                  "url": "/arksey",
+                  "tier": "EXPERT",
+                  "id": 25695513,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 1054,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Yubo WANG",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25695513-kg.jpg?t=2026-08-07-13-45-02",
+                    "url": "/arksey",
+                    "userName": "arksey",
+                    "tier": "EXPERT",
+                    "id": 25695513,
+                    "profileUrl": "/arksey",
+                    "performanceTier": "EXPERT",
+                    "userId": 25695513,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 986,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Yubo WANG",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25695513-kg.jpg?t=2026-08-07-13-45-02",
+          "url": "/arksey",
+          "tier": "EXPERT",
+          "id": 25695513,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1054,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Yubo WANG",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25695513-kg.jpg?t=2026-08-07-13-45-02",
+            "url": "/arksey",
+            "userName": "arksey",
+            "tier": "EXPERT",
+            "id": 25695513,
+            "profileUrl": "/arksey",
+            "performanceTier": "EXPERT",
+            "userId": 25695513,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3521324,
         "postDate": "2026-09-05T14:55:36.760Z",
         "rawMarkdown": "on the same boat ",
@@ -24,7 +262,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 85,
+        "competitionRanking": 740,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -62,12 +300,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 1,
+        "totalVotes": 3,
         "canUpvote": true,
-        "totalUpvotes": 1
+        "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 6,
+      "competitionRanking": 27,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -95,9 +333,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-05T13:05:03.739057700Z",
-    "totalVotes": 1,
+    "totalVotes": 3,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/739685",
-    "totalMessages": 1,
+    "totalMessages": 7,
     "authorPerformanceTier": "MASTER",
     "authorProgressionOptOut": false
   }

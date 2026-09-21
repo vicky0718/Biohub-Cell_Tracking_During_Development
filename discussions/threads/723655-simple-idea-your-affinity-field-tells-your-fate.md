@@ -4,7 +4,7 @@
 - **Topic id**: 723655
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-07-07T17:37:36.697254400Z
-- **Votes**: 24
+- **Votes**: 25
 - **Comments**: 19
 
 ---
@@ -25,6 +25,37 @@ Hint: create flow GT for supervision using optical flow and sparse annotation tr
 
 ## Comments (19)
 
+
+### Tom (MASTER) — 2026-07-08T06:01:56.357Z — 3 votes
+
+I just start to develop flow approach then seeing your post. Welcome back @hengck23
+
+#### ↳ hengck23 (GRANDMASTER) — 2026-07-08T18:05:02.130Z — 2 votes
+
+> i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below  
+> 1) 3d point is easy to generate (e.g. opensource cellpose, etc)  
+> 2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  
+> 
+> if 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.
+> 
+> currently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)
+> 
+> (2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.
+> 
+> 
+> https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284
+
+#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-07-09T17:32:44.350Z — 2 votes
+
+> > i change strategy a bit:
+> > 1) use opensource to make tracks, measure local LB score
+> > 2) ensemble opensource and own/ai heuristics,  measure local LB score
+> > 3) when i have good LB score, these become dense pesudo labels.
+> > 
+> > opensouce trackers are very good for short tracking. 
+> > tricks:
+> > - cellpose etc to provide dense 3d tzyx
+> > - use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input
 
 ### hengck23 (GRANDMASTER) — 2026-07-16T04:42:56.547Z — 1 votes
 
@@ -62,37 +93,6 @@ you make a graph. if your just repeat your tracks (giving new id) your edge\_jac
 #### ↳ hengck23 (GRANDMASTER) — 2026-07-18T01:17:36.170Z — 1 votes
 
 > I think the node correction can both increase and decrease original edge jacard score?
-
-### Tom (MASTER) — 2026-07-08T06:01:56.357Z — 3 votes
-
-I just start to develop flow approach then seeing your post. Welcome back @hengck23
-
-#### ↳ hengck23 (GRANDMASTER) — 2026-07-08T18:05:02.130Z — 2 votes
-
-> i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below  
-> 1) 3d point is easy to generate (e.g. opensource cellpose, etc)  
-> 2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  
-> 
-> if 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.
-> 
-> currently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)
-> 
-> (2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.
-> 
-> 
-> https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284
-
-#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-07-09T17:32:44.350Z — 2 votes
-
-> > i change strategy a bit:
-> > 1) use opensource to make tracks, measure local LB score
-> > 2) ensemble opensource and own/ai heuristics,  measure local LB score
-> > 3) when i have good LB score, these become dense pesudo labels.
-> > 
-> > opensouce trackers are very good for short tracking. 
-> > tricks:
-> > - cellpose etc to provide dense 3d tzyx
-> > - use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input
 
 ### hengck23 (GRANDMASTER) — 2026-07-17T04:35:11.853Z — 2 votes
 

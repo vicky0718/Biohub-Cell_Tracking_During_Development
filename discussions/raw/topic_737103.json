@@ -21,7 +21,7 @@
               "displayName": "Joseph Adamski",
               "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-kg.jpg?t=2026-09-02-13-53-56",
               "url": "/josephadamski91",
-              "tier": "CONTRIBUTOR",
+              "tier": "EXPERT",
               "id": 33210778,
               "progressionOptOut": false
             },
@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 568,
+            "competitionRanking": 88,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -41,10 +41,10 @@
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33210778-kg.jpg?t=2026-09-02-13-53-56",
                 "url": "/josephadamski91",
                 "userName": "josephadamski91",
-                "tier": "CONTRIBUTOR",
+                "tier": "EXPERT",
                 "id": 33210778,
                 "profileUrl": "/josephadamski91",
-                "performanceTier": "CONTRIBUTOR",
+                "performanceTier": "EXPERT",
                 "userId": 33210778,
                 "progressionOptOut": false
               },
@@ -73,12 +73,12 @@
                 },
                 "authorType": "COMMENT",
                 "votes": {
-                  "totalVotes": 3,
+                  "totalVotes": 4,
                   "canUpvote": true,
-                  "totalUpvotes": 3
+                  "totalUpvotes": 4
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 2132,
+                "competitionRanking": 117,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -93,15 +93,15 @@
                 ],
                 "teamUpInfo": {
                   "teamLeader": {
-                    "displayName": "Theo Viel",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2062758-kg.png",
-                    "url": "/theoviel",
-                    "userName": "theoviel",
+                    "displayName": "Jiwei Liu",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/100236-kg.png?t=2024-07-09-01-29-05",
+                    "url": "/jiweiliu",
+                    "userName": "jiweiliu",
                     "tier": "GRANDMASTER",
-                    "id": 2062758,
-                    "profileUrl": "/theoviel",
+                    "id": 100236,
+                    "profileUrl": "/jiweiliu",
                     "performanceTier": "GRANDMASTER",
-                    "userId": 2062758,
+                    "userId": 100236,
                     "progressionOptOut": false
                   },
                   "intro": ""
@@ -122,7 +122,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1223,
+            "competitionRanking": 1840,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -157,7 +157,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 300,
+        "competitionRanking": 724,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -195,6 +195,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
+        "competitionRanking": 544,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -254,7 +255,7 @@
         "totalUpvotes": 10
       },
       "kernelVersion": 0,
-      "competitionRanking": 1223,
+      "competitionRanking": 1840,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

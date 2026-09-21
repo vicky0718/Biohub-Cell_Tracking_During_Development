@@ -4,8 +4,8 @@
 - **Topic id**: 739731
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-09-05T19:21:43.157971200Z
-- **Votes**: 6
-- **Comments**: 6
+- **Votes**: 8
+- **Comments**: 7
 
 ---
 
@@ -20,10 +20,28 @@ this is just psf generator
 
 ---
 
-## Comments (6)
+## Comments (7)
 
 
-### Sergio Alvarez (MASTER) — 2026-09-05T20:48:27.127Z — 4 votes
+### hengck23 (GRANDMASTER) — 2026-09-08T18:58:40.797Z — 1 votes
+
+external data  
+https://zebrahub.sf.czbiohub.org/imaging  
+https://public.czbiohub.org/royerlab/zebrahub/imaging/single-objective/  
+https://public.czbiohub.org/royerlab/zoo/
+https://public.czbiohub.org/royerlab/ultrack/
+
+it is dense track! i think it is by ultrack
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9d50c08c33cebcbbd8bf3f5060b4e9a1%2FSelection_4841.png?generation=1788898795365771&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4fb513a47380d4ac853d9b8f3a9e0432%2FSelection_4842.png?generation=1788898817410763&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F59efe6edfb20a773e0338379a946c1e0%2FSelection_4845.png?generation=1788911392662598&alt=media)
+
+we do have "unlimited external data"
+
+### Sergio Alvarez (MASTER) — 2026-09-05T20:48:27.127Z — 5 votes
 
 I've tried the synthetic volume idea for ~2 weeks with no clear improvement in my scores, so I dropped it. Still, it would be cool to see this strategy work here, as it helped improve a little in the CZII competition. (Polnet was used there: https://github.com/anmartinezs/polnet)
 

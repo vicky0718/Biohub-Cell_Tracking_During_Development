@@ -6,6 +6,47 @@
     "authorUserName": "tom99763",
     "comments": [
       {
+        "id": 3521835,
+        "postDate": "2026-09-07T09:24:47.893Z",
+        "rawMarkdown": "Are you using cell segmentation based tracking ?",
+        "content": "<p>Are you using cell segmentation based tracking ?</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Rishabh Roy",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+          "url": "/rishabhr0y",
+          "tier": "EXPERT",
+          "id": 217906,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 743,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Rishabh Roy",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+            "url": "/rishabhr0y",
+            "userName": "rishabhr0y",
+            "tier": "EXPERT",
+            "id": 217906,
+            "profileUrl": "/rishabhr0y",
+            "performanceTier": "EXPERT",
+            "userId": 217906,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
         "id": 3487641,
         "postDate": "2026-07-04T05:45:46.917Z",
         "rawMarkdown": "Finally division got learning signal!\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F4310004%2F8f869234903a7d25d2b54ecad8a04d66%2F123.png?generation=1783143916774683&alt=media)",
@@ -30,7 +71,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 87,
+            "competitionRanking": 743,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -67,7 +108,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 8,
+        "competitionRanking": 19,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -118,7 +159,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 3061,
+        "competitionRanking": 3613,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -192,12 +233,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 43,
+        "totalVotes": 49,
         "canUpvote": true,
-        "totalUpvotes": 43
+        "totalUpvotes": 49
       },
       "kernelVersion": 0,
-      "competitionRanking": 8,
+      "competitionRanking": 19,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -230,10 +271,11 @@
         {
           "emoji": "LOVE",
           "featuredUserNames": [
+            "jazivxt",
             "yunusgmsoy",
             "russcore"
           ],
-          "userCount": 2
+          "userCount": 3
         },
         {
           "emoji": "KAGGLE",
@@ -267,9 +309,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-01T14:00:25.871499400Z",
-    "totalVotes": 43,
+    "totalVotes": 49,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/717109",
-    "totalMessages": 3,
+    "totalMessages": 4,
     "authorPerformanceTier": "MASTER",
     "authorProgressionOptOut": false
   }

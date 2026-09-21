@@ -4,7 +4,7 @@
 - **Topic id**: 737543
 - **Author**: kevin park (CONTRIBUTOR)
 - **Posted**: 2026-08-26T03:10:45.084626300Z
-- **Votes**: 4
+- **Votes**: 5
 - **Comments**: 9
 
 ---
@@ -45,7 +45,7 @@ it's hard to say which one matter most, but i think there's a "correct" order to
 detection -> linking -> division.
 detection should come first, once detection is solid, it's easier to improve others.
 
-#### ↳ kevin park (CONTRIBUTOR) — 2026-08-28T06:38:46.290Z — 1 votes
+#### ↳ kevin park (CONTRIBUTOR) — 2026-08-28T06:38:46.290Z — 2 votes
 
 > thanks for replying
 > 
@@ -55,7 +55,7 @@ detection should come first, once detection is solid, it's easier to improve oth
 > 
 > did fixing detection actually move ur divisions or did u need something else for that
 
-#### ↳ ↳ Lime1123 (EXPERT) — 2026-08-28T06:59:04Z — -1 votes
+#### ↳ ↳ Lime1123 (EXPERT) — 2026-08-28T06:59:04Z
 
 > > I think some division-specific handling is needed for divisions beyond just improving detection recall. Recall still matters, especially at shorter distances, but a high overall detection recall by itself doesn't seem to translate directly into a good divJ.
 > > 

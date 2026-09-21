@@ -21,13 +21,23 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": -1,
-        "canUpvote": true
+        "totalVotes": 7,
+        "canUpvote": true,
+        "totalUpvotes": 8
       },
       "kernelVersion": 0,
-      "competitionRanking": 6,
+      "competitionRanking": 27,
       "feedbackTrackingData": {},
       "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "KAGGLE",
+          "featuredUserNames": [
+            "octaviograu"
+          ],
+          "userCount": 1
+        }
+      ],
       "teamUpInfo": {
         "enabled": true,
         "teamLeader": {
@@ -53,7 +63,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-07T06:47:17.104766300Z",
-    "totalVotes": -1,
+    "totalVotes": 7,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/739915",
     "authorPerformanceTier": "MASTER",
     "authorProgressionOptOut": false

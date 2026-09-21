@@ -4,8 +4,8 @@
 - **Topic id**: 732103
 - **Author**: José Freitas (EXPERT)
 - **Posted**: 2026-08-01T21:12:10.502460400Z
-- **Votes**: 47
-- **Comments**: 9
+- **Votes**: 62
+- **Comments**: 20
 
 ---
 
@@ -46,8 +46,29 @@ Happy to answer anything about the generator. If you try it and it breaks, or it
 
 ---
 
-## Comments (9)
+## Comments (20)
 
+
+### hengck23 (GRANDMASTER) — 2026-09-07T10:56:47.250Z — 1 votes
+
+zebra fish cell development trajectory data  
+https://ssbd.riken.jp/database/project/5-Keller-FishEmbryo
+
+### hengck23 (GRANDMASTER) — 2026-09-05T12:48:14.990Z — 1 votes
+
+synthetic data from biohub  
+https://virtual-embryo-zoo.sf.czbiohub.org/
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F744fe1d219782a2f1503130d654c3bd3%2FSelection_4780.png?generation=1788612493147291&alt=media)
+
+### hengck23 (GRANDMASTER) — 2026-09-04T23:42:33.660Z — 1 votes
+
+There is another similar solution. Convert real microscopy image to simplified eg ellipsoid image using unet that output ellipsoid ( just like bonding box in instance object detection). Then you create sythetic unet output to feed into link transformer.
+
+The problem is then shift to instance detection. Need to find lots of real microscopy image with cell division.
+
+—-
+
+I haven’t moved to cell division yet. But my current strategy is to have good cell detection and tracking. Then infer division from long track ( stage 3 ). I assume death/birth can only happen at image boundary,  so maybe we can detect splits from long tracks, ie i treat division as tracklet association problem, tracklet as node association
 
 ### hengck23 (GRANDMASTER) — 2026-09-05T09:00:18.660Z — 2 votes
 
@@ -62,16 +83,6 @@ After sucess of dense cell training and dense pair (link) training, i now procee
 - augmentation (elastic transform over 5 frames)  
 - dense pesudo label Kaggle tracks using opensource ultrack, ITEC, HOCT ....
 - make a new intertace for manual inspection and correct for short tracklet
-
-### hengck23 (GRANDMASTER) — 2026-09-04T23:42:33.660Z — 1 votes
-
-There is another similar solution. Convert real microscopy image to simplified eg ellipsoid image using unet that output ellipsoid ( just like bonding box in instance object detection). Then you create sythetic unet output to feed into link transformer.
-
-The problem is then shift to instance detection. Need to find lots of real microscopy image with cell division.
-
-—-
-
-I haven’t moved to cell division yet. But my current strategy is to have good cell detection and tracking. Then infer division from long track ( stage 3 ). I assume death/birth can only happen at image boundary,  so maybe we can detect splits from long tracks, ie i treat division as tracklet association problem, tracklet as node association
 
 ### José Luiz Luna-Xavier (CONTRIBUTOR) — 2026-09-04T18:56:39.873Z
 
@@ -91,7 +102,7 @@ One thing I'd love your take on, if you have a moment: could you clarify exactly
 
 Thanks again for releasing this — genuinely useful contribution to the competition. Excellente Contribuição, forte abraço, José Luiz.
 
-#### ↳ José Freitas (EXPERT) — 2026-09-05T01:57:43.933Z
+#### ↳ José Freitas (EXPERT) — 2026-09-05T01:57:43.933Z — 1 votes
 
 > Hi José Luiz,
 > 
@@ -132,8 +143,158 @@ I just started in this competition, so I'm not sure if I will use your data yet,
 
 > Thank you very much! I'm happy to help! If you have any questions, I'm available!
 
-### hengck23 (GRANDMASTER) — 2026-09-05T12:48:14.990Z
+#### ↳ ↳ Juan Neira (CONTRIBUTOR) — 2026-09-14T01:14:31.897Z
 
-synthetic data from biohub  
-https://virtual-embryo-zoo.sf.czbiohub.org/
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F744fe1d219782a2f1503130d654c3bd3%2FSelection_4780.png?generation=1788612493147291&alt=media)
+> > Hi José,  
+> > 
+> > Thanks again for sharing the synthetic dataset. I tried integrating it into my current pipeline, mainly as a source of additional supervision for division detection. 
+> > 
+> > I trained a lightweight division classifier using the synthetic lineage geometry, with sequence-level validation and several types of hard negatives. The classifier performed very well on held-out synthetic sequences, with an average precision of about 0.98.  However, when I integrated the synthetic-trained division gate into my current tracking pipeline, my public leaderboard score dropped from 0.910 to 0.906.
+> > 
+> > My impression is that the main issue may be a domain shift between the synthetic and real division geometry, or possibly a calibration problem in how I am using the classifier at inference time, rather than an issue with the dataset itself.
+> > 
+> > If you have any recommendations on how you think the synthetic data is best used in this competition, I would really appreciate your advice. For example, do you think it is better suited for pre-training followed by fine-tuning on the real data, for learning motion/lineage features, or for another type of augmentation or calibration strategy?  
+> > 
+> > Thanks again for making the dataset available and for any suggestions you may have.
+
+#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-14T03:18:40.143Z
+
+> > you need to check your local validation metric what is getting worse, e.g.
+> > - more nodes are predicted (T_pred gets larger)
+> > - less nodes are matched, ist is due to lower probability or longer error distance
+> > - smaller raw edge jaccard, is it more miss (longer gap) or more FP
+> > - smaller raw dvision jaccard,
+> > 
+> > https://github.com/royerlab/kaggle-cell-tracking-competition/blob/main/metrics.md
+> > 
+> > without breaking down the root cost, it is hard to decide what to do next.
+> > e.g, if node error distance and probability get worst, relabel synthetic data centroid with a model closer to kaggle annotation. Or discard prediction of node with synthetic data, use it only for eadge linkage instead, etc
+
+#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-14T03:21:47.507Z
+
+> > ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Fe083874dd39471568dd37ddf59c4aa5f%2FSelection_4962.png?generation=1789356090029098&alt=media)
+> > 
+> > he explains better
+
+#### ↳ ↳ Juan Neira (CONTRIBUTOR) — 2026-09-14T03:42:15.187Z
+
+> > Dear hengck23
+> > 
+> > Thank you for your reply.
+> > 
+> > I will check the information you shared and comment about my outcome later.
+
+#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-15T21:33:48.683Z
+
+> > @juancneira 
+> > 
+> > example of domain shift
+> > https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/740145#3524794
+
+### Lê Quang Cảnh (CONTRIBUTOR) — 2026-09-10T00:13:40.043Z
+
+I took the upper bound suggestion and measured it on the detections instead of by eye, since the ground truth lets you ask the same question without human labelling. Seven labelled divisions across the four films I have volumes for.
+
+For each one: is the parent detected, are both daughters detected, all within the metric's own 7 um matching radius.
+
+```
+parent and both daughters detected       7/7   (100%)
+both parent->daughter edges in my graph  0/7
+exactly one edge present                 7/7
+predicted parent out-degree              1, every single time
+```
+
+So detection is not the ceiling at all. My detector finds all three nodes for every division, the linker attaches one daughter every time, and never the second. Upper bound given my detections is 100% and I am scoring 0%.
+
+Your point 4 is exactly what the geometry says:
+
+```
+longest parent to daughter step   median 8.47 um   range 5.69 to 13.65
+sister separation at prediction   median 10.22 um  range 7.87 to 13.12
+```
+
+A labelled continuation step here is around 3 um. So a division step is two to four times a normal step and the daughters land 8 to 13 um apart. The cell does not slowly split, it appears as two things already far apart, which is what you described.
+
+Which turns into a reachability curve, and this is the part I did not expect:
+
+```
+both steps inside a  7.0 um gate    2/7   (29%)
+both steps inside a  9.9 um gate    5/7   (71%)
+both steps inside a 12.0 um gate    6/7   (86%)
+both steps inside a 15.0 um gate    7/7  (100%)
+```
+
+That reframes the capacity patch I mentioned earlier. Allowing out-degree 2 was necessary and not sufficient, because a gate tuned for continuations rejects the second arc before capacity ever gets consulted. What the numbers say is that the second arc needs a different gate from the first: tight for a continuation, roughly double for a candidate daughter.
+
+Caveat, n = 7, which is tiny. But it is 7/7 unanimous on both binary facts and the geometry holds across all four films.
+
+On Ultrack, this is also why I now think their formulation wins here rather than a post-hoc fix. If division and non-division hypotheses compete inside one optimisation, the wide gate only gets used where the alternative explanation is worse, so you do not pay for it everywhere. Doing it afterwards, the way my pipeline does, the gate is global and every widening buys false positives across the whole graph. That matches your A,B,C easy and E,F,G both-low-probability picture: the ambiguity is real and the right place to resolve it is inside the objective, not with a threshold.
+
+I am going to try the asymmetric gate next since it is cheap, and report whether it moves anything. If you want the measurement script I can post it.
+
+### Lê Quang Cảnh (CONTRIBUTOR) — 2026-09-09T16:13:32.543Z
+
+@hengck23 I tested your tracklet-association framing for divisions and it came back negative, which seems worth reporting since you said you had not moved to division yet.
+
+Your assumption that birth and death only happen at the image boundary is the right filter to start from. Applied to my pipeline's output on four labelled films:
+
+```
+forks in graph                          105
+track starts at t=0                   1,056
+track starts at t>0                   3,542
+  near the volume border              2,253
+  interior orphans (your pool)        1,289
+    prev-frame neighbour has 1 child    762
+    no node within 12 um                486
+median orphan -> nearest prev node  8.5-10 um
+```
+
+Those four films hold 3 labelled divisions; the whole train set holds 151 across 87 of the 199 label files. So the pool is roughly 400x larger than the events it is meant to contain. A median jump of 8.5-10 um against a ~3 um labelled frame-to-frame step says most of them are continuations the linker refused because the detector put the endpoints ~4 um off, not daughters it missed.
+
+The part that worries me for your stage 3: those broken continuations sit at the same separation a real sister pair does. Jose calibrated sister separation at 7.24 um from the real lineage edges; my orphan median is 8.5-10 um. A distance gate cannot separate the two populations. Whatever decides daughter-vs-broken-track has to use something else - appearance, the parent's own motion history, or simply a better-localised detector so the continuations stop breaking in the first place.
+
+Two other things from the same measurement, in case they save you time:
+
+- In the public 0.938 pipeline family the motion-relink stage rebuilds the edge list from a one-to-one Hungarian assignment before safe-div runs, so every fork the ILP produced is destroyed there. If you inherit that post-processing, any division work upstream of it is invisible.
+- Fine-tuning the public detector on a 7-film sparse split made it worse, not better: node recall and N_pred/N_est fell on every film and adj_J dropped 0.0161, while a dense-label branch collapsed to zero nodes on one film. Whatever makes fine-tuning work here, it is not more epochs on the sparse annotations.
+
+Caveat on my numbers: I first described those four films as the test set. Theo Viel corrected me - the test folder ships dummies copied from train, and the real hidden set is bigger. So the counts above come from four train films the released weights were trained on. The ratio between pool size and event count is the part I would still trust.
+
+Your 5-frame training is what I am most curious about: does a window-5 link transformer recover the gap-2 continuations that the heuristic currently patches by hand? That is exactly the population generating this orphan pool.
+
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-09T19:08:51.583Z
+
+> i haven't looked into division in detail yet. I suggest you visually inspect the appearance changes of the cell as time increases. e.g. given a series of crop images from a trajectory of points: CROP = [crop1, crop2, crop3, crop3 .....]:
+> 
+> - 1. it is easy for a human to check if all crops are from the same cell (i.e. no FP) if there is no division. That is why you have 0.8 or 0.9 Jaccard 
+> - 2. it is not easy to tell if there is any missing crop in between if i  don't tell you the timestamp
+> - 3. For division, I can sometimes see 2 "different series being concatenated together". In fact, it may be difficult for humans to tell if it is FP or division?
+> - 4. the frame rate seems to be too large for us to observe the slow splitting of a cell. It is like the cell "suddenly becomes two (and far apart)"
+> 
+> i can only be very sure it is a division when the neighbour track is very obvious, so that since the parent cell cannot disappear, it must be split. This means that IPL can only make a correct division only if the neighbour tracks has very high confidence?
+> 
+> 
+> The above simulates what happens when you present a feature vector at zyx to the model after dfferent t.  
+> 
+> My first instinct is to find the upper bound of achievable division Jaccard. I would use the human correct rate as a proxy or oracle. From my observations, just by appearance above alone, i don't get good results.  I need to think of something else.
+> 
+> 
+> upper bound means "if your model cannot do better, other kaggler also cannot do better" (so their improvement may be somewhere else)
+> 
+> ---
+> 
+> i suggest you study Ultack paper. it uses oversegmentation to detect division. i.e. it competes against non-division and division hypothesis. Ultrack does simultaneous detection and tracking (not detection first, then link). I think the paper also gives upper bound for the division case using the paper's data.
+
+#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-09T19:35:01.667Z — 1 votes
+
+> > ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Facea4450a5d3fcbb773c1d9287de7731%2FSelection_4864.png?generation=1788982357856715&alt=media)
+> > 
+> > this is from the ultrack paper and it is also what i observed from kaggle data.
+> > 
+> > easy to link A,B,C.  
+> > difficult to link A,B,D.  
+> > difficult to link EG or EF (both has low probability)
+
+#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-09T19:37:33.740Z
+
+> > ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9b473eb830530ce73f50f5a82032a456%2FSelection_4865.png?generation=1788982651212641&alt=media)

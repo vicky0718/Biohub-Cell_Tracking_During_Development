@@ -24,7 +24,7 @@ I am not sure what the general rules interpretation is here, and there is a mass
 
 no thats not allowed clearly mentioned in rules.
 
-#### ↳ Joseph Adamski (CONTRIBUTOR) — 2026-08-24T17:56:29.667Z — 1 votes
+#### ↳ Joseph Adamski (EXPERT) — 2026-08-24T17:56:29.667Z — 1 votes
 
 > Can you post where you found this? I only see mention specifically prohibiting hand-labeling the competition's validation and test records (section 3.4), not unrelated external data. So I'd still love to see a host answer as that's different than OPs question.
 
@@ -32,7 +32,7 @@ no thats not allowed clearly mentioned in rules.
 
 > Please point me to where this is stated clearly. I missed it.
 
-#### ↳ ↳ Theo Viel (GRANDMASTER) — 2026-08-25T07:17:41.127Z — 3 votes
+#### ↳ ↳ Theo Viel (GRANDMASTER) — 2026-08-25T07:17:41.127Z — 4 votes
 
 > > Hand labeling data has usually been allowed in previous competition.
 > > What you cannot do is label the test data but we don't have access to it.

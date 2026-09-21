@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 20812204,
+    "authorThumbnailName": "20812204-kg.png?t=2026-09-19-05-17-39",
+    "authorUserDisplayName": "Eric",
+    "authorUserName": "chengren01",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3525904,
+      "postDate": "2026-09-19T13:00:01.980Z",
+      "rawMarkdown": "I checked the split_manifest.json shipped with the public secondary model (pilkwang/biohub-temporal-unet3d-seed314159-v1, weights/unet_transformer/split_0/): the method is unet_transformer_alltrain_seed314159_v1 and the train list contains all 199 videos; the 40 \"test\" videos in that manifest are a subset of them. The DeepCenter manifest (pilkwang/biohub-deepcenter-unet3d-center-prior-v1) lists 71 train videos. The 50ep pack itself ships no manifest, so I can't verify it, but others here have reported the same all-train setup.\nConsequence: any local hold-out drawn from the 199 train videos is in-sample for the detectors in the public stack. Steps that correct detector errors look good locally because the detector has memorised those videos, so there is little left to correct.\nA concrete example from my runs: a sub-voxel peak refinement gained +0.0078 on the 12 official validation videos that contain divisions (official metric, CSV round-trip), but \u22120.002 on the public LB, consistently across two submissions.\nWhat I now trust locally: only models that never saw the evaluation videos (e.g. a detector trained with those videos held out). Everything else I decide on the LB.\nHas anyone found a local setup that tracks the LB for the public stack?",
+      "content": "<p>I checked the split_manifest.json shipped with the public secondary model (pilkwang/biohub-temporal-unet3d-seed314159-v1, weights/unet_transformer/split_0/): the method is unet_transformer_alltrain_seed314159_v1 and the train list contains all 199 videos; the 40 \"test\" videos in that manifest are a subset of them. The DeepCenter manifest (pilkwang/biohub-deepcenter-unet3d-center-prior-v1) lists 71 train videos. The 50ep pack itself ships no manifest, so I can't verify it, but others here have reported the same all-train setup.\nConsequence: any local hold-out drawn from the 199 train videos is in-sample for the detectors in the public stack. Steps that correct detector errors look good locally because the detector has memorised those videos, so there is little left to correct.\nA concrete example from my runs: a sub-voxel peak refinement gained +0.0078 on the 12 official validation videos that contain divisions (official metric, CSV round-trip), but \u22120.002 on the public LB, consistently across two submissions.\nWhat I now trust locally: only models that never saw the evaluation videos (e.g. a detector trained with those videos held out). Everything else I decide on the LB.\nHas anyone found a local setup that tracks the LB for the public stack?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Eric",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20812204-kg.png?t=2026-09-19-05-17-39",
+        "url": "/chengren01",
+        "tier": "CONTRIBUTOR",
+        "id": 20812204,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 82,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Eric",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/20812204-kg.png?t=2026-09-19-05-17-39",
+          "url": "/chengren01",
+          "userName": "chengren01",
+          "tier": "CONTRIBUTOR",
+          "id": 20812204,
+          "profileUrl": "/chengren01",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 20812204,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3525904,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 742064,
+    "name": " Public 0.947-stack weights were trained on all 199 train videos \u2014 any hold-out from train is in-sample (manifest check + an LB counter-example)",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-19T13:00:01.979783200Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/742064",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

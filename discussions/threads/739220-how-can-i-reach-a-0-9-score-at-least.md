@@ -20,6 +20,17 @@ I am stuck on fixing paramters in the post processing part, in ilp and NMS
 ## Comments (11)
 
 
+### nusrati (CONTRIBUTOR) — 2026-09-03T13:03:05.090Z — 3 votes
+
+the more you hands on the more you understand and only then its high chance you hit .9
+
+there are many models on hugging face + already shared here publicly too. The one approach you mentioned is what evey LLM suggests upon given prompt.
+
+understand problem first 
+gothrough public notebooks second
+broaden your exposure third
+apply test, apply test, apply test, finally
+
 ### hengck23 (GRANDMASTER) — 2026-09-04T10:08:29.180Z — 1 votes
 
 if we are talking about a general solution for cell tracking (not restricted to the kaggle competition), to improve tracking, just increase the frame rate of the captured volume. Then you just need to have a good detector and nearest neighbour + linear assignment would have solved 95% of the problem.
@@ -31,17 +42,6 @@ if we are talking about a general solution for cell tracking (not restricted to 
 #### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-04T23:34:02.753Z — 1 votes
 
 > > Imagine if you can improve the camera and capture image at say 100 fps instead of 10 fps. Then the cell move very little between each frame and in-fact they may just overlap a lot. So you can track them by nearest cell association. The trick is to capture faster than the cell moves or changes(division). This is hardware solution, which of course may be just a fancy solution ( eg due to limitation or cost. High speed camera are incredibly expensive)
-
-### nusrati (CONTRIBUTOR) — 2026-09-03T13:03:05.090Z — 3 votes
-
-the more you hands on the more you understand and only then its high chance you hit .9
-
-there are many models on hugging face + already shared here publicly too. The one approach you mentioned is what evey LLM suggests upon given prompt.
-
-understand problem first 
-gothrough public notebooks second
-broaden your exposure third
-apply test, apply test, apply test, finally
 
 ### Yassine Alouini (GRANDMASTER) — 2026-09-03T08:36:32Z — 1 votes
 
@@ -55,7 +55,7 @@ Try to take advantage of this competition to learn new things (detection, tracki
 
 > > Try model separate into several parts like object detection linkage...etc
 
-#### ↳ ↳ Yassine Alouini (GRANDMASTER) — 2026-09-03T10:06:45.710Z — 1 votes
+#### ↳ ↳ Yassine Alouini (GRANDMASTER) — 2026-09-03T10:06:45.710Z — 2 votes
 
 > > if you have access to an LLM, ask it to explain one training notebook. From there, keep digging until you understand what the notebook does. Then, ask the LLM again for ways to improve. Keep iterating, explore the data, and be creative.
 

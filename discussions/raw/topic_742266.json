@@ -1,0 +1,59 @@
+{
+  "forumTopic": {
+    "authorId": 22436878,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Justin CH123",
+    "authorUserName": "justinch123",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3526344,
+      "postDate": "2026-09-21T03:39:55.993Z",
+      "rawMarkdown": "Hi all. I have been stuck on the 0.947 plateau for a week. I wanted to share what I measured in case it saves someone time, then ask one question.\n\nI tested ten single-knob changes on top of the public Harmonic Fusion pipeline and every one lost on the board. The clearest pattern was that the loss tracked the change in predicted node count on the test set, not my offline validation score. The change with my best offline edge score (+0.0011) scored worst on the board (-0.005), and it was also the one that dropped the most nodes on one test video. A change that moved the node count by only four nodes still lost 0.001. For this pipeline, offline edge J on the training videos was not a usable signal for me.\n\nI also noticed that in the public post-processing the final edges come from the Hungarian motion relink in filter_output_graph, which replaces the ILP edge set. The network probability only enters that cost through the learned bonus, worth at most about 1 um against a median true step of about 1.8 um.\n\nMy question is whether anyone found a gain at that relink stage specifically, for example feeding dense edge probabilities into the relink cost, without changing which cells are kept. More broadly, for anyone above 0.95 willing to say, was most of your gap over the public stack on the detection side or the linking side?\n\nThanks, and good luck in the last week.",
+      "content": "<p>Hi all. I have been stuck on the 0.947 plateau for a week. I wanted to share what I measured in case it saves someone time, then ask one question.</p>\n<p>I tested ten single-knob changes on top of the public Harmonic Fusion pipeline and every one lost on the board. The clearest pattern was that the loss tracked the change in predicted node count on the test set, not my offline validation score. The change with my best offline edge score (+0.0011) scored worst on the board (-0.005), and it was also the one that dropped the most nodes on one test video. A change that moved the node count by only four nodes still lost 0.001. For this pipeline, offline edge J on the training videos was not a usable signal for me.</p>\n<p>I also noticed that in the public post-processing the final edges come from the Hungarian motion relink in filter_output_graph, which replaces the ILP edge set. The network probability only enters that cost through the learned bonus, worth at most about 1 um against a median true step of about 1.8 um.</p>\n<p>My question is whether anyone found a gain at that relink stage specifically, for example feeding dense edge probabilities into the relink cost, without changing which cells are kept. More broadly, for anyone above 0.95 willing to say, was most of your gap over the public stack on the detection side or the linking side?</p>\n<p>Thanks, and good luck in the last week.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Justin CH123",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/justinch123",
+        "tier": "CONTRIBUTOR",
+        "id": 22436878,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 484,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "Justin CH123",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/justinch123",
+          "userName": "justinch123",
+          "tier": "CONTRIBUTOR",
+          "id": 22436878,
+          "profileUrl": "/justinch123",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 22436878,
+          "progressionOptOut": false
+        },
+        "intro": "Bringing a dedicated 8\u00d7H100-class GPU node for the final week plus a validator harness on all 199 training videos. Looking for a team at 0.950 or higher that needs compute."
+      }
+    },
+    "firstMessageId": 3526344,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 742266,
+    "name": "Stuck at 0.947 after ten board tests. What I measured, and one question about the relink stage ",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-21T03:39:55.992547600Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/742266",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

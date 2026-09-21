@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2117,
+        "competitionRanking": 2681,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -66,11 +66,10 @@
         "totalUpvotes": 5
       },
       "kernelVersion": 0,
-      "competitionRanking": 83,
+      "competitionRanking": 109,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
-        "enabled": true,
         "teamLeader": {
           "displayName": "mikelou1",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",

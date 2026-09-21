@@ -21,12 +21,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 2,
+          "totalVotes": 3,
           "canUpvote": true,
-          "totalUpvotes": 2
+          "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 199,
+        "competitionRanking": 985,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -70,12 +70,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 2,
+          "totalVotes": 3,
           "canUpvote": true,
-          "totalUpvotes": 2
+          "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 199,
+        "competitionRanking": 985,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -126,7 +126,7 @@
         "totalUpvotes": 4
       },
       "kernelVersion": 0,
-      "competitionRanking": 309,
+      "competitionRanking": 723,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

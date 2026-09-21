@@ -32,11 +32,10 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 83,
+            "competitionRanking": 109,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
-              "enabled": true,
               "teamLeader": {
                 "displayName": "mikelou1",
                 "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -69,7 +68,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 395,
+        "competitionRanking": 135,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -111,11 +110,10 @@
         "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 83,
+      "competitionRanking": 109,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
-        "enabled": true,
         "teamLeader": {
           "displayName": "mikelou1",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",

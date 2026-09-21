@@ -21,12 +21,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 19,
+          "totalVotes": 20,
           "canUpvote": true,
-          "totalUpvotes": 19
+          "totalUpvotes": 20
         },
         "kernelVersion": 0,
-        "competitionRanking": 2,
+        "competitionRanking": 4,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -64,7 +64,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2185,
+        "competitionRanking": 2752,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -102,7 +102,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 300,
+        "competitionRanking": 722,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -172,7 +172,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 482,
+        "competitionRanking": 768,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -209,16 +209,15 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 10,
+        "totalVotes": 11,
         "canUpvote": true,
-        "totalUpvotes": 10
+        "totalUpvotes": 11
       },
       "kernelVersion": 0,
-      "competitionRanking": 82,
+      "competitionRanking": 106,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
-        "enabled": true,
         "teamLeader": {
           "displayName": "mikelou1",
           "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -242,7 +241,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-23T09:12:21.220220100Z",
-    "totalVotes": 10,
+    "totalVotes": 11,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/737101",
     "totalMessages": 5,
     "authorPerformanceTier": "EXPERT",

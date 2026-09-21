@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 34,
+        "competitionRanking": 644,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -68,7 +68,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1169,
+            "competitionRanking": 1787,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -102,7 +102,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 3165,
+        "competitionRanking": 3736,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -154,7 +154,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1226,
+                "competitionRanking": 1840,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -188,7 +188,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1169,
+            "competitionRanking": 1787,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -222,11 +222,10 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 84,
+        "competitionRanking": 106,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
-          "enabled": true,
           "teamLeader": {
             "displayName": "mikelou1",
             "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
@@ -265,7 +264,7 @@
         "totalUpvotes": 2
       },
       "kernelVersion": 0,
-      "competitionRanking": 1169,
+      "competitionRanking": 1787,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

@@ -1,0 +1,87 @@
+{
+  "forumTopic": {
+    "authorId": 10909732,
+    "authorThumbnailName": "10909732-kg.png?t=2026-08-21-18-49-20",
+    "authorUserDisplayName": "Mark",
+    "authorUserName": "markdjadchenko",
+    "comments": [
+      {
+        "id": 3524642,
+        "postDate": "2026-09-15T14:17:39.913Z",
+        "rawMarkdown": "I\u2019m still exploring different approaches for this type of problem, but I\u2019d be interested to know what has worked best for others in solo submissions. Do you usually focus on improving a single strong model, or do you find that combining a few different approaches gives better results?",
+        "content": "<p>I\u2019m still exploring different approaches for this type of problem, but I\u2019d be interested to know what has worked best for others in solo submissions. Do you usually focus on improving a single strong model, or do you find that combining a few different approaches gives better results?</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Casey Hunt",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36700865-kg.png?t=2026-09-15-12-53-11",
+          "url": "/caseyhunt06",
+          "tier": "CONTRIBUTOR",
+          "id": 36700865,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3524587,
+      "postDate": "2026-09-15T10:45:12.380Z",
+      "rawMarkdown": "What is your best solo model?",
+      "content": "<p>What is your best solo model?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Mark",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10909732-kg.png?t=2026-08-21-18-49-20",
+        "url": "/markdjadchenko",
+        "tier": "MASTER",
+        "id": 10909732,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 3,
+        "canUpvote": true,
+        "totalUpvotes": 3
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 21,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "TWEAK",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+          "url": "/tweakai",
+          "userName": "tweakai",
+          "tier": "EXPERT",
+          "id": 28207655,
+          "profileUrl": "/tweakai",
+          "performanceTier": "EXPERT",
+          "userId": 28207655,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3524587,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 741446,
+    "name": "What is your best solo model?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-15T10:45:12.379532Z",
+    "totalVotes": 3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/741446",
+    "totalMessages": 1,
+    "authorPerformanceTier": "MASTER",
+    "authorProgressionOptOut": false
+  }
+}

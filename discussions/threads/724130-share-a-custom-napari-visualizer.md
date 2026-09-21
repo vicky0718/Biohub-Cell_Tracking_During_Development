@@ -4,7 +4,7 @@
 - **Topic id**: 724130
 - **Author**: Tom (MASTER)
 - **Posted**: 2026-07-09T16:55:59.111354100Z
-- **Votes**: 47
+- **Votes**: 48
 - **Comments**: 8
 
 ---
@@ -58,7 +58,7 @@ This is the kind of tool sharing that moves a competition forward. Most public n
 
 Does it handle two cells crossing paths where the model swaps their IDs? That failure is invisible in aggregate scores and obvious the second you watch the video.
 
-### Joseph Adamski (CONTRIBUTOR) — 2026-08-24T15:51:58.507Z
+### Joseph Adamski (EXPERT) — 2026-08-24T15:51:58.507Z
 
 Thank you this was super helpful.
 

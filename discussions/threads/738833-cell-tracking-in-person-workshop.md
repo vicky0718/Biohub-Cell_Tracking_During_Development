@@ -4,8 +4,8 @@
 - **Topic id**: 738833
 - **Author**: Jordão Bragantini (CONTRIBUTOR)
 - **Posted**: 2026-09-01T21:31:36.602074500Z
-- **Votes**: 5
-- **Comments**: 2
+- **Votes**: 10
+- **Comments**: 3
 - **Pinned**: yes
 
 ---
@@ -22,10 +22,14 @@ The Biohub Team
 
 ---
 
-## Comments (2)
+## Comments (3)
 
 
-### Vinayak Pathak (CONTRIBUTOR) — 2026-09-05T08:34:24.590Z
+### Aashutosh Kumar Bhardwaj (CONTRIBUTOR) — 2026-09-16T12:44:30.623Z — -2 votes
+
+it would be great to be part of such team. let me know what i have to do
+
+### Vinayak Pathak (CONTRIBUTOR) — 2026-09-05T08:34:24.590Z — -1 votes
 
 It would be great to be part of the Biohub team
 

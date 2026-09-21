@@ -1,0 +1,184 @@
+{
+  "forumTopic": {
+    "authorId": 29641607,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "OmerZalman",
+    "authorUserName": "omerzalman",
+    "comments": [
+      {
+        "id": 3526181,
+        "postDate": "2026-09-20T15:45:37.160Z",
+        "rawMarkdown": "I guess you have some room for improvement in all directions.",
+        "content": "<p>I guess you have some room for improvement in all directions.</p>",
+        "replies": [
+          {
+            "id": 3526191,
+            "postDate": "2026-09-20T16:40:43.873Z",
+            "rawMarkdown": "Thanks! If you had to prioritize one area for a solution scoring around 0.950, where do you think the largest remaining gain is: cell detection, temporal linking, division detection, or graph post-processing? Did your biggest improvement come from model training or pipeline refinement?",
+            "content": "<p>Thanks! If you had to prioritize one area for a solution scoring around 0.950, where do you think the largest remaining gain is: cell detection, temporal linking, division detection, or graph post-processing? Did your biggest improvement come from model training or pipeline refinement?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "OmerZalman",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/omerzalman",
+              "tier": "CONTRIBUTOR",
+              "id": 29641607,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": -1,
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 117,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "OmerZalman",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/omerzalman",
+                "userName": "omerzalman",
+                "tier": "CONTRIBUTOR",
+                "id": 29641607,
+                "profileUrl": "/omerzalman",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 29641607,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Ogurtsov",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/682731-kg.jpg?t=2024-04-01-08-44-00",
+          "url": "/ogurtsov",
+          "tier": "MASTER",
+          "id": 682731,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 6,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Ogurtsov",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/682731-kg.jpg?t=2024-04-01-08-44-00",
+            "url": "/ogurtsov",
+            "userName": "ogurtsov",
+            "tier": "MASTER",
+            "id": 682731,
+            "profileUrl": "/ogurtsov",
+            "performanceTier": "MASTER",
+            "userId": 682731,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3526179,
+        "postDate": "2026-09-20T15:41:42.453Z",
+        "rawMarkdown": "Did improve the public notebook ?",
+        "content": "<p>Did improve the public notebook ?</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Gourav Roy",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2215261-fb.jpg",
+          "url": "/themechanicalcoder",
+          "tier": "CONTRIBUTOR",
+          "id": 2215261,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 151,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Gourav Roy",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2215261-fb.jpg",
+            "url": "/themechanicalcoder",
+            "userName": "themechanicalcoder",
+            "tier": "CONTRIBUTOR",
+            "id": 2215261,
+            "profileUrl": "/themechanicalcoder",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 2215261,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3526141,
+      "postDate": "2026-09-20T13:22:23.863Z",
+      "rawMarkdown": "\n\nIs your performance mainly from a particular model or the overall pipeline?\n\nDid you refine public notebooks, use open-source tools such as HOCT, or train your own model?\n\nWhich component improved your score most: detection, linking, division detection, or post-processing?\n\nDid you train on all available movies, and how did you design validation to avoid overfitting?\n\nHow well does your local validation correlate with the leaderboard?\n\nHow do you balance division recall against false divisions?\n\nDo you use ensembling, test-time augmentation, or global graph optimization?\n\nWhich promising approaches failed, and what would you recommend improving first?\n\n",
+      "content": "<p>Is your performance mainly from a particular model or the overall pipeline?\nDid you refine public notebooks, use open-source tools such as HOCT, or train your own model?\nWhich component improved your score most: detection, linking, division detection, or post-processing?\nDid you train on all available movies, and how did you design validation to avoid overfitting?\nHow well does your local validation correlate with the leaderboard?\nHow do you balance division recall against false divisions?\nDo you use ensembling, test-time augmentation, or global graph optimization?\nWhich promising approaches failed, and what would you recommend improving first?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "OmerZalman",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/omerzalman",
+        "tier": "CONTRIBUTOR",
+        "id": 29641607,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 117,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "OmerZalman",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/omerzalman",
+          "userName": "omerzalman",
+          "tier": "CONTRIBUTOR",
+          "id": 29641607,
+          "profileUrl": "/omerzalman",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 29641607,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3526141,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 742169,
+    "name": "A few question for top 100 people?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-20T13:22:23.864844800Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/742169",
+    "totalMessages": 3,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

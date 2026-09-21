@@ -4,8 +4,8 @@
 - **Topic id**: 717109
 - **Author**: Tom (MASTER)
 - **Posted**: 2026-07-01T14:00:25.871499400Z
-- **Votes**: 43
-- **Comments**: 3
+- **Votes**: 49
+- **Comments**: 4
 
 ---
 
@@ -15,8 +15,12 @@ in the attachments.
 
 ---
 
-## Comments (3)
+## Comments (4)
 
+
+### Rishabh Roy (EXPERT) — 2026-09-07T09:24:47.893Z — 1 votes
+
+Are you using cell segmentation based tracking ?
 
 ### Tom (MASTER) — 2026-07-04T05:45:46.917Z — 3 votes
 

@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 836,
+        "competitionRanking": 301,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -74,7 +74,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 103,
+                "competitionRanking": 653,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -112,7 +112,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 2392,
+                "competitionRanking": 2933,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -146,7 +146,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 2392,
+            "competitionRanking": 2933,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -180,7 +180,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 318,
+        "competitionRanking": 725,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -217,10 +217,11 @@
       },
       "authorType": "TOPIC",
       "votes": {
+        "totalVotes": -1,
         "canUpvote": true
       },
       "kernelVersion": 0,
-      "competitionRanking": 2392,
+      "competitionRanking": 2933,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -247,6 +248,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-26T16:27:51.320257Z",
+    "totalVotes": -1,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/737659",
     "totalMessages": 5,
     "authorPerformanceTier": "CONTRIBUTOR",

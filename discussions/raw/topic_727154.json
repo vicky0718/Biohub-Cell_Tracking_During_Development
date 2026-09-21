@@ -32,7 +32,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 1375,
+            "competitionRanking": 1968,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,7 +68,7 @@
           "totalUpvotes": 9
         },
         "kernelVersion": 0,
-        "competitionRanking": 1388,
+        "competitionRanking": 1981,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -125,7 +125,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1375,
+            "competitionRanking": 1968,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -152,7 +152,7 @@
             "parent": {},
             "author": {
               "displayName": "OzanM.",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-24-07-47-18",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.jpeg?t=2026-09-18-21-38-28",
               "url": "/analyticaobscura",
               "tier": "GRANDMASTER",
               "id": 25787455,
@@ -163,13 +163,13 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 182,
+            "competitionRanking": 48,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
               "teamLeader": {
                 "displayName": "OzanM.",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-08-24-07-47-18",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.jpeg?t=2026-09-18-21-38-28",
                 "url": "/analyticaobscura",
                 "userName": "analyticaobscura",
                 "tier": "GRANDMASTER",
@@ -227,7 +227,7 @@
         "parent": {},
         "author": {
           "displayName": "Timmy Juicehouse",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-09-11-01-57-36",
           "url": "/sweetyheehee",
           "tier": "EXPERT",
           "id": 18538441,
@@ -240,7 +240,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 1089,
+        "competitionRanking": 174,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -257,7 +257,7 @@
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "Timmy Juicehouse",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-09-11-01-57-36",
             "url": "/sweetyheehee",
             "userName": "sweetyheehee",
             "tier": "EXPERT",
@@ -291,7 +291,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 485,
+        "competitionRanking": 453,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -351,7 +351,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 485,
+        "competitionRanking": 453,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -433,7 +433,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 69,
+        "competitionRanking": 491,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -490,7 +490,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 707,
+            "competitionRanking": 32,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -524,7 +524,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 509,
+        "competitionRanking": 1373,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -561,9 +561,9 @@
       },
       "authorType": "HOST",
       "votes": {
-        "totalVotes": 35,
+        "totalVotes": 36,
         "canUpvote": true,
-        "totalUpvotes": 35
+        "totalUpvotes": 36
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -575,6 +575,7 @@
             "dalloliogm",
             "ramarlina",
             "bigbag1983",
+            "coffeeshop",
             "angantyr",
             "mgoldfield",
             "bielabs",
@@ -582,11 +583,12 @@
             "temuujinerdene",
             "codebeforework",
             "ichigoe",
+            "hiranorm",
             "galinilin",
             "thedyingkai",
             "shreedsanthagunam"
           ],
-          "userCount": 13
+          "userCount": 15
         }
       ],
       "teamUpInfo": {
@@ -613,7 +615,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-18T00:20:53.126631100Z",
-    "totalVotes": 35,
+    "totalVotes": 36,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/727154",
     "totalMessages": 14,
     "authorPerformanceTier": "CONTRIBUTOR",

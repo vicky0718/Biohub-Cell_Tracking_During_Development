@@ -6,6 +6,140 @@
     "authorUserName": "hengck23",
     "comments": [
       {
+        "id": 3493617,
+        "postDate": "2026-07-08T06:01:56.357Z",
+        "rawMarkdown": "I just start to develop flow approach then seeing your post. Welcome back @hengck23 ",
+        "content": "<p>I just start to develop flow approach then seeing your post. Welcome back <a href=\"https://www.kaggle.com/hengck23\" target=\"_blank\">@hengck23</a> </p>",
+        "replies": [
+          {
+            "id": 3493914,
+            "postDate": "2026-07-08T18:05:02.130Z",
+            "rawMarkdown": "i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below  \n1) 3d point is easy to generate (e.g. opensource cellpose, etc)  \n2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  \n\nif 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.\n\ncurrently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)\n\n(2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.\n\n\nhttps://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284",
+            "content": "<p>i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below<br>\n1) 3d point is easy to generate (e.g. opensource cellpose, etc)<br>\n2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  </p>\n<p>if 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.</p>\n<p>currently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)</p>\n<p>(2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.</p>\n<p><a href=\"https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284\" target=\"_blank\">https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284</a></p>",
+            "replies": [
+              {
+                "id": 3494324,
+                "postDate": "2026-07-09T17:32:44.350Z",
+                "rawMarkdown": "i change strategy a bit:\n1) use opensource to make tracks, measure local LB score\n2) ensemble opensource and own/ai heuristics,  measure local LB score\n3) when i have good LB score, these become dense pesudo labels.\n\nopensouce trackers are very good for short tracking. \ntricks:\n- cellpose etc to provide dense 3d tzyx\n- use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input\n\n",
+                "content": "<p>i change strategy a bit:\n1) use opensource to make tracks, measure local LB score\n2) ensemble opensource and own/ai heuristics,  measure local LB score\n3) when i have good LB score, these become dense pesudo labels.</p>\n<p>opensouce trackers are very good for short tracking. \ntricks:</p>\n<ul>\n<li>cellpose etc to provide dense 3d tzyx</li>\n<li>use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input</li>\n</ul>",
+                "parent": {},
+                "author": {
+                  "displayName": "hengck23",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                  "url": "/hengck23",
+                  "tier": "GRANDMASTER",
+                  "id": 113660,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "totalVotes": 2,
+                  "canUpvote": true,
+                  "totalUpvotes": 2
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 987,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "reactions": [
+                  {
+                    "emoji": "KAGGLE",
+                    "featuredUserNames": [
+                      "yunusgmsoy",
+                      "songhow"
+                    ],
+                    "userCount": 2
+                  }
+                ],
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "hengck23",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                    "url": "/hengck23",
+                    "userName": "hengck23",
+                    "tier": "GRANDMASTER",
+                    "id": 113660,
+                    "profileUrl": "/hengck23",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 113660,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "hengck23",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+              "url": "/hengck23",
+              "tier": "GRANDMASTER",
+              "id": 113660,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 2,
+              "canUpvote": true,
+              "totalUpvotes": 2
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 987,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "hengck23",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+                "url": "/hengck23",
+                "userName": "hengck23",
+                "tier": "GRANDMASTER",
+                "id": 113660,
+                "profileUrl": "/hengck23",
+                "performanceTier": "GRANDMASTER",
+                "userId": 113660,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Tom",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+          "url": "/tom99763",
+          "tier": "MASTER",
+          "id": 4310004,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 19,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Tom",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
+            "url": "/tom99763",
+            "userName": "tom99763",
+            "tier": "MASTER",
+            "id": 4310004,
+            "profileUrl": "/tom99763",
+            "performanceTier": "MASTER",
+            "userId": 4310004,
+            "progressionOptOut": false
+          },
+          "intro": "pursue champion position. welcome to reach out if you have interesting idea."
+        }
+      },
+      {
         "id": 3498881,
         "postDate": "2026-07-16T04:42:56.547Z",
         "rawMarkdown": "i find a metric hack:  \nyou make a graph. if your just repeat your tracks (giving new id) your edge\\_jaccard is not affected. this is the cause the kaggle metric don't penalize fragmentation, duplication. hence you can create multiple almost smiliar tracks to improve TP. But there is the node num correction (aka adj\\_edge\\_jaccard) But you can over come this by duplicating/perturbing at the correct length and correct location.\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F0c8f49fc633511f2736c46579fa5b7f3%2FSelection_4383.png?generation=1784177205409163&alt=media)",
@@ -25,7 +159,7 @@
                 "parent": {},
                 "author": {
                   "displayName": "Timmy Juicehouse",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-09-11-01-57-36",
                   "url": "/sweetyheehee",
                   "tier": "EXPERT",
                   "id": 18538441,
@@ -38,13 +172,13 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1091,
+                "competitionRanking": 179,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
                   "teamLeader": {
                     "displayName": "Timmy Juicehouse",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-09-11-01-57-36",
                     "url": "/sweetyheehee",
                     "userName": "sweetyheehee",
                     "tier": "EXPERT",
@@ -65,7 +199,7 @@
                 "parent": {},
                 "author": {
                   "displayName": "Timmy Juicehouse",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-09-11-01-57-36",
                   "url": "/sweetyheehee",
                   "tier": "EXPERT",
                   "id": 18538441,
@@ -78,13 +212,13 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1091,
+                "competitionRanking": 179,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
                   "teamLeader": {
                     "displayName": "Timmy Juicehouse",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-08-17-12-21-55",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18538441-kg.png?t=2026-09-11-01-57-36",
                     "url": "/sweetyheehee",
                     "userName": "sweetyheehee",
                     "tier": "EXPERT",
@@ -192,7 +326,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 208,
+            "competitionRanking": 987,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -228,7 +362,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 208,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -245,140 +379,6 @@
             "progressionOptOut": false
           },
           "intro": ""
-        }
-      },
-      {
-        "id": 3493617,
-        "postDate": "2026-07-08T06:01:56.357Z",
-        "rawMarkdown": "I just start to develop flow approach then seeing your post. Welcome back @hengck23 ",
-        "content": "<p>I just start to develop flow approach then seeing your post. Welcome back <a href=\"https://www.kaggle.com/hengck23\" target=\"_blank\">@hengck23</a> </p>",
-        "replies": [
-          {
-            "id": 3493914,
-            "postDate": "2026-07-08T18:05:02.130Z",
-            "rawMarkdown": "i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below  \n1) 3d point is easy to generate (e.g. opensource cellpose, etc)  \n2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  \n\nif 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.\n\ncurrently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)\n\n(2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.\n\n\nhttps://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284",
-            "content": "<p>i have been playing with it. i think the winning formula is to generate dense tracks for training (1) and(2) below<br>\n1) 3d point is easy to generate (e.g. opensource cellpose, etc)<br>\n2) short track (2 frame or 3 frame) is easy to generate. it can be the utlrack, or rule base heuristics or open source tracker.  </p>\n<p>if 1 and 2  can get good results, then ILP or min-cost graph-cut network will generate the long tracks required for submission.</p>\n<p>currently the rule-based graph correcting post processor in public notebook should be used for generating new links in (2) for training. Imagine if i use 5 open source tracker, and using consistency, i can have more short tracks (currently we have less than 1% link labelled and the rest are unlabelled)</p>\n<p>(2) only need locations. there are opensource zebrafish data with long (real and synthetic) dense tracks (lineage) without microscopy images that can be used too.</p>\n<p><a href=\"https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284\" target=\"_blank\">https://chatgpt.com/c/6a4e91cd-8d90-83ec-bf7a-825b27a9e284</a></p>",
-            "replies": [
-              {
-                "id": 3494324,
-                "postDate": "2026-07-09T17:32:44.350Z",
-                "rawMarkdown": "i change strategy a bit:\n1) use opensource to make tracks, measure local LB score\n2) ensemble opensource and own/ai heuristics,  measure local LB score\n3) when i have good LB score, these become dense pesudo labels.\n\nopensouce trackers are very good for short tracking. \ntricks:\n- cellpose etc to provide dense 3d tzyx\n- use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input\n\n",
-                "content": "<p>i change strategy a bit:\n1) use opensource to make tracks, measure local LB score\n2) ensemble opensource and own/ai heuristics,  measure local LB score\n3) when i have good LB score, these become dense pesudo labels.</p>\n<p>opensouce trackers are very good for short tracking. \ntricks:</p>\n<ul>\n<li>cellpose etc to provide dense 3d tzyx</li>\n<li>use only  tzyx for opensouce tracking. some opensouce like ultrack needs segmentation labels as input, i synthetically rendered 3d ball as input</li>\n</ul>",
-                "parent": {},
-                "author": {
-                  "displayName": "hengck23",
-                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-                  "url": "/hengck23",
-                  "tier": "GRANDMASTER",
-                  "id": 113660,
-                  "progressionOptOut": false
-                },
-                "authorType": "TOPIC",
-                "votes": {
-                  "totalVotes": 2,
-                  "canUpvote": true,
-                  "totalUpvotes": 2
-                },
-                "kernelVersion": 0,
-                "competitionRanking": 208,
-                "feedbackTrackingData": {},
-                "isThankYou": false,
-                "reactions": [
-                  {
-                    "emoji": "KAGGLE",
-                    "featuredUserNames": [
-                      "yunusgmsoy",
-                      "songhow"
-                    ],
-                    "userCount": 2
-                  }
-                ],
-                "teamUpInfo": {
-                  "teamLeader": {
-                    "displayName": "hengck23",
-                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-                    "url": "/hengck23",
-                    "userName": "hengck23",
-                    "tier": "GRANDMASTER",
-                    "id": 113660,
-                    "profileUrl": "/hengck23",
-                    "performanceTier": "GRANDMASTER",
-                    "userId": 113660,
-                    "progressionOptOut": false
-                  },
-                  "intro": ""
-                }
-              }
-            ],
-            "parent": {},
-            "author": {
-              "displayName": "hengck23",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-              "url": "/hengck23",
-              "tier": "GRANDMASTER",
-              "id": 113660,
-              "progressionOptOut": false
-            },
-            "authorType": "TOPIC",
-            "votes": {
-              "totalVotes": 2,
-              "canUpvote": true,
-              "totalUpvotes": 2
-            },
-            "kernelVersion": 0,
-            "competitionRanking": 208,
-            "feedbackTrackingData": {},
-            "isThankYou": false,
-            "teamUpInfo": {
-              "teamLeader": {
-                "displayName": "hengck23",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-                "url": "/hengck23",
-                "userName": "hengck23",
-                "tier": "GRANDMASTER",
-                "id": 113660,
-                "profileUrl": "/hengck23",
-                "performanceTier": "GRANDMASTER",
-                "userId": 113660,
-                "progressionOptOut": false
-              },
-              "intro": ""
-            }
-          }
-        ],
-        "parent": {},
-        "author": {
-          "displayName": "Tom",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
-          "url": "/tom99763",
-          "tier": "MASTER",
-          "id": 4310004,
-          "progressionOptOut": false
-        },
-        "authorType": "COMMENT",
-        "votes": {
-          "totalVotes": 3,
-          "canUpvote": true,
-          "totalUpvotes": 3
-        },
-        "kernelVersion": 0,
-        "competitionRanking": 8,
-        "feedbackTrackingData": {},
-        "isThankYou": false,
-        "teamUpInfo": {
-          "teamLeader": {
-            "displayName": "Tom",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2025-12-30-09-11-55",
-            "url": "/tom99763",
-            "userName": "tom99763",
-            "tier": "MASTER",
-            "id": 4310004,
-            "profileUrl": "/tom99763",
-            "performanceTier": "MASTER",
-            "userId": 4310004,
-            "progressionOptOut": false
-          },
-          "intro": "pursue champion position. welcome to reach out if you have interesting idea."
         }
       },
       {
@@ -402,7 +402,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 208,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -442,7 +442,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 208,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -491,7 +491,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 208,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -552,7 +552,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 208,
+                "competitionRanking": 987,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -592,7 +592,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 8,
+                "competitionRanking": 19,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -632,7 +632,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 208,
+                "competitionRanking": 987,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -668,7 +668,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 208,
+            "competitionRanking": 987,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -704,7 +704,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 208,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -744,7 +744,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 208,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -793,7 +793,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 208,
+        "competitionRanking": 987,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -830,12 +830,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 24,
+        "totalVotes": 25,
         "canUpvote": true,
-        "totalUpvotes": 24
+        "totalUpvotes": 25
       },
       "kernelVersion": 0,
-      "competitionRanking": 208,
+      "competitionRanking": 987,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -862,7 +862,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-07T17:37:36.697254400Z",
-    "totalVotes": 24,
+    "totalVotes": 25,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/723655",
     "totalMessages": 19,
     "authorPerformanceTier": "GRANDMASTER",
