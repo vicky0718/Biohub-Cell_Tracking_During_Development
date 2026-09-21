@@ -1,7 +1,7 @@
 {
   "forumTopic": {
     "authorId": 35123354,
-    "authorThumbnailName": "35123354-kg.jpg?t=2026-09-10-14-54-31",
+    "authorThumbnailName": "35123354-kg.jpeg?t=2026-09-21-10-21-12",
     "authorUserDisplayName": "Akmal Xodarev (Busya PRIME)",
     "authorUserName": "busyaprime",
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -13,7 +13,7 @@
       "parent": {},
       "author": {
         "displayName": "Akmal Xodarev (Busya PRIME)",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpg?t=2026-09-10-14-54-31",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpeg?t=2026-09-21-10-21-12",
         "url": "/busyaprime",
         "tier": "EXPERT",
         "id": 35123354,
@@ -26,13 +26,13 @@
         "totalUpvotes": 8
       },
       "kernelVersion": 0,
-      "competitionRanking": 1245,
+      "competitionRanking": 978,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
         "teamLeader": {
           "displayName": "Akmal Xodarev (Busya PRIME)",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpg?t=2026-09-10-14-54-31",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35123354-kg.jpeg?t=2026-09-21-10-21-12",
           "url": "/busyaprime",
           "userName": "busyaprime",
           "tier": "EXPERT",

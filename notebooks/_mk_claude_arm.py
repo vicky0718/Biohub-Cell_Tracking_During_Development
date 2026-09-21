@@ -1196,6 +1196,26 @@ ARMS = {
                 "#               used, and the only configuration of ours that ever scored.\n"
                 "#               The notebook raises on a bad weight, so it cannot go silent."),
     },
+    # Byte-identical resubmission. `pub947bera` scored **0.946**, while the notebook it forks
+    # scores **0.947** for its author and ten others. Our fork differs from the original in
+    # exactly one way: a 54-line addition to cell 0, the header comment plus the P100
+    # wheelhouse prologue. On a T4 that prologue prints "no torch replacement needed" and does
+    # nothing. **On a P100 it installs torch 2.5.1+cu121**, which is not the torch the 0.947
+    # runs on, and the graded rerun draws its own accelerator where we cannot see it.
+    #
+    # That is a specific, testable reason for a 0.001 gap and the only functional difference
+    # there is. `wheelhouse: False` makes the fork byte-identical. The cost if the draw is a
+    # P100 is that the run dies outright rather than scoring 0.946 -- which is the right
+    # trade when 0.946 is already banked from `pub947bera`.
+    "pub947pure": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [],
+        "wheelhouse": False,
+        "why": ("the same fork with NO wheelhouse prologue, so the notebook is byte-identical\n"
+                "#               to the one that scores 0.947 for eleven other people. Tests\n"
+                "#               whether our 0.946 came from torch 2.5.1+cu121 being installed\n"
+                "#               on a P100 draw during the graded rerun."),
+    },
     "pub947bera": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "edits": [],

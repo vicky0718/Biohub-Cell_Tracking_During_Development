@@ -4,7 +4,7 @@
 - **Topic id**: 742169
 - **Author**: OmerZalman (CONTRIBUTOR)
 - **Posted**: 2026-09-20T13:22:23.864844800Z
-- **Votes**: 2
+- **Votes**: 3
 - **Comments**: 3
 
 ---
@@ -34,7 +34,7 @@ Which promising approaches failed, and what would you recommend improving first?
 ## Comments (3)
 
 
-### Ogurtsov (MASTER) — 2026-09-20T15:45:37.160Z — 1 votes
+### Ogurtsov (MASTER) — 2026-09-20T15:45:37.160Z
 
 I guess you have some room for improvement in all directions.
 

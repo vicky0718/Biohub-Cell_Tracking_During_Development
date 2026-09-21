@@ -20,7 +20,7 @@ Do you guys have any ideas on this?
 ## Comments (12)
 
 
-### Georgy Mamarin (MASTER) — 2026-09-17T15:49:49.820Z — 2 votes
+### Georgy Mamarin (MASTER) — 2026-09-17T15:49:49.820Z — 3 votes
 
 I looked up how much boards like this one moved once the private part was scored: every medal-awarding microscopy or histopathology image competition since 2019 with 500 or more teams, a public/private split and two final picks, thirteen boards on cells, tissue and cryo-ET. Eleven were code competitions, Recursion 2019 and HPA 2019 took file submissions, and none is a tracking task. For each: how many of the public top 10 stayed in the top 10, how much of the public medal zone (every rank down to the last bronze, 100 to 216 teams on these boards) still held a medal, and how many teams took no medal while one of their own submissions would have earned one, counted in hindsight, one team at a time with everyone else left where they finished.
 

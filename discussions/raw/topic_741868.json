@@ -33,12 +33,12 @@
                 },
                 "authorType": "COMMENT",
                 "votes": {
-                  "totalVotes": 2,
+                  "totalVotes": 3,
                   "canUpvote": true,
-                  "totalUpvotes": 2
+                  "totalUpvotes": 3
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 985,
+                "competitionRanking": 1007,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -69,10 +69,12 @@
             },
             "authorType": "TOPIC",
             "votes": {
-              "canUpvote": true
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 2631,
+            "competitionRanking": 2639,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -103,12 +105,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 2,
+          "totalVotes": 3,
           "canUpvote": true,
-          "totalUpvotes": 2
+          "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 985,
+        "competitionRanking": 1007,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -154,7 +156,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 295,
+            "competitionRanking": 301,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -185,12 +187,12 @@
         },
         "authorType": "TOPIC",
         "votes": {
-          "totalVotes": 4,
+          "totalVotes": 5,
           "canUpvote": true,
-          "totalUpvotes": 4
+          "totalUpvotes": 5
         },
         "kernelVersion": 0,
-        "competitionRanking": 2631,
+        "competitionRanking": 2639,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -235,7 +237,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 2631,
+            "competitionRanking": 2639,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -271,7 +273,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 295,
+        "competitionRanking": 301,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -310,13 +312,20 @@
       "votes": {
         "totalVotes": 17,
         "canUpvote": true,
-        "totalUpvotes": 18
+        "totalUpvotes": 19
       },
       "kernelVersion": 0,
-      "competitionRanking": 2631,
+      "competitionRanking": 2639,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
+        {
+          "emoji": "LOVE",
+          "featuredUserNames": [
+            "yassinealouini"
+          ],
+          "userCount": 1
+        },
         {
           "emoji": "KAGGLE",
           "featuredUserNames": [

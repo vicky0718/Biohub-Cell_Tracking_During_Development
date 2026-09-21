@@ -25,7 +25,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 300,
+        "competitionRanking": 306,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -39,6 +39,45 @@
             "profileUrl": "/mikeintokyo",
             "performanceTier": "CONTRIBUTOR",
             "userId": 13367663,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3526571,
+        "postDate": "2026-09-21T18:27:00.493Z",
+        "rawMarkdown": "0.850 CV -> 0.914 Public LB  \n0.919 CV -> 0.914 Public LB\n\n\ud83d\ude03\ud83d\ude03\ud83d\ude03",
+        "content": "<p>0.850 CV -&gt; 0.914 Public LB<br>\n0.919 CV -&gt; 0.914 Public LB</p>\n<p>\ud83d\ude03\ud83d\ude03\ud83d\ude03</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Pavel",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/pavelsavchenkov",
+          "tier": "MASTER",
+          "id": 172360,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 377,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "enabled": true,
+          "teamLeader": {
+            "displayName": "Pavel",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/pavelsavchenkov",
+            "userName": "pavelsavchenkov",
+            "tier": "MASTER",
+            "id": 172360,
+            "profileUrl": "/pavelsavchenkov",
+            "performanceTier": "MASTER",
+            "userId": 172360,
             "progressionOptOut": false
           },
           "intro": ""
@@ -67,7 +106,7 @@
         "totalUpvotes": 4
       },
       "kernelVersion": 0,
-      "competitionRanking": 295,
+      "competitionRanking": 301,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -105,7 +144,7 @@
     "postDate": "2026-09-16T13:36:37.389743100Z",
     "totalVotes": 4,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/741651",
-    "totalMessages": 1,
+    "totalMessages": 2,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

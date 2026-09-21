@@ -152,7 +152,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 987,
+        "competitionRanking": 1014,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -245,7 +245,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 87,
+        "competitionRanking": 89,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -292,7 +292,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 844,
+        "competitionRanking": 860,
         "feedbackTrackingData": {},
         "isThankYou": true,
         "teamUpInfo": {
@@ -343,11 +343,12 @@
           "featuredUserNames": [
             "aimixo",
             "zinutag",
+            "maikajusu",
             "afraazsyed",
             "nklskyoy",
             "lingyu07"
           ],
-          "userCount": 5
+          "userCount": 6
         }
       ],
       "teamUpInfo": {

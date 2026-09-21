@@ -4,6 +4,84 @@
     "authorThumbnailName": "default-thumb.png",
     "authorUserDisplayName": "Justin CH123",
     "authorUserName": "justinch123",
+    "comments": [
+      {
+        "id": 3526611,
+        "postDate": "2026-09-21T20:24:20.360Z",
+        "rawMarkdown": "im 0.95 so im below the threshold, (0.958 soon maybe), but I think that you cant just be lazy and improve one thing you have to improve all parts and a guy who was like 0.969 told me this as well \ud83d\udc4d",
+        "content": "<p>im 0.95 so im below the threshold, (0.958 soon maybe), but I think that you cant just be lazy and improve one thing you have to improve all parts and a guy who was like 0.969 told me this as well \ud83d\udc4d</p>",
+        "parent": {},
+        "author": {
+          "displayName": "OmerZalman",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/omerzalman",
+          "tier": "CONTRIBUTOR",
+          "id": 29641607,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 125,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "OmerZalman",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/omerzalman",
+            "userName": "omerzalman",
+            "tier": "CONTRIBUTOR",
+            "id": 29641607,
+            "profileUrl": "/omerzalman",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 29641607,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3526577,
+        "postDate": "2026-09-21T18:52:06.420Z",
+        "rawMarkdown": "I\u2019ve had a similar experience investigating the 0.947 pipelines. I haven\u2019t found a reliable improvement to the division errors either.\nIn the cases I traced, the problem wasn\u2019t confined to one stage: some correct mother\u2013daughter links were missing before ILP, some were removed during selection, and subsequent relinking or validation could prevent recovery. My attempts to change the association logic have not produced a dependable gain.\n\nThe base U-Net seems fairly strong at locating cells in the annotated cases I examined. Identifying which cells belong together over time is much less straightforward. Results that looked promising with GT-centred candidates deteriorated substantially when using actual detector outputs. Crowded neighbourhoods seem particularly difficult, although I can\u2019t attribute the entire gap to density.\nI also trained an auxiliary density/localization model, but its encouraging controlled results did not translate into a reliable improvement in the working pipeline.\n\nHave you spent much time watching the raw videos? I find this a fascinating challenge because, even as a human, I often struggle to follow individual cells through those crowded regions. It leaves me wondering how much of the remaining problem is association logic, how much is visual information we haven\u2019t learned to extract, and how much is ambiguity in the recordings themselves.\n\nI\u2019d also be very interested to hear whether gains above this plateau came mainly from detection or linking.",
+        "content": "<p>I\u2019ve had a similar experience investigating the 0.947 pipelines. I haven\u2019t found a reliable improvement to the division errors either.\nIn the cases I traced, the problem wasn\u2019t confined to one stage: some correct mother\u2013daughter links were missing before ILP, some were removed during selection, and subsequent relinking or validation could prevent recovery. My attempts to change the association logic have not produced a dependable gain.</p>\n<p>The base U-Net seems fairly strong at locating cells in the annotated cases I examined. Identifying which cells belong together over time is much less straightforward. Results that looked promising with GT-centred candidates deteriorated substantially when using actual detector outputs. Crowded neighbourhoods seem particularly difficult, although I can\u2019t attribute the entire gap to density.\nI also trained an auxiliary density/localization model, but its encouraging controlled results did not translate into a reliable improvement in the working pipeline.</p>\n<p>Have you spent much time watching the raw videos? I find this a fascinating challenge because, even as a human, I often struggle to follow individual cells through those crowded regions. It leaves me wondering how much of the remaining problem is association logic, how much is visual information we haven\u2019t learned to extract, and how much is ambiguity in the recordings themselves.</p>\n<p>I\u2019d also be very interested to hear whether gains above this plateau came mainly from detection or linking.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "OpPrime",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31234056-kg.jpg?t=2026-03-22-23-34-57",
+          "url": "/farshidamira",
+          "tier": "CONTRIBUTOR",
+          "id": 31234056,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 372,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "OpPrime",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31234056-kg.jpg?t=2026-03-22-23-34-57",
+            "url": "/farshidamira",
+            "userName": "farshidamira",
+            "tier": "CONTRIBUTOR",
+            "id": 31234056,
+            "profileUrl": "/farshidamira",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 31234056,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
     "firstMessage": {
       "id": 3526344,
@@ -21,10 +99,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "canUpvote": true
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
       },
       "kernelVersion": 0,
-      "competitionRanking": 484,
+      "competitionRanking": 494,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -52,7 +132,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-21T03:39:55.992547600Z",
+    "totalVotes": 1,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/742266",
+    "totalMessages": 2,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

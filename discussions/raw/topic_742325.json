@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 20398199,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "You WeiLin",
+    "authorUserName": "ltcsmokeboi",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3526465,
+      "postDate": "2026-09-21T13:42:55.973Z",
+      "rawMarkdown": "I think the public notebooks are heading in the wrong direction. They are suffering from overfitting and have an extremely long runtime\uff0cI\u2019m wondering if such a long runtime is really necessary.",
+      "content": "<p>I think the public notebooks are heading in the wrong direction. They are suffering from overfitting and have an extremely long runtime\uff0cI\u2019m wondering if such a long runtime is really necessary.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "You WeiLin",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/ltcsmokeboi",
+        "tier": "CONTRIBUTOR",
+        "id": 20398199,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 2,
+        "canUpvote": true,
+        "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 140,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "You WeiLin",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/ltcsmokeboi",
+          "userName": "ltcsmokeboi",
+          "tier": "CONTRIBUTOR",
+          "id": 20398199,
+          "profileUrl": "/ltcsmokeboi",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 20398199,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3526465,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 742325,
+    "name": "Anyone share the same opinion?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-21T13:42:55.972241500Z",
+    "totalVotes": 2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/742325",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

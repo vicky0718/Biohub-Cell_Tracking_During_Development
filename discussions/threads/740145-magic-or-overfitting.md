@@ -21,6 +21,13 @@ refine\_prob >= 0.0888, remove 13.13% peak detection and has kaggle recall of 99
 ## Comments (12)
 
 
+### hengck23 (GRANDMASTER) — 2026-09-08T18:26:15.160Z — 1 votes
+
+update
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F73c31f1a9f19a6fd92fc4b44fb6011f5%2FSelection_4838.png?generation=1788891973475998&alt=media)
+
+how i know augmentation data is more difficult? I report metrics for different data groups. ChatGPT is incredible for debugging algorithms; just ask him how. This is how a beginner can become an expert in machine learning.
+
 ### hengck23 (GRANDMASTER) — 2026-09-09T08:49:45.653Z — 2 votes
 
 Improved cell detection is not used in inference but to create better dense training samples. Here you can see that better localisation clearly improves edge recall significantly.
@@ -32,13 +39,6 @@ Improved cell detection is not used in inference but to create better dense trai
 note: ultrack has few node detector. But I haven't checked if they align with the Kaggle annotated point yet.
 https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-daxi.pt    
  https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-simview.pt
-
-### hengck23 (GRANDMASTER) — 2026-09-08T18:26:15.160Z — 1 votes
-
-update
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F73c31f1a9f19a6fd92fc4b44fb6011f5%2FSelection_4838.png?generation=1788891973475998&alt=media)
-
-how i know augmentation data is more difficult? I report metrics for different data groups. ChatGPT is incredible for debugging algorithms; just ask him how. This is how a beginner can become an expert in machine learning.
 
 ### hengck23 (GRANDMASTER) — 2026-09-15T15:28:38Z
 

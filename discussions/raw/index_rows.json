@@ -25,7 +25,7 @@
     "id": 716062,
     "title": "Welcome to the Biohub - Cell Tracking During Development Challenge",
     "author": "Thibgolds",
-    "votes": 77,
+    "votes": 78,
     "comments": 6,
     "posted": "2026-06-30",
     "pinned": true,
@@ -44,10 +44,21 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741868"
   },
   {
+    "id": 742325,
+    "title": "Anyone share the same opinion?",
+    "author": "You WeiLin",
+    "votes": 2,
+    "comments": 0,
+    "posted": "2026-09-21",
+    "pinned": false,
+    "file": "742325-anyone-share-the-same-opinion.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742325"
+  },
+  {
     "id": 742169,
     "title": "A few question for top 100 people?",
     "author": "OmerZalman",
-    "votes": 2,
+    "votes": 3,
     "comments": 3,
     "posted": "2026-09-20",
     "pinned": false,
@@ -55,15 +66,37 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742169"
   },
   {
+    "id": 741651,
+    "title": "I foresee some shakeup.",
+    "author": "Vaibhav Nakrani",
+    "votes": 4,
+    "comments": 2,
+    "posted": "2026-09-16",
+    "pinned": false,
+    "file": "741651-i-foresee-some-shakeup.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741651"
+  },
+  {
     "id": 742266,
     "title": "Stuck at 0.947 after ten board tests. What I measured, and one question about the relink stage ",
     "author": "Justin CH123",
-    "votes": 0,
-    "comments": 0,
+    "votes": 1,
+    "comments": 2,
     "posted": "2026-09-21",
     "pinned": false,
     "file": "742266-stuck-at-0-947-after-ten-board-tests-what-i-measured-and-one.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742266"
+  },
+  {
+    "id": 742131,
+    "title": "Any ideas or successful approaches for model blending?",
+    "author": "sghwr",
+    "votes": 2,
+    "comments": 1,
+    "posted": "2026-09-20",
+    "pinned": false,
+    "file": "742131-any-ideas-or-successful-approaches-for-model-blending.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742131"
   },
   {
     "id": 741749,
@@ -88,32 +121,10 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742064"
   },
   {
-    "id": 742131,
-    "title": "Any ideas or successful approaches for model blending?",
-    "author": "sghwr",
-    "votes": 1,
-    "comments": 1,
-    "posted": "2026-09-20",
-    "pinned": false,
-    "file": "742131-any-ideas-or-successful-approaches-for-model-blending.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742131"
-  },
-  {
-    "id": 741651,
-    "title": "I foresee some shakeup.",
-    "author": "Vaibhav Nakrani",
-    "votes": 4,
-    "comments": 1,
-    "posted": "2026-09-16",
-    "pinned": false,
-    "file": "741651-i-foresee-some-shakeup.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741651"
-  },
-  {
     "id": 738217,
     "title": "focus3d : one of the best 3d cell segmentation",
     "author": "hengck23",
-    "votes": 36,
+    "votes": 38,
     "comments": 50,
     "posted": "2026-08-30",
     "pinned": false,
@@ -179,7 +190,7 @@
     "id": 739915,
     "title": "Why train Unet for more than 100 epochs? Doesn't that lead to overfitting? ",
     "author": "Mark",
-    "votes": 7,
+    "votes": 8,
     "comments": 0,
     "posted": "2026-09-07",
     "pinned": false,
@@ -284,17 +295,6 @@
     "pinned": false,
     "file": "739570-meta-trap-private-lb-shake-ups-and-velocity-projected-tracki.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739570"
-  },
-  {
-    "id": 740285,
-    "title": "Essa competi\u00e7\u00e3o ta sendo meu parque de divers\u00e3o.",
-    "author": "JosephErikRibeiro",
-    "votes": -9,
-    "comments": 0,
-    "posted": "2026-09-08",
-    "pinned": false,
-    "file": "740285-essa-competi-o-ta-sendo-meu-parque-de-divers-o.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/740285"
   },
   {
     "id": 739220,

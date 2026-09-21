@@ -31,7 +31,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 117,
+            "competitionRanking": 124,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -62,7 +62,6 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": 1,
           "canUpvote": true,
           "totalUpvotes": 1
         },
@@ -106,20 +105,21 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 151,
+        "competitionRanking": 160,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
+          "enabled": true,
           "teamLeader": {
-            "displayName": "Gourav Roy",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2215261-fb.jpg",
-            "url": "/themechanicalcoder",
-            "userName": "themechanicalcoder",
-            "tier": "CONTRIBUTOR",
-            "id": 2215261,
-            "profileUrl": "/themechanicalcoder",
-            "performanceTier": "CONTRIBUTOR",
-            "userId": 2215261,
+            "displayName": "Rishabh Roy",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+            "url": "/rishabhr0y",
+            "userName": "rishabhr0y",
+            "tier": "EXPERT",
+            "id": 217906,
+            "profileUrl": "/rishabhr0y",
+            "performanceTier": "EXPERT",
+            "userId": 217906,
             "progressionOptOut": false
           },
           "intro": ""
@@ -143,12 +143,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 2,
+        "totalVotes": 3,
         "canUpvote": true,
-        "totalUpvotes": 2
+        "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 117,
+      "competitionRanking": 124,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -175,7 +175,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-20T13:22:23.864844800Z",
-    "totalVotes": 2,
+    "totalVotes": 3,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/742169",
     "totalMessages": 3,
     "authorPerformanceTier": "CONTRIBUTOR",

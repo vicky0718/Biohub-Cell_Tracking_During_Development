@@ -6,46 +6,6 @@
     "authorUserName": "hengck23",
     "comments": [
       {
-        "id": 3522587,
-        "postDate": "2026-09-09T08:49:45.653Z",
-        "rawMarkdown": "Improved cell detection is not used in inference but to create better dense training samples. Here you can see that better localisation clearly improves edge recall significantly.\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F17e8b575e301310ace4f3ff8614a2bba%2FSelection_4851.png?generation=1788943783835062&alt=media)\n\n\n\nnote: ultrack has few node detector. But I haven't checked if they align with the Kaggle annotated point yet.\nhttps://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-daxi.pt    \n https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-simview.pt  ",
-        "content": "<p>Improved cell detection is not used in inference but to create better dense training samples. Here you can see that better localisation clearly improves edge recall significantly.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F17e8b575e301310ace4f3ff8614a2bba%2FSelection_4851.png?generation=1788943783835062&amp;alt=media\" alt=\"\"></p>\n<p>note: ultrack has few node detector. But I haven't checked if they align with the Kaggle annotated point yet.\n<a href=\"https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-daxi.pt\" target=\"_blank\">https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-daxi.pt</a><br>\n <a href=\"https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-simview.pt\" target=\"_blank\">https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-simview.pt</a>  </p>",
-        "parent": {},
-        "author": {
-          "displayName": "hengck23",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-          "url": "/hengck23",
-          "tier": "GRANDMASTER",
-          "id": 113660,
-          "progressionOptOut": false
-        },
-        "authorType": "TOPIC",
-        "votes": {
-          "totalVotes": 2,
-          "canUpvote": true,
-          "totalUpvotes": 2
-        },
-        "kernelVersion": 0,
-        "competitionRanking": 986,
-        "feedbackTrackingData": {},
-        "isThankYou": false,
-        "teamUpInfo": {
-          "teamLeader": {
-            "displayName": "hengck23",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-            "url": "/hengck23",
-            "userName": "hengck23",
-            "tier": "GRANDMASTER",
-            "id": 113660,
-            "profileUrl": "/hengck23",
-            "performanceTier": "GRANDMASTER",
-            "userId": 113660,
-            "progressionOptOut": false
-          },
-          "intro": ""
-        }
-      },
-      {
         "id": 3522369,
         "postDate": "2026-09-08T18:26:15.160Z",
         "rawMarkdown": "update\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F73c31f1a9f19a6fd92fc4b44fb6011f5%2FSelection_4838.png?generation=1788891973475998&alt=media)\n\nhow i know augmentation data is more difficult? I report metrics for different data groups. ChatGPT is incredible for debugging algorithms; just ask him how. This is how a beginner can become an expert in machine learning.",
@@ -66,7 +26,47 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 986,
+        "competitionRanking": 1009,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3522587,
+        "postDate": "2026-09-09T08:49:45.653Z",
+        "rawMarkdown": "Improved cell detection is not used in inference but to create better dense training samples. Here you can see that better localisation clearly improves edge recall significantly.\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F17e8b575e301310ace4f3ff8614a2bba%2FSelection_4851.png?generation=1788943783835062&alt=media)\n\n\n\nnote: ultrack has few node detector. But I haven't checked if they align with the Kaggle annotated point yet.\nhttps://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-daxi.pt    \n https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-simview.pt  ",
+        "content": "<p>Improved cell detection is not used in inference but to create better dense training samples. Here you can see that better localisation clearly improves edge recall significantly.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F17e8b575e301310ace4f3ff8614a2bba%2FSelection_4851.png?generation=1788943783835062&amp;alt=media\" alt=\"\"></p>\n<p>note: ultrack has few node detector. But I haven't checked if they align with the Kaggle annotated point yet.\n<a href=\"https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-daxi.pt\" target=\"_blank\">https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-daxi.pt</a><br>\n <a href=\"https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-simview.pt\" target=\"_blank\">https://public.czbiohub.org/royerlab/ultrack/unet_weights/unet-simview.pt</a>  </p>",
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1009,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -116,7 +116,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 986,
+                "competitionRanking": 1009,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -154,7 +154,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 986,
+                "competitionRanking": 1009,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -192,7 +192,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 714,
+                "competitionRanking": 733,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -226,7 +226,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 986,
+            "competitionRanking": 1009,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -260,7 +260,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 986,
+        "competitionRanking": 1009,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -306,7 +306,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 986,
+            "competitionRanking": 1009,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -340,7 +340,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 986,
+        "competitionRanking": 1009,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -400,7 +400,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 986,
+        "competitionRanking": 1009,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -469,12 +469,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 12,
+        "totalVotes": 13,
         "canUpvote": true,
-        "totalUpvotes": 12
+        "totalUpvotes": 13
       },
       "kernelVersion": 0,
-      "competitionRanking": 986,
+      "competitionRanking": 1009,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -501,7 +501,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-08T13:31:27.038327900Z",
-    "totalVotes": 12,
+    "totalVotes": 13,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/740145",
     "totalMessages": 12,
     "authorPerformanceTier": "GRANDMASTER",
