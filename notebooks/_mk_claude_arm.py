@@ -1158,6 +1158,32 @@ ARMS = {
                 "#               over 12 movies, five times the number that reach the geometric\n"
                 "#               stage. `div15` tightened it to 1.5 and scored 0.938."),
     },
+    # ------------------------------------------------ catching up to the public frontier
+    # `notes/87`: the board moved and we did not. 704 teams sit at **0.947** while we sit at
+    # 0.945 on a 0.944-era base forked on 09-08. The config diff against that base is small
+    # and one line of it is uncomfortable:
+    #
+    #     SECONDARY_EDGE_FEATURE_TTA          -> 1      <- OUR ttasec patch, now public
+    #     SECONDARY_EDGE_FEATURE_TTA_WEIGHT   -> 0.75      and weighted, which we never tried
+    #     DEEPCENTER_TTA                      -> 1      <- we have never had this
+    #     MOTION_RELINK_TIGHT_UM              -> 5.5    <- sweep-selected; we tested RELAXED
+    #     PPSWEEP_MAX_ADJ_LOSS / SELECT_MARGIN           the 75-min post-process sweep
+    #
+    # **The public stack now contains the one thing this project invented that scored.**
+    # Stacking `sec_tta_edits()` on top would be a no-op at best and a double-application at
+    # worst, so this arm is the fork UNMODIFIED -- the honest baseline before anything else.
+    #
+    # `beraterolelk` is the most-voted of the verified 0.947s (27 votes) and sits at 0.947 on
+    # the board, checked against the leaderboard rather than the title (`notes/74`) -- which
+    # mattered again here: `andnyu`'s "0.948 Reproduction" and `haideptry`'s "0.948"/"0.949"
+    # titles all belong to authors sitting at 0.947.
+    "pub947bera": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [],
+        "why": ("the public 0.947 forked unmodified. We are 0.002 BELOW it and have been\n"
+                "#               optimising a superseded base for two weeks. Establishes the\n"
+                "#               real starting point before any edit of ours goes on top."),
+    },
     # ------------------------------------------ the fine-tune, trimmed to fit the time box
     # `ftune` ran clean on the 4 public clips and **failed the graded rerun**: "your notebook
     # hit an unhandled error while rerunning your code". Kaggle does not expose that run's
