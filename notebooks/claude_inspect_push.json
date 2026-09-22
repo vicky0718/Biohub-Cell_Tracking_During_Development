@@ -1,0 +1,13 @@
+{
+ "slug": "claude-inspect",
+ "title": "Claude inspect",
+ "notebook": "/workspace/biohub-cell_tracking_during_development/notebooks/claude_inspect.ipynb",
+ "dataset_sources": [
+  "bhpepper/biohub-synthetic-5fold-ensemble-v1",
+  "pilkwang/biohub-tracking-support-pack-50ep-v1"
+ ],
+ "competition_sources": [],
+ "kernel_sources": [],
+ "enable_gpu": false,
+ "enable_internet": false
+}

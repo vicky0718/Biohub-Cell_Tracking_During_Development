@@ -565,6 +565,50 @@ print('   WEIGHTS_RELATIVE repointed to', WEIGHTS_RELATIVE, flush = True)
 LB_BONUS_ANCHOR = 'os.environ["BIOHUB_MOTION_RELINK_LEARNED_BONUS"] = \'1.0\''
 
 
+# Swap the primary detector for bhpepper's 5-fold synthetic SWA ensemble. Verified DROP-IN by
+# `claude-inspect`: 136 common keys, 0 only-in-ours, 0 only-in-theirs, 0 shape mismatches, both
+# 2,077,996 params. Published by the only team sitting at exactly 0.950.
+#
+# Anchored on `_deepcenter_candidate_strings`, the first statement after the primary weight
+# integrity check -- so the swap lands AFTER every checksum (which validate the PUBLIC file and
+# would fail on a replaced one) and BEFORE the validator, the sweep and the test prediction,
+# all of which live in the next cell. Everything downstream then sees one consistent model.
+SWA_ANCHOR = "_deepcenter_candidate_strings = ["
+SWA_SWAP = """# --- bhpepper 5-fold synthetic SWA ensemble (public, CC-compatible) ----------
+import hashlib as _swahash
+import pathlib as _swapl
+import shutil as _swash
+_swa_all = sorted(_swapl.Path("/kaggle/input").glob("*/**/synthetic_5fold_swa.pth"))
+
+if not _swa_all:
+    for _p in sorted(_swapl.Path("/kaggle/input").glob("*/*")):
+        print("   mounted:", _p, flush=True)
+    raise RuntimeError("SWA weights not mounted -- add bhpepper/biohub-synthetic-5fold-ensemble-v1")
+_swa = _swa_all[0]
+_swa_pub = _swahash.sha256((REPO_DIR / WEIGHTS_RELATIVE).read_bytes()).hexdigest()
+_swa_new = _swahash.sha256(_swa.read_bytes()).hexdigest()
+
+# notes/68: an inert arm is indistinguishable from a working one unless you check.
+if _swa_pub == _swa_new:
+    raise RuntimeError("SWA weights are byte-identical to the public checkpoint")
+
+# Do NOT write over REPO_DIR / WEIGHTS_RELATIVE: that file is a symlink into the read-only
+# /kaggle/input mount and opening it for write dies with OSError 30 (notes/86). Materialise
+# alongside and repoint, which every later reader of WEIGHTS_RELATIVE picks up.
+_swa_dir = REPO_DIR / "weights_swa"
+_swa_dir.mkdir(parents=True, exist_ok=True)
+_swash.copy2(_swa, _swa_dir / "edge_predictor_best.pth")
+WEIGHTS_RELATIVE = "weights_swa/edge_predictor_best.pth"
+
+if not (REPO_DIR / WEIGHTS_RELATIVE).exists():
+    raise RuntimeError("SWA checkpoint did not materialise at " + WEIGHTS_RELATIVE)
+print("SWA WEIGHTS INSTALLED from", _swa, flush=True)
+print("   public sha256", _swa_pub[:12], "-> swa", _swa_new[:12], flush=True)
+print("   WEIGHTS_RELATIVE repointed to", WEIGHTS_RELATIVE, flush=True)
+# -----------------------------------------------------------------------------
+"""
+
+
 ARMS = {
     # ------------------------------------------------------------------- the 0.941 floor
     # We are at 0.937, which was rank ~330 on 2026-09-04 and rank 466 on 2026-09-06 without
@@ -1265,6 +1309,31 @@ ARMS = {
         "why": ("density-adaptive gap gain 0.040 -> 0.080. Two separate 0.948-titled public\n"
                 "#               notebooks are built on density adaptation, so it is the one\n"
                 "#               area where the people just above the plateau are working."),
+    },
+    # ------------------------------------- weights from a team at exactly the 0.950 target
+    # `bhpepper` sits at **0.950**, +0.004 over the fork cluster, and published
+    # `biohub-synthetic-5fold-ensemble-v1`: five synthetic-pretrained folds plus an SWA
+    # average, "Stage 2 Synthetic Fine-Tuning 5-Fold SWA Ensemble", mean_proxy 0.9672.
+    #
+    # `claude-inspect` (CPU, no GPU quota) verified it is **drop-in**: 136 common keys, 0
+    # only-in-ours, 0 only-in-theirs, 0 shape mismatches, both 2,077,996 params. That check
+    # is what `notes/72` cost us the hard way, when `--unet-weights` reported "64 missing,
+    # 136 unexpected" and restored nothing while looking like a fine-tune.
+    #
+    # Its `mean_recall` is 0.9679 against our baseline's 0.9692 -- close, which matters because
+    # `ftune` failed the graded rerun by inflating node count 8% (`notes/86`). Similar recall
+    # should mean similar node counts. The public run will say before a slot is spent.
+    "pub947swa": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+                    "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+                    "pilkwang/biohub-tracking-support-pack-50ep-v1",
+                    "bhpepper/biohub-synthetic-5fold-ensemble-v1"],
+        "edits": [(SWA_ANCHOR, SWA_SWAP + SWA_ANCHOR)],
+        "why": ("the 0.947 stack running bhpepper's 5-fold synthetic SWA detector instead of\n"
+                "#               the public one. Verified drop-in by checkpoint diff, from the\n"
+                "#               only team at exactly 0.950, and the first weights we have that\n"
+                "#               someone has already scored above the plateau with."),
     },
     "pub947pure": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
