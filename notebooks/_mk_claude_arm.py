@@ -559,6 +559,12 @@ print('   WEIGHTS_RELATIVE repointed to', WEIGHTS_RELATIVE, flush = True)
 """
 
 
+# The motion-relink learned bonus, as it is literally written in the 0.947 base. Note the
+# MIXED quoting -- double-quoted key, single-quoted value -- which is why `env()` returns a
+# string that matches nothing there. Anchors are bytes, not intentions.
+LB_BONUS_ANCHOR = 'os.environ["BIOHUB_MOTION_RELINK_LEARNED_BONUS"] = \'1.0\''
+
+
 ARMS = {
     # ------------------------------------------------------------------- the 0.941 floor
     # We are at 0.937, which was rank ~330 on 2026-09-04 and rank 466 on 2026-09-06 without
@@ -1207,6 +1213,59 @@ ARMS = {
     # there is. `wheelhouse: False` makes the fork byte-identical. The cost if the draw is a
     # P100 is that the run dies outright rather than scoring 0.946 -- which is the right
     # trade when 0.946 is already banked from `pub947bera`.
+    # ---------------------------------- four angles untested on the 0.947 base (notes/88)
+    # Our whole knob map was built on the **0.944** base. The 0.947 sets 57 env vars and we
+    # have never touched 39 of them. These four gate the largest populations, and two were
+    # named on the forum as suspicious with nobody answering.
+    #
+    # `lb20` / `lb30` -- the motion-relink learned bonus. The final edge set comes from a
+    # Hungarian assignment whose cost is
+    #
+    #     cost[i, j] = motion + 0.05 * raw - MOTION_RELINK_LEARNED_BONUS * prob
+    #
+    # so with bonus 1.0 and prob in [0, 1] the **network can move the cost by at most 1 um
+    # against a median true step of 1.8 um** -- geometry outvotes the model on every link.
+    # Justin CH123 (rank 484) identified exactly this and asked whether anyone had gained at
+    # that stage; the thread has no replies. The notebook's own sweep only tried 1.25. Nobody
+    # has tried making the learned probability actually decisive. Assignment uses MIXED
+    # quoting on this base -- double-quoted key, single-quoted value -- so `env()` misses it.
+    "lb20": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR,
+                   LB_BONUS_ANCHOR.replace("'1.0'", "'2.0'"))],
+        "why": ("motion-relink learned bonus 1.0 -> 2.0, so the network probability can\n"
+                "#               outweigh a 1.8um geometric step instead of losing to it. The\n"
+                "#               forum named this stage and nobody tested past 1.25."),
+    },
+    "lb30": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR,
+                   LB_BONUS_ANCHOR.replace("'1.0'", "'3.0'"))],
+        "why": ("the same knob at 3.0, bracketing lb20. If both lose the stage is settled;\n"
+                "#               if lb20 gains and lb30 loses there is an optimum between."),
+    },
+    # Conditional fusion, which is the one model-side thing hikaggler reported working:
+    # "use the second model only on columns where the primary is uncertain. Plain averaging
+    # does nothing." `SECONDARY_LINK_MODE = low_margin_consensus` is exactly that gate and
+    # `SECONDARY_LOW_MARGIN_MAX` is how wide "uncertain" is drawn.
+    "slm50": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("SECONDARY_LOW_MARGIN_MAX", "0.35"),
+                   env("SECONDARY_LOW_MARGIN_MAX", "0.50"))],
+        "why": ("widen the low-margin band 0.35 -> 0.50, so the secondary model votes on\n"
+                "#               more uncertain columns. hikaggler reports conditional fusion\n"
+                "#               as the only model-side lever that moved anything for them."),
+    },
+    # Density-adaptive gap closing is where the 0.948-titled notebooks are working
+    # (`andnyu/biohub-density-adaptive-0-948-reproduction`, `haideptry/...-0-948-density-
+    # adaptive-...`), and the gain knob has never been moved here.
+    "gdg08": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("GAP_DENSITY_GAIN", "0.040"), env("GAP_DENSITY_GAIN", "0.080"))],
+        "why": ("density-adaptive gap gain 0.040 -> 0.080. Two separate 0.948-titled public\n"
+                "#               notebooks are built on density adaptation, so it is the one\n"
+                "#               area where the people just above the plateau are working."),
+    },
     "pub947pure": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "edits": [],
