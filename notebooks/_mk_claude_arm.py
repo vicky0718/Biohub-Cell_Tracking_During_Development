@@ -1360,12 +1360,176 @@ ARMS = {
         "why": ("learned bonus 1.5 with the sweep disabled, since lb15 as queued would be\n"
                 "#               overridden to 1.25 exactly as lb20 was."),
     },
+    # The bonus curve measured cleanly (notes/89): adj 0.9280 / 0.9282 / 0.9285 / 0.9295 at
+    # 1.0 / 1.5 / 2.0 / 3.0, with node count flat to +0.04% -- so the whole move is Jaccard
+    # and none of it is the node-count multiplier, which is the half zhincez's four lost
+    # submissions say to distrust. Still rising at 3.0, and `humblehumbert` (rank 135, 0.949)
+    # ships this exact knob at **5.0** in a public notebook. Fourth point on the curve.
+    "lb50": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'5.0'")), NO_SWEEP],
+        "why": ("learned bonus 5.0. The 1.0-3.0 curve rises monotonically in edge\n"
+                "#               Jaccard with node count flat, and a 0.949 author ships\n"
+                "#               5.0. This finds the top of it or the turnover."),
+    },
     "lb15": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'1.5'"))],
         "why": ("learned bonus 1.5, between the sweep's inert 1.25 and lb20's +7.5% node\n"
                 "#               count. The knob is live and strong; this asks where it pays\n"
                 "#               before the node-ratio penalty eats the gain."),
+    },
+    # ------------------------- the node-count axis, UPWARD -- never tested (notes/89)
+    # The metric is `adj = edge_J * (1 - 0.1 * (T_pred - T_est)/T_est)` with **no upper
+    # clamp** and a signed ratio, so predicting FEWER nodes than the organisers' estimate
+    # multiplies edge Jaccard up. `notes/77` section 7 recorded this and declined to chase
+    # it because "raising the detection threshold also drops edge TPs, and det955/det960
+    # already probed that axis". That reasoning inverted the evidence. Both of those arms
+    # moved the threshold **down**:
+    #
+    #     DET_THRESHOLD 0.955 -> 0.941      more nodes
+    #     DET_THRESHOLD 0.960 -> 0.942      more nodes
+    #     DET_THRESHOLD 0.965 -> 0.944      the base
+    #
+    # Three board points, monotone, and every one of them says fewer nodes scores better.
+    # **Nobody here or on the forum has tested a threshold above 0.965.** Two independent
+    # forum reports say the same thing from their own boards -- hikaggler: "node-count
+    # calibration predicted my LB movement far better than missed detections"; Justin
+    # CH123: "the loss tracked the change in predicted node count, not my offline score".
+    #
+    # Why the public value is likely mis-set rather than optimal: the notebook's author
+    # tuned it on an offline CV that hikaggler measured at **r ~= -0.2 against the LB** in
+    # this score band. A knob tuned against an anti-correlated objective is not at its
+    # board optimum, and its error has a direction.
+    #
+    # What the harness can and cannot say about these. The node-ratio term is **exact and
+    # unbiased** -- `T_pred` is a count and `T_est` is file metadata, so the multiplier
+    # change is arithmetic, not inference. Only `edge_J` carries the contamination bias
+    # (`notes/81`), and it carries it *upward*, so a measured edge_J loss is a **lower
+    # bound** on the real one. Pre-registered rule, before any of these runs: accept for a
+    # submission slot only if the mean per-movie `adj` gain is positive AND the mean
+    # `edge_J` loss is under 0.010, so the bias cannot flip the sign. Marginal is a reject.
+    "det97": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.970")),
+                  (guard("DET_THRESHOLD", "0.965"), guard("DET_THRESHOLD", "0.970")),
+                  NO_SWEEP],
+        "why": ("detection threshold 0.965 -> 0.970, the first step ABOVE the public\n"
+                "#               value. det955 and det960 both went down and both lost;\n"
+                "#               the upward half of that axis has never been run."),
+    },
+    "det975": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.975")),
+                  (guard("DET_THRESHOLD", "0.965"), guard("DET_THRESHOLD", "0.975")),
+                  NO_SWEEP],
+        "why": ("detection threshold 0.975. Brackets det97 so the three points together\n"
+                "#               give the shape of the curve above 0.965, not one sample."),
+    },
+    "det98": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("DET_THRESHOLD", "0.965"), env("DET_THRESHOLD", "0.980")),
+                  (guard("DET_THRESHOLD", "0.965"), guard("DET_THRESHOLD", "0.980")),
+                  NO_SWEEP],
+        "why": ("detection threshold 0.980, far enough out to find the turnover. If adj\n"
+                "#               is still rising here the axis is wide open; if it falls\n"
+                "#               between 0.970 and 0.980 the optimum is bracketed at once."),
+    },
+    # The same axis by a different mechanism, and a better selector on the face of it.
+    # Raising the detection threshold drops the least confident *detections*; raising the
+    # minimum track length drops whole short *components*, and a ground-truth lineage is by
+    # construction long -- the annotators tracked cells across the movie. `mtl8` (6 -> 8)
+    # scored 0.945 against a 0.945 base: exactly neutral, the node-ratio gain cancelling the
+    # lost edges. `mtl4` (6 -> 4, more nodes) scored 0.943. Nobody has gone past 8.
+    "mtl12": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("OUTPUT_MIN_TRACK_LEN", "6"), env("OUTPUT_MIN_TRACK_LEN", "12")),
+                  (guard("OUTPUT_MIN_TRACK_LEN", "6.0"),
+                   guard("OUTPUT_MIN_TRACK_LEN", "12.0")),
+                  NO_SWEEP],
+        "why": ("minimum output track length 6 -> 12. mtl8 was exactly neutral on the\n"
+                "#               board, so the trade is balanced at 8 and the direction\n"
+                "#               past it is unmeasured. GT lineages are long; short\n"
+                "#               components are the cheapest nodes in the file to give back."),
+    },
+    "mtl20": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("OUTPUT_MIN_TRACK_LEN", "6"), env("OUTPUT_MIN_TRACK_LEN", "20")),
+                  (guard("OUTPUT_MIN_TRACK_LEN", "6.0"),
+                   guard("OUTPUT_MIN_TRACK_LEN", "20.0")),
+                  NO_SWEEP],
+        "why": ("minimum output track length 6 -> 20, bracketing mtl12 the way det98\n"
+                "#               brackets det97. Two points on each mechanism is what\n"
+                "#               tells a trend from a draw."),
+    },
+    # ===================== notebooks published by people who are ABOVE the plateau
+    # `notes/89`. A sweep of all 700 public notebooks against the board found something the
+    # `notes/87` scrape missed by looking only at titles: several authors ranked well above
+    # the 0.947 plateau publish working forks of it, and their forks carry **entire
+    # subsystems our base does not have**.
+    #
+    #   thtennant      rank  66  0.953   ten "frontier947 <change> v1" notebooks, 09-17..19
+    #   anvithpothula  rank  41  0.956   "biohub x138", published 09-21
+    #
+    # Diffed against our `pub947bera` env block, both add the same four groups of keys:
+    #
+    #   MOTION_RELINK_FLOW_*   17 keys   a seeded local-flow model feeding the relink
+    #   GAPFILL_*               9 keys   image-space gap filling with a peak search
+    #   READMIT_*               2 keys   re-admitting detections below the main threshold
+    #   LOWDET_THRESHOLD        1 key    0.3, i.e. a second much looser detection pass
+    #
+    # and 35k characters of code to implement them. None of that exists in the 0.947. This
+    # is not a knob; it is the thing that distinguishes the people above the plateau from
+    # the 704 teams sitting on it, and it is published.
+    #
+    # Mounts are identical to ours -- the same three pilkwang datasets -- so both run here
+    # unmodified. Run first, judge second: `notes/87` records that a title naming a score
+    # can be wrong by 0.001, and these name no score at all.
+    "x138": {
+        "base": ("anvithpothula", "biohub-x138"),
+        "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+                    "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+                    "pilkwang/biohub-tracking-support-pack-50ep-v1"],
+        "edits": [],
+        "why": ("unmodified fork of the most recent notebook from the highest-ranked\n"
+                "#               author who publishes at all (rank 41, 0.956, pushed 09-21).\n"
+                "#               Carries the flow relink, image-space gapfill, low-detection\n"
+                "#               readmit and a 0.3 second detection pass, none of which the\n"
+                "#               0.947 plateau has."),
+    },
+    "flow2": {
+        "base": ("thtennant", "biohub-frontier947-flow2-v1"),
+        "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+                    "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+                    "pilkwang/biohub-tracking-support-pack-50ep-v1"],
+        "edits": [],
+        "why": ("the FLOW subsystem in isolation: this is our exact 0.947 base plus the\n"
+                "#               17 MOTION_RELINK_FLOW_* keys and their code, and nothing\n"
+                "#               else. If x138 gains and this does not, the gain is in the\n"
+                "#               gapfill/readmit half instead."),
+    },
+    # Two authors above us, working independently, both moved the same untouched knob to the
+    # same value: `MOTION_RELINK_TIGHT_UM` 5.5 -> 6.0 (zhincez 0.952, thtennant 0.953). It
+    # is the radius inside which the Hungarian relink is allowed its confident assignment,
+    # our base has never moved it, and it changes no node count -- which after `notes/89`
+    # is the shape of change worth testing.
+    # Built against the CACHED v3 source -- the exact program that scored our 0.946 -- so
+    # the tight radius is the single variable against a known board point. `NO_SWEEP` is a
+    # no-op for what ships here (`pub947bera` selected `base`, overrides={}) and is required
+    # anyway, because v3's own `PP_CANDIDATES` carries a `tight55` entry that would override
+    # this arm straight back to 5.5, exactly as `lb20` was overridden to bonus 1.25.
+    #
+    # The author agrees, in their own version history: v5 of the same notebook (pushed
+    # "Sep 22 bronze push", after the 0.947 that ranked them) **deletes** the
+    # `BIOHUB_MOTION_RELINK_TIGHT_UM = "5.5"` line so the code default 6.0 applies, and adds
+    # a `tight60` sweep candidate. Three independent sources, one value.
+    "tight60": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(env("MOTION_RELINK_TIGHT_UM", "5.5"),
+                   env("MOTION_RELINK_TIGHT_UM", "6.0")), NO_SWEEP],
+        "why": ("motion-relink tight radius 5.5 -> 6.0um. Two independent authors above\n"
+                "#               the plateau set exactly 6.0; nobody on it does. A linking\n"
+                "#               knob, so it moves edges without moving node count."),
     },
     # bhpepper's best single fold scored 0.9720 on their proxy against the SWA's 0.9672 mean.
     # SWA usually generalises better than any member, but that is an assumption and this costs

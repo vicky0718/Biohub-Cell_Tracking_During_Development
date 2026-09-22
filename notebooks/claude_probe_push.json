@@ -1,0 +1,12 @@
+{
+ "slug": "claude-probe",
+ "title": "Claude probe",
+ "notebook": "/workspace/biohub-cell_tracking_during_development/notebooks/claude_probe.ipynb",
+ "dataset_sources": [],
+ "competition_sources": [
+  "biohub-cell-tracking-during-development"
+ ],
+ "kernel_sources": [],
+ "enable_gpu": false,
+ "enable_internet": false
+}
