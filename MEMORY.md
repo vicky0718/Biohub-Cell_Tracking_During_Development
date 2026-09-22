@@ -370,6 +370,20 @@ the deficit** — the first time in this project a measured ceiling covered it. 
 
 ## Infrastructure facts (measured, save re-discovery)
 
+- 🚨 **A transport or policy signal is never a claim about the work — and this has now gone
+  wrong FOUR times, each time producing a confident wrong sentence.** (1) `claude-eval-nrmtl3`
+  discarded six times because two GPU slots were busy, reported as *"6 consecutive P100
+  draws"*. (2) Six pushes of `claude-arm-ftune` reported as *"no free GPU session"* while
+  every response carried `"error": "Maximum weekly GPU quota of 30.00 hours reached."`
+  (3) A 429 from polling took `ttadom` out of a queue whose run was proceeding normally.
+  (4) `claude-arm-tight60` was pushed, accepted as v1 and **executing** when `kernel_wait`
+  raised `HTTP 429` through `run_queue`, which wrote it down as **FAILED** and moved on.
+  Structural fixes, all in: `kernel_wait` waits out 429/5xx; `run_arm.run` reads the push
+  response's `error` field and treats "Maximum batch GPU session count" as a queue position
+  rather than a spent attempt; `busy_slots` is memoised, freshness-bounded and capped at 2;
+  and `tools/collect.py` does the collecting in its own process, reporting an unreachable
+  kernel as unreachable. **Collecting and launching have opposite failure modes and must not
+  share a process** — one 429 in the collecting half destroys the launching half's record.
 - 🚨 **The four clips in `test/` are PLACEHOLDERS.** They are byte-identical copies of
   training clips, ground truth included, and they are *not* what the leaderboard scores —
   submission mode swaps in a hidden set (forum topic 723921, host-confirmed; `notes/66`).
