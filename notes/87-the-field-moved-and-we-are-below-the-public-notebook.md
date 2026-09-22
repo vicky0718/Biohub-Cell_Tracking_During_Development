@@ -131,3 +131,35 @@ not already in the public stack.
 strength of that number. It would have been the `norelink` mistake again in a more expensive
 form: a figure measured in one context, carried into another where it does not hold. The
 build is off.
+
+## 6. The wheelhouse hypothesis is dead, and `pub947pure` must not be submitted
+
+`pub947bera` scored **0.946** where the notebook it forks scores **0.947** for its author and
+ten others. `pub947w10` (secondary TTA weight 0.75 → 1.0) also scored 0.946 despite swapping
+1.64% of edges — so that knob is a clean null, and the 0.001 gap was unexplained.
+
+The only functional difference between our fork and the original was the P100 wheelhouse
+prologue, so `pub947pure` removed it. The result settles it, but not the way I expected:
+
+```
+pub947bera submission sha256  a69c78229c6556d0   12.56 MB
+pub947pure submission sha256  a69c78229c6556d0   12.56 MB
+BYTE-IDENTICAL: True
+```
+
+Both drew a T4, and on a T4 the prologue prints *"no torch replacement needed"* and does
+nothing — so the notebooks are the same program. **`pub947pure` can therefore only tie or
+fail:**
+
+* graded rerun draws a **T4** → identical submission → 0.946 again, no gain
+* graded rerun draws a **P100** → no wheelhouse, no sm_60 torch → the run **dies**
+
+And the hypothesis collapses on its own logic. For the prologue to have cost us 0.001, our
+graded rerun must have drawn a P100 — but on a P100 the *original* notebook has no usable
+torch at all, so the eleven authors scoring 0.947 with it must be drawing T4s. A T4 draw on
+our side would have produced their exact submission. **The prologue cannot be the cause.**
+
+What is left is run-to-run nondeterminism in the graded rerun, or the author having submitted
+a version other than the published v3. The cheap test for the first is to **resubmit
+`pub947bera` unchanged** — one slot, zero GPU, and a direct shot at 0.947 if the gap is
+variance. `pub947pure` is built and verified and should be left alone.
