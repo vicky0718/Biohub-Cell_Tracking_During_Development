@@ -1372,6 +1372,24 @@ ARMS = {
                 "#               Jaccard with node count flat, and a 0.949 author ships\n"
                 "#               5.0. This finds the top of it or the turnover."),
     },
+    # Both halves of the Hungarian relink at once, built ahead of time so it can go out the
+    # moment `tight60` lands. They act on the same stage from opposite sides: the tight
+    # radius decides which pairs are ELIGIBLE for the confident pass, the learned bonus
+    # decides which of the eligible ones WINS. A wider gate with an unchanged cost function
+    # just admits more geometry; a stronger learned term with an unchanged gate has nothing
+    # new to choose between. That is an argument for complementarity, not a measurement --
+    # and `notes/85` records additivity failing here three times, so it is one run, not a
+    # prediction. Node count stays flat on both (lb30 +51 of 122,794), so whatever it does
+    # is Jaccard and the validator is allowed to rank it.
+    "lb30t60": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'3.0'")),
+                  (env("MOTION_RELINK_TIGHT_UM", "5.5"),
+                   env("MOTION_RELINK_TIGHT_UM", "6.0")), NO_SWEEP],
+        "why": ("learned bonus 3.0 AND tight relink radius 6.0 -- the two changes that\n"
+                "#               passed the constant-node-count test, stacked. Eligibility\n"
+                "#               and cost are different halves of the same assignment."),
+    },
     "lb15": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'1.5'"))],
