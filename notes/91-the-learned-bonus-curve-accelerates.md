@@ -76,6 +76,36 @@ widening it for.
 weaker version. `geofus` tests it from the other side — 6.0 shipped alongside an extended
 sweep and a leaf-prune, which is one of the packages those authors run.
 
+## 4a. The weekly GPU quota ran out at 22:55, with the curve still rising
+
+```
+push discarded (v0) — Maximum weekly GPU quota of 30.00 hours reached.
+```
+
+All six queued arms — `lb80`, `lb150`, `lb50t60`, `lb30t60`, `flow2`, `x138` — were refused
+on their first push. `run_arm.run`'s quota branch reported it correctly and gave up at once
+instead of spending five retries on something that cannot clear in minutes, which is the fix
+from this morning doing its job. `geofus` had started at 22:49 and is unaffected.
+
+`tools/wait_for_quota.py` now sits on it, probing every twenty minutes with a real push —
+there is no quota endpoint, and a push while the quota is exhausted is discarded with
+`versionNumber: 0` and consumes nothing. On the first accepted push it hands the rest to
+`run_queue.py`.
+
+**Submitting is unaffected.** The graded rerun does not draw on the personal GPU quota: this
+account has 46 submissions at roughly 11 h of rerun each, against 30 h per week. So the one
+channel that is still open is the one that matters.
+
+**What this does not justify.** The cached prediction graphs for all twelve movies are in
+`claude-arm-lb50`'s output, with `edge_prob` and `edge_dist` on every edge, and
+`motion_relink_edges` is `scipy.optimize.linear_sum_assignment` — pure CPU. So the bonus
+ladder *could* be swept on a CPU kernel with no quota at all. I started designing it and
+stopped, because the conclusion does not survive being followed through: a CPU sweep cannot
+produce a submission (the graded rerun has no cached predictions for the hidden movies), so
+its entire value is picking which bonus to spend the first post-reset GPU run on — saving
+perhaps two of thirty hours. That is not worth a multi-hour build against a notebook whose
+inference stage has shard-merge verification in three places.
+
 ## 5. Submission position
 
 **`lb50` supersedes `lb30`**: same shape, twice the gain, and a 0.949 author independently at
