@@ -96,18 +96,28 @@ def wait_for_run(slug: str, grace: int = 900, poll: int = 30) -> dict | None:
 
 
 def run(push_config: str, attempts: int = 6, poll: int = 90,
-        machine_shape: str | None = "gpuT4x2") -> int:
+        machine_shape: str | None = "gpuT4x2", busy_wait_h: float = 8.0) -> int:
     """Run the arm described by a `claude_arm_<name>_push.json` written by _mk_claude_arm.
 
     ``machine_shape`` is sent even though `notes/24` measured it as silently ignored --
     that measurement is from August, `nvidiaTeslaT4` is still ignored today, and
     `gpuT4x2` is the value the current UI uses. Sending it costs nothing and the log's
     GPU line says whether it took.
+
+    ``attempts`` is a budget for things that can *go wrong* -- a P100 draw, a push that
+    starts no run. **A busy GPU session is not one of them**, and v3 spent the budget on it:
+    `tight60` and `lb50` were queued behind two hour-long runs, and both would have exhausted
+    six attempts in eighteen minutes against a wait that was always going to be an hour. The
+    fix is not more attempts; it is to stop counting a wait as a failure. Waiting is bounded
+    separately by ``busy_wait_h``, long enough to outlast any single run of this pipeline.
     """
     cfg = json.loads(Path(push_config).read_text())
     slug, notebook, title = cfg["slug"], cfg["notebook"], cfg["title"]
     discards = 0
-    for attempt in range(1, attempts + 1):
+    attempt = 0
+    busy_deadline = time.time() + busy_wait_h * 3600
+    while attempt < attempts:
+        attempt += 1
         # Wait for a free session before pushing. Kaggle silently discards the run
         # otherwise (see busy_slots), and a discarded push is indistinguishable from a
         # successful one in the response.
@@ -147,6 +157,22 @@ def run(push_config: str, attempts: int = 6, poll: int = 90,
                 print(f"GAVE UP {slug}: weekly GPU quota is exhausted. Retrying cannot help "
                       f"until it resets; nothing ran.", flush=True)
                 return 1
+            # "Maximum batch GPU session count of 2 reached" means the two slots are full --
+            # a queue position, not a fault. `busy_slots()` is supposed to catch this before
+            # the push, but it reads OUR push configs and races a run that is starting, so
+            # the authoritative answer is this field. Wait it out WITHOUT spending an attempt.
+            if "session count" in why.lower() or "concurrent" in why.lower():
+                discards -= 1                       # not a fault; do not report it as one
+                attempt -= 1
+                if time.time() > busy_deadline:
+                    print(f"GAVE UP {slug}: GPU sessions stayed full for {busy_wait_h:g} h. "
+                          f"Nothing ran; this is NOT a P100 or quota problem.", flush=True)
+                    return 1
+                left = (busy_deadline - time.time()) / 3600
+                print(f"   both GPU sessions busy — waiting (up to {left:.1f} h more)",
+                      flush=True)
+                time.sleep(180)
+                continue
             print(f"   retrying ({attempt}/{attempts})", flush=True)
             time.sleep(180)
             continue
