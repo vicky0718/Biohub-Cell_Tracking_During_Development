@@ -44,7 +44,11 @@ def fetch_log(slug: str) -> str:
     return log
 
 
-def busy_slots(prefix: str = "claude-arm-") -> int:
+_BUSY = {"at": 0.0, "n": 0}     # memoised busy-slot count, shared across queue workers
+
+
+def busy_slots(prefix: str = "claude-arm-", fresh_h: float = 48.0,
+               ttl: float = 300.0, cap: int = 2) -> int:
     """How many of our GPU kernels Kaggle currently has running.
 
     Kaggle allows two concurrent GPU sessions and **refuses a third silently**: the push
@@ -61,10 +65,24 @@ def busy_slots(prefix: str = "claude-arm-") -> int:
 
     Now counts every ``claude_*_push.json`` that declares ``enable_gpu``. CPU kernels
     (``claude-score``) do not consume a GPU session and are skipped.
+
+    **And it is bounded, in two ways, because v2 was not.** v2 statused *every* GPU push
+    config ever written -- 30 of them and growing -- so one call cost 30 requests, two queue
+    workers calling it every 180 s cost ~60 requests per 3 minutes, and Kaggle answered
+    `429 TooManyRequests` to everything, including the reads that were trying to collect
+    results. So: only configs touched within ``fresh_h`` are considered (a kernel we have
+    not pushed in two days is not occupying a slot today), and the whole count is memoised
+    for ``ttl`` seconds and shared between the queue's workers. Both bounds are there to
+    keep a *count* from starving the *reads*.
     """
+    now = time.time()
+    if _BUSY["at"] + ttl > now:
+        return _BUSY["n"]
     n = 0
     for p in sorted(Path(__file__).resolve().parent.parent
                     .glob("notebooks/claude_*_push.json")):
+        if now - p.stat().st_mtime > fresh_h * 3600:
+            continue
         cfg = json.loads(p.read_text())
         if not cfg.get("enable_gpu", True):
             continue
@@ -74,6 +92,9 @@ def busy_slots(prefix: str = "claude-arm-") -> int:
                 n += 1
         except Exception:
             pass                                  # 404 = never run; not occupying a slot
+        if n >= cap:
+            break        # the caller only ever asks ">= 2"; counting past it buys nothing
+    _BUSY.update(at=time.time(), n=n)
     return n
 
 
