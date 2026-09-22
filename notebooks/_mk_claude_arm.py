@@ -1390,6 +1390,51 @@ ARMS = {
                 "#               passed the constant-node-count test, stacked. Eligibility\n"
                 "#               and cost are different halves of the same assignment."),
     },
+    # The curve did not turn over at 5.0, it ACCELERATED (notes/91):
+    #
+    #     bonus   1.0     1.5     2.0     3.0     5.0
+    #     adj    0.9280  0.9282  0.9285  0.9295  0.9325
+    #
+    # all of it Jaccard, node count within +53 of 122,794 throughout. The mechanism says
+    # where it must stop. The relink cost is
+    #
+    #     cost[i, j] = motion + 0.05 * raw - BONUS * prob      prob in [0, 1]
+    #
+    # so BONUS is the number of micrometres of geometric error the network is allowed to
+    # overrule. At 1.0 that is less than a median true step (1.8 um) and geometry wins every
+    # link; at 5.0 it is comparable to the tight gate itself (5.5 um) and the probability
+    # decides. Past the gate radius there is nothing left to overrule -- the gate still
+    # bounds which pairs are candidates at all -- so the curve must saturate somewhere around
+    # 10-20 and these two arms bracket that. If 15.0 and 8.0 agree, it is saturated and 8.0
+    # is the answer; if 15.0 is still higher, the assignment has become pure maximum-
+    # probability matching and the gate is the only thing left to tune.
+    "lb80": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'8.0'")), NO_SWEEP],
+        "why": ("learned bonus 8.0. 5.0 gave the largest admissible gain measured here\n"
+                "#               (+0.0027, 100% Jaccard) and the curve is still rising."),
+    },
+    "lb150": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'15.0'")), NO_SWEEP],
+        "why": ("learned bonus 15.0, past the widest gate radius, so the assignment is\n"
+                "#               effectively pure maximum-probability matching inside the\n"
+                "#               distance gate. This is the asymptote, not another sample."),
+    },
+    # And the reason `tight60` may have lost for a reason that expires. A wider confident-pass
+    # gate admits more candidate pairs; at bonus 1.0 the cost function choosing between them
+    # is geometry, so a wider gate just admits worse matches, which is what -0.0024 looks
+    # like. At bonus 5.0 the chooser is the network. Same edit, different cost function.
+    "lb50t60": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'5.0'")),
+                  (env("MOTION_RELINK_TIGHT_UM", "5.5"),
+                   env("MOTION_RELINK_TIGHT_UM", "6.0")), NO_SWEEP],
+        "why": ("bonus 5.0 with the tight radius at 6.0. tight60 alone scored -0.0024;\n"
+                "#               the hypothesis is that a wider gate needs a cost function\n"
+                "#               worth widening it for, and four authors above the plateau\n"
+                "#               ship 6.0 inside packages that have one."),
+    },
     "lb15": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'1.5'"))],
