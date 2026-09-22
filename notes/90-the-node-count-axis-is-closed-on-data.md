@@ -71,6 +71,40 @@ less — which is precisely what `zhincez` and `rogerrogerroger3r` measured from
 trade that loses on the most favourable data available.** Cost: one CPU kernel and two GPU
 hours that were already spent. No submission slots.
 
+## 3a. `tight60` was the strongest signal available and it measures negative
+
+I called it the best-corroborated change in the project: four authors above the plateau all
+run `MOTION_RELINK_TIGHT_UM` at 6.0 where our fork runs 5.5 — `zhincez` (0.952), `thtennant`
+(0.953), `amanatar` (0.948, 120 votes), and the author of our own base in a version we had
+never pulled. I pre-registered the acceptance rule before it landed. It fails it:
+
+```
+arm        Δadj      from J    from mult   mult share   Δ nodes
+tight60   -0.0024    -0.0024     +0.0000        0%         -49
+lb30      +0.0014    +0.0015     +0.0000        0%         +51
+```
+
+Resolved config dump confirms `MOTION_RELINK_TIGHT_UM 6.0`, so the edit reached the code.
+And this is measured in **the one regime the validator is admissible in** — pure re-linking,
+node count flat to 0.04%, nothing for the multiplier to flatter. **Rejected.**
+
+Two readings, and they make opposite predictions about an arm that is already queued:
+
+1. **The knob pays only inside the packages those notebooks carry.** A wider confident-pass
+   gate admits more candidate pairs; whether that helps depends entirely on the cost function
+   choosing between them. `amanatar` pairs 6.0 with an extended sweep and a leaf-prune;
+   `thtennant` pairs it with the flow relink; `beraterolelk`'s v5 pairs it with seven new
+   division candidates. On a bare v3 with the shipped cost function, a wider gate just admits
+   worse matches. Under this reading `lb30t60` — wider gate **plus** the stronger learned
+   term, which is a better cost function — should beat `lb30`.
+2. **The knob hurts this base, full stop.** Under this reading `lb30t60` loses to `lb30`.
+
+`lb30t60` was built as an additivity punt and is now a discriminator. `geofus` tests the same
+thing from the other side: it carries 6.0 *with* the extended sweep and leaf-prune.
+
+Stated plainly because it is a correction to my own recommendation: I said tight60 would be
+the better submission if it cleared the bar. It did not clear the bar.
+
 ## 4. What this leaves
 
 `lb30` is unchanged by all of it and is the one arm still standing: +0.0014 with **0%** from
