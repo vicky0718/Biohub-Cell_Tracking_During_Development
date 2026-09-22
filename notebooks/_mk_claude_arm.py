@@ -1323,6 +1323,36 @@ ARMS = {
     # Its `mean_recall` is 0.9679 against our baseline's 0.9692 -- close, which matters because
     # `ftune` failed the graded rerun by inflating node count 8% (`notes/86`). Similar recall
     # should mean similar node counts. The public run will say before a slot is spent.
+    # `lb20` moved the node count +7.5% (1,756,246 vs 1,633,336) -- the learned bonus is a
+    # powerful lever, not a nudge. But `ftune` failed its graded rerun at +8%, and a +7.5%
+    # node count also swings `total_node_ratio` about +0.075, costing ~0.007 through
+    # `adj = J * (1 - 0.1 * ratio)` before any better link is counted. 1.5 sits between the
+    # sweep's tested 1.25 (tied, no change) and 2.0, and is the value most likely to buy the
+    # linking improvement without the node-count bill.
+    "lb15": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'1.5'"))],
+        "why": ("learned bonus 1.5, between the sweep's inert 1.25 and lb20's +7.5% node\n"
+                "#               count. The knob is live and strong; this asks where it pays\n"
+                "#               before the node-ratio penalty eats the gain."),
+    },
+    # bhpepper's best single fold scored 0.9720 on their proxy against the SWA's 0.9672 mean.
+    # SWA usually generalises better than any member, but that is an assumption and this costs
+    # one run to test. Same drop-in verification applies -- all six checkpoints are 136 tensors.
+    "pub947fold2": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+                    "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+                    "pilkwang/biohub-tracking-support-pack-50ep-v1",
+                    "bhpepper/biohub-synthetic-5fold-ensemble-v1"],
+        "edits": [(SWA_ANCHOR,
+                   SWA_SWAP.replace("synthetic_5fold_swa.pth", "synthetic_fold2_best.pth")
+                           .replace("SWA WEIGHTS INSTALLED", "FOLD2 WEIGHTS INSTALLED")
+                   + SWA_ANCHOR)],
+        "why": ("bhpepper's single best fold (their proxy 0.9720) instead of the SWA average\n"
+                "#               (0.9672 mean). SWA usually generalises better, but that is an\n"
+                "#               assumption worth one run rather than a belief."),
+    },
     "pub947swa": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
