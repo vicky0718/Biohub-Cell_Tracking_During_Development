@@ -161,10 +161,26 @@ def kernel_wait(slug: str, *, poll: int = 60, timeout: int = 13 * 3600,
 
     ``poll`` is deliberately coarse. The run is minutes to hours; polling faster only
     burns requests.
+
+    **A 429 or a 5xx is not an answer about the run.** `claude-arm-tight60` was pushed,
+    started, and running on Kaggle when this raised `HTTP 429: TooManyRequests` straight
+    through its caller, which recorded the arm as FAILED and moved the queue on to the next
+    one. That is the fourth time in this project a transport or policy signal has been
+    reported as a claim about the work (`MEMORY.md`), and the run it libelled was fine.
+    Rate limits and gateway errors are now waited out; only a real terminal status returns.
     """
     t0 = time.time()
     while True:
-        st = kernel_status(slug)
+        try:
+            st = kernel_status(slug)
+        except KaggleError as e:
+            if e.status not in (429, 500, 502, 503, 504):
+                raise
+            if time.time() - t0 > timeout:
+                return {"status": "TIMEOUT_WAITING", "waited_s": time.time() - t0,
+                        "last_error": str(e)}
+            time.sleep(min(poll * 4, 600))       # back off harder than the normal cadence
+            continue
         status = (st.get("status") or "").lower()
         if on_tick:
             on_tick(status, time.time() - t0, st)
