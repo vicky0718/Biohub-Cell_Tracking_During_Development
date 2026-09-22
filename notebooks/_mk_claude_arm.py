@@ -1497,6 +1497,24 @@ ARMS = {
                 "#               readmit and a 0.3 second detection pass, none of which the\n"
                 "#               0.947 plateau has."),
     },
+    # `amanatar/biohub-geometric-fusion`, 120 votes in its first day and the most-voted
+    # notebook published since the plateau formed, by an author at 0.948. Diffed against our
+    # 0.947 base it is that base with three additions -- `PPSWEEP_EXTENDED`,
+    # `PPSWEEP_PREFIX_GUARD`, `LEAF_PRUNE_MIN_EDGE_PROB` -- and the
+    # `BIOHUB_MOTION_RELINK_TIGHT_UM = "5.5"` line **deleted**, so it too runs the code
+    # default 6.0. That is the fourth independent source for `tight60` (zhincez 0.952,
+    # thtennant 0.953, beraterolelk's own v5, and this).
+    "geofus": {
+        "base": ("amanatar", "biohub-geometric-fusion"),
+        "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+                    "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+                    "pilkwang/biohub-tracking-support-pack-50ep-v1"],
+        "edits": [],
+        "why": ("unmodified fork of the most-voted notebook published since the 0.947\n"
+                "#               plateau formed (120 votes, author at 0.948). Our base plus\n"
+                "#               an extended post-process sweep, a leaf-prune knob, and the\n"
+                "#               6.0 tight relink radius."),
+    },
     "flow2": {
         "base": ("thtennant", "biohub-frontier947-flow2-v1"),
         "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",

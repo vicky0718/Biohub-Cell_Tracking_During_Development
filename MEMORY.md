@@ -314,6 +314,29 @@ the deficit** — the first time in this project a measured ceiling covered it. 
 4. **Verify notebooks by EXECUTING their real cells against synthetic data** with the answer
    constructed, not inferred (`scratchpad/exec_*.py`). This has caught more real defects than
    any other practice here — including three where the *harness itself* was wrong.
+5. 🚨 **The offline validator is ADMISSIBLE ONLY when node count is essentially unchanged.**
+   `adj = edge_J × (1 − 0.1 × (N_pred − N_est)/N_est)` is unclamped above, and the training GT
+   is 0.2–15% dense, so **deleting nodes collects the multiplier and the labels cannot charge
+   you for it**. Three independent accounts measured the inversion: `zhincez` (0.952) spent
+   four submissions — offline +0.013, board −0.004, and −0.087 on their own stack;
+   `rogerrogerroger3r` (0.953) got the exact reverse ranking on three submissions (det 0.985
+   printed the *best* proxy, 0.9434, and the *worst* board, 0.937); `busyaprime` hit the same
+   inversion from the opposite direction. Ours agrees: `norelink` offline +0.0337, board
+   −0.001. **Split every offline gain into its Jaccard half and its multiplier half; if more
+   than ~70% came from the multiplier, it is unproven.** A pure re-linking — edges move, nodes
+   do not — is the one case the validator can rank. `notes/89` §3.
+6. **Never compare a figure derived by summing repeated log lines across runs with different
+   control flow.** `notes/88` reported three node counts summed over `FINAL:` lines; an arm
+   with `NO_SWEEP` runs the pipeline once and an arm with an extra sweep candidate runs it
+   seven times, so "−81%" and "+7.5%" were sweep passes, not nodes. Every one of those logs
+   printed the submission's own per-dataset totals. `notes/89` §1.
+7. **Cross-reference public notebooks against the board by AUTHOR, not by title.** `notes/87`
+   read titles and concluded the public frontier was a 0.947 plateau with nothing above it.
+   Joining all 700 notebooks to the leaderboard by author found six accounts between 0.948
+   and 0.957 publishing runnable forks — including the node-deletion post that closed an axis
+   for us at zero cost in slots, and four independent sources for `MOTION_RELINK_TIGHT_UM`
+   6.0. Re-run `tools/`-side: `/kernels/list?competition=...&sortBy=dateRun`, joined on
+   `discussions/raw/leaderboard.json`. `notes/89` §4.
 
 ## Pipeline facts (measured 2026-09-13, `notes/77`–`notes/80`)
 
