@@ -609,6 +609,22 @@ print("   WEIGHTS_RELATIVE repointed to", WEIGHTS_RELATIVE, flush=True)
 """
 
 
+# Empty the post-process sweep. Two reasons, and the first is a correctness bug we hit:
+#
+#   `lb20` set MOTION_RELINK_LEARNED_BONUS = 2.0 and SHIPPED 1.25, because PP_CANDIDATES
+#   contains {"bonus125": {"MOTION_RELINK_LEARNED_BONUS": 1.25}} and the sweep selected it.
+#   The arm never tested the value it was built to test, and its +122,910 nodes describe
+#   1.25, not 2.0. Any arm touching a swept parameter is exposed to this.
+#
+# Second, the sweep costs ~50 min per run (7 candidates x ~7 min) over train videos that
+# never change, and in every run we have seen it picks `base` or a candidate that ties.
+# Forum thread 741242 reached the same conclusion and recommended deleting it.
+NO_SWEEP = (
+    'PP_CANDIDATES: dict[str, dict] = {\n    "gap45": {"GAP_CLOSE_UM": 4.5},',
+    'PP_CANDIDATES: dict[str, dict] = {}\n'
+    '_PP_CANDIDATES_DISABLED_BY_US: dict[str, dict] = {\n'
+    '    "gap45": {"GAP_CLOSE_UM": 4.5},')
+
 ARMS = {
     # ------------------------------------------------------------------- the 0.941 floor
     # We are at 0.937, which was rank ~330 on 2026-09-04 and rank 466 on 2026-09-06 without
@@ -1329,6 +1345,21 @@ ARMS = {
     # `adj = J * (1 - 0.1 * ratio)` before any better link is counted. 1.5 sits between the
     # sweep's tested 1.25 (tied, no change) and 2.0, and is the value most likely to buy the
     # linking improvement without the node-count bill.
+    # Learned-bonus arms rebuilt so the sweep cannot override them. `lb20` shipped 1.25
+    # instead of 2.0; these ship what they say. Emptying PP_CANDIDATES also removes ~50 min
+    # of runtime from a 12 h graded box.
+    "lb20x": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'2.0'")), NO_SWEEP],
+        "why": ("learned bonus 2.0, ACTUALLY shipped -- lb20 was overridden to 1.25 by\n"
+                "#               the notebook's own sweep and never tested 2.0 at all."),
+    },
+    "lb15x": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'1.5'")), NO_SWEEP],
+        "why": ("learned bonus 1.5 with the sweep disabled, since lb15 as queued would be\n"
+                "#               overridden to 1.25 exactly as lb20 was."),
+    },
     "lb15": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
         "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'1.5'"))],
