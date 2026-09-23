@@ -1,0 +1,18 @@
+{
+ "slug": "claude-cpusweep",
+ "title": "Claude cpusweep",
+ "notebook": "/workspace/biohub-cell_tracking_during_development/notebooks/claude_cpusweep.ipynb",
+ "dataset_sources": [
+  "pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+  "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+  "pilkwang/biohub-tracking-support-pack-50ep-v1"
+ ],
+ "competition_sources": [
+  "biohub-cell-tracking-during-development"
+ ],
+ "kernel_sources": [
+  "vigneshnehru/claude-arm-lb50"
+ ],
+ "enable_gpu": false,
+ "enable_internet": false
+}
