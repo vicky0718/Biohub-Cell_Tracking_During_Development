@@ -195,18 +195,37 @@ LADDER_OLD = '''    "b8":        {"MOTION_RELINK_LEARNED_BONUS": 8.0},
 LADDER_NEW = '''    "b8":        {"MOTION_RELINK_LEARNED_BONUS": 8.0},
     "b12":       {"MOTION_RELINK_LEARNED_BONUS": 12.0},
     "b20":       {"MOTION_RELINK_LEARNED_BONUS": 20.0},
-    "b35":       {"MOTION_RELINK_LEARNED_BONUS": 35.0},
-    "vel000":    {"MOTION_RELINK_VELOCITY_WEIGHT": 0.0},
-    "b12vel025": {"MOTION_RELINK_LEARNED_BONUS": 12.0,
-                  "MOTION_RELINK_VELOCITY_WEIGHT": 0.25},'''
+    "vel025":    {"MOTION_RELINK_VELOCITY_WEIGHT": 0.25},'''
+
+# The reason v4 could not finish. Every post-processing pass runs the DeepCenter veto, and
+# DeepCenter is a UNet3D over 64x256x256 volumes. On a GPU that is inside the 7 minutes a
+# candidate takes; on CPU it dominates, and v4 was still on its first passes after **eight
+# hours**. Ten passes were never going to fit in Kaggle's box.
+#
+# Switching the veto off removes the only torch-heavy stage and leaves post-processing as
+# numpy and scipy. It is held constant across every candidate, so it cannot reorder them by
+# itself -- but it is not free: with no veto the safe-division repair admits far more
+# divisions, so the edge set each candidate is scored on differs from the shipped one. That
+# makes this an instrument for RANKING the relink knobs, not for predicting their absolute
+# gain, and the ranking still has to be confirmed by a GPU run before anything is submitted.
+NOVETO_EDITS = [
+    ('os.environ["BIOHUB_USE_DEEPCENTER_VETO"] = "1"',
+     'os.environ["BIOHUB_USE_DEEPCENTER_VETO"] = "0"'),
+    ('os.environ["BIOHUB_DEEPCENTER_GAP_VETO"] = "1"',
+     'os.environ["BIOHUB_DEEPCENTER_GAP_VETO"] = "0"'),
+    ('os.environ["BIOHUB_DEEPCENTER_SAFE_DIV_VETO"] = "1"',
+     'os.environ["BIOHUB_DEEPCENTER_SAFE_DIV_VETO"] = "0"'),
+    ('os.environ["BIOHUB_REQUIRE_DEEPCENTER_VETO"] = "1"',
+     'os.environ["BIOHUB_REQUIRE_DEEPCENTER_VETO"] = "0"'),
+]
 
 EDITS = [
     (CUDA_GATE_OLD, CUDA_GATE_NEW),
+    *NOVETO_EDITS,
     (TEST_COUNT_OLD, TEST_COUNT_NEW),
     (TEST_PREDICT_OLD, TEST_PREDICT_NEW),
     (VAL_COUNT_OLD, VAL_COUNT_NEW),
     (VAL_PREDICT_OLD, VAL_PREDICT_NEW),
-    (LADDER_OLD, LADDER_NEW),
 ]
 
 
