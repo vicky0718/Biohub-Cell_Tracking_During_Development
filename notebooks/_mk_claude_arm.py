@@ -640,22 +640,33 @@ NO_SWEEP = (
 #
 # The ladder brackets the saturation the mechanism predicts (`notes/91` section 2): BONUS is
 # micrometres of geometric error the network may overrule, the confident gate is 5.5um, so
-# past ~10-20 there is nothing left to overrule. `t60` and `relaxed12` ask the other half of
-# the question -- with a chooser worth widening the gate for, is the gate now the binding
-# constraint? -- which is what `tight60`'s -0.0024 at bonus 1.0 could not answer.
+# past ~10-20 there is nothing left to overrule.
+#
+# `t60` is GONE from it. `geofus` -- amanatar's own notebook, whose 24-candidate sweep ran
+# four hours -- ships radius 6.0 as its base and its sweep put it BACK to 5.5 for +0.0021,
+# reproducing our `tight60` -0.0020 on a different implementation. Two independent sweeps,
+# the same number; the knob is settled and the 'four authors ship 6.0' reading was wrong,
+# because one of the four ships it as a base its own sweep overrides.
+#
+# `vel025`/`vel010` are what `geofus` found instead, and they are the same mechanism from
+# the other side. The relink predicts `pos + W * (pos - prev)` and charges `|target -
+# predicted|`, so lowering W shrinks the motion extrapolation exactly as raising BONUS lets
+# the probability overrule it. geofus measured 0.75 -> -0.0007, 0.5 (shipped) -> 0, 0.25 ->
+# +0.0014, monotone. Whether that is additive with the bonus or redundant with it is the
+# question, and the sweep answers it for free: it builds a `combo(...)` of every candidate
+# that clears the margin and scores that too.
 BONUS_LADDER = (
     'PP_CANDIDATES: dict[str, dict] = {\n    "gap45": {"GAP_CLOSE_UM": 4.5},',
     'PP_CANDIDATES: dict[str, dict] = {\n'
     '    "b8":        {"MOTION_RELINK_LEARNED_BONUS": 8.0},\n'
     '    "b12":       {"MOTION_RELINK_LEARNED_BONUS": 12.0},\n'
     '    "b20":       {"MOTION_RELINK_LEARNED_BONUS": 20.0},\n'
-    '    "b35":       {"MOTION_RELINK_LEARNED_BONUS": 35.0},\n'
-    '    "t60":       {"MOTION_RELINK_TIGHT_UM": 6.0},\n'
+    '    "vel025":    {"MOTION_RELINK_VELOCITY_WEIGHT": 0.25},\n'
+    '    "vel010":    {"MOTION_RELINK_VELOCITY_WEIGHT": 0.10},\n'
     '    "relaxed12": {"MOTION_RELINK_RELAXED_UM": 12.0},\n'
     '}\n'
     '_PP_CANDIDATES_DISABLED_BY_US: dict[str, dict] = {\n'
     '    "gap45": {"GAP_CLOSE_UM": 4.5},')
-
 
 ARMS = {
     # ------------------------------------------------------------------- the 0.941 floor
