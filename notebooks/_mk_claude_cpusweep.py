@@ -68,7 +68,7 @@ print("  torch.cuda.is_available():", _torch.cuda.is_available())
 print("=" * 78, flush=True)
 
 
-def _reuse_predictions(destination, stems, source_method):
+def _reuse_predictions(method, stems):
     """Copy cached `.geff` prediction graphs into the directory inference would have filled.
 
     Raises if the mount is missing or short. That is deliberate and it is the whole safety
@@ -78,16 +78,13 @@ def _reuse_predictions(destination, stems, source_method):
     a path that silently missed, a default that silently applied, and an arm that measured
     nothing while looking like an experiment.
     """
-    roots = sorted(Path("/kaggle/input").glob("notebooks/*/*/tracking_repo/predictions"))
-    roots += sorted(Path("/kaggle/input").glob("*/tracking_repo/predictions"))
     candidates = []
-    for root in roots:
-        for split in sorted(root.glob(f"*/{source_method}/split_0")):
-            candidates.append(split)
+    for root in sorted(Path("/kaggle/input").glob("**/tracking_repo/predictions")):
+        candidates += sorted(root.glob(f"*/{method}/split_0"))
     if not candidates:
         raise RuntimeError(
-            f"CPU SWEEP: no mounted predictions for method {source_method!r}. "
-            f"Looked under /kaggle/input/notebooks/*/*/tracking_repo/predictions/*/ . "
+            f"CPU SWEEP: no mounted predictions for method {method!r}. Looked under "
+            f"/kaggle/input/**/tracking_repo/predictions/*/{method}/split_0 . "
             f"Mounts present: {[p.name for p in Path('/kaggle/input').glob('*')]}")
     source = candidates[0]
     have = {p.stem for p in source.glob("*.geff")}
@@ -96,6 +93,14 @@ def _reuse_predictions(destination, stems, source_method):
         raise RuntimeError(
             f"CPU SWEEP: {source} is missing {sorted(want - have)} "
             f"(has {len(have)} graphs). A cached run cannot cover movies it never saw.")
+    # Build the destination rather than looking it up. v1 passed
+    # `_prediction_dir_for_method(METHOD)` as the destination, and that function is a
+    # *lookup*: it globs `predictions/*/<method>/split_0` and raises when the count is not
+    # exactly 1. Asking it for the directory we were about to create could only ever raise
+    # `Expected exactly one prediction directory for 'unet_transformer', found []`, which is
+    # what it did. The layout is `predictions/<user>/<method>/split_0`, and the source mount
+    # carries the same <user> segment, so copy it across.
+    destination = REPO_DIR / "predictions" / source.parent.parent.name / method / "split_0"
     destination.mkdir(parents=True, exist_ok=True)
     for stem in sorted(want):
         target = destination / f"{stem}.geff"
@@ -119,7 +124,7 @@ TEST_PREDICT_OLD = '''    reason = "SLICE is active" if SLICE else f"only {avail
         env={**os.environ, "PYTHONPATH": "src"},
         check=True,
     )'''
-TEST_PREDICT_NEW = '''    _reuse_predictions(_prediction_dir_for_method(METHOD), test_stems, "unet_transformer")'''
+TEST_PREDICT_NEW = '''    _reuse_predictions(METHOD, test_stems)'''
 
 VAL_COUNT_OLD = "val_worker_count = min(2, _torch.cuda.device_count(), len(val_stems))"
 VAL_COUNT_NEW = "val_worker_count = 0  # CPU sweep: never shard, never predict"
@@ -127,8 +132,7 @@ VAL_COUNT_NEW = "val_worker_count = 0  # CPU sweep: never shard, never predict"
 VAL_PREDICT_OLD = '''        print("VALIDATOR: using single-process prediction (fewer than 2 GPUs or samples).")
         subprocess.run([*predict_val_cmd, "--method", val_method_prefix],
                         cwd=REPO_DIR, env={**os.environ, "PYTHONPATH": "src"}, check=True)'''
-VAL_PREDICT_NEW = '''        _reuse_predictions(_prediction_dir_for_method(val_method_prefix), val_stems,
-                           "unet_transformer_val")'''
+VAL_PREDICT_NEW = '''        _reuse_predictions(val_method_prefix, val_stems)'''
 
 # 4. The ladder. Wider than `lbsweep`'s because CPU minutes are not rationed the way GPU
 #    hours are -- this is the point of the whole exercise. The notebook scores a
