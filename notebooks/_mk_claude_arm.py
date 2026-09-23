@@ -625,6 +625,38 @@ NO_SWEEP = (
     '_PP_CANDIDATES_DISABLED_BY_US: dict[str, dict] = {\n'
     '    "gap45": {"GAP_CLOSE_UM": 4.5},')
 
+
+# One run, six measurements. `PP_CANDIDATES` is the notebook's own post-process sweep: it
+# re-runs `filter_output_graph` on the 8 cached validator graphs per candidate and scores each
+# with the official formula, at about 8 CPU-minutes a candidate on top of one inference. Every
+# arm in the lb-family so far spent a whole GPU run -- 25 minutes of inference included -- to
+# move ONE number, and then the weekly quota ran out with the curve still rising (`notes/91`
+# section 4a). This is the shape those runs should have had from the start.
+#
+# The downside is bounded by the notebook's own selection rule: a candidate ships only if it
+# clears base by +0.0005 proxy AND loses no more than 0.0005 adj. If none does, it ships the
+# base, which here is bonus 5.0 -- `lb50`, our best measured arm. So the worst case is a
+# duplicate of something we already have, and the best case is the rest of the curve.
+#
+# The ladder brackets the saturation the mechanism predicts (`notes/91` section 2): BONUS is
+# micrometres of geometric error the network may overrule, the confident gate is 5.5um, so
+# past ~10-20 there is nothing left to overrule. `t60` and `relaxed12` ask the other half of
+# the question -- with a chooser worth widening the gate for, is the gate now the binding
+# constraint? -- which is what `tight60`'s -0.0024 at bonus 1.0 could not answer.
+BONUS_LADDER = (
+    'PP_CANDIDATES: dict[str, dict] = {\n    "gap45": {"GAP_CLOSE_UM": 4.5},',
+    'PP_CANDIDATES: dict[str, dict] = {\n'
+    '    "b8":        {"MOTION_RELINK_LEARNED_BONUS": 8.0},\n'
+    '    "b12":       {"MOTION_RELINK_LEARNED_BONUS": 12.0},\n'
+    '    "b20":       {"MOTION_RELINK_LEARNED_BONUS": 20.0},\n'
+    '    "b35":       {"MOTION_RELINK_LEARNED_BONUS": 35.0},\n'
+    '    "t60":       {"MOTION_RELINK_TIGHT_UM": 6.0},\n'
+    '    "relaxed12": {"MOTION_RELINK_RELAXED_UM": 12.0},\n'
+    '}\n'
+    '_PP_CANDIDATES_DISABLED_BY_US: dict[str, dict] = {\n'
+    '    "gap45": {"GAP_CLOSE_UM": 4.5},')
+
+
 ARMS = {
     # ------------------------------------------------------------------- the 0.941 floor
     # We are at 0.937, which was rank ~330 on 2026-09-04 and rank 466 on 2026-09-06 without
@@ -1434,6 +1466,13 @@ ARMS = {
                 "#               the hypothesis is that a wider gate needs a cost function\n"
                 "#               worth widening it for, and four authors above the plateau\n"
                 "#               ship 6.0 inside packages that have one."),
+    },
+    "lbsweep": {
+        "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
+        "edits": [(LB_BONUS_ANCHOR, LB_BONUS_ANCHOR.replace("'1.0'", "'5.0'")), BONUS_LADDER],
+        "why": ("bonus 5.0 as the base, with 8 / 12 / 20 / 35 plus the two gate radii as\n"
+                "#               sweep candidates. Six measurements in one run instead of six\n"
+                "#               runs, and it cannot ship worse than lb50."),
     },
     "lb15": {
         "base": ("beraterolelk", "0-947-lb-biohub-deepcenter-ilp-tracker"),
