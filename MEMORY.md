@@ -370,6 +370,18 @@ the deficit** — the first time in this project a measured ceiling covered it. 
 
 ## Infrastructure facts (measured, save re-discovery)
 
+- 🚨 **While the weekly GPU quota is exhausted, NO submission can succeed.** Kaggle grants the
+  graded rerun no accelerator, and this notebook's first cell is
+  `if not torch.cuda.is_available(): raise RuntimeError("CUDA GPU is required...")`, so the
+  rerun dies in seconds. Measured twice: `claude-arm-lb50` (2026-09-23 07:16) and
+  `claude-arm-geofus` (2026-09-24 08:58). **Both kernels were `enableGpu=True,
+  NvidiaTeslaT4` at v1 and came back `enableGpu=False, shape=None` at v2**, v2 being the
+  rerun Kaggle creates on submit. So a kernel's saved GPU setting does not protect it; the
+  quota governs the rerun too. I had argued the opposite -- 46 submissions at ~11 h of rerun
+  each against 30 h per week -- and that inference was wrong. **When the quota is out, stop
+  submitting: every slot spent fails identically.** Probe it with a real push
+  (`tools/wait_for_quota.py`); a push while exhausted returns `versionNumber: 0` and costs
+  nothing.
 - 🚨 **A transport or policy signal is never a claim about the work — and this has now gone
   wrong FOUR times, each time producing a confident wrong sentence.** (1) `claude-eval-nrmtl3`
   discarded six times because two GPU slots were busy, reported as *"6 consecutive P100
