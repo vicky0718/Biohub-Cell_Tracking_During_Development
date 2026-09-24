@@ -47,11 +47,26 @@ def probe(arm: str) -> tuple[bool, str]:
 def main(arms: list[str], poll: int = 1200, hours: float = 96.0) -> int:
     deadline = time.time() + hours * 3600
     first, rest = arms[0], arms[1:]
+    unreachable = 0
     while time.time() < deadline:
         try:
             ok, why = probe(first)
+            unreachable = 0
         except Exception as e:
-            print(f"[{time.strftime('%H:%M:%S')}] probe unreachable: {e}", flush=True)
+            # A watcher that is alive but cannot reach Kaggle looks exactly like a watcher
+            # patiently waiting, and that cost six hours on 2026-09-24: the container's proxy
+            # port moved under this process, every probe answered "Connection refused", and
+            # the loop reported nothing because it was still running. A watcher must fail
+            # loudly enough that whatever is waiting on it notices.
+            unreachable += 1
+            print(f"[{time.strftime('%H:%M:%S')}] probe unreachable ({unreachable}): {e}",
+                  flush=True)
+            if unreachable >= 3:
+                print(f"GIVING UP: {unreachable} consecutive unreachable probes. This is a "
+                      f"transport failure, NOT a statement about the quota -- restart the "
+                      f"watcher in a fresh shell so it picks up the current proxy.",
+                      flush=True)
+                return 2
             time.sleep(poll)
             continue
         if ok:
