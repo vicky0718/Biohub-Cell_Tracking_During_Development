@@ -1628,6 +1628,30 @@ ARMS = {
                 "#               an extended post-process sweep, a leaf-prune knob, and the\n"
                 "#               6.0 tight relink radius."),
     },
+    # `raunakdey07/biohub-harmonic-fusion-v3`. Diffed against our base it changes **nothing**
+    # -- all 57 shared keys identical -- and adds the whole subsystem stack: FLOW (13 keys),
+    # GAPFILL (8), READMIT (2), LOWDET (1), plus the runtime guards. `flow2` carries the FLOW
+    # third of that and is the only change in this project's history to beat the 0.946
+    # plateau (0.947, 2026-09-29). This is the rest of it.
+    #
+    # It also mounts `anvithpothula/biohub-v1284-head-s075`, which is the coordinate-refinement
+    # head `x138` died without (`RuntimeError: ('my V1284 head mount mismatch', [])`), so the
+    # dependency that closed that arm is resolved here.
+    #
+    # Against it: this is the x138-class stack and `geofus` was killed by the graded rerun's
+    # runtime limit today. The difference that may save it is `VALIDATOR_ENABLE=0` -- geofus
+    # spent ~3h on a 24-candidate sweep that does not shrink under grading, and this runs none.
+    "rd07": {
+        "base": ("raunakdey07", "biohub-harmonic-fusion-v3"),
+        "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
+                    "pilkwang/biohub-temporal-unet3d-seed314159-v1",
+                    "pilkwang/biohub-tracking-support-pack-50ep-v1",
+                    "anvithpothula/biohub-v1284-head-s075"],
+        "edits": [],
+        "why": ("unmodified fork of raunakdey07/biohub-harmonic-fusion-v3: our exact base\n"
+                "#               plus FLOW + GAPFILL + READMIT + LOWDET and the V1284 head\n"
+                "#               mount. flow2 is the FLOW third of this and scored 0.947."),
+    },
     "flow2": {
         "base": ("thtennant", "biohub-frontier947-flow2-v1"),
         "sources": ["pilkwang/biohub-deepcenter-unet3d-center-prior-v1",
