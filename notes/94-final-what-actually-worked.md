@@ -16,10 +16,14 @@ everything else, ~20 arms           0.943 - 0.946
 `0.946` ranked ~970 of 3,791 on the last board snapshot we hold (09-21); `0.947` ranked ~251.
 The plateau was that crowded, so the last two steps are worth far more than their size.
 
-**Caveat on the final standing:** `flow2` was the selected submission when `rd07` was still
-grading. If the selection was not switched to `rd07` before the close, the private score that
-counts is **0.913**, not 0.917. The submission record shows both; it does not show which was
-selected, and the leaderboard RPC now answers 403.
+**Selection, resolved.** `flow2` was selected manually while `rd07` was still grading, and the
+second slot was deliberately left empty — so Kaggle's automatic selection filled it with the
+best-scoring submission, which was `rd07`. **The private score that counts is 0.917.**
+
+Worth keeping as an operational note: leaving a selection slot open is not an omission, it is a
+hedge. It costs nothing and it captures a submission that scores after you have stopped
+watching — which is exactly what happened here, with the best result of the whole competition
+landing seven hours before the close and grading after the manual choice had been made.
 
 ## 2. Every gain came from forking code we did not have. None came from tuning.
 
