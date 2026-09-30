@@ -90,8 +90,43 @@ We had eight weeks, two GPU sessions and 30 GPU-hours a week. That model was wit
 
 ## 5. Where this went
 
-The forward-looking version — day-one checklist, rules, cadence — is a Claude Code skill in
-the `rogii` repo: `.claude/skills/kaggle-competition-playbook/SKILL.md`. It draws on these
-writeups and on the Rogii ones, where the same pattern holds: every top-40 writeup centres
-on validation, three were largely agent-written, and the public-3rd / private-20th author
-kept gold only by selecting on GroupKFold CV over the public board.
+The forward-looking version is a Claude Code skill, `kaggle-competition-playbook`. It lives in
+this repo at `.claude/skills/kaggle-competition-playbook/`, with an identical copy committed to
+the `rogii` repo. To use it in any repo, copy the folder into that repo's `.claude/skills/` or
+into `~/.claude/skills/`, or save the packaged `.skill` to your Claude profile.
+
+- `SKILL.md`: day one, the grouped-OOF instrument, where the score is, tripwires for an agent
+  running a competition, and the endgame.
+- `references/evidence.md`: the measured outcome behind each rule. The sources are this repo,
+  our Rogii notes (`rogii/chat/memory/`) and both competitions' winners' writeups.
+- `scripts/scout.py`: a standalone version of `tools/scout_notebooks.py`.
+  - `board` joins notebooks to the leaderboard by author.
+  - `find` searches datasets, models and notebooks for a missing mount.
+  - `find v1284` returns `anvithpothula/biohub-v1284-head-s075` as its first result. That is
+    the head we closed `x138` over, and it had been public since 09-20.
+
+**Rogii told the same story.** Our best Rogii submission was also a full fork: 7.18 public,
+propped up by seed noise and a leakage exploit. Its leakage-free core measured 10.38 on our
+honest harness, while the public leaders were near 5.3. Our own CNN line had been scheduled
+for "phase 3", and the later notebooks are still built on the fork.
+
+Rogii's winners made the same points:
+- At least four top-25 writeups found public and private anti-correlated across their own
+  candidates, while grouped CV tracked private. In the 22nd-place writeup, public/private
+  Spearman was −0.48 and CV/private +0.84.
+- At least six top-40 writeups describe coding agents doing most of the implementation.
+
+**Testing the skill.** The skill was checked blind: answers to four realistic prompts written
+with the skill, and without it, scored against 34 assertions by a grader that didn't know which
+was which.
+
+- The first draft passed its own checklist, but it retold our history, naming Biohub/Rogii up to
+  19 times per answer, and crowded out domain content.
+  - Its answers to the EEG and solar prompts had almost no EEG or solar content.
+  - Regraded, it passed 19/27 and ranked last every time.
+- The revision leads with the user's domain.
+  - It passed 34/34 against 30/34 without the skill.
+  - It ranked first on three of four prompts for overall usefulness.
+
+The skill adds, over no skill: scouting by author, forking a floor, looking at what
+higher-ranked teams publish, and treating a missing weights file as a search.

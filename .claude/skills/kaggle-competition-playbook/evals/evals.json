@@ -1,0 +1,71 @@
+{
+ "skill_name": "kaggle-competition-playbook",
+ "evals": [
+  {
+   "id": 0,
+   "prompt": "ok new comp just opened on kaggle - 'NeuroPath: predict seizure onset from multi-site EEG'. data is recordings from 38 patients across 4 hospitals, test set is hidden. metric is some custom weighted F-beta thing. theres already a public notebook at 0.713 and top of LB is 0.742. we have 8 weeks and the usual 30h/week GPU. how should we go about this? i want to actually place well this time",
+   "expected_output": "",
+   "files": [],
+   "assertions": [
+    "Recommends reading or reimplementing the custom metric's source code (not just 'understand the metric')",
+    "Makes the patient and/or hospital the cross-validation group (GroupKFold / leave-group-out), naming the test split unit",
+    "Recommends scouting public notebooks or competitors by their actual leaderboard score (by author), not by notebook title",
+    "Recommends forking and submitting the best public notebook early as a floor",
+    "Recommends training own models with out-of-fold predictions so the validator is not in-sample",
+    "Warns against tuning to the public leaderboard / calls it a small or biased sample",
+    "Plans GPU quota or graded-rerun runtime for the endgame",
+    "Gives at least two EEG-specific techniques or pitfalls (e.g. montage/channel harmonisation across hospitals, line-noise filtering, onset-annotation conventions, artifact handling, spectrogram or raw-signal models, external seizure corpora)",
+    "Recommends checking how the public notebook validates or whether its score relies on leakage (e.g. random window splits within patients)",
+    "Mentions the playbook's source competitions (Biohub, Rogii) at most once, in a brief clause; the answer is about the user's competition"
+   ]
+  },
+  {
+   "id": 1,
+   "prompt": "we're stuck at 0.8812 on the public LB for the 'SolarFlux panel degradation' comp. like 300 other teams have exactly 0.8812 because everyone forked the same top public notebook. i've spent the last 10 days tuning its thresholds, the ensemble weights, the post-processing window sizes - literally nothing moves more than 0.0005 either way. 12 days left. what do we do?",
+   "expected_output": "",
+   "files": [],
+   "assertions": [
+    "Explicitly recommends stopping parameter tuning of the shared notebook",
+    "Recommends finding a structural weakness of the shared public pipeline and rebuilding that stage",
+    "Recommends grouped / out-of-fold CV rather than judging on public-LB deltas",
+    "Recommends looking at what higher-ranked competitors published (forum/notebooks, by author score)",
+    "Recommends reformulating the problem or training an own model for the highest-headroom stage",
+    "Addresses the endgame given 12 days left (quota, runtime, or final selection)",
+    "Gives at least two PV/solar-degradation-specific ideas (e.g. temperature/irradiance-corrected performance ratio, soiling vs degradation, comparison to neighbouring panels or fleet, year-on-year methods, clipping/sensor-dropout handling, monotonic degradation constraints)",
+    "Recommends measuring the public-LB noise floor (e.g. resampling OOF at public size, or re-running identical submissions) rather than only asserting it",
+    "Flags the team-merge deadline as time-sensitive",
+    "Mentions the playbook's source competitions (Biohub, Rogii) at most once, in a brief clause; the answer is about the user's competition"
+   ]
+  },
+  {
+   "id": 2,
+   "prompt": "2 days left in the comp. we get 2 final picks. our best public LB sub is 0.9124 (an ensemble tuned over the last week against public). our 5-fold GroupKFold CV (grouped by site, same as how test is split) likes a different sub better - CV 0.9071 vs 0.9055 for the public-best one - but that one only got 0.9098 on public. public LB is ~25% of test. which 2 do we pick?",
+   "expected_output": "",
+   "files": [],
+   "assertions": [
+    "Selects the CV-best submission (CV 0.9071) for one of the two slots",
+    "Explains the ~25% public LB is a small/noisy sample so the 0.0026 public gap is weak evidence",
+    "Notes the public-best ensemble was tuned against public, so its public score is optimistically biased",
+    "Gives a concrete final answer naming exactly which two submissions to pick",
+    "Stays focused on the pick: any new experiment is clearly optional and not presented as needed before choosing",
+    "Does not state as fact how private relates to public (e.g. 'private is on sites public never saw') without flagging it as an assumption",
+    "Mentions the playbook's source competitions (Biohub, Rogii) at most once, in a brief clause; the answer is about the user's competition"
+   ]
+  },
+  {
+   "id": 3,
+   "prompt": "quick check-in on the coral reef bleaching segmentation comp (9 days left). we're 0.871 public dice, a fork of the most-voted notebook (that one's at 0.868). our local validator - the notebook's pretrained UNet run over the 1,400 train tiles - says our new post-processing (morphological closing + a per-tile threshold) is worth +0.021, but on the LB it came out 0.869. there's a notebook by someone at 0.884 on the LB but it crashes for us with FileNotFoundError: /kaggle/input/reefnet-b5-weights-v3/model.pt so i've crossed it off. plan is to keep refining the post-processing with the validator. sound right?",
+   "expected_output": "",
+   "files": [],
+   "assertions": [
+    "Identifies that the validator is likely in-sample (the pretrained UNet was probably trained on those train tiles), so its +0.021 is not trustworthy",
+    "Recommends searching for the missing weights (e.g. Kaggle dataset search, the author's datasets, the notebook's data sources) instead of crossing the 0.884 notebook off",
+    "Recommends stopping or deprioritising further post-processing refinement on that validator",
+    "Recommends an honest grouped out-of-fold validation (grouped by reef/site/survey or the test split unit, with models trained per fold)",
+    "Gives at least two reef-imagery-specific points (e.g. grouping by reef/site/survey or overlapping tiles, water-column colour/illumination/depth shift, bleached coral vs sand/rubble/algae confusion, boundary label noise, colour augmentation)",
+    "Addresses the endgame given 9 days left (quota, runtime, or final selection)",
+    "Mentions the playbook's source competitions (Biohub, Rogii) at most once, in a brief clause; the answer is about the user's competition"
+   ]
+  }
+ ]
+}
