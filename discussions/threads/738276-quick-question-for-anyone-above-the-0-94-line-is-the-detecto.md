@@ -29,7 +29,7 @@ i suggest you go through ultra api. there are many track post processing tools. 
 make some manual annotations to appreciate the problems of ultrack and what can be solved by post processing.
 Do it a few rounds and i think you can discover improvement points and how to get more data
 
-### Дворкин Евгений Владимирович (EXPERT) — 2026-09-01T15:05:12.047Z
+### Дворкин Евгений Владимирович (MASTER) — 2026-09-01T15:05:12.047Z
 
 Hello. I don’t really understand what’s going on here and how it works; I’d like to know whether you focus on PROXY_SCORE when submitting work for review? I’m just playing around with the parameters, and sometimes LB improves when PROXY_SCORE increases, and sometimes the opposite happens — it’s unclear what to go by. There was a moment when PROXY_SCORE was 0.943+.
 

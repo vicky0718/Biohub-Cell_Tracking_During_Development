@@ -1,0 +1,83 @@
+{
+  "forumTopic": {
+    "authorId": 36341168,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Nikolce ",
+    "authorUserName": "nikolce",
+    "comments": [
+      {
+        "id": 3530384,
+        "postDate": "2026-09-30T04:54:39.710Z",
+        "rawMarkdown": "Thank you for the private V1284 Notebook @nikolce ",
+        "content": "<p>Thank you for the private V1284 Notebook <a href=\"/nikolce\" target=\"_blank\">@nikolce</a> </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Navneet",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15692441-kg.jpg?t=2025-05-18-07-58-06",
+          "url": "/navneetbende",
+          "tier": "CONTRIBUTOR",
+          "id": 15692441,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3530353,
+      "postDate": "2026-09-30T02:39:29.230Z",
+      "rawMarkdown": "The public 0.953 notebook (anvithpothula/biohub-x138) hard-failed without a private dataset holding v1284_head.pt. It turned out that head was fully reproducible from material the notebook already publishes, and a head we trained ourselves scored slightly higher. Posting the method and, more usefully, the negative results.\n\nWHAT THE HEAD IS\nA 7.3k-parameter coordinate refiner: Linear(224,32) -> SiLU -> Linear(32,3), output bounded to 2 um. The 224 features are the UNet's 32-channel map sampled at a detection centre and its 6 face neighbours, encoded as [centre] + [neighbour - centre]. It nudges detection centres closer to truth before association.\n\nWHY IT WAS REPRODUCIBLE\nThe consuming module is written inline by the notebook, and it documents three modes: candidate, zero, and capture. Capture mode dumps exactly the (coords, features) pairs needed to train it. So no reverse engineering was required - only running the pipeline in capture mode over training movies, matching each detection to its nearest GT node, and fitting the head.\n\nRESULT\nOur head (40 movies, 17,975 detection-GT pairs) scored 0.954 public vs the author's 0.953, on an otherwise byte-identical pipeline - the two runs differ by one 34 KB file.\n\nTHE MORE USEFUL NEGATIVES\n1. More data made it worse on the LB. Scaling to all 199 train movies improved the held-out residual a lot (-28.7% vs -22.7%) but dropped the LB to 0.951. There is an interior optimum. The downstream gates (relink radii, safe-division distances, gap-close steps) are tuned against the original centre-error distribution; a large calibration change makes them mis-fire.\n2. The held-out residual does not rank heads. Four heads: -10.5% -> 0.953, -22.7% -> 0.954, -26.0% -> 0.952, -28.7% -> 0.951.\n3. Head-to-head spread is ~+/-0.002 against a 0.001 LB quantum. Two independent 40-movie draws gave 0.954 and 0.952, so a single head's score is mostly noise.\n4. Re-enabling the runtime PPSWEEP (x138 ships it off) changed nothing: its best candidate was +0.0005 proxy, under the notebook's own 0.001 margin, so it selected base and produced a byte-identical submission.\n\nUNIT GOTCHA\nCaptured coords index the detector's FEATURE grid, which is the native grid downsampled by (1,4,4). GT geff coords are native. Compared raw, the nearest GT node sits 346 um away; with the downsample applied, 1.62 um. Training on the raw version gives a confident, useless head.\n\nPERSPECTIVE\nThis was a fork-and-tune line and it had a ceiling: ~0.954 public, 0.924 private, 161/4020. The winners were far beyond it, so treat the above as a note on one mechanism rather than a solution writeup. Thanks to anvithpothula for the original work.",
+      "content": "<p>The public 0.953 notebook (anvithpothula/biohub-x138) hard-failed without a private dataset holding v1284_head.pt. It turned out that head was fully reproducible from material the notebook already publishes, and a head we trained ourselves scored slightly higher. Posting the method and, more usefully, the negative results.</p>\n<p>WHAT THE HEAD IS\nA 7.3k-parameter coordinate refiner: Linear(224,32) -&gt; SiLU -&gt; Linear(32,3), output bounded to 2 um. The 224 features are the UNet's 32-channel map sampled at a detection centre and its 6 face neighbours, encoded as [centre] + [neighbour - centre]. It nudges detection centres closer to truth before association.</p>\n<p>WHY IT WAS REPRODUCIBLE\nThe consuming module is written inline by the notebook, and it documents three modes: candidate, zero, and capture. Capture mode dumps exactly the (coords, features) pairs needed to train it. So no reverse engineering was required - only running the pipeline in capture mode over training movies, matching each detection to its nearest GT node, and fitting the head.</p>\n<p>RESULT\nOur head (40 movies, 17,975 detection-GT pairs) scored 0.954 public vs the author's 0.953, on an otherwise byte-identical pipeline - the two runs differ by one 34 KB file.</p>\n<p>THE MORE USEFUL NEGATIVES</p>\n<ol>\n<li>More data made it worse on the LB. Scaling to all 199 train movies improved the held-out residual a lot (-28.7% vs -22.7%) but dropped the LB to 0.951. There is an interior optimum. The downstream gates (relink radii, safe-division distances, gap-close steps) are tuned against the original centre-error distribution; a large calibration change makes them mis-fire.</li>\n<li>The held-out residual does not rank heads. Four heads: -10.5% -&gt; 0.953, -22.7% -&gt; 0.954, -26.0% -&gt; 0.952, -28.7% -&gt; 0.951.</li>\n<li>Head-to-head spread is ~+/-0.002 against a 0.001 LB quantum. Two independent 40-movie draws gave 0.954 and 0.952, so a single head's score is mostly noise.</li>\n<li>Re-enabling the runtime PPSWEEP (x138 ships it off) changed nothing: its best candidate was +0.0005 proxy, under the notebook's own 0.001 margin, so it selected base and produced a byte-identical submission.</li>\n</ol>\n<p>UNIT GOTCHA\nCaptured coords index the detector's FEATURE grid, which is the native grid downsampled by (1,4,4). GT geff coords are native. Compared raw, the nearest GT node sits 346 um away; with the downsample applied, 1.62 um. Training on the raw version gives a confident, useless head.</p>\n<p>PERSPECTIVE\nThis was a fork-and-tune line and it had a ceiling: ~0.954 public, 0.924 private, 161/4020. The winners were far beyond it, so treat the above as a note on one mechanism rather than a solution writeup. Thanks to anvithpothula for the original work.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Nikolce ",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/nikolce",
+        "tier": "CONTRIBUTOR",
+        "id": 36341168,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 161,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Nikolce ",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/nikolce",
+          "userName": "nikolce",
+          "tier": "CONTRIBUTOR",
+          "id": 36341168,
+          "profileUrl": "/nikolce",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 36341168,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3530353,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744498,
+    "name": "The 0.953 stack's \"private\" V1284 head was reproducible from the notebook itself",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-30T02:39:29.229372Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744498",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

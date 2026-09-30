@@ -4,8 +4,8 @@
 - **Topic id**: 732103
 - **Author**: José Freitas (EXPERT)
 - **Posted**: 2026-08-01T21:12:10.502460400Z
-- **Votes**: 62
-- **Comments**: 20
+- **Votes**: 65
+- **Comments**: 25
 
 ---
 
@@ -46,7 +46,7 @@ Happy to answer anything about the generator. If you try it and it breaks, or it
 
 ---
 
-## Comments (20)
+## Comments (25)
 
 
 ### hengck23 (GRANDMASTER) — 2026-09-07T10:56:47.250Z — 1 votes
@@ -102,7 +102,7 @@ One thing I'd love your take on, if you have a moment: could you clarify exactly
 
 Thanks again for releasing this — genuinely useful contribution to the competition. Excellente Contribuição, forte abraço, José Luiz.
 
-#### ↳ José Freitas (EXPERT) — 2026-09-05T01:57:43.933Z — 1 votes
+#### ↳ José Freitas (EXPERT) — 2026-09-05T01:57:43.933Z
 
 > Hi José Luiz,
 > 
@@ -191,6 +191,33 @@ I just started in this competition, so I'm not sure if I will use your data yet,
 > > example of domain shift
 > > https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/740145#3524794
 
+### FOYSAL (EXPERT) — 2026-09-27T15:36:24.270Z
+
+@josefreitasalvesneto Will this dataset work for this competition?
+
+#### ↳ José Freitas (EXPERT) — 2026-09-27T17:46:43.810Z
+
+> Hi Foysal, it works! I'm at 0.960 right now!
+
+#### ↳ ↳ FOYSAL (EXPERT) — 2026-09-27T18:49:05.203Z
+
+> > Thanks José, that's great to hear! Congrats on 0.960.
+> > 
+> > If you don't mind sharing at a high level:
+> > 1. Which part did you train with it: the detector, the linker, or a separate division model?
+> > 2. Pretrain on synthetic and then fine-tune on the real data, or train on a mix of both?
+> > 3. Roughly how much did it add on the LB compared with the same pipeline without it?
+> > 
+> > No need for code. Just trying to understand where it helps most. Thanks again for releasing it!
+
+#### ↳ ↳ José Freitas (EXPERT) — 2026-09-27T18:57:29.713Z
+
+> > I think this is a topic for us to discuss in two days, once the competition wraps up 🤣🤣. I'm still in the running for a better spot 🤭🤭.
+
+#### ↳ ↳ FOYSAL (EXPERT) — 2026-09-27T19:57:01.517Z
+
+> > ha ha! You are right😂
+
 ### Lê Quang Cảnh (CONTRIBUTOR) — 2026-09-10T00:13:40.043Z
 
 I took the upper bound suggestion and measured it on the detections instead of by eye, since the ground truth lets you ask the same question without human labelling. Seven labelled divisions across the four films I have volumes for.
@@ -262,7 +289,7 @@ Caveat on my numbers: I first described those four films as the test set. Theo V
 
 Your 5-frame training is what I am most curious about: does a window-5 link transformer recover the gap-2 continuations that the heuristic currently patches by hand? That is exactly the population generating this orphan pool.
 
-#### ↳ hengck23 (GRANDMASTER) — 2026-09-09T19:08:51.583Z
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-09T19:08:51.583Z — 1 votes
 
 > i haven't looked into division in detail yet. I suggest you visually inspect the appearance changes of the cell as time increases. e.g. given a series of crop images from a trajectory of points: CROP = [crop1, crop2, crop3, crop3 .....]:
 > 
@@ -285,7 +312,7 @@ Your 5-frame training is what I am most curious about: does a window-5 link tran
 > 
 > i suggest you study Ultack paper. it uses oversegmentation to detect division. i.e. it competes against non-division and division hypothesis. Ultrack does simultaneous detection and tracking (not detection first, then link). I think the paper also gives upper bound for the division case using the paper's data.
 
-#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-09T19:35:01.667Z — 1 votes
+#### ↳ ↳ hengck23 (GRANDMASTER) — 2026-09-09T19:35:01.667Z — 2 votes
 
 > > ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2Facea4450a5d3fcbb773c1d9287de7731%2FSelection_4864.png?generation=1788982357856715&alt=media)
 > > 

@@ -4,7 +4,7 @@
 - **Topic id**: 739352
 - **Author**: Gunjan Haldar (EXPERT)
 - **Posted**: 2026-09-03T18:36:29.896847600Z
-- **Votes**: 3
+- **Votes**: 4
 - **Comments**: 6
 
 ---
@@ -22,7 +22,7 @@ Can we expect a huge shakeup? if so, what are your thoughts/opinions.
 
 I have like 0.96 CV and 0.93 LB for some reason
 
-#### ↳ hengck23 (GRANDMASTER) — 2026-09-04T00:56:03.757Z — 7 votes
+#### ↳ hengck23 (GRANDMASTER) — 2026-09-04T00:56:03.757Z — 6 votes
 
 > it is not useful to state/anayse " 0.96 CV "
 > you should break it down:

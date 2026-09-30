@@ -26,7 +26,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1016,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -66,7 +66,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1016,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -106,7 +106,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1016,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -146,7 +146,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 1016,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -187,12 +187,11 @@
             },
             "authorType": "TOPIC",
             "votes": {
-              "totalVotes": 1,
               "canUpvote": true,
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 996,
+            "competitionRanking": 242,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -227,7 +226,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 2984,
+        "competitionRanking": 2674,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -273,7 +272,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 996,
+            "competitionRanking": 242,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -309,7 +308,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 715,
+        "competitionRanking": 1550,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -359,7 +358,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1975,
+                "competitionRanking": 1397,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -397,7 +396,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1016,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -436,7 +435,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1016,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -475,7 +474,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1975,
+                "competitionRanking": 1397,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -514,7 +513,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1016,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -551,7 +550,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 996,
+            "competitionRanking": 242,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -587,7 +586,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 1975,
+        "competitionRanking": 1397,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -601,6 +600,219 @@
             "profileUrl": "/juancneira",
             "performanceTier": "CONTRIBUTOR",
             "userId": 14770099,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3529186,
+        "postDate": "2026-09-27T15:36:24.270Z",
+        "rawMarkdown": "@josefreitasalvesneto Will this dataset work for this competition?",
+        "content": "<p><a href=\"/josefreitasalvesneto\" target=\"_blank\">@josefreitasalvesneto</a> Will this dataset work for this competition?</p>",
+        "replies": [
+          {
+            "id": 3529229,
+            "postDate": "2026-09-27T17:46:43.810Z",
+            "rawMarkdown": "Hi Foysal, it works! I'm at 0.960 right now!",
+            "content": "<p>Hi Foysal, it works! I'm at 0.960 right now!</p>",
+            "replies": [
+              {
+                "id": 3529257,
+                "postDate": "2026-09-27T18:49:05.203Z",
+                "rawMarkdown": "Thanks Jos\u00e9, that's great to hear! Congrats on 0.960.\n\nIf you don't mind sharing at a high level:\n1. Which part did you train with it: the detector, the linker, or a separate division model?\n2. Pretrain on synthetic and then fine-tune on the real data, or train on a mix of both?\n3. Roughly how much did it add on the LB compared with the same pipeline without it?\n\nNo need for code. Just trying to understand where it helps most. Thanks again for releasing it!\n\n",
+                "content": "<p>Thanks Jos\u00e9, that's great to hear! Congrats on 0.960.</p>\n<p>If you don't mind sharing at a high level:</p>\n<ol>\n<li>Which part did you train with it: the detector, the linker, or a separate division model?</li>\n<li>Pretrain on synthetic and then fine-tune on the real data, or train on a mix of both?</li>\n<li>Roughly how much did it add on the LB compared with the same pipeline without it?</li>\n</ol>\n<p>No need for code. Just trying to understand where it helps most. Thanks again for releasing it!</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "FOYSAL",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
+                  "url": "/foysalemonshanto",
+                  "tier": "EXPERT",
+                  "id": 27966974,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 237,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "reactions": [
+                  {
+                    "emoji": "LOVE",
+                    "featuredUserNames": [
+                      "josefreitasalvesneto"
+                    ],
+                    "userCount": 1
+                  }
+                ],
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Md. Hamid Hosen",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/6026821-kg.jpg?t=2026-09-28-02-40-38",
+                    "url": "/hosen42",
+                    "userName": "hosen42",
+                    "tier": "EXPERT",
+                    "id": 6026821,
+                    "profileUrl": "/hosen42",
+                    "performanceTier": "EXPERT",
+                    "userId": 6026821,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3529264,
+                "postDate": "2026-09-27T18:57:29.713Z",
+                "rawMarkdown": "I think this is a topic for us to discuss in two days, once the competition wraps up \ud83e\udd23\ud83e\udd23. I'm still in the running for a better spot \ud83e\udd2d\ud83e\udd2d.",
+                "content": "<p>I think this is a topic for us to discuss in two days, once the competition wraps up \ud83e\udd23\ud83e\udd23. I'm still in the running for a better spot \ud83e\udd2d\ud83e\udd2d.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Jos\u00e9 Freitas",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+                  "url": "/josefreitasalvesneto",
+                  "tier": "EXPERT",
+                  "id": 15974520,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 242,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Jos\u00e9 Freitas",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+                    "url": "/josefreitasalvesneto",
+                    "userName": "josefreitasalvesneto",
+                    "tier": "EXPERT",
+                    "id": 15974520,
+                    "profileUrl": "/josefreitasalvesneto",
+                    "performanceTier": "EXPERT",
+                    "userId": 15974520,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3529278,
+                "postDate": "2026-09-27T19:57:01.517Z",
+                "rawMarkdown": "ha ha! You are right\ud83d\ude02",
+                "content": "<p>ha ha! You are right\ud83d\ude02</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "FOYSAL",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
+                  "url": "/foysalemonshanto",
+                  "tier": "EXPERT",
+                  "id": 27966974,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 237,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Md. Hamid Hosen",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/6026821-kg.jpg?t=2026-09-28-02-40-38",
+                    "url": "/hosen42",
+                    "userName": "hosen42",
+                    "tier": "EXPERT",
+                    "id": 6026821,
+                    "profileUrl": "/hosen42",
+                    "performanceTier": "EXPERT",
+                    "userId": 6026821,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Jos\u00e9 Freitas",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+              "url": "/josefreitasalvesneto",
+              "tier": "EXPERT",
+              "id": 15974520,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 242,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "THANK_YOU",
+                "featuredUserNames": [
+                  "foysalemonshanto"
+                ],
+                "userCount": 1
+              }
+            ],
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Jos\u00e9 Freitas",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/15974520-kg.png?t=2026-08-01-22-26-32",
+                "url": "/josefreitasalvesneto",
+                "userName": "josefreitasalvesneto",
+                "tier": "EXPERT",
+                "id": 15974520,
+                "profileUrl": "/josefreitasalvesneto",
+                "performanceTier": "EXPERT",
+                "userId": 15974520,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "FOYSAL",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/27966974-kg.png?t=2025-11-22-04-43-36",
+          "url": "/foysalemonshanto",
+          "tier": "EXPERT",
+          "id": 27966974,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 237,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Md. Hamid Hosen",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/6026821-kg.jpg?t=2026-09-28-02-40-38",
+            "url": "/hosen42",
+            "userName": "hosen42",
+            "tier": "EXPERT",
+            "id": 6026821,
+            "profileUrl": "/hosen42",
+            "performanceTier": "EXPERT",
+            "userId": 6026821,
             "progressionOptOut": false
           },
           "intro": ""
@@ -625,7 +837,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 77,
+        "competitionRanking": 306,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -672,12 +884,12 @@
                 },
                 "authorType": "COMMENT",
                 "votes": {
-                  "totalVotes": 1,
+                  "totalVotes": 2,
                   "canUpvote": true,
-                  "totalUpvotes": 1
+                  "totalUpvotes": 2
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1016,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -715,7 +927,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1016,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -746,10 +958,12 @@
             },
             "authorType": "COMMENT",
             "votes": {
-              "canUpvote": true
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 1016,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -783,7 +997,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 77,
+        "competitionRanking": 306,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -820,12 +1034,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 62,
+        "totalVotes": 65,
         "canUpvote": true,
-        "totalUpvotes": 62
+        "totalUpvotes": 65
       },
       "kernelVersion": 0,
-      "competitionRanking": 996,
+      "competitionRanking": 242,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -845,9 +1059,10 @@
         {
           "emoji": "KAGGLE",
           "featuredUserNames": [
-            "yunusgmsoy"
+            "yunusgmsoy",
+            "josefreitasalvesneto"
           ],
-          "userCount": 1
+          "userCount": 2
         },
         {
           "emoji": "THANK_YOU",
@@ -893,9 +1108,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-01T21:12:10.502460400Z",
-    "totalVotes": 62,
+    "totalVotes": 65,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/732103",
-    "totalMessages": 20,
+    "totalMessages": 25,
     "authorPerformanceTier": "EXPERT",
     "authorProgressionOptOut": false
   }

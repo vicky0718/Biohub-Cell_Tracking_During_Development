@@ -26,7 +26,7 @@
           "totalUpvotes": 15
         },
         "kernelVersion": 0,
-        "competitionRanking": 19,
+        "competitionRanking": 14,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -98,7 +98,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1778,
+        "competitionRanking": 2029,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -145,7 +145,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1972,
+        "competitionRanking": 2245,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -196,21 +196,21 @@
         "totalUpvotes": 9
       },
       "kernelVersion": 0,
-      "competitionRanking": 385,
+      "competitionRanking": 662,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
         "enabled": true,
         "teamLeader": {
-          "displayName": "Athar Sayed",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2051490-kg.png?t=2025-04-18-10-44-38",
-          "url": "/sayedathar11",
-          "userName": "sayedathar11",
-          "tier": "MASTER",
-          "id": 2051490,
-          "profileUrl": "/sayedathar11",
-          "performanceTier": "MASTER",
-          "userId": 2051490,
+          "displayName": "Yuto.M",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23245911-kg.png?t=2026-06-23-04-51-24",
+          "url": "/yutomuroshima",
+          "userName": "yutomuroshima",
+          "tier": "EXPERT",
+          "id": 23245911,
+          "profileUrl": "/yutomuroshima",
+          "performanceTier": "EXPERT",
+          "userId": 23245911,
           "progressionOptOut": false
         },
         "intro": ""

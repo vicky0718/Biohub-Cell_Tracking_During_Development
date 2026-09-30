@@ -1,0 +1,121 @@
+{
+  "forumTopic": {
+    "authorId": 23336356,
+    "authorThumbnailName": "23336356-kg.jpg?t=2026-09-29-15-06-25",
+    "authorUserDisplayName": "nusrati",
+    "authorUserName": "nusrati",
+    "comments": [
+      {
+        "id": 3530292,
+        "postDate": "2026-09-29T23:11:03.603Z",
+        "rawMarkdown": "Good luck! If you used your own division or edge algorithm in any part of your submission, then it's very likely your ranking will increase in private tests because the public ones overfit a lot.",
+        "content": "<p>Good luck! If you used your own division or edge algorithm in any part of your submission, then it's very likely your ranking will increase in private tests because the public ones overfit a lot.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "mikelou1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/mikelou1",
+          "tier": "EXPERT",
+          "id": 32181963,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 500,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "mikelou1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/mikelou1",
+            "userName": "mikelou1",
+            "tier": "EXPERT",
+            "id": 32181963,
+            "profileUrl": "/mikelou1",
+            "performanceTier": "EXPERT",
+            "userId": 32181963,
+            "progressionOptOut": false
+          },
+          "intro": "Looking for teams with very strong edge jaccard that is private-safe. I have a very strong division model and we can do a ensemble."
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3530094,
+      "postDate": "2026-09-29T14:19:14.480Z",
+      "rawMarkdown": "So this competition comes to an end, I dont know as of now how private LB gonna turn up for me. But overall it was a great first experience for me and learning was spot on all this time!\n\nIm grateful to many but would like to mention a few who had alot to keep us all going all this time and were my motivation and helped me through this in one way or other (even motivation is considered here haha) \n@pilkwang @markjcooper @hengck23 @flexonafft @rishabhr0y @hirotetsu @tom99763 @josefreitasalvesneto @soheilayati @tweakai @mikelou1 and to all other A1 Kagglers out there!!\n\nI might not secure a medal but surely got some good exposure.\nLove you all, Stay blessed!",
+      "content": "<p>So this competition comes to an end, I dont know as of now how private LB gonna turn up for me. But overall it was a great first experience for me and learning was spot on all this time!</p>\n<p>Im grateful to many but would like to mention a few who had alot to keep us all going all this time and were my motivation and helped me through this in one way or other (even motivation is considered here haha) \n<a href=\"/pilkwang\" target=\"_blank\">@pilkwang</a> <a href=\"/markjcooper\" target=\"_blank\">@markjcooper</a> <a href=\"/hengck23\" target=\"_blank\">@hengck23</a> <a href=\"/flexonafft\" target=\"_blank\">@flexonafft</a> <a href=\"/rishabhr0y\" target=\"_blank\">@rishabhr0y</a> <a href=\"/hirotetsu\" target=\"_blank\">@hirotetsu</a> <a href=\"/tom99763\" target=\"_blank\">@tom99763</a> <a href=\"/josefreitasalvesneto\" target=\"_blank\">@josefreitasalvesneto</a> <a href=\"/soheilayati\" target=\"_blank\">@soheilayati</a> <a href=\"/tweakai\" target=\"_blank\">@tweakai</a> <a href=\"/mikelou1\" target=\"_blank\">@mikelou1</a> and to all other A1 Kagglers out there!!</p>\n<p>I might not secure a medal but surely got some good exposure.\nLove you all, Stay blessed!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "nusrati",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
+        "url": "/nusrati",
+        "tier": "CONTRIBUTOR",
+        "id": 23336356,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 15,
+        "canUpvote": true,
+        "totalUpvotes": 15
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 323,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "LOVE",
+          "featuredUserNames": [
+            "godhand",
+            "yunusgmsoy",
+            "sanjeetbakshi",
+            "josluizlunaxavier",
+            "nusrati",
+            "tweakai",
+            "songhow",
+            "mikelou1",
+            "josephadamski91",
+            "soheilayati",
+            "amnaki"
+          ],
+          "userCount": 11
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "nusrati",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
+          "url": "/nusrati",
+          "userName": "nusrati",
+          "tier": "CONTRIBUTOR",
+          "id": 23336356,
+          "profileUrl": "/nusrati",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 23336356,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3530094,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744357,
+    "name": "Farewell and Thanks to the Kaggle community!",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-29T14:19:14.478600800Z",
+    "totalVotes": 15,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744357",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

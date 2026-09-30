@@ -1,0 +1,58 @@
+{
+  "forumTopic": {
+    "authorId": 22231691,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Korokke3",
+    "authorUserName": "korokke3",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3530472,
+      "postDate": "2026-09-30T08:25:28.070Z",
+      "rawMarkdown": "Now that private is out, here is a result that surprised me. It may help anyone thinking about the public/private gap.\n\n**Setup.** I started from the public x138 notebook (Harmonic Fusion + frontier947 post-processing + anvithpothula's V1284 coordinate-refinement head). The V1284 head is a small MLP. It takes frozen detector features at each detection centre and predicts a sub-voxel shift (at most 2 \u00b5m) toward the true centroid. The published head was trained on 20 movies. I ran the pipeline on all 199 training movies in a capture mode that matches detections to the sparse GT, which gave 128,931 pairs. I then retrained the same head (3 seeds, 5 epochs).\n\n**What the boards said** (x138 pipeline; only the refinement head changes, except in the last row):\n\n| Refinement | Public | Private |\n|---|---|---|\n| original head (x138 as published) | 0.953 | 0.917 |\n| retrained heads only | **0.948** | **0.924** |\n| 0.5 original + 0.5 retrained | 0.954 | 0.923 |\n| 0.85 original + 0.15 retrained | 0.956 | 0.919 |\n| same + ILP_DIVISION_WEIGHT 0.4 + READMIT_MIN_SCORE 0.94 | 0.958 | 0.918 |\n\nThe public board ranked these configurations almost exactly in reverse. My worst public submission was my best private one, 0.007 above x138.\n\n**What would have caught it.** Leave-one-embryo-out CV on the training data (train on 44b6 and test on 6bba, then the reverse) preferred the 50/50 blend, which scored 0.923 on private. I overrode it with public-board tuning and picked the public-best pair, so I missed bronze by 0.001. My takeaway is that when the hidden test is new embryos and public is 29%, public differences of 0.001-0.003 are mostly the public embryo's quirks. At least one final pick should come from group-CV.\n\nA small physics note: the gain comes largely from absolute position accuracy, including per-embryo offsets (the mean GT-minus-detection z-offset is +0.17 \u00b5m for 44b6 and +0.84 \u00b5m for 6bba), not only from frame-to-frame jitter. A head trained on de-meaned targets scored 0.001-0.003 worse on both public and private.\n\n- Notebook (runs as a drop-in on the x138 pipeline): https://www.kaggle.com/code/korokke3/biohub-retrained-v1284-head\n- Heads plus capture and training scripts (CC0): https://www.kaggle.com/datasets/korokke3/biohub-v1284-head-199-movies\n\nThanks to anvithpothula, pilkwang, flexonafft and thtennant, whose public work this builds on.\n",
+      "content": "<p>Now that private is out, here is a result that surprised me. It may help anyone thinking about the public/private gap.</p>\n<p><strong>Setup.</strong> I started from the public x138 notebook (Harmonic Fusion + frontier947 post-processing + anvithpothula's V1284 coordinate-refinement head). The V1284 head is a small MLP. It takes frozen detector features at each detection centre and predicts a sub-voxel shift (at most 2 \u00b5m) toward the true centroid. The published head was trained on 20 movies. I ran the pipeline on all 199 training movies in a capture mode that matches detections to the sparse GT, which gave 128,931 pairs. I then retrained the same head (3 seeds, 5 epochs).</p>\n<p><strong>What the boards said</strong> (x138 pipeline; only the refinement head changes, except in the last row):</p>\n<table>\n<thead>\n<tr>\n<th>Refinement</th>\n<th>Public</th>\n<th>Private</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>original head (x138 as published)</td>\n<td>0.953</td>\n<td>0.917</td>\n</tr>\n<tr>\n<td>retrained heads only</td>\n<td><strong>0.948</strong></td>\n<td><strong>0.924</strong></td>\n</tr>\n<tr>\n<td>0.5 original + 0.5 retrained</td>\n<td>0.954</td>\n<td>0.923</td>\n</tr>\n<tr>\n<td>0.85 original + 0.15 retrained</td>\n<td>0.956</td>\n<td>0.919</td>\n</tr>\n<tr>\n<td>same + ILP_DIVISION_WEIGHT 0.4 + READMIT_MIN_SCORE 0.94</td>\n<td>0.958</td>\n<td>0.918</td>\n</tr>\n</tbody>\n</table>\n<p>The public board ranked these configurations almost exactly in reverse. My worst public submission was my best private one, 0.007 above x138.</p>\n<p><strong>What would have caught it.</strong> Leave-one-embryo-out CV on the training data (train on 44b6 and test on 6bba, then the reverse) preferred the 50/50 blend, which scored 0.923 on private. I overrode it with public-board tuning and picked the public-best pair, so I missed bronze by 0.001. My takeaway is that when the hidden test is new embryos and public is 29%, public differences of 0.001-0.003 are mostly the public embryo's quirks. At least one final pick should come from group-CV.</p>\n<p>A small physics note: the gain comes largely from absolute position accuracy, including per-embryo offsets (the mean GT-minus-detection z-offset is +0.17 \u00b5m for 44b6 and +0.84 \u00b5m for 6bba), not only from frame-to-frame jitter. A head trained on de-meaned targets scored 0.001-0.003 worse on both public and private.</p>\n<ul>\n<li>Notebook (runs as a drop-in on the x138 pipeline): <a href=\"https://www.kaggle.com/code/korokke3/biohub-retrained-v1284-head\" target=\"_blank\">https://www.kaggle.com/code/korokke3/biohub-retrained-v1284-head</a></li>\n<li>Heads plus capture and training scripts (CC0): <a href=\"https://www.kaggle.com/datasets/korokke3/biohub-v1284-head-199-movies\" target=\"_blank\">https://www.kaggle.com/datasets/korokke3/biohub-v1284-head-199-movies</a></li>\n</ul>\n<p>Thanks to anvithpothula, pilkwang, flexonafft and thtennant, whose public work this builds on.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Korokke3",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/korokke3",
+        "tier": "CONTRIBUTOR",
+        "id": 22231691,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 478,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Korokke3",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/korokke3",
+          "userName": "korokke3",
+          "tier": "CONTRIBUTOR",
+          "id": 22231691,
+          "profileUrl": "/korokke3",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 22231691,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3530472,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744548,
+    "name": "Public 0.948 \u2192 private 0.924: a retrained V1284 head, and why the public board pointed the wrong way",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-30T08:25:28.070876400Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744548",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

@@ -23,24 +23,6 @@ this is just psf generator
 ## Comments (7)
 
 
-### hengck23 (GRANDMASTER) — 2026-09-08T18:58:40.797Z — 1 votes
-
-external data  
-https://zebrahub.sf.czbiohub.org/imaging  
-https://public.czbiohub.org/royerlab/zebrahub/imaging/single-objective/  
-https://public.czbiohub.org/royerlab/zoo/
-https://public.czbiohub.org/royerlab/ultrack/
-
-it is dense track! i think it is by ultrack
-
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9d50c08c33cebcbbd8bf3f5060b4e9a1%2FSelection_4841.png?generation=1788898795365771&alt=media)
-
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4fb513a47380d4ac853d9b8f3a9e0432%2FSelection_4842.png?generation=1788898817410763&alt=media)
-
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F59efe6edfb20a773e0338379a946c1e0%2FSelection_4845.png?generation=1788911392662598&alt=media)
-
-we do have "unlimited external data"
-
 ### Sergio Alvarez (MASTER) — 2026-09-05T20:48:27.127Z — 5 votes
 
 I've tried the synthetic volume idea for ~2 weeks with no clear improvement in my scores, so I dropped it. Still, it would be cool to see this strategy work here, as it helped improve a little in the CZII competition. (Polnet was used there: https://github.com/anmartinezs/polnet)
@@ -58,6 +40,24 @@ Here is one example of synthetic volume I tried to use:
 #### ↳ hengck23 (GRANDMASTER) — 2026-09-06T04:12:28.723Z
 
 > I have some bold idea. At inference you run your model. You have rough estimate of motion. Then you can do augmentation of hiddent test data with appropriate motion and perform online test finetuning or adaptation at selected frames etc
+
+### hengck23 (GRANDMASTER) — 2026-09-08T18:58:40.797Z — 1 votes
+
+external data  
+https://zebrahub.sf.czbiohub.org/imaging  
+https://public.czbiohub.org/royerlab/zebrahub/imaging/single-objective/  
+https://public.czbiohub.org/royerlab/zoo/
+https://public.czbiohub.org/royerlab/ultrack/
+
+it is dense track! i think it is by ultrack
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9d50c08c33cebcbbd8bf3f5060b4e9a1%2FSelection_4841.png?generation=1788898795365771&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F4fb513a47380d4ac853d9b8f3a9e0432%2FSelection_4842.png?generation=1788898817410763&alt=media)
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F59efe6edfb20a773e0338379a946c1e0%2FSelection_4845.png?generation=1788911392662598&alt=media)
+
+we do have "unlimited external data"
 
 ### hengck23 (GRANDMASTER) — 2026-09-05T19:29:22.643Z — -2 votes
 

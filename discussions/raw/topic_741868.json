@@ -38,7 +38,7 @@
                   "totalUpvotes": 3
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -74,9 +74,18 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 2639,
+            "competitionRanking": 2973,
             "feedbackTrackingData": {},
             "isThankYou": false,
+            "reactions": [
+              {
+                "emoji": "FUNNY",
+                "featuredUserNames": [
+                  "mustafaa"
+                ],
+                "userCount": 1
+              }
+            ],
             "teamUpInfo": {
               "teamLeader": {
                 "displayName": "Chris Deotte",
@@ -110,7 +119,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -156,7 +165,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 301,
+            "competitionRanking": 236,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -187,12 +196,12 @@
         },
         "authorType": "TOPIC",
         "votes": {
-          "totalVotes": 5,
+          "totalVotes": 6,
           "canUpvote": true,
-          "totalUpvotes": 5
+          "totalUpvotes": 6
         },
         "kernelVersion": 0,
-        "competitionRanking": 2639,
+        "competitionRanking": 2973,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -233,11 +242,12 @@
             },
             "authorType": "TOPIC",
             "votes": {
+              "totalVotes": 1,
               "canUpvote": true,
-              "totalUpvotes": 1
+              "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 2639,
+            "competitionRanking": 2973,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -273,7 +283,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 301,
+        "competitionRanking": 236,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -310,21 +320,22 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 17,
+        "totalVotes": 21,
         "canUpvote": true,
-        "totalUpvotes": 19
+        "totalUpvotes": 23
       },
       "kernelVersion": 0,
-      "competitionRanking": 2639,
+      "competitionRanking": 2973,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
         {
           "emoji": "LOVE",
           "featuredUserNames": [
-            "yassinealouini"
+            "yassinealouini",
+            "mhahmad"
           ],
-          "userCount": 1
+          "userCount": 2
         },
         {
           "emoji": "KAGGLE",
@@ -358,7 +369,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-17T21:50:19.517781600Z",
-    "totalVotes": 17,
+    "totalVotes": 21,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/741868",
     "totalMessages": 7,
     "authorPerformanceTier": "GRANDMASTER",

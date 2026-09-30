@@ -4,8 +4,8 @@
 - **Topic id**: 741386
 - **Author**: Masha Mikhisor (CONTRIBUTOR)
 - **Posted**: 2026-09-14T22:10:13.125144900Z
-- **Votes**: 3
-- **Comments**: 3
+- **Votes**: 4
+- **Comments**: 4
 
 ---
 
@@ -23,7 +23,7 @@ Thanks!
 
 ---
 
-## Comments (3)
+## Comments (4)
 
 
 ### Sergio Alvarez (MASTER) — 2026-09-15T12:02:31.787Z — 1 votes
@@ -31,6 +31,10 @@ Thanks!
 About question 1, they are not the same embryos used in training, but they are very similar and the spacing is the same. You can download it to check it out. If you want to use it, you just have to extract chunks from it because it's not the same 64×256×256 size as in the competition. Also, it wouldn’t make sense for it to be in the test set. It's standard in Kaggle competitions that the hidden test set is never shared anywhere, it's a new set images that the hosts have never shared, but prepared using the same methodology as the training data.
 
 As far as I know the hosts never shared how tracks were made in discussions, I think it's based on their methods (ultrack?/hoct?) + manual review
+
+#### ↳ OmerZalman (CONTRIBUTOR) — 2026-09-22T04:18:12.273Z
+
+> what have you used? any hints for us lesser people?
 
 ### MOHAMMADJAFAR ZAMANI (CONTRIBUTOR) — 2026-09-17T18:40:37.507Z
 

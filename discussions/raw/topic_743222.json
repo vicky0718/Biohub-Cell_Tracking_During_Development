@@ -1,0 +1,71 @@
+{
+  "forumTopic": {
+    "authorId": 13788020,
+    "authorThumbnailName": "13788020-kg.jpg?t=2026-09-25-19-35-46",
+    "authorUserDisplayName": "imissher",
+    "authorUserName": "tule12345",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3528058,
+      "postDate": "2026-09-25T08:59:22.310Z",
+      "rawMarkdown": "We tried for two weeks to beat the public dual-seed notebook (UNet + node transformer + ILP) and never did. Every change we tested scored at or below the unmodified notebook. Posting the numbers so nobody else spends the same two weeks.\n\n## Local scores did not predict the leaderboard\n\nThe public secondary checkpoint (`seed314159`) was trained on all 199 train videos \u2014 its own `split_manifest.json` says so. Any hold-out you take from train is in-sample for the detector behind 80% of the detection logits.\n\nSame predictions, official metric, paired:\n\n| Change | Local (19 videos) | Public LB |\n|---|---|---|\n| Motion relink off | +0.017 | \u22120.002 |\n| ILP candidate threshold 0.48 \u2192 0.30 | +0.009 | 0.000 |\n\nFour local decisions, four leaderboard misses, one with a flipped sign. @Eric found the same thing independently, and @hikaggler measured a local-to-LB correlation near zero in this score band.\n\n## Every single-variable change we submitted\n\n| Configuration | Public LB |\n|---|---|\n| v30, unmodified | **0.948** |\n| v29, unmodified | 0.946 |\n| Motion relink off | 0.946 |\n| Z-flip TTA added (8 \u2192 16 views) | 0.946 |\n| Detection threshold 0.960 | 0.946 |\n| Detection threshold 0.970 | 0.945 |\n| Secondary detection weight 0.80 \u2192 0.65 | 0.945 |\n| Our own model in the secondary slot | 0.939 |\n\nBoth threshold directions lose, so 0.965 is already at the optimum. Extra TTA views buy nothing. Every change that trusts the learned association more (relink off, lower candidate threshold) failed, while the geometric repair always helped \u2014 which fits test being a different embryo.\n\n## A trap inside the notebook worth knowing about\n\nThe notebook scores 8 train videos at the end, sweeps 7 post-processing candidates, and rewrites `submission.csv` with the winner. Two problems:\n\n1. Those 8 videos are the ones the secondary model memorised.\n2. The list excludes train stems that also appear in `TEST_DIR`. On your commit run that drops the 4 example videos. On the hidden rerun there is no overlap, so **a different 8 videos are scored and a different config can win**. The setup that produced your leaderboard score may not be the one printed in your log.\n\nWe only found this after pinning the selected config by hand and losing 0.002.\n\n## Training our own model\n\nWe started from the public secondary checkpoint and adapted it for 6 hours at lr 1e-5 on 600 synthetic sequences (CC0 set by @Jos\u00e9 Freitas) mixed with 40 real videos. Swapped in: **0.939**, about 0.006 worse than the public weights.\n\n## If you plan to train on Kaggle GPUs\n\nOn 2\u00d7 T4 with the support-pack trainer, 64\u00b3 windows: batch 16 runs out of memory, and before it died it ran at **12\u201314 seconds per step**, about 35\u201340 minutes per epoch. An 8-hour session buys 12\u201325 epochs. The public primary had 402. That gap is not closable on Kaggle hardware.\n\n## What we would do differently\n\nStop tuning inference and measure properly: train on one embryo, evaluate on the other. It is the only split in this dataset that is not memorised.\n\nHappy to answer questions about any number here.",
+      "content": "<p>We tried for two weeks to beat the public dual-seed notebook (UNet + node transformer + ILP) and never did. Every change we tested scored at or below the unmodified notebook. Posting the numbers so nobody else spends the same two weeks.</p>\n<h2>Local scores did not predict the leaderboard</h2>\n<p>The public secondary checkpoint (<code>seed314159</code>) was trained on all 199 train videos \u2014 its own <code>split_manifest.json</code> says so. Any hold-out you take from train is in-sample for the detector behind 80% of the detection logits.</p>\n<p>Same predictions, official metric, paired:</p>\n<table>\n<thead>\n<tr>\n<th>Change</th>\n<th>Local (19 videos)</th>\n<th>Public LB</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Motion relink off</td>\n<td>+0.017</td>\n<td>\u22120.002</td>\n</tr>\n<tr>\n<td>ILP candidate threshold 0.48 \u2192 0.30</td>\n<td>+0.009</td>\n<td>0.000</td>\n</tr>\n</tbody>\n</table>\n<p>Four local decisions, four leaderboard misses, one with a flipped sign. <a href=\"/Eric\" target=\"_blank\">@Eric</a> found the same thing independently, and <a href=\"/hikaggler\" target=\"_blank\">@hikaggler</a> measured a local-to-LB correlation near zero in this score band.</p>\n<h2>Every single-variable change we submitted</h2>\n<table>\n<thead>\n<tr>\n<th>Configuration</th>\n<th>Public LB</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>v30, unmodified</td>\n<td><strong>0.948</strong></td>\n</tr>\n<tr>\n<td>v29, unmodified</td>\n<td>0.946</td>\n</tr>\n<tr>\n<td>Motion relink off</td>\n<td>0.946</td>\n</tr>\n<tr>\n<td>Z-flip TTA added (8 \u2192 16 views)</td>\n<td>0.946</td>\n</tr>\n<tr>\n<td>Detection threshold 0.960</td>\n<td>0.946</td>\n</tr>\n<tr>\n<td>Detection threshold 0.970</td>\n<td>0.945</td>\n</tr>\n<tr>\n<td>Secondary detection weight 0.80 \u2192 0.65</td>\n<td>0.945</td>\n</tr>\n<tr>\n<td>Our own model in the secondary slot</td>\n<td>0.939</td>\n</tr>\n</tbody>\n</table>\n<p>Both threshold directions lose, so 0.965 is already at the optimum. Extra TTA views buy nothing. Every change that trusts the learned association more (relink off, lower candidate threshold) failed, while the geometric repair always helped \u2014 which fits test being a different embryo.</p>\n<h2>A trap inside the notebook worth knowing about</h2>\n<p>The notebook scores 8 train videos at the end, sweeps 7 post-processing candidates, and rewrites <code>submission.csv</code> with the winner. Two problems:</p>\n<ol>\n<li>Those 8 videos are the ones the secondary model memorised.</li>\n<li>The list excludes train stems that also appear in <code>TEST_DIR</code>. On your commit run that drops the 4 example videos. On the hidden rerun there is no overlap, so <strong>a different 8 videos are scored and a different config can win</strong>. The setup that produced your leaderboard score may not be the one printed in your log.</li>\n</ol>\n<p>We only found this after pinning the selected config by hand and losing 0.002.</p>\n<h2>Training our own model</h2>\n<p>We started from the public secondary checkpoint and adapted it for 6 hours at lr 1e-5 on 600 synthetic sequences (CC0 set by <a href=\"/Jos\" target=\"_blank\">@Jos</a>\u00e9 Freitas) mixed with 40 real videos. Swapped in: <strong>0.939</strong>, about 0.006 worse than the public weights.</p>\n<h2>If you plan to train on Kaggle GPUs</h2>\n<p>On 2\u00d7 T4 with the support-pack trainer, 64\u00b3 windows: batch 16 runs out of memory, and before it died it ran at <strong>12\u201314 seconds per step</strong>, about 35\u201340 minutes per epoch. An 8-hour session buys 12\u201325 epochs. The public primary had 402. That gap is not closable on Kaggle hardware.</p>\n<h2>What we would do differently</h2>\n<p>Stop tuning inference and measure properly: train on one embryo, evaluate on the other. It is the only split in this dataset that is not memorised.</p>\n<p>Happy to answer questions about any number here.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "imissher",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13788020-kg.jpg?t=2026-09-25-19-35-46",
+        "url": "/tule12345",
+        "tier": "CONTRIBUTOR",
+        "id": 13788020,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 1,
+        "canUpvote": true,
+        "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1328,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "THANK_YOU",
+          "featuredUserNames": [
+            "yunusgmsoy",
+            "baytree1238"
+          ],
+          "userCount": 2
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "imissher",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13788020-kg.jpg?t=2026-09-25-19-35-46",
+          "url": "/tule12345",
+          "userName": "tule12345",
+          "tier": "CONTRIBUTOR",
+          "id": 13788020,
+          "profileUrl": "/tule12345",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 13788020,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3528058,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 743222,
+    "name": "Eight leaderboard experiments on the public 0.947 stack \u2014 all negative, here are the numbers",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-25T08:59:22.308897500Z",
+    "totalVotes": 1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/743222",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

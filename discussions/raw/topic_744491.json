@@ -1,0 +1,199 @@
+{
+  "forumTopic": {
+    "authorId": 23433629,
+    "authorThumbnailName": "23433629-kg.png?t=2026-07-16-04-15-14",
+    "authorUserDisplayName": "zephyr",
+    "authorUserName": "sylvestervan",
+    "comments": [
+      {
+        "id": 3530484,
+        "postDate": "2026-09-30T08:54:58.317Z",
+        "rawMarkdown": "Honored to be mentioned! Really enjoyed being part of this journey , congrats and keep pushing!",
+        "content": "<p>Honored to be mentioned! Really enjoyed being part of this journey , congrats and keep pushing!</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Sung Jin-woo",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35611629-kg.jpeg?t=2026-09-22-10-52-23",
+          "url": "/crystalbaby",
+          "tier": "EXPERT",
+          "id": 35611629,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1180,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "LOVE",
+            "featuredUserNames": [
+              "sylvestervan"
+            ],
+            "userCount": 1
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Sung Jin-woo",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35611629-kg.jpeg?t=2026-09-22-10-52-23",
+            "url": "/crystalbaby",
+            "userName": "crystalbaby",
+            "tier": "EXPERT",
+            "id": 35611629,
+            "profileUrl": "/crystalbaby",
+            "performanceTier": "EXPERT",
+            "userId": 35611629,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3530341,
+      "postDate": "2026-09-30T01:54:35.573Z",
+      "rawMarkdown": "I am grateful to have had the opportunity to participate in such a wonderful competition alongside elites from all over the world.\n\nThis work is based on the open-access HIGH PubScore Notebook by @anvithpothula @amanatar and @crystalbaby. Throughout the process, I conducted ablation experiments, especially on post-processing and fine-tuning, exploring with Kimi K3.0 Pro.\n\nAt the 21% test-set, I was only +0.001 ahead of the highest public notebook score of 0.953. Eventually, we may all finalized at 0.920. The paper is attached at the end of this write-up, and I should humbly learn from other optimal solutions. For now, I am just an undergraduate preparing for graduate school.\n\nTRUTH AWAITS, KEEP GOING.\n\nJindong Fan @sylvestervan \n\nDJTU, Dalian, China",
+      "content": "<p>I am grateful to have had the opportunity to participate in such a wonderful competition alongside elites from all over the world.</p>\n<p>This work is based on the open-access HIGH PubScore Notebook by <a href=\"/anvithpothula\" target=\"_blank\">@anvithpothula</a> <a href=\"/amanatar\" target=\"_blank\">@amanatar</a> and <a href=\"/crystalbaby\" target=\"_blank\">@crystalbaby</a>. Throughout the process, I conducted ablation experiments, especially on post-processing and fine-tuning, exploring with Kimi K3.0 Pro.</p>\n<p>At the 21% test-set, I was only +0.001 ahead of the highest public notebook score of 0.953. Eventually, we may all finalized at 0.920. The paper is attached at the end of this write-up, and I should humbly learn from other optimal solutions. For now, I am just an undergraduate preparing for graduate school.</p>\n<p>TRUTH AWAITS, KEEP GOING.</p>\n<p>Jindong Fan <a href=\"/sylvestervan\" target=\"_blank\">@sylvestervan</a> </p>\n<p>DJTU, Dalian, China</p>",
+      "attachments": [
+        {
+          "fileType": ".pdf",
+          "id": 51777,
+          "name": "Paired_Orphan_Division_Rescue_for_3D_Embryonic_Cell_Tracking_with_Validator_Guided_Transfer.pdf",
+          "totalBytes": 377996,
+          "url": "https://storage.googleapis.com/kaggle-forum-message-attachments/3530341/51777/Paired_Orphan_Division_Rescue_for_3D_Embryonic_Cell_Tracking_with_Validator_Guided_Transfer.pdf"
+        }
+      ],
+      "parent": {},
+      "author": {
+        "displayName": "zephyr",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23433629-kg.png?t=2026-07-16-04-15-14",
+        "url": "/sylvestervan",
+        "tier": "CONTRIBUTOR",
+        "id": 23433629,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 3,
+        "canUpvote": true,
+        "totalUpvotes": 3
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 381,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "zephyr",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23433629-kg.png?t=2026-07-16-04-15-14",
+          "url": "/sylvestervan",
+          "userName": "sylvestervan",
+          "tier": "CONTRIBUTOR",
+          "id": 23433629,
+          "profileUrl": "/sylvestervan",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 23433629,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3530341,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744491,
+    "name": "Paired-Orphan Division Rescue for 3D Embryonic Cell Tracking",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-30T01:54:35.573919Z",
+    "totalVotes": 3,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744491",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "writeUp": {
+      "id": 115855,
+      "topicId": 744491,
+      "title": "Paired-Orphan Division Rescue for 3D Embryonic Cell Tracking",
+      "subtitle": "\"If I have seen farther, it is by standing upon the shoulders of the giants.\" \u2014\u2014Issac Newton",
+      "message": {
+        "id": 3530341,
+        "postDate": "2026-09-30T01:54:35.573Z",
+        "rawMarkdown": "I am grateful to have had the opportunity to participate in such a wonderful competition alongside elites from all over the world.\n\nThis work is based on the open-access HIGH PubScore Notebook by @anvithpothula @amanatar and @crystalbaby. Throughout the process, I conducted ablation experiments, especially on post-processing and fine-tuning, exploring with Kimi K3.0 Pro.\n\nAt the 21% test-set, I was only +0.001 ahead of the highest public notebook score of 0.953. Eventually, we may all finalized at 0.920. The paper is attached at the end of this write-up, and I should humbly learn from other optimal solutions. For now, I am just an undergraduate preparing for graduate school.\n\nTRUTH AWAITS, KEEP GOING.\n\nJindong Fan @sylvestervan \n\nDJTU, Dalian, China",
+        "content": "<p>I am grateful to have had the opportunity to participate in such a wonderful competition alongside elites from all over the world.</p>\n<p>This work is based on the open-access HIGH PubScore Notebook by <a href=\"/anvithpothula\" target=\"_blank\">@anvithpothula</a> <a href=\"/amanatar\" target=\"_blank\">@amanatar</a> and <a href=\"/crystalbaby\" target=\"_blank\">@crystalbaby</a>. Throughout the process, I conducted ablation experiments, especially on post-processing and fine-tuning, exploring with Kimi K3.0 Pro.</p>\n<p>At the 21% test-set, I was only +0.001 ahead of the highest public notebook score of 0.953. Eventually, we may all finalized at 0.920. The paper is attached at the end of this write-up, and I should humbly learn from other optimal solutions. For now, I am just an undergraduate preparing for graduate school.</p>\n<p>TRUTH AWAITS, KEEP GOING.</p>\n<p>Jindong Fan <a href=\"/sylvestervan\" target=\"_blank\">@sylvestervan</a> </p>\n<p>DJTU, Dalian, China</p>",
+        "attachments": [
+          {
+            "fileType": ".pdf",
+            "id": 51777,
+            "name": "Paired_Orphan_Division_Rescue_for_3D_Embryonic_Cell_Tracking_with_Validator_Guided_Transfer.pdf",
+            "totalBytes": 377996,
+            "url": "https://storage.googleapis.com/kaggle-forum-message-attachments/3530341/51777/Paired_Orphan_Division_Rescue_for_3D_Embryonic_Cell_Tracking_with_Validator_Guided_Transfer.pdf"
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "zephyr",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23433629-kg.png?t=2026-07-16-04-15-14",
+          "url": "/sylvestervan",
+          "tier": "CONTRIBUTOR",
+          "id": 23433629,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 381,
+        "feedbackTrackingData": {},
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "zephyr",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23433629-kg.png?t=2026-07-16-04-15-14",
+            "url": "/sylvestervan",
+            "userName": "sylvestervan",
+            "tier": "CONTRIBUTOR",
+            "id": 23433629,
+            "profileUrl": "/sylvestervan",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23433629,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      "type": "COMPETITION_SOLUTION",
+      "coverImageUrl": "/competitions/136605/images/header",
+      "slug": "paired-orphan-division-rescue-for-3d-embryonic-cel",
+      "url": "/competitions/biohub-cell-tracking-during-development/writeups/paired-orphan-division-rescue-for-3d-embryonic-cel",
+      "createTime": "2026-09-30T01:54:36.721068300Z",
+      "updateTime": "2026-09-30T03:54:29.041578800Z",
+      "contentState": "PUBLISHED",
+      "authors": "zephyr",
+      "imageInfo": {},
+      "collaborators": [
+        {
+          "displayName": "zephyr",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23433629-kg.png?t=2026-07-16-04-15-14",
+          "url": "/sylvestervan",
+          "userName": "sylvestervan",
+          "tier": "CONTRIBUTOR",
+          "id": 23433629,
+          "profileUrl": "/sylvestervan",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 23433629,
+          "progressionOptOut": false
+        }
+      ],
+      "publishTime": "2026-09-30T01:55:29.360Z",
+      "doi": "10.34740/kaggle/w/115855"
+    },
+    "authorProgressionOptOut": false
+  }
+}

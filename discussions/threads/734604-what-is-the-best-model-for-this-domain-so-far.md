@@ -20,22 +20,6 @@ im not sure if its a Detector problem if yes what models should i use before jum
 ## Comments (5)
 
 
-### Tang (MASTER) — 2026-08-16T11:20:35.360Z — 4 votes
-
-I'd recommend retraining the model instead of just using the public ckpt.
-unet+transformer is a strong approach, but there are still things you can improve, like preprocessing, model architecture
-the current ckpt has kind of hit a wall, it's hard to get more gain from post-processing alone.
-
-#### ↳ Moawiz (CONTRIBUTOR) — 2026-08-16T11:25:44.900Z
-
-> I’m currently running into a roadblock with the public approach and haven't been able to make meaningful progress on it yet. I would really appreciate some guidance on the best direction to take here.
-
-#### ↳ ↳ Tang (MASTER) — 2026-08-19T08:36:15.220Z — 1 votes
-
-> > the common approach for this task is basically two parts: modeling and track optimization, aka post-processing.
-> > for modeling, use gpt or something to rebuild the training pipeline from the public notebook. just treat it like a normal CV task , here are a lot of similar competitions , so you can check those.
-> > as for track optimization, maybe some algorithm or correction model. i'm not working on that part. so I don’t know much about it yet.
-
 ### Mendrika Ramarlina (MASTER) — 2026-08-12T05:17:31.760Z — 5 votes
 
 I would first decompose the score before switching models.
@@ -66,3 +50,19 @@ If conditional linking is already high, I would focus on detector calibration/pr
 #### ↳ Moawiz (CONTRIBUTOR) — 2026-08-12T14:54:00.887Z
 
 > the detector is finding the real cells, but it is also producing an enormous junk candidate pool. The linker then has to choose among those candidates which ends up with wrong linking
+
+### Tang (MASTER) — 2026-08-16T11:20:35.360Z — 4 votes
+
+I'd recommend retraining the model instead of just using the public ckpt.
+unet+transformer is a strong approach, but there are still things you can improve, like preprocessing, model architecture
+the current ckpt has kind of hit a wall, it's hard to get more gain from post-processing alone.
+
+#### ↳ Moawiz (CONTRIBUTOR) — 2026-08-16T11:25:44.900Z
+
+> I’m currently running into a roadblock with the public approach and haven't been able to make meaningful progress on it yet. I would really appreciate some guidance on the best direction to take here.
+
+#### ↳ ↳ Tang (MASTER) — 2026-08-19T08:36:15.220Z — 1 votes
+
+> > the common approach for this task is basically two parts: modeling and track optimization, aka post-processing.
+> > for modeling, use gpt or something to rebuild the training pipeline from the public notebook. just treat it like a normal CV task , here are a lot of similar competitions , so you can check those.
+> > as for track optimization, maybe some algorithm or correction model. i'm not working on that part. so I don’t know much about it yet.

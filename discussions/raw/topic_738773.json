@@ -1,7 +1,7 @@
 {
   "forumTopic": {
     "authorId": 23336356,
-    "authorThumbnailName": "23336356-kg.jpeg?t=2026-09-01-09-43-05",
+    "authorThumbnailName": "23336356-kg.jpg?t=2026-09-29-15-06-25",
     "authorUserDisplayName": "nusrati",
     "authorUserName": "nusrati",
     "comments": [
@@ -26,7 +26,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -75,7 +75,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -113,7 +113,7 @@
       "parent": {},
       "author": {
         "displayName": "nusrati",
-        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
         "url": "/nusrati",
         "tier": "CONTRIBUTOR",
         "id": 23336356,
@@ -126,13 +126,13 @@
         "totalUpvotes": 4
       },
       "kernelVersion": 0,
-      "competitionRanking": 738,
+      "competitionRanking": 323,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
         "teamLeader": {
           "displayName": "nusrati",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
           "url": "/nusrati",
           "userName": "nusrati",
           "tier": "CONTRIBUTOR",

@@ -10,6 +10,49 @@
         "postDate": "2026-09-21T20:24:20.360Z",
         "rawMarkdown": "im 0.95 so im below the threshold, (0.958 soon maybe), but I think that you cant just be lazy and improve one thing you have to improve all parts and a guy who was like 0.969 told me this as well \ud83d\udc4d",
         "content": "<p>im 0.95 so im below the threshold, (0.958 soon maybe), but I think that you cant just be lazy and improve one thing you have to improve all parts and a guy who was like 0.969 told me this as well \ud83d\udc4d</p>",
+        "replies": [
+          {
+            "id": 3526816,
+            "postDate": "2026-09-22T11:30:19.927Z",
+            "rawMarkdown": "Thanks, that matches what I am seeing. Changing one knob at a time on this stack only ever lost for me. Could you say which part moved you first from 0.947 to 0.95, the detector, the linking, or the post-processing? Even a rough answer would help me decide where to spend the last week.",
+            "content": "<p>Thanks, that matches what I am seeing. Changing one knob at a time on this stack only ever lost for me. Could you say which part moved you first from 0.947 to 0.95, the detector, the linking, or the post-processing? Even a rough answer would help me decide where to spend the last week.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Justin CH123",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/justinch123",
+              "tier": "CONTRIBUTOR",
+              "id": 22436878,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 486,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Justin CH123",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/justinch123",
+                "userName": "justinch123",
+                "tier": "CONTRIBUTOR",
+                "id": 22436878,
+                "profileUrl": "/justinch123",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 22436878,
+                "progressionOptOut": false
+              },
+              "intro": "Bringing a dedicated 8\u00d7H100-class GPU node for the final week plus a validator harness on all 199 training videos. Looking for a team at 0.950 or higher that needs compute."
+            }
+          }
+        ],
         "parent": {},
         "author": {
           "displayName": "OmerZalman",
@@ -21,10 +64,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "canUpvote": true
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 125,
+        "competitionRanking": 1068,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -48,6 +93,47 @@
         "postDate": "2026-09-21T18:52:06.420Z",
         "rawMarkdown": "I\u2019ve had a similar experience investigating the 0.947 pipelines. I haven\u2019t found a reliable improvement to the division errors either.\nIn the cases I traced, the problem wasn\u2019t confined to one stage: some correct mother\u2013daughter links were missing before ILP, some were removed during selection, and subsequent relinking or validation could prevent recovery. My attempts to change the association logic have not produced a dependable gain.\n\nThe base U-Net seems fairly strong at locating cells in the annotated cases I examined. Identifying which cells belong together over time is much less straightforward. Results that looked promising with GT-centred candidates deteriorated substantially when using actual detector outputs. Crowded neighbourhoods seem particularly difficult, although I can\u2019t attribute the entire gap to density.\nI also trained an auxiliary density/localization model, but its encouraging controlled results did not translate into a reliable improvement in the working pipeline.\n\nHave you spent much time watching the raw videos? I find this a fascinating challenge because, even as a human, I often struggle to follow individual cells through those crowded regions. It leaves me wondering how much of the remaining problem is association logic, how much is visual information we haven\u2019t learned to extract, and how much is ambiguity in the recordings themselves.\n\nI\u2019d also be very interested to hear whether gains above this plateau came mainly from detection or linking.",
         "content": "<p>I\u2019ve had a similar experience investigating the 0.947 pipelines. I haven\u2019t found a reliable improvement to the division errors either.\nIn the cases I traced, the problem wasn\u2019t confined to one stage: some correct mother\u2013daughter links were missing before ILP, some were removed during selection, and subsequent relinking or validation could prevent recovery. My attempts to change the association logic have not produced a dependable gain.</p>\n<p>The base U-Net seems fairly strong at locating cells in the annotated cases I examined. Identifying which cells belong together over time is much less straightforward. Results that looked promising with GT-centred candidates deteriorated substantially when using actual detector outputs. Crowded neighbourhoods seem particularly difficult, although I can\u2019t attribute the entire gap to density.\nI also trained an auxiliary density/localization model, but its encouraging controlled results did not translate into a reliable improvement in the working pipeline.</p>\n<p>Have you spent much time watching the raw videos? I find this a fascinating challenge because, even as a human, I often struggle to follow individual cells through those crowded regions. It leaves me wondering how much of the remaining problem is association logic, how much is visual information we haven\u2019t learned to extract, and how much is ambiguity in the recordings themselves.</p>\n<p>I\u2019d also be very interested to hear whether gains above this plateau came mainly from detection or linking.</p>",
+        "replies": [
+          {
+            "id": 3526818,
+            "postDate": "2026-09-22T11:31:54.900Z",
+            "rawMarkdown": "Thanks for the detailed trace, it is very close to what I found. On divisions, in the public post-processing the mother to daughter links are added back after the Hungarian relink by the safe-division step, so a miss can come from the candidates, the relink, or that repair. When you traced them, roughly what share was missing before the ILP versus removed later? I have not spent much time watching the raw videos, but your point about crowded regions makes me think I should.",
+            "content": "<p>Thanks for the detailed trace, it is very close to what I found. On divisions, in the public post-processing the mother to daughter links are added back after the Hungarian relink by the safe-division step, so a miss can come from the candidates, the relink, or that repair. When you traced them, roughly what share was missing before the ILP versus removed later? I have not spent much time watching the raw videos, but your point about crowded regions makes me think I should.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Justin CH123",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/justinch123",
+              "tier": "CONTRIBUTOR",
+              "id": 22436878,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 486,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "enabled": true,
+              "teamLeader": {
+                "displayName": "Justin CH123",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/justinch123",
+                "userName": "justinch123",
+                "tier": "CONTRIBUTOR",
+                "id": 22436878,
+                "profileUrl": "/justinch123",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 22436878,
+                "progressionOptOut": false
+              },
+              "intro": "Bringing a dedicated 8\u00d7H100-class GPU node for the final week plus a validator harness on all 199 training videos. Looking for a team at 0.950 or higher that needs compute."
+            }
+          }
+        ],
         "parent": {},
         "author": {
           "displayName": "OpPrime",
@@ -59,10 +145,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "canUpvote": true
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 372,
+        "competitionRanking": 618,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -80,6 +168,378 @@
           },
           "intro": ""
         }
+      },
+      {
+        "id": 3528912,
+        "postDate": "2026-09-26T20:15:54.697Z",
+        "rawMarkdown": "hey how did you get that jump. would be grateful for the guide!",
+        "content": "<p>hey how did you get that jump. would be grateful for the guide!</p>",
+        "parent": {},
+        "author": {
+          "displayName": "nusrati",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
+          "url": "/nusrati",
+          "tier": "CONTRIBUTOR",
+          "id": 23336356,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 323,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "nusrati",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
+            "url": "/nusrati",
+            "userName": "nusrati",
+            "tier": "CONTRIBUTOR",
+            "id": 23336356,
+            "profileUrl": "/nusrati",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 23336356,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3527305,
+        "postDate": "2026-09-23T13:00:06.037Z",
+        "rawMarkdown": "I think public notebooks are somewhat useful for reference, but their approaches are overengineered. This ends up lowering the ceiling for further improvement, and the implementations are not polished enough.",
+        "content": "<p>I think public notebooks are somewhat useful for reference, but their approaches are overengineered. This ends up lowering the ceiling for further improvement, and the implementations are not polished enough.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "You WeiLin",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/ltcsmokeboi",
+          "tier": "CONTRIBUTOR",
+          "id": 20398199,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 369,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "You WeiLin",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/ltcsmokeboi",
+            "userName": "ltcsmokeboi",
+            "tier": "CONTRIBUTOR",
+            "id": 20398199,
+            "profileUrl": "/ltcsmokeboi",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 20398199,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3527035,
+        "postDate": "2026-09-22T20:17:42.160Z",
+        "rawMarkdown": "I was stuck at 0.947 for a month.\n \nI think it's important to look beyond what you're currently doing.\n \nAnd if you dont have GPU, it's really hard to improve.",
+        "content": "<p>I was stuck at 0.947 for a month.</p>\n<p>I think it's important to look beyond what you're currently doing.</p>\n<p>And if you dont have GPU, it's really hard to improve.</p>",
+        "replies": [
+          {
+            "id": 3527037,
+            "postDate": "2026-09-22T20:22:36.490Z",
+            "rawMarkdown": "and I also use public notes, but based my local cv I feel that PB overfitting risk is really high.",
+            "content": "<p>and I also use public notes, but based my local cv I feel that PB overfitting risk is really high.</p>",
+            "replies": [
+              {
+                "id": 3527081,
+                "postDate": "2026-09-22T22:49:35.063Z",
+                "rawMarkdown": "did you retrain the detector ?",
+                "content": "<p>did you retrain the detector ?</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Gourav Roy",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2215261-fb.jpg",
+                  "url": "/themechanicalcoder",
+                  "tier": "CONTRIBUTOR",
+                  "id": 2215261,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 540,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Rishabh Roy",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/217906-kg.jpg",
+                    "url": "/rishabhr0y",
+                    "userName": "rishabhr0y",
+                    "tier": "EXPERT",
+                    "id": 217906,
+                    "profileUrl": "/rishabhr0y",
+                    "performanceTier": "EXPERT",
+                    "userId": 217906,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3527097,
+                "postDate": "2026-09-23T00:12:36.163Z",
+                "rawMarkdown": "No, I have not retrained the detector, only post-processing changes so far. Did you retrain, and did it actually move your board score? Also, do you know roughly what your division Jaccard is? Mine is about 0.23 on held-out train videos and I now suspect that is where my gap is, not the edge term.",
+                "content": "<p>No, I have not retrained the detector, only post-processing changes so far. Did you retrain, and did it actually move your board score? Also, do you know roughly what your division Jaccard is? Mine is about 0.23 on held-out train videos and I now suspect that is where my gap is, not the edge term.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Justin CH123",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/justinch123",
+                  "tier": "CONTRIBUTOR",
+                  "id": 22436878,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 486,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Justin CH123",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                    "url": "/justinch123",
+                    "userName": "justinch123",
+                    "tier": "CONTRIBUTOR",
+                    "id": 22436878,
+                    "profileUrl": "/justinch123",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 22436878,
+                    "progressionOptOut": false
+                  },
+                  "intro": "Bringing a dedicated 8\u00d7H100-class GPU node for the final week plus a validator harness on all 199 training videos. Looking for a team at 0.950 or higher that needs compute."
+                }
+              },
+              {
+                "id": 3527099,
+                "postDate": "2026-09-23T00:13:29.957Z",
+                "rawMarkdown": "Thanks, that is useful to hear from someone who got past it. Two questions if you are willing. When you moved off 0.947, was it the edge term or the division term that improved? And when your local CV suggested high private overfitting risk, was it the division part diverging from the board or the edge part? I ask because my division Jaccard is only about 0.23 on held-out train videos while my edge term looks fine, so I am trying to decide where to spend the last week.",
+                "content": "<p>Thanks, that is useful to hear from someone who got past it. Two questions if you are willing. When you moved off 0.947, was it the edge term or the division term that improved? And when your local CV suggested high private overfitting risk, was it the division part diverging from the board or the edge part? I ask because my division Jaccard is only about 0.23 on held-out train videos while my edge term looks fine, so I am trying to decide where to spend the last week.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Justin CH123",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/justinch123",
+                  "tier": "CONTRIBUTOR",
+                  "id": 22436878,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 486,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Justin CH123",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                    "url": "/justinch123",
+                    "userName": "justinch123",
+                    "tier": "CONTRIBUTOR",
+                    "id": 22436878,
+                    "profileUrl": "/justinch123",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 22436878,
+                    "progressionOptOut": false
+                  },
+                  "intro": "Bringing a dedicated 8\u00d7H100-class GPU node for the final week plus a validator harness on all 199 training videos. Looking for a team at 0.950 or higher that needs compute."
+                }
+              },
+              {
+                "id": 3527160,
+                "postDate": "2026-09-23T04:02:52.477Z",
+                "rawMarkdown": ">did you retrain the detector ?\n \nyes i did it, but not all of the LB gain from the retrain.\n \n \n \n@justinch123 \nTo answer your questions:\n \n\u30fbedge vs. division: because LB only gives a single total score, I honestly don't know which term pushed me past 0.947.\n \n\u30fboverfitting risk: some changes gave big local boosts but barely moved the board. I still don't know the exact reason yet.\n \n\u30fbdivision Jaccard: in my opinion,  I wouldn't assume 0.23 means division is your main bottleneck. one thing that really helped me was checking whether local gains are spread across all videos or just driven by 1\u20132 outlier cases.\n \nHope that helps!",
+                "content": "<blockquote>\n  <p>did you retrain the detector ?</p>\n</blockquote>\n<p>yes i did it, but not all of the LB gain from the retrain.</p>\n<p><a href=\"/justinch123\" target=\"_blank\">@justinch123</a> \nTo answer your questions:</p>\n<p>\u30fbedge vs. division: because LB only gives a single total score, I honestly don't know which term pushed me past 0.947.</p>\n<p>\u30fboverfitting risk: some changes gave big local boosts but barely moved the board. I still don't know the exact reason yet.</p>\n<p>\u30fbdivision Jaccard: in my opinion,  I wouldn't assume 0.23 means division is your main bottleneck. one thing that really helped me was checking whether local gains are spread across all videos or just driven by 1\u20132 outlier cases.</p>\n<p>Hope that helps!</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Civitasmass",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+                  "url": "/godhand",
+                  "tier": "EXPERT",
+                  "id": 992596,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 177,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Civitasmass",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+                    "url": "/godhand",
+                    "userName": "godhand",
+                    "tier": "EXPERT",
+                    "id": 992596,
+                    "profileUrl": "/godhand",
+                    "performanceTier": "EXPERT",
+                    "userId": 992596,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              },
+              {
+                "id": 3527181,
+                "postDate": "2026-09-23T05:13:16.137Z",
+                "rawMarkdown": "Thanks, that per-video check is a great tip. Two follow-ups if you don't mind: of the gain that didn't come from the retrain, was it mostly on the detection side, like where cell centres land, or on the linking side? And when you check whether a gain is spread across videos, what bar do you use before trusting it, something like \"most videos improve\"?",
+                "content": "<p>Thanks, that per-video check is a great tip. Two follow-ups if you don't mind: of the gain that didn't come from the retrain, was it mostly on the detection side, like where cell centres land, or on the linking side? And when you check whether a gain is spread across videos, what bar do you use before trusting it, something like \"most videos improve\"?</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Justin CH123",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                  "url": "/justinch123",
+                  "tier": "CONTRIBUTOR",
+                  "id": 22436878,
+                  "progressionOptOut": false
+                },
+                "authorType": "TOPIC",
+                "votes": {
+                  "canUpvote": true
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 486,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "isCollapsed": true,
+                "teamUpInfo": {
+                  "enabled": true,
+                  "teamLeader": {
+                    "displayName": "Justin CH123",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                    "url": "/justinch123",
+                    "userName": "justinch123",
+                    "tier": "CONTRIBUTOR",
+                    "id": 22436878,
+                    "profileUrl": "/justinch123",
+                    "performanceTier": "CONTRIBUTOR",
+                    "userId": 22436878,
+                    "progressionOptOut": false
+                  },
+                  "intro": "Bringing a dedicated 8\u00d7H100-class GPU node for the final week plus a validator harness on all 199 training videos. Looking for a team at 0.950 or higher that needs compute."
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "Civitasmass",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+              "url": "/godhand",
+              "tier": "EXPERT",
+              "id": 992596,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 177,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Civitasmass",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+                "url": "/godhand",
+                "userName": "godhand",
+                "tier": "EXPERT",
+                "id": 992596,
+                "profileUrl": "/godhand",
+                "performanceTier": "EXPERT",
+                "userId": 992596,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Civitasmass",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+          "url": "/godhand",
+          "tier": "EXPERT",
+          "id": 992596,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 177,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Civitasmass",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+            "url": "/godhand",
+            "userName": "godhand",
+            "tier": "EXPERT",
+            "id": 992596,
+            "profileUrl": "/godhand",
+            "performanceTier": "EXPERT",
+            "userId": 992596,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3527268,
+        "postDate": "2026-09-23T10:19:09.893Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
       }
     ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -99,12 +559,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 1,
+        "totalVotes": 5,
         "canUpvote": true,
-        "totalUpvotes": 1
+        "totalUpvotes": 5
       },
       "kernelVersion": 0,
-      "competitionRanking": 494,
+      "competitionRanking": 486,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -132,9 +592,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-21T03:39:55.992547600Z",
-    "totalVotes": 1,
+    "totalVotes": 5,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/742266",
-    "totalMessages": 2,
+    "totalMessages": 14,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

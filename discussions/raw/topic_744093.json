@@ -1,0 +1,75 @@
+{
+  "forumTopic": {
+    "authorId": 36060323,
+    "authorThumbnailName": "36060323-kg.jpg?t=2026-09-18-09-27-58",
+    "authorUserDisplayName": "Hammad Farooq",
+    "authorUserName": "malikhammadfarooq",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3529614,
+      "postDate": "2026-09-28T16:29:09.220Z",
+      "rawMarkdown": "A short warning, because this one cost us a submission slot and it looks like a free win.\n\nThe idea: the reference metric in royerlab/kaggle-cell-tracking-competition casts z, y, x to Float64 (csv_to_geffs.build_graph_from_rows). Most of the strong public pipelines now refine centres to sub-voxel precision with a coordinate head, then throw that away with int(round(...)) at the final write. With z at 1.625 \u00b5m per voxel, writing the float centroid looks like it should help.\n\nWhat we did: we took one of our 0.954 submissions and changed exactly one thing - node coordinates written as round(v, 3) instead of int(round(v)). Same node ids, same edges, same t, byte-identical graph. Before submitting we checked that rounding the float output reproduces the int submission for 99.95% of nodes (the rest are .5 ties).\n\nResult on the public LB:\nint coordinates: 0.954\nfloat coordinates (3 dp): 0.946\n\nIt scored normally (no scoring error) and lost 0.008.\n\nOur best guess: the Kaggle-side scorer does not treat non-integer input the way the GitHub reference suggests. If it floors / truncates instead of rounding, every centre moves by about -0.5 voxel on average (~0.8 \u00b5m in z), which plausibly costs this much on borderline matches. We have not confirmed the mechanism - a clarification from the hosts would be welcome.\n\nTakeaway: keep int(round(...)) on the final write, even if your coordinates are refined upstream. The sample submission uses ints for a reason.\n\nHope this saves someone a slot in the last days. Good luck everyone!",
+      "content": "<p>A short warning, because this one cost us a submission slot and it looks like a free win.</p>\n<p>The idea: the reference metric in royerlab/kaggle-cell-tracking-competition casts z, y, x to Float64 (csv_to_geffs.build_graph_from_rows). Most of the strong public pipelines now refine centres to sub-voxel precision with a coordinate head, then throw that away with int(round(\u2026)) at the final write. With z at 1.625 \u00b5m per voxel, writing the float centroid looks like it should help.</p>\n<p>What we did: we took one of our 0.954 submissions and changed exactly one thing - node coordinates written as round(v, 3) instead of int(round(v)). Same node ids, same edges, same t, byte-identical graph. Before submitting we checked that rounding the float output reproduces the int submission for 99.95% of nodes (the rest are .5 ties).</p>\n<p>Result on the public LB:\nint coordinates: 0.954\nfloat coordinates (3 dp): 0.946</p>\n<p>It scored normally (no scoring error) and lost 0.008.</p>\n<p>Our best guess: the Kaggle-side scorer does not treat non-integer input the way the GitHub reference suggests. If it floors / truncates instead of rounding, every centre moves by about -0.5 voxel on average (~0.8 \u00b5m in z), which plausibly costs this much on borderline matches. We have not confirmed the mechanism - a clarification from the hosts would be welcome.</p>\n<p>Takeaway: keep int(round(\u2026)) on the final write, even if your coordinates are refined upstream. The sample submission uses ints for a reason.</p>\n<p>Hope this saves someone a slot in the last days. Good luck everyone!</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Hammad Farooq",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36060323-kg.jpg?t=2026-09-18-09-27-58",
+        "url": "/malikhammadfarooq",
+        "tier": "CONTRIBUTOR",
+        "id": 36060323,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 8,
+        "canUpvote": true,
+        "totalUpvotes": 8
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 213,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+        {
+          "emoji": "THANK_YOU",
+          "featuredUserNames": [
+            "playwithme",
+            "yunusgmsoy",
+            "josluizlunaxavier",
+            "baytree1238",
+            "songhow",
+            "minghaomei"
+          ],
+          "userCount": 6
+        }
+      ],
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "KR_no_1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/krno1legend",
+          "userName": "krno1legend",
+          "tier": "CONTRIBUTOR",
+          "id": 33387087,
+          "profileUrl": "/krno1legend",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 33387087,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3529614,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744093,
+    "name": "\u26a0\ufe0f Don't write float centroids - same graph, 0.954 \u2192 0.946 on the public LB",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-28T16:29:09.221666500Z",
+    "totalVotes": 8,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744093",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

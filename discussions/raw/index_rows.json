@@ -3,8 +3,8 @@
     "id": 738833,
     "title": "Cell Tracking In-Person Workshop",
     "author": "Jord\u00e3o Bragantini",
-    "votes": 10,
-    "comments": 3,
+    "votes": 13,
+    "comments": 5,
     "posted": "2026-09-01",
     "pinned": true,
     "file": "738833-cell-tracking-in-person-workshop.md",
@@ -33,15 +33,345 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/716062"
   },
   {
+    "id": 744484,
+    "title": "3rd Place Solution",
+    "author": "yu4u",
+    "votes": 74,
+    "comments": 7,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744484-3rd-place-solution.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744484"
+  },
+  {
+    "id": 744357,
+    "title": "Farewell and Thanks to the Kaggle community!",
+    "author": "nusrati",
+    "votes": 15,
+    "comments": 1,
+    "posted": "2026-09-29",
+    "pinned": false,
+    "file": "744357-farewell-and-thanks-to-the-kaggle-community.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744357"
+  },
+  {
+    "id": 744486,
+    "title": "14th place solution from Vibes&Edges Trade-Off",
+    "author": "Tom",
+    "votes": 10,
+    "comments": 2,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744486-14th-place-solution-from-vibes-edges-trade-off.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744486"
+  },
+  {
+    "id": 744531,
+    "title": "18th Place Solution: Lineage Graph Refinement Focused on Cell Divisions  ",
+    "author": "ymg_aq",
+    "votes": 10,
+    "comments": 1,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744531-18th-place-solution-lineage-graph-refinement-focused-on-cell.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744531"
+  },
+  {
+    "id": 744549,
+    "title": "5th Place: 3D U-Net + Transformer Linker + Multi-stage ILP Tracking",
+    "author": "Tang",
+    "votes": 10,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744549-5th-place-3d-u-net-transformer-linker-multi-stage-ilp-tracki.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744549"
+  },
+  {
+    "id": 744501,
+    "title": "12th Place Solution",
+    "author": "Corwin",
+    "votes": 9,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744501-12th-place-solution.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744501"
+  },
+  {
+    "id": 744273,
+    "title": "What's the probability we'll witness a massive shakeup?",
+    "author": "sghwr",
+    "votes": 4,
+    "comments": 7,
+    "posted": "2026-09-29",
+    "pinned": false,
+    "file": "744273-what-s-the-probability-we-ll-witness-a-massive-shakeup.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744273"
+  },
+  {
+    "id": 744093,
+    "title": "\u26a0\ufe0f Don't write float centroids - same graph, 0.954 \u2192 0.946 on the public LB",
+    "author": "Hammad Farooq",
+    "votes": 8,
+    "comments": 0,
+    "posted": "2026-09-28",
+    "pinned": false,
+    "file": "744093-don-t-write-float-centroids-same-graph-0-954-0-946-on-the-pu.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744093"
+  },
+  {
+    "id": 744491,
+    "title": "Paired-Orphan Division Rescue for 3D Embryonic Cell Tracking",
+    "author": "zephyr",
+    "votes": 3,
+    "comments": 1,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744491-paired-orphan-division-rescue-for-3d-embryonic-cell-tracking.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744491"
+  },
+  {
+    "id": 743929,
+    "title": "Public 0.953 to 0.959 in two days: using the board as the instrument, and the re-run time as build time",
+    "author": "John Taylor (AI)",
+    "votes": 0,
+    "comments": 6,
+    "posted": "2026-09-27",
+    "pinned": false,
+    "file": "743929-public-0-953-to-0-959-in-two-days-using-the-board-as-the-ins.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/743929"
+  },
+  {
+    "id": 744562,
+    "title": "213th Place: Two Coordinate Heads, One Better Step",
+    "author": "Hammad Farooq",
+    "votes": 0,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744562-213th-place-two-coordinate-heads-one-better-step.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744562"
+  },
+  {
+    "id": 744548,
+    "title": "Public 0.948 \u2192 private 0.924: a retrained V1284 head, and why the public board pointed the wrong way",
+    "author": "Korokke3",
+    "votes": 1,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744548-public-0-948-private-0-924-a-retrained-v1284-head-and-why-th.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744548"
+  },
+  {
+    "id": 744278,
+    "title": "If it were possible to allow new entrants join ...and entering ",
+    "author": "Redwan Ahmed Apon",
+    "votes": 0,
+    "comments": 2,
+    "posted": "2026-09-29",
+    "pinned": false,
+    "file": "744278-if-it-were-possible-to-allow-new-entrants-join-and-entering.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744278"
+  },
+  {
+    "id": 744512,
+    "title": "288th / 4,020 (top 7%): what 22 leaderboard probes taught us about this metric",
+    "author": "Santanu Banerjee",
+    "votes": 0,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744512-288th-4-020-top-7-what-22-leaderboard-probes-taught-us-about.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744512"
+  },
+  {
+    "id": 744507,
+    "title": "303rd / Bronze: Sub-voxel localization + a learned coordinate head",
+    "author": "Eesh saxena",
+    "votes": 0,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744507-303rd-bronze-sub-voxel-localization-a-learned-coordinate-hea.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744507"
+  },
+  {
+    "id": 744506,
+    "title": "303rd / Bronze writeup: sub-voxel localization, a learned coordinate head, and a lot of dead ends",
+    "author": "Eesh saxena",
+    "votes": 0,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744506-303rd-bronze-writeup-sub-voxel-localization-a-learned-coordi.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744506"
+  },
+  {
+    "id": 744498,
+    "title": "The 0.953 stack's \"private\" V1284 head was reproducible from the notebook itself",
+    "author": "Nikolce ",
+    "votes": 0,
+    "comments": 1,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744498-the-0-953-stack-s-private-v1284-head-was-reproducible-from-t.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744498"
+  },
+  {
+    "id": 744250,
+    "title": "Time of publishing private results",
+    "author": "kostopr4v",
+    "votes": 0,
+    "comments": 4,
+    "posted": "2026-09-29",
+    "pinned": false,
+    "file": "744250-time-of-publishing-private-results.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744250"
+  },
+  {
+    "id": 744499,
+    "title": " Final selection for Biohub \u2013 Track Your Cells \u2014 question about tie-breaking",
+    "author": "zhuzhenghao-max",
+    "votes": 0,
+    "comments": 1,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744499-final-selection-for-biohub-track-your-cells-question-about-t.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744499"
+  },
+  {
+    "id": 744490,
+    "title": "89th place: division reselection transferred to Private, our Public-picked chass",
+    "author": "Takahiro Katsumata M.D.",
+    "votes": 1,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744490-89th-place-division-reselection-transferred-to-private-our-p.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744490"
+  },
+  {
+    "id": 744485,
+    "title": "From-scratch 2.5D ConvNeXt detector + ILP tracker \u2014 Private 0.939",
+    "author": "hjyact",
+    "votes": 0,
+    "comments": 0,
+    "posted": "2026-09-30",
+    "pinned": false,
+    "file": "744485-from-scratch-2-5d-convnext-detector-ilp-tracker-private-0-93.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/744485"
+  },
+  {
+    "id": 743006,
+    "title": "Beginner question: How do Public/Private splits usually work in biological datasets?",
+    "author": "Rishavendra Sharma",
+    "votes": 3,
+    "comments": 5,
+    "posted": "2026-09-24",
+    "pinned": false,
+    "file": "743006-beginner-question-how-do-public-private-splits-usually-work.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/743006"
+  },
+  {
+    "id": 742942,
+    "title": "errors in annotated ground truth",
+    "author": "Quantizr",
+    "votes": 7,
+    "comments": 6,
+    "posted": "2026-09-24",
+    "pinned": false,
+    "file": "742942-errors-in-annotated-ground-truth.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742942"
+  },
+  {
+    "id": 742266,
+    "title": "Stuck at 0.947 after ten board tests. What I measured, and one question about the relink stage ",
+    "author": "Justin CH123",
+    "votes": 5,
+    "comments": 14,
+    "posted": "2026-09-21",
+    "pinned": false,
+    "file": "742266-stuck-at-0-947-after-ten-board-tests-what-i-measured-and-one.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742266"
+  },
+  {
+    "id": 742169,
+    "title": "A few question for top 100 people?",
+    "author": "OmerZalman",
+    "votes": 3,
+    "comments": 6,
+    "posted": "2026-09-20",
+    "pinned": false,
+    "file": "742169-a-few-question-for-top-100-people.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742169"
+  },
+  {
+    "id": 742777,
+    "title": "Luxar from biohub : 3D Gaussian Splats of Embyro Cells",
+    "author": "hengck23",
+    "votes": 12,
+    "comments": 0,
+    "posted": "2026-09-23",
+    "pinned": false,
+    "file": "742777-luxar-from-biohub-3d-gaussian-splats-of-embyro-cells.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742777"
+  },
+  {
+    "id": 743765,
+    "title": "Question for host",
+    "author": "OmerZalman",
+    "votes": 1,
+    "comments": 1,
+    "posted": "2026-09-26",
+    "pinned": false,
+    "file": "743765-question-for-host.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/743765"
+  },
+  {
+    "id": 743222,
+    "title": "Eight leaderboard experiments on the public 0.947 stack \u2014 all negative, here are the numbers",
+    "author": "imissher",
+    "votes": 1,
+    "comments": 0,
+    "posted": "2026-09-25",
+    "pinned": false,
+    "file": "743222-eight-leaderboard-experiments-on-the-public-0-947-stack-all.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/743222"
+  },
+  {
+    "id": 743146,
+    "title": "Winner deliverables when using permitted third-party pretrained weights",
+    "author": "SamoraDC",
+    "votes": -1,
+    "comments": 0,
+    "posted": "2026-09-25",
+    "pinned": false,
+    "file": "743146-winner-deliverables-when-using-permitted-third-party-pretrai.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/743146"
+  },
+  {
     "id": 741868,
     "title": "Agents collaborate with Humans - Dashboards are key!",
     "author": "Chris Deotte",
-    "votes": 18,
+    "votes": 21,
     "comments": 7,
     "posted": "2026-09-17",
     "pinned": false,
     "file": "741868-agents-collaborate-with-humans-dashboards-are-key.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741868"
+  },
+  {
+    "id": 742702,
+    "title": "whats the difference between today and the september 29 deadline",
+    "author": "thisArmin",
+    "votes": 0,
+    "comments": 1,
+    "posted": "2026-09-23",
+    "pinned": false,
+    "file": "742702-whats-the-difference-between-today-and-the-september-29-dead.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742702"
   },
   {
     "id": 742325,
@@ -55,21 +385,21 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742325"
   },
   {
-    "id": 742169,
-    "title": "A few question for top 100 people?",
-    "author": "OmerZalman",
-    "votes": 3,
-    "comments": 3,
-    "posted": "2026-09-20",
+    "id": 742794,
+    "title": "New to Biohub? Fork this CPU cell-tracking baseline + validation toolkit",
+    "author": "Yang Kuang Ou",
+    "votes": -2,
+    "comments": 0,
+    "posted": "2026-09-23",
     "pinned": false,
-    "file": "742169-a-few-question-for-top-100-people.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742169"
+    "file": "742794-new-to-biohub-fork-this-cpu-cell-tracking-baseline-validatio.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742794"
   },
   {
     "id": 741651,
     "title": "I foresee some shakeup.",
     "author": "Vaibhav Nakrani",
-    "votes": 4,
+    "votes": 5,
     "comments": 2,
     "posted": "2026-09-16",
     "pinned": false,
@@ -77,26 +407,48 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741651"
   },
   {
-    "id": 742266,
-    "title": "Stuck at 0.947 after ten board tests. What I measured, and one question about the relink stage ",
-    "author": "Justin CH123",
-    "votes": 1,
-    "comments": 2,
-    "posted": "2026-09-21",
+    "id": 742456,
+    "title": "unable to uplift my score from 0.947 anymore",
+    "author": "Developer kgf",
+    "votes": 0,
+    "comments": 0,
+    "posted": "2026-09-22",
     "pinned": false,
-    "file": "742266-stuck-at-0-947-after-ten-board-tests-what-i-measured-and-one.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742266"
+    "file": "742456-unable-to-uplift-my-score-from-0-947-anymore.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742456"
   },
   {
     "id": 742131,
     "title": "Any ideas or successful approaches for model blending?",
     "author": "sghwr",
-    "votes": 2,
+    "votes": 3,
     "comments": 1,
     "posted": "2026-09-20",
     "pinned": false,
     "file": "742131-any-ideas-or-successful-approaches-for-model-blending.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742131"
+  },
+  {
+    "id": 741386,
+    "title": "A few questions about external zebrafish data",
+    "author": "Masha Mikhisor",
+    "votes": 4,
+    "comments": 4,
+    "posted": "2026-09-14",
+    "pinned": false,
+    "file": "741386-a-few-questions-about-external-zebrafish-data.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741386"
+  },
+  {
+    "id": 742064,
+    "title": " Public 0.947-stack weights were trained on all 199 train videos \u2014 any hold-out from train is in-sample (manifest check + an LB counter-example)",
+    "author": "Eric",
+    "votes": 3,
+    "comments": 0,
+    "posted": "2026-09-19",
+    "pinned": false,
+    "file": "742064-public-0-947-stack-weights-were-trained-on-all-199-train-vid.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742064"
   },
   {
     "id": 741749,
@@ -110,21 +462,10 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741749"
   },
   {
-    "id": 742064,
-    "title": " Public 0.947-stack weights were trained on all 199 train videos \u2014 any hold-out from train is in-sample (manifest check + an LB counter-example)",
-    "author": "Eric",
-    "votes": 2,
-    "comments": 0,
-    "posted": "2026-09-19",
-    "pinned": false,
-    "file": "742064-public-0-947-stack-weights-were-trained-on-all-199-train-vid.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/742064"
-  },
-  {
     "id": 738217,
     "title": "focus3d : one of the best 3d cell segmentation",
     "author": "hengck23",
-    "votes": 38,
+    "votes": 40,
     "comments": 50,
     "posted": "2026-08-30",
     "pinned": false,
@@ -132,21 +473,10 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/738217"
   },
   {
-    "id": 741386,
-    "title": "A few questions about external zebrafish data",
-    "author": "Masha Mikhisor",
-    "votes": 3,
-    "comments": 3,
-    "posted": "2026-09-14",
-    "pinned": false,
-    "file": "741386-a-few-questions-about-external-zebrafish-data.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741386"
-  },
-  {
     "id": 740145,
     "title": "magic or overfitting?",
     "author": "hengck23",
-    "votes": 13,
+    "votes": 14,
     "comments": 12,
     "posted": "2026-09-08",
     "pinned": false,
@@ -168,12 +498,23 @@
     "id": 741242,
     "title": "Saving ~75 min in the dual-seed + HOCT veto pipeline (same output, less HOCT deadline risk)",
     "author": "Hammad Farooq",
-    "votes": 1,
+    "votes": 0,
     "comments": 0,
     "posted": "2026-09-14",
     "pinned": false,
     "file": "741242-saving-75-min-in-the-dual-seed-hoct-veto-pipeline-same-outpu.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/741242"
+  },
+  {
+    "id": 732103,
+    "title": "[Free Dataset] 18.5 GB of fully-labelled synthetic 3D microscopy \u2014 165k labelled divisions",
+    "author": "Jos\u00e9 Freitas",
+    "votes": 65,
+    "comments": 25,
+    "posted": "2026-08-01",
+    "pinned": false,
+    "file": "732103-free-dataset-18-5-gb-of-fully-labelled-synthetic-3d-microsco.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/732103"
   },
   {
     "id": 739731,
@@ -190,7 +531,7 @@
     "id": 739915,
     "title": "Why train Unet for more than 100 epochs? Doesn't that lead to overfitting? ",
     "author": "Mark",
-    "votes": 8,
+    "votes": 9,
     "comments": 0,
     "posted": "2026-09-07",
     "pinned": false,
@@ -209,6 +550,17 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/740573"
   },
   {
+    "id": 739685,
+    "title": "Problems with edje connection",
+    "author": "Mark",
+    "votes": 5,
+    "comments": 7,
+    "posted": "2026-09-05",
+    "pinned": false,
+    "file": "739685-problems-with-edje-connection.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739685"
+  },
+  {
     "id": 740337,
     "title": "Not able to submit my notebook and scoring is failing ",
     "author": "Mahesh Kolekar",
@@ -220,21 +572,10 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/740337"
   },
   {
-    "id": 739685,
-    "title": "Problems with edje connection",
-    "author": "Mark",
-    "votes": 3,
-    "comments": 7,
-    "posted": "2026-09-05",
-    "pinned": false,
-    "file": "739685-problems-with-edje-connection.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739685"
-  },
-  {
     "id": 735352,
     "title": "Possible big leaderboard shakeup",
     "author": "mikelou1",
-    "votes": 9,
+    "votes": 10,
     "comments": 12,
     "posted": "2026-08-15",
     "pinned": false,
@@ -264,6 +605,17 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739686"
   },
   {
+    "id": 739352,
+    "title": "How are your local CVs like? It feels like a huge gap, atleast for me.",
+    "author": "Gunjan Haldar",
+    "votes": 4,
+    "comments": 6,
+    "posted": "2026-09-03",
+    "pinned": false,
+    "file": "739352-how-are-your-local-cvs-like-it-feels-like-a-huge-gap-atleast.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739352"
+  },
+  {
     "id": 740103,
     "title": "Post-Processing Plateau?",
     "author": "YutaOkkotsu1661",
@@ -273,17 +625,6 @@
     "pinned": false,
     "file": "740103-post-processing-plateau.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/740103"
-  },
-  {
-    "id": 739352,
-    "title": "How are your local CVs like? It feels like a huge gap, atleast for me.",
-    "author": "Gunjan Haldar",
-    "votes": 3,
-    "comments": 6,
-    "posted": "2026-09-03",
-    "pinned": false,
-    "file": "739352-how-are-your-local-cvs-like-it-feels-like-a-huge-gap-atleast.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739352"
   },
   {
     "id": 739570,
@@ -317,17 +658,6 @@
     "pinned": false,
     "file": "739278-are-all-public-notebooks-overfit.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/739278"
-  },
-  {
-    "id": 732103,
-    "title": "[Free Dataset] 18.5 GB of fully-labelled synthetic 3D microscopy \u2014 165k labelled divisions",
-    "author": "Jos\u00e9 Freitas",
-    "votes": 62,
-    "comments": 20,
-    "posted": "2026-08-01",
-    "pinned": false,
-    "file": "732103-free-dataset-18-5-gb-of-fully-labelled-synthetic-3d-microsco.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/732103"
   },
   {
     "id": 738773,
@@ -421,7 +751,7 @@
     "id": 737101,
     "title": "Stuck at 0.928",
     "author": "mikelou1",
-    "votes": 11,
+    "votes": 12,
     "comments": 5,
     "posted": "2026-08-23",
     "pinned": false,
@@ -638,17 +968,6 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/734015"
   },
   {
-    "id": 733973,
-    "title": "The linking radius is 8.4 \u00b5m, and divisions are one link in 853",
-    "author": "Luka Duvanov",
-    "votes": 1,
-    "comments": 0,
-    "posted": "2026-08-09",
-    "pinned": false,
-    "file": "733973-the-linking-radius-is-8-4-m-and-divisions-are-one-link-in-85.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/733973"
-  },
-  {
     "id": 733389,
     "title": "GEFF node coordinates alignment with Zarr image volume",
     "author": "Estee",
@@ -685,7 +1004,7 @@
     "id": 730160,
     "title": "Does CV match LB in this competition?",
     "author": "Chester Yuan",
-    "votes": 6,
+    "votes": 7,
     "comments": 5,
     "posted": "2026-07-28",
     "pinned": false,
@@ -806,7 +1125,7 @@
     "id": 729057,
     "title": "Cell Tracking Challenge dataset",
     "author": "Mikhail Kotyushev",
-    "votes": 13,
+    "votes": 14,
     "comments": 0,
     "posted": "2026-07-25",
     "pinned": false,
@@ -1100,26 +1419,26 @@
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/723696"
   },
   {
-    "id": 724323,
-    "title": "Baseline parameter tuning log, what's working and what isn't.",
-    "author": "Uthman Kareem Tunde ",
-    "votes": -1,
-    "comments": 0,
-    "posted": "2026-07-10",
-    "pinned": false,
-    "file": "724323-baseline-parameter-tuning-log-what-s-working-and-what-isn-t.md",
-    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/724323"
-  },
-  {
     "id": 723921,
     "title": "Ground truth for all 4 test clips appears to be present in the train split",
     "author": "LeeWhieldon",
-    "votes": -8,
+    "votes": -9,
     "comments": 10,
     "posted": "2026-07-08",
     "pinned": false,
     "file": "723921-ground-truth-for-all-4-test-clips-appears-to-be-present-in-t.md",
     "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/723921"
+  },
+  {
+    "id": 724323,
+    "title": "Baseline parameter tuning log, what's working and what isn't.",
+    "author": "Uthman Kareem Tunde ",
+    "votes": -2,
+    "comments": 0,
+    "posted": "2026-07-10",
+    "pinned": false,
+    "file": "724323-baseline-parameter-tuning-log-what-s-working-and-what-isn-t.md",
+    "url": "https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/discussion/724323"
   },
   {
     "id": 716952,
@@ -1224,7 +1543,7 @@
     "id": 715981,
     "title": "train_df = pd.read_csv(f\"{DATA_PATH}/train.csv\") test_df = pd.read_csv(f\"{DATA_PATH}/test.csv\") sample_sub = pd.read_csv(f\"{DATA_PATH}/sample_submission.csv\")",
     "author": "Sohil Arman",
-    "votes": -20,
+    "votes": -21,
     "comments": 0,
     "posted": "2026-06-29",
     "pinned": false,

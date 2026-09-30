@@ -21,7 +21,7 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": -2,
+          "totalVotes": -3,
           "canUpvote": true
         },
         "kernelVersion": 0,
@@ -59,12 +59,12 @@
         },
         "authorType": "COMMENT",
         "votes": {
-          "totalVotes": -1,
+          "totalVotes": -2,
           "canUpvote": true,
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 281,
+        "competitionRanking": 663,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -99,29 +99,90 @@
         },
         "authorType": "COMMENT",
         "votes": {
+          "totalVotes": -1,
           "canUpvote": true,
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 21,
+        "competitionRanking": 65,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
-            "displayName": "TWEAK",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
-            "url": "/tweakai",
-            "userName": "tweakai",
-            "tier": "EXPERT",
-            "id": 28207655,
-            "profileUrl": "/tweakai",
-            "performanceTier": "EXPERT",
-            "userId": 28207655,
+            "displayName": "Mark",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10909732-kg.png?t=2026-08-21-18-49-20",
+            "url": "/markdjadchenko",
+            "userName": "markdjadchenko",
+            "tier": "MASTER",
+            "id": 10909732,
+            "profileUrl": "/markdjadchenko",
+            "performanceTier": "MASTER",
+            "userId": 10909732,
             "progressionOptOut": false
           },
           "intro": ""
         }
+      },
+      {
+        "id": 3530005,
+        "postDate": "2026-09-29T10:51:07.207Z",
+        "rawMarkdown": "Title: Nuclear marker and intensity processing of the image volumes - September 29th, 2026.\n\nHi BioHub Team,\n\nA few precise questions about the image data, to make sure we interpret intensities correctly:\n\n1. Marker: which fluorescent reporter produces the nuclear signal in `<sample>.zarr` (array \"0\")? Public Zebrahub descriptions mention Tg(h2afva:h2afva-mCherry; mezzo:eGFP). Is the provided channel the histone H2A.F/Z\u2013mCherry signal only?\n2. Consistency: is it the same line, channel and microscope setup for every embryo (44b6, 6bba) and for the hidden test set?\n3. Intensity processing: were the volumes rescaled, normalised per frame/crop, deconvolved, fused from several views or bleach-corrected before export? In other words, is the integrated nuclear intensity expected to stay roughly proportional to histone (DNA) content over time?\n\nThanks a lot for the dataset and for your answers!",
+        "content": "<p>Title: Nuclear marker and intensity processing of the image volumes - September 29th, 2026.</p>\n<p>Hi BioHub Team,</p>\n<p>A few precise questions about the image data, to make sure we interpret intensities correctly:</p>\n<ol>\n<li>Marker: which fluorescent reporter produces the nuclear signal in <code>&lt;sample&gt;.zarr</code> (array \"0\")? Public Zebrahub descriptions mention Tg(h2afva:h2afva-mCherry; mezzo:eGFP). Is the provided channel the histone H2A.F/Z\u2013mCherry signal only?</li>\n<li>Consistency: is it the same line, channel and microscope setup for every embryo (44b6, 6bba) and for the hidden test set?</li>\n<li>Intensity processing: were the volumes rescaled, normalised per frame/crop, deconvolved, fused from several views or bleach-corrected before export? In other words, is the integrated nuclear intensity expected to stay roughly proportional to histone (DNA) content over time?</li>\n</ol>\n<p>Thanks a lot for the dataset and for your answers!</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Jos\u00e9 Luiz Luna-Xavier",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/josluizlunaxavier",
+          "tier": "CONTRIBUTOR",
+          "id": 20884731,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2674,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Jos\u00e9 Luiz Luna-Xavier",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/josluizlunaxavier",
+            "userName": "josluizlunaxavier",
+            "tier": "CONTRIBUTOR",
+            "id": 20884731,
+            "profileUrl": "/josluizlunaxavier",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 20884731,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3528966,
+        "postDate": "2026-09-27T02:37:08.370Z",
+        "rawMarkdown": "Hi hello hi",
+        "content": "<p>Hi hello hi</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Nithish Nithish",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/nithishjjj",
+          "tier": "CONTRIBUTOR",
+          "id": 36919171,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
       }
     ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -141,9 +202,9 @@
       },
       "authorType": "HOST",
       "votes": {
-        "totalVotes": 10,
+        "totalVotes": 13,
         "canUpvote": true,
-        "totalUpvotes": 10
+        "totalUpvotes": 13
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -152,19 +213,23 @@
         {
           "emoji": "YAY",
           "featuredUserNames": [
+            "apoorvada",
             "ortimusprime",
             "sersasj",
             "vinayapathak",
             "adammohammedi",
             "yunusgmsoy",
             "antonoof",
+            "melani97maheswaran",
             "swathidhanasekaran26",
             "aashutoshbhardwaj5",
+            "songhow",
+            "royboi1",
             "pavithraradhe",
             "josephadamski91",
             "oluwaseyibamigbade"
           ],
-          "userCount": 11
+          "userCount": 15
         }
       ]
     },
@@ -177,9 +242,9 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-01T21:31:36.602074500Z",
-    "totalVotes": 10,
+    "totalVotes": 13,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/738833",
-    "totalMessages": 3,
+    "totalMessages": 5,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

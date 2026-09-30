@@ -26,7 +26,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 1405,
+        "competitionRanking": 1754,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -63,7 +63,7 @@
         "parent": {},
         "author": {
           "displayName": "OzanM.",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.jpeg?t=2026-09-18-21-38-28",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-09-26-11-09-50",
           "url": "/analyticaobscura",
           "tier": "GRANDMASTER",
           "id": 25787455,
@@ -74,13 +74,13 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 44,
+        "competitionRanking": 47,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "OzanM.",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.jpeg?t=2026-09-18-21-38-28",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/25787455-kg.png?t=2026-09-26-11-09-50",
             "url": "/analyticaobscura",
             "userName": "analyticaobscura",
             "tier": "GRANDMASTER",
@@ -155,7 +155,7 @@
         "canUpvote": true
       },
       "kernelVersion": 0,
-      "competitionRanking": 2143,
+      "competitionRanking": 2328,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

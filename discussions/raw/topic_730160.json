@@ -32,7 +32,7 @@
               "totalUpvotes": 4
             },
             "kernelVersion": 0,
-            "competitionRanking": 1763,
+            "competitionRanking": 2014,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -68,21 +68,21 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 387,
+        "competitionRanking": 662,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
-            "displayName": "Athar Sayed",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2051490-kg.png?t=2025-04-18-10-44-38",
-            "url": "/sayedathar11",
-            "userName": "sayedathar11",
-            "tier": "MASTER",
-            "id": 2051490,
-            "profileUrl": "/sayedathar11",
-            "performanceTier": "MASTER",
-            "userId": 2051490,
+            "displayName": "Yuto.M",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23245911-kg.png?t=2026-06-23-04-51-24",
+            "url": "/yutomuroshima",
+            "userName": "yutomuroshima",
+            "tier": "EXPERT",
+            "id": 23245911,
+            "profileUrl": "/yutomuroshima",
+            "performanceTier": "EXPERT",
+            "userId": 23245911,
             "progressionOptOut": false
           },
           "intro": ""
@@ -121,7 +121,7 @@
                   "totalUpvotes": 2
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 671,
+                "competitionRanking": 1692,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -155,7 +155,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1501,
+            "competitionRanking": 1792,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -192,7 +192,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 671,
+        "competitionRanking": 1692,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -229,9 +229,9 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 6,
+        "totalVotes": 7,
         "canUpvote": true,
-        "totalUpvotes": 7
+        "totalUpvotes": 8
       },
       "kernelVersion": 0,
       "feedbackTrackingData": {},
@@ -260,7 +260,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-07-28T09:30:03.094942400Z",
-    "totalVotes": 6,
+    "totalVotes": 7,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/730160",
     "totalMessages": 5,
     "authorPerformanceTier": "EXPERT",

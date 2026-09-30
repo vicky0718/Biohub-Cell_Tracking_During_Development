@@ -8,40 +8,20 @@
       {
         "id": 3526062,
         "postDate": "2026-09-20T07:33:21.217Z",
-        "rawMarkdown": "\u5361\u4e86\u5144\u5f1f\ud83d\ude2d  \u6211\u611f\u89c9\u5f00\u6e90\u7684\u4ee3\u7801\u5df2\u7ecf\u5dee\u4e0d\u591a\u4f18\u5316\u5230\u6781\u9650\u4e86",
-        "content": "<p>\u5361\u4e86\u5144\u5f1f\ud83d\ude2d  \u6211\u611f\u89c9\u5f00\u6e90\u7684\u4ee3\u7801\u5df2\u7ecf\u5dee\u4e0d\u591a\u4f18\u5316\u5230\u6781\u9650\u4e86</p>",
+        "rawMarkdown": "",
         "parent": {},
         "author": {
-          "displayName": "Yunk-S",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28088331-kg.jpg?t=2026-04-23-11-54-37",
-          "url": "/yunkuns",
-          "tier": "CONTRIBUTOR",
-          "id": 28088331,
-          "progressionOptOut": false
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
         },
         "authorType": "COMMENT",
-        "votes": {
-          "canUpvote": true
-        },
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
         "kernelVersion": 0,
-        "competitionRanking": 304,
         "feedbackTrackingData": {},
-        "isThankYou": false,
-        "teamUpInfo": {
-          "teamLeader": {
-            "displayName": "Yunk-S",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28088331-kg.jpg?t=2026-04-23-11-54-37",
-            "url": "/yunkuns",
-            "userName": "yunkuns",
-            "tier": "CONTRIBUTOR",
-            "id": 28088331,
-            "profileUrl": "/yunkuns",
-            "performanceTier": "CONTRIBUTOR",
-            "userId": 28088331,
-            "progressionOptOut": false
-          },
-          "intro": ""
-        }
+        "isThankYou": false
       }
     ],
     "commentSort": "COMMENT_LIST_SORT_BY_HOT",
@@ -61,12 +41,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 2,
+        "totalVotes": 3,
         "canUpvote": true,
-        "totalUpvotes": 2
+        "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 491,
+      "competitionRanking": 21,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -94,7 +74,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-20T04:21:00.360209900Z",
-    "totalVotes": 2,
+    "totalVotes": 3,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/742131",
     "totalMessages": 1,
     "authorPerformanceTier": "CONTRIBUTOR",

@@ -1,0 +1,285 @@
+{
+  "forumTopic": {
+    "authorId": 36060323,
+    "authorThumbnailName": "36060323-kg.jpg?t=2026-09-18-09-27-58",
+    "authorUserDisplayName": "Hammad Farooq",
+    "authorUserName": "malikhammadfarooq",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3530502,
+      "postDate": "2026-09-30T09:51:06.657Z",
+      "rawMarkdown": "## TL;DR\n\nWe finished **213th on the private leaderboard (0.923 private / 0.957 public, +40 places on the shake-up)** with a single-model pipeline built on the strongest public lineage. We did not train a new detector or linker. All of our gain came from one component: **the coordinate head that moves each detected peak before linking.** We ensembled two independently trained heads, then rescaled the averaged shift so it keeps the step length a single head would take.\n\n| Submission | Public | Private |\n|---|---|---|\n| Public x138 lineage (V1284 head) | 0.953 | \u2013 |\n| + our own B251 head (replaces V1284) | 0.954 | 0.922 |\n| + head ensemble 0.7\u00b7B251 + 0.3\u00b7V1284 | 0.956 | 0.921 |\n| **+ ensembled shift \u00d71.15 (final)** | **0.957** | **0.923** |\n\nWe also found a cheap trap that cost us a slot: writing float centroids drops the score even when the graph is identical. That one is at the end of this writeup.\n\n---\n\n## 1. Pipeline\n\nOur base is the public 0.953 lineage: pilkwang's temporal UNet3D + edge transformer, the Harmonic Fusion post-processing, and the x138 additions (seed-mode flow relink, re-admission of discarded detections, and gap filling from sub-threshold peaks). We kept every public knob frozen, so any score change comes from our own edits.\n\n![Pipeline overview](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fe3cbeb3c8353d081e6e05b9a24734ed6%2Ffig1_pipeline.png?generation=1790761412444468&alt=media)\n\nKey stages, in order:\n\n- **Detection.** Two temporal UNet3D seeds (primary + seed314159) with the pipeline's xy-flip TTA. Adding more views (8-view flips or full D4) cost about 0.008 in our probes. Peaks come from harmonic fusion of the two seeds' logits at threshold 0.965.\n- **Coordinate head.** A small MLP moves each integer peak by up to 2 \u00b5m, *before* linking. This is where all of our work went (section 2).\n- **Association.** An edge transformer with 8-view edge-feature TTA and bidirectional (reverse-time) fusion at weight 0.15, then an ILP in SCIP (division weight 1.2, disappearance weight 2, 1200 s timeout per film).\n- **Repair.** A tissue-flow motion relink (K = 12 neighbours within 40 \u00b5m) re-attaches broken tracks. Discarded detections are re-admitted, and sub-threshold peaks (> 0.3) fill short gaps.\n- **Divisions.** A safe-division step with a DeepCenter veto, parent \u2264 9 \u00b5m, sister \u2264 14 \u00b5m and sister symmetry \u03c4 = 0.6, capped per frame and globally.\n- **Output.** Short tracks (< 6 frames) are filtered, centres are clamped inside the volume, and coordinates are written as `int(round(\u00b7))`.\n\nRuntime on 2\u00d7T4 is about 14 minutes on the visible test and well inside the 12 h limit on the hidden set. A 7.5 h repair deadline degrades gracefully if needed.\n\n---\n\n## 2. The coordinate head, and why two are better than one\n\nThe detector gives integer voxel peaks, and z is 1.625 \u00b5m per voxel. A coordinate head regresses a sub-voxel correction from frozen features at the peak:\n\n- **Inputs (B251 head, 251 dims):** 32 UNet feature channels at the peak, plus 6 directional differences to its \u00b1z/\u00b1y/\u00b1x neighbours (224 dims). Added to these is a 3\u00d73\u00d73 patch of the blended detector logits, expressed relative to the centre logit (27 dims).\n- **Model:** `Linear(251\u219232) \u2192 SiLU \u2192 Linear(32\u21923)`, with a bounded output `d = 2h / (1 + |h|)`, so |d| \u2264 2 \u00b5m.\n- **Training:** detection-to-GT offsets from 45 training movies.\n\nThe public V1284 head has the same shape without the logit patch (224 dims) and was trained on 20 movies. The important detail is **where** the shift is applied. It is added to the peak *before* the edge transformer and the ILP, so it changes which detections get linked, not just where the written centre lands. Applying the same head only to the output centres (graph unchanged) scored 0.946 versus 0.951 when applied before linking.\n\n![Coordinate-head ensemble](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F2c44806b80535e156eabc2582b5e4710%2Ffig2_head.png?generation=1790761518580532&alt=media)\n\n**Ensembling.** The two heads use different inputs and different training movies, so their errors are only partly correlated. A convex blend `0.7\u00b7B251 + 0.3\u00b7V1284` beat either head alone on the public LB.\n\n**Rescaling.** When two heads disagree in direction, their average is *shorter* than either shift. The blend therefore systematically under-corrects. Multiplying the blended shift by 1.15 restores the step length, and it was our best submission on **both** splits.\n\n![Head-ensemble weight sweep](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fa6a662d6941a4fb2e6a2f5863ec1f225%2Ffig3_sweep.png?generation=1790761557320944&alt=media)\n\n![Shift-scale sweep](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F0959952fb48e9f21b27122303707b581%2Ffig4_scale.png?generation=1790761608714252&alt=media)\n\nTwo honest notes from these sweeps:\n\n1. **Public gains mostly did not transfer.** The public LB (29%) peaked at w = 0.65\u20130.7, but the private split is flat within 0.002 across all weights, and B251 alone was already 0.922 private. Only the \u00d71.15 rescale improved private as well (0.923).\n2. **The step length changes the graph, not just positions.** On film `44b6_0b24845f` the node count after linking falls monotonically as the shift grows: +4.6% at \u00d70.85, +1.8% at \u00d71.0, \u22120.2% at \u00d71.15, all relative to B251. The adjusted edge Jaccard penalises over-predicting nodes, which is consistent with the longer step helping.\n\n---\n\n## 3. A trap worth knowing: float centroids\n\nThe reference metric (`royerlab/kaggle-cell-tracking-competition`, `csv_to_geffs`) casts `z, y, x` to `Float64`. With a sub-voxel head, writing the float centroid looks like a free win, so we tried it.\n\nWe changed exactly one line, `round(v, 3)` instead of `int(round(v))`. We verified that node ids, edges and `t` were byte-identical, and that rounding the float output reproduces the int file for 99.95% of nodes.\n\n![Float-centroid trap](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F95a1a9656273a796e161bc877d71957b%2Ffig5_float.png?generation=1790761652484734&alt=media)\n\nIt scored without error and lost **0.008 public / 0.007 private**. Our best guess is that the Kaggle-side scorer truncates non-integer input rather than rounding. Truncation would move every centre by about \u22120.5 voxel on average, roughly 0.8 \u00b5m in z. We have not confirmed the mechanism. Either way: **keep the int write.** We posted this during the competition so others would not lose a slot to it.\n\n---\n\n## 4. What did not work (public LB)\n\n| Idea | Result |\n|---|---|\n| 8-view detection TTA (flip-only or full D4) | \u22120.008 |\n| Conditional two-model detection fusion near the threshold | \u22120.013 to \u22120.016 |\n| Motion relink tight gate 6.0 / 6.5 / 7.0 \u00b5m | \u00b10.000 |\n| Detection threshold 0.960, secondary edge weight 0.25 | \u00b10.000 |\n| Mitosis-CNN orphan forks for divisions | \u00b10.000 to \u22120.003 |\n| Disabling post-hoc divisions entirely | \u22120.035 (divisions matter) |\n| Float centroids | \u22120.008 |\n\nThe detector and linker were saturated by the public stack, and nearly every knob we touched landed within noise. Coordinate geometry was the one lever with real headroom.\n\n---\n\n## 5. Takeaways\n\n- **Model the geometry, not just the graph.** At a 7 \u00b5m matching radius and 1.625 \u00b5m z-voxels, sub-voxel centre correction *before* linking was worth more than any post-processing knob.\n- **Averaging vectors shrinks them.** If you ensemble regressors of a displacement, check the norm of the average and rescale it.\n- **Change one thing per submission.** Every probe in our log changed exactly one factor against a frozen parent, which is the only reason we can say anything about what worked.\n- **Trust the split, not the leaderboard.** Most of our public gain was noise at the third decimal; the change that held on private was the one with a mechanism behind it.\n\n## Acknowledgements\n\nThis solution stands on public work. Thanks to **pilkwang** (temporal UNet3D, DeepCenter and support pack), **Anvith Pothula** (x138 and the public V1284 head), **Igor Zharov** and **Raunak Dey** (Harmonic Fusion), **Seung Jae Lee** (LF-DCTTA), and **Corwin** (flow-compensated relink). Thanks also to the Biohub team for a genuinely hard and well-designed benchmark.\n\n*Team KR_no_1: KR_no_1, URAD, Mirza Yasir Abdullah Baig, Hammad Farooq.*\n",
+      "content": "<h2>TL;DR</h2>\n<p>We finished <strong>213th on the private leaderboard (0.923 private / 0.957 public, +40 places on the shake-up)</strong> with a single-model pipeline built on the strongest public lineage. We did not train a new detector or linker. All of our gain came from one component: <strong>the coordinate head that moves each detected peak before linking.</strong> We ensembled two independently trained heads, then rescaled the averaged shift so it keeps the step length a single head would take.</p>\n<table>\n<thead>\n<tr>\n<th>Submission</th>\n<th>Public</th>\n<th>Private</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Public x138 lineage (V1284 head)</td>\n<td>0.953</td>\n<td>\u2013</td>\n</tr>\n<tr>\n<td>+ our own B251 head (replaces V1284)</td>\n<td>0.954</td>\n<td>0.922</td>\n</tr>\n<tr>\n<td>+ head ensemble 0.7\u00b7B251 + 0.3\u00b7V1284</td>\n<td>0.956</td>\n<td>0.921</td>\n</tr>\n<tr>\n<td><strong>+ ensembled shift \u00d71.15 (final)</strong></td>\n<td><strong>0.957</strong></td>\n<td><strong>0.923</strong></td>\n</tr>\n</tbody>\n</table>\n<p>We also found a cheap trap that cost us a slot: writing float centroids drops the score even when the graph is identical. That one is at the end of this writeup.</p>\n<hr>\n<h2>1. Pipeline</h2>\n<p>Our base is the public 0.953 lineage: pilkwang's temporal UNet3D + edge transformer, the Harmonic Fusion post-processing, and the x138 additions (seed-mode flow relink, re-admission of discarded detections, and gap filling from sub-threshold peaks). We kept every public knob frozen, so any score change comes from our own edits.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fe3cbeb3c8353d081e6e05b9a24734ed6%2Ffig1_pipeline.png?generation=1790761412444468&amp;alt=media\" alt=\"Pipeline overview\"></p>\n<p>Key stages, in order:</p>\n<ul>\n<li><strong>Detection.</strong> Two temporal UNet3D seeds (primary + seed314159) with the pipeline's xy-flip TTA. Adding more views (8-view flips or full D4) cost about 0.008 in our probes. Peaks come from harmonic fusion of the two seeds' logits at threshold 0.965.</li>\n<li><strong>Coordinate head.</strong> A small MLP moves each integer peak by up to 2 \u00b5m, <em>before</em> linking. This is where all of our work went (section 2).</li>\n<li><strong>Association.</strong> An edge transformer with 8-view edge-feature TTA and bidirectional (reverse-time) fusion at weight 0.15, then an ILP in SCIP (division weight 1.2, disappearance weight 2, 1200 s timeout per film).</li>\n<li><strong>Repair.</strong> A tissue-flow motion relink (K = 12 neighbours within 40 \u00b5m) re-attaches broken tracks. Discarded detections are re-admitted, and sub-threshold peaks (&gt; 0.3) fill short gaps.</li>\n<li><strong>Divisions.</strong> A safe-division step with a DeepCenter veto, parent \u2264 9 \u00b5m, sister \u2264 14 \u00b5m and sister symmetry \u03c4 = 0.6, capped per frame and globally.</li>\n<li><strong>Output.</strong> Short tracks (&lt; 6 frames) are filtered, centres are clamped inside the volume, and coordinates are written as <code>int(round(\u00b7))</code>.</li>\n</ul>\n<p>Runtime on 2\u00d7T4 is about 14 minutes on the visible test and well inside the 12 h limit on the hidden set. A 7.5 h repair deadline degrades gracefully if needed.</p>\n<hr>\n<h2>2. The coordinate head, and why two are better than one</h2>\n<p>The detector gives integer voxel peaks, and z is 1.625 \u00b5m per voxel. A coordinate head regresses a sub-voxel correction from frozen features at the peak:</p>\n<ul>\n<li><strong>Inputs (B251 head, 251 dims):</strong> 32 UNet feature channels at the peak, plus 6 directional differences to its \u00b1z/\u00b1y/\u00b1x neighbours (224 dims). Added to these is a 3\u00d73\u00d73 patch of the blended detector logits, expressed relative to the centre logit (27 dims).</li>\n<li><strong>Model:</strong> <code>Linear(251\u219232) \u2192 SiLU \u2192 Linear(32\u21923)</code>, with a bounded output <code>d = 2h / (1 + |h|)</code>, so |d| \u2264 2 \u00b5m.</li>\n<li><strong>Training:</strong> detection-to-GT offsets from 45 training movies.</li>\n</ul>\n<p>The public V1284 head has the same shape without the logit patch (224 dims) and was trained on 20 movies. The important detail is <strong>where</strong> the shift is applied. It is added to the peak <em>before</em> the edge transformer and the ILP, so it changes which detections get linked, not just where the written centre lands. Applying the same head only to the output centres (graph unchanged) scored 0.946 versus 0.951 when applied before linking.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F2c44806b80535e156eabc2582b5e4710%2Ffig2_head.png?generation=1790761518580532&amp;alt=media\" alt=\"Coordinate-head ensemble\"></p>\n<p><strong>Ensembling.</strong> The two heads use different inputs and different training movies, so their errors are only partly correlated. A convex blend <code>0.7\u00b7B251 + 0.3\u00b7V1284</code> beat either head alone on the public LB.</p>\n<p><strong>Rescaling.</strong> When two heads disagree in direction, their average is <em>shorter</em> than either shift. The blend therefore systematically under-corrects. Multiplying the blended shift by 1.15 restores the step length, and it was our best submission on <strong>both</strong> splits.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fa6a662d6941a4fb2e6a2f5863ec1f225%2Ffig3_sweep.png?generation=1790761557320944&amp;alt=media\" alt=\"Head-ensemble weight sweep\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F0959952fb48e9f21b27122303707b581%2Ffig4_scale.png?generation=1790761608714252&amp;alt=media\" alt=\"Shift-scale sweep\"></p>\n<p>Two honest notes from these sweeps:</p>\n<ol>\n<li><strong>Public gains mostly did not transfer.</strong> The public LB (29%) peaked at w = 0.65\u20130.7, but the private split is flat within 0.002 across all weights, and B251 alone was already 0.922 private. Only the \u00d71.15 rescale improved private as well (0.923).</li>\n<li><strong>The step length changes the graph, not just positions.</strong> On film <code>44b6_0b24845f</code> the node count after linking falls monotonically as the shift grows: +4.6% at \u00d70.85, +1.8% at \u00d71.0, \u22120.2% at \u00d71.15, all relative to B251. The adjusted edge Jaccard penalises over-predicting nodes, which is consistent with the longer step helping.</li>\n</ol>\n<hr>\n<h2>3. A trap worth knowing: float centroids</h2>\n<p>The reference metric (<code>royerlab/kaggle-cell-tracking-competition</code>, <code>csv_to_geffs</code>) casts <code>z, y, x</code> to <code>Float64</code>. With a sub-voxel head, writing the float centroid looks like a free win, so we tried it.</p>\n<p>We changed exactly one line, <code>round(v, 3)</code> instead of <code>int(round(v))</code>. We verified that node ids, edges and <code>t</code> were byte-identical, and that rounding the float output reproduces the int file for 99.95% of nodes.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F95a1a9656273a796e161bc877d71957b%2Ffig5_float.png?generation=1790761652484734&amp;alt=media\" alt=\"Float-centroid trap\"></p>\n<p>It scored without error and lost <strong>0.008 public / 0.007 private</strong>. Our best guess is that the Kaggle-side scorer truncates non-integer input rather than rounding. Truncation would move every centre by about \u22120.5 voxel on average, roughly 0.8 \u00b5m in z. We have not confirmed the mechanism. Either way: <strong>keep the int write.</strong> We posted this during the competition so others would not lose a slot to it.</p>\n<hr>\n<h2>4. What did not work (public LB)</h2>\n<table>\n<thead>\n<tr>\n<th>Idea</th>\n<th>Result</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>8-view detection TTA (flip-only or full D4)</td>\n<td>\u22120.008</td>\n</tr>\n<tr>\n<td>Conditional two-model detection fusion near the threshold</td>\n<td>\u22120.013 to \u22120.016</td>\n</tr>\n<tr>\n<td>Motion relink tight gate 6.0 / 6.5 / 7.0 \u00b5m</td>\n<td>\u00b10.000</td>\n</tr>\n<tr>\n<td>Detection threshold 0.960, secondary edge weight 0.25</td>\n<td>\u00b10.000</td>\n</tr>\n<tr>\n<td>Mitosis-CNN orphan forks for divisions</td>\n<td>\u00b10.000 to \u22120.003</td>\n</tr>\n<tr>\n<td>Disabling post-hoc divisions entirely</td>\n<td>\u22120.035 (divisions matter)</td>\n</tr>\n<tr>\n<td>Float centroids</td>\n<td>\u22120.008</td>\n</tr>\n</tbody>\n</table>\n<p>The detector and linker were saturated by the public stack, and nearly every knob we touched landed within noise. Coordinate geometry was the one lever with real headroom.</p>\n<hr>\n<h2>5. Takeaways</h2>\n<ul>\n<li><strong>Model the geometry, not just the graph.</strong> At a 7 \u00b5m matching radius and 1.625 \u00b5m z-voxels, sub-voxel centre correction <em>before</em> linking was worth more than any post-processing knob.</li>\n<li><strong>Averaging vectors shrinks them.</strong> If you ensemble regressors of a displacement, check the norm of the average and rescale it.</li>\n<li><strong>Change one thing per submission.</strong> Every probe in our log changed exactly one factor against a frozen parent, which is the only reason we can say anything about what worked.</li>\n<li><strong>Trust the split, not the leaderboard.</strong> Most of our public gain was noise at the third decimal; the change that held on private was the one with a mechanism behind it.</li>\n</ul>\n<h2>Acknowledgements</h2>\n<p>This solution stands on public work. Thanks to <strong>pilkwang</strong> (temporal UNet3D, DeepCenter and support pack), <strong>Anvith Pothula</strong> (x138 and the public V1284 head), <strong>Igor Zharov</strong> and <strong>Raunak Dey</strong> (Harmonic Fusion), <strong>Seung Jae Lee</strong> (LF-DCTTA), and <strong>Corwin</strong> (flow-compensated relink). Thanks also to the Biohub team for a genuinely hard and well-designed benchmark.</p>\n<p><em>Team KR_no_1: KR_no_1, URAD, Mirza Yasir Abdullah Baig, Hammad Farooq.</em></p>",
+      "parent": {},
+      "author": {
+        "displayName": "Hammad Farooq",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36060323-kg.jpg?t=2026-09-18-09-27-58",
+        "url": "/malikhammadfarooq",
+        "tier": "CONTRIBUTOR",
+        "id": 36060323,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 213,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "KR_no_1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/krno1legend",
+          "userName": "krno1legend",
+          "tier": "CONTRIBUTOR",
+          "id": 33387087,
+          "profileUrl": "/krno1legend",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 33387087,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3530502,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744562,
+    "name": "213th Place: Two Coordinate Heads, One Better Step",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-30T09:51:06.656980400Z",
+    "tags": [
+      {
+        "id": 13207,
+        "name": "computer vision",
+        "listingUrl": "/search?q=computer+vision+tag%3A%22computer+vision%22",
+        "tagUrl": "/tags/image-processing",
+        "displayName": "Computer Vision"
+      },
+      {
+        "id": 7100,
+        "name": "biology",
+        "listingUrl": "/search?q=biology+tag%3A%22biology%22",
+        "tagUrl": "/tags/biology",
+        "displayName": "Biology"
+      }
+    ],
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744562",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "writeUp": {
+      "id": 115893,
+      "topicId": 744562,
+      "title": "213th Place: Two Coordinate Heads, One Better Step",
+      "subtitle": "Ensembling two sub-voxel coordinate heads before linking, and rescaling the averaged shift, took the public 0.953 stack to 0.957 / 0.923.",
+      "message": {
+        "id": 3530502,
+        "postDate": "2026-09-30T09:51:06.657Z",
+        "rawMarkdown": "## TL;DR\n\nWe finished **213th on the private leaderboard (0.923 private / 0.957 public, +40 places on the shake-up)** with a single-model pipeline built on the strongest public lineage. We did not train a new detector or linker. All of our gain came from one component: **the coordinate head that moves each detected peak before linking.** We ensembled two independently trained heads, then rescaled the averaged shift so it keeps the step length a single head would take.\n\n| Submission | Public | Private |\n|---|---|---|\n| Public x138 lineage (V1284 head) | 0.953 | \u2013 |\n| + our own B251 head (replaces V1284) | 0.954 | 0.922 |\n| + head ensemble 0.7\u00b7B251 + 0.3\u00b7V1284 | 0.956 | 0.921 |\n| **+ ensembled shift \u00d71.15 (final)** | **0.957** | **0.923** |\n\nWe also found a cheap trap that cost us a slot: writing float centroids drops the score even when the graph is identical. That one is at the end of this writeup.\n\n---\n\n## 1. Pipeline\n\nOur base is the public 0.953 lineage: pilkwang's temporal UNet3D + edge transformer, the Harmonic Fusion post-processing, and the x138 additions (seed-mode flow relink, re-admission of discarded detections, and gap filling from sub-threshold peaks). We kept every public knob frozen, so any score change comes from our own edits.\n\n![Pipeline overview](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fe3cbeb3c8353d081e6e05b9a24734ed6%2Ffig1_pipeline.png?generation=1790761412444468&alt=media)\n\nKey stages, in order:\n\n- **Detection.** Two temporal UNet3D seeds (primary + seed314159) with the pipeline's xy-flip TTA. Adding more views (8-view flips or full D4) cost about 0.008 in our probes. Peaks come from harmonic fusion of the two seeds' logits at threshold 0.965.\n- **Coordinate head.** A small MLP moves each integer peak by up to 2 \u00b5m, *before* linking. This is where all of our work went (section 2).\n- **Association.** An edge transformer with 8-view edge-feature TTA and bidirectional (reverse-time) fusion at weight 0.15, then an ILP in SCIP (division weight 1.2, disappearance weight 2, 1200 s timeout per film).\n- **Repair.** A tissue-flow motion relink (K = 12 neighbours within 40 \u00b5m) re-attaches broken tracks. Discarded detections are re-admitted, and sub-threshold peaks (> 0.3) fill short gaps.\n- **Divisions.** A safe-division step with a DeepCenter veto, parent \u2264 9 \u00b5m, sister \u2264 14 \u00b5m and sister symmetry \u03c4 = 0.6, capped per frame and globally.\n- **Output.** Short tracks (< 6 frames) are filtered, centres are clamped inside the volume, and coordinates are written as `int(round(\u00b7))`.\n\nRuntime on 2\u00d7T4 is about 14 minutes on the visible test and well inside the 12 h limit on the hidden set. A 7.5 h repair deadline degrades gracefully if needed.\n\n---\n\n## 2. The coordinate head, and why two are better than one\n\nThe detector gives integer voxel peaks, and z is 1.625 \u00b5m per voxel. A coordinate head regresses a sub-voxel correction from frozen features at the peak:\n\n- **Inputs (B251 head, 251 dims):** 32 UNet feature channels at the peak, plus 6 directional differences to its \u00b1z/\u00b1y/\u00b1x neighbours (224 dims). Added to these is a 3\u00d73\u00d73 patch of the blended detector logits, expressed relative to the centre logit (27 dims).\n- **Model:** `Linear(251\u219232) \u2192 SiLU \u2192 Linear(32\u21923)`, with a bounded output `d = 2h / (1 + |h|)`, so |d| \u2264 2 \u00b5m.\n- **Training:** detection-to-GT offsets from 45 training movies.\n\nThe public V1284 head has the same shape without the logit patch (224 dims) and was trained on 20 movies. The important detail is **where** the shift is applied. It is added to the peak *before* the edge transformer and the ILP, so it changes which detections get linked, not just where the written centre lands. Applying the same head only to the output centres (graph unchanged) scored 0.946 versus 0.951 when applied before linking.\n\n![Coordinate-head ensemble](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F2c44806b80535e156eabc2582b5e4710%2Ffig2_head.png?generation=1790761518580532&alt=media)\n\n**Ensembling.** The two heads use different inputs and different training movies, so their errors are only partly correlated. A convex blend `0.7\u00b7B251 + 0.3\u00b7V1284` beat either head alone on the public LB.\n\n**Rescaling.** When two heads disagree in direction, their average is *shorter* than either shift. The blend therefore systematically under-corrects. Multiplying the blended shift by 1.15 restores the step length, and it was our best submission on **both** splits.\n\n![Head-ensemble weight sweep](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fa6a662d6941a4fb2e6a2f5863ec1f225%2Ffig3_sweep.png?generation=1790761557320944&alt=media)\n\n![Shift-scale sweep](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F0959952fb48e9f21b27122303707b581%2Ffig4_scale.png?generation=1790761608714252&alt=media)\n\nTwo honest notes from these sweeps:\n\n1. **Public gains mostly did not transfer.** The public LB (29%) peaked at w = 0.65\u20130.7, but the private split is flat within 0.002 across all weights, and B251 alone was already 0.922 private. Only the \u00d71.15 rescale improved private as well (0.923).\n2. **The step length changes the graph, not just positions.** On film `44b6_0b24845f` the node count after linking falls monotonically as the shift grows: +4.6% at \u00d70.85, +1.8% at \u00d71.0, \u22120.2% at \u00d71.15, all relative to B251. The adjusted edge Jaccard penalises over-predicting nodes, which is consistent with the longer step helping.\n\n---\n\n## 3. A trap worth knowing: float centroids\n\nThe reference metric (`royerlab/kaggle-cell-tracking-competition`, `csv_to_geffs`) casts `z, y, x` to `Float64`. With a sub-voxel head, writing the float centroid looks like a free win, so we tried it.\n\nWe changed exactly one line, `round(v, 3)` instead of `int(round(v))`. We verified that node ids, edges and `t` were byte-identical, and that rounding the float output reproduces the int file for 99.95% of nodes.\n\n![Float-centroid trap](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F95a1a9656273a796e161bc877d71957b%2Ffig5_float.png?generation=1790761652484734&alt=media)\n\nIt scored without error and lost **0.008 public / 0.007 private**. Our best guess is that the Kaggle-side scorer truncates non-integer input rather than rounding. Truncation would move every centre by about \u22120.5 voxel on average, roughly 0.8 \u00b5m in z. We have not confirmed the mechanism. Either way: **keep the int write.** We posted this during the competition so others would not lose a slot to it.\n\n---\n\n## 4. What did not work (public LB)\n\n| Idea | Result |\n|---|---|\n| 8-view detection TTA (flip-only or full D4) | \u22120.008 |\n| Conditional two-model detection fusion near the threshold | \u22120.013 to \u22120.016 |\n| Motion relink tight gate 6.0 / 6.5 / 7.0 \u00b5m | \u00b10.000 |\n| Detection threshold 0.960, secondary edge weight 0.25 | \u00b10.000 |\n| Mitosis-CNN orphan forks for divisions | \u00b10.000 to \u22120.003 |\n| Disabling post-hoc divisions entirely | \u22120.035 (divisions matter) |\n| Float centroids | \u22120.008 |\n\nThe detector and linker were saturated by the public stack, and nearly every knob we touched landed within noise. Coordinate geometry was the one lever with real headroom.\n\n---\n\n## 5. Takeaways\n\n- **Model the geometry, not just the graph.** At a 7 \u00b5m matching radius and 1.625 \u00b5m z-voxels, sub-voxel centre correction *before* linking was worth more than any post-processing knob.\n- **Averaging vectors shrinks them.** If you ensemble regressors of a displacement, check the norm of the average and rescale it.\n- **Change one thing per submission.** Every probe in our log changed exactly one factor against a frozen parent, which is the only reason we can say anything about what worked.\n- **Trust the split, not the leaderboard.** Most of our public gain was noise at the third decimal; the change that held on private was the one with a mechanism behind it.\n\n## Acknowledgements\n\nThis solution stands on public work. Thanks to **pilkwang** (temporal UNet3D, DeepCenter and support pack), **Anvith Pothula** (x138 and the public V1284 head), **Igor Zharov** and **Raunak Dey** (Harmonic Fusion), **Seung Jae Lee** (LF-DCTTA), and **Corwin** (flow-compensated relink). Thanks also to the Biohub team for a genuinely hard and well-designed benchmark.\n\n*Team KR_no_1: KR_no_1, URAD, Mirza Yasir Abdullah Baig, Hammad Farooq.*\n",
+        "content": "<h2>TL;DR</h2>\n<p>We finished <strong>213th on the private leaderboard (0.923 private / 0.957 public, +40 places on the shake-up)</strong> with a single-model pipeline built on the strongest public lineage. We did not train a new detector or linker. All of our gain came from one component: <strong>the coordinate head that moves each detected peak before linking.</strong> We ensembled two independently trained heads, then rescaled the averaged shift so it keeps the step length a single head would take.</p>\n<table>\n<thead>\n<tr>\n<th>Submission</th>\n<th>Public</th>\n<th>Private</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Public x138 lineage (V1284 head)</td>\n<td>0.953</td>\n<td>\u2013</td>\n</tr>\n<tr>\n<td>+ our own B251 head (replaces V1284)</td>\n<td>0.954</td>\n<td>0.922</td>\n</tr>\n<tr>\n<td>+ head ensemble 0.7\u00b7B251 + 0.3\u00b7V1284</td>\n<td>0.956</td>\n<td>0.921</td>\n</tr>\n<tr>\n<td><strong>+ ensembled shift \u00d71.15 (final)</strong></td>\n<td><strong>0.957</strong></td>\n<td><strong>0.923</strong></td>\n</tr>\n</tbody>\n</table>\n<p>We also found a cheap trap that cost us a slot: writing float centroids drops the score even when the graph is identical. That one is at the end of this writeup.</p>\n<hr>\n<h2>1. Pipeline</h2>\n<p>Our base is the public 0.953 lineage: pilkwang's temporal UNet3D + edge transformer, the Harmonic Fusion post-processing, and the x138 additions (seed-mode flow relink, re-admission of discarded detections, and gap filling from sub-threshold peaks). We kept every public knob frozen, so any score change comes from our own edits.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fe3cbeb3c8353d081e6e05b9a24734ed6%2Ffig1_pipeline.png?generation=1790761412444468&amp;alt=media\" alt=\"Pipeline overview\"></p>\n<p>Key stages, in order:</p>\n<ul>\n<li><strong>Detection.</strong> Two temporal UNet3D seeds (primary + seed314159) with the pipeline's xy-flip TTA. Adding more views (8-view flips or full D4) cost about 0.008 in our probes. Peaks come from harmonic fusion of the two seeds' logits at threshold 0.965.</li>\n<li><strong>Coordinate head.</strong> A small MLP moves each integer peak by up to 2 \u00b5m, <em>before</em> linking. This is where all of our work went (section 2).</li>\n<li><strong>Association.</strong> An edge transformer with 8-view edge-feature TTA and bidirectional (reverse-time) fusion at weight 0.15, then an ILP in SCIP (division weight 1.2, disappearance weight 2, 1200 s timeout per film).</li>\n<li><strong>Repair.</strong> A tissue-flow motion relink (K = 12 neighbours within 40 \u00b5m) re-attaches broken tracks. Discarded detections are re-admitted, and sub-threshold peaks (&gt; 0.3) fill short gaps.</li>\n<li><strong>Divisions.</strong> A safe-division step with a DeepCenter veto, parent \u2264 9 \u00b5m, sister \u2264 14 \u00b5m and sister symmetry \u03c4 = 0.6, capped per frame and globally.</li>\n<li><strong>Output.</strong> Short tracks (&lt; 6 frames) are filtered, centres are clamped inside the volume, and coordinates are written as <code>int(round(\u00b7))</code>.</li>\n</ul>\n<p>Runtime on 2\u00d7T4 is about 14 minutes on the visible test and well inside the 12 h limit on the hidden set. A 7.5 h repair deadline degrades gracefully if needed.</p>\n<hr>\n<h2>2. The coordinate head, and why two are better than one</h2>\n<p>The detector gives integer voxel peaks, and z is 1.625 \u00b5m per voxel. A coordinate head regresses a sub-voxel correction from frozen features at the peak:</p>\n<ul>\n<li><strong>Inputs (B251 head, 251 dims):</strong> 32 UNet feature channels at the peak, plus 6 directional differences to its \u00b1z/\u00b1y/\u00b1x neighbours (224 dims). Added to these is a 3\u00d73\u00d73 patch of the blended detector logits, expressed relative to the centre logit (27 dims).</li>\n<li><strong>Model:</strong> <code>Linear(251\u219232) \u2192 SiLU \u2192 Linear(32\u21923)</code>, with a bounded output <code>d = 2h / (1 + |h|)</code>, so |d| \u2264 2 \u00b5m.</li>\n<li><strong>Training:</strong> detection-to-GT offsets from 45 training movies.</li>\n</ul>\n<p>The public V1284 head has the same shape without the logit patch (224 dims) and was trained on 20 movies. The important detail is <strong>where</strong> the shift is applied. It is added to the peak <em>before</em> the edge transformer and the ILP, so it changes which detections get linked, not just where the written centre lands. Applying the same head only to the output centres (graph unchanged) scored 0.946 versus 0.951 when applied before linking.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F2c44806b80535e156eabc2582b5e4710%2Ffig2_head.png?generation=1790761518580532&amp;alt=media\" alt=\"Coordinate-head ensemble\"></p>\n<p><strong>Ensembling.</strong> The two heads use different inputs and different training movies, so their errors are only partly correlated. A convex blend <code>0.7\u00b7B251 + 0.3\u00b7V1284</code> beat either head alone on the public LB.</p>\n<p><strong>Rescaling.</strong> When two heads disagree in direction, their average is <em>shorter</em> than either shift. The blend therefore systematically under-corrects. Multiplying the blended shift by 1.15 restores the step length, and it was our best submission on <strong>both</strong> splits.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2Fa6a662d6941a4fb2e6a2f5863ec1f225%2Ffig3_sweep.png?generation=1790761557320944&amp;alt=media\" alt=\"Head-ensemble weight sweep\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F0959952fb48e9f21b27122303707b581%2Ffig4_scale.png?generation=1790761608714252&amp;alt=media\" alt=\"Shift-scale sweep\"></p>\n<p>Two honest notes from these sweeps:</p>\n<ol>\n<li><strong>Public gains mostly did not transfer.</strong> The public LB (29%) peaked at w = 0.65\u20130.7, but the private split is flat within 0.002 across all weights, and B251 alone was already 0.922 private. Only the \u00d71.15 rescale improved private as well (0.923).</li>\n<li><strong>The step length changes the graph, not just positions.</strong> On film <code>44b6_0b24845f</code> the node count after linking falls monotonically as the shift grows: +4.6% at \u00d70.85, +1.8% at \u00d71.0, \u22120.2% at \u00d71.15, all relative to B251. The adjusted edge Jaccard penalises over-predicting nodes, which is consistent with the longer step helping.</li>\n</ol>\n<hr>\n<h2>3. A trap worth knowing: float centroids</h2>\n<p>The reference metric (<code>royerlab/kaggle-cell-tracking-competition</code>, <code>csv_to_geffs</code>) casts <code>z, y, x</code> to <code>Float64</code>. With a sub-voxel head, writing the float centroid looks like a free win, so we tried it.</p>\n<p>We changed exactly one line, <code>round(v, 3)</code> instead of <code>int(round(v))</code>. We verified that node ids, edges and <code>t</code> were byte-identical, and that rounding the float output reproduces the int file for 99.95% of nodes.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F36060323%2F95a1a9656273a796e161bc877d71957b%2Ffig5_float.png?generation=1790761652484734&amp;alt=media\" alt=\"Float-centroid trap\"></p>\n<p>It scored without error and lost <strong>0.008 public / 0.007 private</strong>. Our best guess is that the Kaggle-side scorer truncates non-integer input rather than rounding. Truncation would move every centre by about \u22120.5 voxel on average, roughly 0.8 \u00b5m in z. We have not confirmed the mechanism. Either way: <strong>keep the int write.</strong> We posted this during the competition so others would not lose a slot to it.</p>\n<hr>\n<h2>4. What did not work (public LB)</h2>\n<table>\n<thead>\n<tr>\n<th>Idea</th>\n<th>Result</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>8-view detection TTA (flip-only or full D4)</td>\n<td>\u22120.008</td>\n</tr>\n<tr>\n<td>Conditional two-model detection fusion near the threshold</td>\n<td>\u22120.013 to \u22120.016</td>\n</tr>\n<tr>\n<td>Motion relink tight gate 6.0 / 6.5 / 7.0 \u00b5m</td>\n<td>\u00b10.000</td>\n</tr>\n<tr>\n<td>Detection threshold 0.960, secondary edge weight 0.25</td>\n<td>\u00b10.000</td>\n</tr>\n<tr>\n<td>Mitosis-CNN orphan forks for divisions</td>\n<td>\u00b10.000 to \u22120.003</td>\n</tr>\n<tr>\n<td>Disabling post-hoc divisions entirely</td>\n<td>\u22120.035 (divisions matter)</td>\n</tr>\n<tr>\n<td>Float centroids</td>\n<td>\u22120.008</td>\n</tr>\n</tbody>\n</table>\n<p>The detector and linker were saturated by the public stack, and nearly every knob we touched landed within noise. Coordinate geometry was the one lever with real headroom.</p>\n<hr>\n<h2>5. Takeaways</h2>\n<ul>\n<li><strong>Model the geometry, not just the graph.</strong> At a 7 \u00b5m matching radius and 1.625 \u00b5m z-voxels, sub-voxel centre correction <em>before</em> linking was worth more than any post-processing knob.</li>\n<li><strong>Averaging vectors shrinks them.</strong> If you ensemble regressors of a displacement, check the norm of the average and rescale it.</li>\n<li><strong>Change one thing per submission.</strong> Every probe in our log changed exactly one factor against a frozen parent, which is the only reason we can say anything about what worked.</li>\n<li><strong>Trust the split, not the leaderboard.</strong> Most of our public gain was noise at the third decimal; the change that held on private was the one with a mechanism behind it.</li>\n</ul>\n<h2>Acknowledgements</h2>\n<p>This solution stands on public work. Thanks to <strong>pilkwang</strong> (temporal UNet3D, DeepCenter and support pack), <strong>Anvith Pothula</strong> (x138 and the public V1284 head), <strong>Igor Zharov</strong> and <strong>Raunak Dey</strong> (Harmonic Fusion), <strong>Seung Jae Lee</strong> (LF-DCTTA), and <strong>Corwin</strong> (flow-compensated relink). Thanks also to the Biohub team for a genuinely hard and well-designed benchmark.</p>\n<p><em>Team KR_no_1: KR_no_1, URAD, Mirza Yasir Abdullah Baig, Hammad Farooq.</em></p>",
+        "parent": {},
+        "author": {
+          "displayName": "Hammad Farooq",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36060323-kg.jpg?t=2026-09-18-09-27-58",
+          "url": "/malikhammadfarooq",
+          "tier": "CONTRIBUTOR",
+          "id": 36060323,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 213,
+        "feedbackTrackingData": {},
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "KR_no_1",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/krno1legend",
+            "userName": "krno1legend",
+            "tier": "CONTRIBUTOR",
+            "id": 33387087,
+            "profileUrl": "/krno1legend",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 33387087,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      "type": "COMPETITION_SOLUTION",
+      "coverImageUrl": "/writeups/115893/images/cover",
+      "writeUpLinks": [
+        {
+          "id": 197473,
+          "title": "End-to-end pipeline",
+          "location": "CAROUSEL",
+          "url": "/writeup-links/197473/images/cropped",
+          "description": "",
+          "mediaType": "IMAGE",
+          "resource": {
+            "upvoteCount": 0,
+            "usabilityRating": 0
+          },
+          "originalImageUrl": "/writeup-links/197473/images/original"
+        },
+        {
+          "id": 197474,
+          "title": "Coordinate-head ensemble",
+          "sortKey": 1,
+          "location": "CAROUSEL",
+          "url": "/writeup-links/197474/images/cropped",
+          "description": "",
+          "mediaType": "IMAGE",
+          "resource": {
+            "upvoteCount": 0,
+            "usabilityRating": 0
+          },
+          "originalImageUrl": "/writeup-links/197474/images/original"
+        },
+        {
+          "id": 197475,
+          "title": "Head-ensemble weight sweep",
+          "sortKey": 2,
+          "location": "CAROUSEL",
+          "url": "/writeup-links/197475/images/cropped",
+          "description": "",
+          "mediaType": "IMAGE",
+          "resource": {
+            "upvoteCount": 0,
+            "usabilityRating": 0
+          },
+          "originalImageUrl": "/writeup-links/197475/images/original"
+        },
+        {
+          "id": 197476,
+          "title": "Shift-scale sweep",
+          "sortKey": 3,
+          "location": "CAROUSEL",
+          "url": "/writeup-links/197476/images/cropped",
+          "description": "",
+          "mediaType": "IMAGE",
+          "resource": {
+            "upvoteCount": 0,
+            "usabilityRating": 0
+          },
+          "originalImageUrl": "/writeup-links/197476/images/original"
+        },
+        {
+          "id": 197477,
+          "title": "Float-centroid trap",
+          "sortKey": 4,
+          "location": "CAROUSEL",
+          "url": "/writeup-links/197477/images/cropped",
+          "description": "",
+          "mediaType": "IMAGE",
+          "resource": {
+            "upvoteCount": 0,
+            "usabilityRating": 0
+          },
+          "originalImageUrl": "/writeup-links/197477/images/original"
+        }
+      ],
+      "tags": [
+        {
+          "id": 13207,
+          "name": "computer vision",
+          "fullPath": "technique > computer vision",
+          "listingUrl": "/datasets?group=public&tagids=13207",
+          "description": "Teaching a machine to interpret real-world images and videos. Applications include detecting objects, capturing motion, and restoring images.",
+          "datasetCount": 7758,
+          "competitionCount": 155,
+          "notebookCount": 6542,
+          "tagUrl": "/tags/image-processing",
+          "displayName": "Computer Vision",
+          "modelCount": 465
+        },
+        {
+          "id": 7100,
+          "name": "biology",
+          "fullPath": "subject > earth and nature > biology",
+          "listingUrl": "/datasets?group=public&tagids=7100",
+          "description": "Explore datasets and kernels about gene expressions, transcriptomics, and even the works of Charles Darwin.",
+          "datasetCount": 18177,
+          "competitionCount": 47,
+          "notebookCount": 6426,
+          "tagUrl": "/tags/biology",
+          "displayName": "Biology",
+          "modelCount": 56
+        }
+      ],
+      "slug": "213th-place-two-coordinate-heads-one-better-step",
+      "url": "/competitions/biohub-cell-tracking-during-development/writeups/213th-place-two-coordinate-heads-one-better-step",
+      "createTime": "2026-09-30T09:51:06.742645100Z",
+      "updateTime": "2026-09-30T09:53:30.791482600Z",
+      "contentState": "PUBLISHED",
+      "authors": "KR_no_1, Mirza Yasir Abdullah Baig, Hammad Farooq, URAD",
+      "thumbnailImageUrl": "/writeups/115893/images/thumbnail",
+      "originalImageUrl": "/writeups/115893/images/original",
+      "imageInfo": {
+        "cardImageHeight": 560,
+        "cardImageWidth": 560,
+        "coverImageHeight": 560,
+        "coverImageWidth": 1120
+      },
+      "collaborators": [
+        {
+          "displayName": "KR_no_1",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/krno1legend",
+          "userName": "krno1legend",
+          "tier": "CONTRIBUTOR",
+          "id": 33387087,
+          "profileUrl": "/krno1legend",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 33387087,
+          "progressionOptOut": false
+        },
+        {
+          "displayName": "Mirza Yasir Abdullah Baig",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/35562263-kg.jpeg?t=2026-07-30-09-12-49",
+          "url": "/myab07",
+          "userName": "myab07",
+          "tier": "CONTRIBUTOR",
+          "id": 35562263,
+          "profileUrl": "/myab07",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 35562263,
+          "progressionOptOut": false
+        },
+        {
+          "displayName": "Hammad Farooq",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36060323-kg.jpg?t=2026-09-18-09-27-58",
+          "url": "/malikhammadfarooq",
+          "userName": "malikhammadfarooq",
+          "tier": "CONTRIBUTOR",
+          "id": 36060323,
+          "profileUrl": "/malikhammadfarooq",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 36060323,
+          "progressionOptOut": false
+        },
+        {
+          "displayName": "URAD",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/36348566-kg.jpg?t=2026-08-28-00-07-12",
+          "url": "/uradkr",
+          "userName": "uradkr",
+          "tier": "CONTRIBUTOR",
+          "id": 36348566,
+          "profileUrl": "/uradkr",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 36348566,
+          "progressionOptOut": false
+        }
+      ],
+      "publishTime": "2026-09-30T09:53:30.790Z",
+      "savedCoverImageUrl": "/writeups/115893/images/cover",
+      "savedThumbnailImageUrl": "/writeups/115893/images/thumbnail"
+    },
+    "authorProgressionOptOut": false
+  }
+}

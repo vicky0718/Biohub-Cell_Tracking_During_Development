@@ -6,88 +6,6 @@
     "authorUserName": "hengck23",
     "comments": [
       {
-        "id": 3522918,
-        "postDate": "2026-09-10T00:40:24.790Z",
-        "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F53f2b08efba45290cfcb9e985cc2114f%2FSelection_4877.png?generation=1789000712859568&alt=media)\n\nIt seems that i cannot get Ultrack oversegment to work.   \n\nWhen the cell is isolated and no oversegment is required, Ultrack centroid is close to Kaggle ground truth\n",
-        "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F53f2b08efba45290cfcb9e985cc2114f%2FSelection_4877.png?generation=1789000712859568&amp;alt=media\" alt=\"\"></p>\n<p>It seems that i cannot get Ultrack oversegment to work.   </p>\n<p>When the cell is isolated and no oversegment is required, Ultrack centroid is close to Kaggle ground truth</p>",
-        "replies": [
-          {
-            "id": 3522929,
-            "postDate": "2026-09-10T01:36:07.310Z",
-            "rawMarkdown": "Ultrack segmentation proved ineffective for me as well compared to just using our own detector. What Ultrack did seem to do well for me was generating dense tracks, using ultrack-td contours from FOCUS3D segmentations. I have not been able to acheive any meaningful result yet from any of these so far however.",
-            "content": "<p>Ultrack segmentation proved ineffective for me as well compared to just using our own detector. What Ultrack did seem to do well for me was generating dense tracks, using ultrack-td contours from FOCUS3D segmentations. I have not been able to acheive any meaningful result yet from any of these so far however.</p>",
-            "parent": {},
-            "author": {
-              "displayName": "Satwik",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
-              "url": "/p4rallax",
-              "tier": "MASTER",
-              "id": 3459992,
-              "progressionOptOut": false
-            },
-            "authorType": "COMMENT",
-            "votes": {
-              "totalVotes": 1,
-              "canUpvote": true,
-              "totalUpvotes": 1
-            },
-            "kernelVersion": 0,
-            "competitionRanking": 730,
-            "feedbackTrackingData": {},
-            "isThankYou": false,
-            "teamUpInfo": {
-              "teamLeader": {
-                "displayName": "Satwik",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
-                "url": "/p4rallax",
-                "userName": "p4rallax",
-                "tier": "MASTER",
-                "id": 3459992,
-                "profileUrl": "/p4rallax",
-                "performanceTier": "MASTER",
-                "userId": 3459992,
-                "progressionOptOut": false
-              },
-              "intro": ""
-            }
-          }
-        ],
-        "parent": {},
-        "author": {
-          "displayName": "hengck23",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-          "url": "/hengck23",
-          "tier": "GRANDMASTER",
-          "id": 113660,
-          "progressionOptOut": false
-        },
-        "authorType": "TOPIC",
-        "votes": {
-          "totalVotes": 2,
-          "canUpvote": true,
-          "totalUpvotes": 2
-        },
-        "kernelVersion": 0,
-        "competitionRanking": 1007,
-        "feedbackTrackingData": {},
-        "isThankYou": false,
-        "teamUpInfo": {
-          "teamLeader": {
-            "displayName": "hengck23",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
-            "url": "/hengck23",
-            "userName": "hengck23",
-            "tier": "GRANDMASTER",
-            "id": 113660,
-            "profileUrl": "/hengck23",
-            "performanceTier": "GRANDMASTER",
-            "userId": 113660,
-            "progressionOptOut": false
-          },
-          "intro": ""
-        }
-      },
-      {
         "id": 3521535,
         "postDate": "2026-09-06T08:51:47.800Z",
         "rawMarkdown": "updated results\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F9e8d5f4c47591d7e21251755f284fcb8%2FSelection_4806.png?generation=1788684703562892&alt=media)\n\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F54fceef06b3911402346a7f5ebd371f6%2FSelection_4805.png?generation=1788684641113578&alt=media)",
@@ -114,7 +32,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -152,7 +70,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -183,12 +101,94 @@
         },
         "authorType": "TOPIC",
         "votes": {
-          "totalVotes": 4,
+          "totalVotes": 5,
           "canUpvote": true,
-          "totalUpvotes": 4
+          "totalUpvotes": 5
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "hengck23",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+            "url": "/hengck23",
+            "userName": "hengck23",
+            "tier": "GRANDMASTER",
+            "id": 113660,
+            "profileUrl": "/hengck23",
+            "performanceTier": "GRANDMASTER",
+            "userId": 113660,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3522918,
+        "postDate": "2026-09-10T00:40:24.790Z",
+        "rawMarkdown": "![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F53f2b08efba45290cfcb9e985cc2114f%2FSelection_4877.png?generation=1789000712859568&alt=media)\n\nIt seems that i cannot get Ultrack oversegment to work.   \n\nWhen the cell is isolated and no oversegment is required, Ultrack centroid is close to Kaggle ground truth\n",
+        "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F53f2b08efba45290cfcb9e985cc2114f%2FSelection_4877.png?generation=1789000712859568&amp;alt=media\" alt=\"\"></p>\n<p>It seems that i cannot get Ultrack oversegment to work.   </p>\n<p>When the cell is isolated and no oversegment is required, Ultrack centroid is close to Kaggle ground truth</p>",
+        "replies": [
+          {
+            "id": 3522929,
+            "postDate": "2026-09-10T01:36:07.310Z",
+            "rawMarkdown": "Ultrack segmentation proved ineffective for me as well compared to just using our own detector. What Ultrack did seem to do well for me was generating dense tracks, using ultrack-td contours from FOCUS3D segmentations. I have not been able to acheive any meaningful result yet from any of these so far however.",
+            "content": "<p>Ultrack segmentation proved ineffective for me as well compared to just using our own detector. What Ultrack did seem to do well for me was generating dense tracks, using ultrack-td contours from FOCUS3D segmentations. I have not been able to acheive any meaningful result yet from any of these so far however.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Satwik",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
+              "url": "/p4rallax",
+              "tier": "MASTER",
+              "id": 3459992,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 2,
+              "canUpvote": true,
+              "totalUpvotes": 2
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 121,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Satwik",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
+                "url": "/p4rallax",
+                "userName": "p4rallax",
+                "tier": "MASTER",
+                "id": 3459992,
+                "profileUrl": "/p4rallax",
+                "performanceTier": "MASTER",
+                "userId": 3459992,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "progressionOptOut": false
+        },
+        "authorType": "TOPIC",
+        "votes": {
+          "totalVotes": 2,
+          "canUpvote": true,
+          "totalUpvotes": 2
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -228,7 +228,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -280,7 +280,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -316,7 +316,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 159,
+            "competitionRanking": 540,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -353,7 +353,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -403,7 +403,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 159,
+                "competitionRanking": 540,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -438,7 +438,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -474,7 +474,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -513,7 +513,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -553,7 +553,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -595,7 +595,7 @@
             "parent": {},
             "author": {
               "displayName": "nusrati",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
               "url": "/nusrati",
               "tier": "CONTRIBUTOR",
               "id": 23336356,
@@ -606,13 +606,13 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 738,
+            "competitionRanking": 323,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
               "teamLeader": {
                 "displayName": "nusrati",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
                 "url": "/nusrati",
                 "userName": "nusrati",
                 "tier": "CONTRIBUTOR",
@@ -642,7 +642,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -702,7 +702,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -736,7 +736,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 19,
+            "competitionRanking": 14,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -772,7 +772,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -823,7 +823,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -882,7 +882,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -920,7 +920,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 159,
+                "competitionRanking": 540,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -955,7 +955,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 159,
+            "competitionRanking": 540,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -992,7 +992,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1030,7 +1030,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1074,7 +1074,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -1108,7 +1108,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1146,7 +1146,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1184,7 +1184,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1234,7 +1234,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -1274,7 +1274,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -1313,7 +1313,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 730,
+                "competitionRanking": 121,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -1354,7 +1354,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "isCollapsed": true,
@@ -1389,7 +1389,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -1423,7 +1423,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1461,7 +1461,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1499,7 +1499,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1537,7 +1537,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1575,7 +1575,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1613,7 +1613,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1659,7 +1659,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -1693,7 +1693,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 1007,
+        "competitionRanking": 1417,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1737,7 +1737,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -1771,7 +1771,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 3201,
+        "competitionRanking": 3278,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -1823,7 +1823,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1007,
+                "competitionRanking": 1417,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "reactions": [
@@ -1875,7 +1875,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 1007,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -1925,7 +1925,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 639,
+        "competitionRanking": 1532,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -2031,12 +2031,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 37,
+        "totalVotes": 40,
         "canUpvote": true,
-        "totalUpvotes": 37
+        "totalUpvotes": 40
       },
       "kernelVersion": 0,
-      "competitionRanking": 1007,
+      "competitionRanking": 1417,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [
@@ -2045,9 +2045,10 @@
           "featuredUserNames": [
             "yunusgmsoy",
             "adaluvu",
-            "longfeizhu"
+            "longfeizhu",
+            "corgisamoyed"
           ],
-          "userCount": 3
+          "userCount": 4
         }
       ],
       "teamUpInfo": {
@@ -2074,7 +2075,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-30T15:24:33.907558500Z",
-    "totalVotes": 38,
+    "totalVotes": 40,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/738217",
     "totalMessages": 50,
     "authorPerformanceTier": "GRANDMASTER",

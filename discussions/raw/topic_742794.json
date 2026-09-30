@@ -1,0 +1,60 @@
+{
+  "forumTopic": {
+    "authorId": 35210808,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "Yang Kuang Ou",
+    "authorUserName": "yangkuangou",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3527324,
+      "postDate": "2026-09-23T13:53:04.970Z",
+      "rawMarkdown": "Want a clean place to start building a Biohub cell tracker? This public Notebook is a forkable CPU starter kit: a small baseline plus checks and visualizations to help you understand what your pipeline is doing.\n\n**What you can try**\n- CPU baseline: intensity thresholding \u2192 connected components and centroids \u2192 greedy nearest-neighbor links.\n- Embryo-grouped validation helpers for leakage-aware comparisons.\n- `.geff` graph inspection, physical-coordinate visualizations, and sparse-label-aware edge diagnostics.\n\n**Get started:** open the [Notebook](https://www.kaggle.com/code/yangkuangou/biohub-public-simple-baseline-validation), fork it privately, attach the competition input, and enable `RUN_BASELINE_ON_TEST` to create a candidate CSV. It does not submit anything.\n\nIt is intentionally a simple learning baseline, with no trained detector or division handling. The public run reports no validation or leaderboard score, so treat it as a starting point to extend, not a performance claim. No private model, weights, or post-processing are included. Licensed under Apache 2.0.\n\nWhat would you add first: motion cues, division handling, or a stronger detector? Feel free to fork and build on it.",
+      "content": "<p>Want a clean place to start building a Biohub cell tracker? This public Notebook is a forkable CPU starter kit: a small baseline plus checks and visualizations to help you understand what your pipeline is doing.</p>\n<p><strong>What you can try</strong></p>\n<ul>\n<li>CPU baseline: intensity thresholding \u2192 connected components and centroids \u2192 greedy nearest-neighbor links.</li>\n<li>Embryo-grouped validation helpers for leakage-aware comparisons.</li>\n<li><code>.geff</code> graph inspection, physical-coordinate visualizations, and sparse-label-aware edge diagnostics.</li>\n</ul>\n<p><strong>Get started:</strong> open the <a href=\"https://www.kaggle.com/code/yangkuangou/biohub-public-simple-baseline-validation\" target=\"_blank\">Notebook</a>, fork it privately, attach the competition input, and enable <code>RUN_BASELINE_ON_TEST</code> to create a candidate CSV. It does not submit anything.</p>\n<p>It is intentionally a simple learning baseline, with no trained detector or division handling. The public run reports no validation or leaderboard score, so treat it as a starting point to extend, not a performance claim. No private model, weights, or post-processing are included. Licensed under Apache 2.0.</p>\n<p>What would you add first: motion cues, division handling, or a stronger detector? Feel free to fork and build on it.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "Yang Kuang Ou",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/yangkuangou",
+        "tier": "CONTRIBUTOR",
+        "id": 35210808,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -2,
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 867,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "Yang Kuang Ou",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/yangkuangou",
+          "userName": "yangkuangou",
+          "tier": "CONTRIBUTOR",
+          "id": 35210808,
+          "profileUrl": "/yangkuangou",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 35210808,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3527324,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 742794,
+    "name": "New to Biohub? Fork this CPU cell-tracking baseline + validation toolkit",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-23T13:53:04.969112Z",
+    "totalVotes": -2,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/742794",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

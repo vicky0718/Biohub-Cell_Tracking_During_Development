@@ -1,0 +1,61 @@
+{
+  "forumTopic": {
+    "authorId": 113660,
+    "authorThumbnailName": "113660-fb.jpg",
+    "authorUserDisplayName": "hengck23",
+    "authorUserName": "hengck23",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3527282,
+      "postDate": "2026-09-23T10:47:17.973Z",
+      "rawMarkdown": "It is so beautiful. Enjoy!!!\n![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F8614f65c11a0cf0014ac014aead4c611%2FSelection_4980.png?generation=1790160409862215&alt=media)\nhttps://github.com/royerlab/luxar  \nhttps://zenodo.org/records/22807312  \n\n",
+      "content": "<p>It is so beautiful. Enjoy!!!\n<img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F8614f65c11a0cf0014ac014aead4c611%2FSelection_4980.png?generation=1790160409862215&amp;alt=media\" alt=\"\">\n<a href=\"https://github.com/royerlab/luxar\" target=\"_blank\">https://github.com/royerlab/luxar</a><br>\n<a href=\"https://zenodo.org/records/22807312\" target=\"_blank\">https://zenodo.org/records/22807312</a>  </p>",
+      "parent": {},
+      "author": {
+        "displayName": "hengck23",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+        "url": "/hengck23",
+        "tier": "GRANDMASTER",
+        "id": 113660,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 12,
+        "canUpvote": true,
+        "totalUpvotes": 12
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1417,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "hengck23",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/113660-fb.jpg",
+          "url": "/hengck23",
+          "userName": "hengck23",
+          "tier": "GRANDMASTER",
+          "id": 113660,
+          "profileUrl": "/hengck23",
+          "performanceTier": "GRANDMASTER",
+          "userId": 113660,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3527282,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 742777,
+    "name": "Luxar from biohub : 3D Gaussian Splats of Embyro Cells",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-23T10:47:17.972882400Z",
+    "totalVotes": 12,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/742777",
+    "authorPerformanceTier": "GRANDMASTER",
+    "authorProgressionOptOut": false
+  }
+}

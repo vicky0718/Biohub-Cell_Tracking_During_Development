@@ -1,0 +1,79 @@
+{
+  "forumTopic": {
+    "authorId": 35731871,
+    "authorThumbnailName": "default-thumb.png",
+    "authorUserDisplayName": "zhuzhenghao-max",
+    "authorUserName": "zhuzhenghaomax",
+    "comments": [
+      {
+        "id": 3530359,
+        "postDate": "2026-09-30T03:27:42.443Z",
+        "rawMarkdown": "",
+        "parent": {},
+        "author": {
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/"
+        },
+        "authorType": "COMMENT",
+        "votes": {},
+        "canDelete": true,
+        "isUserAuthor": true,
+        "isDeleted": true,
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3530354,
+      "postDate": "2026-09-30T02:42:59.287Z",
+      "rawMarkdown": "Hi Kaggle Support,\n\nI'm a participant in the Biohub \u2013 Track Your Cells competition (username\nzhuzhenghaomax), and I'd like to ask about the final submission selection.\n\nBefore the deadline I had six submissions tied at public score 0.954. I\ndidn't select two of them for final evaluation myself, so the system\nauto-selected from my unselected submissions. The page says Kaggle picks\nfrom my \"best\" unselected submissions, but it doesn't explain how ties\nare handled.\n\nThe system ended up taking my two oldest submissions in that tie (v25 and\nv26). Both scored 0.917 on the private set \u2014 the lowest of the six. My\nnewer submissions with the identical public score (v28, v30, v31) scored\n0.920 privately, which was above the bronze cutoff. So my final score is\n0.917, just below bronze, only because of a tie-break that isn't written\ndown anywhere.\n\nI'm writing to ask whether the final evaluation can be re-checked: if any\nother pair among those six had been picked \u2014 or the most recent two, which\nis what most people would expect \u2014 my final score would be 0.920.\n\nI understand the competition is over and that the system followed its\ninternal logic, but since the tie-break rule doesn't appear in any\ndocumentation, I'd be grateful if someone could review this case.\n\nThanks for your time,\nzhuzhenghaomax\n",
+      "content": "<p>Hi Kaggle Support,</p>\n<p>I'm a participant in the Biohub \u2013 Track Your Cells competition (username\nzhuzhenghaomax), and I'd like to ask about the final submission selection.</p>\n<p>Before the deadline I had six submissions tied at public score 0.954. I\ndidn't select two of them for final evaluation myself, so the system\nauto-selected from my unselected submissions. The page says Kaggle picks\nfrom my \"best\" unselected submissions, but it doesn't explain how ties\nare handled.</p>\n<p>The system ended up taking my two oldest submissions in that tie (v25 and\nv26). Both scored 0.917 on the private set \u2014 the lowest of the six. My\nnewer submissions with the identical public score (v28, v30, v31) scored\n0.920 privately, which was above the bronze cutoff. So my final score is\n0.917, just below bronze, only because of a tie-break that isn't written\ndown anywhere.</p>\n<p>I'm writing to ask whether the final evaluation can be re-checked: if any\nother pair among those six had been picked \u2014 or the most recent two, which\nis what most people would expect \u2014 my final score would be 0.920.</p>\n<p>I understand the competition is over and that the system followed its\ninternal logic, but since the tie-break rule doesn't appear in any\ndocumentation, I'd be grateful if someone could review this case.</p>\n<p>Thanks for your time,\nzhuzhenghaomax</p>",
+      "parent": {},
+      "author": {
+        "displayName": "zhuzhenghao-max",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/zhuzhenghaomax",
+        "tier": "CONTRIBUTOR",
+        "id": 35731871,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1046,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "zhuzhenghao-max",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/zhuzhenghaomax",
+          "userName": "zhuzhenghaomax",
+          "tier": "CONTRIBUTOR",
+          "id": 35731871,
+          "profileUrl": "/zhuzhenghaomax",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 35731871,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3530354,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744499,
+    "name": " Final selection for Biohub \u2013 Track Your Cells \u2014 question about tie-breaking",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-30T02:42:59.285723Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744499",
+    "totalMessages": 1,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

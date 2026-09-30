@@ -27,12 +27,12 @@
             },
             "authorType": "COMMENT",
             "votes": {
-              "totalVotes": 7,
+              "totalVotes": 6,
               "canUpvote": true,
               "totalUpvotes": 7
             },
             "kernelVersion": 0,
-            "competitionRanking": 1013,
+            "competitionRanking": 1417,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -72,7 +72,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 472,
+            "competitionRanking": 1317,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -108,7 +108,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 110,
+        "competitionRanking": 500,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -148,7 +148,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 377,
+        "competitionRanking": 124,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -187,7 +187,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 491,
+        "competitionRanking": 21,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -243,12 +243,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 3,
+        "totalVotes": 4,
         "canUpvote": true,
-        "totalUpvotes": 3
+        "totalUpvotes": 4
       },
       "kernelVersion": 0,
-      "competitionRanking": 1329,
+      "competitionRanking": 916,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -275,7 +275,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-09-03T18:36:29.896847600Z",
-    "totalVotes": 3,
+    "totalVotes": 4,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/739352",
     "totalMessages": 6,
     "authorPerformanceTier": "EXPERT",

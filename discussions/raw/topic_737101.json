@@ -26,7 +26,7 @@
           "totalUpvotes": 20
         },
         "kernelVersion": 0,
-        "competitionRanking": 4,
+        "competitionRanking": 2,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -64,7 +64,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 2758,
+        "competitionRanking": 3121,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -91,7 +91,7 @@
         "parent": {},
         "author": {
           "displayName": "nusrati",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
           "url": "/nusrati",
           "tier": "CONTRIBUTOR",
           "id": 23336356,
@@ -102,13 +102,13 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 741,
+        "competitionRanking": 323,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "nusrati",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
             "url": "/nusrati",
             "userName": "nusrati",
             "tier": "CONTRIBUTOR",
@@ -172,7 +172,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 786,
+        "competitionRanking": 314,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -209,12 +209,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 11,
+        "totalVotes": 12,
         "canUpvote": true,
-        "totalUpvotes": 11
+        "totalUpvotes": 12
       },
       "kernelVersion": 0,
-      "competitionRanking": 111,
+      "competitionRanking": 500,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -241,7 +241,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-23T09:12:21.220220100Z",
-    "totalVotes": 11,
+    "totalVotes": 12,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/737101",
     "totalMessages": 5,
     "authorPerformanceTier": "EXPERT",

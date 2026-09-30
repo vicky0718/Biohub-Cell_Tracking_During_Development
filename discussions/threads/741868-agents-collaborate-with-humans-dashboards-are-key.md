@@ -4,7 +4,7 @@
 - **Topic id**: 741868
 - **Author**: Chris Deotte (GRANDMASTER)
 - **Posted**: 2026-09-17T21:50:19.517781600Z
-- **Votes**: 18
+- **Votes**: 21
 - **Comments**: 7
 
 ---
@@ -34,7 +34,7 @@ Below is a 3D movie visualization from a dashboard my LLM agent made for me to r
 
 > > i actually think rna/dna folding by ai agent will be interesting for a Kaggle competition.  Most of the top CASP results are handcrafted and selected by humans. But I think this will change.
 
-### Chris Deotte (GRANDMASTER) — 2026-09-19T08:39:20.743Z — 5 votes
+### Chris Deotte (GRANDMASTER) — 2026-09-19T08:39:20.743Z — 6 votes
 
 I would also like to point out that @tom99763 does a great job collaborating human and AI. He gives great suggestions [here][1]. Specifically he asks the agent to make materials to help him (the human) understand what the AI is doing. He posts some of his resources [here][2] (text explain) and [here][3] (code explain)
 
@@ -53,6 +53,6 @@ I would also like to point out that @tom99763 does a great job collaborating hum
 
 definitely. the other day i was thinking a similar viz tool for models as well. so we ask these models to try some custom model families right, it would be great to see a forward pass visually -- how the features move through and then we humans can add to it.
 
-#### ↳ Chris Deotte (GRANDMASTER) — 2026-09-18T12:14:44.647Z
+#### ↳ Chris Deotte (GRANDMASTER) — 2026-09-18T12:14:44.647Z — 1 votes
 
 > Absolutely. We could click a button and pop out a page showing visually the architecture and preprocess of each experiment pipeline

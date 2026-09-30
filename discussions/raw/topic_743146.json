@@ -1,0 +1,60 @@
+{
+  "forumTopic": {
+    "authorId": 16183236,
+    "authorThumbnailName": "16183236-kg.jpg?t=2024-03-18-14-07-16",
+    "authorUserDisplayName": "SamoraDC",
+    "authorUserName": "samoradc",
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3527930,
+      "postDate": "2026-09-25T02:32:07.437Z",
+      "rawMarkdown": "Could the organizers clarify how the training-code delivery requirement in\nsection 2.8 applies to permitted, publicly available third-party pretrained\nweights used unchanged in a solution?\n\nIf the original training source for those third-party weights is not available\nin a complete, legally redistributable form, can winner delivery satisfy that\nrequirement with the pinned weight sources, versions and licenses, the exact\ninference code and environment, and a reproducible description of their use?\nOr must complete, legally redistributable training source for those third-party\nweights also be provided?\n\nThis question concerns the scope of the winner-delivery requirement, not a\nrequest for an exception. We understand that permission to use external models\ndoes not by itself waive the other rules, and that licensing of pretrained\ninputs and delivery of reproducible code are separate obligations.",
+      "content": "<p>Could the organizers clarify how the training-code delivery requirement in\nsection 2.8 applies to permitted, publicly available third-party pretrained\nweights used unchanged in a solution?</p>\n<p>If the original training source for those third-party weights is not available\nin a complete, legally redistributable form, can winner delivery satisfy that\nrequirement with the pinned weight sources, versions and licenses, the exact\ninference code and environment, and a reproducible description of their use?\nOr must complete, legally redistributable training source for those third-party\nweights also be provided?</p>\n<p>This question concerns the scope of the winner-delivery requirement, not a\nrequest for an exception. We understand that permission to use external models\ndoes not by itself waive the other rules, and that licensing of pretrained\ninputs and delivery of reproducible code are separate obligations.</p>",
+      "parent": {},
+      "author": {
+        "displayName": "SamoraDC",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/16183236-kg.jpg?t=2024-03-18-14-07-16",
+        "url": "/samoradc",
+        "tier": "CONTRIBUTOR",
+        "id": 16183236,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": -1,
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2244,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "SamoraDC",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/16183236-kg.jpg?t=2024-03-18-14-07-16",
+          "url": "/samoradc",
+          "userName": "samoradc",
+          "tier": "CONTRIBUTOR",
+          "id": 16183236,
+          "profileUrl": "/samoradc",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 16183236,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3527930,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 743146,
+    "name": "Winner deliverables when using permitted third-party pretrained weights",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-25T02:32:07.438291600Z",
+    "totalVotes": -1,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/743146",
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

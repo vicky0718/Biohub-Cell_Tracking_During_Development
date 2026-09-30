@@ -30,7 +30,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 265,
+            "competitionRanking": 197,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -64,7 +64,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 293,
+        "competitionRanking": 301,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -123,7 +123,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 6,
+                "competitionRanking": 95,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -164,7 +164,7 @@
                   "totalUpvotes": 1
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 265,
+                "competitionRanking": 197,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -202,7 +202,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 6,
+                "competitionRanking": 95,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -239,7 +239,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 265,
+            "competitionRanking": 197,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -262,7 +262,7 @@
         "parent": {},
         "author": {
           "displayName": "TWEAK",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-09-30-02-32-05",
           "url": "/tweakai",
           "tier": "EXPERT",
           "id": 28207655,
@@ -273,21 +273,21 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 21,
+        "competitionRanking": 65,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
-            "displayName": "TWEAK",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
-            "url": "/tweakai",
-            "userName": "tweakai",
-            "tier": "EXPERT",
-            "id": 28207655,
-            "profileUrl": "/tweakai",
-            "performanceTier": "EXPERT",
-            "userId": 28207655,
+            "displayName": "Mark",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10909732-kg.png?t=2026-08-21-18-49-20",
+            "url": "/markdjadchenko",
+            "userName": "markdjadchenko",
+            "tier": "MASTER",
+            "id": 10909732,
+            "profileUrl": "/markdjadchenko",
+            "performanceTier": "MASTER",
+            "userId": 10909732,
             "progressionOptOut": false
           },
           "intro": ""
@@ -316,7 +316,7 @@
         "totalUpvotes": 5
       },
       "kernelVersion": 0,
-      "competitionRanking": 265,
+      "competitionRanking": 197,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

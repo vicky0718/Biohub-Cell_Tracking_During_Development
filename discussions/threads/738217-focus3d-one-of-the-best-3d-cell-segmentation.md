@@ -4,7 +4,7 @@
 - **Topic id**: 738217
 - **Author**: hengck23 (GRANDMASTER)
 - **Posted**: 2026-08-30T15:24:33.907558500Z
-- **Votes**: 38
+- **Votes**: 40
 - **Comments**: 50
 
 ---
@@ -22,19 +22,7 @@ https://huggingface.co/spaces/Qinghua-thu/FOCUS-3D
 ## Comments (50)
 
 
-### hengck23 (GRANDMASTER) — 2026-09-10T00:40:24.790Z — 2 votes
-
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F53f2b08efba45290cfcb9e985cc2114f%2FSelection_4877.png?generation=1789000712859568&alt=media)
-
-It seems that i cannot get Ultrack oversegment to work.   
-
-When the cell is isolated and no oversegment is required, Ultrack centroid is close to Kaggle ground truth
-
-#### ↳ Satwik (MASTER) — 2026-09-10T01:36:07.310Z — 1 votes
-
-> Ultrack segmentation proved ineffective for me as well compared to just using our own detector. What Ultrack did seem to do well for me was generating dense tracks, using ultrack-td contours from FOCUS3D segmentations. I have not been able to acheive any meaningful result yet from any of these so far however.
-
-### hengck23 (GRANDMASTER) — 2026-09-06T08:51:47.800Z — 4 votes
+### hengck23 (GRANDMASTER) — 2026-09-06T08:51:47.800Z — 5 votes
 
 updated results
 
@@ -51,6 +39,18 @@ updated results
 #### ↳ hengck23 (GRANDMASTER) — 2026-09-06T10:48:52.160Z
 
 > ![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F1fc32a4c8e74689f84192fd6b1dd5e9d%2FSelection_4810.png?generation=1788691729613470&alt=media)
+
+### hengck23 (GRANDMASTER) — 2026-09-10T00:40:24.790Z — 2 votes
+
+![](https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F113660%2F53f2b08efba45290cfcb9e985cc2114f%2FSelection_4877.png?generation=1789000712859568&alt=media)
+
+It seems that i cannot get Ultrack oversegment to work.   
+
+When the cell is isolated and no oversegment is required, Ultrack centroid is close to Kaggle ground truth
+
+#### ↳ Satwik (MASTER) — 2026-09-10T01:36:07.310Z — 2 votes
+
+> Ultrack segmentation proved ineffective for me as well compared to just using our own detector. What Ultrack did seem to do well for me was generating dense tracks, using ultrack-td contours from FOCUS3D segmentations. I have not been able to acheive any meaningful result yet from any of these so far however.
 
 ### hengck23 (GRANDMASTER) — 2026-09-07T03:00:29.040Z — 1 votes
 

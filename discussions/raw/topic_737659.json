@@ -24,7 +24,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 305,
+        "competitionRanking": 427,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -74,7 +74,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 673,
+                "competitionRanking": 1648,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -112,7 +112,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 2941,
+                "competitionRanking": 3018,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -146,7 +146,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 2941,
+            "competitionRanking": 3018,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -169,7 +169,7 @@
         "parent": {},
         "author": {
           "displayName": "nusrati",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
           "url": "/nusrati",
           "tier": "CONTRIBUTOR",
           "id": 23336356,
@@ -180,13 +180,13 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 742,
+        "competitionRanking": 323,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "nusrati",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
             "url": "/nusrati",
             "userName": "nusrati",
             "tier": "CONTRIBUTOR",
@@ -221,7 +221,7 @@
         "canUpvote": true
       },
       "kernelVersion": 0,
-      "competitionRanking": 2941,
+      "competitionRanking": 3018,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {

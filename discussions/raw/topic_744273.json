@@ -1,0 +1,359 @@
+{
+  "forumTopic": {
+    "authorId": 29779493,
+    "authorThumbnailName": "29779493-kg.png?t=2026-06-02-17-57-25",
+    "authorUserDisplayName": "sghwr",
+    "authorUserName": "songhow",
+    "comments": [
+      {
+        "id": 3530040,
+        "postDate": "2026-09-29T12:24:52.043Z",
+        "rawMarkdown": "I\u2019m also surprised. My best-performing version locally scores poorly on the LB, while the one with a high LB score ranks dead last in my local tests.",
+        "content": "<p>I\u2019m also surprised. My best-performing version locally scores poorly on the LB, while the one with a high LB score ranks dead last in my local tests.</p>",
+        "parent": {},
+        "author": {
+          "displayName": "You WeiLin",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/ltcsmokeboi",
+          "tier": "CONTRIBUTOR",
+          "id": 20398199,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 369,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "You WeiLin",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/ltcsmokeboi",
+            "userName": "ltcsmokeboi",
+            "tier": "CONTRIBUTOR",
+            "id": 20398199,
+            "profileUrl": "/ltcsmokeboi",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 20398199,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3530026,
+        "postDate": "2026-09-29T11:53:18.943Z",
+        "rawMarkdown": "Since the algorithm is sequential and involves multiple steps, there is a risk of overfitting to the public test set. This risk could be even higher if the public test distribution is somehow close to a subset of the training data. Considering these factors, I think there is a fairly high probability of a leaderboard shakeup. I would not necessarily expect a major shakeup within the top 10. The bigger changes may happen around solutions based on the public code anchor, especially those that do not rely on proper cross-validation and appear to be heavily overfitted to the public leaderboard.",
+        "content": "<p>Since the algorithm is sequential and involves multiple steps, there is a risk of overfitting to the public test set. This risk could be even higher if the public test distribution is somehow close to a subset of the training data. Considering these factors, I think there is a fairly high probability of a leaderboard shakeup. I would not necessarily expect a major shakeup within the top 10. The bigger changes may happen around solutions based on the public code anchor, especially those that do not rely on proper cross-validation and appear to be heavily overfitted to the public leaderboard.</p>",
+        "replies": [
+          {
+            "id": 3530221,
+            "postDate": "2026-09-29T19:27:34.973Z",
+            "rawMarkdown": "I am pressimistic about this because my local testing is not good.",
+            "content": "<p>I am pressimistic about this because my local testing is not good.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Gabriel",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/30841000-kg.jpg?t=2026-07-22-01-31-28",
+              "url": "/shawsebastian",
+              "tier": "CONTRIBUTOR",
+              "id": 30841000,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 36,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Gabriel",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/30841000-kg.jpg?t=2026-07-22-01-31-28",
+                "url": "/shawsebastian",
+                "userName": "shawsebastian",
+                "tier": "CONTRIBUTOR",
+                "id": 30841000,
+                "profileUrl": "/shawsebastian",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 30841000,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Cyrus",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3842406-kg.png?t=2025-11-08-18-45-17",
+          "url": "/jamalsaeedi",
+          "tier": "MASTER",
+          "id": 3842406,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 3,
+          "canUpvote": true,
+          "totalUpvotes": 3
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 6,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Cyrus",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3842406-kg.png?t=2025-11-08-18-45-17",
+            "url": "/jamalsaeedi",
+            "userName": "jamalsaeedi",
+            "tier": "MASTER",
+            "id": 3842406,
+            "profileUrl": "/jamalsaeedi",
+            "performanceTier": "MASTER",
+            "userId": 3842406,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3529972,
+        "postDate": "2026-09-29T09:06:21.600Z",
+        "rawMarkdown": "I believe the public LB has very few divisions. Everything that I had good local results on division (validating on a held out 41 video set, then the entire 199 set, and an external dataset gave consistent gains) but caused either no change or a slight drop in my LB scores. My guess is that most of the public LB we see is an easier embryo, probably less dense, including divisions. Take it with a grain of salt though. If you have robust divisions, especially in dense, crowded conditions, I think there won't be much of a shake up for you. Another thing to consider is the public model, which largely seems to have been tuned for the LB. It might fall apart on private LB, given the other embryo covers most of private LB. Good luck!",
+        "content": "<p>I believe the public LB has very few divisions. Everything that I had good local results on division (validating on a held out 41 video set, then the entire 199 set, and an external dataset gave consistent gains) but caused either no change or a slight drop in my LB scores. My guess is that most of the public LB we see is an easier embryo, probably less dense, including divisions. Take it with a grain of salt though. If you have robust divisions, especially in dense, crowded conditions, I think there won't be much of a shake up for you. Another thing to consider is the public model, which largely seems to have been tuned for the LB. It might fall apart on private LB, given the other embryo covers most of private LB. Good luck!</p>",
+        "replies": [
+          {
+            "id": 3530016,
+            "postDate": "2026-09-29T11:32:20.087Z",
+            "rawMarkdown": "same.\nI've tried numerous methods locally, but on the public LB, the gains are either negligible or even negative.",
+            "content": "<p>same.\nI've tried numerous methods locally, but on the public LB, the gains are either negligible or even negative.</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Civitasmass",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+              "url": "/godhand",
+              "tier": "EXPERT",
+              "id": 992596,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 177,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Civitasmass",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/992596-kg.png?t=2026-07-03-03-04-34",
+                "url": "/godhand",
+                "userName": "godhand",
+                "tier": "EXPERT",
+                "id": 992596,
+                "profileUrl": "/godhand",
+                "performanceTier": "EXPERT",
+                "userId": 992596,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Satwik",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
+          "url": "/p4rallax",
+          "tier": "MASTER",
+          "id": 3459992,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 5,
+          "canUpvote": true,
+          "totalUpvotes": 5
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 121,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "THANK_YOU",
+            "featuredUserNames": [
+              "godhand",
+              "vladikmegakid",
+              "petrovmarko",
+              "songhow"
+            ],
+            "userCount": 4
+          }
+        ],
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Satwik",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
+            "url": "/p4rallax",
+            "userName": "p4rallax",
+            "tier": "MASTER",
+            "id": 3459992,
+            "profileUrl": "/p4rallax",
+            "performanceTier": "MASTER",
+            "userId": 3459992,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3529975,
+        "postDate": "2026-09-29T09:13:45.520Z",
+        "rawMarkdown": "Very highly for one major reason: many submissions are forks and tweaks of existing notebooks. ",
+        "content": "<p>Very highly for one major reason: many submissions are forks and tweaks of existing notebooks. </p>",
+        "parent": {},
+        "author": {
+          "displayName": "Yassine Alouini",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+          "url": "/yassinealouini",
+          "tier": "GRANDMASTER",
+          "id": 172860,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 4,
+          "canUpvote": true,
+          "totalUpvotes": 4
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1474,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Yassine Alouini",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+            "url": "/yassinealouini",
+            "userName": "yassinealouini",
+            "tier": "GRANDMASTER",
+            "id": 172860,
+            "profileUrl": "/yassinealouini",
+            "performanceTier": "GRANDMASTER",
+            "userId": 172860,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3530281,
+        "postDate": "2026-09-29T22:26:20.263Z",
+        "rawMarkdown": "really high, its already going to happen, pretty sure everyone from 4000-1st will move some way bc the private set is so much different according to the comp organizers",
+        "content": "<p>really high, its already going to happen, pretty sure everyone from 4000-1st will move some way bc the private set is so much different according to the comp organizers</p>",
+        "parent": {},
+        "author": {
+          "displayName": "OmerZalman",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/omerzalman",
+          "tier": "CONTRIBUTOR",
+          "id": 29641607,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 1068,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "OmerZalman",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/omerzalman",
+            "userName": "omerzalman",
+            "tier": "CONTRIBUTOR",
+            "id": 29641607,
+            "profileUrl": "/omerzalman",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 29641607,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3529928,
+      "postDate": "2026-09-29T07:39:43.910Z",
+      "rawMarkdown": "if the division event is roughly equal with train-199 videos, then i think it's actually a very small amount and pretty weak for shakeup. the division-Jaccard term is computed from very few ground-truth events per video, so it swings a lot on just one or two forks going right or wrong \u2014 a small amount in current public lb may just be division-count luck. and there may be also human annotation issues in gt labels.\n\nand for post-processing term, we A/B'd the same edge-only post-processing tweak twice on the public LB after it looked like a solid win offline, and both times it came back flat. Local gains on train-like data don't seem to transfer reliably. \n\nAll things considered, I\u2019m pretty anxious right now, as I suspect our solution has heavily overfitted to the public test set.\n\nWhat do you think? All opinions are welcome!\ud83d\ude0a",
+      "content": "<p>if the division event is roughly equal with train-199 videos, then i think it's actually a very small amount and pretty weak for shakeup. the division-Jaccard term is computed from very few ground-truth events per video, so it swings a lot on just one or two forks going right or wrong \u2014 a small amount in current public lb may just be division-count luck. and there may be also human annotation issues in gt labels.</p>\n<p>and for post-processing term, we A/B'd the same edge-only post-processing tweak twice on the public LB after it looked like a solid win offline, and both times it came back flat. Local gains on train-like data don't seem to transfer reliably. </p>\n<p>All things considered, I\u2019m pretty anxious right now, as I suspect our solution has heavily overfitted to the public test set.</p>\n<p>What do you think? All opinions are welcome!\ud83d\ude0a</p>",
+      "parent": {},
+      "author": {
+        "displayName": "sghwr",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/29779493-kg.png?t=2026-06-02-17-57-25",
+        "url": "/songhow",
+        "tier": "CONTRIBUTOR",
+        "id": 29779493,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "totalVotes": 4,
+        "canUpvote": true,
+        "totalUpvotes": 4
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 21,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "enabled": true,
+        "teamLeader": {
+          "displayName": "Lime1123",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/18255050-kg.png?t=2025-03-27-10-33-27",
+          "url": "/lime1123",
+          "userName": "lime1123",
+          "tier": "EXPERT",
+          "id": 18255050,
+          "profileUrl": "/lime1123",
+          "performanceTier": "EXPERT",
+          "userId": 18255050,
+          "progressionOptOut": false
+        },
+        "intro": "We've developed our pipeline using a clean CV strategy, and it currently scores around 0.908 adjJ and 0.32 divJ. Also we have another approach that scores 0.38 divJ with public models. We're looking for teams with an original approach, ideally with similarly clean CV.\n"
+      }
+    },
+    "firstMessageId": 3529928,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744273,
+    "name": "What's the probability we'll witness a massive shakeup?",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-29T07:39:43.911014100Z",
+    "totalVotes": 4,
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744273",
+    "totalMessages": 7,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}

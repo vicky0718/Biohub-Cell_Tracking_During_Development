@@ -54,7 +54,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 111,
+            "competitionRanking": 500,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -98,7 +98,7 @@
                   "canUpvote": true
                 },
                 "kernelVersion": 0,
-                "competitionRanking": 1802,
+                "competitionRanking": 2178,
                 "feedbackTrackingData": {},
                 "isThankYou": false,
                 "teamUpInfo": {
@@ -170,7 +170,7 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 369,
+            "competitionRanking": 618,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -202,7 +202,7 @@
         "parent": {},
         "author": {
           "displayName": "TWEAK",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-09-30-02-32-05",
           "url": "/tweakai",
           "tier": "EXPERT",
           "id": 28207655,
@@ -215,21 +215,21 @@
           "totalUpvotes": 7
         },
         "kernelVersion": 0,
-        "competitionRanking": 21,
+        "competitionRanking": 65,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
-            "displayName": "TWEAK",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/28207655-kg.png?t=2026-08-05-03-21-49",
-            "url": "/tweakai",
-            "userName": "tweakai",
-            "tier": "EXPERT",
-            "id": 28207655,
-            "profileUrl": "/tweakai",
-            "performanceTier": "EXPERT",
-            "userId": 28207655,
+            "displayName": "Mark",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10909732-kg.png?t=2026-08-21-18-49-20",
+            "url": "/markdjadchenko",
+            "userName": "markdjadchenko",
+            "tier": "MASTER",
+            "id": 10909732,
+            "profileUrl": "/markdjadchenko",
+            "performanceTier": "MASTER",
+            "userId": 10909732,
             "progressionOptOut": false
           },
           "intro": ""
@@ -249,7 +249,7 @@
             "parent": {},
             "author": {
               "displayName": "nusrati",
-              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
               "url": "/nusrati",
               "tier": "CONTRIBUTOR",
               "id": 23336356,
@@ -261,13 +261,13 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 738,
+            "competitionRanking": 323,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
               "teamLeader": {
                 "displayName": "nusrati",
-                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
                 "url": "/nusrati",
                 "userName": "nusrati",
                 "tier": "CONTRIBUTOR",
@@ -297,7 +297,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 3,
+        "competitionRanking": 5,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -337,7 +337,7 @@
           "totalUpvotes": 1
         },
         "kernelVersion": 0,
-        "competitionRanking": 783,
+        "competitionRanking": 314,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -383,7 +383,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 111,
+            "competitionRanking": 500,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -423,7 +423,7 @@
               "totalUpvotes": 1
             },
             "kernelVersion": 0,
-            "competitionRanking": 252,
+            "competitionRanking": 198,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -446,7 +446,7 @@
         "parent": {},
         "author": {
           "displayName": "nusrati",
-          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
           "url": "/nusrati",
           "tier": "CONTRIBUTOR",
           "id": 23336356,
@@ -457,13 +457,13 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 738,
+        "competitionRanking": 323,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
           "teamLeader": {
             "displayName": "nusrati",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpeg?t=2026-09-01-09-43-05",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23336356-kg.jpg?t=2026-09-29-15-06-25",
             "url": "/nusrati",
             "userName": "nusrati",
             "tier": "CONTRIBUTOR",
@@ -494,12 +494,12 @@
       },
       "authorType": "TOPIC",
       "votes": {
-        "totalVotes": 9,
+        "totalVotes": 10,
         "canUpvote": true,
-        "totalUpvotes": 9
+        "totalUpvotes": 10
       },
       "kernelVersion": 0,
-      "competitionRanking": 111,
+      "competitionRanking": 500,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -526,7 +526,7 @@
     "parentName": "biohub-cell-tracking-during-development",
     "parentUrl": "/competitions/biohub-cell-tracking-during-development",
     "postDate": "2026-08-15T08:25:14.079757100Z",
-    "totalVotes": 9,
+    "totalVotes": 10,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/735352",
     "totalMessages": 12,
     "authorPerformanceTier": "EXPERT",

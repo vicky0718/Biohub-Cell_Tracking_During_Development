@@ -4,7 +4,7 @@
 - **Topic id**: 729057
 - **Author**: Mikhail Kotyushev (EXPERT)
 - **Posted**: 2026-07-25T04:11:18.683172600Z
-- **Votes**: 13
+- **Votes**: 14
 - **Comments**: 0
 
 ---

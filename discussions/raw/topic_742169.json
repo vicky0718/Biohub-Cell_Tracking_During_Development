@@ -6,6 +6,71 @@
     "authorUserName": "omerzalman",
     "comments": [
       {
+        "id": 3528965,
+        "postDate": "2026-09-27T02:28:46.610Z",
+        "rawMarkdown": "Hi hello hi hello",
+        "content": "<p>Hi hello hi hello</p>",
+        "replies": [
+          {
+            "id": 3529330,
+            "postDate": "2026-09-28T00:16:32.367Z",
+            "rawMarkdown": "hello Mohammed. Welcome to Kaggle!",
+            "content": "<p>hello Mohammed. Welcome to Kaggle!</p>",
+            "parent": {},
+            "author": {
+              "displayName": "Chris Deotte",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+              "url": "/cdeotte",
+              "tier": "GRANDMASTER",
+              "id": 1723677,
+              "progressionOptOut": false
+            },
+            "authorType": "COMMENT",
+            "votes": {
+              "totalVotes": 1,
+              "canUpvote": true,
+              "totalUpvotes": 1
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 2973,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "Chris Deotte",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+                "url": "/cdeotte",
+                "userName": "cdeotte",
+                "tier": "GRANDMASTER",
+                "id": 1723677,
+                "profileUrl": "/cdeotte",
+                "performanceTier": "GRANDMASTER",
+                "userId": 1723677,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "MOHAMMED RASHID M",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/rashid2008",
+          "tier": "CONTRIBUTOR",
+          "id": 36949207,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": -1,
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "feedbackTrackingData": {},
+        "isThankYou": false
+      },
+      {
         "id": 3526181,
         "postDate": "2026-09-20T15:45:37.160Z",
         "rawMarkdown": "I guess you have some room for improvement in all directions.",
@@ -31,7 +96,45 @@
               "canUpvote": true
             },
             "kernelVersion": 0,
-            "competitionRanking": 124,
+            "competitionRanking": 1068,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "OmerZalman",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+                "url": "/omerzalman",
+                "userName": "omerzalman",
+                "tier": "CONTRIBUTOR",
+                "id": 29641607,
+                "profileUrl": "/omerzalman",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 29641607,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          },
+          {
+            "id": 3528959,
+            "postDate": "2026-09-27T01:57:06.210Z",
+            "rawMarkdown": "im stuck at 0.957 do you have any tips?",
+            "content": "<p>im stuck at 0.957 do you have any tips?</p>",
+            "parent": {},
+            "author": {
+              "displayName": "OmerZalman",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+              "url": "/omerzalman",
+              "tier": "CONTRIBUTOR",
+              "id": 29641607,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 1068,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -62,13 +165,23 @@
         },
         "authorType": "COMMENT",
         "votes": {
+          "totalVotes": 1,
           "canUpvote": true,
-          "totalUpvotes": 1
+          "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 6,
+        "competitionRanking": 95,
         "feedbackTrackingData": {},
         "isThankYou": false,
+        "reactions": [
+          {
+            "emoji": "FUNNY",
+            "featuredUserNames": [
+              "azhuang8"
+            ],
+            "userCount": 1
+          }
+        ],
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
@@ -105,7 +218,7 @@
           "canUpvote": true
         },
         "kernelVersion": 0,
-        "competitionRanking": 160,
+        "competitionRanking": 540,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "teamUpInfo": {
@@ -148,7 +261,7 @@
         "totalUpvotes": 3
       },
       "kernelVersion": 0,
-      "competitionRanking": 124,
+      "competitionRanking": 1068,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "teamUpInfo": {
@@ -177,7 +290,7 @@
     "postDate": "2026-09-20T13:22:23.864844800Z",
     "totalVotes": 3,
     "url": "/competitions/biohub-cell-tracking-during-development/discussion/742169",
-    "totalMessages": 3,
+    "totalMessages": 6,
     "authorPerformanceTier": "CONTRIBUTOR",
     "authorProgressionOptOut": false
   }

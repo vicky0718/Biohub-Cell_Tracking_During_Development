@@ -26,7 +26,7 @@
           "totalUpvotes": 3
         },
         "kernelVersion": 0,
-        "competitionRanking": 186,
+        "competitionRanking": 88,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -82,7 +82,7 @@
               "totalUpvotes": 3
             },
             "kernelVersion": 0,
-            "competitionRanking": 19,
+            "competitionRanking": 14,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "reactions": [
@@ -127,7 +127,7 @@
           "totalUpvotes": 4
         },
         "kernelVersion": 0,
-        "competitionRanking": 387,
+        "competitionRanking": 662,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -142,15 +142,15 @@
         "teamUpInfo": {
           "enabled": true,
           "teamLeader": {
-            "displayName": "Athar Sayed",
-            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2051490-kg.png?t=2025-04-18-10-44-38",
-            "url": "/sayedathar11",
-            "userName": "sayedathar11",
-            "tier": "MASTER",
-            "id": 2051490,
-            "profileUrl": "/sayedathar11",
-            "performanceTier": "MASTER",
-            "userId": 2051490,
+            "displayName": "Yuto.M",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/23245911-kg.png?t=2026-06-23-04-51-24",
+            "url": "/yutomuroshima",
+            "userName": "yutomuroshima",
+            "tier": "EXPERT",
+            "id": 23245911,
+            "profileUrl": "/yutomuroshima",
+            "performanceTier": "EXPERT",
+            "userId": 23245911,
             "progressionOptOut": false
           },
           "intro": ""
@@ -177,7 +177,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 186,
+        "competitionRanking": 88,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -233,7 +233,7 @@
               "totalUpvotes": 2
             },
             "kernelVersion": 0,
-            "competitionRanking": 2890,
+            "competitionRanking": 3189,
             "feedbackTrackingData": {},
             "isThankYou": false,
             "teamUpInfo": {
@@ -269,7 +269,7 @@
           "totalUpvotes": 2
         },
         "kernelVersion": 0,
-        "competitionRanking": 19,
+        "competitionRanking": 14,
         "feedbackTrackingData": {},
         "isThankYou": false,
         "reactions": [
@@ -366,7 +366,7 @@
         "totalUpvotes": 48
       },
       "kernelVersion": 0,
-      "competitionRanking": 2890,
+      "competitionRanking": 3189,
       "feedbackTrackingData": {},
       "isThankYou": false,
       "reactions": [

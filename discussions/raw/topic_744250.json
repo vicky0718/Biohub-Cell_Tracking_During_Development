@@ -1,0 +1,221 @@
+{
+  "forumTopic": {
+    "authorId": 10999997,
+    "authorThumbnailName": "10999997-kg.jpg",
+    "authorUserDisplayName": "kostopr4v",
+    "authorUserName": "kostopr4v",
+    "comments": [
+      {
+        "id": 3530058,
+        "postDate": "2026-09-29T12:57:37.363Z",
+        "rawMarkdown": "It must finish before 23:59 UTC, otherwise it is not eligible nor can we select it.",
+        "content": "<p>It must finish before 23:59 UTC, otherwise it is not eligible nor can we select it.</p>",
+        "replies": [
+          {
+            "id": 3530103,
+            "postDate": "2026-09-29T14:58:54.553Z",
+            "rawMarkdown": "Thanks! Are private results going to be immediately released at 02:00 UTC?",
+            "content": "<p>Thanks! Are private results going to be immediately released at 02:00 UTC?</p>",
+            "replies": [
+              {
+                "id": 3530215,
+                "postDate": "2026-09-29T19:15:53.680Z",
+                "rawMarkdown": "They are usually released at 23:59 UTC immediately after the competition ends. Kaggle already has our private scores, they just need to display them.",
+                "content": "<p>They are usually released at 23:59 UTC immediately after the competition ends. Kaggle already has our private scores, they just need to display them.</p>",
+                "parent": {},
+                "author": {
+                  "displayName": "Chris Deotte",
+                  "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+                  "url": "/cdeotte",
+                  "tier": "GRANDMASTER",
+                  "id": 1723677,
+                  "progressionOptOut": false
+                },
+                "authorType": "COMMENT",
+                "votes": {
+                  "totalVotes": 1,
+                  "canUpvote": true,
+                  "totalUpvotes": 1
+                },
+                "kernelVersion": 0,
+                "competitionRanking": 2973,
+                "feedbackTrackingData": {},
+                "isThankYou": false,
+                "teamUpInfo": {
+                  "teamLeader": {
+                    "displayName": "Chris Deotte",
+                    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+                    "url": "/cdeotte",
+                    "userName": "cdeotte",
+                    "tier": "GRANDMASTER",
+                    "id": 1723677,
+                    "profileUrl": "/cdeotte",
+                    "performanceTier": "GRANDMASTER",
+                    "userId": 1723677,
+                    "progressionOptOut": false
+                  },
+                  "intro": ""
+                }
+              }
+            ],
+            "parent": {},
+            "author": {
+              "displayName": "kostopr4v",
+              "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10999997-kg.jpg",
+              "url": "/kostopr4v",
+              "tier": "CONTRIBUTOR",
+              "id": 10999997,
+              "progressionOptOut": false
+            },
+            "authorType": "TOPIC",
+            "votes": {
+              "canUpvote": true
+            },
+            "kernelVersion": 0,
+            "competitionRanking": 293,
+            "feedbackTrackingData": {},
+            "isThankYou": false,
+            "teamUpInfo": {
+              "teamLeader": {
+                "displayName": "kostopr4v",
+                "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10999997-kg.jpg",
+                "url": "/kostopr4v",
+                "userName": "kostopr4v",
+                "tier": "CONTRIBUTOR",
+                "id": 10999997,
+                "profileUrl": "/kostopr4v",
+                "performanceTier": "CONTRIBUTOR",
+                "userId": 10999997,
+                "progressionOptOut": false
+              },
+              "intro": ""
+            }
+          }
+        ],
+        "parent": {},
+        "author": {
+          "displayName": "Chris Deotte",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+          "url": "/cdeotte",
+          "tier": "GRANDMASTER",
+          "id": 1723677,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "totalVotes": 1,
+          "canUpvote": true,
+          "totalUpvotes": 1
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 2973,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Chris Deotte",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1723677-kg.jpg",
+            "url": "/cdeotte",
+            "userName": "cdeotte",
+            "tier": "GRANDMASTER",
+            "id": 1723677,
+            "profileUrl": "/cdeotte",
+            "performanceTier": "GRANDMASTER",
+            "userId": 1723677,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      },
+      {
+        "id": 3530129,
+        "postDate": "2026-09-29T16:04:05.273Z",
+        "rawMarkdown": "when does submission selection lock? does it also lock at Sep 29, 23:59 UTC?",
+        "content": "<p>when does submission selection lock? does it also lock at Sep 29, 23:59 UTC?</p>",
+        "parent": {},
+        "author": {
+          "displayName": "Selina Wu",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+          "url": "/selinaawuu",
+          "tier": "CONTRIBUTOR",
+          "id": 22928392,
+          "progressionOptOut": false
+        },
+        "authorType": "COMMENT",
+        "votes": {
+          "canUpvote": true
+        },
+        "kernelVersion": 0,
+        "competitionRanking": 271,
+        "feedbackTrackingData": {},
+        "isThankYou": false,
+        "teamUpInfo": {
+          "teamLeader": {
+            "displayName": "Azhuang8",
+            "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+            "url": "/azhuang8",
+            "userName": "azhuang8",
+            "tier": "CONTRIBUTOR",
+            "id": 31024493,
+            "profileUrl": "/azhuang8",
+            "performanceTier": "CONTRIBUTOR",
+            "userId": 31024493,
+            "progressionOptOut": false
+          },
+          "intro": ""
+        }
+      }
+    ],
+    "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+    "firstMessage": {
+      "id": 3529869,
+      "postDate": "2026-09-29T05:06:55.003Z",
+      "rawMarkdown": "Hello! If a notebook submitted shortly before the Final Submission Deadline (Sep 29, 23:59 UTC) is still running at the deadline, will we be able to see its score and then select our 2 final submissions? Or does selection lock at 23:59 UTC, so we would have to choose blind (or rely on auto-selection by public score)?",
+      "content": "<p>Hello! If a notebook submitted shortly before the Final Submission Deadline (Sep 29, 23:59 UTC) is still running at the deadline, will we be able to see its score and then select our 2 final submissions? Or does selection lock at 23:59 UTC, so we would have to choose blind (or rely on auto-selection by public score)?</p>",
+      "parent": {},
+      "author": {
+        "displayName": "kostopr4v",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10999997-kg.jpg",
+        "url": "/kostopr4v",
+        "tier": "CONTRIBUTOR",
+        "id": 10999997,
+        "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+        "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 293,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+        "teamLeader": {
+          "displayName": "kostopr4v",
+          "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/10999997-kg.jpg",
+          "url": "/kostopr4v",
+          "userName": "kostopr4v",
+          "tier": "CONTRIBUTOR",
+          "id": 10999997,
+          "profileUrl": "/kostopr4v",
+          "performanceTier": "CONTRIBUTOR",
+          "userId": 10999997,
+          "progressionOptOut": false
+        },
+        "intro": ""
+      }
+    },
+    "firstMessageId": 3529869,
+    "forumId": 10656304,
+    "forumName": "Biohub - Cell Tracking During Development",
+    "id": 744250,
+    "name": "Time of publishing private results",
+    "parentName": "biohub-cell-tracking-during-development",
+    "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+    "postDate": "2026-09-29T05:06:55.002945900Z",
+    "url": "/competitions/biohub-cell-tracking-during-development/discussion/744250",
+    "totalMessages": 4,
+    "authorPerformanceTier": "CONTRIBUTOR",
+    "authorProgressionOptOut": false
+  }
+}
