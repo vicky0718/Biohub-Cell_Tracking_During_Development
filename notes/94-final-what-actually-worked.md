@@ -13,8 +13,34 @@ pub947bera/w10       2026-09-21     0.946    0.912
 everything else, ~20 arms           0.943 - 0.946
 ```
 
-`0.946` ranked ~970 of 3,791 on the last board snapshot we hold (09-21); `0.947` ranked ~251.
-The plateau was that crowded, so the last two steps are worth far more than their size.
+**Final private leaderboard, fetched 2026-09-30** (`discussions/raw/leaderboard_final.json`,
+2,120 scored teams, 0.977 down to 0.898):
+
+```
+Vignesh Nehru    rank 1041    private 0.917
+```
+
+620 teams score strictly above us. We are not 621st because **496 teams are tied at exactly
+0.917** and Kaggle breaks the tie by submission time; we sit two-thirds of the way down that
+block. A 496-team tie on a continuous metric is not a coincidence — it is what happens when
+that many teams select a fork of the same public notebook, and `rd07` is a fork of a public
+notebook. We are inside that block *because* of the move that got us there.
+
+What the open selection slot was worth, on the same board:
+
+```
+rd07   0.917    620 above, 496 tied     actual rank 1041
+flow2  0.913  1,613 above,  42 tied     would have been ~1614
+lb50   0.912  1,655 above,  35 tied     would have been ~1656
+```
+
+**Leaving the second slot empty moved us roughly 570 places.** It is the single
+highest-leverage thing that happened in the endgame, and it cost nothing.
+
+And the public-to-private shift is worth recording: public `0.953` sat around the top 50 of
+3,791 on the public board; the same submission is 1041st privately. The public board's
+704-team plateau at 0.947 did not survive rescoring, and neither did our apparent position on
+it.
 
 **Selection, resolved.** `flow2` was selected manually while `rd07` was still grading, and the
 second slot was deliberately left empty — so Kaggle's automatic selection filled it with the
