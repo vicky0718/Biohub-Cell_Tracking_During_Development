@@ -91,9 +91,9 @@ We had eight weeks, two GPU sessions and 30 GPU-hours a week. That model was wit
 ## 5. Where this went
 
 The forward-looking version is a Claude Code skill, `kaggle-competition-playbook`. It lives in
-this repo at `.claude/skills/kaggle-competition-playbook/`, with an identical copy committed to
-the `rogii` repo. To use it in any repo, copy the folder into that repo's `.claude/skills/` or
-into `~/.claude/skills/`, or save the packaged `.skill` to your Claude profile.
+this repo at `.claude/skills/kaggle-competition-playbook/`. To use it in any repo, copy the
+folder into that repo's `.claude/skills/` or into `~/.claude/skills/`, or save the packaged
+`.skill` to your Claude profile.
 
 - `SKILL.md`: day one, the grouped-OOF instrument, where the score is, tripwires for an agent
   running a competition, and the endgame.
@@ -134,10 +134,9 @@ higher-ranked teams publish, and treating a missing weights file as a search.
 ## 6. The top 25, complete
 
 By 2026-10-06, 17 of the private top 25 had published writeups. They are archived with their
-comment threads and images in `discussions/writeups/`, and the same files are in
-`rogii/winning_writeups/biohub_top25/`. The README there is a cross-team digest. `discussions/scrape_writeups.py` regenerates the archive: it reads each
-team's `solutionWriteUpUrl` from the private leaderboard, then
-`WriteUpsService/GetWriteUpBySlug`.
+comment threads and images in `discussions/writeups/`, and the README there is a cross-team
+digest. `discussions/scrape_writeups.py` regenerates the archive: it reads each team's
+`solutionWriteUpUrl` from the private leaderboard, then `WriteUpsService/GetWriteUpBySlug`.
 
 Three of those writeups are about our own lineage:
 

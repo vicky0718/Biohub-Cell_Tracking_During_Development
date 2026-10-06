@@ -81,7 +81,7 @@ Results, graded by the skill's author (not blind):
 ## Post-evaluation edits (2026-10-06, not re-evaluated)
 
 Three short items were added after reading the Biohub top-25 writeups
-(`winning_writeups/biohub_top25/`):
+(`discussions/writeups/` in the Biohub repo):
 - a tripwire to count the metric's rare event at every pipeline stage;
 - a line on auditing how the writer rounds and casts values;
 - a clause on labelling post-hoc edits by their effect on the metric.

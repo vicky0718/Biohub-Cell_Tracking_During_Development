@@ -12,9 +12,8 @@ This page is the digest: what the 17 writeups say, across teams, with the number
 It cites each team by its private rank ("4th", "12th"), and every figure comes from that team's
 own writeup.
 
-To regenerate the archive, run this in the Biohub repo:
-`python discussions/scrape_writeups.py --out <this folder>`. The scraper writes `index.md` and
-leaves this page alone.
+`python discussions/scrape_writeups.py` regenerates the archive in place. It writes `index.md`
+and leaves this page alone.
 
 **The task.**
 - **Metric:** `adjusted edge Jaccard + 0.1 × division Jaccard`. Nodes are matched within 7 µm.

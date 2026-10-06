@@ -181,7 +181,7 @@ validating models on grouped OOF CV.
 
 ## 8. The Biohub top 25, in numbers
 
-The full digest is in the `rogii` repo at `winning_writeups/biohub_top25/README.md`. It covers
+The full digest is in the Biohub repo at `discussions/writeups/README.md`. It covers
 17 writeups and the private leaderboard as a CSV. These are the figures behind the rules.
 
 - **Divisions were the largest single lever:**

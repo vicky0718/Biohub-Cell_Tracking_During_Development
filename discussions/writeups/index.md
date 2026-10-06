@@ -1,7 +1,7 @@
 # Biohub - Cell Tracking During Development: the top 25 on the private leaderboard
 
 Scraped 2026-10-06 from <https://www.kaggle.com/competitions/biohub-cell-tracking-during-development/leaderboard> and each team's solution writeup.
-17 of the top 25 published a writeup. Regenerate from the Biohub repo with `python discussions/scrape_writeups.py --out <this folder>`.
+17 of the top 25 published a writeup. Regenerate with `python discussions/scrape_writeups.py`.
 
 | Private | Score | Public (rank) | Team | Writeup |
 |---:|---|---|---|---|

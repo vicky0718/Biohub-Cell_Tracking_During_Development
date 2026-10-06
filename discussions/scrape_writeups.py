@@ -2,7 +2,6 @@
 """Archive the solution writeups of the private leaderboard's top N teams.
 
     python discussions/scrape_writeups.py              # top 25, into discussions/writeups/
-    python discussions/scrape_writeups.py --out ../rogii/winning_writeups/biohub_top25
     python discussions/scrape_writeups.py --top 50 --no-images
 
 Kaggle links each team to its writeup through `solutionWriteUpUrl` on the private
@@ -262,8 +261,8 @@ def main() -> int:
         "",
         f"Scraped {time.strftime('%Y-%m-%d')} from "
         f"<{BASE}/competitions/{COMPETITION}/leaderboard> and each team's solution writeup.",
-        f"{len(index)} of the top {a.top} published a writeup. Regenerate from the Biohub repo "
-        "with `python discussions/scrape_writeups.py --out <this folder>`.",
+        f"{len(index)} of the top {a.top} published a writeup. Regenerate with "
+        "`python discussions/scrape_writeups.py`.",
         "",
         "| Private | Score | Public (rank) | Team | Writeup |",
         "|---:|---|---|---|---|",
