@@ -130,3 +130,26 @@ was which.
 
 The skill adds, over no skill: scouting by author, forking a floor, looking at what
 higher-ranked teams publish, and treating a missing weights file as a search.
+
+## 6. The top 25, complete
+
+By 2026-10-06, 17 of the private top 25 had published writeups. They are archived with their
+comment threads and images in `rogii/winning_writeups/biohub_top25/`. The README there is a
+cross-team digest. `discussions/scrape_writeups.py` regenerates the archive: it reads each
+team's `solutionWriteUpUrl` from the private leaderboard, then
+`WriteUpsService/GetWriteUpBySlug`.
+
+Three of those writeups are about our own lineage:
+
+- **9th** took `x138` and added two things: six detectors and a linker of their own, worth
+  +0.023 private, and DIVCARRY, which re-adds the daughters the public ILP never produces
+  (+0.013). That came to **0.949 private, gold**. Their own models looked worth only +0.004 on
+  public.
+- **23rd** kept `x138` frozen and added a division-recovery stack, taking it from 0.917 to
+  0.935 private. A z+1 hedge in their second slot made it **0.939, silver**.
+- **12th** (a Claude Code agent, the 744501 thread above) built its own stages on the same
+  public models, reaching **0.946, gold**. They name in-sample validation as their largest
+  error.
+
+Same base, same missing division stage: they rebuilt it, and we filed it as closed
+(`notes/78`–`79`). The difference was 0.02–0.03 private, about 1,000 places.

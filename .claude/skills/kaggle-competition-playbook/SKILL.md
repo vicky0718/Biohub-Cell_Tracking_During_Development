@@ -96,7 +96,8 @@ A day or two of work that decides most of the competition. Skip what the user al
 ## Where the score is
 
 - **Error analysis on OOF.** Break the score down by metric term, group, case type and pipeline
-  stage. Headroom is usually concentrated in one or two places.
+  stage. Headroom is usually concentrated in one or two places. When you learn post-hoc edits,
+  label each candidate by its effect on the metric rather than by a semantic label.
 - **A diagnosed defect in the shared baseline is the opportunity.** When you prove the public
   pipeline structurally cannot do something the metric rewards, every fork shares the hole, and
   filling it is how you leave the crowd. So "X is impossible in this pipeline" is the start of a
@@ -124,6 +125,9 @@ each is cheap to check.
   author's own datasets, before closing it.
 - **You wrote "closed", "exhausted" or "impossible in this pipeline".** Ask whether the stage
   should be replaced instead.
+- **A rare event the metric rewards (divisions, positives, events) isn't counted per stage.**
+  Count it after every stage. A stage that silently produces zero is common, and finding it
+  is cheap.
 - **You flagged a runtime or format risk.** Fix it before submitting; flagging is not acting.
 - **A watcher can't reach the API, hits a rate limit, finds a busy slot or an empty quota.**
   Those are facts about the plumbing, not results about the model. Report them as such and stop
@@ -143,7 +147,8 @@ each is cheap to check.
   odd file falls back to a default prediction instead of failing the whole run.
 - **Settings and format:** check the accelerator on the exact version you submit (switching a
   CUDA-only notebook to TPU removes the GPU), and match the sample submission exactly, dtypes
-  included.
+  included. Audit how the writer rounds and casts intermediate values; a truncating cast is a
+  silent loss.
 - **Final selection:**
   - **Slot 1: the best grouped-CV submission.** Among a team's own near-equal candidates, public
     and private ranks are often uncorrelated or inverted; grouped CV tracked private far better

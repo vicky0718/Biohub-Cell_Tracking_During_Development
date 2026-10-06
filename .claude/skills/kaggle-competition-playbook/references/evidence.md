@@ -14,6 +14,7 @@ writeups are under `kaggle.com/competitions/rogii-wellbore-geology-prediction/wr
 5. Scouting and missing dependencies
 6. Endgame and operations
 7. AI agents among the winners
+8. The Biohub top 25, in numbers
 
 ## 1. Our two competitions
 
@@ -39,9 +40,10 @@ Our notes are in the `rogii` repo, `chat/memory/`.
 **Biohub — Cell Tracking During Development (Sep 2026).** Our notes are in the Biohub repo,
 `notes/75`–`notes/95`. The score was edge Jaccard, adjusted for node count, plus 0.1 × division
 Jaccard.
-- Final result: `rd07`, 0.953 public / 0.917 private, 1041st of 4,020. We sat inside a 496-team
-  tie at 0.917, the mark of a forked lineage. On the public board, 704 teams were tied at
-  0.947 mid-competition.
+- Final result: `rd07`, 0.954 public / 0.9178 private. That was 1041st when the competition
+  closed, and 1010th of 3,947 after Kaggle's post-close re-ranking.
+- **325 teams scored exactly 0.91780**: in effect the same predictions, the mark of a forked
+  lineage. On the public board, 704 teams were tied at 0.947 mid-competition.
 - **Parameter sweeps moved nothing:** three weeks and ~20 arms of sweeps on the forked
   pipeline's parameters all landed at 0.943–0.946. Among them, a learned relink bonus had five
   offline points of support; it scored 0.946, identical to the base.
@@ -176,3 +178,44 @@ Jaccard.
 
 What distinguished these agent-built finishes was what the agent was pointed at: building and
 validating models on grouped OOF CV.
+
+## 8. The Biohub top 25, in numbers
+
+The full digest is in the `rogii` repo at `winning_writeups/biohub_top25/README.md`. It covers
+17 writeups and the private leaderboard as a CSV. These are the figures behind the rules.
+
+- **Divisions were the largest single lever:**
+  - 4th: a learned per-node division cost in the ILP, +0.035 on both boards.
+  - 5th: new-cell and division heads, +0.024 private.
+  - 7th: division costs, private 0.910 → 0.937.
+  - 9th: re-adding the daughters the public ILP never produced, +0.013 private.
+  - 23rd: a second-daughter classifier, +0.010 private.
+- **Count the scarce event at every stage.** The public pipeline recovered 23 of 151 training
+  divisions (18th), and its ILP produced zero forks on every movie (9th, 12th, 14th, 23rd).
+- **Own models vs in-sample public checkpoints:**
+  - 9th: own detectors and linker were worth +0.004 public but **+0.023 private**.
+  - 12th: an in-sample bench over-read private by 0.03.
+  - Teams with their own models climbed from public 191st / 1087th / 1067th to private
+    10th / 11th / 20th.
+- **The public board is one embryo:**
+  - The private top 25 had public ranks from 1st to 1,087th (median 30th).
+  - Among small late changes, public and private correlated at r = 0.09, and CV and private at
+    r = 0.34 (18th).
+  - A seed change alone moved public 0.006 and private 0.001 (16th).
+- **Validation that held:**
+  - 17th designed changes on half the movies and confirmed each once on the other half: 7 of 19
+    design-half wins were rejected.
+  - 18th: gains of +0.005 to +0.012 on 8–16-video checks became −0.001 to −0.003 on all 199
+    videos.
+- **Post-hoc edits.** 17th labelled candidate edits by their effect on the metric, not by a
+  semantic label, and those edits held up on confirmation.
+- **The writer.** An int16 cast that truncated instead of rounding cost 9th 0.013 private.
+  Integers vs floats: 0.950 vs 0.942 public (12th).
+- **Final selection:**
+  - 4th's, 6th's, 16th's and 20th's best private submissions were not among their selected
+    two.
+  - 23rd's second-slot hedge, a z+1 shift of every node, lost 0.003 public, gained 0.005
+    private, and was their best.
+- **Agents:** 10th (Claude, Codex and a Kaggle agent), 11th, 12th (Claude Code, more than 4,200
+  sub-agent runs) and 23rd (Claude Code and Codex, under pre-registered rules).
+

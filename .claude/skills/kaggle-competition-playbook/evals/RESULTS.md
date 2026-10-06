@@ -77,3 +77,15 @@ Results, graded by the skill's author (not blind):
   - a notebook that dies on a missing mount;
   - a runtime risk that has been flagged but not fixed.
 - Run 3 or more samples per cell to get variance.
+
+## Post-evaluation edits (2026-10-06, not re-evaluated)
+
+Three short items were added after reading the Biohub top-25 writeups
+(`winning_writeups/biohub_top25/`):
+- a tripwire to count the metric's rare event at every pipeline stage;
+- a line on auditing how the writer rounds and casts values;
+- a clause on labelling post-hoc edits by their effect on the metric.
+
+The evidence file gained a section of figures from those writeups, and our final rank was
+corrected after Kaggle's re-ranking. These are small additions in the evaluated style, and the
+evals were not re-run for them.

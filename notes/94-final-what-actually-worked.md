@@ -13,6 +13,18 @@ pub947bera/w10       2026-09-21     0.946    0.912
 everything else, ~20 arms           0.943 - 0.946
 ```
 
+> **Update 2026-10-06.** Kaggle has since re-ranked the board, after removing about 70 teams.
+> The private board now ranks 3,947 teams, and we are **1010th** (0.91780 private, 0.95387
+> public).
+>
+> At five decimals, **325 teams have exactly 0.91780** (ranks 689–1013). They are the
+> identical-prediction cohort of this fork lineage, and the 496-team "0.917" tie below is its
+> three-decimal display.
+>
+> The full board, with members and writeup links, is in
+> `rogii/winning_writeups/biohub_top25/raw/leaderboard_private.csv`. It was written by
+> `discussions/scrape_writeups.py`.
+
 **Final private leaderboard, fetched 2026-09-30** (`discussions/raw/leaderboard_final.json`,
 2,120 scored teams, 0.977 down to 0.898):
 
