@@ -1,0 +1,1203 @@
+{
+ "forumTopic": {
+  "authorId": 2221915,
+  "authorThumbnailName": "2221915-kg.jpg?t=2024-09-24-13-40-46",
+  "authorUserDisplayName": "Sergio Alvarez",
+  "authorUserName": "sersasj",
+  "comments": [
+   {
+    "id": 3532853,
+    "postDate": "2026-10-04T22:44:26.817Z",
+    "rawMarkdown": "@sersasj e falo em portugues porque voce mereceu, to e dd reletar \u00e0 Priscilla Chan sobre seu valor consolidado Vai a evidencia robusta de seu trabalho.. Isso \u00e9 maior que que a estrela dourada sozinho, pois a fundadora disse o talento n\u00e3o ter fronteiras! Obrigado! Por sua deminstra\u00e7\u00e3o do Brasil \ud83c\udfaf Imenso! \n[](sozinhohttps://photos.app.goo.gl/DfmWQHEDPugr1zFy6)",
+    "content": "<p><a href=\"/sersasj\" target=\"_blank\">@sersasj</a> e falo em portugues porque voce mereceu, to e dd reletar \u00e0 Priscilla Chan sobre seu valor consolidado Vai a evidencia robusta de seu trabalho.. Isso \u00e9 maior que que a estrela dourada sozinho, pois a fundadora disse o talento n\u00e3o ter fronteiras! Obrigado! Por sua deminstra\u00e7\u00e3o do Brasil \ud83c\udfaf Imenso! \n<a target=\"_blank\"></a></p>",
+    "replies": [
+     {
+      "id": 3532854,
+      "postDate": "2026-10-04T22:45:48.403Z",
+      "rawMarkdown": "[](sozinhohttps://photos.app.goo.gl/DfmWQHEDPugr1zFy6)`",
+      "content": "<p><a target=\"_blank\"></a>`</p>",
+      "parent": {},
+      "author": {
+       "displayName": "Alexandre Pedrosa",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/34261654-kg.jpg?t=2026-09-10-03-28-20",
+       "url": "/alexandrepedrosai",
+       "tier": "EXPERT",
+       "id": 34261654,
+       "progressionOptOut": false
+      },
+      "authorType": "COMMENT",
+      "votes": {
+       "totalVotes": -1,
+       "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 2632,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Alexandre Pedrosa",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/34261654-kg.jpg?t=2026-09-10-03-28-20",
+        "url": "/alexandrepedrosai",
+        "userName": "alexandrepedrosai",
+        "tier": "EXPERT",
+        "id": 34261654,
+        "profileUrl": "/alexandrepedrosai",
+        "performanceTier": "EXPERT",
+        "userId": 34261654,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     }
+    ],
+    "parent": {},
+    "author": {
+     "displayName": "Alexandre Pedrosa",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/34261654-kg.jpg?t=2026-09-10-03-28-20",
+     "url": "/alexandrepedrosai",
+     "tier": "EXPERT",
+     "id": 34261654,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": -1,
+     "canUpvote": true
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 2632,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Alexandre Pedrosa",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/34261654-kg.jpg?t=2026-09-10-03-28-20",
+      "url": "/alexandrepedrosai",
+      "userName": "alexandrepedrosai",
+      "tier": "EXPERT",
+      "id": 34261654,
+      "profileUrl": "/alexandrepedrosai",
+      "performanceTier": "EXPERT",
+      "userId": 34261654,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3531307,
+    "postDate": "2026-10-01T16:46:04.720Z",
+    "rawMarkdown": "Brilliant solution and amazing write-up, thanks for that! Well deserved 1st place and solo gold!\nParab\u00e9ns \ud83d\udc4f",
+    "content": "<p>Brilliant solution and amazing write-up, thanks for that! Well deserved 1st place and solo gold!\nParab\u00e9ns \ud83d\udc4f</p>",
+    "replies": [
+     {
+      "id": 3531464,
+      "postDate": "2026-10-01T22:06:37.170Z",
+      "rawMarkdown": "Really appreciate @arc144! Tamo juntoo! ",
+      "content": "<p>Really appreciate <a href=\"/arc144\" target=\"_blank\">@arc144</a>! Tamo juntoo! </p>",
+      "parent": {},
+      "author": {
+       "displayName": "Sergio Alvarez",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+       "url": "/sersasj",
+       "tier": "MASTER",
+       "id": 2221915,
+       "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+       "totalVotes": 2,
+       "canUpvote": true,
+       "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+       {
+        "emoji": "LOVE",
+        "featuredUserNames": [
+         "arc144"
+        ],
+        "userCount": 1
+       }
+      ],
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Sergio Alvarez",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+        "url": "/sersasj",
+        "userName": "sersasj",
+        "tier": "MASTER",
+        "id": 2221915,
+        "profileUrl": "/sersasj",
+        "performanceTier": "MASTER",
+        "userId": 2221915,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     }
+    ],
+    "parent": {},
+    "author": {
+     "displayName": "Eduardo Rocha de Andrade",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/1648129-kg.jpg",
+     "url": "/arc144",
+     "tier": "GRANDMASTER",
+     "id": 1648129,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 3,
+     "canUpvote": true,
+     "totalUpvotes": 3
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 10,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Theo Viel",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2062758-kg.png",
+      "url": "/theoviel",
+      "userName": "theoviel",
+      "tier": "GRANDMASTER",
+      "id": 2062758,
+      "profileUrl": "/theoviel",
+      "performanceTier": "GRANDMASTER",
+      "userId": 2062758,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3531306,
+    "postDate": "2026-10-01T16:45:15.473Z",
+    "rawMarkdown": "Really awesome solution congratz on the win !",
+    "content": "<p>Really awesome solution congratz on the win !</p>",
+    "parent": {},
+    "author": {
+     "displayName": "Theo Viel",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2062758-kg.png",
+     "url": "/theoviel",
+     "tier": "GRANDMASTER",
+     "id": 2062758,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 3,
+     "canUpvote": true,
+     "totalUpvotes": 3
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 10,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Theo Viel",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2062758-kg.png",
+      "url": "/theoviel",
+      "userName": "theoviel",
+      "tier": "GRANDMASTER",
+      "id": 2062758,
+      "profileUrl": "/theoviel",
+      "performanceTier": "GRANDMASTER",
+      "userId": 2062758,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3531495,
+    "postDate": "2026-10-02T00:08:50.590Z",
+    "rawMarkdown": "Crazy. When I saw several of you jump from 0.950 to 0.970 during the competition, I couldn\u2019t wait to read your solutions.\nTo be honest, I had considered a similar approach to designing and training my model, and I even tried doing some of the tracking manually. But I quickly realized how difficult it was for me\u2014just staring at the images and trying to identify and distinguish the cells was incredibly challenging. I also struggle with ADHD, which made it even harder to mentally follow the manual tracking process, let alone work backward from it to figure out how a model should learn to recognize and track the cells. Eventually, I abandoned that original idea and spent the later stages of the competition focusing heavily on post-processing instead.\nAfter reading your explanation, though, everything finally clicked. While yu4u\u2019s solution helped me develop an intuition for how those improvements in the tracking score were achieved, yours genuinely left me in awe.\nFinally, may I ask how much compute you used for training over the course of the competition? Congratulations on your gold medal and on being the top-ranked solo competitor!",
+    "content": "<p>Crazy. When I saw several of you jump from 0.950 to 0.970 during the competition, I couldn\u2019t wait to read your solutions.\nTo be honest, I had considered a similar approach to designing and training my model, and I even tried doing some of the tracking manually. But I quickly realized how difficult it was for me\u2014just staring at the images and trying to identify and distinguish the cells was incredibly challenging. I also struggle with ADHD, which made it even harder to mentally follow the manual tracking process, let alone work backward from it to figure out how a model should learn to recognize and track the cells. Eventually, I abandoned that original idea and spent the later stages of the competition focusing heavily on post-processing instead.\nAfter reading your explanation, though, everything finally clicked. While yu4u\u2019s solution helped me develop an intuition for how those improvements in the tracking score were achieved, yours genuinely left me in awe.\nFinally, may I ask how much compute you used for training over the course of the competition? Congratulations on your gold medal and on being the top-ranked solo competitor!</p>",
+    "replies": [
+     {
+      "id": 3531514,
+      "postDate": "2026-10-02T01:19:55.733Z",
+      "rawMarkdown": "+1 for the compute question! ",
+      "content": "<p>+1 for the compute question! </p>",
+      "parent": {},
+      "author": {
+       "displayName": "Marcus Enochs",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+       "url": "/marcuseno",
+       "tier": "CONTRIBUTOR",
+       "id": 28792874,
+       "progressionOptOut": false
+      },
+      "authorType": "COMMENT",
+      "votes": {
+       "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1008,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Marcus Enochs",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/marcuseno",
+        "userName": "marcuseno",
+        "tier": "CONTRIBUTOR",
+        "id": 28792874,
+        "profileUrl": "/marcuseno",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 28792874,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     },
+     {
+      "id": 3532761,
+      "postDate": "2026-10-04T16:20:43.193Z",
+      "rawMarkdown": "",
+      "parent": {},
+      "author": {
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+       "url": "/"
+      },
+      "authorType": "COMMENT",
+      "votes": {},
+      "canDelete": true,
+      "isUserAuthor": true,
+      "isDeleted": true,
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false
+     }
+    ],
+    "parent": {},
+    "author": {
+     "displayName": "Heliosli",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31141478-kg.png?t=2026-09-06-22-29-39",
+     "url": "/heliosli",
+     "tier": "EXPERT",
+     "id": 31141478,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 2,
+     "canUpvote": true,
+     "totalUpvotes": 2
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 1112,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "reactions": [
+     {
+      "emoji": "LOVE",
+      "featuredUserNames": [
+       "heliosli"
+      ],
+      "userCount": 1
+     }
+    ],
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Heliosli",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/31141478-kg.png?t=2026-09-06-22-29-39",
+      "url": "/heliosli",
+      "userName": "heliosli",
+      "tier": "EXPERT",
+      "id": 31141478,
+      "profileUrl": "/heliosli",
+      "performanceTier": "EXPERT",
+      "userId": 31141478,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3531332,
+    "postDate": "2026-10-01T17:44:44.887Z",
+    "rawMarkdown": "Hi @sersasj , Huge congratulations on taking first place! Even though we didn\u2019t get the chance to be teammates this time, I\u2019m genuinely so happy to see you finish at the very top. That\u2019s an incredible achievement and very well deserved. Hopefully, we\u2019ll have the chance to team up and compete together in the future.",
+    "content": "<p>Hi <a href=\"/sersasj\" target=\"_blank\">@sersasj</a> , Huge congratulations on taking first place! Even though we didn\u2019t get the chance to be teammates this time, I\u2019m genuinely so happy to see you finish at the very top. That\u2019s an incredible achievement and very well deserved. Hopefully, we\u2019ll have the chance to team up and compete together in the future.</p>",
+    "parent": {},
+    "author": {
+     "displayName": "try",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/13147664-kg.png?t=2025-09-05-08-30-33",
+     "url": "/weishanshan033",
+     "tier": "EXPERT",
+     "id": 13147664,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 1
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 14,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Tom",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2026-10-05-04-22-09",
+      "url": "/tom99763",
+      "userName": "tom99763",
+      "tier": "MASTER",
+      "id": 4310004,
+      "profileUrl": "/tom99763",
+      "performanceTier": "MASTER",
+      "userId": 4310004,
+      "progressionOptOut": false
+     },
+     "intro": "pursue champion position. welcome to reach out if you have interesting idea."
+    }
+   },
+   {
+    "id": 3531179,
+    "postDate": "2026-10-01T12:47:10.490Z",
+    "rawMarkdown": "I wonder if diagrams like this were created during development, or if they were prepared solely for the announcement?\nI'm really curious.",
+    "content": "<p>I wonder if diagrams like this were created during development, or if they were prepared solely for the announcement?\nI'm really curious.</p>",
+    "parent": {},
+    "author": {
+     "displayName": "Koki Funakoshi",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33573890-kg.jpeg?t=2026-08-07-03-11-37",
+     "url": "/kokifunakoshi",
+     "tier": "EXPERT",
+     "id": 33573890,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 1
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 128,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "kemshim",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/33561910-kg.JPG?t=2026-05-28-20-03-59",
+      "url": "/kemshim",
+      "userName": "kemshim",
+      "tier": "EXPERT",
+      "id": 33561910,
+      "profileUrl": "/kemshim",
+      "performanceTier": "EXPERT",
+      "userId": 33561910,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3531041,
+    "postDate": "2026-10-01T07:37:14.717Z",
+    "rawMarkdown": "brilliant explanation, congratulations",
+    "content": "<p>brilliant explanation, congratulations</p>",
+    "parent": {},
+    "author": {
+     "displayName": "Jordi Corbilla",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/8790884-kg.jpeg?t=2026-09-06-07-00-27",
+     "url": "/jordicorbilla",
+     "tier": "CONTRIBUTOR",
+     "id": 8790884,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 1
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 378,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Jordi Corbilla",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/8790884-kg.jpeg?t=2026-09-06-07-00-27",
+      "url": "/jordicorbilla",
+      "userName": "jordicorbilla",
+      "tier": "CONTRIBUTOR",
+      "id": 8790884,
+      "profileUrl": "/jordicorbilla",
+      "performanceTier": "CONTRIBUTOR",
+      "userId": 8790884,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3530951,
+    "postDate": "2026-10-01T04:03:55.867Z",
+    "rawMarkdown": "Congratulations! I really like your diagrams, did you make them yourself?",
+    "content": "<p>Congratulations! I really like your diagrams, did you make them yourself?</p>",
+    "replies": [
+     {
+      "id": 3531462,
+      "postDate": "2026-10-01T22:00:58.883Z",
+      "rawMarkdown": "Hi @yassinealouini, they were made with [PlotNeuralNet](https://github.com/HarisIqbal88/PlotNeuralNet)",
+      "content": "<p>Hi <a href=\"/yassinealouini\" target=\"_blank\">@yassinealouini</a>, they were made with <a href=\"https://github.com/HarisIqbal88/PlotNeuralNet\" target=\"_blank\">PlotNeuralNet</a></p>",
+      "parent": {},
+      "author": {
+       "displayName": "Sergio Alvarez",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+       "url": "/sersasj",
+       "tier": "MASTER",
+       "id": 2221915,
+       "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+       "totalVotes": 2,
+       "canUpvote": true,
+       "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+       {
+        "emoji": "LOVE",
+        "featuredUserNames": [
+         "yassinealouini"
+        ],
+        "userCount": 1
+       }
+      ],
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Sergio Alvarez",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+        "url": "/sersasj",
+        "userName": "sersasj",
+        "tier": "MASTER",
+        "id": 2221915,
+        "profileUrl": "/sersasj",
+        "performanceTier": "MASTER",
+        "userId": 2221915,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     }
+    ],
+    "parent": {},
+    "author": {
+     "displayName": "Yassine Alouini",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+     "url": "/yassinealouini",
+     "tier": "GRANDMASTER",
+     "id": 172860,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 1
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 1437,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Yassine Alouini",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/172860-kg.png",
+      "url": "/yassinealouini",
+      "userName": "yassinealouini",
+      "tier": "GRANDMASTER",
+      "id": 172860,
+      "profileUrl": "/yassinealouini",
+      "performanceTier": "GRANDMASTER",
+      "userId": 172860,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3530921,
+    "postDate": "2026-10-01T02:15:31.813Z",
+    "rawMarkdown": "Hola Sergio\n\nMuchas felicitaciones por tu triunfo.\n\nQuisiera saber como elaboraste las ilustraciones de la arquitectura del modelo, pues se ven muy bien. SI usaste alguna libreria, seria posible que me indicaras cual?\n\nNuevamente, muchas felicitaiones.",
+    "content": "<p>Hola Sergio</p>\n<p>Muchas felicitaciones por tu triunfo.</p>\n<p>Quisiera saber como elaboraste las ilustraciones de la arquitectura del modelo, pues se ven muy bien. SI usaste alguna libreria, seria posible que me indicaras cual?</p>\n<p>Nuevamente, muchas felicitaiones.</p>",
+    "replies": [
+     {
+      "id": 3531461,
+      "postDate": "2026-10-01T22:00:27.060Z",
+      "rawMarkdown": "Hola, Juan. Muchas gracias por tus palabras.\nPara los diagramas utilic\u00e9 LaTeX, m\u00e1s espec\u00edficamente el repositorio [PlotNeuralNet](https://github.com/HarisIqbal88/PlotNeuralNet)",
+      "content": "<p>Hola, Juan. Muchas gracias por tus palabras.\nPara los diagramas utilic\u00e9 LaTeX, m\u00e1s espec\u00edficamente el repositorio <a href=\"https://github.com/HarisIqbal88/PlotNeuralNet\" target=\"_blank\">PlotNeuralNet</a></p>",
+      "parent": {},
+      "author": {
+       "displayName": "Sergio Alvarez",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+       "url": "/sersasj",
+       "tier": "MASTER",
+       "id": 2221915,
+       "progressionOptOut": false
+      },
+      "authorType": "TOPIC",
+      "votes": {
+       "totalVotes": 1,
+       "canUpvote": true,
+       "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "reactions": [
+       {
+        "emoji": "THANK_YOU",
+        "featuredUserNames": [
+         "juancneira"
+        ],
+        "userCount": 1
+       }
+      ],
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Sergio Alvarez",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+        "url": "/sersasj",
+        "userName": "sersasj",
+        "tier": "MASTER",
+        "id": 2221915,
+        "profileUrl": "/sersasj",
+        "performanceTier": "MASTER",
+        "userId": 2221915,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     }
+    ],
+    "parent": {},
+    "author": {
+     "displayName": "Juan Neira",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14770099-kg.jpg?t=2025-12-17-06-36-27",
+     "url": "/juancneira",
+     "tier": "CONTRIBUTOR",
+     "id": 14770099,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 1
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 1361,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Juan Neira",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/14770099-kg.jpg?t=2025-12-17-06-36-27",
+      "url": "/juancneira",
+      "userName": "juancneira",
+      "tier": "CONTRIBUTOR",
+      "id": 14770099,
+      "profileUrl": "/juancneira",
+      "performanceTier": "CONTRIBUTOR",
+      "userId": 14770099,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3530919,
+    "postDate": "2026-10-01T02:12:51.583Z",
+    "rawMarkdown": "Amazing work, brillant !",
+    "content": "<p>Amazing work, brillant !</p>",
+    "parent": {},
+    "author": {
+     "displayName": "Corwin",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/7356970-kg.jpg?t=2024-10-18-22-30-15",
+     "url": "/corwin1979",
+     "tier": "CONTRIBUTOR",
+     "id": 7356970,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 1
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 12,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Corwin",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/7356970-kg.jpg?t=2024-10-18-22-30-15",
+      "url": "/corwin1979",
+      "userName": "corwin1979",
+      "tier": "CONTRIBUTOR",
+      "id": 7356970,
+      "profileUrl": "/corwin1979",
+      "performanceTier": "CONTRIBUTOR",
+      "userId": 7356970,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3530908,
+    "postDate": "2026-10-01T01:55:11.443Z",
+    "rawMarkdown": "Beautiful solution and writeup, and congrats on the solo win! GM soon \ud83d\ude00",
+    "content": "<p>Beautiful solution and writeup, and congrats on the solo win! GM soon \ud83d\ude00</p>",
+    "parent": {},
+    "author": {
+     "displayName": "Satwik",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
+     "url": "/p4rallax",
+     "tier": "MASTER",
+     "id": 3459992,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 1
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 121,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Satwik",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/3459992-kg.jpg?t=2025-11-13-11-42-38",
+      "url": "/p4rallax",
+      "userName": "p4rallax",
+      "tier": "MASTER",
+      "id": 3459992,
+      "profileUrl": "/p4rallax",
+      "performanceTier": "MASTER",
+      "userId": 3459992,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3530924,
+    "postDate": "2026-10-01T02:20:17.043Z",
+    "rawMarkdown": "As computer vision researchers, our ideas usually come from directly inspecting the raw images. At that point, we visualize in our minds what the output would look like after applying the idea, work out how to represent it, and then go on to implement it. If you're a researcher with no prior computer vision experience, Sergio's development process is a great example to follow.",
+    "content": "<p>As computer vision researchers, our ideas usually come from directly inspecting the raw images. At that point, we visualize in our minds what the output would look like after applying the idea, work out how to represent it, and then go on to implement it. If you're a researcher with no prior computer vision experience, Sergio's development process is a great example to follow.</p>",
+    "replies": [
+     {
+      "id": 3530954,
+      "postDate": "2026-10-01T04:14:31.033Z",
+      "rawMarkdown": "This is how my best ideas came watching the videos. I found a lensing issue in one of the samples where the lense shifted and cause and issue then got blurry. I ended up running 8 videos at a time and watching them in reverse. ",
+      "content": "<p>This is how my best ideas came watching the videos. I found a lensing issue in one of the samples where the lense shifted and cause and issue then got blurry. I ended up running 8 videos at a time and watching them in reverse. </p>",
+      "parent": {},
+      "author": {
+       "displayName": "Adam Johnson",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+       "url": "/comfyops",
+       "tier": "CONTRIBUTOR",
+       "id": 36008278,
+       "progressionOptOut": false
+      },
+      "authorType": "COMMENT",
+      "votes": {
+       "totalVotes": 2,
+       "canUpvote": true,
+       "totalUpvotes": 2
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 1530,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Adam Johnson",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/comfyops",
+        "userName": "comfyops",
+        "tier": "CONTRIBUTOR",
+        "id": 36008278,
+        "profileUrl": "/comfyops",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 36008278,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     },
+     {
+      "id": 3531056,
+      "postDate": "2026-10-01T08:10:37.343Z",
+      "rawMarkdown": "Yeah, the main findings and ideas should come from your own head\u2014or in this case, from your own eyes ;) In general, it\u2019s the exact same pipeline across all of ML. It's the same for tabular ML too, except to actually see something with your eyes, you need to use your brain to figure out what they should even look at, like statistics and visualizations. Great write-up!",
+      "content": "<p>Yeah, the main findings and ideas should come from your own head\u2014or in this case, from your own eyes ;) In general, it\u2019s the exact same pipeline across all of ML. It's the same for tabular ML too, except to actually see something with your eyes, you need to use your brain to figure out what they should even look at, like statistics and visualizations. Great write-up!</p>",
+      "parent": {},
+      "author": {
+       "displayName": "Sergey Bryansky",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/502737-kg.jpg",
+       "url": "/sggpls",
+       "tier": "GRANDMASTER",
+       "id": 502737,
+       "progressionOptOut": false
+      },
+      "authorType": "COMMENT",
+      "votes": {
+       "canUpvote": true,
+       "totalUpvotes": 1
+      },
+      "kernelVersion": 0,
+      "competitionRanking": 13,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Christoffer Thimsen",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+        "url": "/lowasitgoes",
+        "userName": "lowasitgoes",
+        "tier": "EXPERT",
+        "id": 36083038,
+        "profileUrl": "/lowasitgoes",
+        "performanceTier": "EXPERT",
+        "userId": 36083038,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     }
+    ],
+    "parent": {},
+    "author": {
+     "displayName": "Tom",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2026-10-05-04-22-09",
+     "url": "/tom99763",
+     "tier": "MASTER",
+     "id": 4310004,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": 1,
+     "canUpvote": true,
+     "totalUpvotes": 2
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 14,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Tom",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/4310004-kg.png?t=2026-10-05-04-22-09",
+      "url": "/tom99763",
+      "userName": "tom99763",
+      "tier": "MASTER",
+      "id": 4310004,
+      "profileUrl": "/tom99763",
+      "performanceTier": "MASTER",
+      "userId": 4310004,
+      "progressionOptOut": false
+     },
+     "intro": "pursue champion position. welcome to reach out if you have interesting idea."
+    }
+   },
+   {
+    "id": 3531459,
+    "postDate": "2026-10-01T21:58:29.240Z",
+    "rawMarkdown": "Congrats! Thank you so much for the detailed writeup, it's incredibly helpful to see the thought process of experts as I enter the field!",
+    "content": "<p>Congrats! Thank you so much for the detailed writeup, it's incredibly helpful to see the thought process of experts as I enter the field!</p>",
+    "parent": {},
+    "author": {
+     "displayName": "Marcus Enochs",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+     "url": "/marcuseno",
+     "tier": "CONTRIBUTOR",
+     "id": 28792874,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "canUpvote": true
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 1008,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Marcus Enochs",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+      "url": "/marcuseno",
+      "userName": "marcuseno",
+      "tier": "CONTRIBUTOR",
+      "id": 28792874,
+      "profileUrl": "/marcuseno",
+      "performanceTier": "CONTRIBUTOR",
+      "userId": 28792874,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3531022,
+    "postDate": "2026-10-01T07:12:44.643Z",
+    "rawMarkdown": "Why ReLU though, why not GeLU?\nwas there a particular reason for this?",
+    "content": "<p>Why ReLU though, why not GeLU?\nwas there a particular reason for this?</p>",
+    "replies": [
+     {
+      "id": 3531049,
+      "postDate": "2026-10-01T07:59:59.087Z",
+      "rawMarkdown": "And also eva blocks why that? Swin blocks performs way better in various scenarios?\n",
+      "content": "<p>And also eva blocks why that? Swin blocks performs way better in various scenarios?</p>",
+      "parent": {},
+      "author": {
+       "displayName": "Exalted Joseph",
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21070744-kg.jpg?t=2024-05-30-00-22-50",
+       "url": "/theexaltedone",
+       "tier": "CONTRIBUTOR",
+       "id": 21070744,
+       "progressionOptOut": false
+      },
+      "authorType": "COMMENT",
+      "votes": {
+       "canUpvote": true
+      },
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false,
+      "teamUpInfo": {
+       "teamLeader": {
+        "displayName": "Exalted Joseph",
+        "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21070744-kg.jpg?t=2024-05-30-00-22-50",
+        "url": "/theexaltedone",
+        "userName": "theexaltedone",
+        "tier": "CONTRIBUTOR",
+        "id": 21070744,
+        "profileUrl": "/theexaltedone",
+        "performanceTier": "CONTRIBUTOR",
+        "userId": 21070744,
+        "progressionOptOut": false
+       },
+       "intro": ""
+      }
+     }
+    ],
+    "parent": {},
+    "author": {
+     "displayName": "Exalted Joseph",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21070744-kg.jpg?t=2024-05-30-00-22-50",
+     "url": "/theexaltedone",
+     "tier": "CONTRIBUTOR",
+     "id": 21070744,
+     "progressionOptOut": false
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "canUpvote": true
+    },
+    "kernelVersion": 0,
+    "feedbackTrackingData": {},
+    "isThankYou": false,
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Exalted Joseph",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/21070744-kg.jpg?t=2024-05-30-00-22-50",
+      "url": "/theexaltedone",
+      "userName": "theexaltedone",
+      "tier": "CONTRIBUTOR",
+      "id": 21070744,
+      "profileUrl": "/theexaltedone",
+      "performanceTier": "CONTRIBUTOR",
+      "userId": 21070744,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   {
+    "id": 3532851,
+    "postDate": "2026-10-04T22:38:48.833Z",
+    "rawMarkdown": "",
+    "parent": {},
+    "author": {
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+     "url": "/"
+    },
+    "authorType": "COMMENT",
+    "votes": {},
+    "canDelete": true,
+    "isUserAuthor": true,
+    "isDeleted": true,
+    "kernelVersion": 0,
+    "feedbackTrackingData": {},
+    "isThankYou": false
+   },
+   {
+    "id": 3532848,
+    "postDate": "2026-10-04T22:34:04.787Z",
+    "rawMarkdown": "",
+    "replies": [
+     {
+      "id": 3532849,
+      "postDate": "2026-10-04T22:34:46.407Z",
+      "rawMarkdown": "",
+      "parent": {},
+      "author": {
+       "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+       "url": "/"
+      },
+      "authorType": "COMMENT",
+      "votes": {},
+      "canDelete": true,
+      "isUserAuthor": true,
+      "isDeleted": true,
+      "kernelVersion": 0,
+      "feedbackTrackingData": {},
+      "isThankYou": false
+     }
+    ],
+    "parent": {},
+    "author": {
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+     "url": "/"
+    },
+    "authorType": "COMMENT",
+    "votes": {},
+    "canDelete": true,
+    "isUserAuthor": true,
+    "isDeleted": true,
+    "kernelVersion": 0,
+    "feedbackTrackingData": {},
+    "isThankYou": false
+   },
+   {
+    "id": 3532756,
+    "postDate": "2026-10-04T16:06:00.523Z",
+    "rawMarkdown": "",
+    "attachments": [
+     {
+      "fileType": ".jpg",
+      "id": 52056,
+      "name": "Screenshot_2026-10-03-19-31-06-407_com.facebook.katana.jpg",
+      "totalBytes": 539974,
+      "url": "https://storage.googleapis.com/kaggle-forum-message-attachments/3532756/52056/Screenshot_2026-10-03-19-31-06-407_com.facebook.katana.jpg"
+     }
+    ],
+    "parent": {},
+    "author": {
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png",
+     "url": "/"
+    },
+    "authorType": "COMMENT",
+    "votes": {
+     "totalVotes": -2
+    },
+    "canDelete": true,
+    "isUserAuthor": true,
+    "isDeleted": true,
+    "kernelVersion": 0,
+    "feedbackTrackingData": {},
+    "isThankYou": false
+   }
+  ],
+  "commentSort": "COMMENT_LIST_SORT_BY_HOT",
+  "firstMessage": {
+   "id": 3530902,
+   "postDate": "2026-10-01T01:27:35.687Z",
+   "rawMarkdown": "Thanks to BioHub and Kaggle for hosting such an amazing competition. When I started participating in Kaggle competitions 2 years ago I could have never imagined coming this far. Really proud of this first solo gold and 1st place.\n\n----------\nWhen reading the solution, bear in mind that it was not designed from scratch. It grew as ideas came up and were added along the way, and they didn't come in a straight line, I tried a lot of stuff. So there are some parts that could perhaps be simplified and made more elegant without losing score, maybe even improving it. \n\nI entered the competition just 4h after it was launched. I didn't know much about tracking in general, much less cell tracking. But I wanted to try for a solo gold, so I was very invested in learning the subject. \n\nAt the beginning of the competition, while I was trying to get more acquainted with the task, I was very intrigued that, contrary to other fields of computer vision, cell tracking was not following the trend of 'let's just scale things up', as a matter of fact, it mostly uses \"hand-made\" features like geometry, intensity, velocity and so on, and these features are blind, they never look at the cell itself. This was one of the things that stayed in my mind throughout the competition, and one of the things my ideas wandered around.\n\nThe second main driver, which helped me with ideas (not so much with improving the scores), was a quote from an ultrack presentation that I watched on [YouTube](https://www.youtube.com/watch?v=98dahngkNOI), where Jord\u00e3o Bragantini (one of the hosts) [1] says \"tracking is hard, because segmentation is hard. If segmentation was solved, tracking would be much easier...\". Because of this, in the first half of the competition I tried mainly to improve the detection part, with little to no progress. This month and a half of attacking the segmentation part led me to try the desperate measure of manually annotating cells. I'm used to doing this kind of manual work from my undergraduate research and my master's, but man, annotating 3D cells is very hard. I spent a lot of time on it and only managed to annotate about 1,800 cells, less than 2% of what was already provided, so it was too much effort for almost nothing in the detection part. \n\nStill, I don't regret doing it, because spending dozens of hours looking at cells gave me a lot of ideas for moving away from the hand-made features that are so dominant. Yes, tracking is hard, cells are extremely similar to each other, they constantly change and, worse, they DIVIDE. But that doesn't stop me, a human who had never tracked cells before, from looking at 3 frames and saying with confidence, this is cell X in frame t-1, this is cell X in t, and here are its daughter cells in t+1. So a machine should be able to learn this somehow.\n\n\n**Here's the 1st place solution for Biohub - Cell Tracking During Development.**\n\n----\n\n# Overview of the approach\n\nMy solution follows the tracking-by-detection paradigm and has 3 main stages plus decoding. \n\nThe first stage, the detection part, is a vanilla U-Net with a Cellpose-style head [2], which predicts a foreground probability and a flow field pointing to each cell's center. The model was pretrained with MAE [3], finetuned with manual annotations + 4.305 \u00b5m stamps on GT nodes, and then retrained on pseudo labels generated by that first model. \n\nThe second stage is the fun part of the approach, here I'll call it Soon Net. It looks at 3 frames cropped around each cell and tries to predict its division state (interphase, soon to divide, just divided), where it was and where it went. The architecture is a very small CNN encoder (236K parameters) + transformer (508K parameters) .\n\nThe third stage is a learned linker, also a transformer, with some LightGlue [4] inspirations. It scores the edges between frames t and t+1 and decides divisions, using the detector's geometry and the Soon Net's outputs.\n\nFinally, a greedy decode turns the linker scores into lineages. The overview can also be seen in the image below.\n\n![Overview of the pipeline](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F4abea4f187321ef24dfb75b917e5f285%2Foverview.png?generation=1790815299517442&alt=media)\n\n# Detection\n\nThe detector is a vanilla 3D U-Net with a Cellpose-style head. It has about 3.1M parameters and was trained on crops of size 128\u00d7128\u00d764. The encoder has 3 downsampling stages (24, 48 and 96 channels) followed by a 192-channel bottleneck, and each block is 2 \u00d7 (3\u00d73\u00d73 conv + BatchNorm + ReLU). Pooling is anisotropic, (1,2,2), (1,2,2), (2,2,2). At the end of the decoder, two 1\u00d71\u00d71 heads predict a foreground probability and a 3-channel flow field pointing to the cell center. I also use deep supervision at \u00bd and \u00bc resolution.\n\nTo get the instances, like in Cellpose, every voxel with probability > 0.5 follows the flow until it stops at a cell center, and voxels that end up at the same place (within 3 \u00b5m) become one instance. Instances smaller than 10 voxels are dropped.\n\nThe anisotropic pooling is one of the parameters I'm not so sure about. I tried it as a way of handling the anisotropy of the data in Z, and the loss curves were a little lower with it, so I kept it. Anyway, it's probably not doing much...\n\nThe architecture can be seen in the figure below.\n![Detector, a Cellpose-style 3D U-Net](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffd359777c6e2066fa9827e93041a5012%2Funet.png?generation=1790815330067008&alt=media)\n\nI chose to try a mask output instead of a Gaussian blob, which was the dominant strategy in other competitions like CZII and BYU, because many tracking papers like HOCT [5] use geometric features and Ultrack [6] also needs masks, and a simple Gaussian blob would not be able to provide them.\n\n![Detector output](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F5e103c8b92ab80896af62a85979f5ab0%2Fsegmentation_z.gif?generation=1790815643687456&alt=media)\n\n\nThe model was first pretrained with a very \"light\" MAE (Masked Autoencoder). Normally, MAE masks a big portion of the frame with large blocks. I opted for a much lighter version, masking 50% of the volume in tiny blocks of 2\u00d74\u00d74 voxels (about 3.25 \u00b5m on each side, roughly a third of a nucleus). Since the cells are very small, it didn't make sense to me to use large blocks, the model would have to completely hallucinate the cells. With a light MAE it could learn useful features without having to hallucinate. I used 180 movies from the competition (18,000 frames, 15 more held out to check the reconstruction) and 1,500 external frames (150 crops \u00d7 10 time points) from the ultrack zebrafish embryo, and trained for 30 epochs. Honestly, I can't say how much it improved the metrics, or even if it improved them at all. In earlier experiments, I was working with an out-of-embryo split and saw a small improvement in recall, so I kept using it. I just wanted to make sure my detector would be more robust against the embryo variety it may encounter in the private LB. And finally, even if it doesn't improve the scores, it helped my models converge much faster, which cannot be a bad thing. This decision was also supported by the literature, the FOCUS-3D paper [7] that @hengck23 shared in the discussions uses MAE pretraining.\n\nThe code for MAE is from the amazing MIC-DKFZ group and can be found in their [github](https://github.com/MIC-DKFZ/nnssl) [8]. In the figure below we can see the MAE reconstruction, showing that it did in fact learn to reconstruct.\n\n![MAE reconstruction](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffa1d421cac80a45072517c19e85e1668%2Fmae_reconstruction.png?generation=1790815735073254&alt=media)\n\nThe first finetune uses my hand-painted masks (~1,800 cells over 583 frames) and 4.305 \u00b5m stamps on the 133k annotated GT cells. Models were trained for 40 epochs, using heavy augmentation and EMA.\n\nAfter the first finetune, I generated pseudo labels for all 195 movies + the 150 external crops using a 5-fold average + 4x flip TTA. After this, I kept only high-confidence detections, generated tracks with the public twoPass tracker and filtered for min length > 3 to help me keep only high-confidence detections. Yes, this leaks into CV, so Round 2 validation scores are optimistic, but since GT was sparse and I could visually see improvements I accepted the trade.\n\n\nFor the final submission, 5 folds \u00d7 4x TTA were used, resulting in 20 forward passes per frame.\n\n\n\n\n# Soon to Divide / Visual Tracking\n\nWhen doing the manual annotation to help my detector, I noticed that divisions were very easy to spot visually. Cells, at least in zebrafish embryos, follow a pretty standard process, they start jiggling, get brighter, then get bigger and suddenly explode in two. The first idea came from seeing this. I didn't even need to see the division happening to know that the cell was going to divide soon. Don't believe me? See for yourself in the gifs below.\n\n\n![Interphase vs soon-to-divide, embryo 6bba](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F7193a76b3c4b3e903b2727e7a45d3d86%2Finterphase_vs_soon_6bba.gif?generation=1790815901097962&alt=media)\n\n\n![Interphase vs soon-to-divide, embryo 44b6](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fedcd156320a2c0eafddb48859459f298%2Finterphase_vs_soon_44b6.gif?generation=1790815929142132&alt=media)\n\nI showed no division, and I bet you were able to identify with your eyes which cell was going to divide (the ones on the right).\n\nFrom this concept came my initial model. At first, the purpose was just to create three features for my linker, Soon-to-Divide, Just-Divided and Interphase, and the probabilities of these 3 classes could then be used however I pleased. The soon-to-divide class comprises the stages of mitosis where I can visually see that something is going on with the cell, probably prophase, metaphase and anaphase, but I wasn't worried about the scientific names, nor about making sure that every step of mitosis was identified. If something was happening with the cell, I labeled it.\n\nThe idea in my mind was that soon-to-divide would show a linear increase in probability until its peak when the daughters appear at t+1, and then a sudden change to just divided, and with this the linker would know that a division happened. In the end, I simplified soon-to-divide to be only the last two frames of the mother, t-1 and t, with the daughters appearing at t+1, and not all the frames I labeled. This linear increase does happen, as can be seen in the plot below, even though only the last two frames were labeled soon-to-divide, the probability starts rising about 6 frames before the division. But as you're going to see further on in my Linker section, I only have two frames and never really expanded the temporal features.\n\n![Soon-to-divide probability around a division](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fd94cf867ac042f52645fbe16e922f874%2Fsoon_timeline.png?generation=1790815996933069&alt=media)\n\nThe initial architecture was simple. For each detection, I cut a small 16\u00d764\u00d764 crop around it in frames t-1, t and t+1 and added a fourth channel with a Gaussian at the cell's position in frame t, so the model knows which cell I'm asking about. The three frames go through the same small 3D CNN, a small transformer attends over the tokens of all 3 frames, and a learned query seeded at the cell's position reads out the class.\n\nThe result of the soon-to-divide model was already good, I was stuck around ~0.925 on the public LB, and it helped me go to ~0.963 public LB with improvements in divisions alone. After a while, I realized that I was not using the full potential of the data. I just showed 3 frames, set a query on the cell I was asking about and classified it, but I had tracks! In last year's RSNA competition, @tomoon33's 1st place solution [9] used auxiliary detection heads to improve their results, and I wanted to try something similar.\n\nThat's when I started attacking the second thing that bothered me about tracking. By adding an FPN head, my model no longer only said the state of the cell, it could also say where the cell was and where it went, just by looking at it. The FPN takes the encoder features of each frame and the transformer tokens, and predicts two occupancy maps for each of the 3 frames, one for continuation and one for division. The targets are small spheres at the positions of the query cell and its relatives. For an ordinary cell, its position in t-1, t and t+1 lights up in the continuation maps, so the map for t+1 says \"this is where this cell will be in the next frame\", which is exactly the question the linker has to answer. For a mother, both daughters light up in the division map of t+1, and for a newborn daughter, its mother lights up in the division map of t-1. \n\n\nThe architecture is shown below. A lot of it comes from Primus [10] by MIC-DKFZ (yup, them again). The idea of using a small CNN as a tokenizer before a transformer is something I first learned from them, but their tokenizer is much larger and was overfitting easily, so I simplified it as much as I could and ended up with this small CNN. The EVA [11] blocks also come from Primus, and here I have to be honest, I used them just because they did, there was no proper ablation against plain transformer blocks.\n\n![Soon Net architecture](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F3af8b495e801e29a98e53116ffe14c9b%2Fsoon_net.png?generation=1790816031116397&alt=media)\n\n\nThe idea of the occupancy maps is simple, but the training recipe needed a couple of tweaks to make it work. I couldn't always put the query cell at the center of the crop, because the model would get lazy and predict occupancy for the cell in the center instead of the queried one. So I use a very large FOV jitter (\u00b13 px in z, \u00b116 px in xy). I also use a kind of time-step augmentation for interphase cells, frame t-1 is sometimes actually t-2 or t-3, and t+1 is sometimes t+2 or t+3, so the model learns that cells can move far. \n\nThe examples below query a cell and move the FOV around it, and as can be seen, the occupancy maps and class probabilities stay consistent. \n\n![Soon Net outputs](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F61d1182625f817a8a1c291cef2089689%2Fsoon_camera_k1.gif?generation=1790816056993625&alt=media)\n\nI used early versions of the Soon Net to mine divisions and visually checked a couple hundred of them. In the final version I had 515 divisions to train with, against the 151 in the original GT.\n\nThe class head uses a cross-entropy over the 3 classes with label smoothing of 0.1. The occupancy maps use a BCE with foreground and background weighted equally, plus a Focal-Tversky term on the maps that have spheres.  Maps of the wrong type, like the division map of an interphase cell, get an extra BCE on their 512 highest voxels to avoid ghost blobs. The total loss is the class loss + 2 \u00d7 the map loss.\n\nTraining consisted of two rounds. Round 1 was trained for 100 epochs, showing about 6650 crops per epoch with a balanced 1:1:1 split (interphase, soon-to-divide, just divided). In round 2 I used round 1 to mine hard interphases, i.e. cells in interphase tracks that round 1 scored as soon-to-divide (p \u2265 0.5) or just divided (p \u2265 0.3), out-of-fold, which gave 2492 hard negatives. The second version was again trained for 100 epochs, with 6600 crops per epoch and a 1:1:1:1 split (random interphase, hard interphase, soon-to-divide, just divided).\n\n\nBy itself, the Soon Net can already track, using a greedy decode on the occupancy fields. I haven't submitted it, but here are the scores in my 5-fold CV, on the original tracks and on my augmented tracks with manual annotations, mined divisions and a couple of corrections where the original tracks were missing a division annotation.\n\n| GT | Official score, Round 1 | Official score, Round 2 | adj. edge Jaccard (R1 / R2) | division Jaccard (R1 / R2) | Divisions TP/FP/FN (R1 \u2192 R2) |\n|---|---|---|---|---|---|\n| Original GT | 0.9270 | **0.9288** | 0.8926 / 0.8914 | 0.3439 / 0.3738 | 76/73/72 \u2192 77/58/71 |\n| Augmented GT | 0.9459 | **0.9464** | 0.8914 / 0.8903 | 0.5443 / 0.5617 | 313/70/192 \u2192 314/54/191 |\n\nIt's a decent score, but still not enough to be competitive, so we still need a linker to learn how to better use these features. Note that the Soon Net was the last piece to appear, the early experiments were just detection + learned linker, and this model came much later.\n\n# Linker\n\n\n\nFinally, we have the learned linker. Its job is to look at two consecutive frames at a time and decide which cell goes where, and which cell divided. The main inspiration is LightGlue, which matches keypoints between two images, and matching cells between two frames is kind of the same problem.\n\n\nThe linker uses two kinds of features. Node features describe a single cell and go through the transformer. Pair features describe a candidate link between two cells and are only used later, in the MLP heads.\n\nStarting with the node features, each detection becomes a token built from 42 hand-made features. The first 39 go through a linear layer, and the 3 distances to the edge of the field of view go through their own small linear layer that is added to the same token (this is the \"FoV embedding\" in the figure). Yes, after all my talk about hand-made features, the linker still uses them. I looked down on them at the beginning of the competition, but I can't argue with the results, they work hehe. But there is one difference with the occupancy ones. They are also kind of hand-made, I'm the one deciding to read the parent's heatmap at the child's center, but they are not blind, the heatmap comes from a model that looked at the 3 frames. So if the Soon Net gets better, with more data or a bigger model, these features get better too, and I think this is the part that could be scaled.\n\n| Dims | Feature |\n|---|---|\n| 1 | log volume of the mask |\n| 1 | mean foreground probability over the mask |\n| 24 | position z, y, x (sinusoidal, 4 frequencies \u00d7 sin/cos) |\n| 13 | mask geometry in \u00b5m (semi-axes, axis ratios, fill ratios, main axis direction, bounding box size) |\n| 3 | distance to the edge of the field of view in z, y, x  |\n\nThe tokens of both frames go through 4 cross-attention blocks, where each cell only looks at nearby cells in the other frame, every cell within 30 \u00b5m plus its 16 nearest ones, so even cells in sparse regions always have candidates.\n\nThen come the pair features, computed for every candidate link (parent at t, child at t+1). Most of them are simple differences between the two cells. The occupancy ones come from the Soon Net maps (the heatmaps shown in the Soon Net figure). For a candidate link, we ask the parent \"where do you think you'll be at t+1?\" and read its heatmap at the child's center, then ask the child \"where were you at t-1?\" and read its heatmap at the parent's center. If both answers are high, it's probably the right link.\n\n| Dims | Pair feature |\n|---|---|\n| 3 | displacement z, y, x |\n| 1 | log volume ratio |\n| 5 | drift residual after removing the local tissue motion (coarse to fine) |\n| 5 | shape change (main axis agreement, axis lengths, elongation) |\n| 4 | intensity change |\n| 1 | parent's t+1 heatmap, read at the child |\n| 1 | child's t-1 heatmap, read at the parent |\n| 1 | same value compared with the best other candidate |\n| 1 | distance from the child to the peak of the parent's heatmap |\n| 2 | flags when the other cell is outside the crop |\n\n\nThe linker has two heads, a pair head and a fork head.\n\nThe pair head scores every candidate link, using the two cell embeddings plus the pair features.\n\nThe fork head makes the final decision for each parent, no child, one child, or two children. The pair scores pick the 16 best candidate children, and every option is scored, no child (1), a single child (16) or a pair of children (16\u00d715/2 = 120), which gives 137 options per parent.\n\nThe decision is split in two steps. First, a \"kind\" step decides if the parent divides at all. Then, a \"who\" step picks the children. I split it because these are two different questions. \"Is this cell dividing?\" depends mostly on the cell itself, what the Soon Net says about it, but also on whether there is a good pair of daughters in the next frame, so the kind step also looks at how good the best candidate pairs are. \"Which cells are the daughters?\" is about choosing between the candidates. Here the who step uses the Soon Net division maps (the mother points at both daughters and both point back at the mother), the pair scores, intensity, and some geometry, like the distance between the sisters, if their volumes add up to the mother, and if the split happens along the mother's main axis. When everything was in a single softmax, the 120 pair options drowned the rare division decision and the model produced too many false divisions. With the split, the division decision gets its own small head, and the final probability is just p(kind) \u00d7 p(who | kind).\n\n\nIt's kind of complex to follow everything that is going on, so the figure below tries to illustrate it better.\n![Learned linker architecture](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F924ff6702eaf16c18eefcdf17cd4cd1d%2Flinker.png?generation=1790816456944552&alt=media)\n\nThe linker has 3 losses with equal weights. The pair head uses a dual-softmax NLL, like LightGlue. The fork head uses an NLL over the 137 options of each parent, which trains the kind and who steps together. The third loss goes the other way, it is also an NLL, where each child has to pick its right parent, or no parent, among all the options that claim it.\n\nTraining was done for 10 epochs on the augmented GT, with divisions oversampled 8 times. I also use the time-step augmentation, so there is a 25% chance of seeing a (t, t+2) pair.\n\nAt inference, the 5 fold linkers are averaged, and the links come from a greedy decode, no threshold on the edge scores. For every parent and every option, the decode computes how much better it is than \"no child\", log p(option) \u2212 log p(no child), and keeps only the ones above 0. These are sorted and accepted from the best down, where each parent takes at most one option and each child can only have one parent. Children left without a parent start new tracks. \n\n\n# Post Processing\n\nI tried to keep the post-processing as simple as possible. There is a line-fit smoothing that was shared in the public notebooks, just adjusted to not smooth divisions into their mothers, a division refractory rule that does not allow a newborn daughter to divide again in the next frame (conflicts are resolved from the most confident division down, otherwise a weak early fork could block the real division one frame later), a 1-frame gap closing, and a pruning of tracks shorter than 3 frames.\n\nThe final 5-fold CV of the full pipeline (detector + Soon Net + linker, greedy decode) is shown below.\n\n| GT | Soon Net alone | Full pipeline | adj. edge Jaccard (alone / full) | division Jaccard (alone / full) | Divisions TP/FP/FN (full) |\n|---|---|---|---|---|---|\n| Original GT | 0.9288 | **0.9575** | 0.8914 / 0.9089 | 0.3738 / 0.4857 | 102/62/46 |\n| Augmented GT | 0.9464 | **0.9856** | 0.8903 / 0.9090 | 0.5617 / 0.7654 | 434/62/71 |\n\n\nThe final score is 0.976 on the public LB and 0.977 on the private LB.\n\n\n## Code\n\nTo be released\n\n\n## Sources\n\n[1] Jord\u00e3o Bragantini, *ultrack: large-scale versatile cell tracking in Python*, SciPy 2024. https://www.youtube.com/watch?v=98dahngkNOI\n\n[2] Stringer et al., *Cellpose: a generalist algorithm for cellular segmentation*, Nature Methods (2021). https://github.com/MouseLand/cellpose\n\n[3] He et al., *Masked Autoencoders Are Scalable Vision Learners*, CVPR (2022). https://arxiv.org/abs/2111.06377\n\n[4] Lindenberger, Sarlin, Pollefeys, *LightGlue: Local Feature Matching at Light Speed*, ICCV (2023). https://arxiv.org/abs/2306.13643\n\n[5] Bragantini, Theodoro, Royer, *Higher-Order Cell Tracking Transformer*, arXiv:2607.11754 (2026). https://arxiv.org/abs/2607.11754\n\n[6] Bragantini, Theodoro, Zhao et al., *Ultrack: pushing the limits of cell tracking across biological scales*, Nature Methods 22, 2423\u20132436 (2025). https://doi.org/10.1038/s41592-025-02778-0\n\n[7] Zhang, Mu, Liu et al., *FOCUS-3D: Robust, generalizable volumetric cell segmentation for three-dimensional fluorescence microscopy*, bioRxiv (2026). Shared by @hengck23 in the competition discussions.\n\n[8] MIC-DKFZ, *nnssl*, self-supervised learning framework (MAE code used here). https://github.com/MIC-DKFZ/nnssl\n\n[9] tomoon33, *RSNA Intracranial Aneurysm Detection, 1st place solution*, Kaggle (2025). https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection/writeups/1st-place-solution\n\n[10] Wald, Roy, Isensee et al., *Primus: Enforcing Attention Usage for 3D Medical Image Segmentation* (2025). https://arxiv.org/abs/2503.01835\n\n[11] Fang et al., *EVA-02: A Visual Representation for Neon Genesis* (2023). https://arxiv.org/abs/2303.11331\n",
+   "content": "<p>Thanks to BioHub and Kaggle for hosting such an amazing competition. When I started participating in Kaggle competitions 2 years ago I could have never imagined coming this far. Really proud of this first solo gold and 1st place.</p>\n<hr>\n<p>When reading the solution, bear in mind that it was not designed from scratch. It grew as ideas came up and were added along the way, and they didn't come in a straight line, I tried a lot of stuff. So there are some parts that could perhaps be simplified and made more elegant without losing score, maybe even improving it. </p>\n<p>I entered the competition just 4h after it was launched. I didn't know much about tracking in general, much less cell tracking. But I wanted to try for a solo gold, so I was very invested in learning the subject. </p>\n<p>At the beginning of the competition, while I was trying to get more acquainted with the task, I was very intrigued that, contrary to other fields of computer vision, cell tracking was not following the trend of 'let's just scale things up', as a matter of fact, it mostly uses \"hand-made\" features like geometry, intensity, velocity and so on, and these features are blind, they never look at the cell itself. This was one of the things that stayed in my mind throughout the competition, and one of the things my ideas wandered around.</p>\n<p>The second main driver, which helped me with ideas (not so much with improving the scores), was a quote from an ultrack presentation that I watched on <a href=\"https://www.youtube.com/watch?v=98dahngkNOI\" target=\"_blank\">YouTube</a>, where Jord\u00e3o Bragantini (one of the hosts) [1] says \"tracking is hard, because segmentation is hard. If segmentation was solved, tracking would be much easier\u2026\". Because of this, in the first half of the competition I tried mainly to improve the detection part, with little to no progress. This month and a half of attacking the segmentation part led me to try the desperate measure of manually annotating cells. I'm used to doing this kind of manual work from my undergraduate research and my master's, but man, annotating 3D cells is very hard. I spent a lot of time on it and only managed to annotate about 1,800 cells, less than 2% of what was already provided, so it was too much effort for almost nothing in the detection part. </p>\n<p>Still, I don't regret doing it, because spending dozens of hours looking at cells gave me a lot of ideas for moving away from the hand-made features that are so dominant. Yes, tracking is hard, cells are extremely similar to each other, they constantly change and, worse, they DIVIDE. But that doesn't stop me, a human who had never tracked cells before, from looking at 3 frames and saying with confidence, this is cell X in frame t-1, this is cell X in t, and here are its daughter cells in t+1. So a machine should be able to learn this somehow.</p>\n<p><strong>Here's the 1st place solution for Biohub - Cell Tracking During Development.</strong></p>\n<hr>\n<h1>Overview of the approach</h1>\n<p>My solution follows the tracking-by-detection paradigm and has 3 main stages plus decoding. </p>\n<p>The first stage, the detection part, is a vanilla U-Net with a Cellpose-style head [2], which predicts a foreground probability and a flow field pointing to each cell's center. The model was pretrained with MAE [3], finetuned with manual annotations + 4.305 \u00b5m stamps on GT nodes, and then retrained on pseudo labels generated by that first model. </p>\n<p>The second stage is the fun part of the approach, here I'll call it Soon Net. It looks at 3 frames cropped around each cell and tries to predict its division state (interphase, soon to divide, just divided), where it was and where it went. The architecture is a very small CNN encoder (236K parameters) + transformer (508K parameters) .</p>\n<p>The third stage is a learned linker, also a transformer, with some LightGlue [4] inspirations. It scores the edges between frames t and t+1 and decides divisions, using the detector's geometry and the Soon Net's outputs.</p>\n<p>Finally, a greedy decode turns the linker scores into lineages. The overview can also be seen in the image below.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F4abea4f187321ef24dfb75b917e5f285%2Foverview.png?generation=1790815299517442&amp;alt=media\" alt=\"Overview of the pipeline\"></p>\n<h1>Detection</h1>\n<p>The detector is a vanilla 3D U-Net with a Cellpose-style head. It has about 3.1M parameters and was trained on crops of size 128\u00d7128\u00d764. The encoder has 3 downsampling stages (24, 48 and 96 channels) followed by a 192-channel bottleneck, and each block is 2 \u00d7 (3\u00d73\u00d73 conv + BatchNorm + ReLU). Pooling is anisotropic, (1,2,2), (1,2,2), (2,2,2). At the end of the decoder, two 1\u00d71\u00d71 heads predict a foreground probability and a 3-channel flow field pointing to the cell center. I also use deep supervision at \u00bd and \u00bc resolution.</p>\n<p>To get the instances, like in Cellpose, every voxel with probability &gt; 0.5 follows the flow until it stops at a cell center, and voxels that end up at the same place (within 3 \u00b5m) become one instance. Instances smaller than 10 voxels are dropped.</p>\n<p>The anisotropic pooling is one of the parameters I'm not so sure about. I tried it as a way of handling the anisotropy of the data in Z, and the loss curves were a little lower with it, so I kept it. Anyway, it's probably not doing much\u2026</p>\n<p>The architecture can be seen in the figure below.\n<img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffd359777c6e2066fa9827e93041a5012%2Funet.png?generation=1790815330067008&amp;alt=media\" alt=\"Detector, a Cellpose-style 3D U-Net\"></p>\n<p>I chose to try a mask output instead of a Gaussian blob, which was the dominant strategy in other competitions like CZII and BYU, because many tracking papers like HOCT [5] use geometric features and Ultrack [6] also needs masks, and a simple Gaussian blob would not be able to provide them.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F5e103c8b92ab80896af62a85979f5ab0%2Fsegmentation_z.gif?generation=1790815643687456&amp;alt=media\" alt=\"Detector output\"></p>\n<p>The model was first pretrained with a very \"light\" MAE (Masked Autoencoder). Normally, MAE masks a big portion of the frame with large blocks. I opted for a much lighter version, masking 50% of the volume in tiny blocks of 2\u00d74\u00d74 voxels (about 3.25 \u00b5m on each side, roughly a third of a nucleus). Since the cells are very small, it didn't make sense to me to use large blocks, the model would have to completely hallucinate the cells. With a light MAE it could learn useful features without having to hallucinate. I used 180 movies from the competition (18,000 frames, 15 more held out to check the reconstruction) and 1,500 external frames (150 crops \u00d7 10 time points) from the ultrack zebrafish embryo, and trained for 30 epochs. Honestly, I can't say how much it improved the metrics, or even if it improved them at all. In earlier experiments, I was working with an out-of-embryo split and saw a small improvement in recall, so I kept using it. I just wanted to make sure my detector would be more robust against the embryo variety it may encounter in the private LB. And finally, even if it doesn't improve the scores, it helped my models converge much faster, which cannot be a bad thing. This decision was also supported by the literature, the FOCUS-3D paper [7] that <a href=\"/hengck23\" target=\"_blank\">@hengck23</a> shared in the discussions uses MAE pretraining.</p>\n<p>The code for MAE is from the amazing MIC-DKFZ group and can be found in their <a href=\"https://github.com/MIC-DKFZ/nnssl\" target=\"_blank\">github</a> [8]. In the figure below we can see the MAE reconstruction, showing that it did in fact learn to reconstruct.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffa1d421cac80a45072517c19e85e1668%2Fmae_reconstruction.png?generation=1790815735073254&amp;alt=media\" alt=\"MAE reconstruction\"></p>\n<p>The first finetune uses my hand-painted masks (~1,800 cells over 583 frames) and 4.305 \u00b5m stamps on the 133k annotated GT cells. Models were trained for 40 epochs, using heavy augmentation and EMA.</p>\n<p>After the first finetune, I generated pseudo labels for all 195 movies + the 150 external crops using a 5-fold average + 4x flip TTA. After this, I kept only high-confidence detections, generated tracks with the public twoPass tracker and filtered for min length &gt; 3 to help me keep only high-confidence detections. Yes, this leaks into CV, so Round 2 validation scores are optimistic, but since GT was sparse and I could visually see improvements I accepted the trade.</p>\n<p>For the final submission, 5 folds \u00d7 4x TTA were used, resulting in 20 forward passes per frame.</p>\n<h1>Soon to Divide / Visual Tracking</h1>\n<p>When doing the manual annotation to help my detector, I noticed that divisions were very easy to spot visually. Cells, at least in zebrafish embryos, follow a pretty standard process, they start jiggling, get brighter, then get bigger and suddenly explode in two. The first idea came from seeing this. I didn't even need to see the division happening to know that the cell was going to divide soon. Don't believe me? See for yourself in the gifs below.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F7193a76b3c4b3e903b2727e7a45d3d86%2Finterphase_vs_soon_6bba.gif?generation=1790815901097962&amp;alt=media\" alt=\"Interphase vs soon-to-divide, embryo 6bba\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fedcd156320a2c0eafddb48859459f298%2Finterphase_vs_soon_44b6.gif?generation=1790815929142132&amp;alt=media\" alt=\"Interphase vs soon-to-divide, embryo 44b6\"></p>\n<p>I showed no division, and I bet you were able to identify with your eyes which cell was going to divide (the ones on the right).</p>\n<p>From this concept came my initial model. At first, the purpose was just to create three features for my linker, Soon-to-Divide, Just-Divided and Interphase, and the probabilities of these 3 classes could then be used however I pleased. The soon-to-divide class comprises the stages of mitosis where I can visually see that something is going on with the cell, probably prophase, metaphase and anaphase, but I wasn't worried about the scientific names, nor about making sure that every step of mitosis was identified. If something was happening with the cell, I labeled it.</p>\n<p>The idea in my mind was that soon-to-divide would show a linear increase in probability until its peak when the daughters appear at t+1, and then a sudden change to just divided, and with this the linker would know that a division happened. In the end, I simplified soon-to-divide to be only the last two frames of the mother, t-1 and t, with the daughters appearing at t+1, and not all the frames I labeled. This linear increase does happen, as can be seen in the plot below, even though only the last two frames were labeled soon-to-divide, the probability starts rising about 6 frames before the division. But as you're going to see further on in my Linker section, I only have two frames and never really expanded the temporal features.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fd94cf867ac042f52645fbe16e922f874%2Fsoon_timeline.png?generation=1790815996933069&amp;alt=media\" alt=\"Soon-to-divide probability around a division\"></p>\n<p>The initial architecture was simple. For each detection, I cut a small 16\u00d764\u00d764 crop around it in frames t-1, t and t+1 and added a fourth channel with a Gaussian at the cell's position in frame t, so the model knows which cell I'm asking about. The three frames go through the same small 3D CNN, a small transformer attends over the tokens of all 3 frames, and a learned query seeded at the cell's position reads out the class.</p>\n<p>The result of the soon-to-divide model was already good, I was stuck around ~0.925 on the public LB, and it helped me go to ~0.963 public LB with improvements in divisions alone. After a while, I realized that I was not using the full potential of the data. I just showed 3 frames, set a query on the cell I was asking about and classified it, but I had tracks! In last year's RSNA competition, <a href=\"/tomoon33\" target=\"_blank\">@tomoon33</a>'s 1st place solution [9] used auxiliary detection heads to improve their results, and I wanted to try something similar.</p>\n<p>That's when I started attacking the second thing that bothered me about tracking. By adding an FPN head, my model no longer only said the state of the cell, it could also say where the cell was and where it went, just by looking at it. The FPN takes the encoder features of each frame and the transformer tokens, and predicts two occupancy maps for each of the 3 frames, one for continuation and one for division. The targets are small spheres at the positions of the query cell and its relatives. For an ordinary cell, its position in t-1, t and t+1 lights up in the continuation maps, so the map for t+1 says \"this is where this cell will be in the next frame\", which is exactly the question the linker has to answer. For a mother, both daughters light up in the division map of t+1, and for a newborn daughter, its mother lights up in the division map of t-1. </p>\n<p>The architecture is shown below. A lot of it comes from Primus [10] by MIC-DKFZ (yup, them again). The idea of using a small CNN as a tokenizer before a transformer is something I first learned from them, but their tokenizer is much larger and was overfitting easily, so I simplified it as much as I could and ended up with this small CNN. The EVA [11] blocks also come from Primus, and here I have to be honest, I used them just because they did, there was no proper ablation against plain transformer blocks.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F3af8b495e801e29a98e53116ffe14c9b%2Fsoon_net.png?generation=1790816031116397&amp;alt=media\" alt=\"Soon Net architecture\"></p>\n<p>The idea of the occupancy maps is simple, but the training recipe needed a couple of tweaks to make it work. I couldn't always put the query cell at the center of the crop, because the model would get lazy and predict occupancy for the cell in the center instead of the queried one. So I use a very large FOV jitter (\u00b13 px in z, \u00b116 px in xy). I also use a kind of time-step augmentation for interphase cells, frame t-1 is sometimes actually t-2 or t-3, and t+1 is sometimes t+2 or t+3, so the model learns that cells can move far. </p>\n<p>The examples below query a cell and move the FOV around it, and as can be seen, the occupancy maps and class probabilities stay consistent. </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F61d1182625f817a8a1c291cef2089689%2Fsoon_camera_k1.gif?generation=1790816056993625&amp;alt=media\" alt=\"Soon Net outputs\"></p>\n<p>I used early versions of the Soon Net to mine divisions and visually checked a couple hundred of them. In the final version I had 515 divisions to train with, against the 151 in the original GT.</p>\n<p>The class head uses a cross-entropy over the 3 classes with label smoothing of 0.1. The occupancy maps use a BCE with foreground and background weighted equally, plus a Focal-Tversky term on the maps that have spheres.  Maps of the wrong type, like the division map of an interphase cell, get an extra BCE on their 512 highest voxels to avoid ghost blobs. The total loss is the class loss + 2 \u00d7 the map loss.</p>\n<p>Training consisted of two rounds. Round 1 was trained for 100 epochs, showing about 6650 crops per epoch with a balanced 1:1:1 split (interphase, soon-to-divide, just divided). In round 2 I used round 1 to mine hard interphases, i.e. cells in interphase tracks that round 1 scored as soon-to-divide (p \u2265 0.5) or just divided (p \u2265 0.3), out-of-fold, which gave 2492 hard negatives. The second version was again trained for 100 epochs, with 6600 crops per epoch and a 1:1:1:1 split (random interphase, hard interphase, soon-to-divide, just divided).</p>\n<p>By itself, the Soon Net can already track, using a greedy decode on the occupancy fields. I haven't submitted it, but here are the scores in my 5-fold CV, on the original tracks and on my augmented tracks with manual annotations, mined divisions and a couple of corrections where the original tracks were missing a division annotation.</p>\n<table>\n<thead>\n<tr>\n<th>GT</th>\n<th>Official score, Round 1</th>\n<th>Official score, Round 2</th>\n<th>adj. edge Jaccard (R1 / R2)</th>\n<th>division Jaccard (R1 / R2)</th>\n<th>Divisions TP/FP/FN (R1 \u2192 R2)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Original GT</td>\n<td>0.9270</td>\n<td><strong>0.9288</strong></td>\n<td>0.8926 / 0.8914</td>\n<td>0.3439 / 0.3738</td>\n<td>76/73/72 \u2192 77/58/71</td>\n</tr>\n<tr>\n<td>Augmented GT</td>\n<td>0.9459</td>\n<td><strong>0.9464</strong></td>\n<td>0.8914 / 0.8903</td>\n<td>0.5443 / 0.5617</td>\n<td>313/70/192 \u2192 314/54/191</td>\n</tr>\n</tbody>\n</table>\n<p>It's a decent score, but still not enough to be competitive, so we still need a linker to learn how to better use these features. Note that the Soon Net was the last piece to appear, the early experiments were just detection + learned linker, and this model came much later.</p>\n<h1>Linker</h1>\n<p>Finally, we have the learned linker. Its job is to look at two consecutive frames at a time and decide which cell goes where, and which cell divided. The main inspiration is LightGlue, which matches keypoints between two images, and matching cells between two frames is kind of the same problem.</p>\n<p>The linker uses two kinds of features. Node features describe a single cell and go through the transformer. Pair features describe a candidate link between two cells and are only used later, in the MLP heads.</p>\n<p>Starting with the node features, each detection becomes a token built from 42 hand-made features. The first 39 go through a linear layer, and the 3 distances to the edge of the field of view go through their own small linear layer that is added to the same token (this is the \"FoV embedding\" in the figure). Yes, after all my talk about hand-made features, the linker still uses them. I looked down on them at the beginning of the competition, but I can't argue with the results, they work hehe. But there is one difference with the occupancy ones. They are also kind of hand-made, I'm the one deciding to read the parent's heatmap at the child's center, but they are not blind, the heatmap comes from a model that looked at the 3 frames. So if the Soon Net gets better, with more data or a bigger model, these features get better too, and I think this is the part that could be scaled.</p>\n<table>\n<thead>\n<tr>\n<th>Dims</th>\n<th>Feature</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1</td>\n<td>log volume of the mask</td>\n</tr>\n<tr>\n<td>1</td>\n<td>mean foreground probability over the mask</td>\n</tr>\n<tr>\n<td>24</td>\n<td>position z, y, x (sinusoidal, 4 frequencies \u00d7 sin/cos)</td>\n</tr>\n<tr>\n<td>13</td>\n<td>mask geometry in \u00b5m (semi-axes, axis ratios, fill ratios, main axis direction, bounding box size)</td>\n</tr>\n<tr>\n<td>3</td>\n<td>distance to the edge of the field of view in z, y, x</td>\n</tr>\n</tbody>\n</table>\n<p>The tokens of both frames go through 4 cross-attention blocks, where each cell only looks at nearby cells in the other frame, every cell within 30 \u00b5m plus its 16 nearest ones, so even cells in sparse regions always have candidates.</p>\n<p>Then come the pair features, computed for every candidate link (parent at t, child at t+1). Most of them are simple differences between the two cells. The occupancy ones come from the Soon Net maps (the heatmaps shown in the Soon Net figure). For a candidate link, we ask the parent \"where do you think you'll be at t+1?\" and read its heatmap at the child's center, then ask the child \"where were you at t-1?\" and read its heatmap at the parent's center. If both answers are high, it's probably the right link.</p>\n<table>\n<thead>\n<tr>\n<th>Dims</th>\n<th>Pair feature</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>3</td>\n<td>displacement z, y, x</td>\n</tr>\n<tr>\n<td>1</td>\n<td>log volume ratio</td>\n</tr>\n<tr>\n<td>5</td>\n<td>drift residual after removing the local tissue motion (coarse to fine)</td>\n</tr>\n<tr>\n<td>5</td>\n<td>shape change (main axis agreement, axis lengths, elongation)</td>\n</tr>\n<tr>\n<td>4</td>\n<td>intensity change</td>\n</tr>\n<tr>\n<td>1</td>\n<td>parent's t+1 heatmap, read at the child</td>\n</tr>\n<tr>\n<td>1</td>\n<td>child's t-1 heatmap, read at the parent</td>\n</tr>\n<tr>\n<td>1</td>\n<td>same value compared with the best other candidate</td>\n</tr>\n<tr>\n<td>1</td>\n<td>distance from the child to the peak of the parent's heatmap</td>\n</tr>\n<tr>\n<td>2</td>\n<td>flags when the other cell is outside the crop</td>\n</tr>\n</tbody>\n</table>\n<p>The linker has two heads, a pair head and a fork head.</p>\n<p>The pair head scores every candidate link, using the two cell embeddings plus the pair features.</p>\n<p>The fork head makes the final decision for each parent, no child, one child, or two children. The pair scores pick the 16 best candidate children, and every option is scored, no child (1), a single child (16) or a pair of children (16\u00d715/2 = 120), which gives 137 options per parent.</p>\n<p>The decision is split in two steps. First, a \"kind\" step decides if the parent divides at all. Then, a \"who\" step picks the children. I split it because these are two different questions. \"Is this cell dividing?\" depends mostly on the cell itself, what the Soon Net says about it, but also on whether there is a good pair of daughters in the next frame, so the kind step also looks at how good the best candidate pairs are. \"Which cells are the daughters?\" is about choosing between the candidates. Here the who step uses the Soon Net division maps (the mother points at both daughters and both point back at the mother), the pair scores, intensity, and some geometry, like the distance between the sisters, if their volumes add up to the mother, and if the split happens along the mother's main axis. When everything was in a single softmax, the 120 pair options drowned the rare division decision and the model produced too many false divisions. With the split, the division decision gets its own small head, and the final probability is just p(kind) \u00d7 p(who | kind).</p>\n<p>It's kind of complex to follow everything that is going on, so the figure below tries to illustrate it better.\n<img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F924ff6702eaf16c18eefcdf17cd4cd1d%2Flinker.png?generation=1790816456944552&amp;alt=media\" alt=\"Learned linker architecture\"></p>\n<p>The linker has 3 losses with equal weights. The pair head uses a dual-softmax NLL, like LightGlue. The fork head uses an NLL over the 137 options of each parent, which trains the kind and who steps together. The third loss goes the other way, it is also an NLL, where each child has to pick its right parent, or no parent, among all the options that claim it.</p>\n<p>Training was done for 10 epochs on the augmented GT, with divisions oversampled 8 times. I also use the time-step augmentation, so there is a 25% chance of seeing a (t, t+2) pair.</p>\n<p>At inference, the 5 fold linkers are averaged, and the links come from a greedy decode, no threshold on the edge scores. For every parent and every option, the decode computes how much better it is than \"no child\", log p(option) \u2212 log p(no child), and keeps only the ones above 0. These are sorted and accepted from the best down, where each parent takes at most one option and each child can only have one parent. Children left without a parent start new tracks. </p>\n<h1>Post Processing</h1>\n<p>I tried to keep the post-processing as simple as possible. There is a line-fit smoothing that was shared in the public notebooks, just adjusted to not smooth divisions into their mothers, a division refractory rule that does not allow a newborn daughter to divide again in the next frame (conflicts are resolved from the most confident division down, otherwise a weak early fork could block the real division one frame later), a 1-frame gap closing, and a pruning of tracks shorter than 3 frames.</p>\n<p>The final 5-fold CV of the full pipeline (detector + Soon Net + linker, greedy decode) is shown below.</p>\n<table>\n<thead>\n<tr>\n<th>GT</th>\n<th>Soon Net alone</th>\n<th>Full pipeline</th>\n<th>adj. edge Jaccard (alone / full)</th>\n<th>division Jaccard (alone / full)</th>\n<th>Divisions TP/FP/FN (full)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Original GT</td>\n<td>0.9288</td>\n<td><strong>0.9575</strong></td>\n<td>0.8914 / 0.9089</td>\n<td>0.3738 / 0.4857</td>\n<td>102/62/46</td>\n</tr>\n<tr>\n<td>Augmented GT</td>\n<td>0.9464</td>\n<td><strong>0.9856</strong></td>\n<td>0.8903 / 0.9090</td>\n<td>0.5617 / 0.7654</td>\n<td>434/62/71</td>\n</tr>\n</tbody>\n</table>\n<p>The final score is 0.976 on the public LB and 0.977 on the private LB.</p>\n<h2>Code</h2>\n<p>To be released</p>\n<h2>Sources</h2>\n<p>[1] Jord\u00e3o Bragantini, <em>ultrack: large-scale versatile cell tracking in Python</em>, SciPy 2024. <a href=\"https://www.youtube.com/watch?v=98dahngkNOI\" target=\"_blank\">https://www.youtube.com/watch?v=98dahngkNOI</a></p>\n<p>[2] Stringer et al., <em>Cellpose: a generalist algorithm for cellular segmentation</em>, Nature Methods (2021). <a href=\"https://github.com/MouseLand/cellpose\" target=\"_blank\">https://github.com/MouseLand/cellpose</a></p>\n<p>[3] He et al., <em>Masked Autoencoders Are Scalable Vision Learners</em>, CVPR (2022). <a href=\"https://arxiv.org/abs/2111.06377\" target=\"_blank\">https://arxiv.org/abs/2111.06377</a></p>\n<p>[4] Lindenberger, Sarlin, Pollefeys, <em>LightGlue: Local Feature Matching at Light Speed</em>, ICCV (2023). <a href=\"https://arxiv.org/abs/2306.13643\" target=\"_blank\">https://arxiv.org/abs/2306.13643</a></p>\n<p>[5] Bragantini, Theodoro, Royer, <em>Higher-Order Cell Tracking Transformer</em>, arXiv:2607.11754 (2026). <a href=\"https://arxiv.org/abs/2607.11754\" target=\"_blank\">https://arxiv.org/abs/2607.11754</a></p>\n<p>[6] Bragantini, Theodoro, Zhao et al., <em>Ultrack: pushing the limits of cell tracking across biological scales</em>, Nature Methods 22, 2423\u20132436 (2025). <a href=\"https://doi.org/10.1038/s41592-025-02778-0\" target=\"_blank\">https://doi.org/10.1038/s41592-025-02778-0</a></p>\n<p>[7] Zhang, Mu, Liu et al., <em>FOCUS-3D: Robust, generalizable volumetric cell segmentation for three-dimensional fluorescence microscopy</em>, bioRxiv (2026). Shared by <a href=\"/hengck23\" target=\"_blank\">@hengck23</a> in the competition discussions.</p>\n<p>[8] MIC-DKFZ, <em>nnssl</em>, self-supervised learning framework (MAE code used here). <a href=\"https://github.com/MIC-DKFZ/nnssl\" target=\"_blank\">https://github.com/MIC-DKFZ/nnssl</a></p>\n<p>[9] tomoon33, <em>RSNA Intracranial Aneurysm Detection, 1st place solution</em>, Kaggle (2025). <a href=\"https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection/writeups/1st-place-solution\" target=\"_blank\">https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection/writeups/1st-place-solution</a></p>\n<p>[10] Wald, Roy, Isensee et al., <em>Primus: Enforcing Attention Usage for 3D Medical Image Segmentation</em> (2025). <a href=\"https://arxiv.org/abs/2503.01835\" target=\"_blank\">https://arxiv.org/abs/2503.01835</a></p>\n<p>[11] Fang et al., <em>EVA-02: A Visual Representation for Neon Genesis</em> (2023). <a href=\"https://arxiv.org/abs/2303.11331\" target=\"_blank\">https://arxiv.org/abs/2303.11331</a></p>",
+   "parent": {},
+   "author": {
+    "displayName": "Sergio Alvarez",
+    "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+    "url": "/sersasj",
+    "tier": "MASTER",
+    "id": 2221915,
+    "progressionOptOut": false
+   },
+   "authorType": "TOPIC",
+   "votes": {
+    "totalVotes": 92,
+    "canUpvote": true,
+    "totalUpvotes": 92
+   },
+   "kernelVersion": 0,
+   "competitionRanking": 1,
+   "feedbackTrackingData": {},
+   "isThankYou": false,
+   "reactions": [
+    {
+     "emoji": "YAY",
+     "featuredUserNames": [
+      "yassinealouini",
+      "markpeng",
+      "coderrkj",
+      "arc144",
+      "mbotejoseph",
+      "jordicorbilla",
+      "juancneira",
+      "duresh08",
+      "ltcsmokeboi",
+      "adaluvu"
+     ],
+     "userCount": 10
+    },
+    {
+     "emoji": "KAGGLE",
+     "featuredUserNames": [
+      "kishorevishal"
+     ],
+     "userCount": 1
+    }
+   ],
+   "teamUpInfo": {
+    "teamLeader": {
+     "displayName": "Sergio Alvarez",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+     "url": "/sersasj",
+     "userName": "sersasj",
+     "tier": "MASTER",
+     "id": 2221915,
+     "profileUrl": "/sersasj",
+     "performanceTier": "MASTER",
+     "userId": 2221915,
+     "progressionOptOut": false
+    },
+    "intro": ""
+   }
+  },
+  "firstMessageId": 3530902,
+  "forumId": 10656304,
+  "forumName": "Biohub - Cell Tracking During Development",
+  "id": 744801,
+  "name": "1st Place Solution",
+  "parentName": "biohub-cell-tracking-during-development",
+  "parentUrl": "/competitions/biohub-cell-tracking-during-development",
+  "postDate": "2026-10-01T01:27:35.685878300Z",
+  "totalVotes": 92,
+  "url": "/competitions/biohub-cell-tracking-during-development/discussion/744801",
+  "totalMessages": 27,
+  "authorPerformanceTier": "MASTER",
+  "writeUp": {
+   "id": 116073,
+   "topicId": 744801,
+   "title": "1st Place Solution",
+   "subtitle": "Tracking-by-detection with a per-cell visual tracker",
+   "message": {
+    "id": 3530902,
+    "postDate": "2026-10-01T01:27:35.687Z",
+    "rawMarkdown": "Thanks to BioHub and Kaggle for hosting such an amazing competition. When I started participating in Kaggle competitions 2 years ago I could have never imagined coming this far. Really proud of this first solo gold and 1st place.\n\n----------\nWhen reading the solution, bear in mind that it was not designed from scratch. It grew as ideas came up and were added along the way, and they didn't come in a straight line, I tried a lot of stuff. So there are some parts that could perhaps be simplified and made more elegant without losing score, maybe even improving it. \n\nI entered the competition just 4h after it was launched. I didn't know much about tracking in general, much less cell tracking. But I wanted to try for a solo gold, so I was very invested in learning the subject. \n\nAt the beginning of the competition, while I was trying to get more acquainted with the task, I was very intrigued that, contrary to other fields of computer vision, cell tracking was not following the trend of 'let's just scale things up', as a matter of fact, it mostly uses \"hand-made\" features like geometry, intensity, velocity and so on, and these features are blind, they never look at the cell itself. This was one of the things that stayed in my mind throughout the competition, and one of the things my ideas wandered around.\n\nThe second main driver, which helped me with ideas (not so much with improving the scores), was a quote from an ultrack presentation that I watched on [YouTube](https://www.youtube.com/watch?v=98dahngkNOI), where Jord\u00e3o Bragantini (one of the hosts) [1] says \"tracking is hard, because segmentation is hard. If segmentation was solved, tracking would be much easier...\". Because of this, in the first half of the competition I tried mainly to improve the detection part, with little to no progress. This month and a half of attacking the segmentation part led me to try the desperate measure of manually annotating cells. I'm used to doing this kind of manual work from my undergraduate research and my master's, but man, annotating 3D cells is very hard. I spent a lot of time on it and only managed to annotate about 1,800 cells, less than 2% of what was already provided, so it was too much effort for almost nothing in the detection part. \n\nStill, I don't regret doing it, because spending dozens of hours looking at cells gave me a lot of ideas for moving away from the hand-made features that are so dominant. Yes, tracking is hard, cells are extremely similar to each other, they constantly change and, worse, they DIVIDE. But that doesn't stop me, a human who had never tracked cells before, from looking at 3 frames and saying with confidence, this is cell X in frame t-1, this is cell X in t, and here are its daughter cells in t+1. So a machine should be able to learn this somehow.\n\n\n**Here's the 1st place solution for Biohub - Cell Tracking During Development.**\n\n----\n\n# Overview of the approach\n\nMy solution follows the tracking-by-detection paradigm and has 3 main stages plus decoding. \n\nThe first stage, the detection part, is a vanilla U-Net with a Cellpose-style head [2], which predicts a foreground probability and a flow field pointing to each cell's center. The model was pretrained with MAE [3], finetuned with manual annotations + 4.305 \u00b5m stamps on GT nodes, and then retrained on pseudo labels generated by that first model. \n\nThe second stage is the fun part of the approach, here I'll call it Soon Net. It looks at 3 frames cropped around each cell and tries to predict its division state (interphase, soon to divide, just divided), where it was and where it went. The architecture is a very small CNN encoder (236K parameters) + transformer (508K parameters) .\n\nThe third stage is a learned linker, also a transformer, with some LightGlue [4] inspirations. It scores the edges between frames t and t+1 and decides divisions, using the detector's geometry and the Soon Net's outputs.\n\nFinally, a greedy decode turns the linker scores into lineages. The overview can also be seen in the image below.\n\n![Overview of the pipeline](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F4abea4f187321ef24dfb75b917e5f285%2Foverview.png?generation=1790815299517442&alt=media)\n\n# Detection\n\nThe detector is a vanilla 3D U-Net with a Cellpose-style head. It has about 3.1M parameters and was trained on crops of size 128\u00d7128\u00d764. The encoder has 3 downsampling stages (24, 48 and 96 channels) followed by a 192-channel bottleneck, and each block is 2 \u00d7 (3\u00d73\u00d73 conv + BatchNorm + ReLU). Pooling is anisotropic, (1,2,2), (1,2,2), (2,2,2). At the end of the decoder, two 1\u00d71\u00d71 heads predict a foreground probability and a 3-channel flow field pointing to the cell center. I also use deep supervision at \u00bd and \u00bc resolution.\n\nTo get the instances, like in Cellpose, every voxel with probability > 0.5 follows the flow until it stops at a cell center, and voxels that end up at the same place (within 3 \u00b5m) become one instance. Instances smaller than 10 voxels are dropped.\n\nThe anisotropic pooling is one of the parameters I'm not so sure about. I tried it as a way of handling the anisotropy of the data in Z, and the loss curves were a little lower with it, so I kept it. Anyway, it's probably not doing much...\n\nThe architecture can be seen in the figure below.\n![Detector, a Cellpose-style 3D U-Net](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffd359777c6e2066fa9827e93041a5012%2Funet.png?generation=1790815330067008&alt=media)\n\nI chose to try a mask output instead of a Gaussian blob, which was the dominant strategy in other competitions like CZII and BYU, because many tracking papers like HOCT [5] use geometric features and Ultrack [6] also needs masks, and a simple Gaussian blob would not be able to provide them.\n\n![Detector output](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F5e103c8b92ab80896af62a85979f5ab0%2Fsegmentation_z.gif?generation=1790815643687456&alt=media)\n\n\nThe model was first pretrained with a very \"light\" MAE (Masked Autoencoder). Normally, MAE masks a big portion of the frame with large blocks. I opted for a much lighter version, masking 50% of the volume in tiny blocks of 2\u00d74\u00d74 voxels (about 3.25 \u00b5m on each side, roughly a third of a nucleus). Since the cells are very small, it didn't make sense to me to use large blocks, the model would have to completely hallucinate the cells. With a light MAE it could learn useful features without having to hallucinate. I used 180 movies from the competition (18,000 frames, 15 more held out to check the reconstruction) and 1,500 external frames (150 crops \u00d7 10 time points) from the ultrack zebrafish embryo, and trained for 30 epochs. Honestly, I can't say how much it improved the metrics, or even if it improved them at all. In earlier experiments, I was working with an out-of-embryo split and saw a small improvement in recall, so I kept using it. I just wanted to make sure my detector would be more robust against the embryo variety it may encounter in the private LB. And finally, even if it doesn't improve the scores, it helped my models converge much faster, which cannot be a bad thing. This decision was also supported by the literature, the FOCUS-3D paper [7] that @hengck23 shared in the discussions uses MAE pretraining.\n\nThe code for MAE is from the amazing MIC-DKFZ group and can be found in their [github](https://github.com/MIC-DKFZ/nnssl) [8]. In the figure below we can see the MAE reconstruction, showing that it did in fact learn to reconstruct.\n\n![MAE reconstruction](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffa1d421cac80a45072517c19e85e1668%2Fmae_reconstruction.png?generation=1790815735073254&alt=media)\n\nThe first finetune uses my hand-painted masks (~1,800 cells over 583 frames) and 4.305 \u00b5m stamps on the 133k annotated GT cells. Models were trained for 40 epochs, using heavy augmentation and EMA.\n\nAfter the first finetune, I generated pseudo labels for all 195 movies + the 150 external crops using a 5-fold average + 4x flip TTA. After this, I kept only high-confidence detections, generated tracks with the public twoPass tracker and filtered for min length > 3 to help me keep only high-confidence detections. Yes, this leaks into CV, so Round 2 validation scores are optimistic, but since GT was sparse and I could visually see improvements I accepted the trade.\n\n\nFor the final submission, 5 folds \u00d7 4x TTA were used, resulting in 20 forward passes per frame.\n\n\n\n\n# Soon to Divide / Visual Tracking\n\nWhen doing the manual annotation to help my detector, I noticed that divisions were very easy to spot visually. Cells, at least in zebrafish embryos, follow a pretty standard process, they start jiggling, get brighter, then get bigger and suddenly explode in two. The first idea came from seeing this. I didn't even need to see the division happening to know that the cell was going to divide soon. Don't believe me? See for yourself in the gifs below.\n\n\n![Interphase vs soon-to-divide, embryo 6bba](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F7193a76b3c4b3e903b2727e7a45d3d86%2Finterphase_vs_soon_6bba.gif?generation=1790815901097962&alt=media)\n\n\n![Interphase vs soon-to-divide, embryo 44b6](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fedcd156320a2c0eafddb48859459f298%2Finterphase_vs_soon_44b6.gif?generation=1790815929142132&alt=media)\n\nI showed no division, and I bet you were able to identify with your eyes which cell was going to divide (the ones on the right).\n\nFrom this concept came my initial model. At first, the purpose was just to create three features for my linker, Soon-to-Divide, Just-Divided and Interphase, and the probabilities of these 3 classes could then be used however I pleased. The soon-to-divide class comprises the stages of mitosis where I can visually see that something is going on with the cell, probably prophase, metaphase and anaphase, but I wasn't worried about the scientific names, nor about making sure that every step of mitosis was identified. If something was happening with the cell, I labeled it.\n\nThe idea in my mind was that soon-to-divide would show a linear increase in probability until its peak when the daughters appear at t+1, and then a sudden change to just divided, and with this the linker would know that a division happened. In the end, I simplified soon-to-divide to be only the last two frames of the mother, t-1 and t, with the daughters appearing at t+1, and not all the frames I labeled. This linear increase does happen, as can be seen in the plot below, even though only the last two frames were labeled soon-to-divide, the probability starts rising about 6 frames before the division. But as you're going to see further on in my Linker section, I only have two frames and never really expanded the temporal features.\n\n![Soon-to-divide probability around a division](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fd94cf867ac042f52645fbe16e922f874%2Fsoon_timeline.png?generation=1790815996933069&alt=media)\n\nThe initial architecture was simple. For each detection, I cut a small 16\u00d764\u00d764 crop around it in frames t-1, t and t+1 and added a fourth channel with a Gaussian at the cell's position in frame t, so the model knows which cell I'm asking about. The three frames go through the same small 3D CNN, a small transformer attends over the tokens of all 3 frames, and a learned query seeded at the cell's position reads out the class.\n\nThe result of the soon-to-divide model was already good, I was stuck around ~0.925 on the public LB, and it helped me go to ~0.963 public LB with improvements in divisions alone. After a while, I realized that I was not using the full potential of the data. I just showed 3 frames, set a query on the cell I was asking about and classified it, but I had tracks! In last year's RSNA competition, @tomoon33's 1st place solution [9] used auxiliary detection heads to improve their results, and I wanted to try something similar.\n\nThat's when I started attacking the second thing that bothered me about tracking. By adding an FPN head, my model no longer only said the state of the cell, it could also say where the cell was and where it went, just by looking at it. The FPN takes the encoder features of each frame and the transformer tokens, and predicts two occupancy maps for each of the 3 frames, one for continuation and one for division. The targets are small spheres at the positions of the query cell and its relatives. For an ordinary cell, its position in t-1, t and t+1 lights up in the continuation maps, so the map for t+1 says \"this is where this cell will be in the next frame\", which is exactly the question the linker has to answer. For a mother, both daughters light up in the division map of t+1, and for a newborn daughter, its mother lights up in the division map of t-1. \n\n\nThe architecture is shown below. A lot of it comes from Primus [10] by MIC-DKFZ (yup, them again). The idea of using a small CNN as a tokenizer before a transformer is something I first learned from them, but their tokenizer is much larger and was overfitting easily, so I simplified it as much as I could and ended up with this small CNN. The EVA [11] blocks also come from Primus, and here I have to be honest, I used them just because they did, there was no proper ablation against plain transformer blocks.\n\n![Soon Net architecture](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F3af8b495e801e29a98e53116ffe14c9b%2Fsoon_net.png?generation=1790816031116397&alt=media)\n\n\nThe idea of the occupancy maps is simple, but the training recipe needed a couple of tweaks to make it work. I couldn't always put the query cell at the center of the crop, because the model would get lazy and predict occupancy for the cell in the center instead of the queried one. So I use a very large FOV jitter (\u00b13 px in z, \u00b116 px in xy). I also use a kind of time-step augmentation for interphase cells, frame t-1 is sometimes actually t-2 or t-3, and t+1 is sometimes t+2 or t+3, so the model learns that cells can move far. \n\nThe examples below query a cell and move the FOV around it, and as can be seen, the occupancy maps and class probabilities stay consistent. \n\n![Soon Net outputs](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F61d1182625f817a8a1c291cef2089689%2Fsoon_camera_k1.gif?generation=1790816056993625&alt=media)\n\nI used early versions of the Soon Net to mine divisions and visually checked a couple hundred of them. In the final version I had 515 divisions to train with, against the 151 in the original GT.\n\nThe class head uses a cross-entropy over the 3 classes with label smoothing of 0.1. The occupancy maps use a BCE with foreground and background weighted equally, plus a Focal-Tversky term on the maps that have spheres.  Maps of the wrong type, like the division map of an interphase cell, get an extra BCE on their 512 highest voxels to avoid ghost blobs. The total loss is the class loss + 2 \u00d7 the map loss.\n\nTraining consisted of two rounds. Round 1 was trained for 100 epochs, showing about 6650 crops per epoch with a balanced 1:1:1 split (interphase, soon-to-divide, just divided). In round 2 I used round 1 to mine hard interphases, i.e. cells in interphase tracks that round 1 scored as soon-to-divide (p \u2265 0.5) or just divided (p \u2265 0.3), out-of-fold, which gave 2492 hard negatives. The second version was again trained for 100 epochs, with 6600 crops per epoch and a 1:1:1:1 split (random interphase, hard interphase, soon-to-divide, just divided).\n\n\nBy itself, the Soon Net can already track, using a greedy decode on the occupancy fields. I haven't submitted it, but here are the scores in my 5-fold CV, on the original tracks and on my augmented tracks with manual annotations, mined divisions and a couple of corrections where the original tracks were missing a division annotation.\n\n| GT | Official score, Round 1 | Official score, Round 2 | adj. edge Jaccard (R1 / R2) | division Jaccard (R1 / R2) | Divisions TP/FP/FN (R1 \u2192 R2) |\n|---|---|---|---|---|---|\n| Original GT | 0.9270 | **0.9288** | 0.8926 / 0.8914 | 0.3439 / 0.3738 | 76/73/72 \u2192 77/58/71 |\n| Augmented GT | 0.9459 | **0.9464** | 0.8914 / 0.8903 | 0.5443 / 0.5617 | 313/70/192 \u2192 314/54/191 |\n\nIt's a decent score, but still not enough to be competitive, so we still need a linker to learn how to better use these features. Note that the Soon Net was the last piece to appear, the early experiments were just detection + learned linker, and this model came much later.\n\n# Linker\n\n\n\nFinally, we have the learned linker. Its job is to look at two consecutive frames at a time and decide which cell goes where, and which cell divided. The main inspiration is LightGlue, which matches keypoints between two images, and matching cells between two frames is kind of the same problem.\n\n\nThe linker uses two kinds of features. Node features describe a single cell and go through the transformer. Pair features describe a candidate link between two cells and are only used later, in the MLP heads.\n\nStarting with the node features, each detection becomes a token built from 42 hand-made features. The first 39 go through a linear layer, and the 3 distances to the edge of the field of view go through their own small linear layer that is added to the same token (this is the \"FoV embedding\" in the figure). Yes, after all my talk about hand-made features, the linker still uses them. I looked down on them at the beginning of the competition, but I can't argue with the results, they work hehe. But there is one difference with the occupancy ones. They are also kind of hand-made, I'm the one deciding to read the parent's heatmap at the child's center, but they are not blind, the heatmap comes from a model that looked at the 3 frames. So if the Soon Net gets better, with more data or a bigger model, these features get better too, and I think this is the part that could be scaled.\n\n| Dims | Feature |\n|---|---|\n| 1 | log volume of the mask |\n| 1 | mean foreground probability over the mask |\n| 24 | position z, y, x (sinusoidal, 4 frequencies \u00d7 sin/cos) |\n| 13 | mask geometry in \u00b5m (semi-axes, axis ratios, fill ratios, main axis direction, bounding box size) |\n| 3 | distance to the edge of the field of view in z, y, x  |\n\nThe tokens of both frames go through 4 cross-attention blocks, where each cell only looks at nearby cells in the other frame, every cell within 30 \u00b5m plus its 16 nearest ones, so even cells in sparse regions always have candidates.\n\nThen come the pair features, computed for every candidate link (parent at t, child at t+1). Most of them are simple differences between the two cells. The occupancy ones come from the Soon Net maps (the heatmaps shown in the Soon Net figure). For a candidate link, we ask the parent \"where do you think you'll be at t+1?\" and read its heatmap at the child's center, then ask the child \"where were you at t-1?\" and read its heatmap at the parent's center. If both answers are high, it's probably the right link.\n\n| Dims | Pair feature |\n|---|---|\n| 3 | displacement z, y, x |\n| 1 | log volume ratio |\n| 5 | drift residual after removing the local tissue motion (coarse to fine) |\n| 5 | shape change (main axis agreement, axis lengths, elongation) |\n| 4 | intensity change |\n| 1 | parent's t+1 heatmap, read at the child |\n| 1 | child's t-1 heatmap, read at the parent |\n| 1 | same value compared with the best other candidate |\n| 1 | distance from the child to the peak of the parent's heatmap |\n| 2 | flags when the other cell is outside the crop |\n\n\nThe linker has two heads, a pair head and a fork head.\n\nThe pair head scores every candidate link, using the two cell embeddings plus the pair features.\n\nThe fork head makes the final decision for each parent, no child, one child, or two children. The pair scores pick the 16 best candidate children, and every option is scored, no child (1), a single child (16) or a pair of children (16\u00d715/2 = 120), which gives 137 options per parent.\n\nThe decision is split in two steps. First, a \"kind\" step decides if the parent divides at all. Then, a \"who\" step picks the children. I split it because these are two different questions. \"Is this cell dividing?\" depends mostly on the cell itself, what the Soon Net says about it, but also on whether there is a good pair of daughters in the next frame, so the kind step also looks at how good the best candidate pairs are. \"Which cells are the daughters?\" is about choosing between the candidates. Here the who step uses the Soon Net division maps (the mother points at both daughters and both point back at the mother), the pair scores, intensity, and some geometry, like the distance between the sisters, if their volumes add up to the mother, and if the split happens along the mother's main axis. When everything was in a single softmax, the 120 pair options drowned the rare division decision and the model produced too many false divisions. With the split, the division decision gets its own small head, and the final probability is just p(kind) \u00d7 p(who | kind).\n\n\nIt's kind of complex to follow everything that is going on, so the figure below tries to illustrate it better.\n![Learned linker architecture](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F924ff6702eaf16c18eefcdf17cd4cd1d%2Flinker.png?generation=1790816456944552&alt=media)\n\nThe linker has 3 losses with equal weights. The pair head uses a dual-softmax NLL, like LightGlue. The fork head uses an NLL over the 137 options of each parent, which trains the kind and who steps together. The third loss goes the other way, it is also an NLL, where each child has to pick its right parent, or no parent, among all the options that claim it.\n\nTraining was done for 10 epochs on the augmented GT, with divisions oversampled 8 times. I also use the time-step augmentation, so there is a 25% chance of seeing a (t, t+2) pair.\n\nAt inference, the 5 fold linkers are averaged, and the links come from a greedy decode, no threshold on the edge scores. For every parent and every option, the decode computes how much better it is than \"no child\", log p(option) \u2212 log p(no child), and keeps only the ones above 0. These are sorted and accepted from the best down, where each parent takes at most one option and each child can only have one parent. Children left without a parent start new tracks. \n\n\n# Post Processing\n\nI tried to keep the post-processing as simple as possible. There is a line-fit smoothing that was shared in the public notebooks, just adjusted to not smooth divisions into their mothers, a division refractory rule that does not allow a newborn daughter to divide again in the next frame (conflicts are resolved from the most confident division down, otherwise a weak early fork could block the real division one frame later), a 1-frame gap closing, and a pruning of tracks shorter than 3 frames.\n\nThe final 5-fold CV of the full pipeline (detector + Soon Net + linker, greedy decode) is shown below.\n\n| GT | Soon Net alone | Full pipeline | adj. edge Jaccard (alone / full) | division Jaccard (alone / full) | Divisions TP/FP/FN (full) |\n|---|---|---|---|---|---|\n| Original GT | 0.9288 | **0.9575** | 0.8914 / 0.9089 | 0.3738 / 0.4857 | 102/62/46 |\n| Augmented GT | 0.9464 | **0.9856** | 0.8903 / 0.9090 | 0.5617 / 0.7654 | 434/62/71 |\n\n\nThe final score is 0.976 on the public LB and 0.977 on the private LB.\n\n\n## Code\n\nTo be released\n\n\n## Sources\n\n[1] Jord\u00e3o Bragantini, *ultrack: large-scale versatile cell tracking in Python*, SciPy 2024. https://www.youtube.com/watch?v=98dahngkNOI\n\n[2] Stringer et al., *Cellpose: a generalist algorithm for cellular segmentation*, Nature Methods (2021). https://github.com/MouseLand/cellpose\n\n[3] He et al., *Masked Autoencoders Are Scalable Vision Learners*, CVPR (2022). https://arxiv.org/abs/2111.06377\n\n[4] Lindenberger, Sarlin, Pollefeys, *LightGlue: Local Feature Matching at Light Speed*, ICCV (2023). https://arxiv.org/abs/2306.13643\n\n[5] Bragantini, Theodoro, Royer, *Higher-Order Cell Tracking Transformer*, arXiv:2607.11754 (2026). https://arxiv.org/abs/2607.11754\n\n[6] Bragantini, Theodoro, Zhao et al., *Ultrack: pushing the limits of cell tracking across biological scales*, Nature Methods 22, 2423\u20132436 (2025). https://doi.org/10.1038/s41592-025-02778-0\n\n[7] Zhang, Mu, Liu et al., *FOCUS-3D: Robust, generalizable volumetric cell segmentation for three-dimensional fluorescence microscopy*, bioRxiv (2026). Shared by @hengck23 in the competition discussions.\n\n[8] MIC-DKFZ, *nnssl*, self-supervised learning framework (MAE code used here). https://github.com/MIC-DKFZ/nnssl\n\n[9] tomoon33, *RSNA Intracranial Aneurysm Detection, 1st place solution*, Kaggle (2025). https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection/writeups/1st-place-solution\n\n[10] Wald, Roy, Isensee et al., *Primus: Enforcing Attention Usage for 3D Medical Image Segmentation* (2025). https://arxiv.org/abs/2503.01835\n\n[11] Fang et al., *EVA-02: A Visual Representation for Neon Genesis* (2023). https://arxiv.org/abs/2303.11331\n",
+    "content": "<p>Thanks to BioHub and Kaggle for hosting such an amazing competition. When I started participating in Kaggle competitions 2 years ago I could have never imagined coming this far. Really proud of this first solo gold and 1st place.</p>\n<hr>\n<p>When reading the solution, bear in mind that it was not designed from scratch. It grew as ideas came up and were added along the way, and they didn't come in a straight line, I tried a lot of stuff. So there are some parts that could perhaps be simplified and made more elegant without losing score, maybe even improving it. </p>\n<p>I entered the competition just 4h after it was launched. I didn't know much about tracking in general, much less cell tracking. But I wanted to try for a solo gold, so I was very invested in learning the subject. </p>\n<p>At the beginning of the competition, while I was trying to get more acquainted with the task, I was very intrigued that, contrary to other fields of computer vision, cell tracking was not following the trend of 'let's just scale things up', as a matter of fact, it mostly uses \"hand-made\" features like geometry, intensity, velocity and so on, and these features are blind, they never look at the cell itself. This was one of the things that stayed in my mind throughout the competition, and one of the things my ideas wandered around.</p>\n<p>The second main driver, which helped me with ideas (not so much with improving the scores), was a quote from an ultrack presentation that I watched on <a href=\"https://www.youtube.com/watch?v=98dahngkNOI\" target=\"_blank\">YouTube</a>, where Jord\u00e3o Bragantini (one of the hosts) [1] says \"tracking is hard, because segmentation is hard. If segmentation was solved, tracking would be much easier\u2026\". Because of this, in the first half of the competition I tried mainly to improve the detection part, with little to no progress. This month and a half of attacking the segmentation part led me to try the desperate measure of manually annotating cells. I'm used to doing this kind of manual work from my undergraduate research and my master's, but man, annotating 3D cells is very hard. I spent a lot of time on it and only managed to annotate about 1,800 cells, less than 2% of what was already provided, so it was too much effort for almost nothing in the detection part. </p>\n<p>Still, I don't regret doing it, because spending dozens of hours looking at cells gave me a lot of ideas for moving away from the hand-made features that are so dominant. Yes, tracking is hard, cells are extremely similar to each other, they constantly change and, worse, they DIVIDE. But that doesn't stop me, a human who had never tracked cells before, from looking at 3 frames and saying with confidence, this is cell X in frame t-1, this is cell X in t, and here are its daughter cells in t+1. So a machine should be able to learn this somehow.</p>\n<p><strong>Here's the 1st place solution for Biohub - Cell Tracking During Development.</strong></p>\n<hr>\n<h1>Overview of the approach</h1>\n<p>My solution follows the tracking-by-detection paradigm and has 3 main stages plus decoding. </p>\n<p>The first stage, the detection part, is a vanilla U-Net with a Cellpose-style head [2], which predicts a foreground probability and a flow field pointing to each cell's center. The model was pretrained with MAE [3], finetuned with manual annotations + 4.305 \u00b5m stamps on GT nodes, and then retrained on pseudo labels generated by that first model. </p>\n<p>The second stage is the fun part of the approach, here I'll call it Soon Net. It looks at 3 frames cropped around each cell and tries to predict its division state (interphase, soon to divide, just divided), where it was and where it went. The architecture is a very small CNN encoder (236K parameters) + transformer (508K parameters) .</p>\n<p>The third stage is a learned linker, also a transformer, with some LightGlue [4] inspirations. It scores the edges between frames t and t+1 and decides divisions, using the detector's geometry and the Soon Net's outputs.</p>\n<p>Finally, a greedy decode turns the linker scores into lineages. The overview can also be seen in the image below.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F4abea4f187321ef24dfb75b917e5f285%2Foverview.png?generation=1790815299517442&amp;alt=media\" alt=\"Overview of the pipeline\"></p>\n<h1>Detection</h1>\n<p>The detector is a vanilla 3D U-Net with a Cellpose-style head. It has about 3.1M parameters and was trained on crops of size 128\u00d7128\u00d764. The encoder has 3 downsampling stages (24, 48 and 96 channels) followed by a 192-channel bottleneck, and each block is 2 \u00d7 (3\u00d73\u00d73 conv + BatchNorm + ReLU). Pooling is anisotropic, (1,2,2), (1,2,2), (2,2,2). At the end of the decoder, two 1\u00d71\u00d71 heads predict a foreground probability and a 3-channel flow field pointing to the cell center. I also use deep supervision at \u00bd and \u00bc resolution.</p>\n<p>To get the instances, like in Cellpose, every voxel with probability &gt; 0.5 follows the flow until it stops at a cell center, and voxels that end up at the same place (within 3 \u00b5m) become one instance. Instances smaller than 10 voxels are dropped.</p>\n<p>The anisotropic pooling is one of the parameters I'm not so sure about. I tried it as a way of handling the anisotropy of the data in Z, and the loss curves were a little lower with it, so I kept it. Anyway, it's probably not doing much\u2026</p>\n<p>The architecture can be seen in the figure below.\n<img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffd359777c6e2066fa9827e93041a5012%2Funet.png?generation=1790815330067008&amp;alt=media\" alt=\"Detector, a Cellpose-style 3D U-Net\"></p>\n<p>I chose to try a mask output instead of a Gaussian blob, which was the dominant strategy in other competitions like CZII and BYU, because many tracking papers like HOCT [5] use geometric features and Ultrack [6] also needs masks, and a simple Gaussian blob would not be able to provide them.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F5e103c8b92ab80896af62a85979f5ab0%2Fsegmentation_z.gif?generation=1790815643687456&amp;alt=media\" alt=\"Detector output\"></p>\n<p>The model was first pretrained with a very \"light\" MAE (Masked Autoencoder). Normally, MAE masks a big portion of the frame with large blocks. I opted for a much lighter version, masking 50% of the volume in tiny blocks of 2\u00d74\u00d74 voxels (about 3.25 \u00b5m on each side, roughly a third of a nucleus). Since the cells are very small, it didn't make sense to me to use large blocks, the model would have to completely hallucinate the cells. With a light MAE it could learn useful features without having to hallucinate. I used 180 movies from the competition (18,000 frames, 15 more held out to check the reconstruction) and 1,500 external frames (150 crops \u00d7 10 time points) from the ultrack zebrafish embryo, and trained for 30 epochs. Honestly, I can't say how much it improved the metrics, or even if it improved them at all. In earlier experiments, I was working with an out-of-embryo split and saw a small improvement in recall, so I kept using it. I just wanted to make sure my detector would be more robust against the embryo variety it may encounter in the private LB. And finally, even if it doesn't improve the scores, it helped my models converge much faster, which cannot be a bad thing. This decision was also supported by the literature, the FOCUS-3D paper [7] that <a href=\"/hengck23\" target=\"_blank\">@hengck23</a> shared in the discussions uses MAE pretraining.</p>\n<p>The code for MAE is from the amazing MIC-DKFZ group and can be found in their <a href=\"https://github.com/MIC-DKFZ/nnssl\" target=\"_blank\">github</a> [8]. In the figure below we can see the MAE reconstruction, showing that it did in fact learn to reconstruct.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Ffa1d421cac80a45072517c19e85e1668%2Fmae_reconstruction.png?generation=1790815735073254&amp;alt=media\" alt=\"MAE reconstruction\"></p>\n<p>The first finetune uses my hand-painted masks (~1,800 cells over 583 frames) and 4.305 \u00b5m stamps on the 133k annotated GT cells. Models were trained for 40 epochs, using heavy augmentation and EMA.</p>\n<p>After the first finetune, I generated pseudo labels for all 195 movies + the 150 external crops using a 5-fold average + 4x flip TTA. After this, I kept only high-confidence detections, generated tracks with the public twoPass tracker and filtered for min length &gt; 3 to help me keep only high-confidence detections. Yes, this leaks into CV, so Round 2 validation scores are optimistic, but since GT was sparse and I could visually see improvements I accepted the trade.</p>\n<p>For the final submission, 5 folds \u00d7 4x TTA were used, resulting in 20 forward passes per frame.</p>\n<h1>Soon to Divide / Visual Tracking</h1>\n<p>When doing the manual annotation to help my detector, I noticed that divisions were very easy to spot visually. Cells, at least in zebrafish embryos, follow a pretty standard process, they start jiggling, get brighter, then get bigger and suddenly explode in two. The first idea came from seeing this. I didn't even need to see the division happening to know that the cell was going to divide soon. Don't believe me? See for yourself in the gifs below.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F7193a76b3c4b3e903b2727e7a45d3d86%2Finterphase_vs_soon_6bba.gif?generation=1790815901097962&amp;alt=media\" alt=\"Interphase vs soon-to-divide, embryo 6bba\"></p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fedcd156320a2c0eafddb48859459f298%2Finterphase_vs_soon_44b6.gif?generation=1790815929142132&amp;alt=media\" alt=\"Interphase vs soon-to-divide, embryo 44b6\"></p>\n<p>I showed no division, and I bet you were able to identify with your eyes which cell was going to divide (the ones on the right).</p>\n<p>From this concept came my initial model. At first, the purpose was just to create three features for my linker, Soon-to-Divide, Just-Divided and Interphase, and the probabilities of these 3 classes could then be used however I pleased. The soon-to-divide class comprises the stages of mitosis where I can visually see that something is going on with the cell, probably prophase, metaphase and anaphase, but I wasn't worried about the scientific names, nor about making sure that every step of mitosis was identified. If something was happening with the cell, I labeled it.</p>\n<p>The idea in my mind was that soon-to-divide would show a linear increase in probability until its peak when the daughters appear at t+1, and then a sudden change to just divided, and with this the linker would know that a division happened. In the end, I simplified soon-to-divide to be only the last two frames of the mother, t-1 and t, with the daughters appearing at t+1, and not all the frames I labeled. This linear increase does happen, as can be seen in the plot below, even though only the last two frames were labeled soon-to-divide, the probability starts rising about 6 frames before the division. But as you're going to see further on in my Linker section, I only have two frames and never really expanded the temporal features.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2Fd94cf867ac042f52645fbe16e922f874%2Fsoon_timeline.png?generation=1790815996933069&amp;alt=media\" alt=\"Soon-to-divide probability around a division\"></p>\n<p>The initial architecture was simple. For each detection, I cut a small 16\u00d764\u00d764 crop around it in frames t-1, t and t+1 and added a fourth channel with a Gaussian at the cell's position in frame t, so the model knows which cell I'm asking about. The three frames go through the same small 3D CNN, a small transformer attends over the tokens of all 3 frames, and a learned query seeded at the cell's position reads out the class.</p>\n<p>The result of the soon-to-divide model was already good, I was stuck around ~0.925 on the public LB, and it helped me go to ~0.963 public LB with improvements in divisions alone. After a while, I realized that I was not using the full potential of the data. I just showed 3 frames, set a query on the cell I was asking about and classified it, but I had tracks! In last year's RSNA competition, <a href=\"/tomoon33\" target=\"_blank\">@tomoon33</a>'s 1st place solution [9] used auxiliary detection heads to improve their results, and I wanted to try something similar.</p>\n<p>That's when I started attacking the second thing that bothered me about tracking. By adding an FPN head, my model no longer only said the state of the cell, it could also say where the cell was and where it went, just by looking at it. The FPN takes the encoder features of each frame and the transformer tokens, and predicts two occupancy maps for each of the 3 frames, one for continuation and one for division. The targets are small spheres at the positions of the query cell and its relatives. For an ordinary cell, its position in t-1, t and t+1 lights up in the continuation maps, so the map for t+1 says \"this is where this cell will be in the next frame\", which is exactly the question the linker has to answer. For a mother, both daughters light up in the division map of t+1, and for a newborn daughter, its mother lights up in the division map of t-1. </p>\n<p>The architecture is shown below. A lot of it comes from Primus [10] by MIC-DKFZ (yup, them again). The idea of using a small CNN as a tokenizer before a transformer is something I first learned from them, but their tokenizer is much larger and was overfitting easily, so I simplified it as much as I could and ended up with this small CNN. The EVA [11] blocks also come from Primus, and here I have to be honest, I used them just because they did, there was no proper ablation against plain transformer blocks.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F3af8b495e801e29a98e53116ffe14c9b%2Fsoon_net.png?generation=1790816031116397&amp;alt=media\" alt=\"Soon Net architecture\"></p>\n<p>The idea of the occupancy maps is simple, but the training recipe needed a couple of tweaks to make it work. I couldn't always put the query cell at the center of the crop, because the model would get lazy and predict occupancy for the cell in the center instead of the queried one. So I use a very large FOV jitter (\u00b13 px in z, \u00b116 px in xy). I also use a kind of time-step augmentation for interphase cells, frame t-1 is sometimes actually t-2 or t-3, and t+1 is sometimes t+2 or t+3, so the model learns that cells can move far. </p>\n<p>The examples below query a cell and move the FOV around it, and as can be seen, the occupancy maps and class probabilities stay consistent. </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F61d1182625f817a8a1c291cef2089689%2Fsoon_camera_k1.gif?generation=1790816056993625&amp;alt=media\" alt=\"Soon Net outputs\"></p>\n<p>I used early versions of the Soon Net to mine divisions and visually checked a couple hundred of them. In the final version I had 515 divisions to train with, against the 151 in the original GT.</p>\n<p>The class head uses a cross-entropy over the 3 classes with label smoothing of 0.1. The occupancy maps use a BCE with foreground and background weighted equally, plus a Focal-Tversky term on the maps that have spheres.  Maps of the wrong type, like the division map of an interphase cell, get an extra BCE on their 512 highest voxels to avoid ghost blobs. The total loss is the class loss + 2 \u00d7 the map loss.</p>\n<p>Training consisted of two rounds. Round 1 was trained for 100 epochs, showing about 6650 crops per epoch with a balanced 1:1:1 split (interphase, soon-to-divide, just divided). In round 2 I used round 1 to mine hard interphases, i.e. cells in interphase tracks that round 1 scored as soon-to-divide (p \u2265 0.5) or just divided (p \u2265 0.3), out-of-fold, which gave 2492 hard negatives. The second version was again trained for 100 epochs, with 6600 crops per epoch and a 1:1:1:1 split (random interphase, hard interphase, soon-to-divide, just divided).</p>\n<p>By itself, the Soon Net can already track, using a greedy decode on the occupancy fields. I haven't submitted it, but here are the scores in my 5-fold CV, on the original tracks and on my augmented tracks with manual annotations, mined divisions and a couple of corrections where the original tracks were missing a division annotation.</p>\n<table>\n<thead>\n<tr>\n<th>GT</th>\n<th>Official score, Round 1</th>\n<th>Official score, Round 2</th>\n<th>adj. edge Jaccard (R1 / R2)</th>\n<th>division Jaccard (R1 / R2)</th>\n<th>Divisions TP/FP/FN (R1 \u2192 R2)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Original GT</td>\n<td>0.9270</td>\n<td><strong>0.9288</strong></td>\n<td>0.8926 / 0.8914</td>\n<td>0.3439 / 0.3738</td>\n<td>76/73/72 \u2192 77/58/71</td>\n</tr>\n<tr>\n<td>Augmented GT</td>\n<td>0.9459</td>\n<td><strong>0.9464</strong></td>\n<td>0.8914 / 0.8903</td>\n<td>0.5443 / 0.5617</td>\n<td>313/70/192 \u2192 314/54/191</td>\n</tr>\n</tbody>\n</table>\n<p>It's a decent score, but still not enough to be competitive, so we still need a linker to learn how to better use these features. Note that the Soon Net was the last piece to appear, the early experiments were just detection + learned linker, and this model came much later.</p>\n<h1>Linker</h1>\n<p>Finally, we have the learned linker. Its job is to look at two consecutive frames at a time and decide which cell goes where, and which cell divided. The main inspiration is LightGlue, which matches keypoints between two images, and matching cells between two frames is kind of the same problem.</p>\n<p>The linker uses two kinds of features. Node features describe a single cell and go through the transformer. Pair features describe a candidate link between two cells and are only used later, in the MLP heads.</p>\n<p>Starting with the node features, each detection becomes a token built from 42 hand-made features. The first 39 go through a linear layer, and the 3 distances to the edge of the field of view go through their own small linear layer that is added to the same token (this is the \"FoV embedding\" in the figure). Yes, after all my talk about hand-made features, the linker still uses them. I looked down on them at the beginning of the competition, but I can't argue with the results, they work hehe. But there is one difference with the occupancy ones. They are also kind of hand-made, I'm the one deciding to read the parent's heatmap at the child's center, but they are not blind, the heatmap comes from a model that looked at the 3 frames. So if the Soon Net gets better, with more data or a bigger model, these features get better too, and I think this is the part that could be scaled.</p>\n<table>\n<thead>\n<tr>\n<th>Dims</th>\n<th>Feature</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1</td>\n<td>log volume of the mask</td>\n</tr>\n<tr>\n<td>1</td>\n<td>mean foreground probability over the mask</td>\n</tr>\n<tr>\n<td>24</td>\n<td>position z, y, x (sinusoidal, 4 frequencies \u00d7 sin/cos)</td>\n</tr>\n<tr>\n<td>13</td>\n<td>mask geometry in \u00b5m (semi-axes, axis ratios, fill ratios, main axis direction, bounding box size)</td>\n</tr>\n<tr>\n<td>3</td>\n<td>distance to the edge of the field of view in z, y, x</td>\n</tr>\n</tbody>\n</table>\n<p>The tokens of both frames go through 4 cross-attention blocks, where each cell only looks at nearby cells in the other frame, every cell within 30 \u00b5m plus its 16 nearest ones, so even cells in sparse regions always have candidates.</p>\n<p>Then come the pair features, computed for every candidate link (parent at t, child at t+1). Most of them are simple differences between the two cells. The occupancy ones come from the Soon Net maps (the heatmaps shown in the Soon Net figure). For a candidate link, we ask the parent \"where do you think you'll be at t+1?\" and read its heatmap at the child's center, then ask the child \"where were you at t-1?\" and read its heatmap at the parent's center. If both answers are high, it's probably the right link.</p>\n<table>\n<thead>\n<tr>\n<th>Dims</th>\n<th>Pair feature</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>3</td>\n<td>displacement z, y, x</td>\n</tr>\n<tr>\n<td>1</td>\n<td>log volume ratio</td>\n</tr>\n<tr>\n<td>5</td>\n<td>drift residual after removing the local tissue motion (coarse to fine)</td>\n</tr>\n<tr>\n<td>5</td>\n<td>shape change (main axis agreement, axis lengths, elongation)</td>\n</tr>\n<tr>\n<td>4</td>\n<td>intensity change</td>\n</tr>\n<tr>\n<td>1</td>\n<td>parent's t+1 heatmap, read at the child</td>\n</tr>\n<tr>\n<td>1</td>\n<td>child's t-1 heatmap, read at the parent</td>\n</tr>\n<tr>\n<td>1</td>\n<td>same value compared with the best other candidate</td>\n</tr>\n<tr>\n<td>1</td>\n<td>distance from the child to the peak of the parent's heatmap</td>\n</tr>\n<tr>\n<td>2</td>\n<td>flags when the other cell is outside the crop</td>\n</tr>\n</tbody>\n</table>\n<p>The linker has two heads, a pair head and a fork head.</p>\n<p>The pair head scores every candidate link, using the two cell embeddings plus the pair features.</p>\n<p>The fork head makes the final decision for each parent, no child, one child, or two children. The pair scores pick the 16 best candidate children, and every option is scored, no child (1), a single child (16) or a pair of children (16\u00d715/2 = 120), which gives 137 options per parent.</p>\n<p>The decision is split in two steps. First, a \"kind\" step decides if the parent divides at all. Then, a \"who\" step picks the children. I split it because these are two different questions. \"Is this cell dividing?\" depends mostly on the cell itself, what the Soon Net says about it, but also on whether there is a good pair of daughters in the next frame, so the kind step also looks at how good the best candidate pairs are. \"Which cells are the daughters?\" is about choosing between the candidates. Here the who step uses the Soon Net division maps (the mother points at both daughters and both point back at the mother), the pair scores, intensity, and some geometry, like the distance between the sisters, if their volumes add up to the mother, and if the split happens along the mother's main axis. When everything was in a single softmax, the 120 pair options drowned the rare division decision and the model produced too many false divisions. With the split, the division decision gets its own small head, and the final probability is just p(kind) \u00d7 p(who | kind).</p>\n<p>It's kind of complex to follow everything that is going on, so the figure below tries to illustrate it better.\n<img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F2221915%2F924ff6702eaf16c18eefcdf17cd4cd1d%2Flinker.png?generation=1790816456944552&amp;alt=media\" alt=\"Learned linker architecture\"></p>\n<p>The linker has 3 losses with equal weights. The pair head uses a dual-softmax NLL, like LightGlue. The fork head uses an NLL over the 137 options of each parent, which trains the kind and who steps together. The third loss goes the other way, it is also an NLL, where each child has to pick its right parent, or no parent, among all the options that claim it.</p>\n<p>Training was done for 10 epochs on the augmented GT, with divisions oversampled 8 times. I also use the time-step augmentation, so there is a 25% chance of seeing a (t, t+2) pair.</p>\n<p>At inference, the 5 fold linkers are averaged, and the links come from a greedy decode, no threshold on the edge scores. For every parent and every option, the decode computes how much better it is than \"no child\", log p(option) \u2212 log p(no child), and keeps only the ones above 0. These are sorted and accepted from the best down, where each parent takes at most one option and each child can only have one parent. Children left without a parent start new tracks. </p>\n<h1>Post Processing</h1>\n<p>I tried to keep the post-processing as simple as possible. There is a line-fit smoothing that was shared in the public notebooks, just adjusted to not smooth divisions into their mothers, a division refractory rule that does not allow a newborn daughter to divide again in the next frame (conflicts are resolved from the most confident division down, otherwise a weak early fork could block the real division one frame later), a 1-frame gap closing, and a pruning of tracks shorter than 3 frames.</p>\n<p>The final 5-fold CV of the full pipeline (detector + Soon Net + linker, greedy decode) is shown below.</p>\n<table>\n<thead>\n<tr>\n<th>GT</th>\n<th>Soon Net alone</th>\n<th>Full pipeline</th>\n<th>adj. edge Jaccard (alone / full)</th>\n<th>division Jaccard (alone / full)</th>\n<th>Divisions TP/FP/FN (full)</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Original GT</td>\n<td>0.9288</td>\n<td><strong>0.9575</strong></td>\n<td>0.8914 / 0.9089</td>\n<td>0.3738 / 0.4857</td>\n<td>102/62/46</td>\n</tr>\n<tr>\n<td>Augmented GT</td>\n<td>0.9464</td>\n<td><strong>0.9856</strong></td>\n<td>0.8903 / 0.9090</td>\n<td>0.5617 / 0.7654</td>\n<td>434/62/71</td>\n</tr>\n</tbody>\n</table>\n<p>The final score is 0.976 on the public LB and 0.977 on the private LB.</p>\n<h2>Code</h2>\n<p>To be released</p>\n<h2>Sources</h2>\n<p>[1] Jord\u00e3o Bragantini, <em>ultrack: large-scale versatile cell tracking in Python</em>, SciPy 2024. <a href=\"https://www.youtube.com/watch?v=98dahngkNOI\" target=\"_blank\">https://www.youtube.com/watch?v=98dahngkNOI</a></p>\n<p>[2] Stringer et al., <em>Cellpose: a generalist algorithm for cellular segmentation</em>, Nature Methods (2021). <a href=\"https://github.com/MouseLand/cellpose\" target=\"_blank\">https://github.com/MouseLand/cellpose</a></p>\n<p>[3] He et al., <em>Masked Autoencoders Are Scalable Vision Learners</em>, CVPR (2022). <a href=\"https://arxiv.org/abs/2111.06377\" target=\"_blank\">https://arxiv.org/abs/2111.06377</a></p>\n<p>[4] Lindenberger, Sarlin, Pollefeys, <em>LightGlue: Local Feature Matching at Light Speed</em>, ICCV (2023). <a href=\"https://arxiv.org/abs/2306.13643\" target=\"_blank\">https://arxiv.org/abs/2306.13643</a></p>\n<p>[5] Bragantini, Theodoro, Royer, <em>Higher-Order Cell Tracking Transformer</em>, arXiv:2607.11754 (2026). <a href=\"https://arxiv.org/abs/2607.11754\" target=\"_blank\">https://arxiv.org/abs/2607.11754</a></p>\n<p>[6] Bragantini, Theodoro, Zhao et al., <em>Ultrack: pushing the limits of cell tracking across biological scales</em>, Nature Methods 22, 2423\u20132436 (2025). <a href=\"https://doi.org/10.1038/s41592-025-02778-0\" target=\"_blank\">https://doi.org/10.1038/s41592-025-02778-0</a></p>\n<p>[7] Zhang, Mu, Liu et al., <em>FOCUS-3D: Robust, generalizable volumetric cell segmentation for three-dimensional fluorescence microscopy</em>, bioRxiv (2026). Shared by <a href=\"/hengck23\" target=\"_blank\">@hengck23</a> in the competition discussions.</p>\n<p>[8] MIC-DKFZ, <em>nnssl</em>, self-supervised learning framework (MAE code used here). <a href=\"https://github.com/MIC-DKFZ/nnssl\" target=\"_blank\">https://github.com/MIC-DKFZ/nnssl</a></p>\n<p>[9] tomoon33, <em>RSNA Intracranial Aneurysm Detection, 1st place solution</em>, Kaggle (2025). <a href=\"https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection/writeups/1st-place-solution\" target=\"_blank\">https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection/writeups/1st-place-solution</a></p>\n<p>[10] Wald, Roy, Isensee et al., <em>Primus: Enforcing Attention Usage for 3D Medical Image Segmentation</em> (2025). <a href=\"https://arxiv.org/abs/2503.01835\" target=\"_blank\">https://arxiv.org/abs/2503.01835</a></p>\n<p>[11] Fang et al., <em>EVA-02: A Visual Representation for Neon Genesis</em> (2023). <a href=\"https://arxiv.org/abs/2303.11331\" target=\"_blank\">https://arxiv.org/abs/2303.11331</a></p>",
+    "parent": {},
+    "author": {
+     "displayName": "Sergio Alvarez",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+     "url": "/sersasj",
+     "tier": "MASTER",
+     "id": 2221915,
+     "progressionOptOut": false
+    },
+    "authorType": "TOPIC",
+    "votes": {
+     "totalVotes": 92,
+     "canUpvote": true,
+     "totalUpvotes": 92
+    },
+    "kernelVersion": 0,
+    "competitionRanking": 1,
+    "feedbackTrackingData": {},
+    "reactions": [
+     {
+      "emoji": "YAY",
+      "featuredUserNames": [
+       "yassinealouini",
+       "markpeng",
+       "coderrkj",
+       "arc144",
+       "mbotejoseph",
+       "jordicorbilla",
+       "juancneira",
+       "duresh08",
+       "ltcsmokeboi",
+       "adaluvu"
+      ],
+      "userCount": 10
+     },
+     {
+      "emoji": "KAGGLE",
+      "featuredUserNames": [
+       "kishorevishal"
+      ],
+      "userCount": 1
+     }
+    ],
+    "teamUpInfo": {
+     "teamLeader": {
+      "displayName": "Sergio Alvarez",
+      "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+      "url": "/sersasj",
+      "userName": "sersasj",
+      "tier": "MASTER",
+      "id": 2221915,
+      "profileUrl": "/sersasj",
+      "performanceTier": "MASTER",
+      "userId": 2221915,
+      "progressionOptOut": false
+     },
+     "intro": ""
+    }
+   },
+   "type": "COMPETITION_SOLUTION",
+   "coverImageUrl": "/competitions/136605/images/header",
+   "slug": "1st-place-solution",
+   "url": "/competitions/biohub-cell-tracking-during-development/writeups/1st-place-solution",
+   "createTime": "2026-10-01T01:27:35.852393200Z",
+   "updateTime": "2026-10-02T17:37:07.102924600Z",
+   "contentState": "PUBLISHED",
+   "authors": "Sergio Alvarez",
+   "imageInfo": {},
+   "collaborators": [
+    {
+     "displayName": "Sergio Alvarez",
+     "thumbnailUrl": "https://storage.googleapis.com/kaggle-avatars/thumbnails/2221915-kg.jpg?t=2024-09-24-13-40-46",
+     "url": "/sersasj",
+     "userName": "sersasj",
+     "tier": "MASTER",
+     "id": 2221915,
+     "profileUrl": "/sersasj",
+     "performanceTier": "MASTER",
+     "userId": 2221915,
+     "progressionOptOut": false
+    }
+   ],
+   "publishTime": "2026-10-01T01:28:11.873Z"
+  },
+  "authorProgressionOptOut": false
+ }
+}
