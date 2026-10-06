@@ -22,7 +22,7 @@ everything else, ~20 arms           0.943 - 0.946
 > three-decimal display.
 >
 > The full board, with members and writeup links, is in
-> `rogii/winning_writeups/biohub_top25/raw/leaderboard_private.csv`. It was written by
+> `discussions/writeups/raw/leaderboard_private.csv`. It was written by
 > `discussions/scrape_writeups.py`.
 
 **Final private leaderboard, fetched 2026-09-30** (`discussions/raw/leaderboard_final.json`,

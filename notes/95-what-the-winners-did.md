@@ -134,8 +134,8 @@ higher-ranked teams publish, and treating a missing weights file as a search.
 ## 6. The top 25, complete
 
 By 2026-10-06, 17 of the private top 25 had published writeups. They are archived with their
-comment threads and images in `rogii/winning_writeups/biohub_top25/`. The README there is a
-cross-team digest. `discussions/scrape_writeups.py` regenerates the archive: it reads each
+comment threads and images in `discussions/writeups/`, and the same files are in
+`rogii/winning_writeups/biohub_top25/`. The README there is a cross-team digest. `discussions/scrape_writeups.py` regenerates the archive: it reads each
 team's `solutionWriteUpUrl` from the private leaderboard, then
 `WriteUpsService/GetWriteUpBySlug`.
 
